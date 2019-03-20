@@ -1,0 +1,29 @@
+import React from 'react'
+import { View, Text } from 'react-native'
+import styles from './styles'
+
+/* Config/Constants
+============================================================================= */
+
+
+
+/* =============================================================================
+<MainLanding />
+--------------------------------------------------------------------------------
+
+Props:
+  ?
+
+============================================================================= */
+class MainLanding extends React.Component {
+    render() {
+        return (
+            <View style={styles.flex}>
+                <Text>MainLanding Working</Text>
+            </View>
+        )
+    }
+}
+/* Export
+============================================================================= */
+export default MainLanding
