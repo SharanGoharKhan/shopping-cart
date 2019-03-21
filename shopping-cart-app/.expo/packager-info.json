@@ -2,9 +2,9 @@
   "devToolsPort": 19002,
   "expoServerPort": 19000,
   "packagerPort": 19001,
-  "packagerPid": 18079,
-  "expoServerNgrokUrl": "https://a7-qbd.sharan123.shopping-cart-app.exp.direct",
-  "packagerNgrokUrl": "https://packager.a7-qbd.sharan123.shopping-cart-app.exp.direct",
-  "ngrokPid": 18098,
+  "packagerPid": 112,
+  "expoServerNgrokUrl": "https://a7-qbd.anonymous.shopping-cart-app.exp.direct",
+  "packagerNgrokUrl": "https://packager.a7-qbd.anonymous.shopping-cart-app.exp.direct",
+  "ngrokPid": 15584,
   "webpackServerPort": null
 }

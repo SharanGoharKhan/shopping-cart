@@ -1,6 +1,9 @@
 import React from 'react'
-import { View, Text } from 'react-native'
+import { View, Text,Image ,StatusBar, TextInput, TouchableOpacity, ImageBackground  } from 'react-native'
 import styles from './styles'
+import { colors } from '../../utils/colors';
+import { moderateScale } from '../../utils/scaling';
+
 
 /* Config/Constants
 ============================================================================= */
@@ -18,8 +21,110 @@ Props:
 class SignIn extends React.Component {
     render() {
         return (
-            <View style={styles.flex}>
-                <Text>SignIn Working</Text>
+            <View style={styles.container}>
+                <StatusBar backgroundColor={'transparent'} barStyle = "dark-content" hidden = {false}  translucent = {true}/>
+                <View style={styles.statusBarImage}>
+                    <Image
+                        source={require('../../assets/images/statusbar.png')}
+                        style={{
+                            height: StatusBar.currentHeight,
+                            width:'100%'
+                        }}
+                        />
+                </View>
+                <View style={styles.body}>
+                    <View style={styles.body_header}>
+                    <Image
+                        source={require('../../assets/icons/avatar.png')}
+                        style={{
+                            height:moderateScale(18),
+                            width:moderateScale(16)
+                        }}
+                        />
+                        <Text style={styles.header_text}>Sign In</Text>
+                    </View>
+                    <View style={styles.body_container}>
+                    <ImageBackground 
+                        style={styles.body_container_background}
+                        source={require('../../assets/images/formBackground.png')}
+                    >
+                        <View style={styles.bc_texts}>
+                            <Text style={styles.bc_h1}>
+                                Hello Guest!
+                            </Text>
+                            <Text style={styles.bc_h2}>
+                                Sign In
+                            </Text>
+                        </View>
+                        <View style={styles.bc_main}>
+                            <View style={styles.bc_input_view}>
+                                <TextInput 
+                                style={styles.bc_input}
+                                placeholderTextColor={colors.primaryBlackColor}
+                                placeholder="Username"/>
+                            </View>
+                            <View style={styles.bc_input_view}>
+                                <TextInput
+                                style={styles.bc_input}
+                                placeholderTextColor={colors.primaryBlackColor}
+                                placeholder="Password"/>
+                            </View>
+                            <TouchableOpacity 
+                            onPress={console.log("Implement Press")}
+                            style={styles.main_brown_btn}
+                            >
+                            <Text style={styles.bb_text}> Sign In</Text>
+                            </TouchableOpacity>
+                            <Text style={styles.passwordText}>Forgot my password</Text>
+                        </View>
+                        <View style={styles.bc_socialBtns}>
+                            <View style={[styles.socialBtns_View, styles.google_btn]}>
+                                <TouchableOpacity style={styles.socialBtn}>
+                                    <Image
+                                        source={require('../../assets/icons/google.png')}
+                                        style={{
+                                            height:moderateScale(25),
+                                            width:moderateScale(25)
+                                        }}
+                                        />
+                                    <Text style={styles.fb_text}>Google</Text>
+                                </TouchableOpacity>
+                            </View>
+                            <View style={[styles.socialBtns_View, styles.facebook_btn]}>
+                                <TouchableOpacity style={styles.socialBtn}>
+                                    <Image
+                                    source={require('../../assets/icons/facebook.png')}
+                                    style={{
+                                        height:moderateScale(24),
+                                        width:moderateScale(24)
+                                    }}
+                                  
+                                    />
+                                    <Text style={styles.fb_text}>Facebook</Text>
+                                </TouchableOpacity>
+                            </View>
+                        </View>
+                    </ImageBackground>
+                    </View>
+                    <View style={styles.body_footer}>
+                        <View style={styles.footer}>
+                            <View style={styles.mixed_line}>
+                                <Text style={[styles.ft_text, styles.bold_text]}>Create New Account: </Text>
+                                <Text style={styles.ft_text}>By creating a new account, you</Text>
+                            </View>
+                            <Text style={styles.ft_text}> 
+                                 will become a valuable customer/buyer to Akshaak by 
+                            </Text>
+                            <View style={styles.mixed_line}>
+                                <Text style={styles.ft_text}>default. While registering, </Text>
+                                <Text style={[styles.ft_underline,styles.ft_text]}>you can also choose to</Text>
+                            </View>
+                            <Text style={[styles.ft_underline, styles.ft_text]}>
+                                become a seller and open your own shop
+                            </Text>
+                        </View>
+                    </View>
+                </View>
             </View>
         )
     }

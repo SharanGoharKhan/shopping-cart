@@ -1,5 +1,8 @@
 {
   "expo": {
+    "androidStatusBar": {
+      "backgroundColor": "#C2185B"
+    },
     "name": "ShoppingCart",
     "slug": "ShoppingCart",
     "privacy": "public",
@@ -25,5 +28,8 @@
     "ios": {
       "supportsTablet": true
     }
+
   }
+ 
+
 }
