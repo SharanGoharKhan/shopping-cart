@@ -1,5 +1,8 @@
 {
   "expo": {
+    "androidStatusBar": {
+      "backgroundColor":"#ffffff"
+    },
     "name": "ShoppingCart",
     "slug": "ShoppingCart",
     "privacy": "public",
@@ -13,7 +16,7 @@
     "icon": "./assets/icon.png",
     "splash": {
       "image": "./assets/splash.png",
-      "resizeMode": "contain",
+      "resizeMode": "cover",
       "backgroundColor": "#ffffff"
     },
     "updates": {
