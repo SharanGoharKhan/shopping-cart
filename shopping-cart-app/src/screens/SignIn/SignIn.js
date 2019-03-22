@@ -1,5 +1,8 @@
 import React from 'react'
 import { View, Text,Image ,StatusBar, TextInput, TouchableOpacity, ImageBackground  } from 'react-native'
+
+import KeyboardShift from '../../components/KeyboardResponsive/KeyboardShift'
+
 import styles from './styles'
 import { colors } from '../../utils/colors';
 import { moderateScale } from '../../utils/scaling';
@@ -22,7 +25,7 @@ class SignIn extends React.Component {
     render() {
         return (
             <View style={styles.container}>
-                <StatusBar backgroundColor={'transparent'} barStyle = "dark-content" hidden = {false}  translucent = {true}/>
+                <StatusBar backgroundColor={'transparent'} barStyle = "light-content" hidden = {false}  translucent = {true}/>
                 <View style={styles.statusBarImage}>
                     <Image
                         source={require('../../assets/images/statusbar.png')}
@@ -32,7 +35,7 @@ class SignIn extends React.Component {
                         }}
                         />
                 </View>
-                <View style={styles.body}>
+                  <View style={styles.body}>
                     <View style={styles.body_header}>
                     <Image
                         source={require('../../assets/icons/avatar.png')}
@@ -125,6 +128,7 @@ class SignIn extends React.Component {
                         </View>
                     </View>
                 </View>
+               
             </View>
         )
     }

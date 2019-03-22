@@ -1,8 +1,6 @@
 {
   "expo": {
-    "androidStatusBar": {
-      "backgroundColor":"#ffffff"
-    },
+
     "name": "ShoppingCart",
     "slug": "ShoppingCart",
     "privacy": "public",
