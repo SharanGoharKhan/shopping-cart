@@ -32,7 +32,7 @@ class SignIn extends React.Component {
                         }}
                         />
                 </View>
-                  <View style={styles.body}>
+                <View style={styles.body}>
                     <View style={styles.body_header}>
                     <Image
                         source={require('../../assets/icons/avatar.png')}
