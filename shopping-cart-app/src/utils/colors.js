@@ -8,8 +8,13 @@ export  const colors = {
     fontBlackColor: '#212121',
     fontGreyColor: '#949393',
     greenColor: '#11b000',
-    brownishColor: '#e9e9af',
+    brownishColor: '#e9e9af', // ???
     orangeColor: '#ff8852',
     greyLinesColor: '#e1e1e1',
-    lightGrayColor: '#eaeaea'
+    lightGrayColor: '#eaeaea',
+
+    brownColor: '#D0AD8A',
+    facebookBlueColor: '#3B5998',
+    googleRedColor: '#DC4E41'
+
 }

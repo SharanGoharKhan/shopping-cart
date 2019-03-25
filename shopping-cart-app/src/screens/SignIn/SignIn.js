@@ -1,17 +1,14 @@
 import React from 'react'
 import { View, Text,Image ,StatusBar, TextInput, TouchableOpacity, ImageBackground  } from 'react-native'
 
-import KeyboardShift from '../../components/KeyboardResponsive/KeyboardShift'
-
 import styles from './styles'
 import { colors } from '../../utils/colors';
 import { moderateScale } from '../../utils/scaling';
 
-
+import TextField from '../../ui/Textfield/Textfield'
+import MainBtn from '../../ui/Buttons/MainBtn'
 /* Config/Constants
 ============================================================================= */
-
-
 
 /* =============================================================================
 <SignIn />
@@ -25,7 +22,7 @@ class SignIn extends React.Component {
     render() {
         return (
             <View style={styles.container}>
-                <StatusBar backgroundColor={'transparent'} barStyle = "light-content" hidden = {false}  translucent = {true}/>
+                <StatusBar backgroundColor={'transparent'} barStyle = "light-content" hidden = {false}  translucent = {false}/>
                 <View style={styles.statusBarImage}>
                     <Image
                         source={require('../../assets/images/statusbar.png')}
@@ -60,24 +57,11 @@ class SignIn extends React.Component {
                             </Text>
                         </View>
                         <View style={styles.bc_main}>
-                            <View style={styles.bc_input_view}>
-                                <TextInput 
-                                style={styles.bc_input}
-                                placeholderTextColor={colors.primaryBlackColor}
-                                placeholder="Username"/>
-                            </View>
-                            <View style={styles.bc_input_view}>
-                                <TextInput
-                                style={styles.bc_input}
-                                placeholderTextColor={colors.primaryBlackColor}
-                                placeholder="Password"/>
-                            </View>
-                            <TouchableOpacity 
-                            onPress={console.log("Implement Press")}
-                            style={styles.main_brown_btn}
-                            >
-                            <Text style={styles.bb_text}> Sign In</Text>
-                            </TouchableOpacity>
+                            <TextField 
+                                placeholderText="Username"/>
+                            <TextField 
+                                placeholderText="Password"/>
+                            <MainBtn  text="Sign In"/>
                             <Text style={styles.passwordText}>Forgot my password</Text>
                         </View>
                         <View style={styles.bc_socialBtns}>
