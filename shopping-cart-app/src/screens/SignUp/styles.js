@@ -69,8 +69,8 @@ export default {
         height: '55%', width: '90%'
     },
     main_bot:{
-        height: '20%', width: '90%',
-        justifyContent: 'space-between',
+        height: '25%', width: '90%',
+        justifyContent: 'space-around',
         alignItems: 'center'
     },
     bot_btn_container:{

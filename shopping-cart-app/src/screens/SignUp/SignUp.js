@@ -55,7 +55,7 @@ class SignUp extends React.Component {
 
                             </View>
                             <View style={styles.main_bot}>
-                                <View style={{width: '100%'}}>
+                                <View style={styles.bot_btn_container}>
                                     <MainBtn text="Sign up"/>
                                 </View>
                                 <View style={styles.mixed_line}>
