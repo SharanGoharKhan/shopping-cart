@@ -73,5 +73,13 @@ export default {
         fontFamily: fontStyles.PoppinsRegular,
         color: colors.brownColor,
         fontSize: moderateScale(11),
+    },
+    prevPrice:{
+        alignSelf: 'flex-end'
+    },
+    prevPriceText:{
+        color: colors.googleRedColor,
+        fontFamily: fontStyles.PoppinsRegular,
+        fontSize: moderateScale(9)
     }
 }

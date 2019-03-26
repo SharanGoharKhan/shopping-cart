@@ -9,7 +9,10 @@ import FullCard from '../../ui/Cards/FullCard/FullCard'
 
 /* Config/Constants
 ============================================================================= */
-const DATA = [1,2,3,4]
+const DATA = [
+    {name:"Leather Crossbody MID Premium", brand: "EQ Custom Leather", quantity: 3, prev_price:null, new_price:120},
+    {name:"Photography's belt & hooch", brand: "EQ Custom Leather", quantity: 1, prev_price:39, new_price:29}
+]
 
 /* =============================================================================
 <ShoppingCart />
@@ -47,7 +50,16 @@ class ShoppingCart extends React.Component {
                     <View style={styles.main}>
                         <View style={styles.main_top}>
                             <ScrollView style={styles.main_scroller}>
-                                {DATA.map((item,i)=><FullCard key={i}/>)}
+                                {DATA.map((item,i)=>
+                                    <FullCard
+                                        
+                                        productName= {item.name}
+                                        productBrand= {item.brand}
+                                        productQuantity= {item.quantity}
+                                        productPreviousPrice= {item.prev_price}
+                                        productNewPrice= {item.new_price} 
+                                        key={i}/>
+                                )}
                             </ScrollView>
                         </View>
                         <View style={styles.main_bot}>
