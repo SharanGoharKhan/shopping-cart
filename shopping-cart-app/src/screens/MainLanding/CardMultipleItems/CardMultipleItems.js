@@ -3,6 +3,35 @@ import { Text, View, Image, ScrollView } from 'react-native'
 import styles from './styles'
 /* Config/Constants
 ============================================================================= */
+cardData = [
+    {
+        imageTL: require('../../../assets/images/MainLanding/shop-1-collage-1.png'),
+        imageTR: require('../../../assets/images/MainLanding/shop-1-collage-2.png'),
+        imageBL: require('../../../assets/images/MainLanding/shop-1-collage-3.png'),
+        imageBR: require('../../../assets/images/MainLanding/shop-1-collage-4.png'),
+        imageC: require('../../../assets/images/MainLanding/shop-1-avatar.png'),
+        title: 'Pink Tulip Loom',
+        category: 'Crochet'
+    },
+    {
+        imageTL: require('../../../assets/images/MainLanding/shop-2-collage-1.png'),
+        imageTR: require('../../../assets/images/MainLanding/shop-2-collage-2.png'),
+        imageBL: require('../../../assets/images/MainLanding/shop-2-collage-3.png'),
+        imageBR: require('../../../assets/images/MainLanding/shop-2-collage-4.png'),
+        imageC: require('../../../assets/images/MainLanding/shop-2-avatar.png'),
+        title: 'EQ Custom Leather Bag',
+        category: 'Leather'
+    },
+    {
+        imageTL: require('../../../assets/images/MainLanding/shop-1-collage-1.png'),
+        imageTR: require('../../../assets/images/MainLanding/shop-1-collage-2.png'),
+        imageBL: require('../../../assets/images/MainLanding/shop-1-collage-3.png'),
+        imageBR: require('../../../assets/images/MainLanding/shop-1-collage-4.png'),
+        imageC: require('../../../assets/images/MainLanding/shop-1-avatar.png'),
+        title: 'Pink Tulip Loom',
+        category: 'Crochet'
+    }
+]
 /* =============================================================================
 <cardMultipleItems />
 --------------------------------------------------------------------------------
@@ -19,147 +48,57 @@ const cardMultipleItems = () => (
         </View>
         <View style={styles.scrollViewContainer}>
             <ScrollView horizontal={true} showsHorizontalScrollIndicator={false}>
-                <View style={styles.cardContainer}>
-                    <View style={styles.cardTopContainer}>
-                        <View style={styles.cardTopSubContainer}>
-                            <View style={styles.w50h50}>
-                                <Image
-                                    source={require('../../../assets/images/MainLanding/shop-1-collage-1.png')}
-                                    resizeMode="cover"
-                                    style={styles.imgResponsive}
-                                />
+                {
+                    cardData.map((card, ind) =>
+                        <View key={ind} style={styles.cardContainer}>
+                            <View style={styles.cardTopContainer}>
+                                <View style={styles.cardTopSubContainer}>
+                                    <View style={styles.w50h50}>
+                                        <Image
+                                            source={card.imageTL}
+                                            resizeMode="cover"
+                                            style={styles.imgResponsive}
+                                        />
+                                    </View>
+                                    <View style={styles.w50h50}>
+                                        <Image
+                                            source={card.imageTR}
+                                            resizeMode="cover"
+                                            style={styles.imgResponsive}
+                                        />
+                                    </View>
+                                    <View style={styles.w50h50}>
+                                        <Image
+                                            source={card.imageBL}
+                                            resizeMode="cover"
+                                            style={styles.imgResponsive}
+                                        />
+                                    </View>
+                                    <View style={styles.w50h50}>
+                                        <Image
+                                            source={card.imageBR}
+                                            resizeMode="cover"
+                                            style={styles.imgResponsive}
+                                        />
+                                    </View>
+                                    <View style={styles.centerImgContainer}>
+                                        <Image
+                                            source={card.imageC}
+                                            resizeMode="cover"
+                                            style={styles.centerImgStyle}
+                                        />
+                                    </View>
+                                </View>
                             </View>
-                            <View style={styles.w50h50}>
-                                <Image
-                                    source={require('../../../assets/images/MainLanding/shop-1-collage-2.png')}
-                                    resizeMode="cover"
-                                    style={styles.imgResponsive}
-                                />
-                            </View>
-                            <View style={styles.w50h50}>
-                                <Image
-                                    source={require('../../../assets/images/MainLanding/shop-1-collage-3.png')}
-                                    resizeMode="cover"
-                                    style={styles.imgResponsive}
-                                />
-                            </View>
-                            <View style={styles.w50h50}>
-                                <Image
-                                    source={require('../../../assets/images/MainLanding/shop-1-collage-4.png')}
-                                    resizeMode="cover"
-                                    style={styles.imgResponsive}
-                                />
-                            </View>
-                            <View style={styles.centerImgContainer}>
-                                <Image
-                                    source={require('../../../assets/images/MainLanding/shop-1-avatar.png')}
-                                    resizeMode="cover"
-                                    style={styles.centerImgStyle}
-                                />
-                            </View>
-                        </View>
-                    </View>
-                    <View style={styles.bottomContainer}>
-                        <View style={styles.bottomSubContainer}>
-                            <Text style={styles.bottomTextStyle}>Pink Tulip Loom</Text>
-                            <Text style={styles.bottomTextStyle}>Crochet</Text>
-                        </View>
-                    </View>
-                </View>
-                <View style={styles.cardContainer}>
-                    <View style={styles.cardTopContainer}>
-                        <View style={styles.cardTopSubContainer}>
-                            <View style={styles.w50h50}>
-                                <Image
-                                    source={require('../../../assets/images/MainLanding/shop-2-collage-1.png')}
-                                    resizeMode="cover"
-                                    style={styles.imgResponsive}
-                                />
-                            </View>
-                            <View style={styles.w50h50}>
-                                <Image
-                                    source={require('../../../assets/images/MainLanding/shop-2-collage-2.png')}
-                                    resizeMode="cover"
-                                    style={styles.imgResponsive}
-                                />
-                            </View>
-                            <View style={styles.w50h50}>
-                                <Image
-                                    source={require('../../../assets/images/MainLanding/shop-2-collage-3.png')}
-                                    resizeMode="cover"
-                                    style={styles.imgResponsive}
-                                />
-                            </View>
-                            <View style={styles.w50h50}>
-                                <Image
-                                    source={require('../../../assets/images/MainLanding/shop-2-collage-4.png')}
-                                    resizeMode="cover"
-                                    style={styles.imgResponsive}
-                                />
-                            </View>
-                            <View style={styles.centerImgContainer}>
-                                <Image
-                                    source={require('../../../assets/images/MainLanding/shop-2-avatar.png')}
-                                    resizeMode="cover"
-                                    style={styles.centerImgStyle}
-                                />
+                            <View style={styles.bottomContainer}>
+                                <View style={styles.bottomSubContainer}>
+                                    <Text style={styles.bottomTextStyle}>{card.title}</Text>
+                                    <Text style={styles.bottomTextStyle}>{card.category}</Text>
+                                </View>
                             </View>
                         </View>
-                    </View>
-                    <View style={styles.bottomContainer}>
-                        <View style={styles.bottomSubContainer}>
-                            <Text style={styles.bottomTextStyle}>EQ Custom Leather Bag</Text>
-                            <Text style={styles.bottomTextStyle}>Leather</Text>
-                        </View>
-                    </View>
-                </View>
-                <View style={styles.cardContainer}>
-                    <View style={styles.cardTopContainer}>
-                        <View style={styles.cardTopSubContainer}>
-                            <View style={styles.w50h50}>
-                                <Image
-                                    source={require('../../../assets/images/MainLanding/shop-1-collage-1.png')}
-                                    resizeMode="cover"
-                                    style={styles.imgResponsive}
-                                />
-                            </View>
-                            <View style={styles.w50h50}>
-                                <Image
-                                    source={require('../../../assets/images/MainLanding/shop-1-collage-2.png')}
-                                    resizeMode="cover"
-                                    style={styles.imgResponsive}
-                                />
-                            </View>
-                            <View style={styles.w50h50}>
-                                <Image
-                                    source={require('../../../assets/images/MainLanding/shop-1-collage-3.png')}
-                                    resizeMode="cover"
-                                    style={styles.imgResponsive}
-                                />
-                            </View>
-                            <View style={styles.w50h50}>
-                                <Image
-                                    source={require('../../../assets/images/MainLanding/shop-1-collage-4.png')}
-                                    resizeMode="cover"
-                                    style={styles.imgResponsive}
-                                />
-                            </View>
-                            <View style={styles.centerImgContainer}>
-                                <Image
-                                    source={require('../../../assets/images/MainLanding/shop-1-avatar.png')}
-                                    resizeMode="cover"
-                                    style={styles.centerImgStyle}
-                                />
-                            </View>
-                        </View>
-                    </View>
-                    <View style={styles.bottomContainer}>
-                        <View style={styles.bottomSubContainer}>
-                            <Text style={styles.bottomTextStyle}>Pink Tulip Loom</Text>
-                            <Text style={styles.bottomTextStyle}>Crochet</Text>
-                        </View>
-                    </View>
-                </View>
+                    )
+                }
             </ScrollView>
         </View>
     </View>
