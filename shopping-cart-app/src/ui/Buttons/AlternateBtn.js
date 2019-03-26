@@ -1,13 +1,13 @@
 import React from 'react'
 import {View, TouchableOpacity, Text} from 'react-native'
 
-import {mainBtnStyles as styles} from './styles'
+import {alternateBtn as styles} from './styles'
 /* Config/Constants
 ============================================================================= */
 
 /* =============================================================================
-<MainBtn />
-Golden/ Brownish btn used. Height is fixed, width is adaptable. If have to force width, set width of the parent container.
+<TextField />
+A TextInput covered by a white background View, greyish border, black text. has 100% width and mod scale 38 height.
 --------------------------------------------------------------------------------
 
 Props:
@@ -20,7 +20,7 @@ const MainBtn = (props) =>{
         <View style={styles.backgroundColor}>
             <TouchableOpacity 
                 onPress={props.onPress}
-                style={styles.main_brown_btn}>
+                style={styles.main_alt_btn}>
                     <Text style={styles.btn_text}> {props.text} </Text>
             </TouchableOpacity>
         </View>

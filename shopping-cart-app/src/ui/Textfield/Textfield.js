@@ -16,11 +16,12 @@ Props:
   onChange Event: send the function to be called for onChange event
   placeHolderText: send the Text for placeholder
   placeHolderColor: sent the Color for placeholder
+  containerStyle: allows user to override the container style
 ============================================================================= */
 const TextField = (props) =>{
     let placeholderColor = props.placeholderColor? props.placeholderColor: colors.primaryBlackColor
     return(
-        <View style={Styles.input_view}>
+        <View style={[Styles.input_view, props.containerStyle]}>
             <TextInput 
                 onChange={props.onChange}
                 style={Styles.input}
