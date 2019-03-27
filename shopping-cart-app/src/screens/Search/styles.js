@@ -18,7 +18,7 @@ export default {
         backgroundColor:'black'
     },
     body:{
-        height: '95%', width:'95%',
+        height: '95%', width:'100%',
         alignSelf:'center', zIndex:0
         //backgroundColor: 'rgba(255,10,10,0.2)'
     },
@@ -42,9 +42,43 @@ export default {
     // main
     main:{
         height: '80%', width: '100%', marginLeft:0
-        , backgroundColor:'pink'
+        ,
+        justifyContent: 'center', alignItems: 'center'
+
     },
-   
+    searchBarContainer:{
+        height: '10%', width: '93%',
+        justifyContent: 'center', alignItems: 'center'
+    },
+    mainBodyContainer:{
+        height:'90%', width:'100%',
+        justifyContent: 'center', alignItems: 'center',
+        backgroundColor: colors.greyLinesColor
+
+    },
+    mainBody:{
+        width: '95%',
+       marginTop:'25%',
+
+    },
+    mixed_text:{
+        flexDirection:'row',
+        marginBottom: moderateScale(5)
+    },
+    text:{
+        fontFamily: fontStyles.PoppinsRegular,
+        fontSize: moderateScale(12),
+    },
+    colored_text:{
+        fontFamily: fontStyles.PoppinsRegular,
+        fontSize: moderateScale(12),
+        color: colors.brownColor
+    },
+    row:{
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+        marginBottom: moderateScale(15)
+    },
     // footer
     footer:{
         height: '10%', width: '100%',

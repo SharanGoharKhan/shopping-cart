@@ -1,6 +1,8 @@
 import React from 'react'
 import { View, Text, TouchableOpacity,Image, Animated, Easing, ScrollView } from 'react-native'
 import styles from './styles'
+import { colors } from '../../utils/colors';
+import { moderateScale } from '../../utils/scaling';
 
 /*Props
 data
@@ -30,30 +32,7 @@ class Dropdown extends React.Component{
     }
 
     animate=()=>{
-        //console.log('animate', this.scaleY)
-        /*
-        Animated.spring(this.scaleY,{
-            toValue:1,
-            duration: 100,
-            useNativeDriver: true
-        }).start()
-        */
-        
-       /*
-       Animated.timing(this.height,{
-        toValue:50,
-        duration: 100,
-        useNativeDriver: true
-    }).start()
-    */
-   /*
-    this.translateY.setValue(-20)
-    Animated.timing(this.translateY,{
-        toValue:100,
-        duration: 100,
-        useNativeDriver: true
-    }).start()
-    */
+ 
         if( this.show_items){
             this.opacity.setValue(0)
             this.show_items= false
@@ -71,11 +50,14 @@ class Dropdown extends React.Component{
     }
 
     render(){
+
         return(
             <View style={styles.container}>
                 <TouchableOpacity style={styles.main_container} onPress={this.animate}>
                     <Text style={styles.text}>{this.state.selectedCategoryText}</Text>
-                    <Text>-V-</Text>
+                    <Image style={styles.image}
+                        source={require('../../assets/icons/dropdown.png')}
+                    />
                 </TouchableOpacity>
                 <View style={{zIndex:3}}>
                     <Animated.View style={[styles.animated_container,{opacity: this.opacity, zIndex:4,elevation:3}]}>
@@ -86,7 +68,7 @@ class Dropdown extends React.Component{
                                     disabled={false} 
                                     key={i} 
                                     onPress={()=>this.selectItem(i)}>
-                                        <Text >{item} </Text>
+                                        <Text style={styles.item_text}>{item} </Text>
                                   </TouchableOpacity>
                                  )}
                         </ScrollView>

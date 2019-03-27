@@ -9,13 +9,19 @@ export default{
            zIndex:2
     },
     main_container:{
-        flexDirection: 'row',zIndex:2,
-        backgroundColor: 'rgba(100,100,20,0.2)'
+        flexDirection: 'row',zIndex:2, alignItems:'center',
+        //backgroundColor: 'rgba(100,100,20,0.2)'
     },
     text:{
         fontFamily: fontStyles.PoppinsRegular,
-        fontSize: moderateScale(16),
-        
+        fontSize: moderateScale(16), color: colors.brownColor,
+        textDecorationStyle: 'dotted', textDecorationColor: colors.brownColor,
+        marginRight: moderateScale(5)
+
+    },
+    image:{
+        width:moderateScale(16), 
+        height: moderateScale(16),
     },
     animated_container:{
         backgroundColor: colors.secondaryWhiteColor,
@@ -23,5 +29,9 @@ export default{
         top: '100%',
         width: '100%',
         zIndex:3
+    },
+    item_text:{
+        fontSize: moderateScale(14),
+        fontFamily: fontStyles.PoppinsRegular,
     }
 }
