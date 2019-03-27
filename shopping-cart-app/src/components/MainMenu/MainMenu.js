@@ -1,12 +1,39 @@
 import React from 'react'
-import { View, Text } from 'react-native'
+import { View, Text, Image, TouchableOpacity } from 'react-native'
 import styles from './styles'
 
 /* Config/Constants
 ============================================================================= */
-
-
-
+const navItems = [
+    {
+        title: 'Home',
+        navigateTo: 'Home'
+    },
+    {
+        title: 'Categories',
+        navigateTo: 'Categories'
+    },
+    {
+        title: 'Profile',
+        navigateTo: 'Profile'
+    },
+    {
+        title: 'FAQ',
+        navigateTo: 'Faq'
+    },
+    {
+        title: 'Terms & Conditions',
+        navigateTo: 'Terms'
+    },
+    {
+        title: 'Settings',
+        navigateTo: 'Settings'
+    },
+    {
+        title: 'Contact Us',
+        navigateTo: 'Contact'
+    }
+]
 /* =============================================================================
 <MainMenu />
 --------------------------------------------------------------------------------
@@ -18,8 +45,66 @@ Props:
 class MainMenu extends React.Component {
     render() {
         return (
-            <View style={styles.flex}>
-                <Text>MainMenu Working</Text>
+            <View style={styles.container}>
+                <View style={styles.profileContainer}>
+                    <View style={styles.profileSubContainer}>
+                        <View style={styles.profileImage}>
+                            <Image 
+                            source={require('../../assets/images/mainMenu/menu_avatar.png')}
+                            resizeMode="contain"
+                            style={styles.imgResponsive}
+                            />
+                        </View>
+                        <View style={styles.profileTitle}>
+                            <Text style={styles.profileTitleStyle}>Sharan Khan</Text>
+                        </View>
+                        <View style={styles.profilePlace}>
+                            <Text style={styles.profilePlaceStyle}>Pakistan</Text>
+                        </View>
+                    </View>
+                </View>
+                <View style={styles.middleContainer}>
+                    <View style={styles.middleSubContainer}>
+                    {
+                        navItems.map((item,ind)=>
+                        <TouchableOpacity key={ind} style={styles.navItemContainer}>
+                            <Text style={styles.navItemStyle}>{item.title}</Text>
+                        </TouchableOpacity>
+                        )
+                    }
+                    <View style={styles.navItemContainerImage}>
+                        <TouchableOpacity style={styles.navItemImg}>
+                            <Image 
+                            source={require('../../assets/images/mainMenu/twitter.png')}
+                            resizeMode="contain"
+                            style={styles.imgResponsive}
+                            />
+
+                        </TouchableOpacity>
+                        <TouchableOpacity style={styles.navItemImg}>
+                            <Image 
+                            source={require('../../assets/images/mainMenu/instagram.png')}
+                            resizeMode="contain"
+                            style={styles.imgResponsive}
+                            />
+                        </TouchableOpacity>
+                    </View>
+                    </View>
+                </View>
+                <View style={styles.bottomContainer}>
+                    <View style={styles.bottomSubContainer}>
+                        <TouchableOpacity style={styles.signoutContainerImg}>
+                            <Image
+                            source={require('../../assets/images/mainMenu/signout.png')}
+                            resizeMode="contain"
+                            style={styles.imgResponsive}
+                            />
+                        </TouchableOpacity>
+                        <TouchableOpacity style={styles.signoutContainerText}>
+                            <Text style={styles.signoutContainerStyle}>Sign Out</Text>
+                        </TouchableOpacity>
+                    </View>
+                </View>
             </View>
         )
     }
