@@ -17,7 +17,7 @@ class AuthLoading extends React.Component {
         // This will switch to the App screen or Auth screen and this loading
         // screen will be unmounted and thrown away.
         // for testing purpose
-        this.props.navigation.navigate('Search')
+        this.props.navigation.navigate('SearchResult')
     };
     // Render any loading content that you like here
     render() {

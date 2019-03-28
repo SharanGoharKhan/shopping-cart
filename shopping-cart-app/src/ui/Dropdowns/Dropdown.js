@@ -52,30 +52,28 @@ class Dropdown extends React.Component{
     render(){
 
         return(
-            <View style={styles.container}>
+            <View style={[styles.container]}>
                 <TouchableOpacity style={styles.main_container} onPress={this.animate}>
                     <Text style={styles.text}>{this.state.selectedCategoryText}</Text>
                     <Image style={styles.image}
                         source={require('../../assets/icons/dropdown.png')}
                     />
                 </TouchableOpacity>
-                <View 
-                    >
-                    <Animated.View
-                    style={[styles.animated_container,{opacity: this.opacity,zIndex: 1, elevation:1}]}>
+                <View >
+                    <Animated.View style={[styles.animated_container,{opacity: this.opacity, zIndex:1, elevation:1}]}>
                         <ScrollView style={{height:60}}>
                             { this.data.map( (item, i)=>
                                  <TouchableOpacity 
-                                    //style={{ zIndex: 1, elevation:1}}
+                                    style={{}}
                                     disabled={false} 
                                     key={i} 
-                                    onPress ={()=>this.selectItem(i)}>
+                                    onPress={()=>this.selectItem(i)}>
                                         <Text style={styles.item_text}>{item} </Text>
                                   </TouchableOpacity>
                                  )}
                         </ScrollView>
-                  
                     </Animated.View>
+            
                 </View>
             </View>
         )

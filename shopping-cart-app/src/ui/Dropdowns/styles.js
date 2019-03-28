@@ -6,6 +6,7 @@ import {StatusBar} from 'react-native'
 
 export default{
     container:{
+        //position:'relative'
     },
     main_container:{
         flexDirection: 'row', alignItems:'center',
@@ -26,7 +27,6 @@ export default{
         position: 'absolute',
         top: '100%',
         width: '100%', height: 70
-
     },
     item_text:{
         fontSize: moderateScale(14),
