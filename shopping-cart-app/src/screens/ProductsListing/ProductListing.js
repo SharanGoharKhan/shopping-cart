@@ -1,7 +1,8 @@
 import React from 'react'
-import { View, Text } from 'react-native'
+import { View, Text, ScrollView, Image, TouchableOpacity, Dimensions } from 'react-native'
 import styles from './styles'
-
+import CardItem from './CardItem/CardItem'
+import BottomTab from '../../components/BottomTab/BottomTab'
 /* Config/Constants
 ============================================================================= */
 
@@ -19,7 +20,31 @@ class ProductListing extends React.Component {
     render() {
         return (
             <View style={styles.flex}>
-                <Text>ProductListing Working</Text>
+                <View style={styles.headerContainer}>
+                    <View style={styles.headerSubContainer}>
+                        <View style={styles.headerTextContainer}>
+                            <Text style={styles.headerText}>Arts & Crafts</Text>
+                        </View>
+                        <TouchableOpacity style={styles.headerImg}>
+                            <Image
+                                source={require('../../assets/images/ProductListing/settings.png')}
+                                resizeMode="contain"
+                                style={styles.imgResponsive}
+                            />
+                        </TouchableOpacity>
+                    </View>
+                </View>
+                <ScrollView style={styles.scrollViewStyle}>
+                    <View style={styles.bannerContainer}>
+                        <Image
+                            source={require('../../assets/images/ProductListing/banner.png')}
+                            resizeMode="cover"
+                            style={styles.imgResponsive}
+                        />
+                    </View>
+                    <CardItem />
+                </ScrollView>
+                <BottomTab />
             </View>
         )
     }
