@@ -1,5 +1,6 @@
 import React from 'react'
 import { View, Text, TouchableOpacity, Image, ScrollView } from 'react-native'
+import BottomTab from '../../components/BottomTab/BottomTab'
 import styles from './styles'
 
 /* Config/Constants
@@ -12,7 +13,13 @@ const caroselData = [
         img: require('../../assets/images/MainLanding/carosel_img_2.png')
     },
     {
-        img: require('../../assets/images/MainLanding/shop-2-collage-2.png')
+        img: require('../../assets/images/MainLanding/recommended-2.png')
+    },
+    {
+        img: require('../../assets/images/MainLanding/carosel_img_3.png')
+    },
+    {
+        img: require('../../assets/images/MainLanding/carosel_img_2.png')
     },
     {
         img: require('../../assets/images/MainLanding/recommended-2.png')
@@ -40,7 +47,7 @@ class ProductDescription extends React.Component {
         this.changeCaroselImg = this.changeCaroselImg.bind(this)
     }
     changeCaroselImg = (imgPath) => {
-        this.setState({carosel_img: imgPath})
+        this.setState({ carosel_img: imgPath })
     }
     render() {
         return (
@@ -71,49 +78,95 @@ class ProductDescription extends React.Component {
                 </View>
                 {/* Header ends */}
                 {/* Carosel Title starts */}
-                <View style={styles.caroselContainer}>
-                    <View style={styles.caroselSubContainer}>
-                        <View style={styles.caroselTitleContainer}>
-                            <Text style={styles.textStyle}>Southdown Spinning Fibre</Text>
-                        </View>
-                        <View style={styles.caroselPriceContainer}>
-                            <View style={styles.caroselPriceSubContainer}>
-                                <Text style={[styles.textStyle, styles.priceColor]}>7.5 KWD</Text>
+                <ScrollView style={styles.mainScrollViewContainer}>
+                    <View style={styles.caroselContainer}>
+                        <View style={styles.caroselSubContainer}>
+                            <View style={styles.caroselTitleContainer}>
+                                <Text style={styles.textStyle}>Southdown Spinning Fibre</Text>
+                            </View>
+                            <View style={styles.caroselPriceContainer}>
+                                <View style={styles.caroselPriceSubContainer}>
+                                    <Text style={[styles.textStyle, styles.priceColor]}>7.5 KWD</Text>
+                                </View>
                             </View>
                         </View>
                     </View>
-                </View>
-                {/* Carosel Title ends */}
-                {/* Carosel selectable starts */}
-                <View style={styles.caroselMainImgCnt}>
-                    <Image
-                        source={this.state.carosel_img}
-                        resizeMode="cover"
-                        style={styles.imgResponsive}
-                    />
-                </View>
-                <ScrollView horizontal={true} showsHorizontalScrollIndicator={false}>
-                    <View style={styles.caroselItemsContainer}>
-                        {
-                            caroselData.map((data, ind) =>
-                                <TouchableOpacity 
-                                onPress={()=>this.changeCaroselImg(data.img)}
-                                key={ind} 
-                                style={styles.caroselItems}>
-                                    <Image
-                                        source={data.img}
-                                        resizeMode="cover"
-                                        style={styles.imgResponsive}
-                                    />
-                                </TouchableOpacity>
-                            )
-                        }
+                    {/* Carosel Title ends */}
+                    {/* Carosel selectable starts */}
+                    <View style={styles.caroselMainImgCnt}>
+                        <Image
+                            source={this.state.carosel_img}
+                            resizeMode="cover"
+                            style={styles.imgResponsive}
+                        />
                     </View>
+                    <View style={styles.scrollViewStyle}>
+                        <ScrollView
+                            horizontal={true}
+                            showsHorizontalScrollIndicator={false}>
+                            <View style={styles.caroselItemsContainer}>
+                                {
+                                    caroselData.map((data, ind) =>
+                                        <TouchableOpacity
+                                            onPress={() => this.changeCaroselImg(data.img)}
+                                            key={ind}
+                                            style={styles.caroselItems}>
+                                            <Image
+                                                source={data.img}
+                                                resizeMode="cover"
+                                                style={styles.imgResponsive}
+                                            />
+                                        </TouchableOpacity>
+                                    )
+                                }
+                            </View>
+                        </ScrollView>
+                    </View>
+                    {/* Carosel selectable ends */}
+                    {/* Products by starts */}
+                    <View style={styles.productsByContainer}>
+                        <View style={styles.productsBySubContainer}>
+                            <View style={styles.productsText}>
+                                <Text style={styles.textStyle}>Product provided by</Text>
+                            </View>
+                            <TouchableOpacity style={styles.productCardContainer}>
+                                <View style={styles.productImgContainer}>
+                                    <Image
+                                    source={require('../../assets/images/MainLanding/shop-1-avatar.png')}
+                                    resizeMode="contain"
+                                    style={styles.imgResponsive}
+                                    />
+                                </View>
+                                <View style={styles.productTextContainer}>
+                                    <Text style={styles.textStyle}>Pink Tulip Loom</Text>
+                                </View>
+                                <View style={styles.dotContainer}>
+                                    <View style={styles.dot}>
+                                    </View>
+                                    <View style={styles.dot}>
+                                    </View>
+                                    <View style={styles.dot}>
+                                    </View>
+                                </View>
+                            </TouchableOpacity>
+                        </View>   
+                    </View>
+                    {/* Products by ends */}
+                    {/* Accrodian starts */}
+                    <View style={styles.accordianContainer}>
+                        <Text>Placeholder for Asad to implement accordian</Text>
+                    </View>
+                    {/* Accrodian ends */}
+                    {/* Add to shopping cart starts */}
+                    <View style={styles.shoppingCartContainer}>
+                        <TouchableOpacity style={styles.shoppingCartSubContainer}>
+                            <Text style={styles.shoppingCartText}>Add to Shopping Cart</Text>
+                        </TouchableOpacity>
+                    </View>
+                    {/* Add to shopping cart ends */}
                 </ScrollView>
-                {/* Carosel selectable ends */}
-                {/* Accrodian starts */}
-                
-                {/* Accrodian ends */}
+                <BottomTab />
+
 
             </View>
         )

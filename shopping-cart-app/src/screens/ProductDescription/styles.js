@@ -51,8 +51,9 @@ export default {
     },
     caroselContainer: {
         width: '100%',
-        height: '10%',
-        alignItems: 'center'
+        height: height*.1,
+        alignItems: 'center',
+        backgroundColor: colors.whiteColor
     },
     caroselSubContainer: {
         width: '80%',
@@ -80,6 +81,9 @@ export default {
         alignItems: 'center',
         backgroundColor: '#F5F5F5'
     },
+    mainScrollViewContainer: {
+        backgroundColor: '#F8F8F8'
+    },
     textStyle: {
         fontFamily: fontStyles.PoppinsRegular,
         fontSize: moderateScale(13)
@@ -92,16 +96,94 @@ export default {
         width: '100%',
         backgroundColor: 'blue'
     },
+    scrollViewStyle: {
+        height: height*.08
+    },
     caroselItemsContainer: {
         flexDirection: 'row', 
         width: '100%', 
         height: height*.08
     },
     caroselItems: {
-        width: width*.2,
+        width: width*.15,
         height: height*.08,
         marginRight: width*.01,
         marginLeft: width*.01,
         marginTop: width*.01
+    },
+    productsByContainer: {
+        width: '100%',
+        height: height*.15,
+        justifyContent: 'center',
+        alignItems: 'center'
+    },
+    productsBySubContainer: {
+        width: '80%',
+        height:'90%',
+        justifyContent: 'space-around'
+    },
+    productsText: {
+        width:'100%',
+        height: '20%'
+    },
+    productCardContainer: {
+        width: '100%',
+        height: '60%',
+        borderRadius: moderateScale(8),
+        backgroundColor: colors.whiteColor,
+        alignItems: 'center',
+        flexDirection: 'row'
+    },
+    productImgContainer: {
+        marginLeft: '5%',
+        width: moderateScale(40),
+        height: moderateScale(40),
+        borderRadius: moderateScale(15)
+    },
+    productTextContainer: {
+        marginLeft: '5%',
+        width: '60%',
+        height: moderateScale(30),
+        justifyContent: 'center'
+    },
+    dotContainer: {
+        width: '10%',
+        height: moderateScale(30),
+        flexDirection:'row',
+        justifyContent:'center',
+        alignItems:'center'
+    },
+    dot: {
+        width: moderateScale(4),
+        height: moderateScale(4),
+        marginRight:moderateScale(1),
+        borderRadius: moderateScale(2),
+        backgroundColor: colors.brownColor
+    },
+    accordianContainer: {
+        width: width,
+        height: height*.3,
+        backgroundColor: 'gray',
+        justifyContent: 'center',
+        alignItems: 'center'
+    },
+    shoppingCartContainer: {
+        height: height*.13,
+        width: '100%',
+        justifyContent: 'center',
+        alignItems: 'center'
+    },
+    shoppingCartSubContainer: {
+        width: '90%',
+        height: '50%',
+        backgroundColor: colors.textBlueColor,
+        borderRadius: moderateScale(5),
+        justifyContent: 'center',
+        alignItems: 'center'
+    },
+    shoppingCartText: {
+        fontFamily: fontStyles.PoppinsRegular,
+        color: colors.whiteColor,
+        fontSize: moderateScale(16)
     }
 }
