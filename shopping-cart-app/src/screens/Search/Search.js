@@ -39,13 +39,13 @@ class Search extends React.Component {
                     }}
                     />
             </View>
-            <View style={[styles.body,{elevation:0}]}>
-                <View style={[styles.header,{zIndex:1, elevation:2}]}>
+            <View style={[styles.body]}>
+                <View style={[styles.header]}>
                     <Text style={styles.header_text}>Search  In  </Text>
                     <Dropdown items={CATEGORIES}/>
 
                 </View>
-                <View style={[styles.main,{zIndex:-1, elevation:1}]}>
+                <View style={[styles.main]}>
                     <View style={styles.searchBarContainer}>
                         <SearchBar/>
                     </View>

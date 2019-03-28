@@ -19,7 +19,7 @@ export default {
     },
     body:{
         height: '95%', width:'100%',
-        alignSelf:'center', zIndex:0
+        alignSelf:'center'
         //backgroundColor: 'rgba(255,10,10,0.2)'
     },
     main_scroller:{

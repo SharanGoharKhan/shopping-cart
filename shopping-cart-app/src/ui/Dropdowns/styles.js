@@ -6,10 +6,9 @@ import {StatusBar} from 'react-native'
 
 export default{
     container:{
-           zIndex:2
     },
     main_container:{
-        flexDirection: 'row',zIndex:2, alignItems:'center',
+        flexDirection: 'row', alignItems:'center',
         //backgroundColor: 'rgba(100,100,20,0.2)'
     },
     text:{
@@ -28,7 +27,6 @@ export default{
         position: 'absolute',
         top: '100%',
         width: '100%',
-        zIndex:3
     },
     item_text:{
         fontSize: moderateScale(14),

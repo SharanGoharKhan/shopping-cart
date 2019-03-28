@@ -59,15 +59,15 @@ class Dropdown extends React.Component{
                         source={require('../../assets/icons/dropdown.png')}
                     />
                 </TouchableOpacity>
-                <View style={{zIndex:3}}>
-                    <Animated.View style={[styles.animated_container,{opacity: this.opacity, zIndex:4,elevation:3}]}>
-                        <ScrollView style={{height:60,zIndex:8,elevation:4}}>
+                <View >
+                    <Animated.View style={[styles.animated_container,{opacity: this.opacity, zIndex: 2, elevation:2}]}>
+                        <ScrollView style={{height:60}}>
                             { this.data.map( (item, i)=>
                                  <TouchableOpacity 
-                                    style={{elevation:5}}
+                                    style={{ zIndex: 1, elevation:1}}
                                     disabled={false} 
                                     key={i} 
-                                    onPress={()=>this.selectItem(i)}>
+                                    onPress ={()=>this.selectItem(i)}>
                                         <Text style={styles.item_text}>{item} </Text>
                                   </TouchableOpacity>
                                  )}
