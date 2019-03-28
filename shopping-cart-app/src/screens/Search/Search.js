@@ -43,7 +43,6 @@ class Search extends React.Component {
                 <View style={[styles.header]}>
                     <Text style={styles.header_text}>Search  In  </Text>
                     <Dropdown items={CATEGORIES}/>
-
                 </View>
                 <View style={[styles.main]}>
                     <View style={styles.searchBarContainer}>

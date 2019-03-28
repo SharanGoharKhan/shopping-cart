@@ -9,7 +9,6 @@ export default{
     },
     main_container:{
         flexDirection: 'row', alignItems:'center',
-        //backgroundColor: 'rgba(100,100,20,0.2)'
     },
     text:{
         fontFamily: fontStyles.PoppinsRegular,
@@ -26,7 +25,8 @@ export default{
         backgroundColor: colors.secondaryWhiteColor,
         position: 'absolute',
         top: '100%',
-        width: '100%',
+        width: '100%', height: 70
+
     },
     item_text:{
         fontSize: moderateScale(14),
