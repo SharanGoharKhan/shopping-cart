@@ -1,11 +1,9 @@
 import React from 'react'
-import { View, Text, Dimensions, TouchableOpacity, Image, TextInput, StatusBar, ScrollView } from 'react-native'
+import { View, TouchableOpacity, Image, TextInput, StatusBar, ScrollView } from 'react-native'
 import styles from './styles'
 import SwiperFlatList from 'react-native-swiper-flatlist'
 import { moderateScale } from '../../utils/scaling'
-const { height, width } = Dimensions.get('window')
 import { DrawerActions } from 'react-navigation-drawer'
-import { fontStyles } from '../../utils/fontStyles'
 import  CardsSection from './CardsSection/CardsSection'
 import CardMultipleItems from './CardMultipleItems/CardMultipleItems'
 import PopularItems from './PopularItems/PopularItems'
