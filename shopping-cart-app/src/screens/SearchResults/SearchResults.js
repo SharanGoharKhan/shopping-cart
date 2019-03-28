@@ -25,10 +25,10 @@ Props:
 const CATEGORIES = ["Arts & Crafts", "Accessories", "Event Ideas", "Fashion", "Food & Drinks", "Health & Beauty"]
 const DATA = [
     {Name: 'Leather crossbody MID Bag', rating: 5, totalVotes: 401, prev_price:null, price: 120, bagde:"new", image:null},
-    {Name: "Photographer's belt and harness", rating: 3, totalVotes: 274, prev_price: 39,price: 29, bagde:"new", image:null},
+    {Name: "Photographer's belt and harness", rating: 3, totalVotes: 274, prev_price: 39 ,price: 29, bagde:"new", image:null},
 ]
 
-class Search extends React.Component {
+class SearchResult extends React.Component {
 
     constructor(){
         super()
@@ -63,6 +63,7 @@ class Search extends React.Component {
                     <View style={styles.mainBodyContainer}>
                         <Text></Text>
                         <View style={styles.mainBody}>
+                        <Text>Break it</Text>
                         </View>
                     </View>
                 </View>
@@ -77,4 +78,4 @@ class Search extends React.Component {
 }
 /* Export
 ============================================================================= */
-export default Search
+export default SearchResult
