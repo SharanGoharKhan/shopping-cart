@@ -1,4 +1,5 @@
 export  const colors = {
+    whiteColor: '#fff',
     brownColor: '#D0AD8A',
     facebookBlueColor: '#3B5998',
     googleRedColor: '#DC4E41',
