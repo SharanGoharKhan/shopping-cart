@@ -53,7 +53,7 @@ export default {
     mainBodyContainer:{
         height:'90%', width:'100%',
         justifyContent: 'center', alignItems: 'center',
-        backgroundColor: colors.greyLinesColor
+        backgroundColor: colors.backgroudGray
 
     },
     mainBody:{

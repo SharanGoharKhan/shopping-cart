@@ -49,7 +49,7 @@ export default {
     main_bot:{
         height: '30%', width: '100%', 
         alignItems: 'center', justifyContent: 'space-evenly',
-        backgroundColor: colors.greyLinesColor,
+        backgroundColor: colors.backgroudGray,
         borderRadius: moderateScale(5)
     },
     subtotal_container:{

@@ -46,7 +46,7 @@ class Search extends React.Component {
                 </View>
                 <View style={[styles.main]}>
                     <View style={styles.searchBarContainer}>
-                        <SearchBar/>
+                        <SearchBar placeholderText="What are you looking for?"/>
                     </View>
                     <View style={styles.mainBodyContainer}>
                         <View style={styles.mainBody}>

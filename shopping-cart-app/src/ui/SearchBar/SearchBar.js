@@ -16,7 +16,7 @@ import { colors } from '../../utils/colors';
 
 Props:
   ?
-
+    placeholderText: text for placeholder
 ============================================================================= */
 class SearchBar extends React.Component {
     constructor(props){
@@ -29,7 +29,7 @@ class SearchBar extends React.Component {
             <View style={styles.container}>
                 <TextInput 
                     style={styles.textfield}
-                    placeholder="What are you looking for?"
+                    placeholder={this.props.placeholderText}
                     placeholderTextColor={colors.primaryBlackColor}/>
                 <Image 
                     style={styles.image}

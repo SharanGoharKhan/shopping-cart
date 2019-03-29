@@ -12,7 +12,7 @@ data
 class Dropdown extends React.Component{
     constructor(props){
         super(props)
-        this.scaleY = new Animated.Value(0)
+        this.scale = new Animated.Value(0)
         this.height = new Animated.Value(0)
         this.translateY = new Animated.Value(-20)
         this.opacity= new Animated.Value(0)
@@ -50,7 +50,6 @@ class Dropdown extends React.Component{
     }
 
     render(){
-
         return(
             <View style={[styles.container]}>
                 <TouchableOpacity style={styles.main_container} onPress={this.animate}>
@@ -64,8 +63,7 @@ class Dropdown extends React.Component{
                         <ScrollView style={{height:60}}>
                             { this.data.map( (item, i)=>
                                  <TouchableOpacity 
-                                    style={{}}
-                                    disabled={false} 
+                                    disabled={this.state.disabled} 
                                     key={i} 
                                     onPress={()=>this.selectItem(i)}>
                                         <Text style={styles.item_text}>{item} </Text>

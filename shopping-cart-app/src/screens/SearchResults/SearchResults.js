@@ -1,5 +1,5 @@
 import React from 'react'
-import { View, Text, Image, TextInput} from 'react-native'
+import { View, Text, Image, ScrollView, TouchableOpacity} from 'react-native'
 import styles from './styles'
 
 import {moderateScale} from '../../utils/scaling'
@@ -7,6 +7,8 @@ import {StatusBar} from 'react-native'
 
 import Dropdown from '../../ui/Dropdowns/Dropdown'
 import SearchBar from '../../ui/SearchBar/SearchBar'
+
+import FullCard from './Card/FullCard'
 
 /* Config/Constants
 ============================================================================= */
@@ -24,14 +26,16 @@ Props:
 
 const CATEGORIES = ["Arts & Crafts", "Accessories", "Event Ideas", "Fashion", "Food & Drinks", "Health & Beauty"]
 const DATA = [
-    {Name: 'Leather crossbody MID Bag', rating: 5, totalVotes: 401, prev_price:null, price: 120, bagde:"new", image:null},
-    {Name: "Photographer's belt and harness", rating: 3, totalVotes: 274, prev_price: 39 ,price: 29, bagde:"new", image:null},
+    {name: 'Leather crossbody MID Bag', rating: 5, totalVotes: 401, prev_price:null, price: 120, bagde:"new", image:null},
+    {name: "Photographer's belt and harness", rating: 3, totalVotes: 274, prev_price: 39 ,price: 29, bagde:null, image:null},
+    
 ]
 
 class SearchResult extends React.Component {
 
     constructor(){
         super()
+        searchedTerm  = "Leather"
     }
 
 
@@ -54,17 +58,41 @@ class SearchResult extends React.Component {
                         <Text style={styles.header_text}>Search  In  </Text>
                         <Dropdown items={CATEGORIES}/>
                     </View>
-                    <Text > Slider </Text>
+                    <TouchableOpacity onPress={()=>console.log("Show modal")}>
+                        <Text> Slider </Text>
+                    </TouchableOpacity>
                 </View>
                 <View style={[styles.main]}>
                     <View style={styles.searchBarContainer}>
-                        <SearchBar/>
+                        <SearchBar placeholderText={searchedTerm} />
                     </View>
                     <View style={styles.mainBodyContainer}>
-                        <Text></Text>
                         <View style={styles.mainBody}>
-                        <Text>Break it</Text>
+                            <View style={styles.mixed_text}>
+                                <Text style={styles.bold}>
+                                     {DATA.length}  
+                                </Text>
+                                <Text style={styles.text}>
+                                     results found for:  
+                                </Text>
+                                <Text style={styles.bold}>
+                                     {searchedTerm}
+                                </Text>
+                            </View>
+                            <ScrollView style={styles.main_scroller}>
+                            {DATA.map((item,i)=>
+                                    <FullCard
+                                        productName= {item.name}
+                                        productRating= {item.rating}
+                                        productTotalVotes= {item.totalVotes}
+                                        productBadge= {item.bagde}
+                                        productPreviousPrice= {item.prev_price}
+                                        productNewPrice= {item.price} 
+                                        key={i}/>
+                                )}
+                            </ScrollView>
                         </View>
+                 
                     </View>
                 </View>
                 <View style={styles.footer}>

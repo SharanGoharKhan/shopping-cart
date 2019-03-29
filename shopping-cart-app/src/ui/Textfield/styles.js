@@ -6,7 +6,7 @@ export default {
     input_view:{
         backgroundColor: colors.secondaryWhiteColor,
         borderRadius:3, height: moderateScale(38), justifyContent:'center',
-        borderWidth:1, borderColor: colors.greyLinesColor
+        borderWidth:1, borderColor: colors.backgroudGray
     },
     input:{
         fontFamily: fontStyles.PoppinsRegular,

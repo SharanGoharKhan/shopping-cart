@@ -58,15 +58,36 @@ export default {
     mainBodyContainer:{
         height:'90%', width:'100%',
         justifyContent: 'center', alignItems: 'center',
-        backgroundColor: colors.greyLinesColor
+        backgroundColor: colors.backgroudGray
 
     },
     mainBody:{
-        width: '95%',
-       marginTop:'25%',
+        width: '93%',
+        height: '93%',
+        //backgroundColor: 'yellow'
 
     },
-    
+    mixed_text:{
+        height: '5%', width:'100%',
+        //backgroundColor:'red',
+        flexDirection:'row',
+    },
+    text:{
+        fontFamily: fontStyles.PoppinsRegular,
+        fontSize: moderateScale(14),
+        paddingRight: moderateScale(4)
+    },
+    bold:{
+        fontFamily: fontStyles.PoppinsRegular,
+        fontSize: moderateScale(14),
+        fontWeight: '500',
+        paddingRight: moderateScale(4)
+
+    },
+    main_scroller:{
+        height:'95%',
+        //backgroundColor:'pink'
+    },
     // footer
     footer:{
         height: '10%', width: '100%',

@@ -4,7 +4,7 @@ import { fontStyles } from '../../utils/fontStyles';
 
 export default {
     container:{
-        backgroundColor: colors.greyLinesColor,
+        backgroundColor: colors.backgroudGray,
         flexDirection: 'row', justifyContent: 'space-between', 
         alignItems:'center',
         width: '100%', height: moderateScale(32),

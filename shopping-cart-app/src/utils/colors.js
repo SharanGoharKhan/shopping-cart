@@ -5,6 +5,6 @@ export  const colors = {
     blueColor: '#2962FF', // TODO: SET THE COLOR FOR THE BLUE BUTTONS AND TEXT
     backgroudGray: '#eee',
     pinkColor: '#F48B98',
-    textBlueColor: '#6178DE'
-
+    textBlueColor: '#6178DE',
+    secondaryWhiteColor: '#fff'
 }

@@ -41,7 +41,7 @@ export default {
 
     // main
     main:{
-        backgroundColor:colors.greyLinesColor,
+        backgroundColor:colors.backgroudGray,
         height: '80%', width: '100%',
         borderRadius: moderateScale(5)
     },

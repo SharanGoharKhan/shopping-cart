@@ -52,6 +52,7 @@ const authenticationNavigator = createStackNavigator(
         ShoppingCart,
         SignIn,
         SignUp,
+        Search,
         TrackOrder
     }, {
         headerMode: 'none'
@@ -59,7 +60,6 @@ const authenticationNavigator = createStackNavigator(
 const Drawer = createDrawerNavigator(
     {
         MainLanding: { screen: MainLanding },
-        Search: { screen: Search },
         ProfileDashboard: { screen: ProfileDashboard },
         Faq: { screen: Faq },
         TermsAndConditions: { screen: TermsAndConditions },
