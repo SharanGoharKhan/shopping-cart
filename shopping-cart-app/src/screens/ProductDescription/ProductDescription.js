@@ -3,6 +3,10 @@ import { View, Text, TouchableOpacity, Image, ScrollView } from 'react-native'
 import BottomTab from '../../components/BottomTab/BottomTab'
 import styles from './styles'
 
+import AccordionList from './Accordion/AccordionList'
+import { fontStyles } from '../../utils/fontStyles';
+import { moderateScale } from '../../utils/scaling';
+
 /* Config/Constants
 ============================================================================= */
 const caroselData = [
@@ -29,6 +33,18 @@ const caroselData = [
     }
 ]
 
+const FORMS =[
+    {
+      header: "Description",
+      body: "British heritage Beed. Dense, resiilient, bulky white wool. Dyes well and resuusuts felting. Versatuly medium handle 28-30 nucribs, 89mm staple length."
+      
+    },
+    {
+      header: "Product Detail",
+      body: "Weight: 198. Color: Pink. British heritage Beed. Dense, resiilient, bulky white wool. Dyes well and resuusuts felting. Versatuly medium handle 28-30 nucribs, 89mm staple length."
+    },
+ 
+]
 
 /* =============================================================================
 <ProductDescription />
@@ -49,6 +65,25 @@ class ProductDescription extends React.Component {
     changeCaroselImg = (imgPath) => {
         this.setState({ carosel_img: imgPath })
     }
+
+    render_form_head(form){
+        return(
+        <View >
+            <Text style={{fontFamily: fontStyles.PoppinsRegular, fontSize: moderateScale(11)}}>
+                {form.header}
+            </Text>
+        </View>
+        );
+    }
+
+    render_form_body(form){
+        return (
+            <View>
+                <Text style={{fontFamily: fontStyles.PoppinsRegular, fontSize: moderateScale(10)}}>{form.body}</Text>
+            </View>
+        );
+    }
+
     render() {
         return (
             <View style={styles.flex}>
@@ -154,8 +189,13 @@ class ProductDescription extends React.Component {
                     {/* Products by ends */}
                     {/* Accrodian starts */}
                     <View style={styles.accordianContainer}>
-                        <Text>Placeholder for Asad to implement accordian</Text>
+                            <AccordionList
+                                    list={FORMS}
+                                    header={this.render_form_head}
+                                    body={this.render_form_body}
+                                />
                     </View>
+                
                     {/* Accrodian ends */}
                     {/* Add to shopping cart starts */}
                     <View style={styles.shoppingCartContainer}>

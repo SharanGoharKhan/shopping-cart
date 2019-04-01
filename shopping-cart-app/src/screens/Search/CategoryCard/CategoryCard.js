@@ -1,6 +1,5 @@
 import React from 'react'
 import {View, Text, TouchableOpacity} from 'react-native'
-import { colors } from '../../../utils/colors'
 
 import styles from './styles'
 /* =============================================================================

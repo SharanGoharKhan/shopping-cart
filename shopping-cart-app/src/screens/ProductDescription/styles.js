@@ -162,10 +162,10 @@ export default {
     },
     accordianContainer: {
         width: width,
-        height: height*.3,
-        backgroundColor: 'gray',
-        justifyContent: 'center',
-        alignItems: 'center'
+        minHeight: height*.2,
+        backgroundColor: '#F8F8F8',
+        alignItems: 'center',
+        paddingTop: moderateScale(13)
     },
     shoppingCartContainer: {
         height: height*.13,

@@ -21,7 +21,7 @@ const mainBtnStyles = {
 const alternateBtn ={
     backgroundColor:{
         backgroundColor: colors.secondaryWhiteColor,  height: moderateScale(50),
-        borderRadius: moderateScale(3), borderWidth: moderateScale(1),borderColor: colors.primaryBlackColor
+        borderRadius: moderateScale(3), borderWidth: moderateScale(2),borderColor: colors.primaryBlackColor
     },
     main_alt_btn:{
         alignItems:'center', justifyContent: 'center',
@@ -50,6 +50,25 @@ const blueBtn = {
     }
 }
 
+const alternateBlueBtn = {
+    backgroundColor:{
+        height: moderateScale(46),
+        borderRadius: moderateScale(3),
+        borderWidth: moderateScale(2),
+        borderColor: colors.blueColor
+    },
+    main_blue_btn:{
+        alignItems:'center', justifyContent: 'center',
+        width: '100%', height: '100%',
+    },
+    btn_text:{
+        color: colors.blueColor,
+        fontFamily: fontStyles.PoppinsRegular,
+        fontSize: moderateScale(16)
+    }
+}
+
+
 const facebookStyles = {
 
 }
@@ -57,4 +76,4 @@ const facebookStyles = {
 const googleStyles = {
 
 }
-export {alternateBtn, mainBtnStyles, blueBtn, facebookStyles, googleStyles}
+export {alternateBtn, mainBtnStyles, blueBtn, alternateBlueBtn, facebookStyles, googleStyles}
