@@ -63,6 +63,6 @@ export default {
     priceStyle: {
         fontSize: moderateScale(14),
         fontFamily: fontStyles.PoppinsRegular,
-        color: colors.blueColor
+        color: colors.textBlueColor
     }
 }

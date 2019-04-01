@@ -47,10 +47,10 @@ class CheckoutPayment extends React.Component {
                 <View style={styles.body}>
                     <View style={styles.header}>
                         <Image
-                            source={require('../../assets/icons/shoppingBag.png')}
+                            source={require('../../assets/icons/creditcard.png')}
                             style={{
-                                height:moderateScale(17),
-                                width:moderateScale(16)
+                                height:moderateScale(15),
+                                width:moderateScale(19)
                             }}
                             />
                             <Text style={styles.header_text}>Payment</Text>
@@ -62,7 +62,7 @@ class CheckoutPayment extends React.Component {
                             </View>
                             <View style={styles.cardContainer}>
                                 <SwiperFlatList  
-                                    paginationDefaultColor={colors.backgroudGray}
+                                    paginationDefaultColor={colors.grayLinesColor}
                                     paginationActiveColor='#000'
                                     paginationStyleItem={styles.paginationItem}
                                     autoplayLoop 

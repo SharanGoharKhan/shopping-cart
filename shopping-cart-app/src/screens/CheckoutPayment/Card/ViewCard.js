@@ -27,13 +27,16 @@ class ViewCard extends React.Component{
     this.props.onRef(undefined)
   }
   render(){
-    let outlineColor = this.state.is_active? colors.blueColor: colors.secondaryWhiteColor
+    let outlineColor = this.state.is_active? colors.textBlueColor: colors.secondaryWhiteColor
     console.log(outlineColor)
     return(
       <View style={[styles.outline,{borderColor: outlineColor}]}>
           <View style={styles.container}>
               <View style={styles.topContainer}>
-                <Text>-Img-</Text>
+                <Image 
+                  style={styles.simCardImage}
+                  source={require('../../../assets/icons/simcard.png')}
+                />
               </View>
               <View style={styles.botContainer}>
                 <View style={[styles.row, styles.creditCardNumber]}>
@@ -55,7 +58,10 @@ class ViewCard extends React.Component{
                   </View>
                   <View style={styles.row}>
                     <Text style={styles.cardOwnerName}>JOHN M.Smith</Text>
-                    <Text>-Img-</Text>
+                    <Image 
+                      style={styles.visaImage}
+                      source={require('../../../assets/icons/visa.png')}
+                    />
                   </View>
               </View>
           </View>

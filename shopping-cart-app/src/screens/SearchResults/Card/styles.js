@@ -77,7 +77,7 @@ export default {
     },
     amount:{
         fontFamily: fontStyles.PoppinsRegular,
-        color: colors.blueColor,
+        color: colors.textBlueColor,
         fontSize: moderateScale(13),
         fontWeight: '500',
         lineHeight: moderateScale(13)

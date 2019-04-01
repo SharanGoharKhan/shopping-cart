@@ -98,22 +98,22 @@ export default {
     subtotalContainer:{
         width: '90%', 
         borderBottomWidth: moderateScale(1),
-        borderBottomColor: colors.backgroudGray,
+        borderBottomColor: colors.grayLinesColor,
         paddingBottom: moderateScale(5)
     },
     cvvContainer:{
-        borderBottomWidth: moderateScale(3),
         backgroundColor: colors.whiteColor,
         borderWidth: moderateScale(1),
-        borderColor: colors.backgroudGray,
+        borderRadius: moderateScale(3),
+        borderColor: colors.grayLinesColor,
         height: moderateScale(25),
-        width: moderateScale(40),
+        width: moderateScale(45),
         justifyContent: 'center', alignItems:'center'
 
     },
     cvvInput:{
         fontFamily: fontStyles.PoppinsRegular,
-        fontSize: moderateScale(12.5),
+        fontSize: moderateScale(12),width:'60%'
     },
     listItem:{
         width: '100%',
@@ -139,7 +139,7 @@ export default {
         fontFamily: fontStyles.PoppinsRegular,
         fontSize: moderateScale(13),
         fontWeight: '500',
-        color: colors.blueColor
+        color: colors.textBlueColor
     },
     totalContainer:{
         width: '90%', 

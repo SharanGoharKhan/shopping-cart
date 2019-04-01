@@ -152,7 +152,7 @@ export default {
         fontFamily: fontStyles.PoppinsRegular,
         fontSize: moderateScale(13),
         fontWeight: '500',
-        color: colors.blueColor
+        color: colors.textBlueColor
     },
     total_container:{
         width: '90%', 
