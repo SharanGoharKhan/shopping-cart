@@ -57,7 +57,7 @@ export default {
     },
     mainBodyContainer:{
         height:'90%', width:'100%',
-        justifyContent: 'center', alignItems: 'center',
+         alignItems: 'center',
         backgroundColor: colors.backgroudGray
 
     },
@@ -68,7 +68,7 @@ export default {
 
     },
     mixed_text:{
-        height: '5%', width:'100%',
+        height: '7%', width:'100%', paddingTop: moderateScale(5),
         //backgroundColor:'red',
         flexDirection:'row',
     },
@@ -85,7 +85,7 @@ export default {
 
     },
     main_scroller:{
-        height:'95%',
+        height:'93%',
         //backgroundColor:'pink'
     },
     // footer

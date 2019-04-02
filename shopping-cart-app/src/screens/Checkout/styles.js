@@ -32,7 +32,7 @@ export default {
     header:{
         height: '10%', width:'100%',
         flexDirection: 'row',alignSelf:'center',
-        alignItems:'center',
+        alignItems:'center', 
     }, 
     header_text:{
         fontFamily: fontStyles.PoppinsRegular,
@@ -46,7 +46,7 @@ export default {
         //,backgroundColor:'red'
     },
     simpleRow:{
-        flexDirection: 'row'
+        flexDirection: 'row', alignItems: 'center'
     },
     main_top:{
         height: '70%', width: '100%',
@@ -59,8 +59,8 @@ export default {
     orders:{
         height: '40%', width: '100%',
         //backgroundColor: 'rgba(100,0,0,0.2)',
-        borderBottomWidth: moderateScale(2),
-        borderColor: colors.backgroudGray,
+        borderBottomWidth: moderateScale(1),
+        borderColor: colors.grayLinesColor,
         borderStyle: "dashed"
     },
     items:{
@@ -95,8 +95,11 @@ export default {
         fontWeight:'500'
     },
     deliveryDate:{
+        paddingTop: moderateScale(5),
         color: colors.textBlueColor,
-        fontSize: moderateScale(11)
+        fontSize: moderateScale(11),
+        fontFamily: fontStyles.PoppinsRegular,
+        paddingLeft: moderateScale(5),
     },
     padding:{
         paddingTop: moderateScale(6),
@@ -111,8 +114,8 @@ export default {
         paddingTop: moderateScale(5)
     },
     borderBottom:{
-        borderBottomWidth: moderateScale(2),
-        borderColor: colors.backgroudGray,
+        borderBottomWidth: moderateScale(1),
+        borderColor: colors.grayLinesColor,
         borderStyle: "dashed",
         paddingBottom: moderateScale(15)
     },
@@ -125,7 +128,7 @@ export default {
     subtotal_container:{
         width: '90%', 
         borderBottomWidth: moderateScale(1),
-        borderBottomColor: colors.backgroudGray,
+        borderBottomColor: colors.grayLinesColor,
         paddingBottom: moderateScale(5)
     },
     listItem:{

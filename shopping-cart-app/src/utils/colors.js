@@ -8,10 +8,9 @@ export  const colors = {
     textBlueColor: '#6178DE',
     secondaryWhiteColor: '#fff',
 
+    greenTextColor: '#8CB65E',
     // many shades of gray
     backgroudGray: '#F7F7F7',
     darkGrayText: '#9B9B9B',
     grayLinesColor: '#DDDDDD'
-
-
 }

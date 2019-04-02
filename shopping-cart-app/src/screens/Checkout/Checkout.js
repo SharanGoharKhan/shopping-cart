@@ -1,5 +1,5 @@
 import React from 'react'
-import { View, Text,Image ,StatusBar, ScrollView  } from 'react-native'
+import { View, Text,Image ,StatusBar, ScrollView, TouchableOpacity  } from 'react-native'
 
 import styles from './styles'
 import { moderateScale } from '../../utils/scaling';
@@ -53,10 +53,10 @@ class Checkout extends React.Component {
                 <View style={styles.body}>
                     <View style={styles.header}>
                         <Image
-                            source={require('../../assets/icons/shoppingBag.png')}
+                            source={require('../../assets/icons/summary.png')}
                             style={{
-                                height:moderateScale(17),
-                                width:moderateScale(16)
+                                height:moderateScale(14),
+                                width:moderateScale(15)
                             }}
                             />
                             <Text style={styles.header_text}>Summary</Text>
@@ -68,10 +68,25 @@ class Checkout extends React.Component {
                                     <Text style={styles.goldenText}>
                                         My Orders
                                     </Text>
-                                    <Text >-ICO-</Text>
+                                    <TouchableOpacity onPress={()=>console.log("Pressed Edit")}>
+                                        <Image
+                                            source={require('../../assets/icons/edit.png')}
+                                            style={{
+                                                height:moderateScale(16),
+                                                width:moderateScale(16)
+                                            }}
+                                            />
+                                    </TouchableOpacity>
+                              
                                 </View>
                                 <View style={[styles.simpleRow, styles.padding]}>
-                                    <Text style={styles.deliveryDate}>-ICO- </Text>
+                                    <Image
+                                        source={require('../../assets/icons/delivery.png')}
+                                        style={{
+                                            height:moderateScale(13),
+                                            width:moderateScale(25),
+                                        }}
+                                        />
                                     <Text style={styles.deliveryDate}>
                                         Delivery Date: 2/10/2019
                                     </Text>
@@ -101,7 +116,15 @@ class Checkout extends React.Component {
                                 <View style={styles.borderBottom}>
                                     <View style={styles.row}>
                                         <Text style={styles.addressBoldText}>Kuwait</Text>
-                                        <Text>-ico-</Text>
+                                        <TouchableOpacity onPress={()=>console.log("Pressed Edit")}>
+                                            <Image
+                                                source={require('../../assets/icons/edit.png')}
+                                                style={{
+                                                    height:moderateScale(16),
+                                                    width:moderateScale(16)
+                                                }}
+                                                />
+                                        </TouchableOpacity>
                                     </View>
                                     <Text style={styles.addressBoldText}>Ali Sabah Alsaelem,</Text>
                                     <Text style={styles.addressBoldText}>Block 4, AParatment 102</Text>

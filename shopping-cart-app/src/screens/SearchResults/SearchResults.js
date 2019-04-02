@@ -59,7 +59,10 @@ class SearchResult extends React.Component {
                         <Dropdown items={CATEGORIES}/>
                     </View>
                     <TouchableOpacity onPress={()=>console.log("Show modal")}>
-                        <Text> Slider </Text>
+                        <Image 
+                            style={{height: moderateScale(32), width: moderateScale(42), marginBottom: moderateScale(5)}}
+                            source={require('../../assets/icons/header.png')}
+                            />
                     </TouchableOpacity>
                 </View>
                 <View style={[styles.main]}>

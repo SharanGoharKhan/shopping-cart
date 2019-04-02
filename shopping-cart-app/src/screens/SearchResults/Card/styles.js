@@ -80,7 +80,8 @@ export default {
         color: colors.textBlueColor,
         fontSize: moderateScale(13),
         fontWeight: '500',
-        lineHeight: moderateScale(13)
+        lineHeight: moderateScale(13),
+        paddingTop: moderateScale(5)
 
     },
     product:{
