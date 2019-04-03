@@ -1,7 +1,7 @@
 import React from 'react'
 import { View, Text, Image, TextInput, KeyboardAvoidingView } from 'react-native'
 import styles from './styles'
-
+import BottomTab from '../../components/BottomTab/BottomTab'
 /* Config/Constants
 ============================================================================= */
 
@@ -111,6 +111,7 @@ class EditingProfile extends React.Component {
                         </View>
                     </KeyboardAvoidingView>
                 </View>
+                <BottomTab/>
             </View>
         )
     }
