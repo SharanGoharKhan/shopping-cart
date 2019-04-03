@@ -76,6 +76,7 @@ export default {
     inputContainer: {
         width: '100%',
         height: '60%',
+        borderRadius: moderateScale(3),
         backgroundColor: colors.backgroudGray
     },
     label: {
