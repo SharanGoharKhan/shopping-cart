@@ -81,7 +81,8 @@ class TrackOrder extends React.Component {
                           />
                     </View>
                 </ScrollView>
-                <BottomTab/>
+                <BottomTab
+                navigationObj={this.props.navigation}/>
             </View>
         )
     }

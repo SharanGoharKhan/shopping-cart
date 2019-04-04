@@ -80,7 +80,9 @@ class ShoppingCart extends React.Component {
                                 </View>
                             </View>
                             <View style={styles.submit_container}>
-                                <BlueBtn text="Proceed"/>
+                                <BlueBtn
+                                onPress={() => this.props.navigation.navigate('Checkout')}
+                                text="Proceed"/>
                             </View>
 
                         </View>

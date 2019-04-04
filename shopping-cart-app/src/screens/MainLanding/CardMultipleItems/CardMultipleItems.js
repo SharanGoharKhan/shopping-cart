@@ -1,5 +1,5 @@
 import React from 'react'
-import { Text, View, Image, ScrollView } from 'react-native'
+import { Text, View, Image, ScrollView, TouchableOpacity } from 'react-native'
 import styles from './styles'
 /* Config/Constants
 ============================================================================= */
@@ -40,7 +40,7 @@ Props:
  ?
 ============================================================================= */
 
-const cardMultipleItems = () => (
+const cardMultipleItems = (props) => (
 
     <View style={styles.cardItemsContainer}>
         <View style={styles.cardItemsTextCOntainer}>
@@ -50,7 +50,9 @@ const cardMultipleItems = () => (
             <ScrollView horizontal={true} showsHorizontalScrollIndicator={false}>
                 {
                     cardData.map((card, ind) =>
-                        <View key={ind} style={styles.cardContainer}>
+                        <TouchableOpacity
+                        onPress={() => props.navigationObj.navigate('ProductListing')}
+                        key={ind} style={styles.cardContainer}>
                             <View style={styles.cardTopContainer}>
                                 <View style={styles.cardTopSubContainer}>
                                     <View style={styles.w50h50}>
@@ -96,7 +98,7 @@ const cardMultipleItems = () => (
                                     <Text style={styles.bottomTextStyle}>{card.category}</Text>
                                 </View>
                             </View>
-                        </View>
+                        </TouchableOpacity>
                     )
                 }
             </ScrollView>

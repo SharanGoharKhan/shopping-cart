@@ -114,7 +114,9 @@ class CheckoutPayment extends React.Component {
                                 </View>
                             </View>
                             <View style={styles.submitContainer}>
-                                <BlueBtn text="Pay"/>
+                                <BlueBtn
+                                onPress={() => this.props.navigation.navigate('MainLanding')}
+                                text="Pay"/>
                             </View>
 
                         </View>

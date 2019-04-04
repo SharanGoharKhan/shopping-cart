@@ -154,13 +154,17 @@ class EditingAddress extends React.Component {
                             </View>
                         </KeyboardAvoidingView>
                         <View style={styles.addContainer}>
-                            <TouchableOpacity style={styles.addBtn}>
+                            <TouchableOpacity
+                            onPress={() => this.props.navigation.navigate('AddressList')}
+                            style={styles.addBtn}>
                                 <Text style={styles.addStyle}>Add new address</Text>
                             </TouchableOpacity>
                         </View>
                     </View>
                 </ScrollView>
-                <BottomTab />
+                <BottomTab
+                navigationObj={this.props.navigation} 
+                />
             </View>
         )
     }

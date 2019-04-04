@@ -42,9 +42,11 @@ class ProductListing extends React.Component {
                             style={styles.imgResponsive}
                         />
                     </View>
-                    <CardItem />
+                    <CardItem
+                    navigationObj={this.props.navigation}/>
                 </ScrollView>
-                <BottomTab />
+                <BottomTab
+                navigationObj={this.props.navigation} />
             </View>
         )
     }

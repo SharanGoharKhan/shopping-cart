@@ -111,7 +111,8 @@ class EditingProfile extends React.Component {
                         </View>
                     </KeyboardAvoidingView>
                 </View>
-                <BottomTab/>
+                <BottomTab
+                navigationObj={this.props.navigation}/>
             </View>
         )
     }

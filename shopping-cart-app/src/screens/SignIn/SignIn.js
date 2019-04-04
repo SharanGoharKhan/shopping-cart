@@ -61,12 +61,15 @@ class SignIn extends React.Component {
                                 placeholderText="Username"/>
                             <TextField 
                                 placeholderText="Password"/>
-                            <MainBtn  text="Sign In"/>
+                            <MainBtn onPress={() => this.props.navigation.navigate('MainLanding')}  
+                            text="Sign In"/>
                             <Text style={styles.passwordText}>Forgot my password</Text>
                         </View>
                         <View style={styles.bc_socialBtns}>
                             <View style={[styles.socialBtns_View, styles.google_btn]}>
-                                <TouchableOpacity style={styles.socialBtn}>
+                                <TouchableOpacity
+                                onPress={() => this.props.navigation.navigate('MainLanding')}
+                                style={styles.socialBtn}>
                                     <Image
                                         source={require('../../assets/icons/google.png')}
                                         style={{
@@ -78,7 +81,9 @@ class SignIn extends React.Component {
                                 </TouchableOpacity>
                             </View>
                             <View style={[styles.socialBtns_View, styles.facebook_btn]}>
-                                <TouchableOpacity style={styles.socialBtn}>
+                                <TouchableOpacity 
+                                onPress={() => this.props.navigation.navigate('MainLanding')}
+                                style={styles.socialBtn}>
                                     <Image
                                     source={require('../../assets/icons/facebook.png')}
                                     style={{

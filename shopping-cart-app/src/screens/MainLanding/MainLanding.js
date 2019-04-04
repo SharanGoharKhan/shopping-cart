@@ -73,12 +73,21 @@ class MainLanding extends React.Component {
                             </View>
                         </View>
                     </View>
-                    <CardsSection />
-                    <CardMultipleItems />
-                    <PopularItems />
-                    <RecommendedItems />
+                    <CardsSection 
+                    navigationObj={this.props.navigation}
+                    />
+                    <CardMultipleItems 
+                    navigationObj={this.props.navigation}
+                    />
+                    <PopularItems 
+                    navigationObj={this.props.navigation}
+                    />
+                    <RecommendedItems
+                    navigationObj={this.props.navigation}
+                    />
                 </ScrollView>
-                <BottomTab/>
+                <BottomTab
+                navigationObj={this.props.navigation}/>
             </React.Fragment>
         )
     }

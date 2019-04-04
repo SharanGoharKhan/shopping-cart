@@ -103,13 +103,16 @@ class OrderDetail extends React.Component {
                     </View>
                     <View style={styles.trackOrderContainer}>
                         <View style={styles.trackOrderSubContainer}>
-                            <TouchableOpacity style={styles.trackStyle}>
+                            <TouchableOpacity
+                            onPress={() => this.props.navigation.navigate('TrackOrder')} 
+                            style={styles.trackStyle}>
                                 <Text style={styles.trackStyleText}>Track Order</Text>
                             </TouchableOpacity>
                         </View>
                     </View>
                 </ScrollView>
-                <BottomTab/>
+                <BottomTab
+                navigationObj={this.props.navigation}/>
             </View>
         )
     }

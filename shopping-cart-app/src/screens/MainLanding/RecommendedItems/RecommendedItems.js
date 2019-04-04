@@ -1,5 +1,5 @@
 import React from 'react'
-import { Text, View, Image, ScrollView } from 'react-native'
+import { Text, View, Image, ScrollView, TouchableOpacity } from 'react-native'
 import styles from './styles'
 
 /* Config/Constants
@@ -32,7 +32,7 @@ Props:
     ?
 ============================================================================= */
 
-const recommendedItems = () => (
+const recommendedItems = (props) => (
 
     <View style={styles.popularItemsContainer}>
         <View style={styles.popularItemsContainerText}>
@@ -42,7 +42,9 @@ const recommendedItems = () => (
             <ScrollView horizontal={true} showsHorizontalScrollIndicator={false}>
                 {
                     itemData.map((item, ind) =>
-                        <View key={ind} style={styles.cardContainer}>
+                        <TouchableOpacity
+                        onPress={() => props.navigationObj.navigate('ProductListing')} 
+                        key={ind} style={styles.cardContainer}>
                             <View style={styles.topCardContainer}>
                                 <View style={styles.cardImageContainer}>
                                     <Image
@@ -72,7 +74,7 @@ const recommendedItems = () => (
                                     </View>
                                 </View>
                             </View>
-                        </View>
+                        </TouchableOpacity>
 
                     )
                 }

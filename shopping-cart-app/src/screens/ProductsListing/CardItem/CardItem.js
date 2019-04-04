@@ -1,9 +1,8 @@
 import React from 'react'
-import { Text, View, Image, ScrollView } from 'react-native'
+import { Text, View, Image, TouchableOpacity } from 'react-native'
 import styles from './styles'
 import { Rating } from 'react-native-ratings';
 import { moderateScale } from '../../../utils/scaling';
-import { DrawerActions } from 'react-navigation';
 
 /* Config/Constants
 ============================================================================= */
@@ -49,11 +48,13 @@ Props:
     ?
 ============================================================================= */
 
-const cardItem = () => (
+const cardItem = (props) => (
     <View style={{ flexDirection: 'row', flexWrap: 'wrap', justifyContent: 'space-around' }}>
         {
             cardData.map((data, ind) =>
-                <View key={ind} style={styles.cardContainer}>
+                <TouchableOpacity
+                onPress={() => props.navigationObj.navigate('ProductDescription')}
+                key={ind} style={styles.cardContainer}>
                     <View style={styles.cardTop}>
                         <Image
                             source={data.img}
@@ -83,7 +84,7 @@ const cardItem = () => (
                             <Text style={styles.priceStyle}>{data.price} KWD</Text>
                         </View>
                     </View>
-                </View>
+                </TouchableOpacity>
             )
         }
     </View>

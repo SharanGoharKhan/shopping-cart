@@ -1,6 +1,6 @@
 import React from 'react';
 import {
-    Text, TouchableOpacity, View, Image, ImageBackground,ScrollView
+    Text, TouchableOpacity, View, Image,ScrollView
 } from 'react-native';
 import styles from './styles';
 
@@ -37,12 +37,13 @@ Props:
   ?
 
 ============================================================================= */
-const cardContainer = () => (
+const cardContainer = (props) => (
     <ScrollView style={styles.scrollViewContainer}>
         <View style={styles.mainCardContainer}>
             {
                 cardData.map((data,ind)=>
-                <View
+                <TouchableOpacity
+                onPress={() => props.navigationObj.navigate('OrderDetail')}
                 key={ind}
                 style={styles.cardContainer}>
                 <View style={styles.leftContainer}>
@@ -77,7 +78,7 @@ const cardContainer = () => (
                         </View>
                     </View>
                 </View>
-                </View>
+                </TouchableOpacity>
                 )
             }
         </View>

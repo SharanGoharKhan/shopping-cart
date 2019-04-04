@@ -199,13 +199,16 @@ class ProductDescription extends React.Component {
                     {/* Accrodian ends */}
                     {/* Add to shopping cart starts */}
                     <View style={styles.shoppingCartContainer}>
-                        <TouchableOpacity style={styles.shoppingCartSubContainer}>
+                        <TouchableOpacity
+                        onPress={() => this.props.navigation.navigate('ShoppingCart')} 
+                        style={styles.shoppingCartSubContainer}>
                             <Text style={styles.shoppingCartText}>Add to Shopping Cart</Text>
                         </TouchableOpacity>
                     </View>
                     {/* Add to shopping cart ends */}
                 </ScrollView>
-                <BottomTab />
+                <BottomTab
+                navigationObj={this.props.navigation} />
 
 
             </View>

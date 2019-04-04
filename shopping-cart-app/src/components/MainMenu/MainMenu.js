@@ -7,15 +7,15 @@ import styles from './styles'
 const navItems = [
     {
         title: 'Home',
-        navigateTo: 'Home'
+        navigateTo: 'MainLanding'
     },
     {
         title: 'Categories',
-        navigateTo: 'Categories'
+        navigateTo: 'ProductListing'
     },
     {
         title: 'Profile',
-        navigateTo: 'Profile'
+        navigateTo: 'ProfileDashboard'
     },
     {
         title: 'FAQ',
@@ -67,7 +67,10 @@ class MainMenu extends React.Component {
                     <View style={styles.middleSubContainer}>
                     {
                         navItems.map((item,ind)=>
-                        <TouchableOpacity key={ind} style={styles.navItemContainer}>
+                        <TouchableOpacity
+                        onPress={() => this.props.navigation.navigate(item.navigateTo)} 
+                        key={ind} 
+                        style={styles.navItemContainer}>
                             <Text style={styles.navItemStyle}>{item.title}</Text>
                         </TouchableOpacity>
                         )
@@ -92,18 +95,21 @@ class MainMenu extends React.Component {
                     </View>
                 </View>
                 <View style={styles.bottomContainer}>
-                    <View style={styles.bottomSubContainer}>
-                        <TouchableOpacity style={styles.signoutContainerImg}>
+                    <TouchableOpacity
+                    onPress={() => this.props.navigation.navigate('SignIn')} 
+                    style={styles.bottomSubContainer}>
+                        <View 
+                        style={styles.signoutContainerImg}>
                             <Image
                             source={require('../../assets/images/mainMenu/signout.png')}
                             resizeMode="contain"
                             style={styles.imgResponsive}
                             />
-                        </TouchableOpacity>
-                        <TouchableOpacity style={styles.signoutContainerText}>
+                        </View>
+                        <View style={styles.signoutContainerText}>
                             <Text style={styles.signoutContainerStyle}>Sign Out</Text>
-                        </TouchableOpacity>
-                    </View>
+                        </View>
+                    </TouchableOpacity>
                 </View>
             </View>
         )

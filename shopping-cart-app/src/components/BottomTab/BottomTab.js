@@ -17,7 +17,9 @@ class BottomTab extends React.Component {
     render() {
         return (
             < View style={styles.footerContainer}>
-                <TouchableOpacity style={styles.footerBtnContainer}>
+                <TouchableOpacity
+                onPress={() => this.props.navigationObj.navigate('MainLanding')}
+                style={styles.footerBtnContainer}>
                     <View style={styles.imgContainer}>
                         <Image source={require('../../assets/images/footer/home.png')}
                             style={styles.imgResponsive}
@@ -25,7 +27,9 @@ class BottomTab extends React.Component {
                         />
                     </View>
                 </TouchableOpacity>
-                <TouchableOpacity style={styles.footerBtnContainer}>
+                <TouchableOpacity
+                onPress={() => this.props.navigationObj.navigate('Search')} 
+                style={styles.footerBtnContainer}>
                     <View style={styles.imgContainer}>
                         <Image source={require('../../assets/images/footer/search.png')}
                             style={styles.imgResponsive}
@@ -33,7 +37,9 @@ class BottomTab extends React.Component {
                         />
                     </View>
                 </TouchableOpacity>
-                <TouchableOpacity style={styles.footerBtnContainer}>
+                <TouchableOpacity
+                onPress={() => this.props.navigationObj.navigate('ProfileDashboard')} 
+                style={styles.footerBtnContainer}>
                     <View style={styles.profileContainer}>
                         <Image source={require('../../assets/images/footer/profile.png')}
                             style={styles.imgResponsive}
@@ -43,7 +49,9 @@ class BottomTab extends React.Component {
                         </View>
                     </View>
                 </TouchableOpacity>
-                <TouchableOpacity style={styles.footerBtnContainer}>
+                <TouchableOpacity
+                onPress={() => this.props.navigationObj.navigate('ShoppingCart')} 
+                style={styles.footerBtnContainer}>
                     <View style={styles.shoppingContainer}>
                         <Image source={require('../../assets/images/footer/shopping.png')}
                             style={styles.imgResponsive}

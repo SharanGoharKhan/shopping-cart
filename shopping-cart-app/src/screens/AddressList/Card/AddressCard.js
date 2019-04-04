@@ -43,7 +43,8 @@ class Card extends React.Component{
         <View style={styles.container}>
           <View style={styles.headerRow}>
             <Text style={styles.titleText}> {this.props.title}</Text>
-            <TouchableOpacity>
+            <TouchableOpacity
+            onPress={() => this.props.navigationObj.navigate('EditingAddress')}>
               <Image 
                 style={{height: moderateScale(16), width: moderateScale(16) }}
                 source={require('../../../assets/icons/edit.png')}

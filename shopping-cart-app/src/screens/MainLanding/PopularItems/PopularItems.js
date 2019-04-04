@@ -1,5 +1,5 @@
 import React from 'react'
-import { Text,View, Image, ScrollView } from 'react-native'
+import { Text,View, Image, ScrollView, TouchableOpacity } from 'react-native'
 import styles from './styles'
 
 /* Config/Constants
@@ -13,7 +13,7 @@ Props:
     ?
 ============================================================================= */
 
-const popularItems = () => (
+const popularItems = (props) => (
 
     <View style={styles.popularItemsContainer}>
         <View style={styles.popularItemsContainerText}>
@@ -21,7 +21,9 @@ const popularItems = () => (
         </View>
         <View style={styles.scrollViewContainer}>
             <ScrollView horizontal={true} showsHorizontalScrollIndicator={false}>
-                <View style={styles.cardContainer}>
+                <TouchableOpacity
+                onPress={() => props.navigationObj.navigate('ProductListing')}
+                style={styles.cardContainer}>
                     <View style={styles.topCardContainer}>
                         <View style={styles.cardImageContainer}>
                             <Image
@@ -55,8 +57,10 @@ const popularItems = () => (
                             </View>
                         </View>
                     </View>
-                </View>
-                <View style={styles.cardContainer}>
+                </TouchableOpacity>
+                <TouchableOpacity
+                onPress={() => props.navigationObj.navigate('ProductListing')}
+                style={styles.cardContainer}>
                     <View style={styles.topCardContainer}>
                         <View style={styles.cardImageContainer}>
                             <Image
@@ -90,8 +94,10 @@ const popularItems = () => (
                             </View>
                         </View>
                     </View>
-                </View>
-                <View style={styles.cardContainer}>
+                </TouchableOpacity>
+                <TouchableOpacity
+                onPress={() => props.navigationObj.navigate('ProductListing')} 
+                style={styles.cardContainer}>
                     <View style={styles.topCardContainer}>
                         <View style={styles.cardImageContainer}>
                             <Image
@@ -121,7 +127,7 @@ const popularItems = () => (
                             </View>
                         </View>
                     </View>
-                </View>
+                </TouchableOpacity>
             </ScrollView>
         </View>
     </View>

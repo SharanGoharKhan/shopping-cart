@@ -11,7 +11,7 @@ Props:
   ?
 
 ============================================================================= */
-const profileContainer = () => (
+const profileContainer = (props) => (
     <View style={styles.profileContainer}>
         <View style={styles.profileSubContainer}>
             <View style={styles.topProfileContent}>
@@ -32,14 +32,18 @@ const profileContainer = () => (
                     style={styles.imgResponsive3}
                 >
                     <View style={styles.profileCenterContainerTop}>
-                        <TouchableOpacity style={styles.signOutContainer}>
+                        <TouchableOpacity
+                        onPress={() => props.navigationObj.navigate('SignIn')} 
+                        style={styles.signOutContainer}>
                             <Image
                                 source={require('../../../assets/images/mainMenu/signout.png')}
                                 resizeMode="contain"
                                 style={styles.imgResponsive}
                             />
                         </TouchableOpacity>
-                        <TouchableOpacity style={styles.editContainer}>
+                        <TouchableOpacity
+                        onPress={() => props.navigationObj.navigate('EditingProfile')} 
+                        style={styles.editContainer}>
                             <Image
                                 source={require('../../../assets/images/ProfileDashboard/edit.png')}
                                 resizeMode="contain"
@@ -73,9 +77,11 @@ const profileContainer = () => (
                             />
 
                         </View>
-                        <View style={styles.addressText}>
+                        <TouchableOpacity
+                        onPress={() => props.navigationObj.navigate('AddressList')} 
+                        style={styles.addressText}>
                             <Text style={styles.placeStyle}>Addresses</Text>
-                        </View>
+                        </TouchableOpacity>
                     </View>
                 </ImageBackground>
             </View>

@@ -150,7 +150,9 @@ class Checkout extends React.Component {
                                 </View>
                             </View>
                             <View style={styles.submit_container}>
-                                <BlueBtn text="Pay"/>
+                                <BlueBtn
+                                onPress={() => this.props.navigation.navigate('CheckoutPayment')}
+                                text="Pay"/>
                             </View>
 
                         </View>

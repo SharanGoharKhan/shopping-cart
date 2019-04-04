@@ -13,11 +13,13 @@ Props:
   ?
 ============================================================================= */
 
-const cardsSection = () => (
+const cardsSection = (props) => (
 
     <View style={styles.cardsContainer}>
         <View style={styles.rowContainer}>
-            <TouchableOpacity style={styles.cardBtnContainer}>
+            <TouchableOpacity
+            onPress={() => props.navigationObj.navigate('ProductListing')}
+            style={styles.cardBtnContainer}>
                 <View style={styles.textViewContainer}>
                     <Text style={styles.textStyle}>Accessories</Text>
                 </View>

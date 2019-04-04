@@ -16,7 +16,7 @@ import ForgotPassword from '../screens/ForgotPassword/ForgotPassword'
 import MainLanding from '../screens/MainLanding/MainLanding'
 import OrderDetail from '../screens/OrderDetail/OrderDetail'
 import Payment from '../screens/Payment/Payment'
-import PreviousOrder from '../screens/PreviousOrders/PreviousOrders'
+import PreviousOrders from '../screens/PreviousOrders/PreviousOrders'
 import ProductDescription from '../screens/ProductDescription/ProductDescription'
 import ProductListing from '../screens/ProductsListing/ProductListing'
 import ProfileDashboard from '../screens/ProfileDashboard/ProfileDashboard'
@@ -44,7 +44,7 @@ const authenticationNavigator = createStackNavigator(
         ForgotPassword,
         OrderDetail,
         Payment,
-        PreviousOrder,
+        PreviousOrders,
         ProductDescription,
         ProductListing,
         ProfileDashboard,

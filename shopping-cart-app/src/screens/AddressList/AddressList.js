@@ -47,7 +47,8 @@ class AddressList extends React.Component {
                 <View style={styles.body}>
                     <View style={styles.main}>
                         <ScrollView style={styles.mainScroll}>
-                            {DATA.map((item, index)=><Card 
+                            {DATA.map((item, index)=><Card
+                                navigationObj={this.props.navigation} 
                                 title= {item.title}
                                 country= {item.country}
                                 city= {item.city}
