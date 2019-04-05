@@ -33,7 +33,9 @@ const cardsSection = (props) => (
                     </View>
                 </View>
             </TouchableOpacity>
-            <TouchableOpacity style={styles.cardBtnContainer}>
+            <TouchableOpacity
+            onPress={() => props.navigationObj.navigate('ProductListing')} 
+            style={styles.cardBtnContainer}>
                 <View style={styles.textViewContainer}>
                     <Text style={styles.textStyle}>Arts & Crafts</Text>
                 </View>
@@ -49,7 +51,9 @@ const cardsSection = (props) => (
             </TouchableOpacity>
         </View>
         <View style={styles.rowContainer}>
-            <TouchableOpacity style={styles.cardBtnContainer}>
+            <TouchableOpacity
+            onPress={() => props.navigationObj.navigate('ProductListing')} 
+            style={styles.cardBtnContainer}>
                 <View style={styles.textViewContainer}>
                     <Text style={styles.textStyle}>Event Ideas</Text>
                 </View>
@@ -63,7 +67,9 @@ const cardsSection = (props) => (
                     </View>
                 </View>
             </TouchableOpacity>
-            <TouchableOpacity style={styles.cardBtnContainer}>
+            <TouchableOpacity
+            onPress={() => props.navigationObj.navigate('ProductListing')}
+            style={styles.cardBtnContainer}>
                 <View style={styles.textViewContainer}>
                     <Text style={styles.textStyle}>Fashions</Text>
                 </View>
@@ -79,7 +85,9 @@ const cardsSection = (props) => (
             </TouchableOpacity>
         </View>
         <View style={styles.rowContainer}>
-            <TouchableOpacity style={styles.cardBtnContainer}>
+            <TouchableOpacity
+            onPress={() => props.navigationObj.navigate('ProductListing')} 
+            style={styles.cardBtnContainer}>
                 <View style={styles.textViewContainer}>
                     <Text style={styles.textStyle}>Food & Drinks</Text>
                 </View>
@@ -93,7 +101,9 @@ const cardsSection = (props) => (
                     </View>
                 </View>
             </TouchableOpacity>
-            <TouchableOpacity style={styles.cardBtnContainer}>
+            <TouchableOpacity
+            onPress={() => props.navigationObj.navigate('ProductListing')} 
+            style={styles.cardBtnContainer}>
                 <View style={styles.textViewContainer}>
                     <Text style={styles.textStyle}>More</Text>
                 </View>

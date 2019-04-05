@@ -81,7 +81,7 @@ const cardItem = (props) => (
                             <Text style={styles.ratingNumber}>{data.ratingNumber}</Text>
                         </View>
                         <View style={styles.priceContainer}>
-                            <Text style={styles.priceStyle}>{data.price} KWD</Text>
+                            <Text style={styles.priceStyle}>{data.price} PKR</Text>
                         </View>
                     </View>
                 </TouchableOpacity>

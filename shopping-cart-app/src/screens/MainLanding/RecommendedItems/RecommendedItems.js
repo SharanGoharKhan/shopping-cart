@@ -60,7 +60,7 @@ const recommendedItems = (props) => (
                                     <Text style={styles.botCardTextStyle}>{item.category}</Text>
                                     <View style={styles.botIconContainer}>
                                         <View style={styles.botPriceContainer}>
-                                            <Text style={styles.botPriceStyle}>{item.price} KWD</Text>
+                                            <Text style={styles.botPriceStyle}>{item.price} PKR</Text>
                                         </View>
                                         <View style={styles.botIconCartContainer}>
                                             <View style={styles.botIconCartSubContainer}>

@@ -56,8 +56,8 @@ export default {
 
      // footer
      footer:{
-        height: '7%', width: '100%',
-        backgroundColor: 'crimson',
-        justifyContent: 'center', alignItems:'center'
+        height: '10%', 
+        width: '100%',
+        justifyContent: 'center'
     }
 }

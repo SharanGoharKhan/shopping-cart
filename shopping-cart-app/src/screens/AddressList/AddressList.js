@@ -2,7 +2,7 @@ import React from 'react'
 import { View, Text,Image ,StatusBar, TouchableOpacity  } from 'react-native'
 
 import styles from './styles'
-
+import BottomTab from '../../components/BottomTab/BottomTab'
 import Card from './Card/AddressCard'
 import { ScrollView } from 'react-native-gesture-handler';
 
@@ -60,7 +60,8 @@ class AddressList extends React.Component {
                   
                 </View>
                 <View style={styles.footer}>
-                        <Text>FOOTER PLACEHOLDER</Text>
+                    <BottomTab
+                    navigationObj={this.props.navigation}/>
                 </View>
                
             </View>

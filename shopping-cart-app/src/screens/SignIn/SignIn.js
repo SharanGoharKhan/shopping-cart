@@ -105,7 +105,7 @@ class SignIn extends React.Component {
                                 <Text style={styles.ft_text}>By creating a new account, you</Text>
                             </View>
                             <Text style={styles.ft_text}> 
-                                 will become a valuable customer/buyer to Akshaak by 
+                                 will become a valuable customer/buyer to Enatega by 
                             </Text>
                             <View style={styles.mixed_line}>
                                 <Text style={styles.ft_text}>default. While registering, </Text>

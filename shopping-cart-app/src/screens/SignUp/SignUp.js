@@ -43,7 +43,8 @@ class SignUp extends React.Component {
                    <View style={styles.main}>
                         <ImageBackground 
                                 style={styles.body_container_background}
-                                source={require('../../assets/images/formBackground.png')}>
+                                source={require('../../assets/images/formBackground.png')}
+                                resizeMode="cover">
                             <View style={styles.main_top}>
                                 <Text style={styles.h1_text}>Hello Guest!</Text>
                                 <Text style={styles.h2_text}> Sign Up</Text>

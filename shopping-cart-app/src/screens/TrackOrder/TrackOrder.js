@@ -65,7 +65,7 @@ class TrackOrder extends React.Component {
                                         <Text style={styles.productTitleStyle}>x1</Text>
                                     </View>
                                     <View style={styles.priceContainer}>
-                                        <Text style={styles.productTitleStyle}>35 KWD</Text>
+                                        <Text style={styles.productTitleStyle}>35 PKR</Text>
                                     </View>
                                 </View>
                             </View>

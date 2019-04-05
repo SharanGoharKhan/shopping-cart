@@ -33,7 +33,7 @@ class FullCard extends React.Component {
 
     renderPrevousPrice(amount){
         return(
-                <Text includeFontPadding={false} textAlignVertical="bottom" style={style=styles.prevPriceText}>{amount} KWD</Text>
+                <Text includeFontPadding={false} textAlignVertical="bottom" style={style=styles.prevPriceText}>{amount} PKR</Text>
     )}
 
     // if product is new
@@ -86,7 +86,7 @@ class FullCard extends React.Component {
                         <View style={styles.rightside_bot}>
                             {renderPreviousAmount}
                             <View style={styles.special_row}>
-                                <Text style={styles.amount}>{this.props.productNewPrice} KWD</Text>
+                                <Text style={styles.amount}>{this.props.productNewPrice} PKR</Text>
                                 <TouchableOpacity onPress={()=>{console.log("Go to Cart")}}>
                                     <Image 
                                         style={{width: moderateScale(16), height: moderateScale(16)}}

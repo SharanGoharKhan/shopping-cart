@@ -80,17 +80,17 @@ class ShoppingCart extends React.Component {
                             <View style={styles.subtotal_container}>
                                 <View style={styles.row}>
                                     <Text style={styles.text}>Sub Total</Text>
-                                    <Text style={styles.text}>149 KWD</Text>
+                                    <Text style={styles.text}>149 PKR</Text>
                                 </View>
                                 <View style={styles.row}>
                                     <Text style={styles.text}>Delivery</Text>
-                                    <Text style={styles.text}>1 KWD</Text>
+                                    <Text style={styles.text}>1 PKR</Text>
                                 </View>
                             </View>
                             <View style={styles.total_container}>
                                 <View style={styles.row}>
                                     <Text style={styles.text_bold}>Total</Text>
-                                    <Text style={styles.text_blue}>150 KWD</Text>
+                                    <Text style={styles.text_blue}>150 PKR</Text>
                                 </View>
                             </View>
                             <View style={styles.submit_container}>

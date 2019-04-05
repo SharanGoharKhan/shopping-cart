@@ -30,7 +30,7 @@ class FullCard extends React.Component {
     renderPrevousPrice(amount){
         return(
             <View style={styles.prevPrice}>
-                <Text style={style=styles.prevPriceText}>{amount} KWD</Text>
+                <Text style={style=styles.prevPriceText}>{amount} PKR</Text>
             </View>
     )}
 
@@ -62,7 +62,7 @@ class FullCard extends React.Component {
                             {renderPreviousAmount}
                             <View style={styles.special_row}>
                                 <Text style={styles.qty}> x{this.props.productQuantity} </Text>
-                                <Text style={styles.amount}> {this.props.productNewPrice} KWD</Text>
+                                <Text style={styles.amount}> {this.props.productNewPrice} PKR</Text>
                             </View>
                         </View>
 

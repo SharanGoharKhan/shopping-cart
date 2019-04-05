@@ -111,7 +111,7 @@ class CheckoutPayment extends React.Component {
                             <View style={styles.totalContainer}>
                                 <View style={styles.row}>
                                     <Text style={styles.textBold}>Total</Text>
-                                    <Text style={styles.textBlue}>192 KWD</Text>
+                                    <Text style={styles.textBlue}>192 PKR</Text>
                                 </View>
                             </View>
                             <View style={styles.submitContainer}>
@@ -140,7 +140,7 @@ class CheckoutPayment extends React.Component {
                     <Text style={styles.itemBoldText}>{item.name}</Text>
                 </View>
                 <Text style={styles.itemBlueText}>
-                    {item.price} KWD
+                    {item.price} PKR
                 </Text>
             </View>
             

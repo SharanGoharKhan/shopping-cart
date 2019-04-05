@@ -31,7 +31,7 @@ class Checkout extends React.Component {
                     <Text style={styles.itemBoldText}>{item.name}</Text>
                 </View>
                 <Text style={styles.itemBlueText}>
-                    {item.price} KWD
+                    {item.price} PKR
                 </Text>
             </View>
             
@@ -104,18 +104,18 @@ class Checkout extends React.Component {
                                 </Text>
                                 <View style={styles.addressDetail}>
                                     <Text style={styles.addressSmallText}>
-                                        Gahanim Aldosari
+                                        Sharan Khan
                                     </Text>
                                     <Text style={styles.addressSmallText}>
-                                        ghanim@domain.com
+                                        sharan.gohar@gmail.com
                                     </Text>
                                     <Text style={styles.addressSmallText}>
-                                        +965 5558300
+                                        +92 3339461270
                                     </Text>
                                 </View>
                                 <View style={styles.borderBottom}>
                                     <View style={styles.row}>
-                                        <Text style={styles.addressBoldText}>Kuwait</Text>
+                                        <Text style={styles.addressBoldText}>Pakistan</Text>
                                         <TouchableOpacity onPress={()=>console.log("Pressed Edit")}>
                                             <Image
                                                 source={require('../../assets/icons/edit.png')}
@@ -136,17 +136,17 @@ class Checkout extends React.Component {
                             <View style={styles.subtotal_container}>
                                 <View style={styles.row}>
                                     <Text style={styles.text}> Total</Text>
-                                    <Text style={styles.text}>191 KWD</Text>
+                                    <Text style={styles.text}>191 PKR</Text>
                                 </View>
                                 <View style={styles.row}>
                                     <Text style={styles.text}>Delivery</Text>
-                                    <Text style={styles.text}>1 KWD</Text>
+                                    <Text style={styles.text}>1 PKR</Text>
                                 </View>
                             </View>
                             <View style={styles.total_container}>
                                 <View style={styles.row}>
                                     <Text style={styles.text_bold}>Total</Text>
-                                    <Text style={styles.text_blue}>192 KWD</Text>
+                                    <Text style={styles.text_blue}>192 PKR</Text>
                                 </View>
                             </View>
                             <View style={styles.submit_container}>

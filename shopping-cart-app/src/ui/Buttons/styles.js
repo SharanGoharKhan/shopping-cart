@@ -21,7 +21,7 @@ const mainBtnStyles = {
 const alternateBtn ={
     backgroundColor:{
         backgroundColor: colors.secondaryWhiteColor,  height: moderateScale(50),
-        borderRadius: moderateScale(3), borderWidth: moderateScale(2),borderColor: colors.primaryBlackColor
+        borderRadius: moderateScale(3), borderWidth: moderateScale(2),borderColor: colors.backgroudGray
     },
     main_alt_btn:{
         alignItems:'center', justifyContent: 'center',

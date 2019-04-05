@@ -58,7 +58,7 @@ class OrderDetail extends React.Component {
                                         <Text style={styles.productTitleStyle}>x1</Text>
                                     </View>
                                     <View style={styles.priceContainer}>
-                                        <Text style={styles.productTitleStyle}>35 KWD</Text>
+                                        <Text style={styles.productTitleStyle}>35 PKR</Text>
                                     </View>
                                 </View>
                             </View>
@@ -85,11 +85,11 @@ class OrderDetail extends React.Component {
                         </View>
                         <View style={styles.twoItems}>
                             <Text style={styles.contactStyle}>Delivery</Text>
-                            <Text style={styles.addressStyle}>2 KWD</Text>
+                            <Text style={styles.addressStyle}>2 PKR</Text>
                         </View>
                         <View style={styles.twoItems}>
                             <Text style={styles.contactStyle}>Sub Total</Text>
-                            <Text style={styles.addressStyle}>35 KWD</Text>
+                            <Text style={styles.addressStyle}>35 PKR</Text>
                         </View>
                         </View>
                     </View>
@@ -97,7 +97,7 @@ class OrderDetail extends React.Component {
                         <View style={styles.totalSubContainer}>
                             <View style={styles.twoItems}>
                                 <Text style={styles.addressStyle}>Total</Text>
-                                <Text style={styles.addressStyle}>38 KWD</Text>
+                                <Text style={styles.addressStyle}>38 PKR</Text>
                             </View>
                         </View>
                     </View>

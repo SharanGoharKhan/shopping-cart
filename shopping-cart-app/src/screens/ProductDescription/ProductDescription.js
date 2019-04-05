@@ -121,7 +121,7 @@ class ProductDescription extends React.Component {
                             </View>
                             <View style={styles.caroselPriceContainer}>
                                 <View style={styles.caroselPriceSubContainer}>
-                                    <Text style={[styles.textStyle, styles.priceColor]}>7.5 KWD</Text>
+                                    <Text style={[styles.textStyle, styles.priceColor]}>7.5 PKR</Text>
                                 </View>
                             </View>
                         </View>

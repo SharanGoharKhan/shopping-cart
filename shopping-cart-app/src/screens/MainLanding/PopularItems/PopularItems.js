@@ -43,7 +43,7 @@ const popularItems = (props) => (
                             <Text style={styles.botCardTextStyle}>Fibre</Text>
                             <View style={styles.botIconContainer}>
                                 <View style={styles.botPriceContainer}>
-                                    <Text style={styles.botPriceStyle}>7.5 KWD</Text>
+                                    <Text style={styles.botPriceStyle}>7.5 PKR</Text>
                                 </View>
                                 <View style={styles.botIconCartContainer}>
                                     <View style={styles.botIconCartSubContainer}>
@@ -80,7 +80,7 @@ const popularItems = (props) => (
                             <Text style={styles.botCardTextStyle}>kids interior</Text>
                             <View style={styles.botIconContainer}>
                                 <View style={styles.botPriceContainer}>
-                                    <Text style={styles.botPriceStyle}>19 KWD</Text>
+                                    <Text style={styles.botPriceStyle}>19 PKR</Text>
                                 </View>
                                 <View style={styles.botIconCartContainer}>
                                     <View style={styles.botIconCartSubContainer}>
@@ -113,7 +113,7 @@ const popularItems = (props) => (
                             <Text style={styles.botCardTextStyle}>Bags</Text>
                             <View style={styles.botIconContainer}>
                                 <View style={styles.botPriceContainer}>
-                                    <Text style={styles.botPriceStyle}>34 KWD</Text>
+                                    <Text style={styles.botPriceStyle}>34 PKR</Text>
                                 </View>
                                 <View style={styles.botIconCartContainer}>
                                     <View style={styles.botIconCartSubContainer}>
