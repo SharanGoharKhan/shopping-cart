@@ -69,13 +69,11 @@ export default {
     },
     text_bold:{
         fontFamily: fontStyles.PoppinsRegular,
-        fontSize: moderateScale(13),
-        fontWeight: '500'
+        fontSize: moderateScale(13)    
     },
     text_blue:{
         fontFamily: fontStyles.PoppinsRegular,
         fontSize: moderateScale(13),
-        fontWeight: '500',
         color: colors.textBlueColor
     },
     total_container:{
@@ -87,9 +85,11 @@ export default {
 
     // footer
     footer:{
-        height: '10%', width: '100%',
-        backgroundColor: 'green',
-        justifyContent: 'center', alignItems:'center'
+        height: '12%', 
+        width: '120%',
+        alignSelf:'center',
+        justifyContent: 'flex-end',
+        alignItems:'center'
     }
 
 }

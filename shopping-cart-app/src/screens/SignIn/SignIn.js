@@ -109,9 +109,13 @@ class SignIn extends React.Component {
                             </Text>
                             <View style={styles.mixed_line}>
                                 <Text style={styles.ft_text}>default. While registering, </Text>
-                                <Text style={[styles.ft_underline,styles.ft_text]}>you can also choose to</Text>
+                                <Text
+                                onPress={() => this.props.navigation.navigate('SignUp')} 
+                                style={[styles.ft_underline,styles.ft_text]}>you can also choose to</Text>
                             </View>
-                            <Text style={[styles.ft_underline, styles.ft_text]}>
+                            <Text
+                             onPress={() => this.props.navigation.navigate('SignUp')} 
+                             style={[styles.ft_underline, styles.ft_text]}>
                                 become a seller and open your own shop
                             </Text>
                         </View>

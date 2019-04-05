@@ -6,7 +6,7 @@ const { height, width } = Dimensions.get('window')
 ============================================================================= */
 export default {
     footerContainer: {
-        width: '100%', 
+        width: width, 
         height: height * .07, 
         flexDirection: 'row', 
         backgroundColor: 'white'

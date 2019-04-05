@@ -3,7 +3,7 @@ import { View, Text,Image ,StatusBar, ScrollView, TouchableOpacity  } from 'reac
 
 import styles from './styles'
 import { moderateScale } from '../../utils/scaling';
-
+import BottomTab from '../../components/BottomTab/BottomTab'
 import BlueBtn from '../../ui/Buttons/BlueBtn'
 
 /* Config/Constants
@@ -158,7 +158,8 @@ class Checkout extends React.Component {
                         </View>
                     </View>
                     <View style={styles.footer}>
-                            <Text>Placeholder for menus</Text>
+                        <BottomTab
+                        navigationObj={this.props.navigation}/>
                     </View>
                 </View>
                

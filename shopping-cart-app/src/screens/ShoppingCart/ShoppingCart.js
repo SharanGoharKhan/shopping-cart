@@ -6,7 +6,7 @@ import { moderateScale } from '../../utils/scaling';
 
 import BlueBtn from '../../ui/Buttons/BlueBtn'
 import FullCard from '../../ui/Cards/FullCard/FullCard'
-
+import BottomTab from '../../components/BottomTab/BottomTab'
 /* Config/Constants
 ============================================================================= */
 const DATA = [
@@ -52,7 +52,6 @@ class ShoppingCart extends React.Component {
                             <ScrollView style={styles.main_scroller}>
                                 {DATA.map((item,i)=>
                                     <FullCard
-                                        
                                         productName= {item.name}
                                         productBrand= {item.brand}
                                         productQuantity= {item.quantity}
@@ -88,7 +87,8 @@ class ShoppingCart extends React.Component {
                         </View>
                     </View>
                     <View style={styles.footer}>
-                            <Text>Placeholder for menus</Text>
+                        <BottomTab
+                        navigationObj={this.props.navigation}/>
                     </View>
                 </View>
                

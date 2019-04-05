@@ -36,7 +36,9 @@ class SignUp extends React.Component {
                 <View style={styles.body}>
                    <View style={styles.header}>
                         <Text style={styles.header_text}>Sign In</Text>
-                        <AlternateBtn text="Continue as a Guest"/>
+                        <AlternateBtn
+                        onPress={() => this.props.navigation.navigate('MainLanding')}  
+                        text="Continue as a Guest"/>
                    </View>
                    <View style={styles.main}>
                         <ImageBackground 
@@ -56,11 +58,15 @@ class SignUp extends React.Component {
                             </View>
                             <View style={styles.main_bot}>
                                 <View style={styles.bot_btn_container}>
-                                    <MainBtn text="Sign up"/>
+                                    <MainBtn
+                                    onPress={() => this.props.navigation.navigate('MainLanding')}
+                                    text="Sign up"/>
                                 </View>
                                 <View style={styles.mixed_line}>
                                     <Text style={[styles.ft_text]}>Already have an account: </Text>
-                                    <Text style={[styles.ft_text, styles.ft_text_underline]}>Sign in</Text>
+                                    <Text
+                                    onPress={() => this.props.navigation.navigate('SignIn')} 
+                                    style={[styles.ft_text, styles.ft_text_underline]}>Sign in</Text>
                             </View>
                             </View>
 
