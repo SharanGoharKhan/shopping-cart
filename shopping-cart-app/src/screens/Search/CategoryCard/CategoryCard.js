@@ -12,7 +12,9 @@ Props:
 ============================================================================= */
 const CardCategory = (props) =>{
     return(
-        <TouchableOpacity style={[styles.container]}>
+        <TouchableOpacity
+        onPress={props.onPress}
+        style={[styles.container]}>
             <Text style={styles.text}>{props.text}</Text>
         </TouchableOpacity>
     )

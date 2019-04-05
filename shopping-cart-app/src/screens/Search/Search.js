@@ -8,6 +8,7 @@ import {StatusBar} from 'react-native'
 import Dropdown from '../../ui/Dropdowns/Dropdown'
 import SearchBar from '../../ui/SearchBar/SearchBar'
 import CategoryCard from './CategoryCard/CategoryCard'
+import BottomTab from '../../components/BottomTab/BottomTab'
 
 /* Config/Constants
 ============================================================================= */
@@ -58,23 +59,34 @@ class Search extends React.Component {
                      
                             <View>
                                 <View style={styles.row}>
-                                    <CategoryCard text="Accessories"/>
-                                    <CategoryCard text="Arts & Crafts"/>
+                                    <CategoryCard
+                                    onPress={() => this.props.navigation.navigate('ProductListing')} 
+                                    text="Accessories"/>
+                                    <CategoryCard
+                                    onPress={() => this.props.navigation.navigate('ProductListing')} 
+                                    text="Arts & Crafts"/>
                                 </View>
                                 <View style={styles.row}>
-                                    <CategoryCard text="Event Ideas"/>
+                                    <CategoryCard
+                                    onPress={() => this.props.navigation.navigate('ProductListing')} 
+                                    text="Event Ideas"/>
                                     <CategoryCard text="Fashion"/>
                                 </View>
                                 <View style={styles.row}>
-                                    <CategoryCard text="Food & Drinks"/>
-                                    <CategoryCard text="Health & Beauty"/>
+                                    <CategoryCard
+                                    onPress={() => this.props.navigation.navigate('ProductListing')} 
+                                    text="Food & Drinks"/>
+                                    <CategoryCard
+                                    onPress={() => this.props.navigation.navigate('ProductListing')} 
+                                    text="Health & Beauty"/>
                                 </View>
                             </View>
                         </View>
                     </View>
                 </View>
                 <View style={styles.footer}>
-                        <Text>Placeholder for menus</Text>
+                    <BottomTab
+                    navigationObj={this.props.navigation}/>
                 </View>
             </View>
            

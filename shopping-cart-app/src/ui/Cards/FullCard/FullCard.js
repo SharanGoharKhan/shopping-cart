@@ -47,7 +47,7 @@ class FullCard extends React.Component {
                     <Image 
                         style={styles.thumbnail}
                         resizeMode="cover"
-                        source={require('../../../assets/images/productPlaceholder.jpg')}/>
+                        source={this.props.productImage}/>
                 </View>
                 <View style={styles.rightside_container}>
                     <View style={styles.rightside}>

@@ -81,9 +81,10 @@ export default {
     },
     // footer
     footer:{
-        height: '10%', width: '100%',
-        backgroundColor: 'green',
-        justifyContent: 'center', alignItems:'center'
+        height: '12%', 
+        width: '100%',
+        justifyContent: 'flex-end',
+        alignItems:'center'
     }
 
 }

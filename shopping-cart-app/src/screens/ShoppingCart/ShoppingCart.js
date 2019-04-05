@@ -10,8 +10,22 @@ import BottomTab from '../../components/BottomTab/BottomTab'
 /* Config/Constants
 ============================================================================= */
 const DATA = [
-    {name:"Leather Crossbody MID Premium", brand: "EQ Custom Leather", quantity: 3, prev_price:null, new_price:120},
-    {name:"Photography's belt & hooch", brand: "EQ Custom Leather", quantity: 1, prev_price:39, new_price:29}
+    {
+        name:"Leather Crossbody MID Premium", 
+        brand: "EQ Custom Leather", 
+        quantity: 3, 
+        prev_price:null, 
+        new_price:120,
+        image: require('../../assets/images/MainLanding/shop-2-collage-2.png')
+    },
+    {
+        name:"Photography's belt & hooch", 
+        brand: "EQ Custom Leather", 
+        quantity: 1, 
+        prev_price:39, 
+        new_price:29,
+        image: require('../../assets/images/ProductListing/belt.png')
+    }
 ]
 
 /* =============================================================================
@@ -52,6 +66,7 @@ class ShoppingCart extends React.Component {
                             <ScrollView style={styles.main_scroller}>
                                 {DATA.map((item,i)=>
                                     <FullCard
+                                        productImage={item.image}
                                         productName= {item.name}
                                         productBrand= {item.brand}
                                         productQuantity= {item.quantity}

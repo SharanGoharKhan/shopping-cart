@@ -11,6 +11,7 @@ import ViewCard from './Card/ViewCard'
 import styles from './styles'
 import { moderateScale } from '../../utils/scaling';
 import { colors } from '../../utils/colors';
+import BottomTab from '../../components/BottomTab/BottomTab'
 
 /* Config/Constants
 ============================================================================= */
@@ -122,7 +123,8 @@ class CheckoutPayment extends React.Component {
                         </View>
                     </View>
                     <View style={styles.footer}>
-                            <Text>Placeholder for menus</Text>
+                        <BottomTab
+                        navigationObj={this.props.navigation}/>
                     </View>
                 </View>
                
