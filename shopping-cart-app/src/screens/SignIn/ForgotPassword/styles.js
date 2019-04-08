@@ -1,7 +1,6 @@
 import { moderateScale } from '../../../utils/scaling'
 import { colors } from '../../../utils/colors'
 import { fontStyles } from '../../../utils/fontStyles';
-import {StatusBar} from 'react-native'
 import { Dimensions } from 'react-native'
 const { height, width } = Dimensions.get('window')
 /* StyleSheet

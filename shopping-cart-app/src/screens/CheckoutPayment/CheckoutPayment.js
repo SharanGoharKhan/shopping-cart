@@ -12,7 +12,7 @@ import styles from './styles'
 import { moderateScale } from '../../utils/scaling';
 import { colors } from '../../utils/colors';
 import BottomTab from '../../components/BottomTab/BottomTab'
-
+import CheckoutReciept from './CheckoutReciept/CheckoutReciept'
 /* Config/Constants
 ============================================================================= */
 const DATA= [
@@ -31,11 +31,33 @@ Props:
 
 
 class CheckoutPayment extends React.Component {
-
+    constructor(props) {
+        super(props)
+        this.state = {
+            modalVisible: false
+        }
+        this.showModal = this.showModal.bind(this)
+        this.hideModal = this.hideModal.bind(this)
+    }
+    showModal = () => {
+        this.setState({
+            modalVisible: true
+        })
+    }
+    hideModal = () => {
+        this.setState({
+            modalVisible: false
+        })
+    }
     render() {
         return (
             <View style={styles.container}>
                 <StatusBar backgroundColor={'transparent'} barStyle = "light-content" hidden = {false}  translucent = {false}/>
+                <CheckoutReciept
+                navigationObj={this.props.navigation}
+                modalVisible = {this.state.modalVisible}
+                hideModal = {this.hideModal}
+                />
                 <View style={styles.statusBarImage}>
                     <Image
                         source={require('../../assets/images/statusbar.png')}
@@ -116,7 +138,7 @@ class CheckoutPayment extends React.Component {
                             </View>
                             <View style={styles.submitContainer}>
                                 <BlueBtn
-                                onPress={() => this.props.navigation.navigate('MainLanding')}
+                                onPress={() => this.showModal()}
                                 text="Pay"/>
                             </View>
 

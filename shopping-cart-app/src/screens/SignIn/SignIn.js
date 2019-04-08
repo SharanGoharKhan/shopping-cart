@@ -35,7 +35,6 @@ class SignIn extends React.Component {
         })
     }
     hideModal = () => {
-        console.log('hide called')
         this.setState({
             modalVisible: false
         })
