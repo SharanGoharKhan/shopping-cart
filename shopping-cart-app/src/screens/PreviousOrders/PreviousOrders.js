@@ -90,7 +90,8 @@ class PreviousOrder extends React.Component {
                                     </View>
                                     {
                                         data.cards.map((card, ind) =>
-                                            <View
+                                            <TouchableOpacity
+                                                onPress={()=>this.props.navigation.navigate('OrderDetail')}
                                                 key={ind}
                                                 style={styles.cardContainer}>
                                                 <View style={styles.leftContainer}>
@@ -125,7 +126,7 @@ class PreviousOrder extends React.Component {
                                                         </View>
                                                     </View>
                                                 </View>
-                                            </View>
+                                            </TouchableOpacity>
                                         )
                                     }
                                     <View style={styles.lineContainer}>
