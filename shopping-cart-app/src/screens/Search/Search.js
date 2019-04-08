@@ -1,8 +1,6 @@
 import React from 'react'
-import { View, Text, Image, TextInput} from 'react-native'
+import { View, Text, Image} from 'react-native'
 import styles from './styles'
-
-import {moderateScale} from '../../utils/scaling'
 import {StatusBar} from 'react-native'
 
 import Dropdown from '../../ui/Dropdowns/Dropdown'

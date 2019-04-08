@@ -1,5 +1,5 @@
 import React from 'react'
-import { Text, TouchableOpacity, View, Image, TextInput } from 'react-native'
+import { Text, TouchableOpacity, View, TextInput } from 'react-native'
 import styles from './styles'
 import Modal from 'react-native-modal'
 /* Config/Constants

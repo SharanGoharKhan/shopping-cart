@@ -1,13 +1,9 @@
 import React from 'react'
-import { View, Text, Image, StatusBar, TextInput, TouchableOpacity, ImageBackground } from 'react-native'
-
+import { View, Text, Image, StatusBar, TouchableOpacity, ImageBackground } from 'react-native'
 import styles from './styles'
-import { colors } from '../../utils/colors';
 import { moderateScale } from '../../utils/scaling';
-
 import TextField from '../../ui/Textfield/Textfield'
 import MainBtn from '../../ui/Buttons/MainBtn'
-import Modal from 'react-native-modal'
 import ForgotPassword from './ForgotPassword/ForgotPassword'
 /* Config/Constants
 ============================================================================= */

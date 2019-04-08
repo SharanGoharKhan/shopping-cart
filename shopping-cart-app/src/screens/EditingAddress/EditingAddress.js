@@ -1,5 +1,5 @@
 import React from 'react'
-import { View, Text, Image, TextInput, KeyboardAvoidingView, ScrollView, TouchableOpacity } from 'react-native'
+import { View, Text, TextInput, KeyboardAvoidingView, ScrollView, TouchableOpacity } from 'react-native'
 import styles from './styles'
 import BottomTab from '../../components/BottomTab/BottomTab'
 /* Config/Constants

@@ -2,9 +2,7 @@ import React from 'react'
 import {View, Text, TouchableOpacity, Image} from 'react-native'
 
 import styles from './styles'
-import {colors} from '../../../utils/colors'
 import { moderateScale } from '../../../utils/scaling';
-import symbolicateStackTrace from 'react-native/Libraries/Core/Devtools/symbolicateStackTrace';
 
 /* =============================================================================
 <Card />

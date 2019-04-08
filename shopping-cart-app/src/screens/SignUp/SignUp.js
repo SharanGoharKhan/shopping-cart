@@ -1,8 +1,6 @@
 import React from 'react'
-import { View, Text,Image ,StatusBar, TextInput, TouchableOpacity, ImageBackground  } from 'react-native'
-
+import { View, Text,Image ,StatusBar, ImageBackground  } from 'react-native'
 import styles from './styles'
-import { colors } from '../../utils/colors';
 import { moderateScale } from '../../utils/scaling';
 
 import TextField from '../../ui/Textfield/Textfield'
