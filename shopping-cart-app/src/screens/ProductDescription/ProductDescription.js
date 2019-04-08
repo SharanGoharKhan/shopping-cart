@@ -60,10 +60,18 @@ class ProductDescription extends React.Component {
         this.state = {
             carosel_img: require('../../assets/images/MainLanding/carosel_img_3.png')
         }
+        this.mounted = false
         this.changeCaroselImg = this.changeCaroselImg.bind(this)
     }
+    componentDidMount = () => {
+        this.mounted = true
+    }
+    componentWillMount = () => {
+        this.mounted = false
+    }
     changeCaroselImg = (imgPath) => {
-        this.setState({ carosel_img: imgPath })
+        if(this.mounted)
+            this.setState({ carosel_img: imgPath })
     }
 
     render_form_head(form){
