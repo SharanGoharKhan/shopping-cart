@@ -11,8 +11,8 @@ import { ScrollView } from 'react-native-gesture-handler';
 DATA for the address
 ============================================================================= */
 const DATA = [
-    { title: "My Home", country: "Kuwait", city: 'Aki Sabah Alsalem', address: "Block 4, Apartment 102", poBox: "P.O Vox 65000"},
-    { title: "My Work", country: "Kuwait", city: 'Abu Faryan', address: "Block 4350, Floor 1, Office 3", poBox: "P.O Vox 65002"},
+    { title: "My Home", country: "Pakistan", city: 'Islamabad', address: "Block 4, Apartment 102", poBox: "P.O Vox 65000"},
+    { title: "My Work", country: "Pakistan", city: 'Karachi', address: "Block 4350, Floor 1, Office 3", poBox: "P.O Vox 65002"},
 ]
 /* =============================================================================
 <AddressList />
