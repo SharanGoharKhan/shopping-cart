@@ -9,28 +9,27 @@ export default {
     container: {
         height: '100%',
         width: '100%',
-        //backgroundColor: 'rgba(255,10,10,0.1)',
-         alignSelf:'center', 
-       // marginTop: '5%' // in order to avoid statusbar collision
+        alignSelf:'center',
     },
     statusbarImage:{
         height: StatusBar.currentHeight,
         backgroundColor:'black'
     },
     body:{
-        height: '95%', width:'95%',
-        alignSelf:'center',
-        // backgroundColor: 'rgba(255,10,10,0.2)'
+        height: '95%', 
+        width:'95%',
+        alignSelf:'center'
     },
     main_scroller:{
-        //backgroundColor: 'blue',
         marginBottom: moderateScale(10)
     },
 
     //header
     header:{
-        height: '10%', width:'95%',
-        flexDirection: 'row',alignSelf:'center',
+        height: '10%', 
+        width:'95%',
+        flexDirection: 'row',
+        alignSelf:'center',
         alignItems:'center'
     }, 
     header_text:{
@@ -41,14 +40,19 @@ export default {
 
     // main
     main:{
-        height: '80%', width: '100%',alignItems:'center'
+        height: '80%', 
+        width: '100%',
+        alignItems:'center'
     },
     main_top:{
-        height: '70%', width: '95%',
+        height: '70%', 
+        width: '95%',
     },
     main_bot:{
-        height: '30%', width: '100%', 
-        alignItems: 'center', justifyContent: 'space-evenly',
+        height: '30%', 
+        width: '100%', 
+        alignItems: 'center', 
+        justifyContent: 'space-evenly',
         backgroundColor: colors.backgroudGray,
         borderRadius: moderateScale(5)
     },

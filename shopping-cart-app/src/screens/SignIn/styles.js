@@ -9,9 +9,7 @@ export default {
     container: {
         height: '100%',
         width: '100%',
-        //backgroundColor: 'rgba(255,10,10,0.1)',
-         alignSelf:'center', 
-       // marginTop: '5%' // in order to avoid statusbar collision
+         alignSelf:'center',
     },
     statusbarImage:{
         height: StatusBar.currentHeight,
@@ -20,11 +18,12 @@ export default {
     body:{
         height: '95%', width:'95%',
         alignSelf:'center'
-        //backgroundColor: 'rgba(255,10,10,0.4)'
     },
     body_header:{
-        height: '10%', width:'90%',
-        flexDirection: 'row',alignSelf:'center',
+        height: '10%', 
+        width:'90%',
+        flexDirection: 'row',
+        alignSelf:'center',
         alignItems:'center'
     }, 
     header_text:{
@@ -33,16 +32,21 @@ export default {
         paddingLeft: moderateScale(8)
     },
     body_container:{
-        width: '90%', height: '63%', alignSelf: 'center',
+        width: '90%', 
+        height: '63%', 
+        alignSelf: 'center',
         backgroundColor: colors.greyLinesColor,
         borderRadius: moderateScale(5)
     },
     body_container_background:{
         alignItems:'center',
-        width:'100%', height:'100%'
+        width:'100%', 
+        height:'100%'
     },
     body_footer:{
-        width: '90%', height:'25%', alignSelf: 'center',
+        width: '90%', 
+        height:'25%', 
+        alignSelf: 'center',
         justifyContent:'center'
     },
     footer:{
@@ -54,9 +58,7 @@ export default {
     },
     bc_h1:{
         fontSize: moderateScale(22),
-        fontFamily: fontStyles.PoppinsRegular,
-        //backgroundColor:'blue'
-
+        fontFamily: fontStyles.PoppinsRegular
     },
     bc_h2:{
         fontSize: moderateScale(12),
@@ -65,35 +67,36 @@ export default {
     },
     bc_texts:{
         alignItems: 'center', justifyContent:'center',
-        height: '30%',
-        //backgroundColor:'red'
+        height: '30%'
     },
     bc_main:{
         height: '45%',
-        //backgroundColor:'green',
         width: '90%', 
         flexDirection: 'column', justifyContent:'space-around'
     },
     bc_inputs:{
-        //backgroundColor: 'rgba(150,150,10,0.3)',
         width: '90%'
     },
     bc_input_view:{
         backgroundColor: colors.secondaryWhiteColor,
-        borderRadius:3, height: moderateScale(38), justifyContent:'center',
-        borderWidth:1, borderColor: colors.greyLinesColor
+        borderRadius:3, 
+        height: moderateScale(38), 
+        justifyContent:'center',
+        borderWidth:1, 
+        borderColor: colors.greyLinesColor
     },
     bc_input:{
         fontFamily: fontStyles.PoppinsRegular,
         fontSize: moderateScale(13), paddingLeft: '3%'
     },
     bc_loginBtns:{
-        //backgroundColor: 'rgba(10,10,250, 0.5)',
         width: '90%'
     },
     main_brown_btn:{
         backgroundColor: '#D0AD8A',
-        alignItems:'center', justifyContent: 'center', flexDirection:'row',
+        alignItems:'center', 
+        justifyContent: 'center', 
+        flexDirection:'row',
         width: '100%', height: moderateScale(50), 
         borderRadius: 5
     },
@@ -106,8 +109,9 @@ export default {
         color: '#DC4E41'
     },
     bc_socialBtns:{
-        flexDirection: 'row', width:'90%',height: '25%',
-        //backgroundColor:'purple',
+        flexDirection: 'row', 
+        width:'90%',
+        height: '25%',
         alignItems:'center'
     },
     socialBtns_View:{

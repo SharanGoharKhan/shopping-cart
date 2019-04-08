@@ -7,7 +7,7 @@ import {StatusBar} from 'react-native'
 
 import Dropdown from '../../ui/Dropdowns/Dropdown'
 import SearchBar from '../../ui/SearchBar/SearchBar'
-
+import BottomTab from '../../components/BottomTab/BottomTab'
 import FullCard from './Card/FullCard'
 
 /* Config/Constants
@@ -26,8 +26,23 @@ Props:
 
 const CATEGORIES = ["Arts & Crafts", "Accessories", "Event Ideas", "Fashion", "Food & Drinks", "Health & Beauty"]
 const DATA = [
-    {name: 'Leather crossbody MID Bag', rating: 5, totalVotes: 401, prev_price:null, price: 120, bagde:"new", image:null},
-    {name: "Photographer's belt and harness", rating: 3, totalVotes: 274, prev_price: 39 ,price: 29, bagde:null, image:null},
+    {
+        name: 'Leather crossbody MID Bag', 
+        rating: 5, 
+        totalVotes: 401, 
+        prev_price:null, 
+        price: 120, 
+        bagde:"new", 
+        image:require('../../assets/images/MainLanding/shop-2-collage-2.png')},
+    {
+        name: "Photographer's belt and harness", 
+        rating: 3, 
+        totalVotes: 274, 
+        prev_price: 39 ,
+        price: 29, 
+        bagde:null, 
+        image:require('../../assets/images/ProductListing/belt.png')
+    },
     
 ]
 
@@ -85,6 +100,7 @@ class SearchResult extends React.Component {
                             <ScrollView style={styles.main_scroller}>
                             {DATA.map((item,i)=>
                                     <FullCard
+                                        productImage= {item.image}
                                         productName= {item.name}
                                         productRating= {item.rating}
                                         productTotalVotes= {item.totalVotes}
@@ -99,7 +115,8 @@ class SearchResult extends React.Component {
                     </View>
                 </View>
                 <View style={styles.footer}>
-                        <Text>Placeholder for menus</Text>
+                    <BottomTab
+                    navigationObj={this.props.navigation}/>
                 </View>
             </View>
            

@@ -9,9 +9,7 @@ export default {
     container: {
         height: '100%',
         width: '100%',
-        //backgroundColor: 'rgba(255,10,10,0.1)',
-         alignSelf:'center', 
-       // marginTop: '5%' // in order to avoid statusbar collision
+        alignSelf:'center',
     },
     statusbarImage:{
         height: StatusBar.currentHeight,
@@ -20,17 +18,17 @@ export default {
     body:{
         height: '95%', width:'100%',
         alignSelf:'center'
-        //backgroundColor: 'rgba(255,10,10,0.2)'
     },
     main_scroller:{
-        //backgroundColor: 'blue',
         marginBottom: moderateScale(10)
     },
 
     //header
     header:{
-        height: '10%', width:'95%',
-        flexDirection: 'row',alignSelf:'center',
+        height: '10%', 
+        width:'95%',
+        flexDirection: 'row',
+        alignSelf:'center',
         alignItems:'center',
         justifyContent: 'space-between'
     }, 
@@ -46,30 +44,34 @@ export default {
 
     // main
     main:{
-        height: '80%', width: '100%', marginLeft:0
-        ,
-        justifyContent: 'center', alignItems: 'center'
+        height: '80%', 
+        width: '100%', 
+        marginLeft:0,
+        justifyContent: 'center', 
+        alignItems: 'center'
 
     },
     searchBarContainer:{
-        height: '10%', width: '93%',
-        justifyContent: 'center', alignItems: 'center'
+        height: '10%', 
+        width: '93%',
+        justifyContent: 'center', 
+        alignItems: 'center'
     },
     mainBodyContainer:{
-        height:'90%', width:'100%',
-         alignItems: 'center',
+        height:'90%', 
+        width:'100%',
+        alignItems: 'center',
         backgroundColor: colors.backgroudGray
 
     },
     mainBody:{
         width: '93%',
-        height: '93%',
-        //backgroundColor: 'yellow'
-
+        height: '93%'
     },
     mixed_text:{
-        height: '7%', width:'100%', paddingTop: moderateScale(5),
-        //backgroundColor:'red',
+        height: '7%', 
+        width:'100%', 
+        paddingTop: moderateScale(5),
         flexDirection:'row',
     },
     text:{
@@ -85,14 +87,14 @@ export default {
 
     },
     main_scroller:{
-        height:'93%',
-        //backgroundColor:'pink'
+        height:'93%'
     },
     // footer
     footer:{
-        height: '10%', width: '100%',
-        backgroundColor: 'green',
-        justifyContent: 'center', alignItems:'center'
+        height: '12%', 
+        width: '100%',
+        justifyContent: 'flex-end', 
+        alignItems:'center'
     }
 
 }
