@@ -6,7 +6,6 @@ import {
 } from 'react-navigation'
 
 import AddressList from '../screens/AddressList/AddressList'
-import AddToBag from '../screens/AddToBag/AddToBag'
 import Checkout from '../screens/Checkout/Checkout'
 import CheckoutPayment from '../screens/CheckoutPayment/CheckoutPayment'
 import CheckoutReciept from '../screens/CheckoutReciept/CheckoutReciept'
@@ -25,16 +24,12 @@ import ShoppingCart from '../screens/ShoppingCart/ShoppingCart'
 import SignIn from '../screens/SignIn/SignIn'
 import SignUp from '../screens/SignUp/SignUp'
 import TrackOrder from '../screens/TrackOrder/TrackOrder'
-import Faq from '../screens/Faq/Faq'
-import TermsAndConditions from '../screens/TermsAndConditions/TermsAndConditions'
-import Settings from '../screens/Settings/Settings'
 import MainMenu from '../components/MainMenu/MainMenu'
 import AuthLoading from '../utils/authLoading'
 
 const authenticationNavigator = createStackNavigator(
     {
         AddressList,
-        AddToBag,
         Checkout,
         CheckoutPayment,
         CheckoutReciept,
@@ -58,10 +53,7 @@ const authenticationNavigator = createStackNavigator(
 const Drawer = createDrawerNavigator(
     {
         MainLanding: { screen: MainLanding },
-        ProfileDashboard: { screen: ProfileDashboard },
-        Faq: { screen: Faq },
-        TermsAndConditions: { screen: TermsAndConditions },
-        Settings: { screen: Settings }
+        ProfileDashboard: { screen: ProfileDashboard }
     },
     {
         initialRouteName: 'MainLanding',
