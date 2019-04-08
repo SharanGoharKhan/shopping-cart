@@ -12,7 +12,6 @@ import CheckoutPayment from '../screens/CheckoutPayment/CheckoutPayment'
 import CheckoutReciept from '../screens/CheckoutReciept/CheckoutReciept'
 import EditingAddress from '../screens/EditingAddress/EditingAddress'
 import EditingProfile from '../screens/EditingProfile/EditingProfile'
-import ForgotPassword from '../screens/ForgotPassword/ForgotPassword'
 import MainLanding from '../screens/MainLanding/MainLanding'
 import OrderDetail from '../screens/OrderDetail/OrderDetail'
 import Payment from '../screens/Payment/Payment'
@@ -41,7 +40,6 @@ const authenticationNavigator = createStackNavigator(
         CheckoutReciept,
         EditingAddress,
         EditingProfile,
-        ForgotPassword,
         OrderDetail,
         Payment,
         PreviousOrders,
