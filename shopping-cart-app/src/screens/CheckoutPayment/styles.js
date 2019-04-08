@@ -11,27 +11,26 @@ export default {
     container: {
         height: '100%',
         width: '100%',
-        //backgroundColor: 'rgba(255,10,10,0.1)',
-         alignSelf:'center', 
-       // marginTop: '5%' // in order to avoid statusbar collision
+        alignSelf:'center'
     },
     statusbarImage:{
         height: StatusBar.currentHeight,
         backgroundColor:'black'
     },
     body:{
-        height: '95%', width:'90%',
-        alignSelf:'center',
-        // backgroundColor: 'rgba(255,10,10,0.2)'
+        height: '95%', 
+        width:'90%',
+        alignSelf:'center'
     },
     main_scroller:{
-        //backgroundColor: 'blue',
         marginBottom: moderateScale(10)
     },
     //header
     header:{
-        height: '10%', width:'100%',
-        flexDirection: 'row',alignSelf:'center',
+        height: '10%', 
+        width:'100%',
+        flexDirection: 'row',
+        alignSelf:'center',
         alignItems:'center',
     }, 
     header_text:{
@@ -41,19 +40,19 @@ export default {
     },
     // main
     main:{
-        height: '80%', width: '100%',alignItems:'center'
-        //,backgroundColor:'red'
+        height: '80%', 
+        width: '100%',
+        alignItems:'center'
     },
     simpleRow:{
         flexDirection: 'row'
     },
     mainTop:{
-        height: '65%', width: '100%',
-        //backgroundColor: 'rgba(100,100,100,0.4)'
+        height: '65%', 
+        width: '100%'
     },
     mainTopHeadline:{
         height: '10%',
-        //backgroundColor:'indego',
         justifyContent: 'center'
     },
     headlineText:{
@@ -62,17 +61,14 @@ export default {
     },
     cardContainer:{
         width: width*.90, 
-        height: '65%', 
-        //backbackgroundColor:'blue'
+        height: '65%'
     },
     card:{
-        width: width*.90,
-        //backgroundColor:'pink',
+        width: width*.90
     },
     manualBtnContainer:{
         height: '25%',
         width: '95%',
-        //backgroundColor:'rgba(150,0,150,0.2)',
         alignSelf:'center'
     },
     manBtnContText:{
@@ -86,12 +82,14 @@ export default {
         width: moderateScale(8)
     },
     mainBot:{
-        height: '30%', width: '100%',
-       //backgroundColor: 'pink'
+        height: '30%', 
+        width: '100%'
     },
     mainBot:{
-        height: '35%', width: '100%', 
-        alignItems: 'center', justifyContent: 'space-evenly',
+        height: '35%', 
+        width: '100%', 
+        alignItems: 'center', 
+        justifyContent: 'space-evenly',
         backgroundColor: colors.backgroudGray,
         borderRadius: moderateScale(5)
     },
@@ -108,12 +106,14 @@ export default {
         borderColor: colors.grayLinesColor,
         height: moderateScale(25),
         width: moderateScale(45),
-        justifyContent: 'center', alignItems:'center'
+        justifyContent: 'center', 
+        alignItems:'center'
 
     },
     cvvInput:{
         fontFamily: fontStyles.PoppinsRegular,
-        fontSize: moderateScale(12),width:'60%'
+        fontSize: moderateScale(12),
+        width:'60%'
     },
     listItem:{
         width: '100%',

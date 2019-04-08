@@ -10,28 +10,26 @@ export default {
     container: {
         height: '100%',
         width: '100%',
-        //backgroundColor: 'rgba(255,10,10,0.1)',
-         alignSelf:'center', 
-       // marginTop: '5%' // in order to avoid statusbar collision
+        alignSelf:'center'
     },
     statusbarImage:{
         height: StatusBar.currentHeight,
         backgroundColor:'black'
     },
     body:{
-        height: '95%', width:'90%',
-        alignSelf:'center',
-        // backgroundColor: 'rgba(255,10,10,0.2)'
+        height: '95%', 
+        width:'90%',
+        alignSelf:'center'
     },
     main_scroller:{
-        //backgroundColor: 'blue',
         marginBottom: moderateScale(10)
     },
-
     //header
     header:{
-        height: '10%', width:'100%',
-        flexDirection: 'row',alignSelf:'center',
+        height: '10%', 
+        width:'100%',
+        flexDirection: 'row',
+        alignSelf:'center',
         alignItems:'center', 
     }, 
     header_text:{
@@ -42,23 +40,25 @@ export default {
 
     // main
     main:{
-        height: '80%', width: '100%',alignItems:'center'
-        //,backgroundColor:'red'
+        height: '80%', 
+        width: '100%',
+        alignItems:'center'
     },
     simpleRow:{
-        flexDirection: 'row', alignItems: 'center'
+        flexDirection: 'row', 
+        alignItems: 'center'
     },
     main_top:{
-        height: '70%', width: '100%',
-        //backgroundColor: 'rgba(100,100,100,0.4)'
+        height: '70%', 
+        width: '100%'
     },
     main_bot:{
-        height: '30%', width: '100%',
-       // backgroundColor: 'pink'
+        height: '30%', 
+        width: '100%'
     },
     orders:{
-        height: '40%', width: '100%',
-        //backgroundColor: 'rgba(100,0,0,0.2)',
+        height: '40%', 
+        width: '100%',
         borderBottomWidth: moderateScale(1),
         borderColor: colors.grayLinesColor,
         borderStyle: "dashed"
@@ -106,9 +106,9 @@ export default {
         paddingBottom: moderateScale(2)
     },
     address:{
-        height: '60%', width: '100%',
+        height: '60%', 
+        width: '100%',
         paddingTop: moderateScale(20),
-        //backgroundColor: 'rgba(0,0,100,0.2)'
     },
     addressDetail:{
         paddingTop: moderateScale(5)
@@ -120,8 +120,10 @@ export default {
         paddingBottom: moderateScale(15)
     },
     main_bot:{
-        height: '30%', width: '100%', 
-        alignItems: 'center', justifyContent: 'space-evenly',
+        height: '30%', 
+        width: '100%', 
+        alignItems: 'center', 
+        justifyContent: 'space-evenly',
         backgroundColor: colors.backgroudGray,
         borderRadius: moderateScale(5)
     },

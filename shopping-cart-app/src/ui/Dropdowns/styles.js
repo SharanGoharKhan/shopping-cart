@@ -2,21 +2,18 @@ import { moderateScale } from '../../utils/scaling'
 import { colors } from '../../utils/colors'
 import { fontStyles } from '../../utils/fontStyles';
 
-import {StatusBar} from 'react-native'
-
 export default{
-    container:{
-        //position:'relative'
-    },
     main_container:{
-        flexDirection: 'row', alignItems:'center',
+        flexDirection: 'row', 
+        alignItems:'center',
     },
     text:{
         fontFamily: fontStyles.PoppinsRegular,
-        fontSize: moderateScale(16), color: colors.brownColor,
-        textDecorationStyle: 'dotted', textDecorationColor: colors.brownColor,
+        fontSize: moderateScale(16), 
+        color: colors.brownColor,
+        textDecorationStyle: 'dotted', 
+        textDecorationColor: colors.brownColor,
         marginRight: moderateScale(5)
-
     },
     image:{
         width:moderateScale(16), 

@@ -8,30 +8,31 @@ export default {
     container: {
         height: '100%',
         width: '100%',
-        //backgroundColor: 'rgba(255,10,10,0.1)',
-        alignItems:'center', 
-       // marginTop: '5%' // in order to avoid statusbar collision
+        alignItems:'center'
     },
     body:{
         // adjust body height in order to accomodate footer
-        height: '80%', width: '100%',
-        //backgroundColor: 'crimson',
+        height: '80%', 
+        width: '100%',
         alignItems: 'center',
         backgroundColor: colors.backgroudGray
 
     },
     // header
     header:{
-        height: '8%', width: '100%',
+        height: '8%', 
+        width: '100%',
         backgroundColor: colors.whiteColor,
         borderBottomWidth: moderateScale(1),
         borderColor: colors.grayLinesColor,
         alignItems: 'center',
     },
     headerRow:{
-        height: '100%', width:'90%',
+        height: '100%', 
+        width:'90%',
         flexDirection: 'row',
-        justifyContent: 'space-between', alignItems: 'center'
+        justifyContent: 'space-between', 
+        alignItems: 'center'
     },
     headerText:{
         fontFamily: fontStyles.PoppinsRegular,
@@ -43,17 +44,16 @@ export default {
         fontSize: moderateScale(11),
         color: colors.greenTextColor
     },
-
     // main
     main:{
-        height: '80%', width: '95%',
-        paddingTop: moderateScale(10),
-   
+        height: '80%', 
+        width: '95%',
+        paddingTop: moderateScale(10)
     },
     mainScroll:{
-        height: '100%', width: '100%',
+        height: '100%', 
+        width: '100%',
     },
-
      // footer
      footer:{
         height: '10%', 

@@ -4,12 +4,15 @@ import { fontStyles } from '../../utils/fontStyles';
 
 const mainBtnStyles = {
     backgroundColor:{
-        backgroundColor: colors.brownColor,  height: moderateScale(50),
+        backgroundColor: colors.brownColor,  
+        height: moderateScale(50),
         borderRadius: moderateScale(3)
     },
     main_brown_btn:{
-        alignItems:'center', justifyContent: 'center',
-        width: '100%', height: '100%',
+        alignItems:'center', 
+        justifyContent: 'center',
+        width: '100%', 
+        height: '100%',
     },
     btn_text:{
         color: colors.secondaryWhiteColor,
@@ -20,28 +23,37 @@ const mainBtnStyles = {
 
 const alternateBtn ={
     backgroundColor:{
-        backgroundColor: colors.secondaryWhiteColor,  height: moderateScale(50),
-        borderRadius: moderateScale(3), borderWidth: moderateScale(2),borderColor: colors.backgroudGray
+        backgroundColor: colors.secondaryWhiteColor,  
+        height: moderateScale(50),
+        borderRadius: moderateScale(3), 
+        borderWidth: moderateScale(2),
+        borderColor: colors.backgroudGray
     },
     main_alt_btn:{
-        alignItems:'center', justifyContent: 'center',
-        width: '100%', height: '100%'
+        alignItems:'center', 
+        justifyContent: 'center',
+        width: '100%', 
+        height: '100%'
     },
     btn_text:{
         color: colors.brownColor,
         fontFamily: fontStyles.PoppinsRegular,
-        fontSize: moderateScale(16), fontWeight: '500'
+        fontSize: moderateScale(16), 
+        fontWeight: '500'
     }
 }
 
 const blueBtn = {
     backgroundColor:{
-        backgroundColor: colors.textBlueColor,  height: moderateScale(46),
+        backgroundColor: colors.textBlueColor,  
+        height: moderateScale(46),
         borderRadius: moderateScale(3)
     },
     main_blue_btn:{
-        alignItems:'center', justifyContent: 'center',
-        width: '100%', height: '100%',
+        alignItems:'center', 
+        justifyContent: 'center',
+        width: '100%', 
+        height: '100%',
     },
     btn_text:{
         color: colors.secondaryWhiteColor,
@@ -58,8 +70,10 @@ const alternateBlueBtn = {
         borderColor: colors.textBlueColor
     },
     main_blue_btn:{
-        alignItems:'center', justifyContent: 'center',
-        width: '100%', height: '100%',
+        alignItems:'center', 
+        justifyContent: 'center',
+        width: '100%', 
+        height: '100%',
     },
     btn_text:{
         color: colors.textBlueColor,

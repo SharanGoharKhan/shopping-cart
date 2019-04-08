@@ -3,17 +3,18 @@ import { colors } from '../../../utils/colors'
 import { fontStyles } from '../../../utils/fontStyles';
 export default {
     outline:{
-        height: '90%', width:'100%',
-
+        height: '90%', 
+        width:'100%',
         alignSelf: 'center',
-        alignItems: 'center', justifyContent:'center',
+        alignItems: 'center', 
+        justifyContent:'center',
         borderColor: colors.textBlueColor,
         borderRadius: moderateScale(12),
         borderWidth: moderateScale(5)
     },
     container:{
-        //backgbackgroundColor: 'rgba(150,50,50,0.2)',
-        height: '95%', width:'97.33%',
+        height: '95%', 
+        width:'97.33%',
         alignItems: 'center', 
 
         borderWidth: moderateScale(1),
@@ -24,7 +25,6 @@ export default {
     topContainer:{
         height: '50%', 
         width: '90%',
-        //backgroundColor:'rgba(150,0,150,0.4)',
         justifyContent: 'flex-end'
     },
     simCardImage:{
@@ -39,7 +39,6 @@ export default {
     botContainer:{
         height: '50%', 
         width: '90%',
-        //backgroundColor:'rgba(150,150,0,0.4)',
         justifyContent: 'space-evenly'
     },
     row:{
@@ -47,8 +46,7 @@ export default {
         justifyContent: 'space-between'
     },
     creditCardNumber:{
-        width: '75%',
-        //backgroundColor: 'green'
+        width: '75%'
     },
     ccText:{
         fontFamily: fontStyles.PoppinsRegular,
@@ -56,8 +54,7 @@ export default {
 
     },
     expiryContainer:{
-        flexDirection: 'row',
-        //backgroundColor: 'purple'
+        flexDirection: 'row'
     },
     expiryText:{
         fontFamily: fontStyles.PoppinsRegular,

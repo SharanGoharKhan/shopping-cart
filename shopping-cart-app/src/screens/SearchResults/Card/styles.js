@@ -6,7 +6,8 @@ import { fontStyles } from '../../../utils/fontStyles';
 // We can use Dimensions module and use percentage from it as well; a decent usecase
 export default {
     container:{
-        width: '100%', height: moderateScale(90),
+        width: '100%', 
+        height: moderateScale(90),
         marginBottom: moderateScale(15),
         borderRadius: moderateScale(3),
         borderWidth: moderateScale(1),
@@ -25,8 +26,10 @@ export default {
     },
     rightside_container:{
         backgroundColor:colors.secondaryWhiteColor,
-        height: '100%', width: '65%',
-        justifyContent:'center', alignItems:'center',
+        height: '100%', 
+        width: '65%',
+        justifyContent:'center', 
+        alignItems:'center',
         borderTopRightRadius: moderateScale(3),
         borderBottomRightRadius: moderateScale(3)
     },
@@ -34,37 +37,36 @@ export default {
         flexDirection: 'row'
     },
     votesCount:{
-        //backgroundColor:'yellow',
         fontFamily: fontStyles.PoppinsRegular,
         fontSize: moderateScale(8),
         paddingTop: moderateScale(3),
         paddingLeft: moderateScale(3)
     },   
     badge:{
-        backgroundColor: 'purple', color: 'white', 
-            width: '30%' , position:'absolute', textAlign:'center', lineHeight: moderateScale(18),
-            fontFamily: fontStyles.PoppinsRegular, fontSize:moderateScale(11) , borderRadius: moderateScale(3),
-            zIndex:1, elevation:1, top: 10, left:10
+        backgroundColor: 'purple', 
+        color: 'white', 
+        width: '30%' , 
+        position:'absolute', 
+        textAlign:'center', 
+        lineHeight: moderateScale(18),
+        fontFamily: fontStyles.PoppinsRegular, 
+        fontSize:moderateScale(11) , 
+        borderRadius: moderateScale(3),
+        zIndex:1, elevation:1, top: 10, left:10
     },
     rightside:{
         height: '80%',
         width: '85%',
-        justifyContent: 'space-between',
-        //backgroundColor:'pink'
+        justifyContent: 'space-between'
     },
 
     row:{
         flexDirection: 'row'
     },
     rightside_top:{
-        //backgroundColor:'green',
         alignItems :'flex-start'
     },
-    rightside_bot:{
-        //backgroundColor: 'blue'
-    },
     special_row:{
-        //backgroundColor:'pink',
         width:'100%',
         flexDirection: 'row',
         justifyContent: 'space-between'

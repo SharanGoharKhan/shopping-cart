@@ -24,8 +24,11 @@ export default {
         borderBottomLeftRadius: moderateScale(3),
     },
     rightside_container:{
-        height: '100%', width: '65%',
-        justifyContent:'center', alignItems:'center', paddingBottom: moderateScale(5)
+        height: '100%', 
+        width: '65%',
+        justifyContent:'center', 
+        alignItems:'center', 
+        paddingBottom: moderateScale(5)
     },
     rightside:{
         height: '80%',
