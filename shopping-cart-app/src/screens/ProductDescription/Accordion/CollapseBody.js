@@ -1,10 +1,9 @@
 import React, { Component } from 'react';
 import {
-    View
+    View,
 } from 'react-native';
 /* Config/Constants
 ============================================================================= */
-
 
 
 /* =============================================================================
@@ -18,12 +17,11 @@ Props:
 type Props = {
 };
 export default class CollapseBody extends Component<Props> {
-
-    render(){
+    render() {
         return (
             <View {...this.props}>
                 {this.props.children}
-            </View>
+          </View>
         );
     }
 }

@@ -1,11 +1,13 @@
-import React from 'react'
-import { View, Text,Image ,StatusBar, ImageBackground  } from 'react-native'
-import styles from './styles'
+import React from 'react';
+import {
+    View, Text, Image, StatusBar, ImageBackground,
+} from 'react-native';
+import styles from './styles';
 import { moderateScale } from '../../utils/scaling';
 
-import TextField from '../../ui/Textfield/Textfield'
-import MainBtn from '../../ui/Buttons/MainBtn'
-import AlternateBtn from '../../ui/Buttons/AlternateBtn'
+import TextField from '../../ui/Textfield/Textfield';
+import MainBtn from '../../ui/Buttons/MainBtn';
+import AlternateBtn from '../../ui/Buttons/AlternateBtn';
 /* Config/Constants
 ============================================================================= */
 
@@ -21,62 +23,67 @@ class SignUp extends React.Component {
     render() {
         return (
             <View style={styles.container}>
-                <StatusBar backgroundColor={'transparent'} barStyle = "light-content" hidden = {false}  translucent = {false}/>
-                <View style={styles.statusBarImage}>
-                    <Image
+            <StatusBar backgroundColor="transparent" barStyle="light-content" hidden={false} translucent={false} />
+            <View style={styles.statusBarImage}>
+                <Image
                         source={require('../../assets/images/statusbar.png')}
                         style={{
                             height: StatusBar.currentHeight,
-                            width:'100%'
+                            width: '100%',
                         }}
-                        />
+                    />
                 </View>
-                <View style={styles.body}>
-                   <View style={styles.header}>
-                        <Text style={styles.header_text}>Sign In</Text>
-                        <AlternateBtn
-                        onPress={() => this.props.navigation.navigate('MainLanding')}  
-                        text="Continue as a Guest"/>
-                   </View>
-                   <View style={styles.main}>
-                        <ImageBackground 
-                                style={styles.body_container_background}
-                                source={require('../../assets/images/formBackground.png')}
-                                resizeMode="cover">
-                            <View style={styles.main_top}>
-                                <Text style={styles.h1_text}>Hello Guest!</Text>
-                                <Text style={styles.h2_text}> Sign Up</Text>
+            <View style={styles.body}>
+                    <View style={styles.header}>
+                <Text style={styles.header_text}>Sign In</Text>
+                <AlternateBtn
+                          onPress={() => this.props.navigation.navigate('MainLanding')}
+                            text="Continue as a Guest"
+                        />
+              </View>
+                  <View style={styles.main}>
+                      <ImageBackground
+                      style={styles.body_container_background}
+                      source={require('../../assets/images/formBackground.png')}
+                            resizeMode="cover"
+                    >
+                      <View style={styles.main_top}>
+                              <Text style={styles.h1_text}>Hello Guest!</Text>
+                              <Text style={styles.h2_text}> Sign Up</Text>
                             </View>
                             <View style={styles.main_mid}>
-                                <TextField placeholderText="Full Name" containerStyle={{marginBottom: moderateScale(10)}}/>
-                                <TextField placeholderText="Email" containerStyle={{marginBottom: moderateScale(10)}}/>
-                                <TextField placeholderText="Mobile" containerStyle={{marginBottom: moderateScale(10)}}/>
-                                <TextField placeholderText="Password" containerStyle={{marginBottom: moderateScale(10)}}/>
+                                <TextField placeholderText="Full Name" containerStyle={{ marginBottom: moderateScale(10) }} />
+                                <TextField placeholderText="Email" containerStyle={{ marginBottom: moderateScale(10) }} />
+                          <TextField placeholderText="Mobile" containerStyle={{ marginBottom: moderateScale(10) }} />
+                                <TextField placeholderText="Password" containerStyle={{ marginBottom: moderateScale(10) }} />
 
 
-                            </View>
-                            <View style={styles.main_bot}>
+                        </View>
+                      <View style={styles.main_bot}>
                                 <View style={styles.bot_btn_container}>
-                                    <MainBtn
-                                    onPress={() => this.props.navigation.navigate('MainLanding')}
-                                    text="Sign up"/>
-                                </View>
+                          <MainBtn
+                                      onPress={() => this.props.navigation.navigate('MainLanding')}
+                                        text="Sign up"
+                                    />
+                        </View>
                                 <View style={styles.mixed_line}>
                                     <Text style={[styles.ft_text]}>Already have an account: </Text>
                                     <Text
-                                    onPress={() => this.props.navigation.navigate('SignIn')} 
-                                    style={[styles.ft_text, styles.ft_text_underline]}>Sign in</Text>
-                            </View>
+                                    onPress={() => this.props.navigation.navigate('SignIn')}
+                                    style={[styles.ft_text, styles.ft_text_underline]}
+                                  >Sign in
+                                  </Text>
+                        </View>
                             </View>
 
                         </ImageBackground>
-                   </View>
+                    </View>
                 </View>
-               
-            </View>
-        )
+
+          </View>
+        );
     }
 }
 /* Export
 ============================================================================= */
-export default SignUp
+export default SignUp;

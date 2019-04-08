@@ -1,6 +1,6 @@
-import React,{Component} from 'react'
-import { View, ImageBackground} from 'react-native'
-import styles from './styles'
+import React, { Component } from 'react';
+import { View, ImageBackground } from 'react-native';
+import styles from './styles';
 
 /* Config/Constants
 ============================================================================= */
@@ -19,31 +19,27 @@ Props:
 ============================================================================= */
 
 class CarouselItem extends Component {
-    constructor(props){
-        super(props)
-        this.img = null
-        if(props.page == "0"){
-            this.img = images.carosel_img_1
-        }
-        else if( props.page == "1"){
-            this.img = images.carosel_img_2
-        }
-        else if( props.page =="2"){
-            this.img= images.carosel_img_3
+    constructor(props) {
+        super(props);
+        this.img = null;
+        if (props.page == '0') {
+            this.img = images.carosel_img_1;
+        } else if (props.page == '1') {
+            this.img = images.carosel_img_2;
+        } else if (props.page == '2') {
+            this.img = images.carosel_img_3;
         }
     }
-    render=()=>{
-        return(
-            <View style={[styles.container]}>
-                <ImageBackground
-                source={this.img}
-                style={styles.image}
-                >
-                </ImageBackground>
-            </View>
-        )
-    }
+
+    render=() => (
+      <View style={[styles.container]}>
+          <ImageBackground
+              source={this.img}
+              style={styles.image}
+            />
+        </View>
+    )
 }
 /* Export
 ============================================================================= */
-export default CarouselItem
+export default CarouselItem;

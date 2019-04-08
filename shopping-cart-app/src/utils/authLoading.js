@@ -10,6 +10,7 @@ class AuthLoading extends React.Component {
         super(props);
         this._bootstrapAsync();
     }
+
     // Fetch the token from storage then navigate to our appropriate place
     _bootstrapAsync = async () => {
         // const userToken = await AsyncStorage.getItem('userToken');
@@ -17,17 +18,18 @@ class AuthLoading extends React.Component {
         // This will switch to the App screen or Auth screen and this loading
         // screen will be unmounted and thrown away.
         // for testing purpose
-        this.props.navigation.navigate('SignIn')
+        this.props.navigation.navigate('SignIn');
     };
+
     // Render any loading content that you like here
     render() {
         return (
-            <View >
+            <View>
                 <ActivityIndicator />
                 <StatusBar barStyle="default" />
-            </View>
+          </View>
         );
     }
 }
 
-export default(AuthLoading)
+export default (AuthLoading);

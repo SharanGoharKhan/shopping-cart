@@ -1,16 +1,16 @@
-import { moderateScale } from '../../utils/scaling'
-import { colors } from '../../utils/colors'
-import { fontStyles } from '../../utils/fontStyles'
-import { StatusBar } from 'react-native'
+import { StatusBar } from 'react-native';
+import { moderateScale } from '../../utils/scaling';
+import { colors } from '../../utils/colors';
+import { fontStyles } from '../../utils/fontStyles';
 /* StyleSheet
 ============================================================================= */
 export default {
     flex: {
-        flex: 1
+        flex: 1,
     },
     statusBarImage: {
         height: StatusBar.currentHeight,
-        width: '100%'
+        width: '100%',
     },
     tabContainer: {
         width: '90%',
@@ -18,15 +18,15 @@ export default {
         alignSelf: 'center',
         flexDirection: 'row',
         alignItems: 'center',
-        justifyContent: 'space-between'
+        justifyContent: 'space-between',
     },
     tabStyleActive: {
         fontFamily: fontStyles.PoppinsRegular,
         fontSize: moderateScale(14),
-        color: colors.brownColor
+        color: colors.brownColor,
     },
     tabStyle: {
         fontFamily: fontStyles.PoppinsRegular,
-        fontSize: moderateScale(14)
-    }
-}
+        fontSize: moderateScale(14),
+    },
+};

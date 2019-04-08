@@ -1,19 +1,25 @@
-import React from 'react'
-import { View, Text,Image ,StatusBar, TouchableOpacity  } from 'react-native'
+import React from 'react';
+import {
+    View, Text, Image, StatusBar, TouchableOpacity,
+} from 'react-native';
 
-import styles from './styles'
-import BottomTab from '../../components/BottomTab/BottomTab'
-import Card from './Card/AddressCard'
 import { ScrollView } from 'react-native-gesture-handler';
+import styles from './styles';
+import BottomTab from '../../components/BottomTab/BottomTab';
+import Card from './Card/AddressCard';
 
 
 /* Config/Constants
 DATA for the address
 ============================================================================= */
 const DATA = [
-    { title: "My Home", country: "Pakistan", city: 'Islamabad', address: "Block 4, Apartment 102", poBox: "P.O Vox 65000"},
-    { title: "My Work", country: "Pakistan", city: 'Karachi', address: "Block 4350, Floor 1, Office 3", poBox: "P.O Vox 65002"},
-]
+    {
+        title: 'My Home', country: 'Pakistan', city: 'Islamabad', address: 'Block 4, Apartment 102', poBox: 'P.O Vox 65000',
+    },
+    {
+        title: 'My Work', country: 'Pakistan', city: 'Karachi', address: 'Block 4350, Floor 1, Office 3', poBox: 'P.O Vox 65002',
+    },
+];
 /* =============================================================================
 <AddressList />
 --------------------------------------------------------------------------------
@@ -26,48 +32,52 @@ class AddressList extends React.Component {
     render() {
         return (
             <View style={styles.container}>
-                <StatusBar backgroundColor={'transparent'} barStyle = "light-content" hidden = {false}  translucent = {false}/>
-                <View style={styles.statusBarImage}>
+                <StatusBar backgroundColor="transparent" barStyle="light-content" hidden={false} translucent={false} />
+            <View style={styles.statusBarImage}>
                     <Image
-                        source={require('../../assets/images/statusbar.png')}
-                        style={{
+                source={require('../../assets/images/statusbar.png')}
+                style={{
                             height: StatusBar.currentHeight,
-                            width:'100%'
+                            width: '100%',
                         }}
-                        />
+              />
                 </View>
                 <View style={styles.header}>
                     <View style={styles.headerRow}>
-                        <Text style={styles.headerText}>My Adresses</Text>
+                    <Text style={styles.headerText}>My Adresses</Text>
                         <TouchableOpacity style={styles.headerBtn}>
-                            <Text style={styles.headerBtnText}>New Address</Text>
-                        </TouchableOpacity>
-                    </View>
-                </View>
+                        <Text style={styles.headerBtnText}>New Address</Text>
+                      </TouchableOpacity>
+                  </View>
+              </View>
                 <View style={styles.body}>
                     <View style={styles.main}>
-                        <ScrollView style={styles.mainScroll}>
-                            {DATA.map((item, index)=><Card
-                                navigationObj={this.props.navigation} 
-                                title= {item.title}
-                                country= {item.country}
-                                city= {item.city}
-                                address= {item.address}
-                                poBox= {item.poBox}
-                                key={index}/>)}
+                    <ScrollView style={styles.mainScroll}>
+                          {DATA.map((item, index) => (
+                              <Card
+                                    navigationObj={this.props.navigation}
+                                  title={item.title}
+                                  country={item.country}
+                                  city={item.city}
+                                  address={item.address}
+                                  poBox={item.poBox}
+                                    key={index}
+                                />
+                            ))}
                         </ScrollView>
-                    </View>
-                  
-                </View>
+                  </View>
+
+              </View>
                 <View style={styles.footer}>
                     <BottomTab
-                    navigationObj={this.props.navigation}/>
-                </View>
-               
-            </View>
-        )
+                    navigationObj={this.props.navigation}
+                  />
+              </View>
+
+          </View>
+        );
     }
 }
 /* Export
 ============================================================================= */
-export default AddressList
+export default AddressList;

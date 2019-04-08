@@ -1,32 +1,33 @@
-import { moderateScale } from '../../utils/scaling'
-import { colors } from '../../utils/colors'
+import { moderateScale } from '../../utils/scaling';
+import { colors } from '../../utils/colors';
 import { fontStyles } from '../../utils/fontStyles';
 
-export default{
-    main_container:{
-        flexDirection: 'row', 
-        alignItems:'center',
+export default {
+    main_container: {
+        flexDirection: 'row',
+        alignItems: 'center',
     },
-    text:{
+    text: {
         fontFamily: fontStyles.PoppinsRegular,
-        fontSize: moderateScale(16), 
+        fontSize: moderateScale(16),
         color: colors.brownColor,
-        textDecorationStyle: 'dotted', 
+        textDecorationStyle: 'dotted',
         textDecorationColor: colors.brownColor,
-        marginRight: moderateScale(5)
+        marginRight: moderateScale(5),
     },
-    image:{
-        width:moderateScale(16), 
+    image: {
+        width: moderateScale(16),
         height: moderateScale(16),
     },
-    animated_container:{
+    animated_container: {
         backgroundColor: colors.secondaryWhiteColor,
         position: 'absolute',
         top: '100%',
-        width: '100%', height: 70
+        width: '100%',
+        height: 70,
     },
-    item_text:{
+    item_text: {
         fontSize: moderateScale(14),
         fontFamily: fontStyles.PoppinsRegular,
-    }
-}
+    },
+};

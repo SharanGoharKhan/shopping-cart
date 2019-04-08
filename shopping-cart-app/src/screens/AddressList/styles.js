@@ -1,5 +1,5 @@
-import { moderateScale } from '../../utils/scaling'
-import { colors } from '../../utils/colors'
+import { moderateScale } from '../../utils/scaling';
+import { colors } from '../../utils/colors';
 import { fontStyles } from '../../utils/fontStyles';
 
 /* StyleSheet
@@ -8,56 +8,56 @@ export default {
     container: {
         height: '100%',
         width: '100%',
-        alignItems:'center'
+        alignItems: 'center',
     },
-    body:{
+    body: {
         // adjust body height in order to accomodate footer
-        height: '80%', 
+        height: '80%',
         width: '100%',
         alignItems: 'center',
-        backgroundColor: colors.backgroudGray
+        backgroundColor: colors.backgroudGray,
 
     },
     // header
-    header:{
-        height: '8%', 
+    header: {
+        height: '8%',
         width: '100%',
         backgroundColor: colors.whiteColor,
         borderBottomWidth: moderateScale(1),
         borderColor: colors.grayLinesColor,
         alignItems: 'center',
     },
-    headerRow:{
-        height: '100%', 
-        width:'90%',
+    headerRow: {
+        height: '100%',
+        width: '90%',
         flexDirection: 'row',
-        justifyContent: 'space-between', 
-        alignItems: 'center'
+        justifyContent: 'space-between',
+        alignItems: 'center',
     },
-    headerText:{
+    headerText: {
         fontFamily: fontStyles.PoppinsRegular,
         fontSize: moderateScale(16),
-        color: colors.blackText
+        color: colors.blackText,
     },
-    headerBtnText:{
+    headerBtnText: {
         fontFamily: fontStyles.PoppinsRegular,
         fontSize: moderateScale(11),
-        color: colors.greenTextColor
+        color: colors.greenTextColor,
     },
     // main
-    main:{
-        height: '80%', 
+    main: {
+        height: '80%',
         width: '95%',
-        paddingTop: moderateScale(10)
+        paddingTop: moderateScale(10),
     },
-    mainScroll:{
-        height: '100%', 
+    mainScroll: {
+        height: '100%',
         width: '100%',
     },
-     // footer
-     footer:{
-        height: '10%', 
+    // footer
+    footer: {
+        height: '10%',
         width: '100%',
-        justifyContent: 'center'
-    }
-}
+        justifyContent: 'center',
+    },
+};

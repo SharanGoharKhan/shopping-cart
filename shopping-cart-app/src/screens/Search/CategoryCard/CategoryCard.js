@@ -1,7 +1,7 @@
-import React from 'react'
-import { Text, TouchableOpacity} from 'react-native'
+import React from 'react';
+import { Text, TouchableOpacity } from 'react-native';
 
-import styles from './styles'
+import styles from './styles';
 /* =============================================================================
 <CardCategory />
 --------------------------------------------------------------------------------
@@ -10,15 +10,14 @@ Props:
   ?
   text: text content of the card
 ============================================================================= */
-const CardCategory = (props) =>{
-    return(
-        <TouchableOpacity
+const CardCategory = props => (
+    <TouchableOpacity
         onPress={props.onPress}
-        style={[styles.container]}>
-            <Text style={styles.text}>{props.text}</Text>
-        </TouchableOpacity>
-    )
-}
+    style={[styles.container]}
+  >
+    <Text style={styles.text}>{props.text}</Text>
+  </TouchableOpacity>
+);
 /* Export
 ============================================================================= */
-export default CardCategory
+export default CardCategory;

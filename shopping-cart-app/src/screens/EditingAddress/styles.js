@@ -1,89 +1,90 @@
-import { moderateScale } from '../../utils/scaling'
-import { colors } from '../../utils/colors'
+import { Dimensions } from 'react-native';
+import { moderateScale } from '../../utils/scaling';
+import { colors } from '../../utils/colors';
 import { fontStyles } from '../../utils/fontStyles';
-import { Dimensions } from 'react-native'
-const { height, width } = Dimensions.get('window')
+
+const { height, width } = Dimensions.get('window');
 /* StyleSheet
 ============================================================================= */
 export default {
     flex: {
-        flex: 1
+        flex: 1,
     },
     headerContainer: {
         width: '100%',
         height: '10%',
         justifyContent: 'flex-end',
         borderColor: '#707070',
-        borderWidth: moderateScale(1)
+        borderWidth: moderateScale(1),
     },
     headerContainerText: {
         marginBottom: '1%',
         marginLeft: '5%',
         fontFamily: fontStyles.PoppinsRegular,
-        fontSize: moderateScale(18)
+        fontSize: moderateScale(18),
     },
     formMainContainer: {
         flex: 1,
         backgroundColor: colors.backgroudGray,
-        alignItems: 'center'
+        alignItems: 'center',
     },
     formContainer: {
         width: '90%',
-        height: height*.8,
+        height: height * 0.8,
         backgroundColor: colors.whiteColor,
         borderRadius: moderateScale(8),
-        alignItems: 'center'
+        alignItems: 'center',
     },
     imgResponsive: {
         width: '60%',
-        height: '60%'
+        height: '60%',
     },
     formContentContainer: {
         marginTop: '3%',
         width: '95%',
-        height: '80%'
+        height: '80%',
     },
     twoItemsContainer: {
         width: '100%',
         height: '20%',
         flexDirection: 'row',
         alignItems: 'center',
-        justifyContent: 'space-around'
+        justifyContent: 'space-around',
     },
     halfContainer: {
         width: '45%',
-        height: '80%'
+        height: '80%',
     },
     labelContainer: {
         width: '100%',
-        height: '40%'
+        height: '40%',
     },
     inputContainer: {
         width: '100%',
         height: '60%',
         borderRadius: moderateScale(3),
-        backgroundColor: colors.backgroudGray
+        backgroundColor: colors.backgroudGray,
     },
     label: {
         fontFamily: fontStyles.PoppinsRegular,
         color: colors.darkGrayText,
-        fontSize: moderateScale(14)
+        fontSize: moderateScale(14),
     },
     oneItemContainer: {
         width: '100%',
         height: '20%',
         flexDirection: 'row',
-        justifyContent: 'center'
+        justifyContent: 'center',
     },
     fullContainer: {
         width: '95%',
-        height: '80%'
+        height: '80%',
     },
     addContainer: {
-        width:width,
-        height: height*.15,
+        width,
+        height: height * 0.15,
         justifyContent: 'center',
-        alignItems: 'center'
+        alignItems: 'center',
     },
     addBtn: {
         width: '80%',
@@ -91,33 +92,33 @@ export default {
         backgroundColor: colors.brownColor,
         justifyContent: 'center',
         alignItems: 'center',
-        borderRadius: moderateScale(4)
+        borderRadius: moderateScale(4),
     },
     addStyle: {
         fontFamily: fontStyles.PoppinsRegular,
-        color: colors.whiteColor
+        color: colors.whiteColor,
     },
     nameAddressContainer: {
         marginTop: '3%',
         width: '85%',
-        height: height*.1
+        height: height * 0.1,
     },
     nameAddressLabel: {
         width: '100%',
-        height: '30%'
+        height: '30%',
     },
     nameAddressInput: {
         width: '60%',
-        height: '70%'
+        height: '70%',
     },
     nameAddressLabelStyle: {
         fontFamily: fontStyles.PoppinsRegular,
-        fontSize: moderateScale(10)
+        fontSize: moderateScale(10),
     },
     addressInputStyle: {
         fontFamily: fontStyles.PoppinsRegular,
         fontSize: moderateScale(20),
-        borderBottomWidth : moderateScale(1),
-        borderBottomColor: '#9B9B9B'
-    }
-}
+        borderBottomWidth: moderateScale(1),
+        borderBottomColor: '#9B9B9B',
+    },
+};

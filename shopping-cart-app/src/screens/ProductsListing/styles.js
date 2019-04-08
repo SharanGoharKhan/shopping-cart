@@ -1,63 +1,64 @@
-import { moderateScale } from '../../utils/scaling'
-import { colors } from '../../utils/colors'
+import { Dimensions } from 'react-native';
+import { moderateScale } from '../../utils/scaling';
+import { colors } from '../../utils/colors';
 import { fontStyles } from '../../utils/fontStyles';
-import { Dimensions } from 'react-native'
-const { height, width } = Dimensions.get('window')
+
+const { height, width } = Dimensions.get('window');
 /* StyleSheet
 ============================================================================= */
 export default {
     flex: {
-        flex: 1
+        flex: 1,
     },
     headerContainer: {
         width: '100%',
         height: '10%',
         justifyContent: 'flex-end',
-        alignItems: 'center'
+        alignItems: 'center',
     },
     headerSubContainer: {
         width: '80%',
         height: '50%',
         flexDirection: 'row',
-        alignItems: 'center'
+        alignItems: 'center',
     },
     headerTextContainer: {
         width: '80%',
         height: '100%',
-        justifyContent: 'center'
+        justifyContent: 'center',
     },
     headerText: {
         fontFamily: fontStyles.PoppinsRegular,
-        fontSize: moderateScale(16)
+        fontSize: moderateScale(16),
     },
     headerImg: {
         width: '20%',
-        height: '40%'
+        height: '40%',
     },
     imgResponsive: {
         flex: 1,
         width: undefined,
-        height: undefined
+        height: undefined,
     },
     scrollViewStyle: {
-        backgroundColor: '#EEEEEE'
+        backgroundColor: '#EEEEEE',
     },
     bannerContainer: {
         width: '100%',
-        height: height *.45,
-        backgroundColor: 'blue'
+        height: height * 0.45,
+        backgroundColor: 'blue',
     },
     contentContainer: {
         width: '100%',
-        height: height *.38,
+        height: height * 0.38,
         justifyContent: 'center',
-        alignItems: 'center'
+        alignItems: 'center',
     },
     contentSubContainer: {
         width: '90%',
         height: '90%',
-        flexWrap:'wrap',
+        flexWrap: 'wrap',
         flexDirection: 'row',
-        justifyContent: 'space-between'
-    }
-}
+        justifyContent: 'space-between',
+    },
+};

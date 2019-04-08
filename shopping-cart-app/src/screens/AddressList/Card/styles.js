@@ -1,75 +1,76 @@
-import { moderateScale } from '../../../utils/scaling'
-import { colors } from '../../../utils/colors'
+import { moderateScale } from '../../../utils/scaling';
+import { colors } from '../../../utils/colors';
 import { fontStyles } from '../../../utils/fontStyles';
 
 /* StyleSheet
 ============================================================================= */
 export default {
-    container:{
-        height: moderateScale(160), width: '100%',
+    container: {
+        height: moderateScale(160),
+        width: '100%',
         backgroundColor: colors.whiteColor,
         marginBottom: moderateScale(10),
         borderRadius: moderateScale(5),
         overflow: 'hidden',
-        alignItems: 'center'
+        alignItems: 'center',
     },
-    headerRow:{
+    headerRow: {
         flexDirection: 'row',
-        height: '25%', 
-        width: '90%', 
-        justifyContent: 'space-between', 
-        alignItems:'center',
+        height: '25%',
+        width: '90%',
+        justifyContent: 'space-between',
+        alignItems: 'center',
     },
-    titleText:{
+    titleText: {
         fontFamily: fontStyles.PoppinsRegular,
         fontSize: moderateScale(14),
-        color: colors.brownColor
+        color: colors.brownColor,
     },
-    address:{
-        height: '45%', 
+    address: {
+        height: '45%',
         width: '90%',
-        justifyContent:'center',
+        justifyContent: 'center',
     },
-    addressText:{
-        fontSize : moderateScale(11),
+    addressText: {
+        fontSize: moderateScale(11),
         fontFamily: fontStyles.PoppinsRegular,
-        lineHeight: moderateScale(15)
+        lineHeight: moderateScale(15),
     },
-    btnContainer:{
-        height: '30%', 
+    btnContainer: {
+        height: '30%',
         width: '90%',
-        justifyContent:'flex-start',
+        justifyContent: 'flex-start',
     },
-    selectedBtn:{
-        height: moderateScale(40), 
-        width:'100%',
+    selectedBtn: {
+        height: moderateScale(40),
+        width: '100%',
         backgroundColor: colors.backgroudGray,
         flexDirection: 'row',
         alignItems: 'center',
         justifyContent: 'center',
-        borderRadius: moderateScale(3)
+        borderRadius: moderateScale(3),
     },
-    selectedText:{
+    selectedText: {
         fontFamily: fontStyles.PoppinsRegular,
-        fontSize: moderateScale(13)
+        fontSize: moderateScale(13),
     },
-    unselectedButton:{
-        height: moderateScale(40), 
-        width:'100%',
+    unselectedButton: {
+        height: moderateScale(40),
+        width: '100%',
         backgroundColor: colors.brownColor,
         justifyContent: 'center',
         alignItems: 'center',
-        borderRadius: moderateScale(3)
+        borderRadius: moderateScale(3),
     },
-    unselectedText:{
+    unselectedText: {
         color: colors.whiteColor,
         fontFamily: fontStyles.PoppinsRegular,
-        fontSize: moderateScale(13)
+        fontSize: moderateScale(13),
     },
-    tickImage:{
+    tickImage: {
         height: moderateScale(16),
         width: moderateScale(16),
         position: 'absolute',
-        left: moderateScale(20)
-    }
-}
+        left: moderateScale(20),
+    },
+};

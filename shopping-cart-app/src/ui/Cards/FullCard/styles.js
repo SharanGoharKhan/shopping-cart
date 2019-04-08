@@ -1,88 +1,89 @@
-import { moderateScale } from '../../../utils/scaling'
-import { colors } from '../../../utils/colors'
+import { moderateScale } from '../../../utils/scaling';
+import { colors } from '../../../utils/colors';
 import { fontStyles } from '../../../utils/fontStyles';
 
 
 // We can use Dimensions module and use percentage from it as well; a decent usecase
 export default {
-    container:{
-        width: '100%', height: moderateScale(85),
+    container: {
+        width: '100%',
+        height: moderateScale(85),
         marginBottom: moderateScale(15),
         borderRadius: moderateScale(3),
         borderWidth: moderateScale(1),
         borderColor: colors.backgroudGray,
-        flexDirection: 'row'
+        flexDirection: 'row',
     },
-    leftside:{
+    leftside: {
         height: '100%',
-        width: '35%'
+        width: '35%',
     },
-    thumbnail:{
-        height:'100%',
-        width:'100%',
+    thumbnail: {
+        height: '100%',
+        width: '100%',
         borderTopLeftRadius: moderateScale(3),
         borderBottomLeftRadius: moderateScale(3),
     },
-    rightside_container:{
-        height: '100%', 
+    rightside_container: {
+        height: '100%',
         width: '65%',
-        justifyContent:'center', 
-        alignItems:'center', 
-        paddingBottom: moderateScale(5)
+        justifyContent: 'center',
+        alignItems: 'center',
+        paddingBottom: moderateScale(5),
     },
-    rightside:{
+    rightside: {
         height: '80%',
         width: '85%',
-        justifyContent: 'space-between'
+        justifyContent: 'space-between',
     },
 
-    row:{
-        flexDirection: 'row'
-    },
-    rightside_top:{
-
-    },
-    rightside_bot:{
-
-    },
-    special_row:{
+    row: {
         flexDirection: 'row',
-        justifyContent: 'space-between'
     },
-    qty:{
+    rightside_top: {
+
+    },
+    rightside_bot: {
+
+    },
+    special_row: {
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+    },
+    qty: {
         fontFamily: fontStyles.PoppinsRegular,
         color: colors.primaryBlackColor,
         fontSize: moderateScale(13),
-        fontWeight: '500'
+        fontWeight: '500',
     },
-    amount:{
+    amount: {
         fontFamily: fontStyles.PoppinsRegular,
         color: colors.textBlueColor,
         fontSize: moderateScale(13),
-        fontWeight: '500'
+        fontWeight: '500',
     },
-    product:{
+    product: {
         fontFamily: fontStyles.PoppinsRegular,
         color: colors.primaryBlackColor,
         fontSize: moderateScale(13),
-        fontWeight: '500'
+        fontWeight: '500',
     },
-    by:{
+    by: {
         fontFamily: fontStyles.PoppinsRegular,
         color: colors.primaryBlackColor,
         fontSize: moderateScale(11),
     },
-    brand:{
+    brand: {
         fontFamily: fontStyles.PoppinsRegular,
         color: colors.brownColor,
         fontSize: moderateScale(11),
     },
-    prevPrice:{
-        alignSelf: 'flex-end'
+    prevPrice: {
+        alignSelf: 'flex-end',
     },
-    prevPriceText:{
+    prevPriceText: {
         color: colors.googleRedColor,
         fontFamily: fontStyles.PoppinsRegular,
-        fontSize: moderateScale(9)
-    }
-}
+        fontSize: moderateScale(9),
+    },
+};

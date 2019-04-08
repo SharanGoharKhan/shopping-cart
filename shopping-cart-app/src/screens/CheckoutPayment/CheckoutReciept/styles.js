@@ -1,23 +1,24 @@
-import { moderateScale } from '../../../utils/scaling'
-import { colors } from '../../../utils/colors'
+import { Dimensions } from 'react-native';
+import { moderateScale } from '../../../utils/scaling';
+import { colors } from '../../../utils/colors';
 import { fontStyles } from '../../../utils/fontStyles';
-import { Dimensions } from 'react-native'
-const { height, width } = Dimensions.get('window')
+
+const { height, width } = Dimensions.get('window');
 /* StyleSheet
 ============================================================================= */
 export default {
     modalContainer: {
         alignSelf: 'center',
-        height: height*.65,
-        width: width*.8, 
-        backgroundColor: colors.whiteColor, 
-        borderRadius: moderateScale(8), 
-        justifyContent: 'center', 
-        alignItems: 'center'
+        height: height * 0.65,
+        width: width * 0.8,
+        backgroundColor: colors.whiteColor,
+        borderRadius: moderateScale(8),
+        justifyContent: 'center',
+        alignItems: 'center',
     },
     modalContent: {
-        width: '90%', 
-        height: '80%'
+        width: '90%',
+        height: '80%',
     },
     imageContainer: {
         width: '100%',
@@ -33,61 +34,61 @@ export default {
     imageResponsive: {
         flex: 1,
         width: undefined,
-        height: undefined
+        height: undefined,
     },
     titleContainer: {
         marginTop: '5%',
-        width: '100%', 
+        width: '100%',
         height: '7%',
-        justifyContent: 'center', 
-        alignItems: 'flex-start'
+        justifyContent: 'center',
+        alignItems: 'flex-start',
     },
     titleStyle: {
         fontFamily: fontStyles.PoppinsRegular,
-        fontSize: moderateScale(16) 
+        fontSize: moderateScale(16),
     },
     line: {
         marginTop: '3%',
         width: '100%',
         height: moderateScale(1),
-        backgroundColor: colors.grayLinesColor
+        backgroundColor: colors.grayLinesColor,
     },
     dateContainer: {
         marginTop: '3%',
         width: '100%',
-        height: '5%'
+        height: '5%',
     },
     dateStyle: {
         color: colors.darkGrayText,
         fontFamily: fontStyles.PoppinsRegular,
         fontSize: moderateScale(12),
-        marginBottom: '3%'
+        marginBottom: '3%',
     },
     fullWidth: {
         width: '100%',
         height: '10%',
         flexDirection: 'row',
-        justifyContent: 'space-between'
+        justifyContent: 'space-between',
     },
     halfWidth: {
         width: '45%',
         height: '100%',
-        justifyContent: 'center'
+        justifyContent: 'center',
     },
     halfRightWidth: {
         width: '45%',
         height: '100%',
         justifyContent: 'center',
-        alignItems: 'flex-end'
+        alignItems: 'flex-end',
     },
     normalStyle: {
         fontFamily: fontStyles.PoppinsRegular,
-        fontSize: moderateScale(14)
+        fontSize: moderateScale(14),
     },
     blueFont: {
         fontFamily: fontStyles.PoppinsRegular,
         color: colors.blueColor,
-        fontSize: moderateScale(14)
+        fontSize: moderateScale(14),
     },
     btnContainer: {
         width: '100%',
@@ -96,12 +97,12 @@ export default {
         backgroundColor: colors.textBlueColor,
         borderRadius: moderateScale(3),
         justifyContent: 'center',
-        alignItems: 'center'
+        alignItems: 'center',
     },
     btnStyle: {
         fontFamily: fontStyles.PoppinsRegular,
         fontSize: moderateScale(14),
-        color: colors.whiteColor
-    }
+        color: colors.whiteColor,
+    },
 
-}
+};

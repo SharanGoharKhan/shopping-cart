@@ -1,8 +1,8 @@
-import { moderateScale } from '../../utils/scaling'
-import { colors } from '../../utils/colors'
+import { StatusBar } from 'react-native';
+import { moderateScale } from '../../utils/scaling';
+import { colors } from '../../utils/colors';
 import { fontStyles } from '../../utils/fontStyles';
 
-import {StatusBar} from 'react-native'
 
 /* StyleSheet
 ============================================================================= */
@@ -10,167 +10,168 @@ export default {
     container: {
         height: '100%',
         width: '100%',
-        alignSelf:'center'
+        alignSelf: 'center',
     },
-    statusbarImage:{
+    statusbarImage: {
         height: StatusBar.currentHeight,
-        backgroundColor:'black'
+        backgroundColor: 'black',
     },
-    body:{
-        height: '95%', 
-        width:'90%',
-        alignSelf:'center'
+    body: {
+        height: '95%',
+        width: '90%',
+        alignSelf: 'center',
     },
-    main_scroller:{
-        marginBottom: moderateScale(10)
+    main_scroller: {
+        marginBottom: moderateScale(10),
     },
-    //header
-    header:{
-        height: '10%', 
-        width:'100%',
+    // header
+    header: {
+        height: '10%',
+        width: '100%',
         flexDirection: 'row',
-        alignSelf:'center',
-        alignItems:'center', 
-    }, 
-    header_text:{
+        alignSelf: 'center',
+        alignItems: 'center',
+    },
+    header_text: {
         fontFamily: fontStyles.PoppinsRegular,
         fontSize: moderateScale(16),
-        paddingLeft: moderateScale(8)
+        paddingLeft: moderateScale(8),
     },
 
     // main
-    main:{
-        height: '80%', 
+    main: {
+        height: '80%',
         width: '100%',
-        alignItems:'center'
+        alignItems: 'center',
     },
-    simpleRow:{
-        flexDirection: 'row', 
-        alignItems: 'center'
+    simpleRow: {
+        flexDirection: 'row',
+        alignItems: 'center',
     },
-    main_top:{
-        height: '70%', 
-        width: '100%'
+    main_top: {
+        height: '70%',
+        width: '100%',
     },
-    main_bot:{
-        height: '30%', 
-        width: '100%'
+    main_bot: {
+        height: '30%',
+        width: '100%',
     },
-    orders:{
-        height: '40%', 
+    orders: {
+        height: '40%',
         width: '100%',
         borderBottomWidth: moderateScale(1),
         borderColor: colors.grayLinesColor,
-        borderStyle: "dashed"
+        borderStyle: 'dashed',
     },
-    items:{
-        height: moderateScale(115), width:'100%',
-        paddingTop: moderateScale(3)
+    items: {
+        height: moderateScale(115),
+        width: '100%',
+        paddingTop: moderateScale(3),
     },
-    itemBoldText:{
+    itemBoldText: {
         fontFamily: fontStyles.PoppinsRegular,
         fontSize: moderateScale(13),
-        fontWeight:'500'
+        fontWeight: '500',
     },
-    itemBlueText:{
+    itemBlueText: {
         color: colors.textBlueColor,
         fontFamily: fontStyles.PoppinsRegular,
         fontSize: moderateScale(13),
-        fontWeight:'500'
+        fontWeight: '500',
     },
 
-    goldenText:{
+    goldenText: {
         color: colors.brownColor,
         fontFamily: fontStyles.PoppinsRegular,
         fontSize: moderateScale(13),
     },
-    addressSmallText:{
+    addressSmallText: {
         fontFamily: fontStyles.PoppinsRegular,
         fontSize: moderateScale(11),
-        color: colors.fontGreyColor
+        color: colors.fontGreyColor,
     },
-    addressBoldText:{
+    addressBoldText: {
         fontFamily: fontStyles.PoppinsRegular,
         fontSize: moderateScale(11),
-        fontWeight:'500'
+        fontWeight: '500',
     },
-    deliveryDate:{
+    deliveryDate: {
         paddingTop: moderateScale(5),
         color: colors.textBlueColor,
         fontSize: moderateScale(11),
         fontFamily: fontStyles.PoppinsRegular,
         paddingLeft: moderateScale(5),
     },
-    padding:{
+    padding: {
         paddingTop: moderateScale(6),
-        paddingBottom: moderateScale(2)
+        paddingBottom: moderateScale(2),
     },
-    address:{
-        height: '60%', 
+    address: {
+        height: '60%',
         width: '100%',
         paddingTop: moderateScale(20),
     },
-    addressDetail:{
-        paddingTop: moderateScale(5)
+    addressDetail: {
+        paddingTop: moderateScale(5),
     },
-    borderBottom:{
+    borderBottom: {
         borderBottomWidth: moderateScale(1),
         borderColor: colors.grayLinesColor,
-        borderStyle: "dashed",
-        paddingBottom: moderateScale(15)
+        borderStyle: 'dashed',
+        paddingBottom: moderateScale(15),
     },
-    main_bot:{
-        height: '30%', 
-        width: '100%', 
-        alignItems: 'center', 
+    main_bot: {
+        height: '30%',
+        width: '100%',
+        alignItems: 'center',
         justifyContent: 'space-evenly',
         backgroundColor: colors.backgroudGray,
-        borderRadius: moderateScale(5)
+        borderRadius: moderateScale(5),
     },
-    subtotal_container:{
-        width: '90%', 
+    subtotal_container: {
+        width: '90%',
         borderBottomWidth: moderateScale(1),
         borderBottomColor: colors.grayLinesColor,
-        paddingBottom: moderateScale(5)
+        paddingBottom: moderateScale(5),
     },
-    listItem:{
+    listItem: {
         width: '100%',
         flexDirection: 'row',
         justifyContent: 'space-between',
         marginBottom: moderateScale(3),
     },
-    row:{
+    row: {
         width: '100%',
         flexDirection: 'row',
-        justifyContent: 'space-between'
+        justifyContent: 'space-between',
     },
-    text:{
+    text: {
         fontFamily: fontStyles.PoppinsRegular,
-        fontSize: moderateScale(12.5)
+        fontSize: moderateScale(12.5),
     },
-    text_bold:{
-        fontFamily: fontStyles.PoppinsRegular,
-        fontSize: moderateScale(13),
-        fontWeight: '500'
-    },
-    text_blue:{
+    text_bold: {
         fontFamily: fontStyles.PoppinsRegular,
         fontSize: moderateScale(13),
         fontWeight: '500',
-        color: colors.textBlueColor
     },
-    total_container:{
-        width: '90%', 
+    text_blue: {
+        fontFamily: fontStyles.PoppinsRegular,
+        fontSize: moderateScale(13),
+        fontWeight: '500',
+        color: colors.textBlueColor,
     },
-    submit_container:{
-        width: '90%'
+    total_container: {
+        width: '90%',
     },
-   // footer
-   footer:{
-        height: '12%', 
+    submit_container: {
+        width: '90%',
+    },
+    // footer
+    footer: {
+        height: '12%',
         width: '120%',
-        alignSelf:'center',
-        justifyContent: 'flex-end', 
-        alignItems:'center'
-    }
-}
+        alignSelf: 'center',
+        justifyContent: 'flex-end',
+        alignItems: 'center',
+    },
+};

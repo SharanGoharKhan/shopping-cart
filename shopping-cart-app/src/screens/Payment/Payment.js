@@ -1,10 +1,9 @@
-import React from 'react'
-import { View, Text } from 'react-native'
-import styles from './styles'
+import React from 'react';
+import { View, Text } from 'react-native';
+import styles from './styles';
 
 /* Config/Constants
 ============================================================================= */
-
 
 
 /* =============================================================================
@@ -20,10 +19,10 @@ class Payment extends React.Component {
         return (
             <View style={styles.flex}>
                 <Text>Payment Working</Text>
-            </View>
-        )
+          </View>
+        );
     }
 }
 /* Export
 ============================================================================= */
-export default Payment
+export default Payment;

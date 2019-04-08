@@ -1,8 +1,8 @@
-import React from 'react'
-import {View, TextInput} from 'react-native'
-import { colors } from '../../utils/colors'
+import React from 'react';
+import { View, TextInput } from 'react-native';
+import { colors } from '../../utils/colors';
 
-import Styles from './styles'
+import Styles from './styles';
 /* Config/Constants
 ============================================================================= */
 
@@ -18,18 +18,19 @@ Props:
   placeHolderColor: sent the Color for placeholder
   containerStyle: allows user to override the container style
 ============================================================================= */
-const TextField = (props) =>{
-    let placeholderColor = props.placeholderColor? props.placeholderColor: colors.primaryBlackColor
-    return(
+const TextField = (props) => {
+    const placeholderColor = props.placeholderColor ? props.placeholderColor : colors.primaryBlackColor;
+    return (
         <View style={[Styles.input_view, props.containerStyle]}>
-            <TextInput 
+        <TextInput
                 onChange={props.onChange}
                 style={Styles.input}
                 placeholderTextColor={placeholderColor}
-                placeholder={props.placeholderText}/>
-        </View>
-    )
-}
+                placeholder={props.placeholderText}
+          />
+      </View>
+    );
+};
 /* Export
 ============================================================================= */
-export default TextField
+export default TextField;

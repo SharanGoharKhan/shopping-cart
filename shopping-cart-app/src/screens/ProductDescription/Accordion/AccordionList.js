@@ -1,12 +1,11 @@
 
-import React, { Component } from 'react'
-import Collapse from './Collapse'
-import CollapseBody from './CollapseBody'
-import CollapseHeader from './CollapseHeader'
+import React, { Component } from 'react';
+import Collapse from './Collapse';
+import CollapseBody from './CollapseBody';
+import CollapseHeader from './CollapseHeader';
 
 /* Config/Constants
 ============================================================================= */
-
 
 
 /* =============================================================================
@@ -24,55 +23,54 @@ type Props = {
     onToggle:Function
 };
 export default class AccordionList extends Component<Props> {
-
-    constructor(props){
+    constructor(props) {
         super(props);
         this.state = {
-            selectedIndex:0,
-        }
+            selectedIndex: 0,
+        };
     }
 
-    componentWillReceiveProps(){
-            this.setState({
-                selectedIndex:null,
-            });
+    componentWillReceiveProps() {
+        this.setState({
+            selectedIndex: null,
+        });
     }
 
 
-    onToggle(index){
+    onToggle(index) {
         let selected = index;
-        if(selected === this.state.selectedIndex){
+        if (selected === this.state.selectedIndex) {
             // Can return here, if item unselection is not allowed
             selected = null;
         }
-        this.setState({selectedIndex:selected}, () => {
+        this.setState({ selectedIndex: selected }, () => {
             if (this.props.onToggle) {
                 this.props.onToggle(selected);
             }
         });
     }
 
-    _renderItem = ({item,index}) => (
-        <Collapse key={index} isCollapsed={this.state.selectedIndex === index} onToggle={(isCollapsed)=>this.onToggle(index)}>
-            <CollapseHeader>
+    _renderItem = ({ item, index }) => (
+        <Collapse key={index} isCollapsed={this.state.selectedIndex === index} onToggle={isCollapsed => this.onToggle(index)}>
+        <CollapseHeader>
                 {this.props.header(item)}
-            </CollapseHeader>
+          </CollapseHeader>
             <CollapseBody>
                 {this.props.body(item)}
-            </CollapseBody>
-        </Collapse>
+          </CollapseBody>
+      </Collapse>
     );
 
     render() {
-        return(
-            this.props.list.map((item,index)=>this._renderItem({item,index}))
+        return (
+            this.props.list.map((item, index) => this._renderItem({ item, index }))
         );
     }
 }
 
 AccordionList.defaultProps = {
-    List:[],
-    header:(item) => undefined,
-    body:(item) => undefined,
-    onToggle:(item) => undefined,
+    List: [],
+    header: item => undefined,
+    body: item => undefined,
+    onToggle: item => undefined,
 };

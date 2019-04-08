@@ -1,11 +1,10 @@
 import React, { Component } from 'react';
 import {
-    View
+    View,
 } from 'react-native';
 
 /* Config/Constants
 ============================================================================= */
-
 
 
 /* =============================================================================
@@ -20,10 +19,10 @@ type Props = {
 };
 export default class CollapseHeader extends Component<Props> {
     render() {
-        return(
-            <View {...this.props} >
+        return (
+            <View {...this.props}>
                 {this.props.children}
-            </View>
+          </View>
         );
     }
 }

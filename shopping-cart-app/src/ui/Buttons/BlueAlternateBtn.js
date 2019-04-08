@@ -1,7 +1,7 @@
-import React from 'react'
-import {View, TouchableOpacity, Text} from 'react-native'
+import React from 'react';
+import { View, TouchableOpacity, Text } from 'react-native';
 
-import {alternateBlueBtn as styles} from './styles'
+import { alternateBlueBtn as styles } from './styles';
 /* Config/Constants
 ============================================================================= */
 
@@ -17,17 +17,20 @@ Props:
   text: send the Text for button,
   containerStyle: override styles of the container
 ============================================================================= */
-const BlueBtn = (props) =>{
-    return(
-        <View style={[styles.backgroundColor, props.containerStyles]}>
-            <TouchableOpacity 
-                onPress={props.onPress}
-                style={styles.main_blue_btn}>
-                    <Text style={styles.btn_text}> {props.text} </Text>
-            </TouchableOpacity>
-        </View>
-    )
-}
+const BlueBtn = props => (
+  <View style={[styles.backgroundColor, props.containerStyles]}>
+      <TouchableOpacity
+      onPress={props.onPress}
+      style={styles.main_blue_btn}
+    >
+      <Text style={styles.btn_text}>
+                {' '}
+                {props.text}
+                {' '}
+            </Text>
+        </TouchableOpacity>
+    </View>
+);
 /* Export
 ============================================================================= */
-export default BlueBtn
+export default BlueBtn;
