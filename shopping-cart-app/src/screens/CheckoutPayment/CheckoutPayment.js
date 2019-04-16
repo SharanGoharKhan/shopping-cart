@@ -1,6 +1,6 @@
 import React from 'react';
 import {
-    View, Text, Image, TextInput, StatusBar, TouchableOpacity,
+    View, Text, Image, TextInput, StatusBar, TouchableOpacity, Platform
 } from 'react-native';
 
 import SwiperFlatList from 'react-native-swiper-flatlist';
@@ -57,7 +57,7 @@ class CheckoutPayment extends React.Component {
     render() {
         return (
             <View style={styles.container}>
-                <StatusBar backgroundColor="transparent" barStyle="light-content" hidden={false} translucent={false} />
+                <StatusBar backgroundColor="transparent" barStyle={Platform.OS == 'ios' ? "dark-content" : "light-content"} hidden={false} translucent={false} />
             <CheckoutReciept
                     navigationObj={this.props.navigation}
                     modalVisible={this.state.modalVisible}

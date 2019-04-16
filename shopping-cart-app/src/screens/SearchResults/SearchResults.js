@@ -1,6 +1,6 @@
 import React from 'react';
 import {
-    View, Text, Image, ScrollView, TouchableOpacity,
+    View, Text, Image, ScrollView, TouchableOpacity, Platform
 } from 'react-native';
 import { StatusBar } from 'react-native';
 import styles from './styles';
@@ -58,7 +58,7 @@ class SearchResult extends React.Component {
     render() {
         return (
             <View style={styles.container}>
-            <StatusBar backgroundColor="transparent" barStyle="light-content" hidden={false} translucent={false} />
+            <StatusBar backgroundColor="transparent" barStyle={Platform.OS == 'ios' ? "dark-content" : "light-content"} hidden={false} translucent={false} />
             <View style={styles.statusBarImage}>
                 <Image
                       source={require('../../assets/images/statusbar.png')}

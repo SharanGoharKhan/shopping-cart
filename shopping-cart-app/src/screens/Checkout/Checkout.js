@@ -1,6 +1,6 @@
 import React from 'react';
 import {
-    View, Text, Image, StatusBar, ScrollView, TouchableOpacity,
+    View, Text, Image, StatusBar, ScrollView, TouchableOpacity, Platform
 } from 'react-native';
 
 import styles from './styles';
@@ -48,7 +48,7 @@ PKR
     render() {
         return (
             <View style={styles.container}>
-            <StatusBar backgroundColor="transparent" barStyle="light-content" hidden={false} translucent={false} />
+            <StatusBar backgroundColor="transparent" barStyle={Platform.OS == 'ios' ? "dark-content" : "light-content"} hidden={false} translucent={false} />
                 <View style={styles.statusBarImage}>
                     <Image
                         source={require('../../assets/images/statusbar.png')}

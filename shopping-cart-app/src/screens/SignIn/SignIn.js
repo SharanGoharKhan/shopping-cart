@@ -1,6 +1,6 @@
 import React from 'react';
 import {
-    View, Text, Image, StatusBar, TouchableOpacity, ImageBackground,
+    View, Text, Image, StatusBar, TouchableOpacity, ImageBackground, Platform
 } from 'react-native';
 import styles from './styles';
 import { moderateScale } from '../../utils/scaling';
@@ -43,7 +43,7 @@ class SignIn extends React.Component {
     render() {
         return (
             <View style={styles.container}>
-                <StatusBar backgroundColor="transparent" barStyle="light-content" hidden={false} translucent={false} />
+                <StatusBar backgroundColor="transparent" barStyle={Platform.OS == 'ios' ? "dark-content" : "light-content"} hidden={false} translucent={false} />
             <ForgotPassword
                     modalVisible={this.state.modalVisible}
                   hideModal={this.hideModal}
