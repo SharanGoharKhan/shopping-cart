@@ -47,11 +47,11 @@ export default {
         justifyContent: 'space-between',
     },
     creditCardNumber: {
-        width: '75%',
+        width: '70%',
     },
     ccText: {
         fontFamily: fontStyles.PoppinsRegular,
-        fontSize: moderateScale(12),
+        fontSize: moderateScale(8),
 
     },
     expiryContainer: {
