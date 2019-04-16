@@ -2,6 +2,7 @@ import { StatusBar } from 'react-native';
 import { moderateScale } from '../../utils/scaling';
 import { colors } from '../../utils/colors';
 import { fontStyles } from '../../utils/fontStyles';
+import { Platform } from 'react-native'
 /* StyleSheet
 ============================================================================= */
 export default {
@@ -9,7 +10,7 @@ export default {
         flex: 1,
     },
     statusBarImage: {
-        height: StatusBar.currentHeight,
+        height: Platform.OS=='ios'? 20 : StatusBar.currentHeight,
         width: '100%',
     },
     tabContainer: {

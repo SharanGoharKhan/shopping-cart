@@ -42,12 +42,12 @@ class ShoppingCart extends React.Component {
     render() {
         return (
             <View style={styles.container}>
-            <StatusBar backgroundColor="transparent" barStyle={Platform.OS == 'ios' ? "dark-content" : "light-content"} hidden={false} translucent={false} />
+            <StatusBar backgroundColor="transparent" barStyle="light-content" hidden={false} translucent={false} />
             <View style={styles.statusBarImage}>
                 <Image
                       source={require('../../assets/images/statusbar.png')}
                       style={{
-                            height: StatusBar.currentHeight,
+                            height: Platform.OS =='ios' ? 20 : StatusBar.currentHeight,
                             width: '100%',
                         }}
                     />
