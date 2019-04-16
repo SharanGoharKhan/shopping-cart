@@ -56,7 +56,7 @@ export default {
     dateContainer: {
         marginTop: '3%',
         width: '100%',
-        height: '5%',
+        height: '8%',
     },
     dateStyle: {
         color: colors.darkGrayText,
