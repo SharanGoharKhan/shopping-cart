@@ -13,7 +13,6 @@ import EditingAddress from '../screens/EditingAddress/EditingAddress';
 import EditingProfile from '../screens/EditingProfile/EditingProfile';
 import MainLanding from '../screens/MainLanding/MainLanding';
 import OrderDetail from '../screens/OrderDetail/OrderDetail';
-import Payment from '../screens/Payment/Payment';
 import PreviousOrders from '../screens/PreviousOrders/PreviousOrders';
 import ProductDescription from '../screens/ProductDescription/ProductDescription';
 import ProductListing from '../screens/ProductsListing/ProductListing';
@@ -36,7 +35,6 @@ const authenticationNavigator = createStackNavigator(
         EditingAddress,
         EditingProfile,
         OrderDetail,
-        Payment,
         PreviousOrders,
         ProductDescription,
         ProductListing,
