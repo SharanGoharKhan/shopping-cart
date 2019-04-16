@@ -95,4 +95,23 @@ export default {
         width: '95%',
         height: '80%',
     },
+    addContainer: {
+        width: width*.9,
+        height: height * 0.15,
+        justifyContent: 'center',
+        alignItems: 'center',
+    },
+    addBtn: {
+        width: '80%',
+        height: '45%',
+        backgroundColor: colors.brownColor,
+        justifyContent: 'center',
+        alignItems: 'center',
+        borderRadius: moderateScale(4),
+    },
+    addStyle: {
+        fontFamily: fontStyles.PoppinsRegular,
+        color: colors.whiteColor,
+    },
+    
 };
