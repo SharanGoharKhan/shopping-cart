@@ -1,10 +1,8 @@
 import React from 'react';
 import {
-    View, Text, Image, TextInput, TouchableOpacity,
+    View, Image, TextInput, TouchableOpacity,
 } from 'react-native';
-
 import styles from './styles';
-import { moderateScale } from '../../utils/scaling';
 import { colors } from '../../utils/colors';
 
 

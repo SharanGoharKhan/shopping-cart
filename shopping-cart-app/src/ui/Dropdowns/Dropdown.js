@@ -1,10 +1,8 @@
 import React from 'react';
 import {
-    View, Text, TouchableOpacity, Image, Animated, Easing, ScrollView,
+    View, Text, TouchableOpacity, Image, Animated, ScrollView,
 } from 'react-native';
 import styles from './styles';
-import { colors } from '../../utils/colors';
-import { moderateScale } from '../../utils/scaling';
 
 /* Props
 data
