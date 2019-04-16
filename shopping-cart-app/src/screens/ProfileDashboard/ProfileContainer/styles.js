@@ -81,9 +81,9 @@ export default {
         alignItems: 'center',
     },
     profileImage: {
-        width: width * 0.24,
-        height: height * 0.12,
-        borderRadius: width * 0.12,
+        width: moderateScale(100),
+        height: moderateScale(100),
+        borderRadius: moderateScale(50),
         justifyContent: 'center',
         alignItems: 'center',
         borderWidth: moderateScale(3),
