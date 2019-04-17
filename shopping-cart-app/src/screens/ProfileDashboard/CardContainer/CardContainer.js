@@ -72,7 +72,9 @@ const cardContainer = props => (
                               <View style={styles.actionsContainer}>
                                     <View style={styles.subActionsContainer}>
                                         <Text style={styles.statusStyle}>{data.status}</Text>
-                                        <TouchableOpacity style={styles.actionContainer}>
+                                        <TouchableOpacity
+                                        onPress={() => props.navigationObj.navigate('TrackOrder')}
+                                        style={styles.actionContainer}>
                                             <Text style={styles.actionStyle}>{data.action}</Text>
                                       </TouchableOpacity>
                                   </View>

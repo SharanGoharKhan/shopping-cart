@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Text, Image } from 'react-native';
+import { View, Text, Image, Platform } from 'react-native';
 import { StatusBar } from 'react-native';
 import styles from './styles';
 
@@ -32,7 +32,7 @@ class Search extends React.Component {
                 <Image
                         source={require('../../assets/images/statusbar.png')}
                       style={{
-                            height: StatusBar.currentHeight,
+                            height: Platform.OS =='ios' ? 20 : StatusBar.currentHeight,
                             width: '100%',
                         }}
                     />

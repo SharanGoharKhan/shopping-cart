@@ -8,12 +8,10 @@ import {
 import AddressList from '../screens/AddressList/AddressList';
 import Checkout from '../screens/Checkout/Checkout';
 import CheckoutPayment from '../screens/CheckoutPayment/CheckoutPayment';
-import CheckoutReciept from '../screens/CheckoutReciept/CheckoutReciept';
 import EditingAddress from '../screens/EditingAddress/EditingAddress';
 import EditingProfile from '../screens/EditingProfile/EditingProfile';
 import MainLanding from '../screens/MainLanding/MainLanding';
 import OrderDetail from '../screens/OrderDetail/OrderDetail';
-import Payment from '../screens/Payment/Payment';
 import PreviousOrders from '../screens/PreviousOrders/PreviousOrders';
 import ProductDescription from '../screens/ProductDescription/ProductDescription';
 import ProductListing from '../screens/ProductsListing/ProductListing';
@@ -32,11 +30,9 @@ const authenticationNavigator = createStackNavigator(
         AddressList,
         Checkout,
         CheckoutPayment,
-        CheckoutReciept,
         EditingAddress,
         EditingProfile,
         OrderDetail,
-        Payment,
         PreviousOrders,
         ProductDescription,
         ProductListing,

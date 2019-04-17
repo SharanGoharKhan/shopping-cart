@@ -1,8 +1,8 @@
 import React from 'react';
 import { View, TextInput } from 'react-native';
 import { colors } from '../../utils/colors';
-
 import Styles from './styles';
+
 /* Config/Constants
 ============================================================================= */
 

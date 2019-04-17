@@ -1,6 +1,6 @@
 import React from 'react';
 import {
-    View, Text, Image, StatusBar, ImageBackground,
+    View, Text, Image, StatusBar, ImageBackground, Platform
 } from 'react-native';
 import styles from './styles';
 import { moderateScale } from '../../utils/scaling';
@@ -28,7 +28,7 @@ class SignUp extends React.Component {
                 <Image
                         source={require('../../assets/images/statusbar.png')}
                         style={{
-                            height: StatusBar.currentHeight,
+                            height: Platform.OS =='ios' ? 20 : StatusBar.currentHeight,
                             width: '100%',
                         }}
                     />

@@ -28,18 +28,23 @@ export default {
         borderRadius: moderateScale(5),
     },
     profileImage: {
-        width: width * 0.2,
-        height: height * 0.1,
-        backgroundColor: 'red',
-        borderRadius: width * 0.15,
+        width: moderateScale(60),
+        height: moderateScale(60),
+        borderRadius: moderateScale(30),
         borderWidth: moderateScale(2),
         borderColor: '#DDDDDD',
         backgroundColor: 'white',
+        justifyContent:'center',
+        alignItems: 'center'
+    },
+    imgResponsive3: {
+        width: '50%',
+        height: '50%',
     },
     imgResponsive: {
         flex: 1,
         width: undefined,
-        height: undefined,
+        height: undefined
     },
     profileTitle: {
         width: '100%',

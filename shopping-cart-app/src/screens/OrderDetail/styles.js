@@ -10,12 +10,15 @@ export default {
     flex: {
         flex: 1,
     },
+    line: {
+        width: '100%',
+        height: moderateScale(1),
+        backgroundColor: colors.darkGrayText
+    },
     headerContainer: {
         width: '100%',
         height: height * 0.1,
-        justifyContent: 'flex-end',
-        borderColor: '#707070',
-        borderWidth: moderateScale(1),
+        justifyContent: 'flex-end'
     },
     headerContainerText: {
         marginBottom: '1%',
@@ -29,8 +32,6 @@ export default {
         flexDirection: 'row',
         justifyContent: 'space-between',
         alignItems: 'center',
-        borderColor: '#707070',
-        borderWidth: moderateScale(1),
     },
     profileContentContainer: {
         marginLeft: '5%',
@@ -73,9 +74,7 @@ export default {
         width: '100%',
         height: height * 0.2,
         justifyContent: 'center',
-        alignItems: 'center',
-        borderBottomColor: '#9B9B9B',
-        borderWidth: 1,
+        alignItems: 'center'
     },
     card: {
         backgroundColor: colors.whiteColor,
@@ -138,8 +137,6 @@ export default {
         height: height * 0.4,
         backgroundColor: colors.backgroudGray,
         justifyContent: 'center',
-        borderBottomColor: '#9B9B9B',
-        borderWidth: 1,
     },
     deliverSubContainer: {
         marginLeft: '5%',
@@ -164,9 +161,7 @@ export default {
         width: '100%',
         height: height * 0.2,
         alignItems: 'center',
-        justifyContent: 'center',
-        borderBottomColor: '#9B9B9B',
-        borderWidth: 1,
+        justifyContent: 'center'
     },
     paymentSubContainer: {
         width: '90%',

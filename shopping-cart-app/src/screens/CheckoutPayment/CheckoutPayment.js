@@ -1,6 +1,6 @@
 import React from 'react';
 import {
-    View, Text, Image, TextInput, StatusBar, TouchableOpacity,
+    View, Text, Image, TextInput, StatusBar, TouchableOpacity, Platform
 } from 'react-native';
 
 import SwiperFlatList from 'react-native-swiper-flatlist';
@@ -67,7 +67,7 @@ class CheckoutPayment extends React.Component {
                 <Image
                         source={require('../../assets/images/statusbar.png')}
                         style={{
-                            height: StatusBar.currentHeight,
+                            height: Platform.OS =='ios' ? 20 : StatusBar.currentHeight,
                             width: '100%',
                         }}
               />

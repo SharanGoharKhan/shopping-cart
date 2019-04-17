@@ -1,7 +1,7 @@
 import React from 'react';
 import { View, TouchableOpacity, Text } from 'react-native';
-
 import { blueBtn as styles } from './styles';
+
 /* Config/Constants
 ============================================================================= */
 

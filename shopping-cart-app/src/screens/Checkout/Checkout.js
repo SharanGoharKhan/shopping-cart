@@ -1,6 +1,6 @@
 import React from 'react';
 import {
-    View, Text, Image, StatusBar, ScrollView, TouchableOpacity,
+    View, Text, Image, StatusBar, ScrollView, TouchableOpacity, Platform
 } from 'react-native';
 
 import styles from './styles';
@@ -53,7 +53,7 @@ PKR
                     <Image
                         source={require('../../assets/images/statusbar.png')}
                         style={{
-                            height: StatusBar.currentHeight,
+                            height: Platform.OS =='ios' ? 20 : StatusBar.currentHeight,
                             width: '100%',
                         }}
                   />

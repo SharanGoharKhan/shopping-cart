@@ -1,6 +1,6 @@
 import React from 'react';
 import {
-    View, Text, Image, StatusBar, ScrollView,
+    View, Text, Image, StatusBar, ScrollView, Platform
 } from 'react-native';
 
 import styles from './styles';
@@ -47,7 +47,7 @@ class ShoppingCart extends React.Component {
                 <Image
                       source={require('../../assets/images/statusbar.png')}
                       style={{
-                            height: StatusBar.currentHeight,
+                            height: Platform.OS =='ios' ? 20 : StatusBar.currentHeight,
                             width: '100%',
                         }}
                     />

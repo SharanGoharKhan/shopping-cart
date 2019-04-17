@@ -40,6 +40,7 @@ export default {
         borderRadius: moderateScale(5),
     },
     body_container_background: {
+        backgroundColor: colors.backgroudGray,
         alignItems: 'center',
         width: '100%',
         height: '100%',

@@ -54,7 +54,7 @@ class MainMenu extends React.Component {
                     <Image
                                 source={require('../../assets/images/mainMenu/menu_avatar.png')}
                                 resizeMode="contain"
-                                style={styles.imgResponsive}
+                                style={styles.imgResponsive3}
                           />
                   </View>
                     <View style={styles.profileTitle}>

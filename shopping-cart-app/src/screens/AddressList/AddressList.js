@@ -1,6 +1,6 @@
 import React from 'react';
 import {
-    View, Text, Image, StatusBar, TouchableOpacity,
+    View, Text, Image, StatusBar, TouchableOpacity, Platform
 } from 'react-native';
 
 import { ScrollView } from 'react-native-gesture-handler';
@@ -32,49 +32,49 @@ class AddressList extends React.Component {
     render() {
         return (
             <View style={styles.container}>
-                <StatusBar backgroundColor="transparent" barStyle="light-content" hidden={false} translucent={false} />
-            <View style={styles.statusBarImage}>
+                <StatusBar backgroundColor="transparent" barStyle={Platform.OS == 'ios' ? "dark-content" : "light-content"} hidden={false} translucent={false} />
+                <View style={styles.statusBarImage}>
                     <Image
-                source={require('../../assets/images/statusbar.png')}
-                style={{
-                            height: StatusBar.currentHeight,
+                        source={require('../../assets/images/statusbar.png')}
+                        style={{
+                            height: Platform.OS =='ios' ? 20 : StatusBar.currentHeight,
                             width: '100%',
                         }}
-              />
+                    />
                 </View>
                 <View style={styles.header}>
                     <View style={styles.headerRow}>
-                    <Text style={styles.headerText}>My Adresses</Text>
+                        <Text style={styles.headerText}>My Adresses</Text>
                         <TouchableOpacity style={styles.headerBtn}>
-                        <Text style={styles.headerBtnText}>New Address</Text>
-                      </TouchableOpacity>
-                  </View>
-              </View>
+                            <Text style={styles.headerBtnText}>New Address</Text>
+                        </TouchableOpacity>
+                    </View>
+                </View>
                 <View style={styles.body}>
                     <View style={styles.main}>
-                    <ScrollView style={styles.mainScroll}>
-                          {DATA.map((item, index) => (
-                              <Card
+                        <ScrollView style={styles.mainScroll}>
+                            {DATA.map((item, index) => (
+                                <Card
                                     navigationObj={this.props.navigation}
-                                  title={item.title}
-                                  country={item.country}
-                                  city={item.city}
-                                  address={item.address}
-                                  poBox={item.poBox}
+                                    title={item.title}
+                                    country={item.country}
+                                    city={item.city}
+                                    address={item.address}
+                                    poBox={item.poBox}
                                     key={index}
                                 />
                             ))}
                         </ScrollView>
-                  </View>
+                    </View>
 
-              </View>
+                </View>
                 <View style={styles.footer}>
                     <BottomTab
-                    navigationObj={this.props.navigation}
-                  />
-              </View>
+                        navigationObj={this.props.navigation}
+                    />
+                </View>
 
-          </View>
+            </View>
         );
     }
 }
