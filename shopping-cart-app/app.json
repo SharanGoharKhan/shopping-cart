@@ -1,6 +1,5 @@
 {
   "expo": {
-
     "name": "ShoppingCart",
     "slug": "ShoppingCart",
     "privacy": "public",
@@ -24,10 +23,11 @@
       "**/*"
     ],
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "bundleIdentifier": "host.exp.exponent"
+    },
+    "android": {
+      "package": "host.exp.exponent"
     }
-
   }
- 
-
 }
