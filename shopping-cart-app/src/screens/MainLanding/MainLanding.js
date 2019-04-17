@@ -36,7 +36,7 @@ class MainLanding extends React.Component {
                             showPagination
                             autoplay
                             autoplayDelay={3}
-                            autoplayLoop
+                            autoplayLoop={false}
                         paginationActiveColor="#fff"
                         paginationStyle={{ marginBottom: '7%' }}
                         paginationStyleItem={{ height: moderateScale(8), width: moderateScale(8), marginLeft: 0 }}

@@ -27,22 +27,8 @@ import AuthLoading from './authLoading';
 
 const authenticationNavigator = createStackNavigator(
     {
-        AddressList,
-        Checkout,
-        CheckoutPayment,
-        EditingAddress,
-        EditingProfile,
-        OrderDetail,
-        PreviousOrders,
-        ProductDescription,
-        ProductListing,
-        ProfileDashboard,
-        SearchResult,
-        ShoppingCart,
         SignIn,
         SignUp,
-        Search,
-        TrackOrder,
     }, {
         headerMode: 'none',
     },
@@ -57,11 +43,32 @@ const Drawer = createDrawerNavigator(
         contentComponent: MainMenu,
     },
 );
+const noDrawer = createStackNavigator({
+    Drawer,
+    AddressList,
+    Checkout,
+    CheckoutPayment,
+    EditingAddress,
+    EditingProfile,
+    OrderDetail,
+    PreviousOrders,
+    ProductDescription,
+    ProductListing,
+    ProfileDashboard,
+    SearchResult,
+    ShoppingCart,
+    Search,
+    TrackOrder,
+}, {
+        headerMode: 'none',
+    })
+
+
 const AppNavigator = createSwitchNavigator(
     {
         AuthLoading,
         Auth: authenticationNavigator,
-        Drawer,
+        noDrawer,
     },
     {
         initialRouteName: 'AuthLoading',
