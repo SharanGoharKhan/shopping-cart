@@ -21,7 +21,28 @@ Props:
 
 ============================================================================= */
 
-const CATEGORIES = ['Arts & Crafts', 'Accessories', 'Event Ideas', 'Fashion', 'Food & Drinks', 'Health & Beauty'];
+const CATEGORIES = [
+    {
+        value: 'Arts & Crafts',
+    },
+    {
+        value: 'Event Ideas',
+    },
+    {
+        value: 'Food & Drinks',
+    },
+    {
+        value: 'Accessories',
+    },
+    {
+        value: 'Fashion'
+
+    },
+    {
+        value: 'Health & Beauty'
+    }
+
+    ];
 
 class Search extends React.Component {
     render() {

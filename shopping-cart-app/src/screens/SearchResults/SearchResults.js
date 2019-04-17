@@ -25,7 +25,27 @@ Props:
 
 ============================================================================= */
 
-const CATEGORIES = ['Arts & Crafts', 'Accessories', 'Event Ideas', 'Fashion', 'Food & Drinks', 'Health & Beauty'];
+const CATEGORIES = [
+    {
+        value: 'Arts & Crafts',
+    },
+    {
+        value: 'Event Ideas',
+    },
+    {
+        value: 'Food & Drinks',
+    },
+    {
+        value: 'Accessories',
+    },
+    {
+        value: 'Fashion'
+
+    },
+    {
+        value: 'Health & Beauty'
+    }
+];
 const DATA = [
     {
         name: 'Leather crossbody MID Bag',
@@ -71,7 +91,7 @@ class SearchResult extends React.Component {
             <View style={[styles.body]}>
                   <View style={[styles.header]}>
                         <View style={[styles.headerLeft]}>
-                            <Text style={styles.header_text}>Search  In  </Text>
+                            <Text style={[styles.header_text,{alignSelf:'flex-end',marginBottom:30}]}>Search  In  </Text>
                       <Dropdown items={CATEGORIES} />
                     </View>
                         <TouchableOpacity onPress={() => console.log('Show modal')}>
