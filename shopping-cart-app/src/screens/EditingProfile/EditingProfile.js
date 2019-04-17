@@ -1,6 +1,6 @@
 import React from 'react';
 import {
-    View, Text, Image, TextInput, KeyboardAvoidingView, TouchableOpacity
+    View, Text, Image, TextInput, KeyboardAvoidingView, TouchableOpacity, Platform, StatusBar
 } from 'react-native';
 import styles from './styles';
 import BottomTab from '../../components/BottomTab/BottomTab';
@@ -20,6 +20,7 @@ class EditingProfile extends React.Component {
     render() {
         return (
             <View style={styles.flex}>
+                <StatusBar backgroundColor="transparent" barStyle={Platform.OS == 'ios' ? "dark-content" : "light-content"}  hidden={false} translucent={false} />
                 <View style={styles.headerContainer}>
                     <Text style={styles.headerContainerText}>Editing Profile</Text>
                 </View>

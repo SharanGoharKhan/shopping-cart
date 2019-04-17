@@ -1,6 +1,6 @@
 import React from 'react';
 import {
-    View, Text, ScrollView, Image, TouchableOpacity, Dimensions,
+    View, Text, ScrollView, Image, TouchableOpacity, Platform, StatusBar
 } from 'react-native';
 import styles from './styles';
 import CardItem from './CardItem/CardItem';
@@ -21,6 +21,7 @@ class ProductListing extends React.Component {
     render() {
         return (
             <View style={styles.flex}>
+                <StatusBar backgroundColor="transparent" barStyle={Platform.OS == 'ios' ? "dark-content" : "light-content"}  hidden={false} translucent={false} />
                 <View style={styles.headerContainer}>
                 <View style={styles.headerSubContainer}>
                     <View style={styles.headerTextContainer}>
