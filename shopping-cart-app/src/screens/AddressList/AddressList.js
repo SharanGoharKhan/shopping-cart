@@ -7,6 +7,7 @@ import { ScrollView } from 'react-native-gesture-handler';
 import styles from './styles';
 import BottomTab from '../../components/BottomTab/BottomTab';
 import Card from './Card/AddressCard';
+import { moderateScale } from '../../utils/scaling';
 
 
 /* Config/Constants
@@ -37,17 +38,32 @@ class AddressList extends React.Component {
                     <Image
                         source={require('../../assets/images/statusbar.png')}
                         style={{
-                            height: Platform.OS =='ios' ? 20 : StatusBar.currentHeight,
+                            height: Platform.OS == 'ios' ? 20 : StatusBar.currentHeight,
                             width: '100%',
                         }}
                     />
                 </View>
                 <View style={styles.header}>
                     <View style={styles.headerRow}>
-                        <Text style={styles.headerText}>My Adresses</Text>
-                        <TouchableOpacity style={styles.headerBtn}>
-                            <Text style={styles.headerBtnText}>New Address</Text>
+                        <TouchableOpacity
+                            onPress={() => this.props.navigation.goBack()}
+                            style={styles.backImg}>
+                            <Image
+                                source={require('../../assets/icons/back.png')}
+                                resizeMode="contain"
+                                style={{
+                                    width: moderateScale(16),
+                                    height: moderateScale(17),
+                                    marginRight: moderateScale(20)
+                                }}
+                            />
                         </TouchableOpacity>
+                        <Text style={styles.headerText}>My Adresses</Text>
+                        <View style={styles.headerBtn}>
+                            <TouchableOpacity>
+                                <Text style={styles.headerBtnText}>New Address</Text>
+                            </TouchableOpacity>
+                        </View>
                     </View>
                 </View>
                 <View style={styles.body}>

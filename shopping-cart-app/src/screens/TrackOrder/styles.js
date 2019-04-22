@@ -13,7 +13,8 @@ export default {
     headerContainer: {
         width: '100%',
         height: height * 0.1,
-        justifyContent: 'flex-end',
+        flexDirection: 'row',
+        alignItems: 'flex-end',
         borderColor: '#707070',
         borderWidth: moderateScale(1),
     },
@@ -22,6 +23,10 @@ export default {
         marginLeft: '5%',
         fontFamily: fontStyles.PoppinsRegular,
         fontSize: moderateScale(18),
+    },
+    backImg: {
+        marginBottom: '3%',
+        marginLeft: '5%',
     },
     profileContainer: {
         height: height * 0.1,

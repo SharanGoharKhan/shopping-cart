@@ -31,13 +31,17 @@ export default {
         height: '100%',
         width: '90%',
         flexDirection: 'row',
-        justifyContent: 'space-between',
         alignItems: 'center',
     },
     headerText: {
         fontFamily: fontStyles.PoppinsRegular,
         fontSize: moderateScale(16),
         color: colors.blackText,
+    },
+    headerBtn: {
+        flex:1,
+        flexDirection:'row',
+        justifyContent:'flex-end'
     },
     headerBtnText: {
         fontFamily: fontStyles.PoppinsRegular,

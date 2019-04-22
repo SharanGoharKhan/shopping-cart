@@ -13,7 +13,8 @@ export default {
     headerContainer: {
         width: '100%',
         height: '10%',
-        justifyContent: 'flex-end',
+        flexDirection: 'row',
+        alignItems: 'flex-end',
         borderColor: '#707070',
         borderWidth: moderateScale(1),
     },
@@ -22,6 +23,10 @@ export default {
         marginLeft: '5%',
         fontFamily: fontStyles.PoppinsRegular,
         fontSize: moderateScale(18),
+    },
+    backImg: {
+        marginBottom:'3%',
+        marginLeft:'5%'
     },
     formMainContainer: {
         flex: 1,

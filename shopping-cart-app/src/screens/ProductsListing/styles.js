@@ -17,7 +17,7 @@ export default {
         alignItems: 'center',
     },
     headerSubContainer: {
-        width: '80%',
+        width: '95%',
         height: '50%',
         flexDirection: 'row',
         alignItems: 'center',
@@ -31,13 +31,23 @@ export default {
         justifyContent:'space-around'
     },
     headerTextContainer: {
-        width: '80%',
+        width: '60%',
         height: '100%',
         justifyContent: 'center',
     },
     headerText: {
         fontFamily: fontStyles.PoppinsRegular,
         fontSize: moderateScale(16),
+    },
+    backCnt: {
+        width: '10%', 
+        height: '100%',
+        justifyContent:'center',
+        alignItems:'center'
+    },
+    backImg: {
+        width: '50%',
+        height: '40%'
     },
     headerImg: {
         width: '30%',

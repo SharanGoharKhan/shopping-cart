@@ -1,6 +1,6 @@
 import React from 'react';
 import {
-    View, Text, Image, TouchableOpacity, ScrollView,
+    View, Text, Image, TouchableOpacity, ScrollView, StatusBar, Platform
 } from 'react-native';
 import styles from './styles';
 import BottomTab from '../../components/BottomTab/BottomTab';
@@ -79,81 +79,94 @@ class PreviousOrder extends React.Component {
     render() {
         return (
             <View style={styles.flex}>
+                <StatusBar backgroundColor="transparent" barStyle={Platform.OS == 'ios' ? "dark-content" : "light-content"} hidden={false} translucent={false} />
                 <ScrollView>
-                <View style={styles.headerContainer}>
+                    <View style={styles.headerContainer}>
+                        <TouchableOpacity
+                            onPress={() => this.props.navigation.goBack()}
+                            style={styles.backImg}>
+                            <Image
+                                source={require('../../assets/icons/back.png')}
+                                resizeMode="contain"
+                                style={{
+                                    width: 16,
+                                    height: 17
+                                }}
+                            />
+                        </TouchableOpacity>
                         <Text style={styles.headerContainerText}>Previous Orders</Text>
-                  </View>
-                <View style={styles.mainCardContainer}>
+                    </View>
+                    <View style={styles.mainCardContainer}>
                         {
                             cardData.map((data, ind) => (
-                              <View key={ind}>
+                                <View key={ind}>
                                     <View style={styles.dateContainer}>
                                         <Text style={styles.subTtitleStyle}>
-                                        {' '}
-On
+                                            {' '}
+                                            On
                                         {data.date}
-                                      </Text>
-                                </View>
-                                  {
+                                        </Text>
+                                    </View>
+                                    {
                                         data.cards.map((card, ind) => (
                                             <TouchableOpacity
-                                            onPress={() => this.props.navigation.navigate('OrderDetail')}
-                                            key={ind}
-                                            style={styles.cardContainer}
-                                          >
+                                                onPress={() => this.props.navigation.navigate('OrderDetail')}
+                                                key={ind}
+                                                style={styles.cardContainer}
+                                            >
                                                 <View style={styles.leftContainer}>
-                                                <Image
-                                                      source={card.image}
+                                                    <Image
+                                                        source={card.image}
                                                         resizeMode="cover"
-                                                      style={[styles.imgResponsive, styles.roundedBorder]}
+                                                        style={[styles.imgResponsive, styles.roundedBorder]}
                                                     />
-                                              </View>
-                                            <View style={styles.rightContainer}>
+                                                </View>
+                                                <View style={styles.rightContainer}>
                                                     <View style={styles.subRightContainer}>
                                                         <View style={styles.titleContainer}>
                                                             <Text style={styles.titleStyle}>{card.title}</Text>
                                                             <View style={styles.rightArrowContainer}>
                                                                 <Image
                                                                     source={require('../../assets/images/ProfileDashboard/rightArrow.png')}
-                                                                resizeMode="contain"
-                                                                style={styles.imgResponsive}
-                                                              />
-                                                          </View>
-                                                  </View>
-                                                <View style={styles.subTitleContainer}>
+                                                                    resizeMode="contain"
+                                                                    style={styles.imgResponsive}
+                                                                />
+                                                            </View>
+                                                        </View>
+                                                        <View style={styles.subTitleContainer}>
                                                             <Text style={styles.subTtitleStyle}>{card.subTitle}</Text>
-                                                  </View>
-                                                <View style={styles.actionsContainer}>
-                                                          <View style={styles.subActionsContainer}>
+                                                        </View>
+                                                        <View style={styles.actionsContainer}>
+                                                            <View style={styles.subActionsContainer}>
                                                                 <Text style={styles.statusStyle}>{card.status}</Text>
-                                                        <TouchableOpacity style={styles.actionContainer}>
-                                                                  <Text style={styles.actionStyle}>{card.action}</Text>
+                                                                <TouchableOpacity style={styles.actionContainer}>
+                                                                    <Text style={styles.actionStyle}>{card.action}</Text>
                                                                 </TouchableOpacity>
                                                             </View>
                                                         </View>
-                                              </View>
+                                                    </View>
                                                 </View>
-                                          </TouchableOpacity>
+                                            </TouchableOpacity>
                                         ))
                                     }
                                     <View style={styles.lineContainer}>
-                                  {
+                                        {
                                             ind < cardData.length - 1
                                                 ? (
-                                                  <View style={styles.lineSubContainer} />
+                                                    <View style={styles.lineSubContainer} />
                                                 )
                                                 : null
                                         }
-                                </View>
+                                    </View>
                                 </View>
                             ))
                         }
                     </View>
-              </ScrollView>
+                </ScrollView>
                 <BottomTab
-                navigationObj={this.props.navigation}
-              />
-          </View>
+                    navigationObj={this.props.navigation}
+                />
+            </View>
         );
     }
 }

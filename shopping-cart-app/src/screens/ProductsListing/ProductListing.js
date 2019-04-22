@@ -24,6 +24,17 @@ class ProductListing extends React.Component {
                 <StatusBar backgroundColor="transparent" barStyle={Platform.OS == 'ios' ? "dark-content" : "light-content"} hidden={false} translucent={false} />
                 <View style={styles.headerContainer}>
                     <View style={styles.headerSubContainer}>
+                        <View style={styles.backCnt}>
+                            <TouchableOpacity
+                            onPress={()=> this.props.navigation.goBack()} 
+                            style={styles.backImg}>
+                                <Image
+                                    source={require('../../assets/icons/back.png')}
+                                    resizeMode="contain"
+                                    style={styles.imgResponsive}
+                                />
+                            </TouchableOpacity>
+                        </View>
                         <View style={styles.headerTextContainer}>
                             <Text style={styles.headerText}>Arts & Crafts</Text>
                         </View>

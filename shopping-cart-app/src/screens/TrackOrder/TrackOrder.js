@@ -1,6 +1,6 @@
 import React from 'react';
 import {
-    View, Text, Image, TouchableOpacity, ScrollView,
+    View, Text, Image, TouchableOpacity, ScrollView, StatusBar, Platform
 } from 'react-native';
 import Timeline from 'react-native-timeline-listview';
 import styles from './styles';
@@ -38,8 +38,21 @@ class TrackOrder extends React.Component {
     render() {
         return (
             <View style={styles.flex}>
+                <StatusBar backgroundColor="transparent" barStyle={Platform.OS == 'ios' ? "dark-content" : "light-content"} hidden={false} translucent={false} />
                 <ScrollView>
                     <View style={styles.headerContainer}>
+                        <TouchableOpacity
+                            onPress={() => this.props.navigation.goBack()}
+                            style={styles.backImg}>
+                            <Image
+                                source={require('../../assets/icons/back.png')}
+                                resizeMode="contain"
+                                style={{
+                                    width: 16,
+                                    height: 17
+                                }}
+                            />
+                        </TouchableOpacity>
                         <Text style={styles.headerContainerText}>Order No. 10352</Text>
                     </View>
                     <View style={styles.profileContainer}>
@@ -90,7 +103,7 @@ class TrackOrder extends React.Component {
                             circleColor="#8CB65E"
                             showTime={false}
                             innerCircle="dot"
-                            titleStyle={{marginTop: -14}}
+                            titleStyle={{ marginTop: -14 }}
                         />
                     </View>
                 </ScrollView>

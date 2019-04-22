@@ -18,7 +18,12 @@ export default {
     headerContainer: {
         width: '100%',
         height: height * 0.1,
-        justifyContent: 'flex-end'
+        flexDirection: 'row',
+        alignItems: 'flex-end'
+    },
+    backImg: {
+        marginBottom: '3%',
+        marginLeft: '5%',
     },
     headerContainerText: {
         marginBottom: '1%',

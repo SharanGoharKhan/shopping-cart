@@ -17,13 +17,14 @@ export default {
         alignItems: 'center',
     },
     headerSubContainer: {
-        width: '80%',
+        width: '95%',
         height: '50%',
         flexDirection: 'row',
         alignItems: 'center',
+        justifyContent: 'space-between'
     },
     headerTextContainer: {
-        width: '60%',
+        width: '40%',
         height: '100%',
         justifyContent: 'center',
     },
@@ -37,6 +38,16 @@ export default {
     headerText: {
         fontFamily: fontStyles.PoppinsRegular,
         fontSize: moderateScale(16),
+    },
+    backCnt: {
+        width: '10%', 
+        height: '100%',
+        justifyContent:'center',
+        alignItems:'center'
+    },
+    backImg: {
+        width: '50%',
+        height: '40%'
     },
     headerImg: {
         width: '20%',

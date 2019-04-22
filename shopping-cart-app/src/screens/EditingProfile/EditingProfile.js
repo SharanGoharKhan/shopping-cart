@@ -4,6 +4,7 @@ import {
 } from 'react-native';
 import styles from './styles';
 import BottomTab from '../../components/BottomTab/BottomTab';
+import { moderateScale } from '../../utils/scaling';
 /* Config/Constants
 ============================================================================= */
 
@@ -20,8 +21,20 @@ class EditingProfile extends React.Component {
     render() {
         return (
             <View style={styles.flex}>
-                <StatusBar backgroundColor="transparent" barStyle={Platform.OS == 'ios' ? "dark-content" : "light-content"}  hidden={false} translucent={false} />
+                <StatusBar backgroundColor="transparent" barStyle={Platform.OS == 'ios' ? "dark-content" : "light-content"} hidden={false} translucent={false} />
                 <View style={styles.headerContainer}>
+                    <TouchableOpacity
+                        onPress={() => this.props.navigation.goBack()}
+                        style={styles.backImg}>
+                        <Image
+                            source={require('../../assets/icons/back.png')}
+                            resizeMode="contain"
+                            style={{
+                                width: moderateScale(16),
+                                height: moderateScale(17)
+                            }}
+                        />
+                    </TouchableOpacity>
                     <Text style={styles.headerContainerText}>Editing Profile</Text>
                 </View>
                 <View style={styles.formMainContainer}>

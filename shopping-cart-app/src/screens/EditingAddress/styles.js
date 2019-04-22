@@ -13,9 +13,14 @@ export default {
     headerContainer: {
         width: '100%',
         height: '10%',
-        justifyContent: 'flex-end',
+        flexDirection:'row',
+        alignItems: 'flex-end',
         borderColor: '#707070',
         borderWidth: moderateScale(1),
+    },
+    backImg: {
+        marginBottom: '3%',
+        marginLeft: '5%'
     },
     headerContainerText: {
         marginBottom: '1%',
