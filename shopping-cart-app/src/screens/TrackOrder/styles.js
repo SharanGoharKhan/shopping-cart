@@ -14,15 +14,18 @@ export default {
         width: '100%',
         height: height * 0.1,
         flexDirection: 'row',
-        alignItems: 'flex-end',
-        borderColor: '#707070',
-        borderWidth: moderateScale(1),
+        alignItems: 'flex-end'
     },
     headerContainerText: {
         marginBottom: '1%',
         marginLeft: '5%',
         fontFamily: fontStyles.PoppinsRegular,
         fontSize: moderateScale(18),
+    },
+    line: {
+        width: '100%',
+        height: moderateScale(1),
+        backgroundColor: '#9B9B9B'
     },
     backImg: {
         marginBottom: '3%',
@@ -33,9 +36,7 @@ export default {
         width: '100%',
         flexDirection: 'row',
         justifyContent: 'space-between',
-        alignItems: 'center',
-        borderColor: '#707070',
-        borderWidth: moderateScale(1),
+        alignItems: 'center'
     },
     profileContentContainer: {
         marginLeft: '5%',
@@ -78,9 +79,7 @@ export default {
         width: '100%',
         height: height * 0.2,
         justifyContent: 'center',
-        alignItems: 'center',
-        borderBottomColor: '#9B9B9B',
-        borderWidth: 1,
+        alignItems: 'center'
     },
     card: {
         backgroundColor: colors.whiteColor,

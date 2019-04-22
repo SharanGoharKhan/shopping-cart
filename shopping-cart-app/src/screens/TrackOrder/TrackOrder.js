@@ -40,6 +40,7 @@ class TrackOrder extends React.Component {
             <View style={styles.flex}>
                 <StatusBar backgroundColor="transparent" barStyle={Platform.OS == 'ios' ? "dark-content" : "light-content"} hidden={false} translucent={false} />
                 <ScrollView>
+                    <View style={styles.line}></View>
                     <View style={styles.headerContainer}>
                         <TouchableOpacity
                             onPress={() => this.props.navigation.goBack()}
@@ -55,6 +56,7 @@ class TrackOrder extends React.Component {
                         </TouchableOpacity>
                         <Text style={styles.headerContainerText}>Order No. 10352</Text>
                     </View>
+                    <View style={styles.line}></View>
                     <View style={styles.profileContainer}>
                         <View style={styles.profileContentContainer}>
                             <Image
@@ -73,6 +75,7 @@ class TrackOrder extends React.Component {
                             <View style={styles.dot} />
                         </TouchableOpacity>
                     </View>
+                    <View style={styles.line}></View>
                     <View style={styles.cardContainer}>
                         <View style={styles.card}>
                             <View style={styles.cardLeftContainer}>
@@ -96,6 +99,7 @@ class TrackOrder extends React.Component {
                             </View>
                         </View>
                     </View>
+                    <View style={styles.line}></View>
                     <View style={styles.timelineContainer}>
                         <Timeline
                             data={data}
