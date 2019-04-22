@@ -89,8 +89,6 @@ export default class Collapse extends Component<Props> {
                 {...this.props} style={{
                     width: '90%',
                     marginBottom: moderateScale(10),
-                    borderBottomWidth: 1,
-                    borderColor: colors.greyLinesColor,
                     paddingBottom: moderateScale(10),
                 }}
           >
