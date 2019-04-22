@@ -55,15 +55,13 @@ export default {
     mainBodyContainer: {
         height: '90%',
         width: '100%',
-        justifyContent: 'center',
+        justifyContent: 'flex-start',
         alignItems: 'center',
         backgroundColor: colors.backgroudGray,
-
     },
     mainBody: {
+        marginTop: '5%',
         width: '95%',
-        marginTop: '25%',
-
     },
     mixed_text: {
         flexDirection: 'row',
