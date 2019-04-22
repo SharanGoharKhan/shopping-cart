@@ -38,7 +38,7 @@ export default {
     },
     botContainer: {
         flex: 1,
-        alignItems: 'flex-end',
+        alignItems: 'center',
         flexDirection: 'row',
     },
     ratingContainer: {
@@ -57,11 +57,12 @@ export default {
     },
     priceContainer: {
         width: '40%',
-        height: '40%',
+        height: '100%',
         justifyContent: 'center',
         alignItems: 'center',
     },
     priceStyle: {
+        marginTop: moderateScale(4),
         fontSize: moderateScale(14),
         fontFamily: fontStyles.PoppinsRegular,
         color: colors.textBlueColor,

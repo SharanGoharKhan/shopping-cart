@@ -21,6 +21,14 @@ export default {
         height: '50%',
         flexDirection: 'row',
         alignItems: 'center',
+        justifyContent: 'space-between'
+    },
+    headerIconContainer: {
+        height: '100%', 
+        width: '25%',
+        flexDirection:'row',
+        alignItems:'center',
+        justifyContent:'space-around'
     },
     headerTextContainer: {
         width: '80%',
@@ -32,8 +40,8 @@ export default {
         fontSize: moderateScale(16),
     },
     headerImg: {
-        width: '20%',
-        height: '40%',
+        width: '30%',
+        height: '40%'
     },
     imgResponsive: {
         flex: 1,
