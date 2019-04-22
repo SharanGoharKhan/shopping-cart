@@ -53,8 +53,7 @@ export default {
     },
     bannerContainer: {
         width: '100%',
-        height: height * 0.45,
-        backgroundColor: 'blue',
+        height: height * 0.45
     },
     contentContainer: {
         width: '100%',

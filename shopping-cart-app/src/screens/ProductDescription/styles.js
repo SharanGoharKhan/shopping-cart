@@ -94,8 +94,7 @@ export default {
     },
     caroselMainImgCnt: {
         height: height * 0.3,
-        width: '100%',
-        backgroundColor: 'blue',
+        width: '100%'
     },
     scrollViewStyle: {
         height: height * 0.08,
