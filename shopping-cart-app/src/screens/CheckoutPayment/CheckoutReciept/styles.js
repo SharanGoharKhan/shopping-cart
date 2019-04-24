@@ -100,6 +100,7 @@ export default {
         alignItems: 'center',
     },
     btnStyle: {
+        marginTop:'2%',
         fontFamily: fontStyles.PoppinsRegular,
         fontSize: moderateScale(14),
         color: colors.whiteColor,
