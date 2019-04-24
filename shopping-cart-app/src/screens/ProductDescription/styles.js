@@ -88,7 +88,6 @@ export default {
     caroselPriceSubContainer: {
         width: '80%',
         height: '35%',
-        marginTop: moderateScale(20),
         justifyContent: 'center',
         alignItems: 'center',
         backgroundColor: '#F5F5F5',
