@@ -83,6 +83,7 @@ export default {
     },
     // footer
     footer: {
+        backgroundColor: colors.backgroudGray,
         height: '12%',
         width: '100%',
         justifyContent: 'flex-end',
