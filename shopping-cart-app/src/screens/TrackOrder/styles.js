@@ -25,7 +25,7 @@ export default {
     line: {
         width: '100%',
         height: moderateScale(1),
-        backgroundColor: '#9B9B9B'
+        backgroundColor: colors.grayLinesColor
     },
     backImg: {
         marginBottom: '3%',
