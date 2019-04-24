@@ -59,7 +59,7 @@ export default {
     subtotal_container: {
         width: '90%',
         borderBottomWidth: moderateScale(1),
-        borderBottomColor: colors.fontGreyColor,
+        borderBottomColor: colors.grayLinesColor,
         paddingBottom: moderateScale(5),
     },
     row: {
