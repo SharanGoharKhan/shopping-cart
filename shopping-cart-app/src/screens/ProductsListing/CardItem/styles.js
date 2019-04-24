@@ -28,8 +28,8 @@ export default {
         borderRadius: moderateScale(5),
     },
     textContainer: {
-        width: '100%',
-        height: '12%',
+        height:'10%',
+        justifyContent:'flex-end'
     },
     textStyle: {
         fontFamily: fontStyles.PoppinsRegular,
@@ -37,25 +37,26 @@ export default {
         marginLeft: '5%',
     },
     botContainer: {
-        flex: 1,
+        flex:1,
         alignItems: 'center',
         flexDirection: 'row',
     },
     ratingContainer: {
         width: '60%',
         height: '40%',
-        alignItems: 'flex-start',
+        alignItems: 'flex-end',
         flexDirection: 'row',
     },
     ratingStyle: {
         marginLeft: '8%',
     },
     ratingNumber: {
-        marginTop: '1%',
+        marginBottom:'-10%',
         fontFamily: fontStyles.PoppinsRegular,
         fontSize: moderateScale(10),
     },
     priceContainer: {
+        marginTop:'5%',
         width: '40%',
         height: '100%',
         justifyContent: 'center',

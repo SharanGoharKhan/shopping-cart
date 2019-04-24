@@ -65,13 +65,13 @@ const cardItem = props => (
                             style={styles.imgResponsive}
                         />
                     </View>
-                    <View style={styles.textContainer}>
-                        <Text style={styles.textStyle}>{data.title}</Text>
+                    <View style={[styles.textContainer,{justifyContent:'flex-end'}]}>
+                        <Text style={[styles.textStyle]}>{data.title}</Text>
                     </View>
-                    <View style={styles.textContainer}>
-                        <Text style={styles.textStyle}>{data.category}</Text>
+                    <View style={[styles.textContainer,{justifyContent:'flex-start',marginTop:-3}]}>
+                        <Text style={[styles.textStyle]}>{data.category}</Text>
                     </View>
-                    <View style={styles.botContainer}>
+                    <View style={[styles.botContainer,{justifyContent:'flex-end'}]}>
                         <View style={styles.ratingContainer}>
                             <Rating
                                 style={styles.ratingStyle}
