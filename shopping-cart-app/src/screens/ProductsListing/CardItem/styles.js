@@ -52,6 +52,7 @@ export default {
     },
     ratingNumber: {
         marginBottom:'-10%',
+        marginLeft:'3%',
         fontFamily: fontStyles.PoppinsRegular,
         fontSize: moderateScale(10),
     },
