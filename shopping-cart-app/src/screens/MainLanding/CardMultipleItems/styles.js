@@ -79,8 +79,8 @@ export default {
         width: '90%',
         height: '100%',
         flexDirection: 'column',
+        justifyContent:'center',
         marginLeft: '5%',
-        marginTop: '3%',
     },
     bottomTextStyle: {
         fontFamily: fontStyles.PoppinsRegular,

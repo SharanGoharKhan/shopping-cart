@@ -99,11 +99,12 @@ export default {
     botIconCartContainer: {
         width: '40%',
         height: '100%',
-        justifyContent: 'center',
+        marginTop:'3%',
+        justifyContent: 'flex-start',
         alignItems: 'flex-end',
     },
     botIconCartSubContainer: {
-        width: '60%',
-        height: '60%',
+        width: '50%',
+        height: '50%',
     },
 };
