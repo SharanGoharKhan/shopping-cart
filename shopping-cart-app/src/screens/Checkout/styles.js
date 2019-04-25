@@ -53,18 +53,18 @@ export default {
         width: '100%',
     },
     main_bot: {
-        height: '30%',
+        height: '80%',
         width: '100%',
     },
     orders: {
-        height: '40%',
+        height: '32%',
         width: '100%',
         borderBottomWidth: moderateScale(1),
         borderColor: colors.grayLinesColor,
         borderStyle: 'dashed',
     },
     items: {
-        height: moderateScale(115),
+        height: moderateScale(50),
         width: '100%',
         paddingTop: moderateScale(3),
     },
@@ -109,7 +109,7 @@ export default {
     address: {
         height: '60%',
         width: '100%',
-        paddingTop: moderateScale(20),
+        paddingTop: moderateScale(10),
     },
     addressDetail: {
         paddingTop: moderateScale(5),
@@ -121,6 +121,7 @@ export default {
         paddingBottom: moderateScale(15),
     },
     main_bot: {
+        marginTop: '-15%',
         height: '30%',
         width: '100%',
         alignItems: 'center',
