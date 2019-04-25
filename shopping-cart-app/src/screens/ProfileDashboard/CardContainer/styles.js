@@ -28,6 +28,10 @@ export default {
         width: '40%',
         height: '100%',
     },
+    imgResponsive3: {
+        width:'70%',
+        height:'70%'
+    },
     imgResponsive: {
         flex: 1,
         width: undefined,
@@ -50,8 +54,9 @@ export default {
     },
     titleContainer: {
         width: '100%',
-        height: '30%',
+        height: '33%',
         flexDirection: 'row',
+        alignItems: 'center',
         justifyContent: 'space-between',
     },
     titleStyle: {
@@ -63,12 +68,13 @@ export default {
         height: '60%',
     },
     subTitleContainer: {
+        marginTop:'-3%',
         width: '100%',
-        height: '20%',
+        height: '15%',
     },
     subTtitleStyle: {
         fontFamily: fontStyles.PoppinsRegular,
-        fontSize: moderateScale(12),
+        fontSize: moderateScale(10),
         color: '#9B9B9B',
     },
     actionsContainer: {
@@ -77,7 +83,7 @@ export default {
     },
     subActionsContainer: {
         width: '100%',
-        height: '80%',
+        height: '60%',
         flexDirection: 'row',
         justifyContent: 'space-between',
         alignItems: 'center',
