@@ -15,7 +15,7 @@ export default {
         height: '10%',
         flexDirection: 'row',
         alignItems: 'flex-end',
-        borderColor: '#707070',
+        borderColor: colors.grayLinesColor,
         borderWidth: moderateScale(1),
     },
     headerContainerText: {
