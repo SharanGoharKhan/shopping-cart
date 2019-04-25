@@ -52,10 +52,6 @@ export default {
         height: '70%',
         width: '100%',
     },
-    main_bot: {
-        height: '80%',
-        width: '100%',
-    },
     orders: {
         height: '32%',
         width: '100%',
@@ -121,8 +117,8 @@ export default {
         paddingBottom: moderateScale(15),
     },
     main_bot: {
-        marginTop: '-15%',
-        height: '30%',
+        marginTop:moderateScale(-55),
+        height: moderateScale(200),
         width: '100%',
         alignItems: 'center',
         justifyContent: 'space-evenly',
