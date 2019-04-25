@@ -14,5 +14,5 @@ export const colors = {
     // many shades of gray
     backgroudGray: '#F7F7F7',
     darkGrayText: '#9B9B9B',
-    grayLinesColor: '#DDDDDD',
+    grayLinesColor: '#EAEAEA',
 };

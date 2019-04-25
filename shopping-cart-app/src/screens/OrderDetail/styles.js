@@ -139,14 +139,14 @@ export default {
     },
     deliverContainer: {
         width: '100%',
-        height: height * 0.4,
+        height: height * 0.35,
         backgroundColor: colors.backgroudGray,
-        justifyContent: 'center',
+        justifyContent: 'center'
     },
     deliverSubContainer: {
         marginLeft: '5%',
         width: '50%',
-        height: '80%',
+        height: '90%',
     },
     titleStyle: {
         fontFamily: fontStyles.PoppinsRegular,
@@ -171,7 +171,7 @@ export default {
     },
     paymentSubContainer: {
         width: '90%',
-        height: '80%',
+        height: '70%',
     },
     twoItems: {
         flexDirection: 'row',
@@ -186,7 +186,8 @@ export default {
     },
     totalSubContainer: {
         width: '90%',
-        height: '90%',
+        height: '50%',
+        justifyContent: 'center'
     },
     trackOrderContainer: {
         width: '100%',
@@ -197,7 +198,7 @@ export default {
     },
     trackOrderSubContainer: {
         width: '90%',
-        height: '50%',
+        height: '80%',
         backgroundColor: colors.whiteColor,
         alignItems: 'center',
         justifyContent: 'center',
@@ -205,7 +206,7 @@ export default {
     },
     trackStyle: {
         width: '90%',
-        height: '60%',
+        height: '40%',
         backgroundColor: colors.lightBlueColor,
         justifyContent: 'center',
         alignItems: 'center',
