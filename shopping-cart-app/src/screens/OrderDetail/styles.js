@@ -13,7 +13,7 @@ export default {
     line: {
         width: '100%',
         height: moderateScale(1),
-        backgroundColor: colors.darkGrayText
+        backgroundColor: '#edeaea'
     },
     headerContainer: {
         width: '100%',
@@ -163,6 +163,7 @@ export default {
         fontSize: moderateScale(14),
     },
     paymentContainer: {
+        backgroundColor: colors.backgroudGray,
         width: '100%',
         height: height * 0.2,
         alignItems: 'center',
@@ -177,6 +178,7 @@ export default {
         justifyContent: 'space-between',
     },
     totalContainer: {
+        backgroundColor: colors.backgroudGray,
         width: '100%',
         height: height * 0.1,
         alignItems: 'center',
