@@ -6,6 +6,9 @@ import { fontStyles } from '../../utils/fontStyles';
 /* StyleSheet
 ============================================================================= */
 export default {
+    flex: {
+        flex: 1
+    },
     container: {
         height: '100%',
         width: '100%',

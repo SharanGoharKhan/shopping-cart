@@ -40,69 +40,72 @@ Props:
 class ShoppingCart extends React.Component {
     render() {
         return (
-            <SafeAreaView style={styles.container}>
-            <StatusBar backgroundColor="transparent" barStyle={Platform.OS == 'ios' ?  "dark-content" : "light-content"} hidden={false} translucent />
-            <View style={styles.body}>
-                  <View style={styles.header}>
-                        <Image
-                            source={require('../../assets/icons/shoppingBag.png')}
-                      style={{
-                                height: moderateScale(17),
-                                width: moderateScale(16),
-                            }}
-                    />
-                        <Text style={styles.header_text}>Shopping Cart</Text>
-                    </View>
-                    <View style={styles.main}>
-                <View style={styles.main_top}>
-                        <ScrollView style={styles.main_scroller}>
-                            {DATA.map((item, i) => (
-                                <FullCard
-                        productImage={item.image}
-                        productName={item.name}
-                        productBrand={item.brand}
-                                        productQuantity={item.quantity}
-                        productPreviousPrice={item.prev_price}
-                        productNewPrice={item.new_price}
-                        key={i}
-                      />
-                                ))}
-                          </ScrollView>
-                      </View>
-                <View style={styles.main_bot}>
-                          <View style={styles.subtotal_container}>
-                                <View style={styles.row}>
-                              <Text style={styles.text}>Sub Total</Text>
-                                    <Text style={styles.text}>149 PKR</Text>
+            <React.Fragment>
+                <SafeAreaView style={styles.flex}>
+                    <View style={styles.container}>
+                        <StatusBar backgroundColor="transparent" barStyle={Platform.OS == 'ios' ? "dark-content" : "light-content"} hidden={false} translucent />
+                        <View style={styles.body}>
+                            <View style={styles.header}>
+                                <Image
+                                    source={require('../../assets/icons/shoppingBag.png')}
+                                    style={{
+                                        height: moderateScale(17),
+                                        width: moderateScale(16),
+                                    }}
+                                />
+                                <Text style={styles.header_text}>Shopping Cart</Text>
                             </View>
-                              <View style={styles.row}>
-                                    <Text style={styles.text}>Delivery</Text>
-                                  <Text style={styles.text}>1 PKR</Text>
+                            <View style={styles.main}>
+                                <View style={styles.main_top}>
+                                    <ScrollView style={styles.main_scroller}>
+                                        {DATA.map((item, i) => (
+                                            <FullCard
+                                                productImage={item.image}
+                                                productName={item.name}
+                                                productBrand={item.brand}
+                                                productQuantity={item.quantity}
+                                                productPreviousPrice={item.prev_price}
+                                                productNewPrice={item.new_price}
+                                                key={i}
+                                            />
+                                        ))}
+                                    </ScrollView>
+                                </View>
+                                <View style={styles.main_bot}>
+                                    <View style={styles.subtotal_container}>
+                                        <View style={styles.row}>
+                                            <Text style={styles.text}>Sub Total</Text>
+                                            <Text style={styles.text}>149 PKR</Text>
+                                        </View>
+                                        <View style={styles.row}>
+                                            <Text style={styles.text}>Delivery</Text>
+                                            <Text style={styles.text}>1 PKR</Text>
+                                        </View>
+                                    </View>
+                                    <View style={styles.total_container}>
+                                        <View style={styles.row}>
+                                            <Text style={styles.text_bold}>Total</Text>
+                                            <Text style={styles.text_blue}>150 PKR</Text>
+                                        </View>
+                                    </View>
+                                    <View style={styles.submit_container}>
+                                        <BlueBtn
+                                            onPress={() => this.props.navigation.navigate('Checkout')}
+                                            text="Proceed"
+                                        />
+                                    </View>
+
                                 </View>
                             </View>
-                          <View style={styles.total_container}>
-                              <View style={styles.row}>
-                              <Text style={styles.text_bold}>Total</Text>
-                                    <Text style={styles.text_blue}>150 PKR</Text>
+                            <View style={styles.footer}>
                             </View>
-                            </View>
-                          <View style={styles.submit_container}>
-                                <BlueBtn
-                              onPress={() => this.props.navigation.navigate('Checkout')}
-                                    text="Proceed"
-                            />
-                            </View>
-
                         </View>
-              </View>
-                    <View style={styles.footer}>
-                        <BottomTab
-                            navigationObj={this.props.navigation}
-                      />
-              </View>
-                </View>
-
-          </SafeAreaView>
+                    </View>
+                </SafeAreaView>
+                <BottomTab
+                    navigationObj={this.props.navigation}
+                />
+            </React.Fragment>
         );
     }
 }

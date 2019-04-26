@@ -8,6 +8,9 @@ const { width, height } = Dimensions.get('window');
 /* StyleSheet
 ============================================================================= */
 export default {
+    flex: {
+        flex:1
+    },
     container: {
         height: '100%',
         width: '100%',
@@ -147,13 +150,5 @@ export default {
     },
     submitContainer: {
         width: '90%',
-    },
-    // footer
-    footer: {
-        height: '12%',
-        width: '120%',
-        alignSelf: 'center',
-        justifyContent: 'flex-end',
-        alignItems: 'center',
     },
 };

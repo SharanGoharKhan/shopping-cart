@@ -7,6 +7,9 @@ import { fontStyles } from '../../utils/fontStyles';
 /* StyleSheet
 ============================================================================= */
 export default {
+    flex: {
+        flex: 1
+    },
     container: {
         height: '100%',
         width: '100%',
@@ -166,7 +169,7 @@ export default {
     },
     // footer
     footer: {
-        height: '12%',
+        height: '100%',
         width: '120%',
         alignSelf: 'center',
         justifyContent: 'flex-end',

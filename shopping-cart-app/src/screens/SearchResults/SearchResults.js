@@ -78,64 +78,68 @@ class SearchResult extends React.Component {
 
     render() {
         return (
-            <SafeAreaView style={styles.container}>
-            <StatusBar backgroundColor="transparent" barStyle={Platform.OS == 'ios' ?  "dark-content" : "light-content"} hidden={false} translucent />
-            <View style={[styles.body]}>
-                  <View style={[styles.header]}>
-                        <View style={[styles.headerLeft]}>
-                            <Text style={[styles.header_text,{alignSelf:'flex-end',marginBottom:30}]}>Search  In  </Text>
-                      <Dropdown items={CATEGORIES} />
-                    </View>
-                        <TouchableOpacity onPress={() => console.log('Show modal')}>
-                            <Image
-                                style={{ height: moderateScale(32), width: moderateScale(42), marginBottom: moderateScale(5) }}
-                                source={require('../../assets/icons/header.png')}
-                          />
-                    </TouchableOpacity>
-                    </View>
-                    <View style={[styles.main]}>
-                <View style={styles.searchBarContainer}>
-                            <SearchBar placeholderText={searchedTerm} />
-                        </View>
-                <View style={styles.mainBodyContainer}>
-                            <View style={styles.mainBody}>
-                    <View style={styles.mixed_text}>
-                                  <Text style={styles.bold}>
-                                      {DATA.length}
-                                    </Text>
-                                    <Text style={styles.text}>
-                                     results found for:
-                                </Text>
-                                  <Text style={styles.bold}>
-                                  {searchedTerm}
-                                </Text>
+            <React.Fragment>
+                <SafeAreaView style={styles.flex}>
+                    <View>
+                        <StatusBar backgroundColor="transparent" barStyle={Platform.OS == 'ios' ? "dark-content" : "light-content"} hidden={false} translucent />
+                        <View style={[styles.body]}>
+                            <View style={[styles.header]}>
+                                <View style={[styles.headerLeft]}>
+                                    <Text style={[styles.header_text, { alignSelf: 'flex-end', marginBottom: 30 }]}>Search  In  </Text>
+                                    <Dropdown items={CATEGORIES} />
                                 </View>
-                                <ScrollView style={styles.main_scroller}>
-                              {DATA.map((item, i) => (
-                                        <FullCard
-                                      productImage={item.image}
-                                      productName={item.name}
-                                      productRating={item.rating}
-                                            productTotalVotes={item.totalVotes}
-                                            productBadge={item.bagde}
-                                            productPreviousPrice={item.prev_price}
-                                            productNewPrice={item.price}
-                                            key={i}
+                                <TouchableOpacity onPress={() => console.log('Show modal')}>
+                                    <Image
+                                        style={{ height: moderateScale(32), width: moderateScale(42), marginBottom: moderateScale(5) }}
+                                        source={require('../../assets/icons/header.png')}
                                     />
-                                    ))}
-                                </ScrollView>
-                  </View>
+                                </TouchableOpacity>
+                            </View>
+                            <View style={[styles.main]}>
+                                <View style={styles.searchBarContainer}>
+                                    <SearchBar placeholderText={searchedTerm} />
+                                </View>
+                                <View style={styles.mainBodyContainer}>
+                                    <View style={styles.mainBody}>
+                                        <View style={styles.mixed_text}>
+                                            <Text style={styles.bold}>
+                                                {DATA.length}
+                                            </Text>
+                                            <Text style={styles.text}>
+                                                results found for:
+                                </Text>
+                                            <Text style={styles.bold}>
+                                                {searchedTerm}
+                                            </Text>
+                                        </View>
+                                        <ScrollView style={styles.main_scroller}>
+                                            {DATA.map((item, i) => (
+                                                <FullCard
+                                                    productImage={item.image}
+                                                    productName={item.name}
+                                                    productRating={item.rating}
+                                                    productTotalVotes={item.totalVotes}
+                                                    productBadge={item.bagde}
+                                                    productPreviousPrice={item.prev_price}
+                                                    productNewPrice={item.price}
+                                                    key={i}
+                                                />
+                                            ))}
+                                        </ScrollView>
+                                    </View>
 
+                                </View>
+                            </View>
+                            <View style={styles.footer}>
+
+                            </View>
                         </View>
-              </View>
-                  <View style={styles.footer}>
-                      <BottomTab
-                          navigationObj={this.props.navigation}
-                        />
                     </View>
-                </View>
-
-          </SafeAreaView>
+                </SafeAreaView>
+                <BottomTab
+                    navigationObj={this.props.navigation}
+                />
+            </React.Fragment>
         );
     }
 }

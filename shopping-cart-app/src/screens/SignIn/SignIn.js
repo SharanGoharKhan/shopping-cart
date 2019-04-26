@@ -44,7 +44,7 @@ class SignIn extends React.Component {
     render() {
         return (
             <SafeAreaView style={styles.container}>
-                <StatusBar backgroundColor="transparent" barStyle={Platform.OS == 'ios' ?  "dark-content" : "light-content"} hidden={false} translucent />
+                <StatusBar backgroundColor="transparent" barStyle={Platform.OS == 'ios' ? "dark-content" : "light-content"} hidden={false} translucent />
                 <ForgotPassword
                     modalVisible={this.state.modalVisible}
                     hideModal={this.hideModal}

@@ -2,7 +2,7 @@ import { Dimensions } from 'react-native';
 import { moderateScale } from '../../utils/scaling';
 import { colors } from '../../utils/colors';
 import { fontStyles } from '../../utils/fontStyles';
-
+import { StatusBar } from 'react-native'
 const { height, width } = Dimensions.get('window');
 /* StyleSheet
 ============================================================================= */
@@ -11,12 +11,11 @@ export default {
         flex: 1,
     },
     headerContainer: {
+        marginTop: StatusBar.currentHeight,
         width: '100%',
-        height: height * 0.1,
+        height: height * 0.06,
         flexDirection: 'row',
-        alignItems: 'flex-end',
-        borderColor: colors.grayLinesColor,
-        borderWidth: moderateScale(1),
+        alignItems: 'flex-end'
     },
     headerContainerText: {
         marginBottom: '1%',
