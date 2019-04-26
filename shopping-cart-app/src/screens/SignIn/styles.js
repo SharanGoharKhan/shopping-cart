@@ -2,7 +2,6 @@ import { StatusBar } from 'react-native';
 import { moderateScale } from '../../utils/scaling';
 import { colors } from '../../utils/colors';
 import { fontStyles } from '../../utils/fontStyles';
-
 /* StyleSheet
 ============================================================================= */
 export default {
@@ -16,6 +15,7 @@ export default {
         backgroundColor: 'black',
     },
     body: {
+        marginTop: StatusBar.currentHeight,
         height: '95%',
         width: '95%',
         alignSelf: 'center',

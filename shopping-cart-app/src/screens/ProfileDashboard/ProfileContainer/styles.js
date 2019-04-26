@@ -1,7 +1,7 @@
 import { Dimensions } from 'react-native';
 import { moderateScale } from '../../../utils/scaling';
 import { fontStyles } from '../../../utils/fontStyles';
-
+import { StatusBar } from 'react-native';
 const { height, width } = Dimensions.get('window');
 
 /* StyleSheet
@@ -11,6 +11,7 @@ export default {
         flex: 1,
     },
     profileContainer: {
+        marginTop: StatusBar.currentHeight,
         width: '100%',
         height: '50%',
         justifyContent: 'center',

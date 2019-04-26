@@ -7,6 +7,7 @@ import { moderateScale } from '../../utils/scaling';
 import TextField from '../../ui/Textfield/Textfield';
 import MainBtn from '../../ui/Buttons/MainBtn';
 import ForgotPassword from './ForgotPassword/ForgotPassword';
+import { SafeAreaView } from 'react-navigation';
 /* Config/Constants
 ============================================================================= */
 
@@ -42,21 +43,12 @@ class SignIn extends React.Component {
 
     render() {
         return (
-            <View style={styles.container}>
-                <StatusBar backgroundColor="transparent" barStyle="light-content" hidden={false} translucent={false} />
+            <SafeAreaView style={styles.container}>
+                <StatusBar backgroundColor="transparent" barStyle={Platform.OS == 'ios' ?  "dark-content" : "light-content"} hidden={false} translucent />
                 <ForgotPassword
                     modalVisible={this.state.modalVisible}
                     hideModal={this.hideModal}
                 />
-                <View style={styles.statusBarImage}>
-                    <Image
-                        source={require('../../assets/images/statusbar.png')}
-                        style={{
-                            height: Platform.OS == 'ios' ? 20 : StatusBar.currentHeight,
-                            width: '100%',
-                        }}
-                    />
-                </View>
                 <View style={styles.body}>
                     <View style={styles.body_header}>
                         <Image
@@ -159,7 +151,7 @@ class SignIn extends React.Component {
                     </View>
                 </View>
 
-            </View>
+            </SafeAreaView>
         );
     }
 }

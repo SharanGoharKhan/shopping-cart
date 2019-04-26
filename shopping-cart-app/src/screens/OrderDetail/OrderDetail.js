@@ -4,6 +4,7 @@ import {
 } from 'react-native';
 import styles from './styles';
 import BottomTab from '../../components/BottomTab/BottomTab';
+import { SafeAreaView } from 'react-navigation';
 /* Config/Constants
 ============================================================================= */
 
@@ -19,7 +20,7 @@ Props:
 class OrderDetail extends React.Component {
     render() {
         return (
-            <View style={styles.flex}>
+            <SafeAreaView style={styles.flex}>
                 <StatusBar backgroundColor="transparent" barStyle={Platform.OS == 'ios' ? "dark-content" : "light-content"} hidden={false} translucent={false} />
                 <ScrollView>
                     <View style={styles.headerContainer}>
@@ -134,7 +135,7 @@ class OrderDetail extends React.Component {
                 <BottomTab
                     navigationObj={this.props.navigation}
                 />
-            </View>
+            </SafeAreaView>
         );
     }
 }

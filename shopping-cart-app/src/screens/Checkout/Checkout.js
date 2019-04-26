@@ -7,6 +7,7 @@ import styles from './styles';
 import { moderateScale } from '../../utils/scaling';
 import BottomTab from '../../components/BottomTab/BottomTab';
 import BlueBtn from '../../ui/Buttons/BlueBtn';
+import { SafeAreaView } from 'react-navigation';
 
 /* Config/Constants
 ============================================================================= */
@@ -47,17 +48,8 @@ PKR
 
     render() {
         return (
-            <View style={styles.container}>
-            <StatusBar backgroundColor="transparent" barStyle="light-content" hidden={false} translucent={false} />
-                <View style={styles.statusBarImage}>
-                    <Image
-                        source={require('../../assets/images/statusbar.png')}
-                        style={{
-                            height: Platform.OS =='ios' ? 20 : StatusBar.currentHeight,
-                            width: '100%',
-                        }}
-                  />
-              </View>
+            <SafeAreaView style={styles.container}>
+            <StatusBar backgroundColor="transparent" barStyle={Platform.OS == 'ios' ?  "dark-content" : "light-content"} hidden={false} translucent />
                 <View style={styles.body}>
                 <View style={styles.header}>
                       <Image
@@ -173,7 +165,7 @@ PKR
               </View>
                 </View>
 
-          </View>
+          </SafeAreaView>
         );
     }
 }

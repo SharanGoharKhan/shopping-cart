@@ -11,6 +11,7 @@ import Dropdown from '../../ui/Dropdowns/Dropdown';
 import SearchBar from '../../ui/SearchBar/SearchBar';
 import BottomTab from '../../components/BottomTab/BottomTab';
 import FullCard from './Card/FullCard';
+import { SafeAreaView } from 'react-navigation';
 
 /* Config/Constants
 ============================================================================= */
@@ -77,17 +78,8 @@ class SearchResult extends React.Component {
 
     render() {
         return (
-            <View style={styles.container}>
-            <StatusBar backgroundColor="transparent" barStyle="light-content" hidden={false} translucent={false} />
-            <View style={styles.statusBarImage}>
-                <Image
-                      source={require('../../assets/images/statusbar.png')}
-                      style={{
-                            height: Platform.OS =='ios' ? 20 : StatusBar.currentHeight,
-                            width: '100%',
-                        }}
-                    />
-              </View>
+            <SafeAreaView style={styles.container}>
+            <StatusBar backgroundColor="transparent" barStyle={Platform.OS == 'ios' ?  "dark-content" : "light-content"} hidden={false} translucent />
             <View style={[styles.body]}>
                   <View style={[styles.header]}>
                         <View style={[styles.headerLeft]}>
@@ -143,7 +135,7 @@ class SearchResult extends React.Component {
                     </View>
                 </View>
 
-          </View>
+          </SafeAreaView>
         );
     }
 }

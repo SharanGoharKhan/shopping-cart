@@ -4,7 +4,7 @@ import {
 } from 'react-native';
 import styles from './styles';
 import { moderateScale } from '../../utils/scaling';
-
+import { SafeAreaView } from 'react-navigation';
 import TextField from '../../ui/Textfield/Textfield';
 import MainBtn from '../../ui/Buttons/MainBtn';
 import AlternateBtn from '../../ui/Buttons/AlternateBtn';
@@ -22,17 +22,8 @@ Props:
 class SignUp extends React.Component {
     render() {
         return (
-            <View style={styles.container}>
-            <StatusBar backgroundColor="transparent" barStyle="light-content" hidden={false} translucent={false} />
-            <View style={styles.statusBarImage}>
-                <Image
-                        source={require('../../assets/images/statusbar.png')}
-                        style={{
-                            height: Platform.OS =='ios' ? 20 : StatusBar.currentHeight,
-                            width: '100%',
-                        }}
-                    />
-                </View>
+            <SafeAreaView style={styles.container}>
+            <StatusBar backgroundColor="transparent" barStyle={Platform.OS == 'ios' ?  "dark-content" : "light-content"} hidden={false} translucent={false} />
             <View style={styles.body}>
                     <View style={styles.header}>
                 <Text style={styles.header_text}>Sign In</Text>
@@ -80,7 +71,7 @@ class SignUp extends React.Component {
                     </View>
                 </View>
 
-          </View>
+          </SafeAreaView>
         );
     }
 }

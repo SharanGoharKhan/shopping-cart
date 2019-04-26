@@ -15,6 +15,7 @@ import { moderateScale } from '../../utils/scaling';
 import { colors } from '../../utils/colors';
 import BottomTab from '../../components/BottomTab/BottomTab';
 import CheckoutReciept from './CheckoutReciept/CheckoutReciept';
+import { SafeAreaView } from 'react-navigation';
 /* Config/Constants
 ============================================================================= */
 const DATA = [
@@ -56,22 +57,13 @@ class CheckoutPayment extends React.Component {
 
     render() {
         return (
-            <View style={styles.container}>
-                <StatusBar backgroundColor="transparent" barStyle="light-content" hidden={false} translucent={false} />
+            <SafeAreaView style={styles.container}>
+                <StatusBar backgroundColor="transparent" barStyle={Platform.OS == 'ios' ?  "dark-content" : "light-content"} hidden={false} translucent />
             <CheckoutReciept
                     navigationObj={this.props.navigation}
                     modalVisible={this.state.modalVisible}
                 hideModal={this.hideModal}
               />
-            <View style={styles.statusBarImage}>
-                <Image
-                        source={require('../../assets/images/statusbar.png')}
-                        style={{
-                            height: Platform.OS =='ios' ? 20 : StatusBar.currentHeight,
-                            width: '100%',
-                        }}
-              />
-              </View>
                 <View style={styles.body}>
                     <View style={styles.header}>
                         <Image
@@ -179,7 +171,7 @@ class CheckoutPayment extends React.Component {
               </View>
                 </View>
 
-          </View>
+          </SafeAreaView>
         );
     }
 
