@@ -22,8 +22,8 @@ export default {
         width: moderateScale(20),
         height: moderateScale(18),
         position: 'absolute',
-        top: moderateScale(30),
-        left: moderateScale(30),
+        top: '15%',
+        left: '10%',
     },
     imgResponsive: {
         flex: 1,
