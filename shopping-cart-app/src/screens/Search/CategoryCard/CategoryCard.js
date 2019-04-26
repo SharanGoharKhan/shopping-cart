@@ -11,8 +11,8 @@ Props:
   text: text content of the card
 ============================================================================= */
 const CardCategory = props => (
-    <TouchableOpacity
-        onPress={props.onPress}
+  <TouchableOpacity
+    onPress={props.onPress}
     style={[styles.container]}
   >
     <Text style={styles.text}>{props.text}</Text>

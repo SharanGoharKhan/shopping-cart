@@ -18,17 +18,17 @@ Props:
 ============================================================================= */
 const BlueBtn = props => (
   <View style={styles.backgroundColor}>
-      <TouchableOpacity
+    <TouchableOpacity
       onPress={props.onPress}
       style={styles.main_blue_btn}
     >
       <Text style={styles.btn_text}>
-                {' '}
-              {props.text}
-                {' '}
-            </Text>
+        {' '}
+        {props.text}
+        {' '}
+      </Text>
     </TouchableOpacity>
-    </View>
+  </View>
 );
 /* Export
 ============================================================================= */
