@@ -65,7 +65,8 @@ export default {
     },
     mixed_text: {
         flexDirection: 'row',
-        marginBottom: moderateScale(5),
+        justifyContent:'center',
+        marginBottom: moderateScale(20),
     },
     text: {
         fontFamily: fontStyles.PoppinsRegular,
