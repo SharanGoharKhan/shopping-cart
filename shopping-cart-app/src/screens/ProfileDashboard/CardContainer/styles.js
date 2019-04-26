@@ -70,7 +70,7 @@ export default {
     subTitleContainer: {
         marginTop:'-3%',
         width: '100%',
-        height: '15%',
+        height: '17%',
     },
     subTtitleStyle: {
         fontFamily: fontStyles.PoppinsRegular,

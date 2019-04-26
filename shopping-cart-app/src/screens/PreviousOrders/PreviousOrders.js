@@ -79,95 +79,98 @@ Props:
 class PreviousOrder extends React.Component {
     render() {
         return (
-            <SafeAreaView style={styles.flex}>
-                <StatusBar backgroundColor="transparent" barStyle={Platform.OS == 'ios' ? "dark-content" : "light-content"} hidden={false} translucent={false} />
-                <ScrollView>
-                    <View style={styles.headerContainer}>
-                        <TouchableOpacity
-                            onPress={() => this.props.navigation.goBack()}
-                            style={styles.backImg}>
-                            <Image
-                                source={require('../../assets/icons/back.png')}
-                                resizeMode="contain"
-                                style={{
-                                    width: 16,
-                                    height: 17
-                                }}
-                            />
-                        </TouchableOpacity>
-                        <Text style={styles.headerContainerText}>Previous Orders</Text>
-                    </View>
-                    <View style={styles.mainCardContainer}>
-                        {
-                            cardData.map((data, ind) => (
-                                <View key={ind}>
-                                    <View style={styles.dateContainer}>
-                                        <Text style={styles.subTtitleStyle}>
-                                            {' '}
-                                            On
+            <React.Fragment>
+                <SafeAreaView style={styles.flex}>
+                    <StatusBar backgroundColor="transparent" barStyle={Platform.OS == 'ios' ? "dark-content" : "light-content"} hidden={false} translucent={false} />
+                    <ScrollView>
+                        <View style={styles.headerContainer}>
+                            <TouchableOpacity
+                                onPress={() => this.props.navigation.goBack()}
+                                style={styles.backImg}>
+                                <Image
+                                    source={require('../../assets/icons/back.png')}
+                                    resizeMode="contain"
+                                    style={{
+                                        width: 16,
+                                        height: 17
+                                    }}
+                                />
+                            </TouchableOpacity>
+                            <Text style={styles.headerContainerText}>Previous Orders</Text>
+                        </View>
+                        <View style={styles.line}></View>
+                        <View style={styles.mainCardContainer}>
+                            {
+                                cardData.map((data, ind) => (
+                                    <View key={ind}>
+                                        <View style={styles.dateContainer}>
+                                            <Text style={styles.subTtitleStyle}>
+                                                {' '}
+                                                On
                                         {data.date}
-                                        </Text>
-                                    </View>
-                                    {
-                                        data.cards.map((card, ind) => (
-                                            <TouchableOpacity
-                                                onPress={() => this.props.navigation.navigate('OrderDetail')}
-                                                key={ind}
-                                                style={styles.cardContainer}
-                                            >
-                                                <View style={styles.leftContainer}>
-                                                    <Image
-                                                        source={card.image}
-                                                        resizeMode="cover"
-                                                        style={[styles.imgResponsive, styles.roundedBorder]}
-                                                    />
-                                                </View>
-                                                <View style={styles.rightContainer}>
-                                                    <View style={styles.subRightContainer}>
-                                                        <View style={styles.titleContainer}>
-                                                            <Text style={styles.titleStyle}>{card.title}</Text>
-                                                            <View style={styles.rightArrowContainer}>
-                                                                <Image
-                                                                    source={require('../../assets/images/ProfileDashboard/rightArrow.png')}
-                                                                    resizeMode="contain"
-                                                                    style={styles.imgResponsive}
-                                                                />
+                                            </Text>
+                                        </View>
+                                        {
+                                            data.cards.map((card, ind) => (
+                                                <TouchableOpacity
+                                                    onPress={() => this.props.navigation.navigate('OrderDetail')}
+                                                    key={ind}
+                                                    style={styles.cardContainer}
+                                                >
+                                                    <View style={styles.leftContainer}>
+                                                        <Image
+                                                            source={card.image}
+                                                            resizeMode="cover"
+                                                            style={[styles.imgResponsive, styles.roundedBorder]}
+                                                        />
+                                                    </View>
+                                                    <View style={styles.rightContainer}>
+                                                        <View style={styles.subRightContainer}>
+                                                            <View style={styles.titleContainer}>
+                                                                <Text style={styles.titleStyle}>{card.title}</Text>
+                                                                <View style={styles.rightArrowContainer}>
+                                                                    <Image
+                                                                        source={require('../../assets/images/ProfileDashboard/rightArrow.png')}
+                                                                        resizeMode="contain"
+                                                                        style={styles.imgResponsive}
+                                                                    />
+                                                                </View>
                                                             </View>
-                                                        </View>
-                                                        <View style={styles.subTitleContainer}>
-                                                            <Text style={styles.subTtitleStyle}>{card.subTitle}</Text>
-                                                        </View>
-                                                        <View style={styles.actionsContainer}>
-                                                            <View style={styles.subActionsContainer}>
-                                                                <Text style={styles.statusStyle}>{card.status}</Text>
-                                                                <TouchableOpacity style={styles.actionContainer}>
-                                                                    <Text style={styles.actionStyle}>{card.action}</Text>
-                                                                </TouchableOpacity>
+                                                            <View style={styles.subTitleContainer}>
+                                                                <Text style={styles.subTtitleStyle}>{card.subTitle}</Text>
+                                                            </View>
+                                                            <View style={styles.actionsContainer}>
+                                                                <View style={styles.subActionsContainer}>
+                                                                    <Text style={styles.statusStyle}>{card.status}</Text>
+                                                                    <TouchableOpacity style={styles.actionContainer}>
+                                                                        <Text style={styles.actionStyle}>{card.action}</Text>
+                                                                    </TouchableOpacity>
+                                                                </View>
                                                             </View>
                                                         </View>
                                                     </View>
-                                                </View>
-                                            </TouchableOpacity>
-                                        ))
-                                    }
-                                    <View style={styles.lineContainer}>
-                                        {
-                                            ind < cardData.length - 1
-                                                ? (
-                                                    <View style={styles.lineSubContainer} />
-                                                )
-                                                : null
+                                                </TouchableOpacity>
+                                            ))
                                         }
+                                        <View style={styles.lineContainer}>
+                                            {
+                                                ind < cardData.length - 1
+                                                    ? (
+                                                        <View style={styles.lineSubContainer} />
+                                                    )
+                                                    : null
+                                            }
+                                        </View>
                                     </View>
-                                </View>
-                            ))
-                        }
-                    </View>
-                </ScrollView>
+                                ))
+                            }
+                        </View>
+                    </ScrollView>
+                </SafeAreaView>
                 <BottomTab
                     navigationObj={this.props.navigation}
                 />
-            </SafeAreaView>
+            </React.Fragment>
         );
     }
 }

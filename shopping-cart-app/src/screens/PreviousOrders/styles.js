@@ -4,6 +4,7 @@ import { colors } from '../../utils/colors';
 import { fontStyles } from '../../utils/fontStyles';
 import { StatusBar } from 'react-native'
 const { height, width } = Dimensions.get('window');
+
 /* StyleSheet
 ============================================================================= */
 export default {
@@ -22,6 +23,11 @@ export default {
         marginLeft: '5%',
         fontFamily: fontStyles.PoppinsRegular,
         fontSize: moderateScale(18),
+    },
+    line: {
+        height:moderateScale(1),
+        width: width,
+        backgroundColor: '#edeaea',
     },
     backImg: {
         marginBottom: '3%',
@@ -49,9 +55,14 @@ export default {
         height: 1,
         backgroundColor: '#D8D8D8',
     },
+    scrollViewContainer: {
+        flex: 1,
+    },
+    mainCardContainer: {
+        alignItems: 'center',
+    },
     cardContainer: {
         width: '90%',
-        backgroundColor: colors.whiteColor,
         height: height * 0.14,
         marginBottom: moderateScale(4),
         marginTop: moderateScale(4),
@@ -63,6 +74,10 @@ export default {
     leftContainer: {
         width: '40%',
         height: '100%',
+    },
+    imgResponsive3: {
+        width:'70%',
+        height:'70%'
     },
     imgResponsive: {
         flex: 1,
@@ -86,8 +101,9 @@ export default {
     },
     titleContainer: {
         width: '100%',
-        height: '30%',
+        height: '33%',
         flexDirection: 'row',
+        alignItems: 'center',
         justifyContent: 'space-between',
     },
     titleStyle: {
@@ -99,12 +115,13 @@ export default {
         height: '60%',
     },
     subTitleContainer: {
+        marginTop:'-3%',
         width: '100%',
-        height: '20%',
+        height: '17%',
     },
     subTtitleStyle: {
         fontFamily: fontStyles.PoppinsRegular,
-        fontSize: moderateScale(12),
+        fontSize: moderateScale(10),
         color: '#9B9B9B',
     },
     actionsContainer: {
@@ -113,7 +130,7 @@ export default {
     },
     subActionsContainer: {
         width: '100%',
-        height: '80%',
+        height: '60%',
         flexDirection: 'row',
         justifyContent: 'space-between',
         alignItems: 'center',
