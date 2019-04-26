@@ -34,10 +34,10 @@ class FullCard extends React.Component {
 
     renderPrevousPrice(amount) {
         return (
-          <Text includeFontPadding={false} textAlignVertical="bottom" style={style = styles.prevPriceText}>
-              {amount}
-              {' '}
-PKR
+            <Text includeFontPadding={false} textAlignVertical="bottom" style={style = styles.prevPriceText}>
+                {amount}
+                {' '}
+                PKR
             </Text>
         );
     }
@@ -61,53 +61,53 @@ PKR
         return (
             <View style={styles.container}>
 
-            <View style={styles.leftside}>
+                <View style={styles.leftside}>
                     <Image
-                style={styles.thumbnail}
+                        style={styles.thumbnail}
                         resizeMode="cover"
                         source={this.props.productImage}
-              />
+                    />
                     {renderBage}
                 </View>
                 <View style={styles.rightside_container}>
-                <View style={styles.rightside}>
+                    <View style={styles.rightside}>
                         <View style={styles.rightside_top}>
                             <Text style={styles.product} numberOfLines={2}>
                                 {this.props.productName}
-                          </Text>
-                    <View style={styles.ratingContainer}>
+                            </Text>
+                            <View style={styles.ratingContainer}>
                                 <Rating
                                     isDisabled
                                     ratingCount={5}
                                     startingValue={this.props.productRating}
-                                imageSize={moderateScale(11)}
-                              />
-                            <Text style={styles.votesCount}>
-                                  {this.props.productTotalVotes}
+                                    imageSize={moderateScale(14)}
+                                />
+                                <Text style={styles.votesCount}>
+                                    {this.props.productTotalVotes}
                                 </Text>
-                          </View>
+                            </View>
 
-                  </View>
-                      <View style={styles.rightside_bot}>
-                          {renderPreviousAmount}
+                        </View>
+                        <View style={styles.rightside_bot}>
+                            {renderPreviousAmount}
                             <View style={styles.special_row}>
                                 <Text style={styles.amount}>
                                     {this.props.productNewPrice}
-                                {' '}
-PKR
+                                    {' '}
+                                    PKR
                               </Text>
                                 <TouchableOpacity onPress={() => { console.log('Go to Cart'); }}>
                                     <Image
-                                    style={{ width: moderateScale(16), height: moderateScale(16) }}
+                                        style={{ width: moderateScale(16), height: moderateScale(16) }}
                                         source={require('../../../assets/icons/shopcart.png')}
-                                  />
-                              </TouchableOpacity>
-                        </View>
+                                    />
+                                </TouchableOpacity>
+                            </View>
                         </View>
 
                     </View>
-              </View>
-          </View>
+                </View>
+            </View>
         );
     }
 }
