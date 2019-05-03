@@ -111,6 +111,5 @@ class FullCard extends React.Component {
         );
     }
 }
-/* Export
-============================================================================= */
+
 export default FullCard;

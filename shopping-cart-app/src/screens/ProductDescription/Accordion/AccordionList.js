@@ -4,23 +4,11 @@ import Collapse from './Collapse';
 import CollapseBody from './CollapseBody';
 import CollapseHeader from './CollapseHeader';
 
-/* Config/Constants
-============================================================================= */
-
-
-/* =============================================================================
-<AccordianList />
---------------------------------------------------------------------------------
-
-Props:
-  ?
-
-============================================================================= */
 type Props = {
-    List:Array,
-    header:Function,
-    body:Function,
-    onToggle:Function
+    List: Array,
+    header: Function,
+    body: Function,
+    onToggle: Function
 };
 export default class AccordionList extends Component<Props> {
     constructor(props) {
@@ -52,13 +40,13 @@ export default class AccordionList extends Component<Props> {
 
     _renderItem = ({ item, index }) => (
         <Collapse key={index} isCollapsed={this.state.selectedIndex === index} onToggle={isCollapsed => this.onToggle(index)}>
-        <CollapseHeader>
+            <CollapseHeader>
                 {this.props.header(item)}
-          </CollapseHeader>
+            </CollapseHeader>
             <CollapseBody>
                 {this.props.body(item)}
-          </CollapseBody>
-      </Collapse>
+            </CollapseBody>
+        </Collapse>
     );
 
     render() {

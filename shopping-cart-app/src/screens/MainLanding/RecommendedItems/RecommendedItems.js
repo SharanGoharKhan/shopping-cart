@@ -4,8 +4,6 @@ import {
 } from 'react-native';
 import styles from './styles';
 
-/* Config/Constants
-============================================================================= */
 const itemData = [
     {
         title: 'EQ | Custom Leather',
@@ -26,68 +24,56 @@ const itemData = [
         image: require('../../../assets/images/MainLanding/recommended-2.png'),
     },
 ];
-/* =============================================================================
-<recommendedItems />
---------------------------------------------------------------------------------
-
-Props:
-    ?
-============================================================================= */
 
 const recommendedItems = props => (
 
     <View style={styles.popularItemsContainer}>
         <View style={styles.popularItemsContainerText}>
-        <Text style={styles.popularItemsContainerTextStyle}>Recommended for you</Text>
-      </View>
-    <View style={styles.scrollViewContainer}>
+            <Text style={styles.popularItemsContainerTextStyle}>Recommended for you</Text>
+        </View>
+        <View style={styles.scrollViewContainer}>
             <ScrollView horizontal showsHorizontalScrollIndicator={false}>
                 {
                     itemData.map((item, ind) => (
                         <TouchableOpacity
-                        onPress={() => props.navigationObj.navigate('ProductListing')}
+                            onPress={() => props.navigationObj.navigate('ProductListing')}
                             key={ind} style={styles.cardContainer}
-                      >
-                        <View style={styles.topCardContainer}>
-                              <View style={styles.cardImageContainer}>
-                                  <Image
-                                  source={item.image}
-                                  resizeMode="cover"
-                                  style={styles.imgResponsive}
-                                />
+                        >
+                            <View style={styles.topCardContainer}>
+                                <View style={styles.cardImageContainer}>
+                                    <Image
+                                        source={item.image}
+                                        resizeMode="cover"
+                                        style={styles.imgResponsive}
+                                    />
                                 </View>
                             </View>
                             <View style={styles.botCardContainer}>
                                 <View style={styles.botSubCardContainer}>
-                                <Text style={styles.botCardTextStyle}>{item.title}</Text>
-                                <Text style={styles.botCardTextStyle}>{item.category}</Text>
-                                <View style={styles.botIconContainer}>
-                                      <View style={styles.botPriceContainer}>
-                                            <Text style={styles.botPriceStyle}>
-                                          {item.price}
-                                                {' '}
-PKR
-                                        </Text>
+                                    <Text style={styles.botCardTextStyle}>{item.title}</Text>
+                                    <Text style={styles.botCardTextStyle}>{item.category}</Text>
+                                    <View style={styles.botIconContainer}>
+                                        <View style={styles.botPriceContainer}>
+                                            <Text style={styles.botPriceStyle}>{item.price}{' '}PKR</Text>
                                         </View>
                                         <View style={styles.botIconCartContainer}>
-                                <View style={styles.botIconCartSubContainer}>
+                                            <View style={styles.botIconCartSubContainer}>
                                                 <Image
-                                              source={require('../../../assets/images/MainLanding/shopping_cart.png')}
-                                              resizeMode="contain"
-                                              style={styles.imgResponsive}
-                                            />
+                                                    source={require('../../../assets/images/MainLanding/shopping_cart.png')}
+                                                    resizeMode="contain"
+                                                    style={styles.imgResponsive}
+                                                />
                                             </View>
-                              </View>
+                                        </View>
                                     </View>
-                              </View>
-                          </View>
-                      </TouchableOpacity>
+                                </View>
+                            </View>
+                        </TouchableOpacity>
                     ))
                 }
-      </ScrollView>
-      </View>
-  </View>
+            </ScrollView>
+        </View>
+    </View>
 );
-/* Export
-============================================================================= */
+
 export default recommendedItems;

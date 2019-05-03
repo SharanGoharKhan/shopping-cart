@@ -5,19 +5,6 @@ import {
 import styles from './styles';
 import { colors } from '../../utils/colors';
 
-
-/* Config/Constants
-============================================================================= */
-
-
-/* =============================================================================
-<SearchBar />
---------------------------------------------------------------------------------
-
-Props:
-  ?
-    placeholderText: text for placeholder
-============================================================================= */
 class SearchBar extends React.Component {
     constructor(props) {
         super(props);
@@ -41,6 +28,5 @@ class SearchBar extends React.Component {
         );
     }
 }
-/* Export
-============================================================================= */
+
 export default SearchBar;

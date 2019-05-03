@@ -2,7 +2,6 @@ import { moderateScale } from '../../../utils/scaling';
 import { colors } from '../../../utils/colors';
 import { fontStyles } from '../../../utils/fontStyles';
 
-
 // We can use Dimensions module and use percentage from it as well; a decent usecase
 export default {
     container: {

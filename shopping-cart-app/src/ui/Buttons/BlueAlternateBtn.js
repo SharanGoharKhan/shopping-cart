@@ -17,6 +17,7 @@ Props:
   text: send the Text for button,
   containerStyle: override styles of the container
 ============================================================================= */
+
 const BlueBtn = props => (
   <View style={[styles.backgroundColor, props.containerStyles]}>
     <TouchableOpacity
@@ -31,6 +32,5 @@ const BlueBtn = props => (
     </TouchableOpacity>
   </View>
 );
-/* Export
-============================================================================= */
+
 export default BlueBtn;

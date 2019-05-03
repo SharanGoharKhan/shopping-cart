@@ -1,6 +1,6 @@
 import React from 'react';
 import {
-    View, Text, Image, StatusBar, ImageBackground, Platform
+    View, Text, StatusBar, ImageBackground
 } from 'react-native';
 import styles from './styles';
 import { moderateScale } from '../../utils/scaling';
@@ -8,22 +8,12 @@ import { SafeAreaView } from 'react-navigation';
 import TextField from '../../ui/Textfield/Textfield';
 import MainBtn from '../../ui/Buttons/MainBtn';
 import AlternateBtn from '../../ui/Buttons/AlternateBtn';
-/* Config/Constants
-============================================================================= */
 
-/* =============================================================================
-<SignUp />
---------------------------------------------------------------------------------
-
-Props:
-  ?
-
-============================================================================= */
 class SignUp extends React.Component {
     render() {
         return (
             <SafeAreaView style={styles.container}>
-                <StatusBar backgroundColor="transparent" barStyle={Platform.OS == 'ios' ? "dark-content" : "light-content"} hidden={false} translucent={false} />
+                <StatusBar backgroundColor="transparent" barStyle="dark-content" hidden={false} translucent={false} />
                 <View style={styles.body}>
                     <View style={styles.header}>
                         <Text style={styles.header_text}>Sign In</Text>
@@ -75,6 +65,5 @@ class SignUp extends React.Component {
         );
     }
 }
-/* Export
-============================================================================= */
+
 export default SignUp;

@@ -4,8 +4,6 @@ import { fontStyles } from '../../../utils/fontStyles';
 
 const { height, width } = Dimensions.get('window');
 
-/* StyleSheet
-============================================================================= */
 export default {
     popularItemsContainer: {
         width: '95%',
@@ -99,7 +97,7 @@ export default {
     botIconCartContainer: {
         width: '40%',
         height: '100%',
-        marginTop:'3%',
+        marginTop: '3%',
         justifyContent: 'flex-start',
         alignItems: 'flex-end',
     },

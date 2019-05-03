@@ -3,8 +3,7 @@ import { moderateScale } from '../../utils/scaling';
 import { fontStyles } from '../../utils/fontStyles';
 
 const { height, width } = Dimensions.get('window');
-/* StyleSheet
-============================================================================= */
+
 export default {
     footerContainer: {
         width,

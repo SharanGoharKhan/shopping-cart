@@ -3,8 +3,7 @@ import { moderateScale } from '../../utils/scaling';
 import { colors } from '../../utils/colors';
 import { fontStyles } from '../../utils/fontStyles';
 import { Platform } from 'react-native'
-/* StyleSheet
-============================================================================= */
+
 export default {
     flex: {
         flex: 1,

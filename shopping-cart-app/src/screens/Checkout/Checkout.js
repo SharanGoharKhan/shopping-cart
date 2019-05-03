@@ -16,33 +16,20 @@ const DATA = [
     { name: 'Ves Bread Storage', amount: 1, price: 35 },
 ];
 
-/* =============================================================================
-<Checkout />
---------------------------------------------------------------------------------
-
-Props:
-  ?
-
-============================================================================= */
 class Checkout extends React.Component {
     renderItem(item, index) {
         return (
             <View key={index} style={styles.listItem}>
                 <View style={styles.simpleRow}>
                     <Text style={styles.itemBoldText}>
-                        {item.amount}
-                        x
-                {' '}
+                        {item.amount}x{' '}
                     </Text>
                     <Text style={styles.itemBoldText}>{item.name}</Text>
                 </View>
                 <Text style={styles.itemBlueText}>
-                    {item.price}
-                    {' '}
-                    PKR
+                    {item.price}{' '}PKR
                 </Text>
             </View>
-
         );
     }
 
@@ -51,7 +38,7 @@ class Checkout extends React.Component {
             <React.Fragment>
                 <SafeAreaView style={styles.flex}>
                     <View style={styles.container}>
-                        <StatusBar backgroundColor="transparent" barStyle={Platform.OS == 'ios' ? "dark-content" : "light-content"} hidden={false} translucent />
+                        <StatusBar backgroundColor="transparent" barStyle="dark-content" hidden={false} translucent />
                         <View style={styles.body}>
                             <View style={styles.header}>
                                 <Image
@@ -69,7 +56,7 @@ class Checkout extends React.Component {
                                         <View style={styles.row}>
                                             <Text style={styles.goldenText}>
                                                 My Orders
-                                    </Text>
+                                            </Text>
                                             <TouchableOpacity onPress={() => console.log('Pressed Edit')}>
                                                 <Image
                                                     source={require('../../assets/icons/edit.png')}
@@ -79,7 +66,6 @@ class Checkout extends React.Component {
                                                     }}
                                                 />
                                             </TouchableOpacity>
-
                                         </View>
                                         <View style={[styles.simpleRow, styles.padding]}>
                                             <Image
@@ -91,7 +77,7 @@ class Checkout extends React.Component {
                                             />
                                             <Text style={styles.deliveryDate}>
                                                 Delivery Date: 2/10/2019
-                      </Text>
+                                            </Text>
                                         </View>
                                         <View style={styles.items}>
                                             <ScrollView>
@@ -103,17 +89,17 @@ class Checkout extends React.Component {
                                     <View style={styles.address}>
                                         <Text style={styles.goldenText}>
                                             Deliver to
-                              </Text>
+                                        </Text>
                                         <View style={styles.addressDetail}>
                                             <Text style={styles.addressSmallText}>
                                                 Sharan Khan
-                                    </Text>
+                                            </Text>
                                             <Text style={styles.addressSmallText}>
                                                 sharan.gohar@gmail.com
-                                    </Text>
+                                            </Text>
                                             <Text style={styles.addressSmallText}>
                                                 +92 3339461270
-                                  </Text>
+                                            </Text>
                                         </View>
                                         <View style={styles.borderBottom}>
                                             <View style={styles.row}>
@@ -173,6 +159,5 @@ class Checkout extends React.Component {
         );
     }
 }
-/* Export
-============================================================================= */
+
 export default Checkout;

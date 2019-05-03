@@ -3,14 +3,7 @@ import {
   Text, TouchableOpacity, View, Image, ImageBackground,
 } from 'react-native';
 import styles from './styles';
-/* =============================================================================
-<profileContainer />
---------------------------------------------------------------------------------
 
-Props:
-  ?
-
-============================================================================= */
 const profileContainer = props => (
   <View style={styles.profileContainer}>
     <View style={styles.profileSubContainer}>
@@ -92,6 +85,5 @@ const profileContainer = props => (
     </View>
   </View>
 );
-/* Export
-============================================================================= */
+
 export default profileContainer;

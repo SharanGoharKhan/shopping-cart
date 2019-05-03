@@ -4,18 +4,7 @@ import {
 } from 'react-native';
 import styles from './styles';
 import BottomTab from '../../components/BottomTab/BottomTab';
-/* Config/Constants
-============================================================================= */
 
-
-/* =============================================================================
-<EditingAddress />
---------------------------------------------------------------------------------
-
-Props:
-  ?
-
-============================================================================= */
 class EditingAddress extends React.Component {
     render() {
         return (
@@ -183,6 +172,5 @@ class EditingAddress extends React.Component {
         );
     }
 }
-/* Export
-============================================================================= */
+
 export default EditingAddress;

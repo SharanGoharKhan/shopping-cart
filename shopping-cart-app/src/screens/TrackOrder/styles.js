@@ -4,8 +4,7 @@ import { colors } from '../../utils/colors';
 import { fontStyles } from '../../utils/fontStyles';
 
 const { height, width } = Dimensions.get('window');
-/* StyleSheet
-============================================================================= */
+
 export default {
     flex: {
         flex: 1,

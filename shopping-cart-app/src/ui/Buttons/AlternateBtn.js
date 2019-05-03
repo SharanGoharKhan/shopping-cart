@@ -1,7 +1,7 @@
 import React from 'react';
 import { View, TouchableOpacity, Text } from 'react-native';
-
 import { alternateBtn as styles } from './styles';
+
 /* Config/Constants
 ============================================================================= */
 
@@ -29,6 +29,5 @@ const MainBtn = props => (
     </TouchableOpacity>
   </View>
 );
-/* Export
-============================================================================= */
+
 export default MainBtn;

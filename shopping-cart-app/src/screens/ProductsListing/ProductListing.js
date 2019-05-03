@@ -1,33 +1,22 @@
 import React from 'react';
 import {
-    View, Text, ScrollView, Image, TouchableOpacity, Platform, StatusBar
+    View, Text, ScrollView, Image, TouchableOpacity, StatusBar
 } from 'react-native';
 import styles from './styles';
 import CardItem from './CardItem/CardItem';
 import BottomTab from '../../components/BottomTab/BottomTab';
-/* Config/Constants
-============================================================================= */
 
-
-/* =============================================================================
-<ProductListing />
---------------------------------------------------------------------------------
-
-Props:
-  ?
-
-============================================================================= */
 class ProductListing extends React.Component {
     render() {
         return (
             <View style={styles.flex}>
-                <StatusBar backgroundColor="transparent" barStyle={Platform.OS == 'ios' ? "dark-content" : "light-content"} hidden={false} translucent={false} />
+                <StatusBar backgroundColor="transparent" barStyle="dark-content" hidden={false} translucent={false} />
                 <View style={styles.headerContainer}>
                     <View style={styles.headerSubContainer}>
                         <View style={styles.backCnt}>
                             <TouchableOpacity
-                            onPress={()=> this.props.navigation.goBack()} 
-                            style={styles.backImg}>
+                                onPress={() => this.props.navigation.goBack()}
+                                style={styles.backImg}>
                                 <Image
                                     source={require('../../assets/icons/back.png')}
                                     resizeMode="contain"
@@ -75,6 +64,5 @@ class ProductListing extends React.Component {
         );
     }
 }
-/* Export
-============================================================================= */
+
 export default ProductListing;

@@ -5,6 +5,7 @@ import {
 import styles from './styles';
 import BottomTab from '../../components/BottomTab/BottomTab';
 import { SafeAreaView } from 'react-navigation';
+
 /* Config/Constants
 ============================================================================= */
 const cardData = [
@@ -67,38 +68,29 @@ const cardData = [
     },
 ];
 
-
-/* =============================================================================
-<PreviousOrder />
---------------------------------------------------------------------------------
-
-Props:
-  ?
-
-============================================================================= */
 class PreviousOrder extends React.Component {
     render() {
         return (
             <React.Fragment>
                 <SafeAreaView style={styles.flex}>
-                    <StatusBar backgroundColor="transparent" barStyle={Platform.OS == 'ios' ? "dark-content" : "light-content"} hidden={false} translucent={false} />
+                    <StatusBar backgroundColor="transparent" barStyle="dark-content" hidden={false} translucent={false} />
+                    <View style={styles.headerContainer}>
+                        <TouchableOpacity
+                            onPress={() => this.props.navigation.goBack()}
+                            style={styles.backImg}>
+                            <Image
+                                source={require('../../assets/icons/back.png')}
+                                resizeMode="contain"
+                                style={{
+                                    width: 16,
+                                    height: 17
+                                }}
+                            />
+                        </TouchableOpacity>
+                        <Text style={styles.headerContainerText}>Previous Orders</Text>
+                    </View>
+                    <View style={styles.line}></View>
                     <ScrollView>
-                        <View style={styles.headerContainer}>
-                            <TouchableOpacity
-                                onPress={() => this.props.navigation.goBack()}
-                                style={styles.backImg}>
-                                <Image
-                                    source={require('../../assets/icons/back.png')}
-                                    resizeMode="contain"
-                                    style={{
-                                        width: 16,
-                                        height: 17
-                                    }}
-                                />
-                            </TouchableOpacity>
-                            <Text style={styles.headerContainerText}>Previous Orders</Text>
-                        </View>
-                        <View style={styles.line}></View>
                         <View style={styles.mainCardContainer}>
                             {
                                 cardData.map((data, ind) => (
@@ -174,6 +166,5 @@ class PreviousOrder extends React.Component {
         );
     }
 }
-/* Export
-============================================================================= */
+
 export default PreviousOrder;

@@ -1,30 +1,19 @@
 import React from 'react';
 import {
-  View, Text, Image, TouchableOpacity, StatusBar, Platform
+  View, Text, TouchableOpacity, StatusBar
 } from 'react-native';
 import styles from './styles';
 import ProfileContainer from './ProfileContainer/ProfileContainer';
 import BottomTab from '../../components/BottomTab/BottomTab';
 import CardContainer from './CardContainer/CardContainer';
 import { SafeAreaView } from 'react-navigation';
-/* Config/Constants
-============================================================================= */
 
-
-/* =============================================================================
-<ProfileDashboard />
---------------------------------------------------------------------------------
-
-Props:
-  ?
-
-============================================================================= */
 class ProfileDashboard extends React.Component {
   render() {
     return (
       <React.Fragment>
         <SafeAreaView style={styles.flex}>
-          <StatusBar backgroundColor="transparent" barStyle={Platform.OS == 'ios' ? "dark-content" : "light-content"} hidden={false} translucent />
+          <StatusBar backgroundColor="transparent" barStyle="dark-content" hidden={false} translucent />
           <ProfileContainer
             navigationObj={this.props.navigation}
           />
@@ -49,6 +38,5 @@ class ProfileDashboard extends React.Component {
     );
   }
 }
-/* Export
-============================================================================= */
+
 export default ProfileDashboard;

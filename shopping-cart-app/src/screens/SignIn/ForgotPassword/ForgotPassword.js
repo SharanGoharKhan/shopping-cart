@@ -4,16 +4,7 @@ import {
 } from 'react-native';
 import Modal from 'react-native-modal';
 import styles from './styles';
-/* Config/Constants
-============================================================================= */
 
-/* =============================================================================
-<ForgotPassword />
---------------------------------------------------------------------------------
-
-Props:
-  ?
-============================================================================= */
 class ForgotPassword extends React.Component {
     render() {
         return (
@@ -49,6 +40,5 @@ class ForgotPassword extends React.Component {
         );
     }
 }
-/* Export
-============================================================================= */
+
 export default ForgotPassword;

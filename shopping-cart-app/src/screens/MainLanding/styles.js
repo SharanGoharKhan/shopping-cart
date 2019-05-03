@@ -2,16 +2,19 @@ import { Dimensions } from 'react-native';
 import { moderateScale } from '../../utils/scaling';
 import { colors } from '../../utils/colors';
 import { fontStyles } from '../../utils/fontStyles';
-
 const { height, width } = Dimensions.get('window');
-/* StyleSheet
-============================================================================= */
+
 export default {
     flex: {
         flex: 1,
     },
     scrollViewStyle: {
+        marginTop: moderateScale(20),
         backgroundColor: colors.backgroudGray,
+    },
+    grayBackground: {
+        backgroundColor: colors.backgroudGray,
+        flex: 1
     },
     caroselContainer: {
         width: '100%',

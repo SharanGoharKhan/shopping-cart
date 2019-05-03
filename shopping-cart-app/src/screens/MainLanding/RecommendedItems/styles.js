@@ -4,8 +4,6 @@ import { fontStyles } from '../../../utils/fontStyles';
 
 const { height, width } = Dimensions.get('window');
 
-/* StyleSheet
-============================================================================= */
 export default {
     popularItemsContainer: {
         width: '95%',

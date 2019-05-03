@@ -5,23 +5,12 @@ import {
 import styles from './styles';
 import BottomTab from '../../components/BottomTab/BottomTab';
 import { moderateScale } from '../../utils/scaling';
-/* Config/Constants
-============================================================================= */
 
-
-/* =============================================================================
-<EditingProfile />
---------------------------------------------------------------------------------
-
-Props:
-  ?
-
-============================================================================= */
 class EditingProfile extends React.Component {
     render() {
         return (
             <View style={styles.flex}>
-                <StatusBar backgroundColor="transparent" barStyle={Platform.OS == 'ios' ? "dark-content" : "light-content"} hidden={false} translucent={false} />
+                <StatusBar backgroundColor="transparent" barStyle="dark-content" hidden={false} translucent={false} />
                 <View style={styles.headerContainer}>
                     <TouchableOpacity
                         onPress={() => this.props.navigation.goBack()}
@@ -141,6 +130,5 @@ class EditingProfile extends React.Component {
         );
     }
 }
-/* Export
-============================================================================= */
+
 export default EditingProfile;

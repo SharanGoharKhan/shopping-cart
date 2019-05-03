@@ -8,6 +8,7 @@ import { SafeAreaView } from 'react-navigation';
 import BlueBtn from '../../ui/Buttons/BlueBtn';
 import FullCard from '../../ui/Cards/FullCard/FullCard';
 import BottomTab from '../../components/BottomTab/BottomTab';
+
 /* Config/Constants
 ============================================================================= */
 const DATA = [
@@ -29,21 +30,13 @@ const DATA = [
     },
 ];
 
-/* =============================================================================
-<ShoppingCart />
---------------------------------------------------------------------------------
-
-Props:
-  ?
-
-============================================================================= */
 class ShoppingCart extends React.Component {
     render() {
         return (
             <React.Fragment>
                 <SafeAreaView style={styles.flex}>
                     <View style={styles.container}>
-                        <StatusBar backgroundColor="transparent" barStyle={Platform.OS == 'ios' ? "dark-content" : "light-content"} hidden={false} translucent />
+                        <StatusBar backgroundColor="transparent" barStyle="dark-content" hidden={false} translucent />
                         <View style={styles.body}>
                             <View style={styles.header}>
                                 <Image
@@ -109,6 +102,4 @@ class ShoppingCart extends React.Component {
         );
     }
 }
-/* Export
-============================================================================= */
 export default ShoppingCart;

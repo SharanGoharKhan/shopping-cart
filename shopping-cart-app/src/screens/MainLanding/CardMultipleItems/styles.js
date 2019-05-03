@@ -1,11 +1,8 @@
 import { Dimensions } from 'react-native';
 import { moderateScale } from '../../../utils/scaling';
 import { fontStyles } from '../../../utils/fontStyles';
-
 const { height, width } = Dimensions.get('window');
 
-/* StyleSheet
-============================================================================= */
 export default {
     cardItemsContainer: {
         width: '95%',

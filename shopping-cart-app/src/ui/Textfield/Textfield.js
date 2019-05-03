@@ -18,6 +18,7 @@ Props:
   placeHolderColor: sent the Color for placeholder
   containerStyle: allows user to override the container style
 ============================================================================= */
+
 const TextField = (props) => {
     const placeholderColor = props.placeholderColor ? props.placeholderColor : colors.primaryBlackColor;
     return (

@@ -29,11 +29,11 @@ class FullCard extends React.Component {
         return (
             <View style={styles.prevPrice}>
                 <Text style={style = styles.prevPriceText}>
-                {amount}
+                    {amount}
                     {' '}
-PKR
+                    PKR
               </Text>
-          </View>
+            </View>
         );
     }
 
@@ -46,48 +46,47 @@ PKR
         return (
             <View style={styles.container}>
                 <View style={styles.leftside}>
-                <Image
-                      style={styles.thumbnail}
-                      resizeMode="cover"
-                      source={this.props.productImage}
+                    <Image
+                        style={styles.thumbnail}
+                        resizeMode="cover"
+                        source={this.props.productImage}
                     />
-              </View>
-            <View style={styles.rightside_container}>
-                <View style={styles.rightside}>
-                      <View style={styles.rightside_top}>
-                          <Text style={styles.product} numberOfLines={1}>{this.props.productName}</Text>
-                          <View style={styles.row}>
+                </View>
+                <View style={styles.rightside_container}>
+                    <View style={styles.rightside}>
+                        <View style={styles.rightside_top}>
+                            <Text style={styles.product} numberOfLines={1}>{this.props.productName}</Text>
+                            <View style={styles.row}>
                                 <Text style={styles.by}>By </Text>
                                 <Text style={styles.brand} numberOfLines={1}>
-                        {this.props.productBrand}
+                                    {this.props.productBrand}
                                     {' '}
-                      </Text>
-                  </View>
+                                </Text>
+                            </View>
                         </View>
-                      <View style={styles.rightside_bot}>
+                        <View style={styles.rightside_bot}>
                             {renderPreviousAmount}
-                          <View style={styles.special_row}>
-                              <Text style={styles.qty}>
-                                  {' '}
-x
+                            <View style={styles.special_row}>
+                                <Text style={styles.qty}>
+                                    {' '}
+                                    x
                                   {this.props.productQuantity}
                                     {' '}
                                 </Text>
                                 <Text style={styles.amount}>
-                        {' '}
-                        {this.props.productNewPrice}
                                     {' '}
-PKR
+                                    {this.props.productNewPrice}
+                                    {' '}
+                                    PKR
                       </Text>
                             </View>
                         </View>
 
                     </View>
-              </View>
-          </View>
+                </View>
+            </View>
         );
     }
 }
-/* Export
-============================================================================= */
+
 export default FullCard;

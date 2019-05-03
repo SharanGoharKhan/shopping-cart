@@ -1,9 +1,6 @@
 import { Dimensions } from 'react-native';
-
 const { height, width } = Dimensions.get('window');
 
-/* StyleSheet
-============================================================================= */
 export default {
     container: {
         flexDirection: 'column',

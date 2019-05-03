@@ -5,6 +5,7 @@ import {
 import Timeline from 'react-native-timeline-listview';
 import styles from './styles';
 import BottomTab from '../../components/BottomTab/BottomTab';
+
 /* Config/Constants
 ============================================================================= */
 
@@ -26,19 +27,11 @@ const data = [
     },
 ];
 
-/* =============================================================================
-<TrackOrder />
---------------------------------------------------------------------------------
-
-Props:
-  ?
-
-============================================================================= */
 class TrackOrder extends React.Component {
     render() {
         return (
             <View style={styles.flex}>
-                <StatusBar backgroundColor="transparent" barStyle={Platform.OS == 'ios' ? "dark-content" : "light-content"} hidden={false} translucent={false} />
+                <StatusBar backgroundColor="transparent" barStyle="dark-content" hidden={false} translucent={false} />
                 <ScrollView>
                     <View style={styles.line}></View>
                     <View style={styles.headerContainer}>
@@ -118,6 +111,5 @@ class TrackOrder extends React.Component {
         );
     }
 }
-/* Export
-============================================================================= */
+
 export default TrackOrder;

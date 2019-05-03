@@ -5,13 +5,11 @@ import styles from './styles';
 /* Config/Constants
 ============================================================================= */
 const images = {
-    carosel_img_1: require('../../../assets/images/MainLanding/recommend-1.png'),
+    carosel_img_1: require('../../../assets/images/MainLanding/banner-1.png'),
     carosel_img_2: require('../../../assets/images/MainLanding/recommended-2.png'),
     carosel_img_3: require('../../../assets/images/MainLanding/carosel_img_3.png'),
 };
 /* =============================================================================
-<CarouselItem />
---------------------------------------------------------------------------------
 
 Props:
   page: String -- Number to identify which image should be shown
@@ -31,11 +29,11 @@ class CarouselItem extends Component {
         }
     }
 
-    render=() => (
-      <View style={[styles.container]}>
-          <ImageBackground
-              source={this.img}
-              style={styles.image}
+    render = () => (
+        <View style={[styles.container]}>
+            <ImageBackground
+                source={this.img}
+                style={styles.image}
             />
         </View>
     )

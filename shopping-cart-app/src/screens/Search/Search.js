@@ -1,26 +1,13 @@
 import React from 'react';
-import { View, Text, Image, Platform } from 'react-native';
+import { View, Text } from 'react-native';
 import { StatusBar } from 'react-native';
 import styles from './styles';
-
 import Dropdown from '../../ui/Dropdowns/Dropdown';
 import SearchBar from '../../ui/SearchBar/SearchBar';
 import CategoryCard from './CategoryCard/CategoryCard';
 import BottomTab from '../../components/BottomTab/BottomTab';
 import { SafeAreaView } from 'react-navigation';
 
-/* Config/Constants
-============================================================================= */
-
-
-/* =============================================================================
-<Search />
---------------------------------------------------------------------------------
-
-Props:
-  ?
-
-============================================================================= */
 
 const CATEGORIES = [
     {
@@ -51,7 +38,7 @@ class Search extends React.Component {
             <React.Fragment>
                 <SafeAreaView style={styles.flex}>
                     <View style={styles.container}>
-                        <StatusBar backgroundColor="transparent" barStyle={Platform.OS == 'ios' ? "dark-content" : "light-content"} hidden={false} translucent />
+                        <StatusBar backgroundColor="transparent" barStyle="dark-content" hidden={false} translucent />
                         <View style={[styles.body]}>
                             <View style={[styles.header]}>
                                 <Text style={styles.header_text}>Search  In  </Text>
@@ -113,6 +100,5 @@ class Search extends React.Component {
         );
     }
 }
-/* Export
-============================================================================= */
+
 export default Search;

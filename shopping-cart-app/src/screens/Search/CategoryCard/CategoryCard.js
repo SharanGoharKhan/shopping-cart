@@ -1,15 +1,7 @@
 import React from 'react';
 import { Text, TouchableOpacity } from 'react-native';
-
 import styles from './styles';
-/* =============================================================================
-<CardCategory />
---------------------------------------------------------------------------------
 
-Props:
-  ?
-  text: text content of the card
-============================================================================= */
 const CardCategory = props => (
   <TouchableOpacity
     onPress={props.onPress}
@@ -18,6 +10,5 @@ const CardCategory = props => (
     <Text style={styles.text}>{props.text}</Text>
   </TouchableOpacity>
 );
-/* Export
-============================================================================= */
+
 export default CardCategory;

@@ -16,6 +16,7 @@ Props:
   onPress Event: send the function to be called for onPress event
   text: send the Text for button
 ============================================================================= */
+
 const BlueBtn = props => (
   <View style={styles.backgroundColor}>
     <TouchableOpacity
@@ -30,6 +31,5 @@ const BlueBtn = props => (
     </TouchableOpacity>
   </View>
 );
-/* Export
-============================================================================= */
+
 export default BlueBtn;

@@ -48,14 +48,6 @@ const FORMS = [
 
 ];
 
-/* =============================================================================
-<ProductDescription />
---------------------------------------------------------------------------------
-
-Props:
-  ?
-
-============================================================================= */
 class ProductDescription extends React.Component {
     constructor(props) {
         super(props);
@@ -239,6 +231,5 @@ class ProductDescription extends React.Component {
         );
     }
 }
-/* Export
-============================================================================= */
+
 export default ProductDescription;

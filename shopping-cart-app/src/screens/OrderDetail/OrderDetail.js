@@ -5,60 +5,49 @@ import {
 import styles from './styles';
 import BottomTab from '../../components/BottomTab/BottomTab';
 import { SafeAreaView } from 'react-navigation';
-/* Config/Constants
-============================================================================= */
 
-
-/* =============================================================================
-<OrderDetail />
---------------------------------------------------------------------------------
-
-Props:
-  ?
-
-============================================================================= */
 class OrderDetail extends React.Component {
     render() {
         return (
             <React.Fragment>
                 <SafeAreaView style={styles.flex}>
-                    <StatusBar backgroundColor="transparent" barStyle={Platform.OS == 'ios' ? "dark-content" : "light-content"} hidden={false} translucent={false} />
-                    <ScrollView>
-                        <View style={styles.headerContainer}>
-                            <TouchableOpacity
-                                onPress={() => this.props.navigation.goBack()}
-                                style={styles.backImg}>
-                                <Image
-                                    source={require('../../assets/icons/back.png')}
-                                    resizeMode="contain"
-                                    style={{
-                                        width: 16,
-                                        height: 17
-                                    }}
-                                />
-                            </TouchableOpacity>
-                            <Text style={styles.headerContainerText}>Order No. 10352</Text>
-                        </View>
-                        <View style={styles.line}></View>
-                        <View style={styles.profileContainer}>
-                            <View style={styles.profileContentContainer}>
-                                <Image
-                                    source={require('../../assets/images/MainLanding/shop-1-avatar.png')}
-                                    style={styles.imgFixed}
-                                />
-                                <View>
-                                    <Text style={styles.profileTitlStyle}>Orders to</Text>
-                                    <Text style={styles.profileSubTitleStyle}>ViVo H&T</Text>
-                                </View>
-
+                    <StatusBar backgroundColor="transparent" barStyle="dark-content" hidden={false} translucent={false} />
+                    <View style={styles.headerContainer}>
+                        <TouchableOpacity
+                            onPress={() => this.props.navigation.goBack()}
+                            style={styles.backImg}>
+                            <Image
+                                source={require('../../assets/icons/back.png')}
+                                resizeMode="contain"
+                                style={{
+                                    width: 16,
+                                    height: 17
+                                }}
+                            />
+                        </TouchableOpacity>
+                        <Text style={styles.headerContainerText}>Order No. 10352</Text>
+                    </View>
+                    <View style={styles.line}></View>
+                    <View style={styles.profileContainer}>
+                        <View style={styles.profileContentContainer}>
+                            <Image
+                                source={require('../../assets/images/MainLanding/shop-1-avatar.png')}
+                                style={styles.imgFixed}
+                            />
+                            <View>
+                                <Text style={styles.profileTitlStyle}>Orders to</Text>
+                                <Text style={styles.profileSubTitleStyle}>ViVo H&T</Text>
                             </View>
-                            <TouchableOpacity style={styles.dotsContainer}>
-                                <View style={styles.dot} />
-                                <View style={styles.dot} />
-                                <View style={styles.dot} />
-                            </TouchableOpacity>
+
                         </View>
-                        <View style={styles.line}></View>
+                        <TouchableOpacity style={styles.dotsContainer}>
+                            <View style={styles.dot} />
+                            <View style={styles.dot} />
+                            <View style={styles.dot} />
+                        </TouchableOpacity>
+                    </View>
+                    <View style={styles.line}></View>
+                    <ScrollView>
                         <View style={styles.cardContainer}>
                             <View style={styles.card}>
                                 <View style={styles.cardLeftContainer}>
@@ -141,6 +130,5 @@ class OrderDetail extends React.Component {
         );
     }
 }
-/* Export
-============================================================================= */
+
 export default OrderDetail;

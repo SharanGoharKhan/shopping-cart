@@ -21,19 +21,12 @@ const DATA = [
         title: 'My Work', country: 'Pakistan', city: 'Karachi', address: 'Block 4350, Floor 1, Office 3', poBox: 'P.O Vox 65002',
     },
 ];
-/* =============================================================================
-<AddressList />
---------------------------------------------------------------------------------
 
-Props:
-  ?
-
-============================================================================= */
 class AddressList extends React.Component {
     render() {
         return (
             <View style={styles.container}>
-                <StatusBar backgroundColor="transparent" barStyle={Platform.OS == 'ios' ? "dark-content" : "light-content"} hidden={false} translucent={false} />
+                <StatusBar backgroundColor="transparent" barStyle="dark-content" hidden={false} translucent={false} />
                 <View style={styles.statusBarImage}>
                     <Image
                         source={require('../../assets/images/statusbar.png')}
@@ -94,6 +87,5 @@ class AddressList extends React.Component {
         );
     }
 }
-/* Export
-============================================================================= */
+
 export default AddressList;

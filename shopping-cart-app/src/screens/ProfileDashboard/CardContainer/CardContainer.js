@@ -29,14 +29,7 @@ const cardData = [
         action: 'Track',
     },
 ];
-/* =============================================================================
-<cardContainer />
---------------------------------------------------------------------------------
 
-Props:
-  ?
-
-============================================================================= */
 const cardContainer = props => (
     <ScrollView style={styles.scrollViewContainer}>
         <View style={styles.mainCardContainer}>
@@ -87,6 +80,5 @@ const cardContainer = props => (
         </View>
     </ScrollView>
 );
-/* Export
-============================================================================= */
+
 export default cardContainer;

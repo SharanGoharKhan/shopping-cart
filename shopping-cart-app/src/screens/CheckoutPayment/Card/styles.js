@@ -17,7 +17,6 @@ export default {
         height: '95%',
         width: '97.33%',
         alignItems: 'center',
-
         borderWidth: moderateScale(1),
         borderColor: colors.grayLinesColor,
         borderRadius: moderateScale(7),

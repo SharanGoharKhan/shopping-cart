@@ -2,8 +2,7 @@ import { StatusBar } from 'react-native';
 import { moderateScale } from '../../utils/scaling';
 import { colors } from '../../utils/colors';
 import { fontStyles } from '../../utils/fontStyles';
-/* StyleSheet
-============================================================================= */
+
 export default {
     container: {
         height: '100%',

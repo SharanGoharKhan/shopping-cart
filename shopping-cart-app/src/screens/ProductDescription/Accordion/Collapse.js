@@ -1,24 +1,11 @@
 import React, { Component } from 'react';
 import {
-    View, TouchableOpacity, Text, Image,
+    View, TouchableOpacity, Image,
 } from 'react-native';
 import CollapseBody from './CollapseBody';
 import CollapseHeader from './CollapseHeader';
-import { colors } from '../../../utils/colors';
 import { moderateScale } from '../../../utils/scaling';
 
-/* Config/Constants
-============================================================================= */
-
-
-/* =============================================================================
-<Collapse />
---------------------------------------------------------------------------------
-
-Props:
-  ?
-
-============================================================================= */
 type Props = {
     isCollapsed: ?boolean,
     disabled: ?boolean,

@@ -27,43 +27,31 @@ class Card extends React.Component {
             is_default: false,
         };
     }
-
-    /*
-    componentDidMount() {
-      this.props.onRef(this)
-    }
-    componentWillUnmount() {
-      this.props.onRef(undefined)
-    } */
     render() {
-        // let outlineColor = this.state.is_default? colors.textBlueColor: colors.secondaryWhiteColor
-        // console.log(outlineColor)
-
         const buttonJSX = this.state.is_default ? this.renderSelectedButton() : this.renderUnselectedButton();
         return (
-          <View style={styles.container}>
-              <View style={styles.headerRow}>
-                  <Text style={styles.titleText}>
-                  {' '}
-                        {this.props.title}
+            <View style={styles.container}>
+                <View style={styles.headerRow}>
+                    <Text style={styles.titleText}>
+                        {' '}{this.props.title}
                     </Text>
-                  <TouchableOpacity
+                    <TouchableOpacity
                         onPress={() => this.props.navigationObj.navigate('EditingAddress')}
                     >
-                      <Image
-                      style={{ height: moderateScale(16), width: moderateScale(16) }}
-                      source={require('../../../assets/icons/edit.png')}
-                    />
+                        <Image
+                            style={{ height: moderateScale(16), width: moderateScale(16) }}
+                            source={require('../../../assets/icons/edit.png')}
+                        />
                     </TouchableOpacity>
                 </View>
-              <View style={styles.address}>
-                  <Text style={styles.addressText}>{this.props.country}</Text>
-                  <Text style={styles.addressText}>{this.props.city}</Text>
-                  <Text style={styles.addressText}>{this.props.address}</Text>
+                <View style={styles.address}>
+                    <Text style={styles.addressText}>{this.props.country}</Text>
+                    <Text style={styles.addressText}>{this.props.city}</Text>
+                    <Text style={styles.addressText}>{this.props.address}</Text>
                     <Text style={styles.addressText}>{this.props.poBox}</Text>
                 </View>
-              <View style={styles.btnContainer}>
-                  {buttonJSX}
+                <View style={styles.btnContainer}>
+                    {buttonJSX}
                 </View>
             </View>
         );
@@ -75,26 +63,24 @@ class Card extends React.Component {
 
     renderSelectedButton() {
         return (
-          <TouchableOpacity onPress={() => { this.toggleActive(); }} style={styles.selectedBtn}>
+            <TouchableOpacity onPress={() => { this.toggleActive(); }} style={styles.selectedBtn}>
 
-              <Image
-                  style={styles.tickImage}
-                  source={require('../../../assets/icons/tick.png')}
+                <Image
+                    style={styles.tickImage}
+                    source={require('../../../assets/icons/tick.png')}
                 />
-              <Text style={styles.selectedText}>My Default Address</Text>
+                <Text style={styles.selectedText}>My Default Address</Text>
             </TouchableOpacity>
         );
     }
 
     renderUnselectedButton() {
         return (
-          <TouchableOpacity style={styles.unselectedButton} onPress={() => { this.toggleActive(); }}>
-              <Text style={styles.unselectedText}>Mark it as Default Address</Text>
+            <TouchableOpacity style={styles.unselectedButton} onPress={() => { this.toggleActive(); }}>
+                <Text style={styles.unselectedText}>Mark it as Default Address</Text>
             </TouchableOpacity>
         );
     }
 }
 
-/* Export
-  ============================================================================= */
 export default Card;

@@ -2,35 +2,23 @@ import React from 'react';
 import {
     View, Text, Image, TextInput, StatusBar, TouchableOpacity, Platform
 } from 'react-native';
-
 import SwiperFlatList from 'react-native-swiper-flatlist';
-
 import BlueBtn from '../../ui/Buttons/BlueBtn';
 import BlueAlternateBtn from '../../ui/Buttons/BlueAlternateBtn';
-
 import ViewCard from './Card/ViewCard';
-
 import styles from './styles';
 import { moderateScale } from '../../utils/scaling';
 import { colors } from '../../utils/colors';
 import BottomTab from '../../components/BottomTab/BottomTab';
 import CheckoutReciept from './CheckoutReciept/CheckoutReciept';
 import { SafeAreaView } from 'react-navigation';
+
 /* Config/Constants
 ============================================================================= */
 const DATA = [
     { cardNumber: '1234123412344567', expiry: { month: 11, year: 22 }, cardHolderName: 'John M. Smith' },
     { cardNumber: '1234123412344212', expiry: { month: 18, year: 25 }, cardHolderName: 'Kevin M. Louise' },
 ];
-
-/* =============================================================================
-<CheckoutPayment />
---------------------------------------------------------------------------------
-
-Props:
-  ?
-
-============================================================================= */
 
 
 class CheckoutPayment extends React.Component {
@@ -60,7 +48,7 @@ class CheckoutPayment extends React.Component {
             <React.Fragment>
                 <SafeAreaView style={styles.flex}>
                     <View style={styles.container}>
-                        <StatusBar backgroundColor="transparent" barStyle={Platform.OS == 'ios' ? "dark-content" : "light-content"} hidden={false} translucent />
+                        <StatusBar backgroundColor="transparent" barStyle="dark-content" hidden={false} translucent />
                         <CheckoutReciept
                             navigationObj={this.props.navigation}
                             modalVisible={this.state.modalVisible}
@@ -197,6 +185,5 @@ class CheckoutPayment extends React.Component {
         );
     }
 }
-/* Export
-============================================================================= */
+
 export default CheckoutPayment;

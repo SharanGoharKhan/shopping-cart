@@ -2,11 +2,8 @@ import { StatusBar, Dimensions } from 'react-native';
 import { moderateScale } from '../../utils/scaling';
 import { colors } from '../../utils/colors';
 import { fontStyles } from '../../utils/fontStyles';
-
 const { width, height } = Dimensions.get('window');
 
-/* StyleSheet
-============================================================================= */
 export default {
     flex: {
         flex:1

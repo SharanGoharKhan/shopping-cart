@@ -13,19 +13,6 @@ import BottomTab from '../../components/BottomTab/BottomTab';
 import FullCard from './Card/FullCard';
 import { SafeAreaView } from 'react-navigation';
 
-/* Config/Constants
-============================================================================= */
-
-
-/* =============================================================================
-<Search />
---------------------------------------------------------------------------------
-
-Props:
-  ?
-
-============================================================================= */
-
 const CATEGORIES = [
     {
         value: 'Arts & Crafts',
@@ -81,7 +68,7 @@ class SearchResult extends React.Component {
             <React.Fragment>
                 <SafeAreaView style={styles.flex}>
                     <View>
-                        <StatusBar backgroundColor="transparent" barStyle={Platform.OS == 'ios' ? "dark-content" : "light-content"} hidden={false} translucent />
+                        <StatusBar backgroundColor="transparent" barStyle="dark-content" hidden={false} translucent />
                         <View style={[styles.body]}>
                             <View style={[styles.header]}>
                                 <View style={[styles.headerLeft]}>
@@ -107,7 +94,7 @@ class SearchResult extends React.Component {
                                             </Text>
                                             <Text style={styles.text}>
                                                 results found for:
-                                </Text>
+                                            </Text>
                                             <Text style={styles.bold}>
                                                 {searchedTerm}
                                             </Text>
@@ -143,6 +130,5 @@ class SearchResult extends React.Component {
         );
     }
 }
-/* Export
-============================================================================= */
+
 export default SearchResult;

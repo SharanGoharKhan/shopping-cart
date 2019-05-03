@@ -6,8 +6,6 @@ import { Rating } from 'react-native-ratings';
 import styles from './styles';
 import { moderateScale } from '../../../utils/scaling';
 
-/* Config/Constants
-============================================================================= */
 const cardData = [
     {
         title: 'Leather Crossbody MID',
@@ -42,14 +40,6 @@ const cardData = [
         img: require('../../../assets/images/ProductListing/bag.png'),
     },
 ];
-/* =============================================================================
-<cardItem />
---------------------------------------------------------------------------------
-
-Props:
-    ?
-============================================================================= */
-
 const cardItem = props => (
     <View style={{ flexDirection: 'row', flexWrap: 'wrap', justifyContent: 'space-around' }}>
         {
@@ -96,6 +86,5 @@ const cardItem = props => (
         }
     </View>
 );
-/* Export
-============================================================================= */
+
 export default cardItem;

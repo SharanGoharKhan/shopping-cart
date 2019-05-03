@@ -8,17 +8,7 @@ import TextField from '../../ui/Textfield/Textfield';
 import MainBtn from '../../ui/Buttons/MainBtn';
 import ForgotPassword from './ForgotPassword/ForgotPassword';
 import { SafeAreaView } from 'react-navigation';
-/* Config/Constants
-============================================================================= */
 
-/* =============================================================================
-<SignIn />
---------------------------------------------------------------------------------
-
-Props:
-  ?
-
-============================================================================= */
 class SignIn extends React.Component {
     constructor(props) {
         super(props);
@@ -44,7 +34,7 @@ class SignIn extends React.Component {
     render() {
         return (
             <SafeAreaView style={styles.container}>
-                <StatusBar backgroundColor="transparent" barStyle={Platform.OS == 'ios' ? "dark-content" : "light-content"} hidden={false} translucent />
+                <StatusBar backgroundColor="transparent" barStyle="dark-content" hidden={false} translucent />
                 <ForgotPassword
                     modalVisible={this.state.modalVisible}
                     hideModal={this.hideModal}
@@ -155,6 +145,5 @@ class SignIn extends React.Component {
         );
     }
 }
-/* Export
-============================================================================= */
+
 export default SignIn;
