@@ -150,8 +150,8 @@
 		right: 25px
 	}
 	.feature-phone {
-		top: 126px;
-		left: 50px
+		top: 0px;
+    	left: -200px;
 	}
 	.feature-phone img {
 		width: 57%
@@ -386,8 +386,8 @@
 		right: 5px
 	}
 	.feature-phone {
-		top: 126px;
-		left: 75px
+		top: 0px;
+		left: -185px;
 	}
 	.top-margin {
 		margin-top: 20px
