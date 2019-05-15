@@ -3,7 +3,7 @@ import {
     View, Text, Image, StatusBar, TouchableOpacity, ImageBackground, Platform
 } from 'react-native';
 import styles from './styles';
-import { moderateScale } from '../../utils/scaling';
+import { verticalScale } from '../../utils/scaling';
 import TextField from '../../ui/Textfield/Textfield';
 import MainBtn from '../../ui/Buttons/MainBtn';
 import ForgotPassword from './ForgotPassword/ForgotPassword';
@@ -43,8 +43,8 @@ class SignIn extends React.Component {
                         <Image
                             source={require('../../assets/icons/avatar.png')}
                             style={{
-                                height: moderateScale(18),
-                                width: moderateScale(16),
+                                height: verticalScale(18),
+                                width: verticalScale(16),
                             }}
                         />
                         <Text style={styles.header_text}>Sign In</Text>
@@ -88,8 +88,8 @@ class SignIn extends React.Component {
                                         <Image
                                             source={require('../../assets/icons/google.png')}
                                             style={{
-                                                height: moderateScale(25),
-                                                width: moderateScale(25),
+                                                height: verticalScale(25),
+                                                width: verticalScale(25),
                                             }}
                                         />
                                         <Text style={styles.fb_text}>Google</Text>
@@ -103,8 +103,8 @@ class SignIn extends React.Component {
                                         <Image
                                             source={require('../../assets/icons/facebook.png')}
                                             style={{
-                                                height: moderateScale(24),
-                                                width: moderateScale(24),
+                                                height: verticalScale(24),
+                                                width: verticalScale(24),
                                             }}
                                         />
                                         <Text style={styles.fb_text}>Facebook</Text>

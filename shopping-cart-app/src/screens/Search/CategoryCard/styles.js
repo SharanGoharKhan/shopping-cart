@@ -1,18 +1,18 @@
-import { moderateScale } from '../../../utils/scaling';
+import { verticalScale } from '../../../utils/scaling';
 import { colors } from '../../../utils/colors';
 import { fontStyles } from '../../../utils/fontStyles';
 
 export default {
     container: {
         backgroundColor: colors.secondaryWhiteColor,
-        height: moderateScale(60),
+        height: verticalScale(60),
         width: '48%',
         justifyContent: 'center',
         alignItems: 'center',
-        borderRadius: moderateScale(5),
+        borderRadius: verticalScale(5),
     },
     text: {
-        fontSize: moderateScale(16),
+        fontSize: verticalScale(16),
         fontFamily: fontStyles.PoppinsRegular,
         color: colors.fontBlackColor,
     },

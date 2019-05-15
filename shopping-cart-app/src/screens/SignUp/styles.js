@@ -1,5 +1,5 @@
 import { StatusBar } from 'react-native';
-import { moderateScale } from '../../utils/scaling';
+import { verticalScale } from '../../utils/scaling';
 import { colors } from '../../utils/colors';
 import { fontStyles } from '../../utils/fontStyles';
 
@@ -28,7 +28,7 @@ export default {
     header_text: {
         paddingLeft: '5%',
         fontFamily: fontStyles.PoppinsRegular,
-        fontSize: moderateScale(16),
+        fontSize: verticalScale(16),
     },
     header_btn: {
 
@@ -39,7 +39,7 @@ export default {
         backgroundColor: colors.backgroudGray,
         height: '80%',
         width: '100%',
-        borderRadius: moderateScale(5),
+        borderRadius: verticalScale(5),
     },
     body_container_background: {
         alignItems: 'center',
@@ -55,14 +55,14 @@ export default {
     },
     h1_text: {
         fontFamily: fontStyles.PoppinsRegular,
-        fontSize: moderateScale(17.5),
+        fontSize: verticalScale(17.5),
         fontWeight: '500',
-        letterSpacing: moderateScale(0.5),
+        letterSpacing: verticalScale(0.5),
         marginTop: '5%',
     },
     h2_text: {
         fontFamily: fontStyles.PoppinsRegular,
-        fontSize: moderateScale(12),
+        fontSize: verticalScale(12),
     },
     main_mid: {
         height: '55%',
@@ -82,7 +82,7 @@ export default {
     },
     ft_text: {
         fontFamily: fontStyles.PoppinsRegular,
-        fontSize: moderateScale(10),
+        fontSize: verticalScale(10),
     },
     ft_text_underline: {
         textDecorationLine: 'underline',

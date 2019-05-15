@@ -7,7 +7,7 @@ import BlueBtn from '../../ui/Buttons/BlueBtn';
 import BlueAlternateBtn from '../../ui/Buttons/BlueAlternateBtn';
 import ViewCard from './Card/ViewCard';
 import styles from './styles';
-import { moderateScale } from '../../utils/scaling';
+import { verticalScale } from '../../utils/scaling';
 import { colors } from '../../utils/colors';
 import BottomTab from '../../components/BottomTab/BottomTab';
 import CheckoutReciept from './CheckoutReciept/CheckoutReciept';
@@ -58,8 +58,8 @@ class CheckoutPayment extends React.Component {
                                 <Image
                                     source={require('../../assets/icons/creditcard.png')}
                                     style={{
-                                        height: moderateScale(15),
-                                        width: moderateScale(19),
+                                        height: verticalScale(15),
+                                        width: verticalScale(19),
                                     }}
                                 />
                                 <Text style={styles.header_text}>Payment</Text>
@@ -96,7 +96,7 @@ class CheckoutPayment extends React.Component {
                                     <View style={styles.manualBtnContainer}>
                                         <Text style={styles.manBtnContText}>Or</Text>
                                         <BlueAlternateBtn
-                                            containerStyles={{ marginTop: moderateScale(5) }}
+                                            containerStyles={{ marginTop: verticalScale(5) }}
                                             text="Enter Credit Card Manually"
                                         />
                                     </View>

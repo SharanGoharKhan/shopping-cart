@@ -1,4 +1,4 @@
-import { moderateScale } from '../../../utils/scaling';
+import { verticalScale } from '../../../utils/scaling';
 import { colors } from '../../../utils/colors';
 import { fontStyles } from '../../../utils/fontStyles';
 
@@ -6,10 +6,10 @@ import { fontStyles } from '../../../utils/fontStyles';
 export default {
     container: {
         width: '100%',
-        height: moderateScale(85),
-        marginBottom: moderateScale(15),
-        borderRadius: moderateScale(3),
-        borderWidth: moderateScale(1),
+        height: verticalScale(85),
+        marginBottom: verticalScale(15),
+        borderRadius: verticalScale(3),
+        borderWidth: verticalScale(1),
         borderColor: colors.backgroudGray,
         flexDirection: 'row',
     },
@@ -20,15 +20,15 @@ export default {
     thumbnail: {
         height: '100%',
         width: '100%',
-        borderTopLeftRadius: moderateScale(3),
-        borderBottomLeftRadius: moderateScale(3),
+        borderTopLeftRadius: verticalScale(3),
+        borderBottomLeftRadius: verticalScale(3),
     },
     rightside_container: {
         height: '100%',
         width: '65%',
         justifyContent: 'center',
         alignItems: 'center',
-        paddingBottom: moderateScale(5),
+        paddingBottom: verticalScale(5),
     },
     rightside: {
         height: '80%',
@@ -52,30 +52,30 @@ export default {
     qty: {
         fontFamily: fontStyles.PoppinsRegular,
         color: colors.primaryBlackColor,
-        fontSize: moderateScale(13),
+        fontSize: verticalScale(13),
         fontWeight: '500',
     },
     amount: {
         fontFamily: fontStyles.PoppinsRegular,
         color: colors.textBlueColor,
-        fontSize: moderateScale(13),
+        fontSize: verticalScale(13),
         fontWeight: '500',
     },
     product: {
         fontFamily: fontStyles.PoppinsRegular,
         color: colors.primaryBlackColor,
-        fontSize: moderateScale(13),
+        fontSize: verticalScale(13),
         fontWeight: '500',
     },
     by: {
         fontFamily: fontStyles.PoppinsRegular,
         color: colors.primaryBlackColor,
-        fontSize: moderateScale(11),
+        fontSize: verticalScale(11),
     },
     brand: {
         fontFamily: fontStyles.PoppinsRegular,
         color: colors.brownColor,
-        fontSize: moderateScale(11),
+        fontSize: verticalScale(11),
     },
     prevPrice: {
         alignSelf: 'flex-end',
@@ -83,6 +83,6 @@ export default {
     prevPriceText: {
         color: colors.googleRedColor,
         fontFamily: fontStyles.PoppinsRegular,
-        fontSize: moderateScale(9),
+        fontSize: verticalScale(9),
     },
 };

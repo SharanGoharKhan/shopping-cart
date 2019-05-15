@@ -5,7 +5,7 @@ import {
 
 import { Rating } from 'react-native-ratings';
 import styles from './styles';
-import { moderateScale } from '../../../utils/scaling';
+import { verticalScale } from '../../../utils/scaling';
 
 
 /* Config/Constants
@@ -80,7 +80,7 @@ class FullCard extends React.Component {
                                     isDisabled
                                     ratingCount={5}
                                     startingValue={this.props.productRating}
-                                    imageSize={moderateScale(14)}
+                                    imageSize={verticalScale(14)}
                                 />
                                 <Text style={styles.votesCount}>
                                     {this.props.productTotalVotes}
@@ -98,7 +98,7 @@ class FullCard extends React.Component {
                               </Text>
                                 <TouchableOpacity onPress={() => { console.log('Go to Cart'); }}>
                                     <Image
-                                        style={{ width: moderateScale(16), height: moderateScale(16) }}
+                                        style={{ width: verticalScale(16), height: verticalScale(16) }}
                                         source={require('../../../assets/icons/shopcart.png')}
                                     />
                                 </TouchableOpacity>

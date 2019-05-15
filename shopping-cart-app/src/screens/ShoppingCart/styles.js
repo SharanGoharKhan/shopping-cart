@@ -1,5 +1,5 @@
 import { StatusBar } from 'react-native';
-import { moderateScale } from '../../utils/scaling';
+import { verticalScale } from '../../utils/scaling';
 import { colors } from '../../utils/colors';
 import { fontStyles } from '../../utils/fontStyles';
 
@@ -23,7 +23,7 @@ export default {
         alignSelf: 'center',
     },
     main_scroller: {
-        marginBottom: moderateScale(10),
+        marginBottom: verticalScale(10),
     },
 
     // header
@@ -36,8 +36,8 @@ export default {
     },
     header_text: {
         fontFamily: fontStyles.PoppinsRegular,
-        fontSize: moderateScale(16),
-        paddingLeft: moderateScale(8),
+        fontSize: verticalScale(16),
+        paddingLeft: verticalScale(8),
     },
 
     // main
@@ -56,13 +56,13 @@ export default {
         alignItems: 'center',
         justifyContent: 'space-evenly',
         backgroundColor: colors.backgroudGray,
-        borderRadius: moderateScale(5),
+        borderRadius: verticalScale(5),
     },
     subtotal_container: {
         width: '90%',
-        borderBottomWidth: moderateScale(1),
+        borderBottomWidth: verticalScale(1),
         borderBottomColor: colors.grayLinesColor,
-        paddingBottom: moderateScale(5),
+        paddingBottom: verticalScale(5),
     },
     row: {
         width: '100%',
@@ -71,15 +71,15 @@ export default {
     },
     text: {
         fontFamily: fontStyles.PoppinsRegular,
-        fontSize: moderateScale(12.5),
+        fontSize: verticalScale(12.5),
     },
     text_bold: {
         fontFamily: fontStyles.PoppinsRegular,
-        fontSize: moderateScale(13),
+        fontSize: verticalScale(13),
     },
     text_blue: {
         fontFamily: fontStyles.PoppinsRegular,
-        fontSize: moderateScale(13),
+        fontSize: verticalScale(13),
         color: colors.textBlueColor,
     },
     total_container: {

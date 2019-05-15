@@ -1,5 +1,5 @@
 import { Dimensions } from 'react-native';
-import { moderateScale } from '../../utils/scaling';
+import { verticalScale } from '../../utils/scaling';
 import { colors } from '../../utils/colors';
 import { fontStyles } from '../../utils/fontStyles';
 const { height, width } = Dimensions.get('window');
@@ -14,13 +14,13 @@ export default {
         flexDirection: 'row',
         alignItems: 'flex-end',
         borderColor: colors.grayLinesColor,
-        borderWidth: moderateScale(1),
+        borderWidth: verticalScale(1),
     },
     headerContainerText: {
         marginBottom: '1%',
         marginLeft: '5%',
         fontFamily: fontStyles.PoppinsRegular,
-        fontSize: moderateScale(18),
+        fontSize: verticalScale(18),
     },
     backImg: {
         marginBottom:'3%',
@@ -36,19 +36,19 @@ export default {
         width: '90%',
         height: '80%',
         backgroundColor: colors.whiteColor,
-        borderRadius: moderateScale(8),
+        borderRadius: verticalScale(8),
         alignItems: 'center',
         position: 'relative',
     },
     profileImageContainer: {
-        width: moderateScale(80),
-        height: moderateScale(80),
+        width: verticalScale(80),
+        height: verticalScale(80),
         position: 'absolute',
         alignSelf: 'center',
         backgroundColor: colors.whiteColor,
-        borderRadius: moderateScale(40),
-        top: moderateScale(-40),
-        borderWidth: moderateScale(3),
+        borderRadius: verticalScale(40),
+        top: verticalScale(-40),
+        borderWidth: verticalScale(3),
         borderColor: '#DDDDDD',
         justifyContent: 'center',
         alignItems: 'center',
@@ -80,13 +80,13 @@ export default {
     inputContainer: {
         width: '100%',
         height: '60%',
-        borderRadius: moderateScale(3),
+        borderRadius: verticalScale(3),
         backgroundColor: colors.backgroudGray,
     },
     label: {
         fontFamily: fontStyles.PoppinsRegular,
         color: colors.darkGrayText,
-        fontSize: moderateScale(14),
+        fontSize: verticalScale(14),
     },
     oneItemContainer: {
         width: '100%',
@@ -110,7 +110,7 @@ export default {
         backgroundColor: colors.brownColor,
         justifyContent: 'center',
         alignItems: 'center',
-        borderRadius: moderateScale(4),
+        borderRadius: verticalScale(4),
     },
     addStyle: {
         fontFamily: fontStyles.PoppinsRegular,

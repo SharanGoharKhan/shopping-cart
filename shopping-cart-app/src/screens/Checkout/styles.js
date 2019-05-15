@@ -1,5 +1,5 @@
 import { StatusBar } from 'react-native';
-import { moderateScale } from '../../utils/scaling';
+import { verticalScale } from '../../utils/scaling';
 import { colors } from '../../utils/colors';
 import { fontStyles } from '../../utils/fontStyles';
 
@@ -23,7 +23,7 @@ export default {
         alignSelf: 'center',
     },
     main_scroller: {
-        marginBottom: moderateScale(10),
+        marginBottom: verticalScale(10),
     },
     // header
     header: {
@@ -35,8 +35,8 @@ export default {
     },
     header_text: {
         fontFamily: fontStyles.PoppinsRegular,
-        fontSize: moderateScale(16),
-        paddingLeft: moderateScale(8),
+        fontSize: verticalScale(16),
+        paddingLeft: verticalScale(8),
     },
 
     // main
@@ -56,87 +56,87 @@ export default {
     orders: {
         height: '32%',
         width: '100%',
-        borderBottomWidth: moderateScale(1),
+        borderBottomWidth: verticalScale(1),
         borderColor: colors.grayLinesColor,
         borderStyle: 'dashed',
     },
     items: {
-        height: moderateScale(50),
+        height: verticalScale(50),
         width: '100%',
-        paddingTop: moderateScale(3),
+        paddingTop: verticalScale(3),
     },
     itemBoldText: {
         fontFamily: fontStyles.PoppinsRegular,
-        fontSize: moderateScale(13),
+        fontSize: verticalScale(13),
         fontWeight: '500',
     },
     itemBlueText: {
         color: colors.textBlueColor,
         fontFamily: fontStyles.PoppinsRegular,
-        fontSize: moderateScale(13),
+        fontSize: verticalScale(13),
         fontWeight: '500',
     },
 
     goldenText: {
         color: colors.brownColor,
         fontFamily: fontStyles.PoppinsRegular,
-        fontSize: moderateScale(13),
+        fontSize: verticalScale(13),
     },
     addressSmallText: {
         fontFamily: fontStyles.PoppinsRegular,
-        fontSize: moderateScale(11),
+        fontSize: verticalScale(11),
         color: colors.fontGreyColor,
     },
     addressBoldText: {
         fontFamily: fontStyles.PoppinsRegular,
-        fontSize: moderateScale(11),
+        fontSize: verticalScale(11),
         fontWeight: '500',
     },
     deliveryDate: {
-        paddingTop: moderateScale(5),
+        paddingTop: verticalScale(5),
         color: colors.textBlueColor,
-        fontSize: moderateScale(11),
+        fontSize: verticalScale(11),
         fontFamily: fontStyles.PoppinsRegular,
-        paddingLeft: moderateScale(5),
+        paddingLeft: verticalScale(5),
     },
     padding: {
-        paddingTop: moderateScale(6),
-        paddingBottom: moderateScale(2),
+        paddingTop: verticalScale(6),
+        paddingBottom: verticalScale(2),
     },
     address: {
         height: '60%',
         width: '100%',
-        paddingTop: moderateScale(10),
+        paddingTop: verticalScale(10),
     },
     addressDetail: {
-        paddingTop: moderateScale(5),
+        paddingTop: verticalScale(5),
     },
     borderBottom: {
-        borderBottomWidth: moderateScale(1),
+        borderBottomWidth: verticalScale(1),
         borderColor: colors.grayLinesColor,
         borderStyle: 'dashed',
-        paddingBottom: moderateScale(15),
+        paddingBottom: verticalScale(15),
     },
     main_bot: {
-        marginTop:moderateScale(-55),
-        height: moderateScale(200),
+        marginTop:verticalScale(-55),
+        height: verticalScale(200),
         width: '100%',
         alignItems: 'center',
         justifyContent: 'space-evenly',
         backgroundColor: colors.backgroudGray,
-        borderRadius: moderateScale(5),
+        borderRadius: verticalScale(5),
     },
     subtotal_container: {
         width: '90%',
-        borderBottomWidth: moderateScale(1),
+        borderBottomWidth: verticalScale(1),
         borderBottomColor: colors.grayLinesColor,
-        paddingBottom: moderateScale(5),
+        paddingBottom: verticalScale(5),
     },
     listItem: {
         width: '100%',
         flexDirection: 'row',
         justifyContent: 'space-between',
-        marginBottom: moderateScale(3),
+        marginBottom: verticalScale(3),
     },
     row: {
         width: '100%',
@@ -145,16 +145,16 @@ export default {
     },
     text: {
         fontFamily: fontStyles.PoppinsRegular,
-        fontSize: moderateScale(12.5),
+        fontSize: verticalScale(12.5),
     },
     text_bold: {
         fontFamily: fontStyles.PoppinsRegular,
-        fontSize: moderateScale(13),
+        fontSize: verticalScale(13),
         fontWeight: '500',
     },
     text_blue: {
         fontFamily: fontStyles.PoppinsRegular,
-        fontSize: moderateScale(13),
+        fontSize: verticalScale(13),
         fontWeight: '500',
         color: colors.textBlueColor,
     },

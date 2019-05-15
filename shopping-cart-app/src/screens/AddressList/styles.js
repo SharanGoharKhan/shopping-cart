@@ -1,4 +1,4 @@
-import { moderateScale } from '../../utils/scaling';
+import { verticalScale } from '../../utils/scaling';
 import { colors } from '../../utils/colors';
 import { fontStyles } from '../../utils/fontStyles';
 
@@ -21,7 +21,7 @@ export default {
         height: '8%',
         width: '100%',
         backgroundColor: colors.whiteColor,
-        borderBottomWidth: moderateScale(1),
+        borderBottomWidth: verticalScale(1),
         borderColor: colors.grayLinesColor,
         alignItems: 'center',
     },
@@ -33,7 +33,7 @@ export default {
     },
     headerText: {
         fontFamily: fontStyles.PoppinsRegular,
-        fontSize: moderateScale(16),
+        fontSize: verticalScale(16),
         color: colors.blackText,
     },
     headerBtn: {
@@ -43,14 +43,14 @@ export default {
     },
     headerBtnText: {
         fontFamily: fontStyles.PoppinsRegular,
-        fontSize: moderateScale(11),
+        fontSize: verticalScale(11),
         color: colors.greenTextColor,
     },
     // main
     main: {
         height: '80%',
         width: '95%',
-        paddingTop: moderateScale(10),
+        paddingTop: verticalScale(10),
     },
     mainScroll: {
         height: '100%',

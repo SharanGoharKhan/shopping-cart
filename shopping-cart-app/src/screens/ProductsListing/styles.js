@@ -1,5 +1,5 @@
 import { Dimensions } from 'react-native';
-import { moderateScale } from '../../utils/scaling';
+import { verticalScale } from '../../utils/scaling';
 import { fontStyles } from '../../utils/fontStyles';
 const { height, width } = Dimensions.get('window');
 
@@ -34,7 +34,7 @@ export default {
     },
     headerText: {
         fontFamily: fontStyles.PoppinsRegular,
-        fontSize: moderateScale(16),
+        fontSize: verticalScale(16),
     },
     backCnt: {
         width: '10%', 

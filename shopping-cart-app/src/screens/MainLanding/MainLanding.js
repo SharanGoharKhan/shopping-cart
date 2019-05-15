@@ -5,7 +5,7 @@ import {
 import SwiperFlatList from 'react-native-swiper-flatlist';
 import { DrawerActions } from 'react-navigation-drawer';
 import styles from './styles';
-import { moderateScale } from '../../utils/scaling';
+import { verticalScale } from '../../utils/scaling';
 import CardsSection from './CardsSection/CardsSection';
 import CardMultipleItems from './CardMultipleItems/CardMultipleItems';
 import PopularItems from './PopularItems/PopularItems';
@@ -25,7 +25,7 @@ class MainLanding extends React.Component {
                         autoplayLoop={false}
                         paginationActiveColor="#fff"
                         paginationStyle={{ marginBottom: '7%' }}
-                        paginationStyleItem={{ height: moderateScale(8), width: moderateScale(8), marginLeft: 0 }}
+                        paginationStyleItem={{ height: verticalScale(8), width: verticalScale(8), marginLeft: 0 }}
                     >
                         <CarouselItem on_press_event={this.moveToLogin} page="0" />
                         <CarouselItem on_press_event={this.moveToLogin} page="1" />

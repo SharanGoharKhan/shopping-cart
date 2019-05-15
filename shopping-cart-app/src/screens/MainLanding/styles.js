@@ -1,5 +1,5 @@
 import { Dimensions } from 'react-native';
-import { moderateScale } from '../../utils/scaling';
+import { verticalScale } from '../../utils/scaling';
 import { colors } from '../../utils/colors';
 import { fontStyles } from '../../utils/fontStyles';
 const { height, width } = Dimensions.get('window');
@@ -9,7 +9,7 @@ export default {
         flex: 1,
     },
     scrollViewStyle: {
-        marginTop: moderateScale(20),
+        marginTop: verticalScale(20),
         backgroundColor: colors.backgroudGray,
     },
     grayBackground: {
@@ -22,8 +22,8 @@ export default {
         position: 'relative',
     },
     menuDrawerContainer: {
-        width: moderateScale(20),
-        height: moderateScale(18),
+        width: verticalScale(20),
+        height: verticalScale(18),
         position: 'absolute',
         top: '15%',
         left: '10%',
@@ -39,8 +39,8 @@ export default {
         backgroundColor: '#fff',
         alignSelf: 'center',
         position: 'absolute',
-        bottom: moderateScale(-20),
-        borderRadius: moderateScale(5),
+        bottom: verticalScale(-20),
+        borderRadius: verticalScale(5),
         flexDirection: 'row',
     },
     searchTextContainer: {
@@ -49,7 +49,7 @@ export default {
         justifyContent: 'center',
     },
     searchTextStyle: {
-        fontSize: moderateScale(15),
+        fontSize: verticalScale(15),
         marginLeft: '5%',
         fontFamily: fontStyles.PoppinsRegular,
     },

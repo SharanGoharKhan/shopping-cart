@@ -3,7 +3,7 @@ import {
     View, Text, Image, StatusBar, ScrollView, Platform
 } from 'react-native';
 import styles from './styles';
-import { moderateScale } from '../../utils/scaling';
+import { verticalScale } from '../../utils/scaling';
 import { SafeAreaView } from 'react-navigation';
 import BlueBtn from '../../ui/Buttons/BlueBtn';
 import FullCard from '../../ui/Cards/FullCard/FullCard';
@@ -41,8 +41,8 @@ class ShoppingCart extends React.Component {
                                 <Image
                                     source={require('../../assets/icons/shoppingBag.png')}
                                     style={{
-                                        height: moderateScale(17),
-                                        width: moderateScale(16),
+                                        height: verticalScale(17),
+                                        width: verticalScale(16),
                                     }}
                                 />
                                 <Text style={styles.header_text}>Shopping Cart</Text>

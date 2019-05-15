@@ -5,7 +5,7 @@ import {
 import { StatusBar } from 'react-native';
 import styles from './styles';
 
-import { moderateScale } from '../../utils/scaling';
+import { verticalScale } from '../../utils/scaling';
 
 import Dropdown from '../../ui/Dropdowns/Dropdown';
 import SearchBar from '../../ui/SearchBar/SearchBar';
@@ -76,7 +76,7 @@ class SearchResult extends React.Component {
                                 </View>
                                 <TouchableOpacity onPress={() => console.log('Show modal')}>
                                     <Image
-                                        style={{ height: moderateScale(32), width: moderateScale(42), marginBottom: moderateScale(5) }}
+                                        style={{ height: verticalScale(32), width: verticalScale(42), marginBottom: verticalScale(5) }}
                                         source={require('../../assets/icons/header.png')}
                                     />
                                 </TouchableOpacity>

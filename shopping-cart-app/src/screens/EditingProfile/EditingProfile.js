@@ -4,7 +4,7 @@ import {
 } from 'react-native';
 import styles from './styles';
 import BottomTab from '../../components/BottomTab/BottomTab';
-import { moderateScale } from '../../utils/scaling';
+import { verticalScale } from '../../utils/scaling';
 
 class EditingProfile extends React.Component {
     render() {
@@ -18,8 +18,8 @@ class EditingProfile extends React.Component {
                             source={require('../../assets/icons/back.png')}
                             resizeMode="contain"
                             style={{
-                                width: moderateScale(16),
-                                height: moderateScale(17)
+                                width: verticalScale(16),
+                                height: verticalScale(17)
                             }}
                         />
                     </TouchableOpacity>

@@ -1,5 +1,5 @@
 import { StatusBar } from 'react-native';
-import { moderateScale } from '../../utils/scaling';
+import { verticalScale } from '../../utils/scaling';
 import { colors } from '../../utils/colors';
 import { fontStyles } from '../../utils/fontStyles';
 import { Platform } from 'react-native'
@@ -22,11 +22,11 @@ export default {
     },
     tabStyleActive: {
         fontFamily: fontStyles.PoppinsRegular,
-        fontSize: moderateScale(14),
+        fontSize: verticalScale(14),
         color: colors.brownColor,
     },
     tabStyle: {
         fontFamily: fontStyles.PoppinsRegular,
-        fontSize: moderateScale(14),
+        fontSize: verticalScale(14),
     },
 };

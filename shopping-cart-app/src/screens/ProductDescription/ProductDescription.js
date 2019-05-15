@@ -7,7 +7,7 @@ import styles from './styles';
 
 import AccordionList from './Accordion/AccordionList';
 import { fontStyles } from '../../utils/fontStyles';
-import { moderateScale } from '../../utils/scaling';
+import { verticalScale } from '../../utils/scaling';
 
 /* Config/Constants
 ============================================================================= */
@@ -73,7 +73,7 @@ class ProductDescription extends React.Component {
     render_form_head(form) {
         return (
             <View>
-                <Text style={{ fontFamily: fontStyles.PoppinsRegular, fontSize: moderateScale(11) }}>
+                <Text style={{ fontFamily: fontStyles.PoppinsRegular, fontSize: verticalScale(11) }}>
                     {form.header}
                 </Text>
             </View>
@@ -83,7 +83,7 @@ class ProductDescription extends React.Component {
     render_form_body(form) {
         return (
             <View>
-                <Text style={{ fontFamily: fontStyles.PoppinsRegular, fontSize: moderateScale(10) }}>{form.body}</Text>
+                <Text style={{ fontFamily: fontStyles.PoppinsRegular, fontSize: verticalScale(10) }}>{form.body}</Text>
             </View>
         );
     }

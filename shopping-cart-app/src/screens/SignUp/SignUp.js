@@ -3,7 +3,7 @@ import {
     View, Text, StatusBar, ImageBackground
 } from 'react-native';
 import styles from './styles';
-import { moderateScale } from '../../utils/scaling';
+import { verticalScale } from '../../utils/scaling';
 import { SafeAreaView } from 'react-navigation';
 import TextField from '../../ui/Textfield/Textfield';
 import MainBtn from '../../ui/Buttons/MainBtn';
@@ -32,10 +32,10 @@ class SignUp extends React.Component {
                                 <Text style={styles.h2_text}> Sign Up</Text>
                             </View>
                             <View style={styles.main_mid}>
-                                <TextField placeholderText="Full Name" containerStyle={{ marginBottom: moderateScale(10) }} />
-                                <TextField placeholderText="Email" containerStyle={{ marginBottom: moderateScale(10) }} />
-                                <TextField placeholderText="Mobile" containerStyle={{ marginBottom: moderateScale(10) }} />
-                                <TextField placeholderText="Password" containerStyle={{ marginBottom: moderateScale(10) }} />
+                                <TextField placeholderText="Full Name" containerStyle={{ marginBottom: verticalScale(10) }} />
+                                <TextField placeholderText="Email" containerStyle={{ marginBottom: verticalScale(10) }} />
+                                <TextField placeholderText="Mobile" containerStyle={{ marginBottom: verticalScale(10) }} />
+                                <TextField placeholderText="Password" containerStyle={{ marginBottom: verticalScale(10) }} />
 
 
                             </View>

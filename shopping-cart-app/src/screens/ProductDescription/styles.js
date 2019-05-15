@@ -1,5 +1,5 @@
 import { Dimensions } from 'react-native';
-import { moderateScale } from '../../utils/scaling';
+import { verticalScale } from '../../utils/scaling';
 import { colors } from '../../utils/colors';
 import { fontStyles } from '../../utils/fontStyles';
 const { height, width } = Dimensions.get('window');
@@ -35,7 +35,7 @@ export default {
     },
     headerText: {
         fontFamily: fontStyles.PoppinsRegular,
-        fontSize: moderateScale(16),
+        fontSize: verticalScale(16),
     },
     backCnt: {
         width: '10%', 
@@ -95,7 +95,7 @@ export default {
     },
     textStyle: {
         fontFamily: fontStyles.PoppinsRegular,
-        fontSize: moderateScale(13),
+        fontSize: verticalScale(13),
     },
     priceColor: {
         color: colors.textBlueColor,
@@ -137,35 +137,35 @@ export default {
     productCardContainer: {
         width: '100%',
         height: '60%',
-        borderRadius: moderateScale(8),
+        borderRadius: verticalScale(8),
         backgroundColor: colors.whiteColor,
         alignItems: 'center',
         flexDirection: 'row',
     },
     productImgContainer: {
         marginLeft: '5%',
-        width: moderateScale(40),
-        height: moderateScale(40),
-        borderRadius: moderateScale(15),
+        width: verticalScale(40),
+        height: verticalScale(40),
+        borderRadius: verticalScale(15),
     },
     productTextContainer: {
         marginLeft: '5%',
         width: '60%',
-        height: moderateScale(30),
+        height: verticalScale(30),
         justifyContent: 'center',
     },
     dotContainer: {
         width: '10%',
-        height: moderateScale(30),
+        height: verticalScale(30),
         flexDirection: 'row',
         justifyContent: 'center',
         alignItems: 'center',
     },
     dot: {
-        width: moderateScale(4),
-        height: moderateScale(4),
-        marginRight: moderateScale(1),
-        borderRadius: moderateScale(2),
+        width: verticalScale(4),
+        height: verticalScale(4),
+        marginRight: verticalScale(1),
+        borderRadius: verticalScale(2),
         backgroundColor: colors.brownColor,
     },
     accordianContainer: {
@@ -173,7 +173,7 @@ export default {
         minHeight: height * 0.2,
         backgroundColor: '#F8F8F8',
         alignItems: 'center',
-        paddingTop: moderateScale(13),
+        paddingTop: verticalScale(13),
     },
     shoppingCartContainer: {
         height: height * 0.13,
@@ -185,13 +185,13 @@ export default {
         width: '90%',
         height: '50%',
         backgroundColor: colors.textBlueColor,
-        borderRadius: moderateScale(5),
+        borderRadius: verticalScale(5),
         justifyContent: 'center',
         alignItems: 'center',
     },
     shoppingCartText: {
         fontFamily: fontStyles.PoppinsRegular,
         color: colors.whiteColor,
-        fontSize: moderateScale(16),
+        fontSize: verticalScale(16),
     },
 };

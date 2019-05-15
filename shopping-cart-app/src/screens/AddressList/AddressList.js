@@ -7,7 +7,7 @@ import { ScrollView } from 'react-native-gesture-handler';
 import styles from './styles';
 import BottomTab from '../../components/BottomTab/BottomTab';
 import Card from './Card/AddressCard';
-import { moderateScale } from '../../utils/scaling';
+import { verticalScale } from '../../utils/scaling';
 
 
 /* Config/Constants
@@ -44,9 +44,9 @@ class AddressList extends React.Component {
                                 source={require('../../assets/icons/back.png')}
                                 resizeMode="contain"
                                 style={{
-                                    width: moderateScale(16),
-                                    height: moderateScale(17),
-                                    marginRight: moderateScale(20)
+                                    width: verticalScale(16),
+                                    height: verticalScale(17),
+                                    marginRight: verticalScale(20)
                                 }}
                             />
                         </TouchableOpacity>

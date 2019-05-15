@@ -1,5 +1,5 @@
 import { Dimensions } from 'react-native';
-import { moderateScale } from '../../../utils/scaling';
+import { verticalScale } from '../../../utils/scaling';
 import { colors } from '../../../utils/colors';
 import { fontStyles } from '../../../utils/fontStyles';
 const { height, width } = Dimensions.get('window');
@@ -10,7 +10,7 @@ export default {
         height: height * 0.65,
         width: width * 0.8,
         backgroundColor: colors.whiteColor,
-        borderRadius: moderateScale(8),
+        borderRadius: verticalScale(8),
         justifyContent: 'center',
         alignItems: 'center',
     },
@@ -43,12 +43,12 @@ export default {
     },
     titleStyle: {
         fontFamily: fontStyles.PoppinsRegular,
-        fontSize: moderateScale(16),
+        fontSize: verticalScale(16),
     },
     line: {
         marginTop: '3%',
         width: '100%',
-        height: moderateScale(1),
+        height: verticalScale(1),
         backgroundColor: colors.grayLinesColor,
     },
     dateContainer: {
@@ -59,7 +59,7 @@ export default {
     dateStyle: {
         color: colors.darkGrayText,
         fontFamily: fontStyles.PoppinsRegular,
-        fontSize: moderateScale(12),
+        fontSize: verticalScale(12),
         marginBottom: '3%',
     },
     fullWidth: {
@@ -81,26 +81,26 @@ export default {
     },
     normalStyle: {
         fontFamily: fontStyles.PoppinsRegular,
-        fontSize: moderateScale(14),
+        fontSize: verticalScale(14),
     },
     blueFont: {
         fontFamily: fontStyles.PoppinsRegular,
         color: colors.blueColor,
-        fontSize: moderateScale(14),
+        fontSize: verticalScale(14),
     },
     btnContainer: {
         width: '100%',
         height: '13%',
         marginTop: '5%',
         backgroundColor: colors.textBlueColor,
-        borderRadius: moderateScale(3),
+        borderRadius: verticalScale(3),
         justifyContent: 'center',
         alignItems: 'center',
     },
     btnStyle: {
         marginTop:'2%',
         fontFamily: fontStyles.PoppinsRegular,
-        fontSize: moderateScale(14),
+        fontSize: verticalScale(14),
         color: colors.whiteColor,
     },
 

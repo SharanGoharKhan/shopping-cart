@@ -1,5 +1,5 @@
 import { Dimensions } from 'react-native';
-import { moderateScale } from '../../../utils/scaling';
+import { verticalScale } from '../../../utils/scaling';
 import { fontStyles } from '../../../utils/fontStyles';
 const { height, width } = Dimensions.get('window');
 
@@ -7,7 +7,7 @@ export default {
     cardsContainer: {
         width: '95%',
         height: height * 0.25,
-        marginTop: moderateScale(30),
+        marginTop: verticalScale(30),
         alignSelf: 'center',
         flexDirection: 'column',
         justifyContent: 'space-around',
@@ -23,7 +23,7 @@ export default {
         height: '100%',
         flexDirection: 'row',
         backgroundColor: 'white',
-        borderRadius: moderateScale(5),
+        borderRadius: verticalScale(5),
     },
     textViewContainer: {
         width: '80%',
@@ -33,7 +33,7 @@ export default {
     },
     textStyle: {
         fontFamily: fontStyles.PoppinsRegular,
-        fontSize: moderateScale(14),
+        fontSize: verticalScale(14),
     },
     imgContainer: {
         width: '20%',

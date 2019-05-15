@@ -1,5 +1,5 @@
 import { Dimensions } from 'react-native';
-import { moderateScale } from '../../utils/scaling';
+import { verticalScale } from '../../utils/scaling';
 import { colors } from '../../utils/colors';
 import { fontStyles } from '../../utils/fontStyles';
 
@@ -19,11 +19,11 @@ export default {
         marginBottom: '1%',
         marginLeft: '5%',
         fontFamily: fontStyles.PoppinsRegular,
-        fontSize: moderateScale(18),
+        fontSize: verticalScale(18),
     },
     line: {
         width: '100%',
-        height: moderateScale(1),
+        height: verticalScale(1),
         backgroundColor: colors.grayLinesColor
     },
     backImg: {
@@ -46,17 +46,17 @@ export default {
         justifyContent: 'space-around',
     },
     imgFixed: {
-        width: moderateScale(40),
-        height: moderateScale(40),
+        width: verticalScale(40),
+        height: verticalScale(40),
     },
     profileTitlStyle: {
         fontFamily: fontStyles.PoppinsRegular,
         color: '#4A4A4A',
-        fontSize: moderateScale(12),
+        fontSize: verticalScale(12),
     },
     profileSubTitleStyle: {
         fontFamily: fontStyles.PoppinsRegular,
-        fontSize: moderateScale(14),
+        fontSize: verticalScale(14),
     },
     dotsContainer: {
         width: '30%',
@@ -67,10 +67,10 @@ export default {
         alignItems: 'center',
     },
     dot: {
-        width: moderateScale(4),
-        height: moderateScale(4),
-        marginLeft: moderateScale(1),
-        borderRadius: moderateScale(2),
+        width: verticalScale(4),
+        height: verticalScale(4),
+        marginLeft: verticalScale(1),
+        borderRadius: verticalScale(2),
         backgroundColor: colors.brownColor,
     },
     cardContainer: {
@@ -85,15 +85,15 @@ export default {
         width: '90%',
         height: '80%',
         flexDirection: 'row',
-        borderRadius: moderateScale(8),
-        borderTopLeftRadius: moderateScale(8),
-        borderBottomLeftRadius: moderateScale(8),
+        borderRadius: verticalScale(8),
+        borderTopLeftRadius: verticalScale(8),
+        borderBottomLeftRadius: verticalScale(8),
     },
     cardLeftContainer: {
         width: '35%',
         height: '100%',
-        borderTopLeftRadius: moderateScale(8),
-        borderBottomLeftRadius: moderateScale(8),
+        borderTopLeftRadius: verticalScale(8),
+        borderBottomLeftRadius: verticalScale(8),
     },
     cardRightContainer: {
         marginLeft: '3%',
@@ -104,15 +104,15 @@ export default {
         flex: 1,
         width: undefined,
         height: undefined,
-        borderTopLeftRadius: moderateScale(8),
-        borderBottomLeftRadius: moderateScale(8),
+        borderTopLeftRadius: verticalScale(8),
+        borderBottomLeftRadius: verticalScale(8),
     },
     marginTop5: {
         marginTop: '5%',
     },
     timelineContainer: {
         backgroundColor: colors.backgroudGray,
-        paddingTop: moderateScale(10),
+        paddingTop: verticalScale(10),
         flex: 1,
     },
 };
