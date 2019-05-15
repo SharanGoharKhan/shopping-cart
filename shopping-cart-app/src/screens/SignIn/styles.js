@@ -1,5 +1,5 @@
 import { StatusBar } from 'react-native';
-import { verticalScale } from '../../utils/scaling';
+import { verticalScale, scale } from '../../utils/scaling';
 import { colors } from '../../utils/colors';
 import { fontStyles } from '../../utils/fontStyles';
 
@@ -166,7 +166,7 @@ export default {
     },
     ft_text: {
         fontFamily: fontStyles.PoppinsRegular,
-        fontSize: verticalScale(10),
+        fontSize: scale(10),
     },
     ft_underline: {
         textDecorationLine: 'underline',

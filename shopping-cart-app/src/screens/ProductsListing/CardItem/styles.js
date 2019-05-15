@@ -1,5 +1,5 @@
 import { Dimensions } from 'react-native';
-import { verticalScale } from '../../../utils/scaling';
+import { verticalScale, scale } from '../../../utils/scaling';
 import { colors } from '../../../utils/colors';
 import { fontStyles } from '../../../utils/fontStyles';
 const { height, width } = Dimensions.get('window');
@@ -31,7 +31,7 @@ export default {
     },
     textStyle: {
         fontFamily: fontStyles.PoppinsRegular,
-        fontSize: verticalScale(12),
+        fontSize: scale(12),
         marginLeft: '5%',
     },
     botContainer: {

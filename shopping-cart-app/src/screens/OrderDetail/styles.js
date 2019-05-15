@@ -1,5 +1,5 @@
 import { Dimensions } from 'react-native';
-import { verticalScale } from '../../utils/scaling';
+import { verticalScale,scale } from '../../utils/scaling';
 import { colors } from '../../utils/colors';
 import { fontStyles } from '../../utils/fontStyles';
 import { StatusBar } from 'react-native'
@@ -47,8 +47,8 @@ export default {
         justifyContent: 'space-around',
     },
     imgFixed: {
-        width: verticalScale(40),
-        height: verticalScale(40),
+        width: scale(30),
+        height: scale(30),
     },
     profileTitlStyle: {
         fontFamily: fontStyles.PoppinsRegular,
