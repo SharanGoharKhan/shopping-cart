@@ -47,8 +47,8 @@ export default {
         justifyContent: 'space-around',
     },
     imgFixed: {
-        width: scale(30),
-        height: scale(30),
+        width: verticalScale(30),
+        height: verticalScale(30),
     },
     profileTitlStyle: {
         fontFamily: fontStyles.PoppinsRegular,
