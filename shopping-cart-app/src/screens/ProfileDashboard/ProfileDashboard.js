@@ -13,7 +13,6 @@ class ProfileDashboard extends React.Component {
     return (
       <React.Fragment>
         <SafeAreaView style={styles.flex}>
-          <StatusBar backgroundColor="transparent" barStyle="dark-content" hidden={false} translucent />
           <ProfileContainer
             navigationObj={this.props.navigation}
           />

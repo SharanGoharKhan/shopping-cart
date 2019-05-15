@@ -31,7 +31,6 @@ class TrackOrder extends React.Component {
     render() {
         return (
             <View style={styles.flex}>
-                <StatusBar backgroundColor="transparent" barStyle="dark-content" hidden={false} translucent={false} />
                 <ScrollView>
                     <View style={styles.line}></View>
                     <View style={styles.headerContainer}>

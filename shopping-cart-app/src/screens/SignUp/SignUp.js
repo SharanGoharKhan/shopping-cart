@@ -13,7 +13,6 @@ class SignUp extends React.Component {
     render() {
         return (
             <SafeAreaView style={styles.container}>
-                <StatusBar backgroundColor="transparent" barStyle="dark-content" hidden={false} translucent={false} />
                 <View style={styles.body}>
                     <View style={styles.header}>
                         <Text style={styles.header_text}>Sign In</Text>

@@ -26,7 +26,6 @@ class AddressList extends React.Component {
     render() {
         return (
             <View style={styles.container}>
-                <StatusBar backgroundColor="transparent" barStyle="dark-content" hidden={false} translucent={false} />
                 <View style={styles.statusBarImage}>
                     <Image
                         source={require('../../assets/images/statusbar.png')}

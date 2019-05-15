@@ -10,7 +10,6 @@ class EditingProfile extends React.Component {
     render() {
         return (
             <View style={styles.flex}>
-                <StatusBar backgroundColor="transparent" barStyle="dark-content" hidden={false} translucent={false} />
                 <View style={styles.headerContainer}>
                     <TouchableOpacity
                         onPress={() => this.props.navigation.goBack()}

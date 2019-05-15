@@ -48,7 +48,6 @@ class CheckoutPayment extends React.Component {
             <React.Fragment>
                 <SafeAreaView style={styles.flex}>
                     <View style={styles.container}>
-                        <StatusBar backgroundColor="transparent" barStyle="dark-content" hidden={false} translucent />
                         <CheckoutReciept
                             navigationObj={this.props.navigation}
                             modalVisible={this.state.modalVisible}

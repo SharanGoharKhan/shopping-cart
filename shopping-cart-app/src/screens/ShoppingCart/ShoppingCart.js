@@ -36,7 +36,6 @@ class ShoppingCart extends React.Component {
             <React.Fragment>
                 <SafeAreaView style={styles.flex}>
                     <View style={styles.container}>
-                        <StatusBar backgroundColor="transparent" barStyle="dark-content" hidden={false} translucent />
                         <View style={styles.body}>
                             <View style={styles.header}>
                                 <Image

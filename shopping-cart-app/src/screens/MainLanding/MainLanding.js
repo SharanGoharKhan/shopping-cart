@@ -14,10 +14,8 @@ import CarouselItem from './CarouselItem/CarouselItem';
 import BottomTab from '../../components/BottomTab/BottomTab';
 class MainLanding extends React.Component {
     render() {
-        console.log('render called')
         return (
             <View style={styles.grayBackground}>
-                <StatusBar backgroundColor="transparent" barStyle="light-content" hidden={false} translucent />
                 <View style={styles.caroselContainer}>
                     <SwiperFlatList
                         index={0}
