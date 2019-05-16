@@ -11,7 +11,7 @@ export default {
     },
     headerContainer: {
         width: '100%',
-        height: height * 0.1,
+        height: '8%',
         flexDirection: 'row',
         alignItems: 'flex-end'
     },

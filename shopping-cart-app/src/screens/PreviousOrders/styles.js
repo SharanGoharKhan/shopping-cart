@@ -12,9 +12,8 @@ export default {
         flex: 1,
     },
     headerContainer: {
-        marginTop: StatusBar.currentHeight,
         width: '100%',
-        height: height * 0.06,
+        height: '8%',
         flexDirection: 'row',
         alignItems: 'flex-end'
     },

@@ -7,7 +7,6 @@ import { verticalScale } from '../../utils/scaling';
 import TextField from '../../ui/Textfield/Textfield';
 import MainBtn from '../../ui/Buttons/MainBtn';
 import ForgotPassword from './ForgotPassword/ForgotPassword';
-import { SafeAreaView } from 'react-navigation';
 
 class SignIn extends React.Component {
     constructor(props) {
@@ -33,7 +32,7 @@ class SignIn extends React.Component {
 
     render() {
         return (
-            <SafeAreaView style={styles.container}>
+            <View style={styles.container}>
                 <ForgotPassword
                     modalVisible={this.state.modalVisible}
                     hideModal={this.hideModal}
@@ -139,8 +138,7 @@ class SignIn extends React.Component {
                         </View>
                     </View>
                 </View>
-
-            </SafeAreaView>
+            </View>
         );
     }
 }

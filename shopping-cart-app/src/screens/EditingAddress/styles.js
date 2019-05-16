@@ -10,11 +10,9 @@ export default {
     },
     headerContainer: {
         width: '100%',
-        height: '10%',
+        height: '8%',
         flexDirection:'row',
         alignItems: 'flex-end',
-        borderColor: colors.grayLinesColor,
-        borderWidth: verticalScale(1),
     },
     backImg: {
         marginBottom: '3%',

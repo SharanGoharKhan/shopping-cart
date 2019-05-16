@@ -20,7 +20,7 @@ export default {
         alignSelf: 'center',
     },
     body_header: {
-        height: '10%',
+        height: '8%',
         width: '90%',
         flexDirection: 'row',
         alignSelf: 'center',

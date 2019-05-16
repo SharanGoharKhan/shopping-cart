@@ -11,7 +11,6 @@ import { verticalScale } from '../../utils/scaling';
 import { colors } from '../../utils/colors';
 import BottomTab from '../../components/BottomTab/BottomTab';
 import CheckoutReciept from './CheckoutReciept/CheckoutReciept';
-import { SafeAreaView } from 'react-navigation';
 
 /* Config/Constants
 ============================================================================= */
@@ -46,7 +45,7 @@ class CheckoutPayment extends React.Component {
     render() {
         return (
             <React.Fragment>
-                <SafeAreaView style={styles.flex}>
+                <View style={styles.flex}>
                     <View style={styles.container}>
                         <CheckoutReciept
                             navigationObj={this.props.navigation}
@@ -155,7 +154,7 @@ class CheckoutPayment extends React.Component {
                             </View>
                         </View>
                     </View>
-                </SafeAreaView>
+                </View>
                 <BottomTab
                     navigationObj={this.props.navigation}
                 />

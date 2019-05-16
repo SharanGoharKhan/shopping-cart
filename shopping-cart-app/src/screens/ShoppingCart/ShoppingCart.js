@@ -4,7 +4,6 @@ import {
 } from 'react-native';
 import styles from './styles';
 import { verticalScale } from '../../utils/scaling';
-import { SafeAreaView } from 'react-navigation';
 import BlueBtn from '../../ui/Buttons/BlueBtn';
 import FullCard from '../../ui/Cards/FullCard/FullCard';
 import BottomTab from '../../components/BottomTab/BottomTab';
@@ -34,7 +33,7 @@ class ShoppingCart extends React.Component {
     render() {
         return (
             <React.Fragment>
-                <SafeAreaView style={styles.flex}>
+                <View style={styles.flex}>
                     <View style={styles.container}>
                         <View style={styles.body}>
                             <View style={styles.header}>
@@ -93,7 +92,7 @@ class ShoppingCart extends React.Component {
                             </View>
                         </View>
                     </View>
-                </SafeAreaView>
+                </View>
                 <BottomTab
                     navigationObj={this.props.navigation}
                 />

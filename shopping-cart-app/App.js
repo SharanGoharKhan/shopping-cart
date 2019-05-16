@@ -1,8 +1,9 @@
 import React from 'react'
 import AppContainer from './src/utils/routes'
 import { Font } from 'expo'
-import { View, ActivityIndicator } from 'react-native'
+import { View, ActivityIndicator, StatusBar, StyleSheet } from 'react-native'
 import { colors } from './src/utils/colors'
+import { SafeAreaView } from 'react-navigation';
 
 export default class App extends React.Component {
 
@@ -25,13 +26,31 @@ export default class App extends React.Component {
   render() {
     if (this.state.fontLoaded) {
       return (
-          <AppContainer />
+        <SafeAreaView style={styles.flex}>
+          <View style={styles.container}>
+            <AppContainer />
+          </View>
+        </SafeAreaView>
       )
     } else return (
-      <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+      <View style={styles.spinnerContainer}>
         {this.state.fontLoaded}
         <ActivityIndicator size="large" color={colors.greenColor} />
       </View>
     )
   }
 }
+const styles = StyleSheet.create({
+  flex: {
+    flex: 1
+  },
+  container: {
+    flex: 1, 
+    marginTop: -(StatusBar.currentHeight)
+  },
+  spinnerContainer: {
+    flex: 1, 
+    justifyContent: 'center', 
+    alignItems: 'center'
+  }
+})

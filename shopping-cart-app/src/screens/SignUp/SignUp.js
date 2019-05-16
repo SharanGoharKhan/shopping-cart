@@ -4,7 +4,6 @@ import {
 } from 'react-native';
 import styles from './styles';
 import { verticalScale } from '../../utils/scaling';
-import { SafeAreaView } from 'react-navigation';
 import TextField from '../../ui/Textfield/Textfield';
 import MainBtn from '../../ui/Buttons/MainBtn';
 import AlternateBtn from '../../ui/Buttons/AlternateBtn';
@@ -12,7 +11,7 @@ import AlternateBtn from '../../ui/Buttons/AlternateBtn';
 class SignUp extends React.Component {
     render() {
         return (
-            <SafeAreaView style={styles.container}>
+            <View style={styles.container}>
                 <View style={styles.body}>
                     <View style={styles.header}>
                         <Text style={styles.header_text}>Sign In</Text>
@@ -59,8 +58,7 @@ class SignUp extends React.Component {
                         </ImageBackground>
                     </View>
                 </View>
-
-            </SafeAreaView>
+            </View>
         );
     }
 }

@@ -7,7 +7,6 @@ import styles from './styles';
 import { verticalScale } from '../../utils/scaling';
 import BottomTab from '../../components/BottomTab/BottomTab';
 import BlueBtn from '../../ui/Buttons/BlueBtn';
-import { SafeAreaView } from 'react-navigation';
 
 /* Config/Constants
 ============================================================================= */
@@ -36,7 +35,7 @@ class Checkout extends React.Component {
     render() {
         return (
             <React.Fragment>
-                <SafeAreaView style={styles.flex}>
+                <View style={styles.flex}>
                     <View style={styles.container}>
                         <View style={styles.body}>
                             <View style={styles.header}>
@@ -150,7 +149,7 @@ class Checkout extends React.Component {
                             </View>
                         </View>
                     </View>
-                </SafeAreaView>
+                </View>
                 <BottomTab
                     navigationObj={this.props.navigation}
                 />

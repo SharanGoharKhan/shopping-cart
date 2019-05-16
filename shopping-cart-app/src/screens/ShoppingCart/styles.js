@@ -28,7 +28,7 @@ export default {
 
     // header
     header: {
-        height: '10%',
+        height: '8%',
         width: '95%',
         flexDirection: 'row',
         alignSelf: 'center',

@@ -32,7 +32,6 @@ class TrackOrder extends React.Component {
         return (
             <View style={styles.flex}>
                 <ScrollView>
-                    <View style={styles.line}></View>
                     <View style={styles.headerContainer}>
                         <TouchableOpacity
                             onPress={() => this.props.navigation.goBack()}

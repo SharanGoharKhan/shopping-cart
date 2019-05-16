@@ -10,13 +10,13 @@ export default {
     },
     headerContainer: {
         width: '100%',
-        height: '10%',
+        height: '8%',
         justifyContent: 'flex-end',
         alignItems: 'center',
     },
     headerSubContainer: {
         width: '95%',
-        height: '50%',
+        height: '80%',
         flexDirection: 'row',
         alignItems: 'center',
         justifyContent: 'space-between'

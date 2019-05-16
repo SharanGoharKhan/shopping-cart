@@ -28,7 +28,7 @@ export default {
 
     // header
     header: {
-        height: '10%',
+        height: '8%',
         width: '95%',
         flexDirection: 'row',
         alignSelf: 'center',
@@ -37,11 +37,12 @@ export default {
     },
     header_text: {
         fontFamily: fontStyles.PoppinsRegular,
-        fontSize: verticalScale(16),
+        fontSize: verticalScale(14),
         paddingLeft: verticalScale(8),
     },
     headerLeft: {
         flexDirection: 'row',
+        alignItems: 'center'
 
     },
 

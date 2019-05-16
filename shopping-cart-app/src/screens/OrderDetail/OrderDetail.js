@@ -4,13 +4,12 @@ import {
 } from 'react-native';
 import styles from './styles';
 import BottomTab from '../../components/BottomTab/BottomTab';
-import { SafeAreaView } from 'react-navigation';
 
 class OrderDetail extends React.Component {
     render() {
         return (
             <React.Fragment>
-                <SafeAreaView style={styles.flex}>
+                <View style={styles.flex}>
                     <View style={styles.headerContainer}>
                         <TouchableOpacity
                             onPress={() => this.props.navigation.goBack()}
@@ -121,7 +120,7 @@ class OrderDetail extends React.Component {
                             </View>
                         </View>
                     </ScrollView>
-                </SafeAreaView>
+                </View>
                 <BottomTab
                     navigationObj={this.props.navigation}
                 />

@@ -11,7 +11,6 @@ import Dropdown from '../../ui/Dropdowns/Dropdown';
 import SearchBar from '../../ui/SearchBar/SearchBar';
 import BottomTab from '../../components/BottomTab/BottomTab';
 import FullCard from './Card/FullCard';
-import { SafeAreaView } from 'react-navigation';
 
 const CATEGORIES = [
     {
@@ -66,12 +65,12 @@ class SearchResult extends React.Component {
     render() {
         return (
             <React.Fragment>
-                <SafeAreaView style={styles.flex}>
+                <View style={styles.flex}>
                     <View>
                         <View style={[styles.body]}>
                             <View style={[styles.header]}>
                                 <View style={[styles.headerLeft]}>
-                                    <Text style={[styles.header_text, { alignSelf: 'flex-end', marginBottom: 30 }]}>Search  In  </Text>
+                                    <Text style={[styles.header_text]}>Search  In  </Text>
                                     <Dropdown items={CATEGORIES} />
                                 </View>
                                 <TouchableOpacity onPress={() => console.log('Show modal')}>
@@ -121,7 +120,7 @@ class SearchResult extends React.Component {
                             </View>
                         </View>
                     </View>
-                </SafeAreaView>
+                </View>
                 <BottomTab
                     navigationObj={this.props.navigation}
                 />

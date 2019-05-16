@@ -26,15 +26,6 @@ class AddressList extends React.Component {
     render() {
         return (
             <View style={styles.container}>
-                <View style={styles.statusBarImage}>
-                    <Image
-                        source={require('../../assets/images/statusbar.png')}
-                        style={{
-                            height: Platform.OS == 'ios' ? 20 : StatusBar.currentHeight,
-                            width: '100%',
-                        }}
-                    />
-                </View>
                 <View style={styles.header}>
                     <View style={styles.headerRow}>
                         <TouchableOpacity
