@@ -4,7 +4,7 @@ import {
 } from 'react-native';
 
 import styles from './styles';
-import { moderateScale } from '../../../utils/scaling';
+import { verticalScale } from '../../../utils/scaling';
 
 /* =============================================================================
 <Card />
@@ -39,7 +39,7 @@ class Card extends React.Component {
                         onPress={() => this.props.navigationObj.navigate('EditingAddress')}
                     >
                         <Image
-                            style={{ height: moderateScale(16), width: moderateScale(16) }}
+                            style={{ height: verticalScale(16), width: verticalScale(16) }}
                             source={require('../../../assets/icons/edit.png')}
                         />
                     </TouchableOpacity>

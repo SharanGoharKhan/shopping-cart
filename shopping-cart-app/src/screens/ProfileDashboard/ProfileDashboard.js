@@ -6,14 +6,12 @@ import styles from './styles';
 import ProfileContainer from './ProfileContainer/ProfileContainer';
 import BottomTab from '../../components/BottomTab/BottomTab';
 import CardContainer from './CardContainer/CardContainer';
-import { SafeAreaView } from 'react-navigation';
 
 class ProfileDashboard extends React.Component {
   render() {
     return (
       <React.Fragment>
-        <SafeAreaView style={styles.flex}>
-          <StatusBar backgroundColor="transparent" barStyle="dark-content" hidden={false} translucent />
+        <View style={styles.flex}>
           <ProfileContainer
             navigationObj={this.props.navigation}
           />
@@ -30,7 +28,7 @@ class ProfileDashboard extends React.Component {
           <CardContainer
             navigationObj={this.props.navigation}
           />
-        </SafeAreaView>
+        </View>
         <BottomTab
           navigationObj={this.props.navigation}
         />

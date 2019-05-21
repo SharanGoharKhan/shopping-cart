@@ -1,5 +1,5 @@
 import { Dimensions } from 'react-native';
-import { moderateScale } from '../../../utils/scaling';
+import { verticalScale } from '../../../utils/scaling';
 import { fontStyles } from '../../../utils/fontStyles';
 
 const { height, width } = Dimensions.get('window');
@@ -17,7 +17,7 @@ export default {
     },
     popularItemsContainerTextStyle: {
         fontFamily: fontStyles.PoppinsRegular,
-        fontSize: moderateScale(16),
+        fontSize: verticalScale(16),
     },
     scrollViewContainer: {
         width: '100%',
@@ -27,11 +27,11 @@ export default {
     cardContainer: {
         width: width * 0.40,
         height: height * 0.25,
-        marginRight: moderateScale(20),
+        marginRight: verticalScale(20),
         flexDirection: 'column',
-        borderRadius: moderateScale(5),
+        borderRadius: verticalScale(5),
         borderColor: 'white',
-        borderWidth: moderateScale(3),
+        borderWidth: verticalScale(3),
     },
     topCardContainer: {
         width: '100%',
@@ -54,14 +54,14 @@ export default {
         top: '8%',
         left: '8%',
         backgroundColor: '#BD10E0',
-        borderRadius: moderateScale(3),
+        borderRadius: verticalScale(3),
         justifyContent: 'center',
         alignItems: 'center',
     },
     imgTextStyle: {
         fontFamily: fontStyles.PoppinsRegular,
         color: 'white',
-        fontSize: moderateScale(10),
+        fontSize: verticalScale(10),
     },
     botCardContainer: {
         width: '100%',
@@ -77,8 +77,8 @@ export default {
     },
     botCardTextStyle: {
         fontFamily: fontStyles.PoppinsRegular,
-        fontSize: moderateScale(10),
-        lineHeight: moderateScale(11),
+        fontSize: verticalScale(10),
+        lineHeight: verticalScale(11),
     },
     botIconContainer: {
         flex: 1,

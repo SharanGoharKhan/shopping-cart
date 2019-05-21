@@ -3,8 +3,7 @@ import {
     View, Text, StatusBar, ImageBackground
 } from 'react-native';
 import styles from './styles';
-import { moderateScale } from '../../utils/scaling';
-import { SafeAreaView } from 'react-navigation';
+import { verticalScale } from '../../utils/scaling';
 import TextField from '../../ui/Textfield/Textfield';
 import MainBtn from '../../ui/Buttons/MainBtn';
 import AlternateBtn from '../../ui/Buttons/AlternateBtn';
@@ -12,8 +11,7 @@ import AlternateBtn from '../../ui/Buttons/AlternateBtn';
 class SignUp extends React.Component {
     render() {
         return (
-            <SafeAreaView style={styles.container}>
-                <StatusBar backgroundColor="transparent" barStyle="dark-content" hidden={false} translucent={false} />
+            <View style={styles.container}>
                 <View style={styles.body}>
                     <View style={styles.header}>
                         <Text style={styles.header_text}>Sign In</Text>
@@ -33,10 +31,10 @@ class SignUp extends React.Component {
                                 <Text style={styles.h2_text}> Sign Up</Text>
                             </View>
                             <View style={styles.main_mid}>
-                                <TextField placeholderText="Full Name" containerStyle={{ marginBottom: moderateScale(10) }} />
-                                <TextField placeholderText="Email" containerStyle={{ marginBottom: moderateScale(10) }} />
-                                <TextField placeholderText="Mobile" containerStyle={{ marginBottom: moderateScale(10) }} />
-                                <TextField placeholderText="Password" containerStyle={{ marginBottom: moderateScale(10) }} />
+                                <TextField placeholderText="Full Name" containerStyle={{ marginBottom: verticalScale(10) }} />
+                                <TextField placeholderText="Email" containerStyle={{ marginBottom: verticalScale(10) }} />
+                                <TextField placeholderText="Mobile" containerStyle={{ marginBottom: verticalScale(10) }} />
+                                <TextField placeholderText="Password" containerStyle={{ marginBottom: verticalScale(10) }} />
 
 
                             </View>
@@ -60,8 +58,7 @@ class SignUp extends React.Component {
                         </ImageBackground>
                     </View>
                 </View>
-
-            </SafeAreaView>
+            </View>
         );
     }
 }

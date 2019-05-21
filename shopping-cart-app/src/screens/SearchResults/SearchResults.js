@@ -5,13 +5,12 @@ import {
 import { StatusBar } from 'react-native';
 import styles from './styles';
 
-import { moderateScale } from '../../utils/scaling';
+import { verticalScale } from '../../utils/scaling';
 
 import Dropdown from '../../ui/Dropdowns/Dropdown';
 import SearchBar from '../../ui/SearchBar/SearchBar';
 import BottomTab from '../../components/BottomTab/BottomTab';
 import FullCard from './Card/FullCard';
-import { SafeAreaView } from 'react-navigation';
 
 const CATEGORIES = [
     {
@@ -66,18 +65,17 @@ class SearchResult extends React.Component {
     render() {
         return (
             <React.Fragment>
-                <SafeAreaView style={styles.flex}>
+                <View style={styles.flex}>
                     <View>
-                        <StatusBar backgroundColor="transparent" barStyle="dark-content" hidden={false} translucent />
                         <View style={[styles.body]}>
                             <View style={[styles.header]}>
                                 <View style={[styles.headerLeft]}>
-                                    <Text style={[styles.header_text, { alignSelf: 'flex-end', marginBottom: 30 }]}>Search  In  </Text>
+                                    <Text style={[styles.header_text]}>Search  In  </Text>
                                     <Dropdown items={CATEGORIES} />
                                 </View>
                                 <TouchableOpacity onPress={() => console.log('Show modal')}>
                                     <Image
-                                        style={{ height: moderateScale(32), width: moderateScale(42), marginBottom: moderateScale(5) }}
+                                        style={{ height: verticalScale(32), width: verticalScale(42), marginBottom: verticalScale(5) }}
                                         source={require('../../assets/icons/header.png')}
                                     />
                                 </TouchableOpacity>
@@ -122,7 +120,7 @@ class SearchResult extends React.Component {
                             </View>
                         </View>
                     </View>
-                </SafeAreaView>
+                </View>
                 <BottomTab
                     navigationObj={this.props.navigation}
                 />

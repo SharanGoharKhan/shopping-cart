@@ -4,7 +4,7 @@ import {
 } from 'react-native';
 import { Rating } from 'react-native-ratings';
 import styles from './styles';
-import { moderateScale } from '../../../utils/scaling';
+import { verticalScale } from '../../../utils/scaling';
 
 const cardData = [
     {
@@ -67,7 +67,7 @@ const cardItem = props => (
                                 style={styles.ratingStyle}
                                 type="star"
                                 ratingCount={5}
-                                imageSize={moderateScale(12)}
+                                imageSize={verticalScale(12)}
                                 startingValue={data.ratingOverall}
                                 readonly
                             />

@@ -1,5 +1,5 @@
 import { Dimensions } from 'react-native';
-import { moderateScale } from '../../utils/scaling';
+import { verticalScale } from '../../utils/scaling';
 import { fontStyles } from '../../utils/fontStyles';
 const { height, width } = Dimensions.get('window');
 
@@ -9,13 +9,13 @@ export default {
     },
     headerContainer: {
         width: '100%',
-        height: '10%',
+        height: '8%',
         justifyContent: 'flex-end',
         alignItems: 'center',
     },
     headerSubContainer: {
         width: '95%',
-        height: '50%',
+        height: '80%',
         flexDirection: 'row',
         alignItems: 'center',
         justifyContent: 'space-between'
@@ -34,7 +34,7 @@ export default {
     },
     headerText: {
         fontFamily: fontStyles.PoppinsRegular,
-        fontSize: moderateScale(16),
+        fontSize: verticalScale(16),
     },
     backCnt: {
         width: '10%', 

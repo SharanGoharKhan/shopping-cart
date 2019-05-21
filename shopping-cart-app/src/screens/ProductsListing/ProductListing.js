@@ -10,7 +10,6 @@ class ProductListing extends React.Component {
     render() {
         return (
             <View style={styles.flex}>
-                <StatusBar backgroundColor="transparent" barStyle="dark-content" hidden={false} translucent={false} />
                 <View style={styles.headerContainer}>
                     <View style={styles.headerSubContainer}>
                         <View style={styles.backCnt}>

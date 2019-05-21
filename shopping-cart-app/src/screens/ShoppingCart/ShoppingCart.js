@@ -3,8 +3,7 @@ import {
     View, Text, Image, StatusBar, ScrollView, Platform
 } from 'react-native';
 import styles from './styles';
-import { moderateScale } from '../../utils/scaling';
-import { SafeAreaView } from 'react-navigation';
+import { verticalScale } from '../../utils/scaling';
 import BlueBtn from '../../ui/Buttons/BlueBtn';
 import FullCard from '../../ui/Cards/FullCard/FullCard';
 import BottomTab from '../../components/BottomTab/BottomTab';
@@ -34,16 +33,15 @@ class ShoppingCart extends React.Component {
     render() {
         return (
             <React.Fragment>
-                <SafeAreaView style={styles.flex}>
+                <View style={styles.flex}>
                     <View style={styles.container}>
-                        <StatusBar backgroundColor="transparent" barStyle="dark-content" hidden={false} translucent />
                         <View style={styles.body}>
                             <View style={styles.header}>
                                 <Image
                                     source={require('../../assets/icons/shoppingBag.png')}
                                     style={{
-                                        height: moderateScale(17),
-                                        width: moderateScale(16),
+                                        height: verticalScale(17),
+                                        width: verticalScale(16),
                                     }}
                                 />
                                 <Text style={styles.header_text}>Shopping Cart</Text>
@@ -94,7 +92,7 @@ class ShoppingCart extends React.Component {
                             </View>
                         </View>
                     </View>
-                </SafeAreaView>
+                </View>
                 <BottomTab
                     navigationObj={this.props.navigation}
                 />

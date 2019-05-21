@@ -1,4 +1,4 @@
-import { moderateScale } from '../../../utils/scaling';
+import { verticalScale } from '../../../utils/scaling';
 import { fontStyles } from '../../../utils/fontStyles';
 import { StatusBar } from 'react-native';
 
@@ -36,7 +36,7 @@ export default {
     },
     topProfileTextStyle: {
         fontFamily: fontStyles.PoppinsRegular,
-        fontSize: moderateScale(16),
+        fontSize: verticalScale(16),
     },
     imgResponsive: {
         flex: 1,
@@ -52,7 +52,7 @@ export default {
     profieCenterContainer: {
         width: '100%',
         height: '90%',
-        borderRadius: moderateScale(8),
+        borderRadius: verticalScale(8),
     },
     profileCenterContainerTop: {
         width: '100%',
@@ -78,12 +78,12 @@ export default {
         alignItems: 'center',
     },
     profileImage: {
-        width: moderateScale(100),
-        height: moderateScale(100),
-        borderRadius: moderateScale(50),
+        width: verticalScale(100),
+        height: verticalScale(100),
+        borderRadius: verticalScale(50),
         justifyContent: 'center',
         alignItems: 'center',
-        borderWidth: moderateScale(3),
+        borderWidth: verticalScale(3),
         borderColor: '#DDDDDD',
     },
     imgResponsive2: {
@@ -97,7 +97,7 @@ export default {
     },
     nameStyle: {
         fontFamily: fontStyles.PoppinsRegular,
-        fontSize: moderateScale(16),
+        fontSize: verticalScale(16),
     },
     placeContainer: {
         width: '100%',
@@ -106,7 +106,7 @@ export default {
     },
     placeStyle: {
         fontFamily: fontStyles.PoppinsRegular,
-        fontSize: moderateScale(12),
+        fontSize: verticalScale(12),
     },
     addressContainer: {
         flex: 1,

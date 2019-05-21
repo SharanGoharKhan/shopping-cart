@@ -4,7 +4,7 @@ import {
 } from 'react-native';
 import CollapseBody from './CollapseBody';
 import CollapseHeader from './CollapseHeader';
-import { moderateScale } from '../../../utils/scaling';
+import { verticalScale } from '../../../utils/scaling';
 
 type Props = {
     isCollapsed: ?boolean,
@@ -38,8 +38,8 @@ export default class Collapse extends Component<Props> {
         let body = null;
         const handleLongPressCallback = this.props.handleLongPress;
 
-        let renderArrow = (<Image style={{ height: moderateScale(13), width: moderateScale(13) }} source={require('../../../assets/icons/downarrow.png')} />);
-        if (this.state.show) { renderArrow = (<Image style={{ height: moderateScale(13), width: moderateScale(13) }} source={require('../../../assets/icons/uparrow.png')} />); }
+        let renderArrow = (<Image style={{ height: verticalScale(13), width: verticalScale(13) }} source={require('../../../assets/icons/downarrow.png')} />);
+        if (this.state.show) { renderArrow = (<Image style={{ height: verticalScale(13), width: verticalScale(13) }} source={require('../../../assets/icons/uparrow.png')} />); }
 
         React.Children.forEach(this.props.children, (child) => {
             if (child.type === CollapseHeader) {
@@ -75,8 +75,8 @@ export default class Collapse extends Component<Props> {
             <View
                 {...this.props} style={{
                     width: '90%',
-                    marginBottom: moderateScale(10),
-                    paddingBottom: moderateScale(10),
+                    marginBottom: verticalScale(10),
+                    paddingBottom: verticalScale(10),
                 }}
           >
                 {header}

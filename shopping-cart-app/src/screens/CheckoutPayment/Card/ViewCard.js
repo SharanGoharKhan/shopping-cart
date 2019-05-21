@@ -22,7 +22,6 @@ class ViewCard extends React.Component {
 
     render() {
         const outlineColor = this.state.is_active ? colors.textBlueColor : colors.secondaryWhiteColor;
-        console.log(outlineColor);
         return (
             <View style={[styles.outline, { borderColor: outlineColor }]}>
                 <View style={styles.container}>

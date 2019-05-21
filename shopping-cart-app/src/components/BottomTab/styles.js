@@ -1,5 +1,5 @@
 import { Dimensions } from 'react-native';
-import { moderateScale } from '../../utils/scaling';
+import { verticalScale } from '../../utils/scaling';
 import { fontStyles } from '../../utils/fontStyles';
 
 const { height, width } = Dimensions.get('window');
@@ -32,13 +32,13 @@ export default {
         position: 'relative',
     },
     profileBadge: {
-        width: moderateScale(8),
-        height: moderateScale(8),
+        width: verticalScale(8),
+        height: verticalScale(8),
         position: 'absolute',
         right: 0,
         top: 0,
         backgroundColor: '#EE9826',
-        borderRadius: moderateScale(4),
+        borderRadius: verticalScale(4),
     },
     shoppingContainer: {
         width: '50%',
@@ -57,7 +57,7 @@ export default {
     shoppingBadgeStyle: {
         fontFamily: fontStyles.PoppinsRegular,
         color: '#6178DE',
-        fontSize: moderateScale(8),
+        fontSize: verticalScale(8),
     },
 
 };

@@ -1,5 +1,5 @@
 import { Dimensions } from 'react-native';
-import { moderateScale } from '../../../utils/scaling';
+import { verticalScale, scale } from '../../../utils/scaling';
 import { colors } from '../../../utils/colors';
 import { fontStyles } from '../../../utils/fontStyles';
 const { height, width } = Dimensions.get('window');
@@ -9,9 +9,9 @@ export default {
         width: width * 0.45,
         height: height * 0.3,
         backgroundColor: 'white',
-        marginTop: moderateScale(10),
-        marginBottom: moderateScale(10),
-        borderRadius: moderateScale(5),
+        marginTop: verticalScale(10),
+        marginBottom: verticalScale(10),
+        borderRadius: verticalScale(5),
     },
     cardTop: {
         width: '100%',
@@ -23,7 +23,7 @@ export default {
         height: undefined,
         borderBottomLeftRadius: 0,
         borderBottomRightRadius: 0,
-        borderRadius: moderateScale(5),
+        borderRadius: verticalScale(5),
     },
     textContainer: {
         height:'10%',
@@ -31,7 +31,7 @@ export default {
     },
     textStyle: {
         fontFamily: fontStyles.PoppinsRegular,
-        fontSize: moderateScale(12),
+        fontSize: scale(12),
         marginLeft: '5%',
     },
     botContainer: {
@@ -52,7 +52,7 @@ export default {
         marginBottom:'-10%',
         marginLeft:'3%',
         fontFamily: fontStyles.PoppinsRegular,
-        fontSize: moderateScale(10),
+        fontSize: verticalScale(10),
     },
     priceContainer: {
         marginTop:'5%',
@@ -62,8 +62,8 @@ export default {
         alignItems: 'center',
     },
     priceStyle: {
-        marginTop: moderateScale(4),
-        fontSize: moderateScale(14),
+        marginTop: verticalScale(4),
+        fontSize: verticalScale(14),
         fontFamily: fontStyles.PoppinsRegular,
         color: colors.textBlueColor,
     },

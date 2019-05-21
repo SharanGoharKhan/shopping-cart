@@ -1,5 +1,5 @@
 import { StatusBar } from 'react-native';
-import { moderateScale } from '../../utils/scaling';
+import { verticalScale } from '../../utils/scaling';
 import { colors } from '../../utils/colors';
 import { fontStyles } from '../../utils/fontStyles';
 
@@ -23,12 +23,12 @@ export default {
         alignSelf: 'center',
     },
     main_scroller: {
-        marginBottom: moderateScale(10),
+        marginBottom: verticalScale(10),
     },
 
     // header
     header: {
-        height: '10%',
+        height: '8%',
         width: '95%',
         flexDirection: 'row',
         alignSelf: 'center',
@@ -36,8 +36,8 @@ export default {
     },
     header_text: {
         fontFamily: fontStyles.PoppinsRegular,
-        fontSize: moderateScale(16),
-        paddingLeft: moderateScale(8),
+        fontSize: verticalScale(16),
+        paddingLeft: verticalScale(8),
     },
     // main
     main: {
@@ -68,21 +68,21 @@ export default {
     mixed_text: {
         flexDirection: 'row',
         justifyContent:'center',
-        marginBottom: moderateScale(20),
+        marginBottom: verticalScale(20),
     },
     text: {
         fontFamily: fontStyles.PoppinsRegular,
-        fontSize: moderateScale(12),
+        fontSize: verticalScale(12),
     },
     colored_text: {
         fontFamily: fontStyles.PoppinsRegular,
-        fontSize: moderateScale(12),
+        fontSize: verticalScale(12),
         color: colors.brownColor,
     },
     row: {
         flexDirection: 'row',
         justifyContent: 'space-between',
-        marginBottom: moderateScale(15),
+        marginBottom: verticalScale(15),
     },
     // footer
     footer: {

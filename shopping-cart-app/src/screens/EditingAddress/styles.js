@@ -1,5 +1,5 @@
 import { Dimensions } from 'react-native';
-import { moderateScale } from '../../utils/scaling';
+import { verticalScale } from '../../utils/scaling';
 import { colors } from '../../utils/colors';
 import { fontStyles } from '../../utils/fontStyles';
 const { height, width } = Dimensions.get('window');
@@ -10,11 +10,9 @@ export default {
     },
     headerContainer: {
         width: '100%',
-        height: '10%',
+        height: '8%',
         flexDirection:'row',
         alignItems: 'flex-end',
-        borderColor: colors.grayLinesColor,
-        borderWidth: moderateScale(1),
     },
     backImg: {
         marginBottom: '3%',
@@ -24,7 +22,7 @@ export default {
         marginBottom: '1%',
         marginLeft: '5%',
         fontFamily: fontStyles.PoppinsRegular,
-        fontSize: moderateScale(18),
+        fontSize: verticalScale(18),
     },
     formMainContainer: {
         flex: 1,
@@ -35,7 +33,7 @@ export default {
         width: '90%',
         height: height * 0.8,
         backgroundColor: colors.whiteColor,
-        borderRadius: moderateScale(8),
+        borderRadius: verticalScale(8),
         alignItems: 'center',
     },
     imgResponsive: {
@@ -65,13 +63,13 @@ export default {
     inputContainer: {
         width: '100%',
         height: '60%',
-        borderRadius: moderateScale(3),
+        borderRadius: verticalScale(3),
         backgroundColor: colors.backgroudGray,
     },
     label: {
         fontFamily: fontStyles.PoppinsRegular,
         color: colors.darkGrayText,
-        fontSize: moderateScale(14),
+        fontSize: verticalScale(14),
     },
     oneItemContainer: {
         width: '100%',
@@ -95,7 +93,7 @@ export default {
         backgroundColor: colors.brownColor,
         justifyContent: 'center',
         alignItems: 'center',
-        borderRadius: moderateScale(4),
+        borderRadius: verticalScale(4),
     },
     addStyle: {
         fontFamily: fontStyles.PoppinsRegular,
@@ -116,12 +114,12 @@ export default {
     },
     nameAddressLabelStyle: {
         fontFamily: fontStyles.PoppinsRegular,
-        fontSize: moderateScale(10),
+        fontSize: verticalScale(10),
     },
     addressInputStyle: {
         fontFamily: fontStyles.PoppinsRegular,
-        fontSize: moderateScale(20),
-        borderBottomWidth: moderateScale(1),
+        fontSize: verticalScale(20),
+        borderBottomWidth: verticalScale(1),
         borderBottomColor: '#9B9B9B',
     },
 };

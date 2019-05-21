@@ -4,10 +4,9 @@ import {
 } from 'react-native';
 
 import styles from './styles';
-import { moderateScale } from '../../utils/scaling';
+import { verticalScale } from '../../utils/scaling';
 import BottomTab from '../../components/BottomTab/BottomTab';
 import BlueBtn from '../../ui/Buttons/BlueBtn';
-import { SafeAreaView } from 'react-navigation';
 
 /* Config/Constants
 ============================================================================= */
@@ -36,16 +35,15 @@ class Checkout extends React.Component {
     render() {
         return (
             <React.Fragment>
-                <SafeAreaView style={styles.flex}>
+                <View style={styles.flex}>
                     <View style={styles.container}>
-                        <StatusBar backgroundColor="transparent" barStyle="dark-content" hidden={false} translucent />
                         <View style={styles.body}>
                             <View style={styles.header}>
                                 <Image
                                     source={require('../../assets/icons/summary.png')}
                                     style={{
-                                        height: moderateScale(14),
-                                        width: moderateScale(15),
+                                        height: verticalScale(14),
+                                        width: verticalScale(15),
                                     }}
                                 />
                                 <Text style={styles.header_text}>Summary</Text>
@@ -61,8 +59,8 @@ class Checkout extends React.Component {
                                                 <Image
                                                     source={require('../../assets/icons/edit.png')}
                                                     style={{
-                                                        height: moderateScale(16),
-                                                        width: moderateScale(16),
+                                                        height: verticalScale(16),
+                                                        width: verticalScale(16),
                                                     }}
                                                 />
                                             </TouchableOpacity>
@@ -71,8 +69,8 @@ class Checkout extends React.Component {
                                             <Image
                                                 source={require('../../assets/icons/delivery.png')}
                                                 style={{
-                                                    height: moderateScale(13),
-                                                    width: moderateScale(25),
+                                                    height: verticalScale(13),
+                                                    width: verticalScale(25),
                                                 }}
                                             />
                                             <Text style={styles.deliveryDate}>
@@ -108,8 +106,8 @@ class Checkout extends React.Component {
                                                     <Image
                                                         source={require('../../assets/icons/edit.png')}
                                                         style={{
-                                                            height: moderateScale(16),
-                                                            width: moderateScale(16),
+                                                            height: verticalScale(16),
+                                                            width: verticalScale(16),
                                                         }}
                                                     />
                                                 </TouchableOpacity>
@@ -151,7 +149,7 @@ class Checkout extends React.Component {
                             </View>
                         </View>
                     </View>
-                </SafeAreaView>
+                </View>
                 <BottomTab
                     navigationObj={this.props.navigation}
                 />

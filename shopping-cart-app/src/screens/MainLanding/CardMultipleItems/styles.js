@@ -1,5 +1,5 @@
 import { Dimensions } from 'react-native';
-import { moderateScale } from '../../../utils/scaling';
+import { verticalScale } from '../../../utils/scaling';
 import { fontStyles } from '../../../utils/fontStyles';
 const { height, width } = Dimensions.get('window');
 
@@ -16,7 +16,7 @@ export default {
     },
     cardItemsTextStyles: {
         fontFamily: fontStyles.PoppinsRegular,
-        fontSize: moderateScale(16),
+        fontSize: verticalScale(16),
     },
     scrollViewContainer: {
         width: '100%',
@@ -26,11 +26,11 @@ export default {
     cardContainer: {
         width: width * 0.5,
         height: height * 0.25,
-        marginRight: moderateScale(20),
+        marginRight: verticalScale(20),
         flexDirection: 'column',
-        borderRadius: moderateScale(5),
+        borderRadius: verticalScale(5),
         borderColor: 'white',
-        borderWidth: moderateScale(3),
+        borderWidth: verticalScale(3),
     },
     cardTopContainer: {
         width: '100%',
@@ -64,7 +64,7 @@ export default {
         width: width * 0.18,
         height: height * 0.09,
         borderColor: 'white',
-        borderWidth: moderateScale(2),
+        borderWidth: verticalScale(2),
         borderRadius: width * 0.09,
     },
     bottomContainer: {
@@ -81,8 +81,8 @@ export default {
     },
     bottomTextStyle: {
         fontFamily: fontStyles.PoppinsRegular,
-        fontSize: moderateScale(10),
-        lineHeight: moderateScale(11),
+        fontSize: verticalScale(10),
+        lineHeight: verticalScale(11),
     },
 
 

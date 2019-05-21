@@ -1,4 +1,4 @@
-import { moderateScale } from '../../../utils/scaling';
+import { verticalScale } from '../../../utils/scaling';
 import { colors } from '../../../utils/colors';
 import { fontStyles } from '../../../utils/fontStyles';
 
@@ -7,10 +7,10 @@ import { fontStyles } from '../../../utils/fontStyles';
 export default {
     container: {
         width: '100%',
-        height: moderateScale(90),
-        marginBottom: moderateScale(15),
-        borderRadius: moderateScale(3),
-        borderWidth: moderateScale(1),
+        height: verticalScale(90),
+        marginBottom: verticalScale(15),
+        borderRadius: verticalScale(3),
+        borderWidth: verticalScale(1),
         borderColor: colors.backgroudGray,
         flexDirection: 'row',
     },
@@ -21,8 +21,8 @@ export default {
     thumbnail: {
         height: '100%',
         width: '100%',
-        borderTopLeftRadius: moderateScale(3),
-        borderBottomLeftRadius: moderateScale(3),
+        borderTopLeftRadius: verticalScale(3),
+        borderBottomLeftRadius: verticalScale(3),
     },
     rightside_container: {
         backgroundColor: colors.secondaryWhiteColor,
@@ -30,17 +30,17 @@ export default {
         width: '65%',
         justifyContent: 'center',
         alignItems: 'center',
-        borderTopRightRadius: moderateScale(3),
-        borderBottomRightRadius: moderateScale(3),
+        borderTopRightRadius: verticalScale(3),
+        borderBottomRightRadius: verticalScale(3),
     },
     ratingContainer: {
         flexDirection: 'row',
     },
     votesCount: {
         fontFamily: fontStyles.PoppinsRegular,
-        fontSize: moderateScale(8),
-        paddingTop: moderateScale(3),
-        paddingLeft: moderateScale(3),
+        fontSize: verticalScale(8),
+        paddingTop: verticalScale(3),
+        paddingLeft: verticalScale(3),
     },
     badge: {
         backgroundColor: 'purple',
@@ -48,10 +48,10 @@ export default {
         width: '30%',
         position: 'absolute',
         textAlign: 'center',
-        lineHeight: moderateScale(18),
+        lineHeight: verticalScale(18),
         fontFamily: fontStyles.PoppinsRegular,
-        fontSize: moderateScale(11),
-        borderRadius: moderateScale(3),
+        fontSize: verticalScale(11),
+        borderRadius: verticalScale(3),
         zIndex: 1,
         elevation: 1,
         top: 10,
@@ -77,34 +77,34 @@ export default {
     qty: {
         fontFamily: fontStyles.PoppinsRegular,
         color: colors.primaryBlackColor,
-        fontSize: moderateScale(13),
+        fontSize: verticalScale(13),
         fontWeight: '500',
     },
     amount: {
         fontFamily: fontStyles.PoppinsRegular,
         color: colors.textBlueColor,
-        fontSize: moderateScale(13),
+        fontSize: verticalScale(13),
         fontWeight: '500',
-        lineHeight: moderateScale(13),
-        paddingTop: moderateScale(5),
+        lineHeight: verticalScale(13),
+        paddingTop: verticalScale(5),
 
     },
     product: {
         width: '95%',
         fontFamily: fontStyles.PoppinsRegular,
         color: colors.primaryBlackColor,
-        fontSize: moderateScale(13),
-        lineHeight: moderateScale(14.5),
+        fontSize: verticalScale(13),
+        lineHeight: verticalScale(14.5),
     },
     by: {
         fontFamily: fontStyles.PoppinsRegular,
         color: colors.primaryBlackColor,
-        fontSize: moderateScale(11),
+        fontSize: verticalScale(11),
     },
     brand: {
         fontFamily: fontStyles.PoppinsRegular,
         color: colors.brownColor,
-        fontSize: moderateScale(11),
+        fontSize: verticalScale(11),
     },
     prevPrice: {
         alignSelf: 'flex-start',
@@ -112,8 +112,8 @@ export default {
     prevPriceText: {
         color: colors.googleRedColor,
         fontFamily: fontStyles.PoppinsRegular,
-        fontSize: moderateScale(9),
-        lineHeight: moderateScale(10),
+        fontSize: verticalScale(9),
+        lineHeight: verticalScale(10),
         alignSelf: 'flex-start',
         paddingBottom: 0,
         marginBottom: 0,

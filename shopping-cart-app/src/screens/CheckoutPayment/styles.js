@@ -1,5 +1,5 @@
 import { StatusBar, Dimensions } from 'react-native';
-import { moderateScale } from '../../utils/scaling';
+import { verticalScale } from '../../utils/scaling';
 import { colors } from '../../utils/colors';
 import { fontStyles } from '../../utils/fontStyles';
 const { width, height } = Dimensions.get('window');
@@ -24,11 +24,11 @@ export default {
         alignSelf: 'center',
     },
     main_scroller: {
-        marginBottom: moderateScale(10),
+        marginBottom: verticalScale(10),
     },
     // header
     header: {
-        height: '10%',
+        height: '8%',
         width: '100%',
         flexDirection: 'row',
         alignSelf: 'center',
@@ -36,8 +36,8 @@ export default {
     },
     header_text: {
         fontFamily: fontStyles.PoppinsRegular,
-        fontSize: moderateScale(16),
-        paddingLeft: moderateScale(8),
+        fontSize: verticalScale(16),
+        paddingLeft: verticalScale(8),
     },
     // main
     main: {
@@ -58,7 +58,7 @@ export default {
     },
     headlineText: {
         fontFamily: fontStyles.PoppinsRegular,
-        fontSize: moderateScale(13),
+        fontSize: verticalScale(13),
     },
     cardContainer: {
         width: width * 0.90,
@@ -74,13 +74,13 @@ export default {
     },
     manBtnContText: {
         fontFamily: fontStyles.PoppinsRegular,
-        fontSize: moderateScale(11),
+        fontSize: verticalScale(11),
     },
     paginationItem: {
         marginLeft: 0,
-        marginRight: moderateScale(3),
-        height: moderateScale(7),
-        width: moderateScale(8),
+        marginRight: verticalScale(3),
+        height: verticalScale(7),
+        width: verticalScale(8),
     },
     mainBot: {
         height: '30%',
@@ -92,35 +92,35 @@ export default {
         alignItems: 'center',
         justifyContent: 'space-evenly',
         backgroundColor: colors.backgroudGray,
-        borderRadius: moderateScale(5),
+        borderRadius: verticalScale(5),
     },
     subtotalContainer: {
         width: '90%',
-        borderBottomWidth: moderateScale(1),
+        borderBottomWidth: verticalScale(1),
         borderBottomColor: colors.grayLinesColor,
-        paddingBottom: moderateScale(5),
+        paddingBottom: verticalScale(5),
     },
     cvvContainer: {
         backgroundColor: colors.whiteColor,
-        borderWidth: moderateScale(1),
-        borderRadius: moderateScale(3),
+        borderWidth: verticalScale(1),
+        borderRadius: verticalScale(3),
         borderColor: colors.grayLinesColor,
-        height: moderateScale(25),
-        width: moderateScale(45),
+        height: verticalScale(25),
+        width: verticalScale(45),
         justifyContent: 'center',
         alignItems: 'center',
 
     },
     cvvInput: {
         fontFamily: fontStyles.PoppinsRegular,
-        fontSize: moderateScale(12),
+        fontSize: verticalScale(12),
         width: '60%',
     },
     listItem: {
         width: '100%',
         flexDirection: 'row',
         justifyContent: 'space-between',
-        marginBottom: moderateScale(3),
+        marginBottom: verticalScale(3),
     },
     row: {
         width: '100%',
@@ -129,16 +129,16 @@ export default {
     },
     text: {
         fontFamily: fontStyles.PoppinsRegular,
-        fontSize: moderateScale(12.5),
+        fontSize: verticalScale(12.5),
     },
     textBold: {
         fontFamily: fontStyles.PoppinsRegular,
-        fontSize: moderateScale(13),
+        fontSize: verticalScale(13),
         fontWeight: '500',
     },
     textBlue: {
         fontFamily: fontStyles.PoppinsRegular,
-        fontSize: moderateScale(13),
+        fontSize: verticalScale(13),
         fontWeight: '500',
         color: colors.textBlueColor,
     },

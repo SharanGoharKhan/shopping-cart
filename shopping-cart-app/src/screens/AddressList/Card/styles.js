@@ -1,14 +1,14 @@
-import { moderateScale } from '../../../utils/scaling';
+import { verticalScale } from '../../../utils/scaling';
 import { colors } from '../../../utils/colors';
 import { fontStyles } from '../../../utils/fontStyles';
 
 export default {
     container: {
-        height: moderateScale(160),
+        height: verticalScale(160),
         width: '100%',
         backgroundColor: colors.whiteColor,
-        marginBottom: moderateScale(10),
-        borderRadius: moderateScale(5),
+        marginBottom: verticalScale(10),
+        borderRadius: verticalScale(5),
         overflow: 'hidden',
         alignItems: 'center',
     },
@@ -21,7 +21,7 @@ export default {
     },
     titleText: {
         fontFamily: fontStyles.PoppinsRegular,
-        fontSize: moderateScale(14),
+        fontSize: verticalScale(14),
         color: colors.brownColor,
     },
     address: {
@@ -30,9 +30,9 @@ export default {
         justifyContent: 'center',
     },
     addressText: {
-        fontSize: moderateScale(11),
+        fontSize: verticalScale(11),
         fontFamily: fontStyles.PoppinsRegular,
-        lineHeight: moderateScale(15),
+        lineHeight: verticalScale(15),
     },
     btnContainer: {
         height: '30%',
@@ -40,35 +40,35 @@ export default {
         justifyContent: 'flex-start',
     },
     selectedBtn: {
-        height: moderateScale(40),
+        height: verticalScale(40),
         width: '100%',
         backgroundColor: colors.backgroudGray,
         flexDirection: 'row',
         alignItems: 'center',
         justifyContent: 'center',
-        borderRadius: moderateScale(3),
+        borderRadius: verticalScale(3),
     },
     selectedText: {
         fontFamily: fontStyles.PoppinsRegular,
-        fontSize: moderateScale(13),
+        fontSize: verticalScale(13),
     },
     unselectedButton: {
-        height: moderateScale(40),
+        height: verticalScale(40),
         width: '100%',
         backgroundColor: colors.brownColor,
         justifyContent: 'center',
         alignItems: 'center',
-        borderRadius: moderateScale(3),
+        borderRadius: verticalScale(3),
     },
     unselectedText: {
         color: colors.whiteColor,
         fontFamily: fontStyles.PoppinsRegular,
-        fontSize: moderateScale(13),
+        fontSize: verticalScale(13),
     },
     tickImage: {
-        height: moderateScale(16),
-        width: moderateScale(16),
+        height: verticalScale(16),
+        width: verticalScale(16),
         position: 'absolute',
-        left: moderateScale(20),
+        left: verticalScale(20),
     },
 };

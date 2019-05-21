@@ -1,4 +1,4 @@
-import { moderateScale } from '../../../utils/scaling';
+import { verticalScale } from '../../../utils/scaling';
 import { colors } from '../../../utils/colors';
 import { fontStyles } from '../../../utils/fontStyles';
 
@@ -10,16 +10,16 @@ export default {
         alignItems: 'center',
         justifyContent: 'center',
         borderColor: colors.textBlueColor,
-        borderRadius: moderateScale(12),
-        borderWidth: moderateScale(5),
+        borderRadius: verticalScale(12),
+        borderWidth: verticalScale(5),
     },
     container: {
         height: '95%',
         width: '97.33%',
         alignItems: 'center',
-        borderWidth: moderateScale(1),
+        borderWidth: verticalScale(1),
         borderColor: colors.grayLinesColor,
-        borderRadius: moderateScale(7),
+        borderRadius: verticalScale(7),
         overflow: 'hidden',
     },
     topContainer: {
@@ -28,13 +28,13 @@ export default {
         justifyContent: 'flex-end',
     },
     simCardImage: {
-        height: moderateScale(30),
-        width: moderateScale(36),
-        marginBottom: moderateScale(8),
+        height: verticalScale(30),
+        width: verticalScale(36),
+        marginBottom: verticalScale(8),
     },
     visaImage: {
-        height: moderateScale(14),
-        width: moderateScale(45),
+        height: verticalScale(14),
+        width: verticalScale(45),
     },
     botContainer: {
         height: '50%',
@@ -50,7 +50,7 @@ export default {
     },
     ccText: {
         fontFamily: fontStyles.PoppinsRegular,
-        fontSize: moderateScale(8),
+        fontSize: verticalScale(8),
 
     },
     expiryContainer: {
@@ -58,21 +58,21 @@ export default {
     },
     expiryText: {
         fontFamily: fontStyles.PoppinsRegular,
-        fontSize: moderateScale(9),
-        lineHeight: moderateScale(11),
+        fontSize: verticalScale(9),
+        lineHeight: verticalScale(11),
     },
     expiryNumberText: {
-        letterSpacing: moderateScale(1),
+        letterSpacing: verticalScale(1),
         fontFamily: fontStyles.PoppinsRegular,
-        fontSize: moderateScale(10.5),
-        marginLeft: moderateScale(5),
+        fontSize: verticalScale(10.5),
+        marginLeft: verticalScale(5),
     },
     expiryMonthYear: {
         justifyContent: 'center',
     },
     cardOwnerName: {
         fontFamily: fontStyles.PoppinsRegular,
-        fontSize: moderateScale(13),
+        fontSize: verticalScale(13),
     },
 
 };

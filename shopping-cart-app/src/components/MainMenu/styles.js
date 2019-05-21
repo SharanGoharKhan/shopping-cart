@@ -1,4 +1,4 @@
-import { moderateScale } from '../../utils/scaling';
+import { verticalScale } from '../../utils/scaling';
 import { colors } from '../../utils/colors';
 import { fontStyles } from '../../utils/fontStyles';
 
@@ -21,13 +21,13 @@ export default {
         flexDirection: 'column',
         alignItems: 'center',
         justifyContent: 'center',
-        borderRadius: moderateScale(5),
+        borderRadius: verticalScale(5),
     },
     profileImage: {
-        width: moderateScale(60),
-        height: moderateScale(60),
-        borderRadius: moderateScale(30),
-        borderWidth: moderateScale(2),
+        width: verticalScale(60),
+        height: verticalScale(60),
+        borderRadius: verticalScale(30),
+        borderWidth: verticalScale(2),
         borderColor: '#DDDDDD',
         backgroundColor: 'white',
         justifyContent:'center',
@@ -50,7 +50,7 @@ export default {
     },
     profileTitleStyle: {
         fontFamily: fontStyles.PoppinsRegular,
-        fontSize: moderateScale(14),
+        fontSize: verticalScale(14),
     },
     profilePlace: {
         width: '100%',
@@ -60,7 +60,7 @@ export default {
     },
     profilePlaceStyle: {
         fontFamily: fontStyles.PoppinsRegular,
-        fontSize: moderateScale(12),
+        fontSize: verticalScale(12),
     },
     middleContainer: {
         width: '100%',
@@ -80,7 +80,7 @@ export default {
     },
     navItemStyle: {
         fontFamily: fontStyles.PoppinsRegular,
-        fontSize: moderateScale(16),
+        fontSize: verticalScale(16),
     },
     navItemContainerImage: {
         width: '100%',
@@ -117,7 +117,7 @@ export default {
     },
     signoutContainerStyle: {
         fontFamily: fontStyles.PoppinsRegular,
-        fontSize: moderateScale(16),
+        fontSize: verticalScale(16),
         color: colors.pinkColor,
     },
 };

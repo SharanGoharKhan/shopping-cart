@@ -7,11 +7,10 @@ import BlueBtn from '../../ui/Buttons/BlueBtn';
 import BlueAlternateBtn from '../../ui/Buttons/BlueAlternateBtn';
 import ViewCard from './Card/ViewCard';
 import styles from './styles';
-import { moderateScale } from '../../utils/scaling';
+import { verticalScale } from '../../utils/scaling';
 import { colors } from '../../utils/colors';
 import BottomTab from '../../components/BottomTab/BottomTab';
 import CheckoutReciept from './CheckoutReciept/CheckoutReciept';
-import { SafeAreaView } from 'react-navigation';
 
 /* Config/Constants
 ============================================================================= */
@@ -46,9 +45,8 @@ class CheckoutPayment extends React.Component {
     render() {
         return (
             <React.Fragment>
-                <SafeAreaView style={styles.flex}>
+                <View style={styles.flex}>
                     <View style={styles.container}>
-                        <StatusBar backgroundColor="transparent" barStyle="dark-content" hidden={false} translucent />
                         <CheckoutReciept
                             navigationObj={this.props.navigation}
                             modalVisible={this.state.modalVisible}
@@ -59,8 +57,8 @@ class CheckoutPayment extends React.Component {
                                 <Image
                                     source={require('../../assets/icons/creditcard.png')}
                                     style={{
-                                        height: moderateScale(15),
-                                        width: moderateScale(19),
+                                        height: verticalScale(15),
+                                        width: verticalScale(19),
                                     }}
                                 />
                                 <Text style={styles.header_text}>Payment</Text>
@@ -97,7 +95,7 @@ class CheckoutPayment extends React.Component {
                                     <View style={styles.manualBtnContainer}>
                                         <Text style={styles.manBtnContText}>Or</Text>
                                         <BlueAlternateBtn
-                                            containerStyles={{ marginTop: moderateScale(5) }}
+                                            containerStyles={{ marginTop: verticalScale(5) }}
                                             text="Enter Credit Card Manually"
                                         />
                                     </View>
@@ -131,6 +129,7 @@ class CheckoutPayment extends React.Component {
                                             <Text style={styles.text}>CVV</Text>
                                             <View style={styles.cvvContainer}>
                                                 <TextInput
+                                                    editable={false}
                                                     maxLength={3}
                                                     keyboardType="numeric"
                                                     style={styles.cvvInput}
@@ -156,7 +155,7 @@ class CheckoutPayment extends React.Component {
                             </View>
                         </View>
                     </View>
-                </SafeAreaView>
+                </View>
                 <BottomTab
                     navigationObj={this.props.navigation}
                 />

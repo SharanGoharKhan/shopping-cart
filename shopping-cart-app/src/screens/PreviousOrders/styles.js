@@ -1,5 +1,5 @@
 import { Dimensions } from 'react-native';
-import { moderateScale } from '../../utils/scaling';
+import { verticalScale } from '../../utils/scaling';
 import { colors } from '../../utils/colors';
 import { fontStyles } from '../../utils/fontStyles';
 import { StatusBar } from 'react-native'
@@ -12,9 +12,8 @@ export default {
         flex: 1,
     },
     headerContainer: {
-        marginTop: StatusBar.currentHeight,
         width: '100%',
-        height: height * 0.06,
+        height: '8%',
         flexDirection: 'row',
         alignItems: 'flex-end'
     },
@@ -22,10 +21,10 @@ export default {
         marginBottom: '1%',
         marginLeft: '5%',
         fontFamily: fontStyles.PoppinsRegular,
-        fontSize: moderateScale(18),
+        fontSize: verticalScale(18),
     },
     line: {
-        height:moderateScale(1),
+        height:verticalScale(1),
         width: width,
         backgroundColor: '#edeaea',
     },
@@ -42,12 +41,12 @@ export default {
         flex: 1,
     },
     mainCardContainer: {
-        paddingTop: moderateScale(10),
+        paddingTop: verticalScale(10),
         alignItems: 'center',
         backgroundColor: '#F5F5F5',
     },
     lineContainer: {
-        height: moderateScale(20),
+        height: verticalScale(20),
         justifyContent: 'center',
     },
     lineSubContainer: {
@@ -64,11 +63,11 @@ export default {
     cardContainer: {
         width: '90%',
         height: height * 0.14,
-        marginBottom: moderateScale(4),
-        marginTop: moderateScale(4),
-        borderRadius: moderateScale(8),
+        marginBottom: verticalScale(4),
+        marginTop: verticalScale(4),
+        borderRadius: verticalScale(8),
         flexDirection: 'row',
-        borderWidth: moderateScale(1),
+        borderWidth: verticalScale(1),
         borderColor: '#EEEEEE',
     },
     leftContainer: {
@@ -85,7 +84,7 @@ export default {
         height: undefined,
     },
     roundedBorder: {
-        borderRadius: moderateScale(8),
+        borderRadius: verticalScale(8),
         borderTopRightRadius: 0,
         borderBottomRightRadius: 0,
     },
@@ -108,7 +107,7 @@ export default {
     },
     titleStyle: {
         fontFamily: fontStyles.PoppinsRegular,
-        fontSize: moderateScale(14),
+        fontSize: verticalScale(14),
     },
     rightArrowContainer: {
         width: '6%',
@@ -121,7 +120,7 @@ export default {
     },
     subTtitleStyle: {
         fontFamily: fontStyles.PoppinsRegular,
-        fontSize: moderateScale(10),
+        fontSize: verticalScale(10),
         color: '#9B9B9B',
     },
     actionsContainer: {
@@ -138,7 +137,7 @@ export default {
     },
     statusStyle: {
         fontFamily: fontStyles.PoppinsRegular,
-        fontSize: moderateScale(12),
+        fontSize: verticalScale(12),
         color: colors.blueColor,
     },
     actionContainer: {
@@ -147,12 +146,12 @@ export default {
         justifyContent: 'center',
         alignItems: 'center',
         marginRight: '5%',
-        borderRadius: moderateScale(4),
+        borderRadius: verticalScale(4),
         backgroundColor: colors.textBlueColor,
     },
     actionStyle: {
         fontFamily: fontStyles.PoppinsRegular,
-        fontSize: moderateScale(12),
+        fontSize: verticalScale(12),
         color: colors.whiteColor,
     },
 };
