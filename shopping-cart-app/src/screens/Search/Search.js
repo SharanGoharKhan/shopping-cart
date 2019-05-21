@@ -34,7 +34,7 @@ class Search extends React.Component {
     render() {
         return (
             <React.Fragment>
-                <View style={styles.flex}>
+                <View style={[styles.flex]}>
                     <View style={styles.container}>
                         <View style={[styles.body]}>
                             <View style={[styles.header]}>

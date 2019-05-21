@@ -7,7 +7,6 @@ export default {
         flex: 1,
     },
     profileContainer: {
-        marginTop: StatusBar.currentHeight,
         width: '100%',
         height: '50%',
         justifyContent: 'center',

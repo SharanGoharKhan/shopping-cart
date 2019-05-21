@@ -16,7 +16,6 @@ export default {
         backgroundColor: 'black',
     },
     body: {
-        marginTop: StatusBar.currentHeight,
         height: height*.95,
         width: '95%',
         alignSelf: 'center',
