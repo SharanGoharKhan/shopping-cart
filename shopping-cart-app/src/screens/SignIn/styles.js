@@ -2,6 +2,8 @@ import { StatusBar } from 'react-native';
 import { verticalScale, scale } from '../../utils/scaling';
 import { colors } from '../../utils/colors';
 import { fontStyles } from '../../utils/fontStyles';
+import { Dimensions } from 'react-native';
+const { width, height } = Dimensions.get('window');
 
 export default {
     container: {
@@ -15,7 +17,7 @@ export default {
     },
     body: {
         marginTop: StatusBar.currentHeight,
-        height: '95%',
+        height: height*.95,
         width: '95%',
         alignSelf: 'center',
     },

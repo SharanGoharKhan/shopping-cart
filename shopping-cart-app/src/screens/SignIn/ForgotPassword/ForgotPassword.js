@@ -23,14 +23,14 @@ class ForgotPassword extends React.Component {
                         </View>
                         <View style={styles.inputContainer}>
                             <TextInput
-                                style={{ textAlign: 'center' }}
+                                style={{ textAlign: 'center', flex: 1 }}
                                 placeholder="Your Email"
                                 placeholderTextColor="black"
                             />
                         </View>
                         <TouchableOpacity
                             onPress={this.props.hideModal}
-                            style={[styles.inputContainer, styles.brownColor]}
+                            style={[styles.btnContainer, styles.brownColor]}
                         >
                             <Text style={styles.sendStyle}>Send</Text>
                         </TouchableOpacity>

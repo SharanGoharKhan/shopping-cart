@@ -129,6 +129,7 @@ class CheckoutPayment extends React.Component {
                                             <Text style={styles.text}>CVV</Text>
                                             <View style={styles.cvvContainer}>
                                                 <TextInput
+                                                    editable={false}
                                                     maxLength={3}
                                                     keyboardType="numeric"
                                                     style={styles.cvvInput}

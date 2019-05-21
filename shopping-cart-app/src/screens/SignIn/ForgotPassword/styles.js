@@ -37,11 +37,18 @@ export default {
         marginTop: '5%',
         borderRadius: verticalScale(3),
         backgroundColor: colors.backgroudGray,
-        justifyContent: 'center',
-        alignItems: 'center',
     },
     brownColor: {
         backgroundColor: colors.brownColor,
+    },
+    btnContainer: {
+        width: '100%',
+        height: '25%',
+        marginTop: '5%',
+        borderRadius: verticalScale(3),
+        backgroundColor: colors.lightGrayColor,
+        justifyContent: 'center',
+        alignItems: 'center'
     },
     sendStyle: {
         fontFamily: fontStyles.PoppinsRegular,

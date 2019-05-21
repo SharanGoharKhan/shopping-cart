@@ -32,7 +32,7 @@ export default {
     formContainer: {
         marginTop: '15%',
         width: '90%',
-        height: '80%',
+        height: height * 0.8,
         backgroundColor: colors.whiteColor,
         borderRadius: verticalScale(8),
         alignItems: 'center',

@@ -1,6 +1,6 @@
 import React from 'react';
 import {
-    View, Text, Image, StatusBar, TouchableOpacity, ImageBackground, Platform
+    View, Text, Image, TouchableOpacity, ImageBackground,
 } from 'react-native';
 import styles from './styles';
 import { verticalScale } from '../../utils/scaling';
@@ -56,10 +56,10 @@ class SignIn extends React.Component {
                             <View style={styles.bc_texts}>
                                 <Text style={styles.bc_h1}>
                                     Hello Guest!
-                      </Text>
+                                </Text>
                                 <Text style={styles.bc_h2}>
                                     Sign In
-                      </Text>
+                                </Text>
                             </View>
                             <View style={styles.bc_main}>
                                 <TextField
@@ -138,7 +138,7 @@ class SignIn extends React.Component {
                         </View>
                     </View>
                 </View>
-            </View>
+            </View >
         );
     }
 }
