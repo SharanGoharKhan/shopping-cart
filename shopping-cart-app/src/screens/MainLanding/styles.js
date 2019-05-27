@@ -26,7 +26,7 @@ export default {
         height: verticalScale(18),
         position: 'absolute',
         top: '15%',
-        left: '10%',
+        left: '6%',
     },
     imgResponsive: {
         flex: 1,

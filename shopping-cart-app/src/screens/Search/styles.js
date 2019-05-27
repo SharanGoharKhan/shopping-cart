@@ -1,7 +1,8 @@
-import { StatusBar } from 'react-native';
+import { StatusBar, Dimensions } from 'react-native';
 import { verticalScale } from '../../utils/scaling';
 import { colors } from '../../utils/colors';
 import { fontStyles } from '../../utils/fontStyles';
+const { width, height } = Dimensions.get('window');
 
 export default {
     flex: {
@@ -27,7 +28,7 @@ export default {
 
     // header
     header: {
-        height: '8%',
+        height: height*.08,
         width: '95%',
         flexDirection: 'row',
         alignSelf: 'center',
@@ -40,7 +41,7 @@ export default {
     },
     // main
     main: {
-        height: '80%',
+        height: height*.8,
         width: '100%',
         marginLeft: 0,
         justifyContent: 'center',
