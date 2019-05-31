@@ -1,1 +1,1 @@
-### This is client side mobile app
+### This is Ecommero UI theme for Native Base Market
