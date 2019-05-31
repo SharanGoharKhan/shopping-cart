@@ -26,7 +26,7 @@ export default class App extends React.Component {
   render() {
     if (this.state.fontLoaded) {
       return (
-        <SafeAreaView style={styles.flex}>
+        <SafeAreaView forceInset={{ top: 'always' }} style={styles.flex}>
           <View style={styles.container}>
             <AppContainer />
           </View>
