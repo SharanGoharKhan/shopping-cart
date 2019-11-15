@@ -1,10 +1,10 @@
 {
   "devToolsPort": 19002,
-  "expoServerPort": null,
-  "packagerPort": null,
-  "packagerPid": null,
-  "expoServerNgrokUrl": null,
-  "packagerNgrokUrl": null,
-  "ngrokPid": null,
+  "expoServerPort": 19000,
+  "packagerPort": 19001,
+  "packagerPid": 15495,
+  "expoServerNgrokUrl": "https://4h-tsu.m-adnan-93.shopping-cart-app.exp.direct",
+  "packagerNgrokUrl": "https://packager.4h-tsu.m-adnan-93.shopping-cart-app.exp.direct",
+  "ngrokPid": 15521,
   "webpackServerPort": null
 }

@@ -1,6 +1,6 @@
 import React from 'react'
 import AppContainer from './src/utils/routes'
-import { Font } from 'expo'
+import * as Font from 'expo-font'
 import { View, ActivityIndicator, StatusBar, StyleSheet } from 'react-native'
 import { colors } from './src/utils/colors'
 import { SafeAreaView } from 'react-navigation';
