@@ -1,7 +1,7 @@
 import React from 'react'
 import AppContainer from './src/utils/routes'
 import { Font } from 'expo'
-import { View, ActivityIndicator, StatusBar, StyleSheet } from 'react-native'
+import { View, ActivityIndicator, StatusBar, StyleSheet, Platform } from 'react-native'
 import { colors } from './src/utils/colors'
 import { SafeAreaView } from 'react-navigation';
 
@@ -46,7 +46,7 @@ const styles = StyleSheet.create({
   },
   container: {
     flex: 1, 
-    marginTop: -(StatusBar.currentHeight)
+    marginTop: Platform.OS === 'ios' ? 0 : -(StatusBar.currentHeight)
   },
   spinnerContainer: {
     flex: 1, 
