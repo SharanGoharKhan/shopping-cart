@@ -1,10 +1,10 @@
 import React from 'react';
 import {
-    View, Text, TouchableOpacity, Image, ScrollView,
+    View, Text, TouchableOpacity, Image, ScrollView
 } from 'react-native';
 import BottomTab from '../../components/BottomTab/BottomTab';
 import styles from './styles';
-
+import ModalGlance from './ModalGlance/ModalGlance'
 import AccordionList from './Accordion/AccordionList';
 import { fontStyles } from '../../utils/fontStyles';
 import { verticalScale } from '../../utils/scaling';
@@ -53,9 +53,11 @@ class ProductDescription extends React.Component {
         super(props);
         this.state = {
             carosel_img: require('../../assets/images/MainLanding/carosel_img_3.png'),
+            modalVisible: false,
         };
         this.mounted = false;
         this.changeCaroselImg = this.changeCaroselImg.bind(this);
+
     }
 
     componentDidMount = () => {
@@ -88,10 +90,20 @@ class ProductDescription extends React.Component {
         );
     }
 
+    showModal(visible){
+        this.setState({modalVisible:visible})
+    }
+    
+
     render() {
         return (
             <View style={styles.flex}>
                 {/* Header starts */}
+                <ModalGlance
+                visible={this.state.modalVisible}
+                hidden = {()=>this.showModal(false)}
+                />
+                
                 <View style={styles.headerContainer}>
                     <View style={styles.headerSubContainer}>
                         <View style={styles.backCnt}>
@@ -109,7 +121,9 @@ class ProductDescription extends React.Component {
                             <Text style={styles.headerText}>Details</Text>
                         </View>
                         <View style={styles.headerIconsContainer}>
-                            <TouchableOpacity style={styles.headerImg}>
+                            <TouchableOpacity style={styles.headerImg}
+                            onPress={()=>this.showModal(true)}
+                            >
                                 <Image
                                     source={require('../../assets/images/ProductDescription/kiosk.png')}
                                     resizeMode="contain"
