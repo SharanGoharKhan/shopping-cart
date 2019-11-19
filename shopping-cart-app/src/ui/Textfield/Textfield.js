@@ -21,6 +21,7 @@ Props:
 
 const TextField = (props) => {
     const placeholderColor = props.placeholderColor ? props.placeholderColor : colors.primaryBlackColor;
+    const password = props.password ? props.password : false;
     return (
         <View style={[Styles.input_view, props.containerStyle]}>
         <TextInput
@@ -28,6 +29,7 @@ const TextField = (props) => {
                 style={Styles.input}
                 placeholderTextColor={placeholderColor}
                 placeholder={props.placeholderText}
+                secureTextEntry = {password}
           />
       </View>
     );

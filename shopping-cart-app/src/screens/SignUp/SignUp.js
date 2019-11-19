@@ -34,7 +34,7 @@ class SignUp extends React.Component {
                                 <TextField placeholderText="Full Name" containerStyle={{ marginBottom: verticalScale(10) }} />
                                 <TextField placeholderText="Email" containerStyle={{ marginBottom: verticalScale(10) }} />
                                 <TextField placeholderText="Mobile" containerStyle={{ marginBottom: verticalScale(10) }} />
-                                <TextField placeholderText="Password" containerStyle={{ marginBottom: verticalScale(10) }} />
+                                <TextField placeholderText="Password" password={true} containerStyle={{ marginBottom: verticalScale(10) }} />
 
 
                             </View>

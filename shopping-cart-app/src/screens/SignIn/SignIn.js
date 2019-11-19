@@ -67,6 +67,7 @@ class SignIn extends React.Component {
                                 />
                                 <TextField
                                     placeholderText="Password"
+                                    password ={true}
                                 />
                                 <MainBtn
                                     onPress={() => this.props.navigation.navigate('MainLanding')}
