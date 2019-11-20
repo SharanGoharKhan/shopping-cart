@@ -41,7 +41,7 @@ class SignUp extends React.Component {
                             <View style={styles.main_bot}>
                                 <View style={styles.bot_btn_container}>
                                     <MainBtn
-                                        onPress={() => this.props.navigation.navigate('MainLanding')}
+                                        onPress={() => this.props.navigation.navigate('OtpValidation')}
                                         text="Sign up"
                                     />
                                 </View>

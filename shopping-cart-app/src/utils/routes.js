@@ -24,6 +24,7 @@ import SignUp from '../screens/SignUp/SignUp';
 import TrackOrder from '../screens/TrackOrder/TrackOrder';
 import MainMenu from '../components/MainMenu/MainMenu';
 import AuthLoading from './authLoading';
+import OtpValidation from '../screens/SignUp/OtpValidation/OtpValidation'
 
 const authenticationNavigator = createStackNavigator(
     {
@@ -59,6 +60,7 @@ const noDrawer = createStackNavigator({
     ShoppingCart,
     Search,
     TrackOrder,
+    OtpValidation,
 }, {
         headerMode: 'none',
     })

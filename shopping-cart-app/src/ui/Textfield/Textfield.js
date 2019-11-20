@@ -13,10 +13,11 @@ A TextInput covered by a white background View, greyish border, black text. has 
 
 Props:
   ?
-  onChange Event: send the function to be called for onChange event
-  placeHolderText: send the Text for placeholder
+  onChange Event  : send the function to be called for onChange event
+  placeHolderText : send the Text for placeholder
   placeHolderColor: sent the Color for placeholder
-  containerStyle: allows user to override the container style
+  containerStyle  : allows user to override the container style
+  password        : hide the text for user as writing password.
 ============================================================================= */
 
 const TextField = (props) => {
