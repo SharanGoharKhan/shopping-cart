@@ -30,72 +30,70 @@ const CATEGORIES = [
 
 ];
 
-class Search extends React.Component {
-    render() {
-        return (
-            <React.Fragment>
-                <View style={[styles.flex]}>
-                    <View style={styles.container}>
-                        <View style={[styles.body]}>
-                            <View style={[styles.header]}>
-                                <Text style={styles.header_text}>Search  In  </Text>
-                                <Dropdown items={CATEGORIES} />
+function Search(props) {
+    return (
+        <React.Fragment>
+            <View style={[styles.flex]}>
+                <View style={styles.container}>
+                    <View style={[styles.body]}>
+                        <View style={[styles.header]}>
+                            <Text style={styles.header_text}>Search  In  </Text>
+                            <Dropdown items={CATEGORIES} />
+                        </View>
+                        <View style={[styles.main]}>
+                            <View style={styles.searchBarContainer}>
+                                <SearchBar onPress={() => props.navigation.navigate('SearchResult')} placeholderText="What are you looking for?" />
                             </View>
-                            <View style={[styles.main]}>
-                                <View style={styles.searchBarContainer}>
-                                    <SearchBar onPress={() => this.props.navigation.navigate('SearchResult')} placeholderText="What are you looking for?" />
-                                </View>
-                                <View style={styles.mainBodyContainer}>
-                                    <View style={styles.mainBody}>
-                                        <View style={styles.mixed_text}>
-                                            <Text style={styles.text}>Our </Text>
-                                            <Text style={styles.colored_text}>1342 </Text>
-                                            <Text style={styles.text}>Products are distributed in these categories</Text>
-                                        </View>
+                            <View style={styles.mainBodyContainer}>
+                                <View style={styles.mainBody}>
+                                    <View style={styles.mixed_text}>
+                                        <Text style={styles.text}>Our </Text>
+                                        <Text style={styles.colored_text}>1342 </Text>
+                                        <Text style={styles.text}>Products are distributed in these categories</Text>
+                                    </View>
 
-                                        <View>
-                                            <View style={styles.row}>
-                                                <CategoryCard
-                                                    onPress={() => this.props.navigation.navigate('ProductListing')}
-                                                    text="Accessories"
-                                                />
-                                                <CategoryCard
-                                                    onPress={() => this.props.navigation.navigate('ProductListing')}
-                                                    text="Arts & Crafts"
-                                                />
-                                            </View>
-                                            <View style={styles.row}>
-                                                <CategoryCard
-                                                    onPress={() => this.props.navigation.navigate('ProductListing')}
-                                                    text="Event Ideas"
-                                                />
-                                                <CategoryCard text="Fashion" />
-                                            </View>
-                                            <View style={styles.row}>
-                                                <CategoryCard
-                                                    onPress={() => this.props.navigation.navigate('ProductListing')}
-                                                    text="Food & Drinks"
-                                                />
-                                                <CategoryCard
-                                                    onPress={() => this.props.navigation.navigate('ProductListing')}
-                                                    text="Health & Beauty"
-                                                />
-                                            </View>
+                                    <View>
+                                        <View style={styles.row}>
+                                            <CategoryCard
+                                                onPress={() => props.navigation.navigate('ProductListing')}
+                                                text="Accessories"
+                                            />
+                                            <CategoryCard
+                                                onPress={() => props.navigation.navigate('ProductListing')}
+                                                text="Arts & Crafts"
+                                            />
+                                        </View>
+                                        <View style={styles.row}>
+                                            <CategoryCard
+                                                onPress={() => props.navigation.navigate('ProductListing')}
+                                                text="Event Ideas"
+                                            />
+                                            <CategoryCard text="Fashion" />
+                                        </View>
+                                        <View style={styles.row}>
+                                            <CategoryCard
+                                                onPress={() => props.navigation.navigate('ProductListing')}
+                                                text="Food & Drinks"
+                                            />
+                                            <CategoryCard
+                                                onPress={() => props.navigation.navigate('ProductListing')}
+                                                text="Health & Beauty"
+                                            />
                                         </View>
                                     </View>
                                 </View>
                             </View>
-                            <View style={styles.footer}>
-                            </View>
+                        </View>
+                        <View style={styles.footer}>
                         </View>
                     </View>
                 </View>
-                <BottomTab
-                    navigationObj={this.props.navigation}
-                />
-            </React.Fragment>
-        );
-    }
+            </View>
+            <BottomTab
+                navigationObj={props.navigation}
+            />
+        </React.Fragment>
+    );
 }
 
 export default Search;

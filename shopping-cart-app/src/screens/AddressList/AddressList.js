@@ -1,6 +1,6 @@
 import React from 'react';
 import {
-    View, Text, Image, StatusBar, TouchableOpacity, Platform,ScrollView
+    View, Text, Image, TouchableOpacity, ScrollView
 } from 'react-native';
 import styles from './styles';
 import BottomTab from '../../components/BottomTab/BottomTab';
@@ -20,60 +20,58 @@ const DATA = [
     },
 ];
 
-class AddressList extends React.Component {
-    render() {
-        return (
-            <View style={styles.container}>
-                <View style={styles.header}>
-                    <View style={styles.headerRow}>
-                        <TouchableOpacity
-                            onPress={() => this.props.navigation.goBack()}
-                            style={styles.backImg}>
-                            <Image
-                                source={require('../../assets/icons/back.png')}
-                                resizeMode="contain"
-                                style={{
-                                    width: verticalScale(16),
-                                    height: verticalScale(17),
-                                    marginRight: verticalScale(20)
-                                }}
-                            />
+function AddressList(props) {
+    return (
+        <View style={styles.container}>
+            <View style={styles.header}>
+                <View style={styles.headerRow}>
+                    <TouchableOpacity
+                        onPress={() => props.navigation.goBack()}
+                        style={styles.backImg}>
+                        <Image
+                            source={require('../../assets/icons/back.png')}
+                            resizeMode="contain"
+                            style={{
+                                width: verticalScale(16),
+                                height: verticalScale(17),
+                                marginRight: verticalScale(20)
+                            }}
+                        />
+                    </TouchableOpacity>
+                    <Text style={styles.headerText}>My Adresses</Text>
+                    <View style={styles.headerBtn}>
+                        <TouchableOpacity>
+                            <Text style={styles.headerBtnText}>New Address</Text>
                         </TouchableOpacity>
-                        <Text style={styles.headerText}>My Adresses</Text>
-                        <View style={styles.headerBtn}>
-                            <TouchableOpacity>
-                                <Text style={styles.headerBtnText}>New Address</Text>
-                            </TouchableOpacity>
-                        </View>
                     </View>
                 </View>
-                <View style={styles.body}>
-                    <View style={styles.main}>
-                        <ScrollView style={styles.mainScroll}>
-                            {DATA.map((item, index) => (
-                                <Card
-                                    navigationObj={this.props.navigation}
-                                    title={item.title}
-                                    country={item.country}
-                                    city={item.city}
-                                    address={item.address}
-                                    poBox={item.poBox}
-                                    key={index}
-                                />
-                            ))}
-                        </ScrollView>
-                    </View>
-
-                </View>
-                <View style={styles.footer}>
-                    <BottomTab
-                        navigationObj={this.props.navigation}
-                    />
+            </View>
+            <View style={styles.body}>
+                <View style={styles.main}>
+                    <ScrollView style={styles.mainScroll}>
+                        {DATA.map((item, index) => (
+                            <Card
+                                navigationObj={props.navigation}
+                                title={item.title}
+                                country={item.country}
+                                city={item.city}
+                                address={item.address}
+                                poBox={item.poBox}
+                                key={index}
+                            />
+                        ))}
+                    </ScrollView>
                 </View>
 
             </View>
-        );
-    }
+            <View style={styles.footer}>
+                <BottomTab
+                    navigationObj={props.navigation}
+                />
+            </View>
+
+        </View>
+    );
 }
 
 export default AddressList;

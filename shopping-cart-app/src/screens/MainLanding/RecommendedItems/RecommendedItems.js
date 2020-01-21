@@ -25,55 +25,56 @@ const itemData = [
     },
 ];
 
-const recommendedItems = props => (
-
-    <View style={styles.popularItemsContainer}>
-        <View style={styles.popularItemsContainerText}>
-            <Text style={styles.popularItemsContainerTextStyle}>Recommended for you</Text>
-        </View>
-        <View style={styles.scrollViewContainer}>
-            <ScrollView horizontal showsHorizontalScrollIndicator={false}>
-                {
-                    itemData.map((item, ind) => (
-                        <TouchableOpacity
-                            onPress={() => props.navigationObj.navigate('ProductListing')}
-                            key={ind} style={styles.cardContainer}
-                        >
-                            <View style={styles.topCardContainer}>
-                                <View style={styles.cardImageContainer}>
-                                    <Image
-                                        source={item.image}
-                                        resizeMode="cover"
-                                        style={styles.imgResponsive}
-                                    />
+function RecommendedItems(props) {
+    return (
+        <View style={styles.popularItemsContainer}>
+            <View style={styles.popularItemsContainerText}>
+                <Text style={styles.popularItemsContainerTextStyle}>Recommended for you</Text>
+            </View>
+            <View style={styles.scrollViewContainer}>
+                <ScrollView horizontal showsHorizontalScrollIndicator={false}>
+                    {
+                        itemData.map((item, ind) => (
+                            <TouchableOpacity
+                                onPress={() => props.navigationObj.navigate('ProductListing')}
+                                key={ind} style={styles.cardContainer}
+                            >
+                                <View style={styles.topCardContainer}>
+                                    <View style={styles.cardImageContainer}>
+                                        <Image
+                                            source={item.image}
+                                            resizeMode="cover"
+                                            style={styles.imgResponsive}
+                                        />
+                                    </View>
                                 </View>
-                            </View>
-                            <View style={styles.botCardContainer}>
-                                <View style={styles.botSubCardContainer}>
-                                    <Text style={styles.botCardTextStyle}>{item.title}</Text>
-                                    <Text style={styles.botCardTextStyle}>{item.category}</Text>
-                                    <View style={styles.botIconContainer}>
-                                        <View style={styles.botPriceContainer}>
-                                            <Text style={styles.botPriceStyle}>{item.price}{' '}PKR</Text>
-                                        </View>
-                                        <View style={styles.botIconCartContainer}>
-                                            <View style={styles.botIconCartSubContainer}>
-                                                <Image
-                                                    source={require('../../../assets/images/MainLanding/shopping_cart.png')}
-                                                    resizeMode="contain"
-                                                    style={styles.imgResponsive}
-                                                />
+                                <View style={styles.botCardContainer}>
+                                    <View style={styles.botSubCardContainer}>
+                                        <Text style={styles.botCardTextStyle}>{item.title}</Text>
+                                        <Text style={styles.botCardTextStyle}>{item.category}</Text>
+                                        <View style={styles.botIconContainer}>
+                                            <View style={styles.botPriceContainer}>
+                                                <Text style={styles.botPriceStyle}>{item.price}{' '}PKR</Text>
+                                            </View>
+                                            <View style={styles.botIconCartContainer}>
+                                                <View style={styles.botIconCartSubContainer}>
+                                                    <Image
+                                                        source={require('../../../assets/images/MainLanding/shopping_cart.png')}
+                                                        resizeMode="contain"
+                                                        style={styles.imgResponsive}
+                                                    />
+                                                </View>
                                             </View>
                                         </View>
                                     </View>
                                 </View>
-                            </View>
-                        </TouchableOpacity>
-                    ))
-                }
-            </ScrollView>
+                            </TouchableOpacity>
+                        ))
+                    }
+                </ScrollView>
+            </View>
         </View>
-    </View>
-);
+    )
+}
 
-export default recommendedItems;
+export default RecommendedItems;

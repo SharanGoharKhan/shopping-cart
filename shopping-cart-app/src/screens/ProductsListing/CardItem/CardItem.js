@@ -40,51 +40,53 @@ const cardData = [
         img: require('../../../assets/images/ProductListing/bag.png'),
     },
 ];
-const cardItem = props => (
-    <View style={{ flexDirection: 'row', flexWrap: 'wrap', justifyContent: 'space-around' }}>
-        {
-            cardData.map((data, ind) => (
-                <TouchableOpacity
-                    onPress={() => props.navigationObj.navigate('ProductDescription')}
-                    key={ind} style={styles.cardContainer}
-                >
-                    <View style={styles.cardTop}>
-                        <Image
-                            source={data.img}
-                            resizeMode="cover"
-                            style={styles.imgResponsive}
-                        />
-                    </View>
-                    <View style={[styles.textContainer,{justifyContent:'flex-end'}]}>
-                        <Text style={[styles.textStyle]}>{data.title}</Text>
-                    </View>
-                    <View style={[styles.textContainer,{justifyContent:'flex-start',marginTop:-3}]}>
-                        <Text style={[styles.textStyle]}>{data.category}</Text>
-                    </View>
-                    <View style={[styles.botContainer,{justifyContent:'flex-end'}]}>
-                        <View style={styles.ratingContainer}>
-                            <Rating
-                                style={styles.ratingStyle}
-                                type="star"
-                                ratingCount={5}
-                                imageSize={verticalScale(12)}
-                                startingValue={data.ratingOverall}
-                                readonly
+function CardItem(props) {
+    return (
+        <View style={{ flexDirection: 'row', flexWrap: 'wrap', justifyContent: 'space-around' }}>
+            {
+                cardData.map((data, ind) => (
+                    <TouchableOpacity
+                        onPress={() => props.navigationObj.navigate('ProductDescription')}
+                        key={ind} style={styles.cardContainer}
+                    >
+                        <View style={styles.cardTop}>
+                            <Image
+                                source={data.img}
+                                resizeMode="cover"
+                                style={styles.imgResponsive}
                             />
-                            <Text style={styles.ratingNumber}>{data.ratingNumber}</Text>
                         </View>
-                        <View style={styles.priceContainer}>
-                            <Text style={styles.priceStyle}>
-                                {data.price}
-                                {' '}
-                                PKR
+                        <View style={[styles.textContainer, { justifyContent: 'flex-end' }]}>
+                            <Text style={[styles.textStyle]}>{data.title}</Text>
+                        </View>
+                        <View style={[styles.textContainer, { justifyContent: 'flex-start', marginTop: -3 }]}>
+                            <Text style={[styles.textStyle]}>{data.category}</Text>
+                        </View>
+                        <View style={[styles.botContainer, { justifyContent: 'flex-end' }]}>
+                            <View style={styles.ratingContainer}>
+                                <Rating
+                                    style={styles.ratingStyle}
+                                    type="star"
+                                    ratingCount={5}
+                                    imageSize={verticalScale(12)}
+                                    startingValue={data.ratingOverall}
+                                    readonly
+                                />
+                                <Text style={styles.ratingNumber}>{data.ratingNumber}</Text>
+                            </View>
+                            <View style={styles.priceContainer}>
+                                <Text style={styles.priceStyle}>
+                                    {data.price}
+                                    {' '}
+                                    PKR
                             </Text>
+                            </View>
                         </View>
-                    </View>
-                </TouchableOpacity>
-            ))
-        }
-    </View>
-);
+                    </TouchableOpacity>
+                ))
+            }
+        </View>
+    )
+}
 
-export default cardItem;
+export default CardItem;

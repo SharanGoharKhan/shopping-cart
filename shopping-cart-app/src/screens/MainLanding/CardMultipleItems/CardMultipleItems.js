@@ -36,71 +36,72 @@ cardData = [
     },
 ];
 
-const cardMultipleItems = props => (
-
-    <View style={styles.cardItemsContainer}>
-        <View style={styles.cardItemsTextCOntainer}>
-            <Text style={styles.cardItemsTextStyles}>Shops we like</Text>
-        </View>
-        <View style={styles.scrollViewContainer}>
-            <ScrollView horizontal showsHorizontalScrollIndicator={false}>
-                {
-                    cardData.map((card, ind) => (
-                        <TouchableOpacity
-                            onPress={() => props.navigationObj.navigate('ProductListing')}
-                            key={ind} style={styles.cardContainer}
-                        >
-                            <View style={styles.cardTopContainer}>
-                                <View style={styles.cardTopSubContainer}>
-                                    <View style={styles.w50h50}>
-                                        <Image
-                                            source={card.imageTL}
-                                            resizeMode="cover"
-                                            style={styles.imgResponsive}
-                                        />
-                                    </View>
-                                    <View style={styles.w50h50}>
-                                        <Image
-                                            source={card.imageTR}
-                                            resizeMode="cover"
-                                            style={styles.imgResponsive}
-                                        />
-                                    </View>
-                                    <View style={styles.w50h50}>
-                                        <Image
-                                            source={card.imageBL}
-                                            resizeMode="cover"
-                                            style={styles.imgResponsive}
-                                        />
-                                    </View>
-                                    <View style={styles.w50h50}>
-                                        <Image
-                                            source={card.imageBR}
-                                            resizeMode="cover"
-                                            style={styles.imgResponsive}
-                                        />
-                                    </View>
-                                    <View style={styles.centerImgContainer}>
-                                        <Image
-                                            source={card.imageC}
-                                            resizeMode="cover"
-                                            style={styles.centerImgStyle}
-                                        />
+function CardMultipleItems(props) {
+    return (
+        <View style={styles.cardItemsContainer}>
+            <View style={styles.cardItemsTextCOntainer}>
+                <Text style={styles.cardItemsTextStyles}>Shops we like</Text>
+            </View>
+            <View style={styles.scrollViewContainer}>
+                <ScrollView horizontal showsHorizontalScrollIndicator={false}>
+                    {
+                        cardData.map((card, ind) => (
+                            <TouchableOpacity
+                                onPress={() => props.navigationObj.navigate('ProductListing')}
+                                key={ind} style={styles.cardContainer}
+                            >
+                                <View style={styles.cardTopContainer}>
+                                    <View style={styles.cardTopSubContainer}>
+                                        <View style={styles.w50h50}>
+                                            <Image
+                                                source={card.imageTL}
+                                                resizeMode="cover"
+                                                style={styles.imgResponsive}
+                                            />
+                                        </View>
+                                        <View style={styles.w50h50}>
+                                            <Image
+                                                source={card.imageTR}
+                                                resizeMode="cover"
+                                                style={styles.imgResponsive}
+                                            />
+                                        </View>
+                                        <View style={styles.w50h50}>
+                                            <Image
+                                                source={card.imageBL}
+                                                resizeMode="cover"
+                                                style={styles.imgResponsive}
+                                            />
+                                        </View>
+                                        <View style={styles.w50h50}>
+                                            <Image
+                                                source={card.imageBR}
+                                                resizeMode="cover"
+                                                style={styles.imgResponsive}
+                                            />
+                                        </View>
+                                        <View style={styles.centerImgContainer}>
+                                            <Image
+                                                source={card.imageC}
+                                                resizeMode="cover"
+                                                style={styles.centerImgStyle}
+                                            />
+                                        </View>
                                     </View>
                                 </View>
-                            </View>
-                            <View style={styles.bottomContainer}>
-                                <View style={styles.bottomSubContainer}>
-                                    <Text style={styles.bottomTextStyle}>{card.title}</Text>
-                                    <Text style={styles.bottomTextStyle}>{card.category}</Text>
+                                <View style={styles.bottomContainer}>
+                                    <View style={styles.bottomSubContainer}>
+                                        <Text style={styles.bottomTextStyle}>{card.title}</Text>
+                                        <Text style={styles.bottomTextStyle}>{card.category}</Text>
+                                    </View>
                                 </View>
-                            </View>
-                        </TouchableOpacity>
-                    ))
-                }
-            </ScrollView>
+                            </TouchableOpacity>
+                        ))
+                    }
+                </ScrollView>
+            </View>
         </View>
-    </View>
-);
+    )
+}
 
-export default cardMultipleItems;
+export default CardMultipleItems;

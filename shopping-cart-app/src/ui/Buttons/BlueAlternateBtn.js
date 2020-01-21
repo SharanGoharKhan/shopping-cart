@@ -18,19 +18,21 @@ Props:
   containerStyle: override styles of the container
 ============================================================================= */
 
-const BlueBtn = props => (
-  <View style={[styles.backgroundColor, props.containerStyles]}>
-    <TouchableOpacity
-      onPress={props.onPress}
-      style={styles.main_blue_btn}
-    >
-      <Text style={styles.btn_text}>
-        {' '}
-        {props.text}
-        {' '}
-      </Text>
-    </TouchableOpacity>
-  </View>
-);
+function BlueBtn(props) {
+  return (
+    <View style={[styles.backgroundColor, props.containerStyles]}>
+      <TouchableOpacity
+        onPress={props.onPress}
+        style={styles.main_blue_btn}
+      >
+        <Text style={styles.btn_text}>
+          {' '}
+          {props.text}
+          {' '}
+        </Text>
+      </TouchableOpacity>
+    </View>
+  )
+}
 
 export default BlueBtn;

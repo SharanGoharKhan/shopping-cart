@@ -5,28 +5,22 @@ import {
 import styles from './styles';
 import { colors } from '../../utils/colors';
 
-class SearchBar extends React.Component {
-    constructor(props) {
-        super(props);
-    }
-
-    render() {
-        return (
-            <View style={styles.container}>
+function SearchBar(props) {
+    return (
+        <View style={styles.container}>
             <TextInput
-                    style={styles.textfield}
-                placeholder={this.props.placeholderText}
-                    placeholderTextColor={colors.primaryBlackColor}
-              />
-                <TouchableOpacity onPress={this.props.onPress}>
+                style={styles.textfield}
+                placeholder={props.placeholderText}
+                placeholderTextColor={colors.primaryBlackColor}
+            />
+            <TouchableOpacity onPress={props.onPress}>
                 <Image
-                      style={styles.image}
-                      source={require('../../assets/icons/search.png')}
-                    />
-              </TouchableOpacity>
-          </View>
-        );
-    }
+                    style={styles.image}
+                    source={require('../../assets/icons/search.png')}
+                />
+            </TouchableOpacity>
+        </View>
+    );
 }
 
 export default SearchBar;

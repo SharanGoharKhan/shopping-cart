@@ -20,12 +20,9 @@ productQuantity - amount
 productPreviousPrice - Previous price of unit, if null wont be showed
 productNewPrice - Current Price of the unit
 ============================================================================= */
-class FullCard extends React.Component {
-    constructor(props) {
-        super(props);
-    }
-
-    renderPrevousPrice(amount) {
+function FullCard(props) {
+    let renderPreviousAmount = null;
+    function renderPrevousPrice(amount) {
         return (
             <View style={styles.prevPrice}>
                 <Text style={style = styles.prevPriceText}>
@@ -36,30 +33,28 @@ class FullCard extends React.Component {
             </View>
         );
     }
-
-    render() {
-        // check if previous price needs to be rendered
-        let renderPreviousAmount = null;
-        if (this.props.productPreviousPrice) renderPreviousAmount = this.renderPrevousPrice(this.props.productPreviousPrice);
-
-        // render the whole content
-        return (
+    function renderPage() {
+        if (props.productPreviousPrice) renderPreviousAmount = renderPrevousPrice(props.productPreviousPrice);
+    }
+    return (
+        <>
+            {renderPage}
             <View style={styles.container}>
                 <View style={styles.leftside}>
                     <Image
                         style={styles.thumbnail}
                         resizeMode="cover"
-                        source={this.props.productImage}
+                        source={props.productImage}
                     />
                 </View>
                 <View style={styles.rightside_container}>
                     <View style={styles.rightside}>
                         <View style={styles.rightside_top}>
-                            <Text style={styles.product} numberOfLines={1}>{this.props.productName}</Text>
+                            <Text style={styles.product} numberOfLines={1}>{props.productName}</Text>
                             <View style={styles.row}>
                                 <Text style={styles.by}>By </Text>
                                 <Text style={styles.brand} numberOfLines={1}>
-                                    {this.props.productBrand}
+                                    {props.productBrand}
                                     {' '}
                                 </Text>
                             </View>
@@ -70,12 +65,12 @@ class FullCard extends React.Component {
                                 <Text style={styles.qty}>
                                     {' '}
                                     x
-                                  {this.props.productQuantity}
+                                  {props.productQuantity}
                                     {' '}
                                 </Text>
                                 <Text style={styles.amount}>
                                     {' '}
-                                    {this.props.productNewPrice}
+                                    {props.productNewPrice}
                                     {' '}
                                     PKR
                       </Text>
@@ -85,8 +80,8 @@ class FullCard extends React.Component {
                     </View>
                 </View>
             </View>
-        );
-    }
+        </>
+    )
 }
 
 export default FullCard;

@@ -19,7 +19,7 @@ Props:
   containerStyle: allows user to override the container style
 ============================================================================= */
 
-const TextField = (props) => {
+function TextField(props){
     const placeholderColor = props.placeholderColor ? props.placeholderColor : colors.primaryBlackColor;
     return (
         <View style={[Styles.input_view, props.containerStyle]}>

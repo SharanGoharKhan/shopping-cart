@@ -17,19 +17,21 @@ Props:
   text: send the Text for button
 ============================================================================= */
 
-const BlueBtn = props => (
-  <View style={styles.backgroundColor}>
-    <TouchableOpacity
-      onPress={props.onPress}
-      style={styles.main_blue_btn}
-    >
-      <Text style={styles.btn_text}>
-        {' '}
-        {props.text}
-        {' '}
-      </Text>
-    </TouchableOpacity>
-  </View>
-);
+function BlueBtn(props) {
+  return (
+    <View style={styles.backgroundColor}>
+      <TouchableOpacity
+        onPress={props.onPress}
+        style={styles.main_blue_btn}
+      >
+        <Text style={styles.btn_text}>
+          {' '}
+          {props.text}
+          {' '}
+        </Text>
+      </TouchableOpacity>
+    </View>
+  )
+}
 
 export default BlueBtn;

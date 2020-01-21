@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { useState } from 'react';
 import { View, ImageBackground } from 'react-native';
 import styles from './styles';
 
@@ -16,23 +16,32 @@ Props:
   on_press_event: function -- Callback function when button is pressed
 ============================================================================= */
 
-class CarouselItem extends Component {
-    constructor(props) {
-        super(props);
-        this.img = null;
-        if (props.page == '0') {
-            this.img = images.carosel_img_1;
-        } else if (props.page == '1') {
-            this.img = images.carosel_img_2;
-        } else if (props.page == '2') {
-            this.img = images.carosel_img_3;
-        }
-    }
+function CarouselItem(props) {
+    const [img, setImage] = useState(images.carosel_img_1)
+    // console.log(props.page)
+    // if (props.page == '0') {
+    //     setImage(images.carosel_img_1);
+    // } else if (props.page == '1') {
+    //     setImage(images.carosel_img_2);
+    // } else if (props.page == '2') {
+    //     setImage(images.carosel_img_3);
+    // }
+    // constructor(props) {
+    //     super(props);
+    //     this.img = null;
+    //     if (props.page == '0') {
+    //         this.img = images.carosel_img_1;
+    // } else if (props.page == '1') {
+    //     this.img = images.carosel_img_2;
+    // } else if (props.page == '2') {
+    //     this.img = images.carosel_img_3;
+    // }
+    // }
 
-    render = () => (
+    return (
         <View style={[styles.container]}>
             <ImageBackground
-                source={this.img}
+                source={img}
                 style={styles.image}
             />
         </View>
