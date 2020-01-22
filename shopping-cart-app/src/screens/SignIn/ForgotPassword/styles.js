@@ -1,5 +1,5 @@
 import { Dimensions } from 'react-native';
-import { verticalScale } from '../../../utils/scaling';
+import { scale } from '../../../utils/scaling';
 import { colors } from '../../../utils/colors';
 import { fontStyles } from '../../../utils/fontStyles';
 const { height, width } = Dimensions.get('window');
@@ -8,7 +8,7 @@ export default {
     modalContainer: {
         height: height * 0.3,
         backgroundColor: colors.whiteColor,
-        borderRadius: verticalScale(8),
+        borderRadius: scale(8),
         justifyContent: 'center',
         alignItems: 'center',
     },
@@ -24,18 +24,18 @@ export default {
     },
     titleStyle: {
         fontFamily: fontStyles.PoppinsRegular,
-        fontSize: verticalScale(16),
+        fontSize: scale(16),
     },
     subtitleStyle: {
         fontFamily: fontStyles.PoppinsRegular,
-        fontSize: verticalScale(12),
+        fontSize: scale(12),
         color: colors.darkGrayText,
     },
     inputContainer: {
         width: '100%',
         height: '25%',
         marginTop: '5%',
-        borderRadius: verticalScale(3),
+        borderRadius: scale(3),
         backgroundColor: colors.backgroudGray,
     },
     brownColor: {
@@ -44,15 +44,15 @@ export default {
     btnContainer: {
         width: '100%',
         height: '25%',
-        marginTop: '5%',
-        borderRadius: verticalScale(3),
+        marginTop: scale(20),
+        borderRadius: scale(3),
         backgroundColor: colors.lightGrayColor,
         justifyContent: 'center',
         alignItems: 'center'
     },
     sendStyle: {
         fontFamily: fontStyles.PoppinsRegular,
-        fontSize: verticalScale(16),
+        fontSize: scale(16),
         color: colors.whiteColor,
     },
 

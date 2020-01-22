@@ -5,8 +5,9 @@ import {
 import styles from './styles';
 import { verticalScale } from '../../utils/scaling';
 import TextField from '../../ui/Textfield/Textfield';
-import MainBtn from '../../ui/Buttons/MainBtn';
 import ForgotPassword from './ForgotPassword/ForgotPassword';
+import Button from '../../ui/Buttons/Button';
+import { colors } from '../../utils/colors';
 
 function SignIn(props) {
     const [modalVisible, setModalVisible] = useState(false)
@@ -51,16 +52,17 @@ function SignIn(props) {
                         </View>
                         <View style={styles.bc_main}>
                             <TextField
-                                placeholderText="Username"
+                                placeholder="Username"
                             />
                             <TextField
-                                placeholderText="Password"
+                                placeholder="Password"
                             />
-                            <MainBtn
-                                onPress={() => props.navigation.navigate('MainLanding')}
-                                text="Sign In"
+                            <Button
+                            onPress={() => props.navigation.navigate('MainLanding')}
+                            text="Sign In"
+                            textStyle={{color:colors.whiteColor}}
                             />
-                            <TouchableOpacity onPress={() => showModal}>
+                            <TouchableOpacity onPress={() => showModal()}>
                                 <Text style={styles.passwordText}>
                                     Forgot my password
                                   </Text>

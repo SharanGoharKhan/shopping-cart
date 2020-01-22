@@ -1,11 +1,15 @@
-import { StatusBar, Platform } from 'react-native';
+import { StatusBar, Platform, Dimensions } from 'react-native';
 import { verticalScale } from '../../utils/scaling';
 import { colors } from '../../utils/colors';
 import { fontStyles } from '../../utils/fontStyles';
 
+const { height } = Dimensions.get('window')
 export default {
+    flex: {
+        flex: 1
+    },
     container: {
-        height: '100%',
+        height: height*.95,
         width: '100%',
         alignSelf: 'center',
     },
@@ -14,7 +18,7 @@ export default {
         backgroundColor: 'black',
     },
     body: {
-        height: '93%',
+        height: height*.93,
         width: '90%',
         alignSelf: 'center',
     },

@@ -1,4 +1,4 @@
-import { verticalScale } from '../../utils/scaling';
+import { verticalScale, scale } from '../../utils/scaling';
 import { colors } from '../../utils/colors';
 import { fontStyles } from '../../utils/fontStyles';
 
@@ -82,6 +82,20 @@ const alternateBlueBtn = {
     },
 };
 
+const styles = {
+    container: {
+        backgroundColor: colors.brownColor,
+        height: scale(40),
+        borderRadius: scale(4),
+        justifyContent: 'center',
+        alignItems: 'center'
+    },
+    text: {
+        color: colors.textBlueColor,
+        fontFamily: fontStyles.PoppinsRegular,
+        fontSize: scale(16),
+    }
+}
 
 const facebookStyles = {
 
@@ -91,5 +105,5 @@ const googleStyles = {
 
 };
 export {
-    alternateBtn, mainBtnStyles, blueBtn, alternateBlueBtn, facebookStyles, googleStyles,
+    alternateBtn, mainBtnStyles, blueBtn, alternateBlueBtn, facebookStyles, googleStyles, styles
 };

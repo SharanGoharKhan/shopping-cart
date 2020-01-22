@@ -1,9 +1,10 @@
 import React from 'react';
 import {
-    Text, TouchableOpacity, View, TextInput,
+    Text, TouchableOpacity, View,
 } from 'react-native';
 import Modal from 'react-native-modal';
 import styles from './styles';
+import TextField from '../../../ui/Textfield/Textfield';
 
 function ForgotPassword(props) {
     return (
@@ -21,10 +22,10 @@ function ForgotPassword(props) {
                         <Text style={styles.subtitleStyle}>No worries, let us help you out!</Text>
                     </View>
                     <View style={styles.inputContainer}>
-                        <TextInput
-                            style={{ textAlign: 'center', flex: 1 }}
-                            placeholder="Your Email"
-                            placeholderTextColor="black"
+                        <TextField
+                        placeholder="Your Email"
+                        style={{textAlign:'center', backgroundColor: '#F7F7F7'}}
+                        placeholderTextColor="black" 
                         />
                     </View>
                     <TouchableOpacity

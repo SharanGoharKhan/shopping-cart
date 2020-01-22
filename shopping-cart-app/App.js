@@ -6,7 +6,8 @@ import AppContainer from './src/utils/routes'
 function App() {
   return (
     <SafeAreaView forceInset={{ top: 'always' }} style={styles.flex}>
-      <View style={styles.container}>
+      <View style={styles.flex}>
+        <StatusBar backgroundColor='white' barStyle='dark-content'/>
         <AppContainer />
       </View>
     </SafeAreaView>
@@ -16,9 +17,6 @@ function App() {
 const styles = StyleSheet.create({
   flex: {
     flex: 1
-  },
-  container: {
-    flex: 1, 
   },
   spinnerContainer: {
     flex: 1, 
