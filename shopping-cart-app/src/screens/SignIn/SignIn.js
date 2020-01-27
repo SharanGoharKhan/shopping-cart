@@ -27,7 +27,7 @@ function SignIn(props) {
                 hideModal={hideModal}
             />
             <View style={styles.body}>
-                <View style={styles.body_header}>
+                <View style={styles.bodyHeader}>
                     <Image
                         source={require('../../assets/icons/avatar.png')}
                         style={{
@@ -35,22 +35,22 @@ function SignIn(props) {
                             width: verticalScale(16),
                         }}
                     />
-                    <Text style={styles.header_text}>Sign In</Text>
+                    <Text style={styles.headerText}>Sign In</Text>
                 </View>
-                <View style={styles.body_container}>
+                <View style={styles.bodyContainer}>
                     <ImageBackground
-                        style={styles.body_container_background}
+                        style={styles.bodyContainerBackground}
                         source={require('../../assets/images/formBackground.png')}
                     >
-                        <View style={styles.bc_texts}>
-                            <Text style={styles.bc_h1}>
+                        <View style={styles.bcTexts}>
+                            <Text style={styles.bcH1}>
                                 Hello Guest!
                                 </Text>
-                            <Text style={styles.bc_h2}>
+                            <Text style={styles.bcH2}>
                                 Sign In
                                 </Text>
                         </View>
-                        <View style={styles.bc_main}>
+                        <View style={styles.bcMain}>
                             <TextField
                                 placeholder="Username"
                             />
@@ -68,8 +68,8 @@ function SignIn(props) {
                                   </Text>
                             </TouchableOpacity>
                         </View>
-                        <View style={styles.bc_socialBtns}>
-                            <View style={[styles.socialBtns_View, styles.google_btn]}>
+                        <View style={styles.bcSocialBtns}>
+                            <View style={[styles.socialBtnsView, styles.googleBtn]}>
                                 <TouchableOpacity
                                     onPress={() => props.navigation.navigate('MainLanding')}
                                     style={styles.socialBtn}
@@ -81,10 +81,10 @@ function SignIn(props) {
                                             width: verticalScale(25),
                                         }}
                                     />
-                                    <Text style={styles.fb_text}>Google</Text>
+                                    <Text style={styles.fbText}>Google</Text>
                                 </TouchableOpacity>
                             </View>
-                            <View style={[styles.socialBtns_View, styles.facebook_btn]}>
+                            <View style={[styles.socialBtnsView, styles.facebookBtn]}>
                                 <TouchableOpacity
                                     onPress={() => props.navigation.navigate('MainLanding')}
                                     style={styles.socialBtn}
@@ -96,32 +96,32 @@ function SignIn(props) {
                                             width: verticalScale(24),
                                         }}
                                     />
-                                    <Text style={styles.fb_text}>Facebook</Text>
+                                    <Text style={styles.fbText}>Facebook</Text>
                                 </TouchableOpacity>
                             </View>
                         </View>
                     </ImageBackground>
                 </View>
-                <View style={styles.body_footer}>
+                <View style={styles.bodyFooter}>
                     <View style={styles.footer}>
-                        <View style={styles.mixed_line}>
-                            <Text style={[styles.ft_text, styles.bold_text]}>Create New Account: </Text>
-                            <Text style={styles.ft_text}>By creating a new account, you</Text>
+                        <View style={styles.mixedLine}>
+                            <Text style={[styles.ftText, styles.boldText]}>Create New Account: </Text>
+                            <Text style={styles.ftText}>By creating a new account, you</Text>
                         </View>
-                        <Text style={styles.ft_text}>
+                        <Text style={styles.ftText}>
                             will become a valuable customer/buyer to Enatega by
                             </Text>
-                        <View style={styles.mixed_line}>
-                            <Text style={styles.ft_text}>default. While registering, </Text>
+                        <View style={styles.mixedLine}>
+                            <Text style={styles.ftText}>default. While registering, </Text>
                             <Text
                                 onPress={() => props.navigation.navigate('SignUp')}
-                                style={[styles.ft_underline, styles.ft_text]}
+                                style={[styles.ftUnderline, styles.ftText]}
                             >you can also choose to
                                 </Text>
                         </View>
                         <Text
                             onPress={() => props.navigation.navigate('SignUp')}
-                            style={[styles.ft_underline, styles.ft_text]}
+                            style={[styles.ftUnderline, styles.ftText]}
                         >
                             become a seller and open your own shop
                           </Text>
