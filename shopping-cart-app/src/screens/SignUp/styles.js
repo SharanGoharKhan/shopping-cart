@@ -28,12 +28,12 @@ export default {
         justifyContent: 'space-evenly',
         height: '20%',
     },
-    header_text: {
+    headerText: {
         paddingLeft: '5%',
         fontFamily: fontStyles.PoppinsRegular,
         fontSize: verticalScale(16),
     },
-    header_btn: {
+    headerBtn: {
 
     },
 
@@ -44,50 +44,50 @@ export default {
         width: '100%',
         borderRadius: verticalScale(5),
     },
-    body_container_background: {
+    bodyContainerBackground: {
         alignItems: 'center',
         width: '100%',
         height: '100%',
     },
 
-    main_top: {
+    mainTop: {
         height: '20%',
         width: '90%',
         justifyContent: 'center',
         alignItems: 'center',
     },
-    h1_text: {
+    h1Text: {
         fontFamily: fontStyles.PoppinsRegular,
         fontSize: verticalScale(17.5),
         fontWeight: '500',
         letterSpacing: verticalScale(0.5),
         marginTop: '5%',
     },
-    h2_text: {
+    h2Text: {
         fontFamily: fontStyles.PoppinsRegular,
         fontSize: verticalScale(12),
     },
-    main_mid: {
+    mainMid: {
         height: '55%',
         width: '90%',
     },
-    main_bot: {
+    mainBot: {
         height: '25%',
         width: '90%',
         justifyContent: 'space-around',
         alignItems: 'center',
     },
-    bot_btn_container: {
+    botBtnContainer: {
         width: '100%',
     },
-    mixed_line: {
+    mixedLine: {
         flexDirection: 'row',
     },
-    ft_text: {
+    ftText: {
         fontFamily: fontStyles.PoppinsRegular,
         fontSize: verticalScale(10),
     },
-    ft_text_underline: {
+    ftTextUnderline: {
         textDecorationLine: 'underline',
     },
 

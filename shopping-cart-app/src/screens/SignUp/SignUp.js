@@ -25,22 +25,22 @@ function SignUp(props) {
                         </View>
                         <View style={styles.main}>
                             <ImageBackground
-                                style={styles.body_container_background}
+                                style={styles.bodyContainerBackground}
                                 source={require('../../assets/images/formBackground.png')}
                                 resizeMode="cover"
                             >
-                                <View style={styles.main_top}>
-                                    <Text style={styles.h1_text}>Hello Guest!</Text>
-                                    <Text style={styles.h2_text}> Sign Up</Text>
+                                <View style={styles.mainTop}>
+                                    <Text style={styles.h1Text}>Hello Guest!</Text>
+                                    <Text style={styles.h2Text}> Sign Up</Text>
                                 </View>
-                                <View style={styles.main_mid}>
+                                <View style={styles.mainMid}>
                                     <TextField placeholder="Full Name" style={{ marginBottom: scale(10) }} />
                                     <TextField placeholder="Email" style={{ marginBottom: scale(10) }} />
                                     <TextField placeholder="Mobile" style={{ marginBottom: scale(10) }} />
                                     <TextField placeholder="Password" style={{ marginBottom: scale(10) }} />
                                 </View>
-                                <View style={styles.main_bot}>
-                                    <View style={styles.bot_btn_container}>
+                                <View style={styles.mainBot}>
+                                    <View style={styles.botBtnContainer}>
                                         <Button
                                             onPress={() => props.navigation.navigate('MainLanding')}
                                             text="Sign up"
@@ -48,11 +48,11 @@ function SignUp(props) {
                                             textStyle={{ color: colors.whiteColor }}
                                         />
                                     </View>
-                                    <View style={styles.mixed_line}>
+                                    <View style={styles.mixedLine}>
                                         <Text style={[styles.ft_text]}>Already have an account: </Text>
                                         <Text
                                             onPress={() => props.navigation.navigate('SignIn')}
-                                            style={[styles.ft_text, styles.ft_text_underline]}
+                                            style={[styles.ft_text, styles.ftTextUnderline]}
                                         >Sign in
                                   </Text>
                                     </View>
