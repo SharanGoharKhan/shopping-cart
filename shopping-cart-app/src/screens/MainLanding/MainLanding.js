@@ -22,17 +22,16 @@ function MainLanding(props) {
                     showPagination
                     autoplay
                     autoplayDelay={3}
-                    autoplayLoop={false}
+                    autoplayLoop={true}
                     paginationActiveColor="#fff"
                     paginationStyle={{ marginBottom: '7%' }}
                     paginationStyleItem={{ height: verticalScale(8), width: verticalScale(8), marginLeft: 0 }}
                 >
-                    <CarouselItem on_press_event={this.moveToLogin} page="0" />
-                    <CarouselItem on_press_event={this.moveToLogin} page="1" />
-                    <CarouselItem on_press_event={this.moveToLogin} page="2" />
-                    <CarouselItem on_press_event={this.moveToLogin} page="0" />
-                    <CarouselItem on_press_event={this.moveToLogin} page="1" />
-                    <CarouselItem on_press_event={this.moveToLogin} page="2" />
+                    {Array(6).fill(0).map((value, index) => (
+                        <CarouselItem
+                            key={index}
+                            on_press_event={this.moveToLogin} page={index} />
+                    ))}
                 </SwiperFlatList>
                 <TouchableOpacity
                     onPress={() => props.navigation.dispatch(DrawerActions.toggleDrawer())}
