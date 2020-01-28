@@ -1,81 +1,119 @@
 import React from 'react';
 import {
-    View, TouchableOpacity, Image, TextInput, ScrollView,
+    View, TouchableOpacity, Image, FlatList, Text, ImageBackground
 } from 'react-native';
 import SwiperFlatList from 'react-native-swiper-flatlist';
 import { DrawerActions } from 'react-navigation-drawer';
 import styles from './styles';
 import { verticalScale } from '../../utils/scaling';
-import CardsSection from './CardsSection/CardsSection';
-import CardMultipleItems from './CardMultipleItems/CardMultipleItems';
-import PopularItems from './PopularItems/PopularItems';
-import RecommendedItems from './RecommendedItems/RecommendedItems';
-import CarouselItem from './CarouselItem/CarouselItem';
+import CategoryCard from './CategoryCard/CategoryCard';
 import BottomTab from '../../components/BottomTab/BottomTab';
+import ProductCard from './ProductCard/ProductCard';
+import { OFFERS, PRODUCTS, CATEGORIES } from '../../utils/mockData';
 
+const caroselImage = [
+    require('../../assets/images/MainLanding/banner-1.png'),
+    require('../../assets/images/MainLanding/recommended_2.png'),
+    require('../../assets/images/MainLanding/carosel_img_3.png'),
+    require('../../assets/images/MainLanding/banner-1.png'),
+    require('../../assets/images/MainLanding/recommended_2.png'),
+    require('../../assets/images/MainLanding/carosel_img_3.png'),
+]
+
+function renderCarosel(props) {
+    return (
+        <View style={styles.caroselContainer}>
+            <SwiperFlatList
+                index={0}
+                showPagination
+                autoplay
+                autoplayDelay={3}
+                autoplayLoop={true}
+                paginationActiveColor="#fff"
+                paginationStyle={{ marginBottom: '7%' }}
+                paginationStyleItem={{ height: verticalScale(8), width: verticalScale(8), marginLeft: 0 }}
+            >
+                {Array(caroselImage.length).fill(0).map((value, index) => (
+                    <ImageBackground
+                        key={index}
+                        source={caroselImage[index]}
+                        style={styles.caroselStyle}
+                    />
+                ))}
+            </SwiperFlatList>
+            <TouchableOpacity
+                onPress={() => props.navigation.dispatch(DrawerActions.toggleDrawer())}
+                style={styles.menuDrawerContainer}
+            >
+                <Image
+                    source={require('../../assets/images/MainLanding/menu_icon.png')}
+                    style={styles.imgResponsive}
+                    resizeMode="contain"
+                />
+            </TouchableOpacity>
+        </View>
+    )
+}
 function MainLanding(props) {
     return (
         <View style={styles.grayBackground}>
-            <View style={styles.caroselContainer}>
-                <SwiperFlatList
-                    index={0}
-                    showPagination
-                    autoplay
-                    autoplayDelay={3}
-                    autoplayLoop={true}
-                    paginationActiveColor="#fff"
-                    paginationStyle={{ marginBottom: '7%' }}
-                    paginationStyleItem={{ height: verticalScale(8), width: verticalScale(8), marginLeft: 0 }}
-                >
-                    {Array(6).fill(0).map((value, index) => (
-                        <CarouselItem
-                            key={index}
-                            on_press_event={this.moveToLogin} page={index} />
-                    ))}
-                </SwiperFlatList>
-                <TouchableOpacity
-                    onPress={() => props.navigation.dispatch(DrawerActions.toggleDrawer())}
-                    style={styles.menuDrawerContainer}
-                >
-                    <Image
-                        source={require('../../assets/images/MainLanding/menu_icon.png')}
-                        style={styles.imgResponsive}
-                        resizeMode="contain"
-                    />
-                </TouchableOpacity>
-                <View style={[styles.searchContainer]}>
-                    <View style={styles.searchTextContainer}>
-                        <TextInput
-                            placeholderTextColor="#9B9B9B"
-                            placeholder="What are you looking for"
-                            style={styles.searchTextStyle}
-                        />
-                    </View>
-                    <View style={styles.searchIconContainer}>
-                        <TouchableOpacity style={styles.searchIconBtnContainer}>
-                            <Image
-                                source={require('../../assets/images/MainLanding/search.png')}
-                                style={styles.imgResponsive}
-                                resizeMode="contain"
-                            />
-                        </TouchableOpacity>
-                    </View>
-                </View>
-            </View>
-            <ScrollView style={styles.scrollViewStyle}>
-                <CardsSection
+            <FlatList
+                keyExtractor={(item, index) => index.toString()}
+                showsVerticalScrollIndicator={false}
+                numColumns={2}
+                ListHeaderComponent={() =>
+                    <>
+                        {renderCarosel(props)}
+                        <View style={styles.categoryContainer}>
+                            {CATEGORIES.map((category, index) => {
+                                return (
+                                    <CategoryCard
+                                        key={index}
+                                        category={category}
+                                        navigationObj={props.navigation}
+                                    />
+                                )
+                            })}
+                        </View>
+                        {
+                            OFFERS.map((offer, index) => {
+                                return (
+                                    <View key={index} style={styles.titleSpacer}>
+                                        <Text style={styles.headingText}>{offer.offer_name}</Text>
+                                        <FlatList
+                                            horizontal={true}
+                                            showsHorizontalScrollIndicator={false}
+                                            keyExtractor={(item, index) => index.toString()}
+                                            data={offer.items}
+                                            renderItem={({ item, index }) => {
+                                                return (
+                                                    <View
+                                                        key={index}
+                                                        style={styles.itemCardContainer}>
+                                                        <ProductCard
+                                                            navigationObj={props.navigation}
+                                                            item={item} />
+                                                    </View>
+                                                )
+                                            }}
+                                        />
+                                    </View>
+                                )
+                            })
+                        }
+                        <View style={styles.titleSpacer}>
+                            <Text style={styles.headingText}>All Items</Text>
+                        </View>
+                    </>
+                }
+                data={PRODUCTS}
+                renderItem={({ item }) => <ProductCard
+                    styles={styles.productCard}
                     navigationObj={props.navigation}
-                />
-                <CardMultipleItems
-                    navigationObj={props.navigation}
-                />
-                <PopularItems
-                    navigationObj={props.navigation}
-                />
-                <RecommendedItems
-                    navigationObj={props.navigation}
-                />
-            </ScrollView>
+                    item={item} />
+                }
+
+            />
             <BottomTab
                 navigationObj={props.navigation}
             />
