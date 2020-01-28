@@ -5,9 +5,9 @@ import {
 import styles from './styles'
 
 const icons = {
-    shop_1_collage_4: require('../../../assets/images/MainLanding/shop_1_collage_4.png'),
-    recommended_2: require('../../../assets/images/MainLanding/recommended_2.png'),
-    recommend_1: require('../../../assets/images/MainLanding/recommend_1.png'),
+    shop_1_collage_4: require('../../assets/images/MainLanding/shop_1_collage_4.png'),
+    recommended_2: require('../../assets/images/MainLanding/recommended_2.png'),
+    recommend_1: require('../../assets/images/MainLanding/recommend_1.png'),
 }
 
 function ProductCard(props) {

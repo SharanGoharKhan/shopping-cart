@@ -8,8 +8,8 @@ import styles from './styles';
 import { verticalScale } from '../../utils/scaling';
 import CategoryCard from './CategoryCard/CategoryCard';
 import BottomTab from '../../components/BottomTab/BottomTab';
-import ProductCard from './ProductCard/ProductCard';
 import { OFFERS, PRODUCTS, CATEGORIES } from '../../utils/mockData';
+import ProductCard from '../../ui/ProductCard/ProductCard';
 
 const caroselImage = [
     require('../../assets/images/MainLanding/banner-1.png'),
