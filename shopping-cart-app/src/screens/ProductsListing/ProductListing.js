@@ -1,10 +1,11 @@
 import React from 'react';
 import {
-    View, Text, ScrollView, Image, TouchableOpacity, StatusBar
+    View, Text, Image, TouchableOpacity, FlatList
 } from 'react-native';
 import styles from './styles';
-import CardItem from './CardItem/CardItem';
 import BottomTab from '../../components/BottomTab/BottomTab';
+import { PRODUCTS } from '../../utils/mockData';
+import ProductCard from '../../ui/ProductCard/ProductCard';
 
 function ProductListing(props) {
     return (
@@ -43,18 +44,17 @@ function ProductListing(props) {
                     </View>
                 </View>
             </View>
-            <ScrollView style={styles.scrollViewStyle}>
-                <View style={styles.bannerContainer}>
-                    <Image
-                        source={require('../../assets/images/ProductListing/banner.png')}
-                        resizeMode="cover"
-                        style={styles.imgResponsive}
-                    />
-                </View>
-                <CardItem
+            <FlatList
+                keyExtractor={(item, index) => index.toString()}
+                showsVerticalScrollIndicator={false}
+                numColumns={2}
+                data={PRODUCTS}
+                renderItem={({ item }) => <ProductCard
+                    styles={styles.productCard}
                     navigationObj={props.navigation}
-                />
-            </ScrollView>
+                    item={item} />
+                }
+            />
             <BottomTab
                 navigationObj={props.navigation}
             />

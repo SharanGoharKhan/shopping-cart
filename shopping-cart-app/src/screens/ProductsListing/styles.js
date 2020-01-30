@@ -1,7 +1,5 @@
-import { Dimensions } from 'react-native';
-import { verticalScale } from '../../utils/scaling';
+import { verticalScale, scale } from '../../utils/scaling';
 import { fontStyles } from '../../utils/fontStyles';
-const { height, width } = Dimensions.get('window');
 
 export default {
     flex: {
@@ -55,24 +53,11 @@ export default {
         width: undefined,
         height: undefined,
     },
-    scrollViewStyle: {
-        backgroundColor: '#EEEEEE',
-    },
-    bannerContainer: {
-        width: '100%',
-        height: height * 0.45
-    },
-    contentContainer: {
-        width: '100%',
-        height: height * 0.38,
-        justifyContent: 'center',
-        alignItems: 'center',
-    },
-    contentSubContainer: {
-        width: '90%',
-        height: '90%',
-        flexWrap: 'wrap',
-        flexDirection: 'row',
-        justifyContent: 'space-between',
-    },
+    productCard: {
+        marginLeft: '5%', 
+        width: '42%', 
+        height: scale(225), 
+        marginTop: scale(10), 
+        marginBottom: scale(20)
+    }
 };
