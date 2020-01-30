@@ -1,49 +1,21 @@
 import React from 'react';
 import {
-    View, Text, Image, TouchableOpacity, FlatList
+    View, FlatList
 } from 'react-native';
 import styles from './styles';
 import BottomTab from '../../components/BottomTab/BottomTab';
 import { PRODUCTS } from '../../utils/mockData';
 import ProductCard from '../../ui/ProductCard/ProductCard';
+import { HeaderRightIcon } from '../../components/Headers/Headers';
 
 function ProductListing(props) {
     return (
         <View style={styles.flex}>
-            <View style={styles.headerContainer}>
-                <View style={styles.headerSubContainer}>
-                    <View style={styles.backCnt}>
-                        <TouchableOpacity
-                            onPress={() => props.navigation.goBack()}
-                            style={styles.backImg}>
-                            <Image
-                                source={require('../../assets/icons/back.png')}
-                                resizeMode="contain"
-                                style={styles.imgResponsive}
-                            />
-                        </TouchableOpacity>
-                    </View>
-                    <View style={styles.headerTextContainer}>
-                        <Text style={styles.headerText}>Arts & Crafts</Text>
-                    </View>
-                    <View style={styles.headerIconContainer}>
-                        <TouchableOpacity style={styles.headerImg}>
-                            <Image
-                                source={require('../../assets/images/ProductListing/listView.png')}
-                                resizeMode="contain"
-                                style={styles.imgResponsive}
-                            />
-                        </TouchableOpacity>
-                        <TouchableOpacity style={styles.headerImg}>
-                            <Image
-                                source={require('../../assets/images/ProductListing/settings.png')}
-                                resizeMode="contain"
-                                style={styles.imgResponsive}
-                            />
-                        </TouchableOpacity>
-                    </View>
-                </View>
-            </View>
+            <HeaderRightIcon
+                title='Arts & Crafts'
+                backPressed={() => props.navigation.goBack()}
+                rightIconPresed={()=>console.log('modal open')}
+            />
             <FlatList
                 keyExtractor={(item, index) => index.toString()}
                 showsVerticalScrollIndicator={false}
