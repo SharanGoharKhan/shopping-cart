@@ -1,9 +1,10 @@
-import React from 'react'
+import React, { useState } from 'react'
 import {
     Text, View, Image, TouchableOpacity
 } from 'react-native'
 import styles from './styles'
-// import Ionicons from 'react-native-vector-icons/Ionicons'
+import Ionicons from 'react-native-vector-icons/Ionicons'
+
 const icons = {
     shop_1_collage_4: require('../../assets/images/MainLanding/shop_1_collage_4.png'),
     recommended_2: require('../../assets/images/MainLanding/recommended_2.png'),
@@ -11,6 +12,7 @@ const icons = {
 }
 
 function ProductCard(props) {
+    const [liked, setLiked] = useState(false)
     return (
         <TouchableOpacity
             activeOpacity={1}
@@ -34,12 +36,15 @@ function ProductCard(props) {
                     <Text numberOfLines={1} style={styles.botCardTextStyle}>{props.item.category}</Text>
                     <View style={styles.botIconContainer}>
                         <View style={styles.botPriceContainer}>
-                            {!props.item.tag == '' ? <Text style={[styles.botPriceStyle,styles.mr4]}>${props.item.price.toFixed(2)}</Text> : null}
+                            {!props.item.tag == '' ? <Text style={[styles.botPriceStyle, styles.mr4]}>${props.item.price.toFixed(2)}</Text> : null}
                             <Text style={[styles.botPriceStyle, props.item.tag ? { textDecorationLine: 'line-through' } : null]}>${props.item.price.toFixed(2)}</Text>
                         </View>
-                        {/* <View style={{ flex: 1,backgroundColor:'blue'}}>
-                            <Ionicons name="ios-heart" size={20} />
-                        </View> */}
+                        <TouchableOpacity
+                            activeOpacity={0.7}
+                            onPress={() => setLiked(!liked)}
+                            style={styles.likeContainer}>
+                            <Ionicons name={liked ? "ios-heart" : "ios-heart-empty"} size={24}/>
+                        </TouchableOpacity>
                     </View>
                 </View>
             </View>

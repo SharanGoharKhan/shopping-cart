@@ -72,5 +72,10 @@ export default {
     },
     mr4: {
         marginRight: scale(4)
+    },
+    likeContainer: {
+        flex: 1, 
+        alignItems: 'flex-end', 
+        paddingTop: '3%'
     }
 }
