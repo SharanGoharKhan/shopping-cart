@@ -6,7 +6,7 @@ import SwiperFlatList from 'react-native-swiper-flatlist';
 import { DrawerActions } from 'react-navigation-drawer';
 import styles from './styles';
 import { verticalScale } from '../../utils/scaling';
-import CategoryCard from './CategoryCard/CategoryCard';
+import CategoryCard from '../../ui/CategoryCard/CategoryCard';
 import BottomTab from '../../components/BottomTab/BottomTab';
 import { OFFERS, PRODUCTS, CATEGORIES } from '../../utils/mockData';
 import ProductCard from '../../ui/ProductCard/ProductCard';
@@ -69,7 +69,7 @@ function MainLanding(props) {
                                 return (
                                     <CategoryCard
                                         key={index}
-                                        category={category}
+                                        cardLabel={category.label}
                                         navigationObj={props.navigation}
                                     />
                                 )

@@ -9,7 +9,7 @@ export default {
     },
     topCardContainer: {
         width: '100%',
-        height: '70%'
+        height: '65%'
     },
     cardImageContainer: {
         width: '100%',
@@ -39,7 +39,7 @@ export default {
     },
     botCardContainer: {
         width: '100%',
-        height: '30%',
+        height: '35%',
         backgroundColor: colors.whiteColor
     },
     botSubCardContainer: {
@@ -59,14 +59,18 @@ export default {
     },
     botPriceContainer: {
         flexDirection:'row',
-        width: '60%',
+        width: '70%',
         height: '100%',
-        justifyContent: 'space-between',
-        alignItems: 'flex-start',
+        flexWrap:'wrap',
+        paddingTop: '3%',
+        
     },
     botPriceStyle: {
         fontFamily: fontStyles.PoppinsRegular,
         color: '#6178DE',
-        fontSize: scale(14)
+        fontSize: scale(12)
     },
+    mr4: {
+        marginRight: scale(4)
+    }
 }

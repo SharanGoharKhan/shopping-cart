@@ -15,7 +15,7 @@ function ProductCard(props) {
         <TouchableOpacity
             activeOpacity={1}
             onPress={() => props.navigationObj.navigate('ProductListing')}
-            style={[styles.cardContainer,props.styles]}>
+            style={[styles.cardContainer, props.styles]}>
             <View style={styles.topCardContainer}>
                 <View style={styles.cardImageContainer}>
                     <Image
@@ -34,9 +34,12 @@ function ProductCard(props) {
                     <Text numberOfLines={1} style={styles.botCardTextStyle}>{props.item.category}</Text>
                     <View style={styles.botIconContainer}>
                         <View style={styles.botPriceContainer}>
-                            <Text style={[styles.botPriceStyle, props.item.tag ? { textDecorationLine: 'line-through' } : null]}>{props.item.price} PKR</Text>
-                            {!props.item.tag == '' ? <Text style={styles.botPriceStyle}>{props.item.price} PKR</Text> : null}
+                            {!props.item.tag == '' ? <Text style={[styles.botPriceStyle,styles.mr4]}>${props.item.price.toFixed(2)}</Text> : null}
+                            <Text style={[styles.botPriceStyle, props.item.tag ? { textDecorationLine: 'line-through' } : null]}>${props.item.price.toFixed(2)}</Text>
                         </View>
+                        {/* <View style={{ flex: 1,backgroundColor:'blue'}}>
+
+                        </View> */}
                     </View>
                 </View>
             </View>

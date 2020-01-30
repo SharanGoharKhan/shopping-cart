@@ -1,6 +1,6 @@
-import { scale } from '../../../utils/scaling';
-import { fontStyles } from '../../../utils/fontStyles';
-import { colors } from '../../../utils/colors';
+import { scale } from "../../utils/scaling";
+import { fontStyles } from '../../utils/fontStyles';
+import { colors } from '../../utils/colors';
 
 export default {
     container: {

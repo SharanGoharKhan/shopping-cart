@@ -1,27 +1,21 @@
 export const CATEGORIES = [
     {
-        label: 'Accessories',
-        icon: 'watch'
+        label: 'New Arrivals',
     },
     {
-        label: 'Arts & Crafts',
-        icon: 'arts_and_crafts'
+        label: 'Men',
     },
     {
-        label: 'Event Ideas',
-        icon: 'event_ideas'
+        label: 'Women',
     },
     {
-        label: 'Fashions',
-        icon: 'fashion'
+        label: 'Kids',
     },
     {
-        label: 'Food & Drinks',
-        icon: 'drinks'
+        label: 'Sale',
     },
     {
-        label: 'More',
-        icon: 'more'
+        label: 'Featured',
     }
 ]
 
