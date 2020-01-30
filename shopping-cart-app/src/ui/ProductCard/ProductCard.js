@@ -3,7 +3,7 @@ import {
     Text, View, Image, TouchableOpacity
 } from 'react-native'
 import styles from './styles'
-
+// import Ionicons from 'react-native-vector-icons/Ionicons'
 const icons = {
     shop_1_collage_4: require('../../assets/images/MainLanding/shop_1_collage_4.png'),
     recommended_2: require('../../assets/images/MainLanding/recommended_2.png'),
@@ -38,7 +38,7 @@ function ProductCard(props) {
                             <Text style={[styles.botPriceStyle, props.item.tag ? { textDecorationLine: 'line-through' } : null]}>${props.item.price.toFixed(2)}</Text>
                         </View>
                         {/* <View style={{ flex: 1,backgroundColor:'blue'}}>
-
+                            <Ionicons name="ios-heart" size={20} />
                         </View> */}
                     </View>
                 </View>
