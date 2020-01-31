@@ -16,7 +16,7 @@ function ProductCard(props) {
     return (
         <TouchableOpacity
             activeOpacity={1}
-            onPress={() => props.navigationObj.navigate('ProductListing')}
+            onPress={() => props.cardPressed()}
             style={[styles.cardContainer, props.styles]}>
             <View style={styles.topCardContainer}>
                 <View style={styles.cardImageContainer}>

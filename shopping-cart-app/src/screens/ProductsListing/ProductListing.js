@@ -23,7 +23,7 @@ function ProductListing(props) {
                 data={PRODUCTS}
                 renderItem={({ item }) => <ProductCard
                     styles={styles.productCard}
-                    navigationObj={props.navigation}
+                    cardPressed={()=> props.navigation.navigate('ProductDescription')}
                     item={item} />
                 }
             />

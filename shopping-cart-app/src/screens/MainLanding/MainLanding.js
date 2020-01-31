@@ -91,7 +91,7 @@ function MainLanding(props) {
                                                         key={index}
                                                         style={styles.itemCardContainer}>
                                                         <ProductCard
-                                                            navigationObj={props.navigation}
+                                                            cardPressed={()=> props.navigation.navigate('ProductListing')}
                                                             item={item} />
                                                     </View>
                                                 )
