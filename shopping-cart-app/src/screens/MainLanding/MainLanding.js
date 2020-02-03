@@ -91,7 +91,7 @@ function MainLanding(props) {
                                                         key={index}
                                                         style={styles.itemCardContainer}>
                                                         <ProductCard
-                                                            cardPressed={()=> props.navigation.navigate('ProductListing')}
+                                                            cardPressed={() => props.navigation.navigate('ProductListing')}
                                                             item={item} />
                                                     </View>
                                                 )
@@ -109,7 +109,7 @@ function MainLanding(props) {
                 data={PRODUCTS}
                 renderItem={({ item }) => <ProductCard
                     styles={styles.productCard}
-                    navigationObj={props.navigation}
+                    cardPressed={() => props.navigation.navigate('ProductListing')}
                     item={item} />
                 }
 

@@ -126,3 +126,23 @@ export const PRODUCTS = [
         img: 'shop_1_collage_4'
     },
 ]
+export const CARTDATA = [
+    {
+        name: 'Leather Crossbody MID Premium',
+        category: 'EQ Custom Leather',
+        quantity: 3,
+        prev_price: 12.99,
+        new_price: 10.99,
+        image: 'shop_2_collage_2',
+        size: 'L'
+    },
+    {
+        name: "Photography's belt & hooch",
+        category: 'EQ Custom Leather',
+        quantity: 1,
+        prev_price: 39,
+        new_price: 29,
+        image: 'belt',
+        size: 'M'
+    },
+];
