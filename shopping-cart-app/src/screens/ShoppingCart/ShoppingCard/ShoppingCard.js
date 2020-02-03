@@ -1,4 +1,4 @@
-import React, { useState} from 'react';
+import React, { useState } from 'react';
 import {
     View, Text, Image, TouchableOpacity
 } from 'react-native';
@@ -40,7 +40,7 @@ function ShoppingCard(props) {
                                     activeOpacity={1}>
                                     <Ionicons name="ios-arrow-back" size={25} />
                                 </TouchableOpacity>
-    <Text style={styles.quantityTextStyle}>{props.item.quantity}</Text>
+                                <Text style={styles.quantityTextStyle}>{props.item.quantity}</Text>
                                 <TouchableOpacity
                                     style={styles.quantityIconStyle}
                                     activeOpacity={1}>
@@ -50,9 +50,9 @@ function ShoppingCard(props) {
                         </View>
                         <View style={styles.bottomContainer}>
                             <TouchableOpacity
-                            activeOpacity={0.7}
-                            onPress={() => setLiked(!liked)} 
-                            style={styles.likeContainer}>
+                                activeOpacity={0.7}
+                                onPress={() => setLiked(!liked)}
+                                style={styles.likeContainer}>
                                 <Ionicons name={liked ? "ios-heart" : "ios-heart-empty"} size={25} />
                                 <Text style={styles.likeTextStyle}>Save</Text>
                             </TouchableOpacity>

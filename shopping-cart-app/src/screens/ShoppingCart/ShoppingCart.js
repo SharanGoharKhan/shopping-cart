@@ -47,7 +47,8 @@ function ShoppingCart(props) {
                         text="Proceed" />
                 </View>
             </ScrollView>
-            <BottomTab />
+            <BottomTab 
+            navigationObj={props.navigation}/>
         </View>
     );
 }
