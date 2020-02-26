@@ -2,7 +2,7 @@ import React from 'react';
 import {
     View, Text, Image, TouchableOpacity, ScrollView, StatusBar, Platform
 } from 'react-native';
-import Timeline from 'react-native-timeline-listview';
+import Timeline from 'react-native-timeline-flatlist';
 import styles from './styles';
 import BottomTab from '../../components/BottomTab/BottomTab';
 

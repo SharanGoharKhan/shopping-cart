@@ -2,7 +2,7 @@ import { StatusBar } from 'react-native';
 import { verticalScale, scale } from '../../utils/scaling';
 import { colors } from '../../utils/colors';
 import { fontStyles } from '../../utils/fontStyles';
-import { Dimensions } from 'react-native';
+import { Dimensions, Platform } from 'react-native';
 const { width, height } = Dimensions.get('window');
 
 export default {
@@ -12,7 +12,7 @@ export default {
         alignSelf: 'center',
     },
     statusbarImage: {
-        height: StatusBar.currentHeight,
+        height: Platform.OS === 'ios' ? 0 : StatusBar.currentHeight,
         backgroundColor: 'black',
     },
     body: {
@@ -20,32 +20,32 @@ export default {
         width: '95%',
         alignSelf: 'center',
     },
-    body_header: {
+    bodyHeader: {
         height: '8%',
         width: '90%',
         flexDirection: 'row',
         alignSelf: 'center',
         alignItems: 'center',
     },
-    header_text: {
+    headerText: {
         fontFamily: fontStyles.PoppinsRegular,
         fontSize: verticalScale(16),
         paddingLeft: verticalScale(8),
     },
-    body_container: {
+    bodyContainer: {
         width: '90%',
         height: '63%',
         alignSelf: 'center',
         backgroundColor: colors.greyLinesColor,
         borderRadius: verticalScale(5),
     },
-    body_container_background: {
+    bodyContainerBackground: {
         backgroundColor: colors.backgroudGray,
         alignItems: 'center',
         width: '100%',
         height: '100%',
     },
-    body_footer: {
+    bodyFooter: {
         width: '90%',
         height: '25%',
         alignSelf: 'center',
@@ -59,30 +59,30 @@ export default {
         paddingLeft: verticalScale(15),
         backgroundColor: '#fcead9',
     },
-    bc_h1: {
+    bcH1: {
         fontSize: verticalScale(22),
         fontFamily: fontStyles.PoppinsRegular,
     },
-    bc_h2: {
+    bcH2: {
         fontSize: verticalScale(12),
         fontFamily: fontStyles.PoppinsRegular,
         lineHeight: verticalScale(13),
     },
-    bc_texts: {
+    bcTexts: {
         alignItems: 'center',
         justifyContent: 'center',
         height: '30%',
     },
-    bc_main: {
+    bcMain: {
         height: '45%',
         width: '90%',
         flexDirection: 'column',
         justifyContent: 'space-around',
     },
-    bc_inputs: {
+    bcInputs: {
         width: '90%',
     },
-    bc_input_view: {
+    bcInputView: {
         backgroundColor: colors.secondaryWhiteColor,
         borderRadius: 3,
         height: verticalScale(38),
@@ -90,15 +90,15 @@ export default {
         borderWidth: 1,
         borderColor: colors.greyLinesColor,
     },
-    bc_input: {
+    bcInput: {
         fontFamily: fontStyles.PoppinsRegular,
         fontSize: verticalScale(13),
         paddingLeft: '3%',
     },
-    bc_loginBtns: {
+    bcLoginBtns: {
         width: '90%',
     },
-    main_brown_btn: {
+    mainBrownBtn: {
         backgroundColor: '#D0AD8A',
         alignItems: 'center',
         justifyContent: 'center',
@@ -107,7 +107,7 @@ export default {
         height: verticalScale(50),
         borderRadius: 5,
     },
-    bb_text: {
+    bbText: {
         color: colors.secondaryWhiteColor,
         fontFamily: fontStyles.PoppinsRegular,
         fontSize: verticalScale(16),
@@ -115,13 +115,13 @@ export default {
     passwordText: {
         color: '#DC4E41',
     },
-    bc_socialBtns: {
+    bcSocialBtns: {
         flexDirection: 'row',
         width: '90%',
         height: '25%',
         alignItems: 'center',
     },
-    socialBtns_View: {
+    socialBtnsView: {
         width: '50%',
     },
     socialBtn: {
@@ -131,7 +131,7 @@ export default {
         justifyContent: 'center',
         alignItems: 'center',
     },
-    google_btn: {
+    googleBtn: {
         height: verticalScale(50),
         borderWidth: 0,
         borderRightWidth: 0,
@@ -141,7 +141,7 @@ export default {
         borderBottomRightRadius: 0,
         backgroundColor: '#DC4E41',
     },
-    facebook_btn: {
+    facebookBtn: {
         height: verticalScale(50),
         borderWidth: 0,
         borderLeftWidth: 0,
@@ -151,25 +151,25 @@ export default {
 
         backgroundColor: '#3B5998',
     },
-    fb_text: {
+    fbText: {
         color: colors.secondaryWhiteColor,
         fontFamily: fontStyles.PoppinsRegular,
         fontSize: verticalScale(16),
         paddingLeft: verticalScale(5),
     },
-    mixed_line: {
+    mixedLine: {
         flexDirection: 'row',
     },
-    bold_text: {
+    boldText: {
         fontFamily: fontStyles.PoppinsRegular,
         fontWeight: '500',
         fontSize: verticalScale(10),
     },
-    ft_text: {
+    ftText: {
         fontFamily: fontStyles.PoppinsRegular,
         fontSize: scale(10),
     },
-    ft_underline: {
+    ftUnderline: {
         textDecorationLine: 'underline',
     },
 
