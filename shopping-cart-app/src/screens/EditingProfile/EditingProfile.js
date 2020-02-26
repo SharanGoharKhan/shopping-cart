@@ -1,9 +1,8 @@
 import React from 'react';
-import { View, Text, Image, TextInput, KeyboardAvoidingView, TouchableOpacity } from 'react-native';
+import { View, Text, Image, TextInput, KeyboardAvoidingView, TouchableOpacity, ScrollView } from 'react-native';
 import styles from './styles';
 import BottomTab from '../../components/BottomTab/BottomTab';
 import { verticalScale } from '../../utils/scaling';
-import { ScrollView } from 'react-native-gesture-handler';
 
 function EditingProfile(props) {
     return (
