@@ -10,7 +10,6 @@ import { verticalScale } from '../../../utils/scaling';
 <Card />
 A component that displays address info.
 --------------------------------------------------------------------------------
-
 Props:
   ?
   name: Title of the address ie Home, Work
