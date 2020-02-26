@@ -19,7 +19,7 @@ const caroselData = [
         img: require('../../assets/images/MainLanding/carosel_img_2.png'),
     },
     {
-        img: require('../../assets/images/MainLanding/recommended-2.png'),
+        img: require('../../assets/images/MainLanding/recommended_2.png'),
     },
     {
         img: require('../../assets/images/MainLanding/carosel_img_3.png'),
@@ -28,7 +28,7 @@ const caroselData = [
         img: require('../../assets/images/MainLanding/carosel_img_2.png'),
     },
     {
-        img: require('../../assets/images/MainLanding/recommended-2.png'),
+        img: require('../../assets/images/MainLanding/recommended_2.png'),
     },
     {
         img: require('../../assets/images/MainLanding/carosel_img_3.png'),
