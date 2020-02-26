@@ -1,5 +1,5 @@
-import { StatusBar } from 'react-native';
-import { verticalScale } from '../../utils/scaling';
+import { StatusBar, Platform } from 'react-native';
+import { verticalScale, scale } from '../../utils/scaling';
 import { colors } from '../../utils/colors';
 import { fontStyles } from '../../utils/fontStyles';
 
@@ -7,94 +7,37 @@ export default {
     flex: {
         flex: 1
     },
-    container: {
-        height: '100%',
-        width: '100%',
-        alignSelf: 'center',
+    spacer: {
+        marginTop: scale(10)
     },
-    statusbarImage: {
-        height: StatusBar.currentHeight,
-        backgroundColor: 'black',
-    },
-    body: {
-        height: '95%',
-        width: '95%',
-        alignSelf: 'center',
-    },
-    main_scroller: {
-        marginBottom: verticalScale(10),
-    },
-
-    // header
-    header: {
-        height: '8%',
-        width: '95%',
-        flexDirection: 'row',
-        alignSelf: 'center',
-        alignItems: 'center',
-    },
-    header_text: {
+    textStyle: {
         fontFamily: fontStyles.PoppinsRegular,
-        fontSize: verticalScale(16),
-        paddingLeft: verticalScale(8),
+        fontSize: scale(13)
     },
-
-    // main
-    main: {
-        height: '80%',
-        width: '100%',
-        alignItems: 'center',
+    totalStyle: {
+        color: colors.blueColor
     },
-    main_top: {
-        height: '70%',
-        width: '95%',
+    summaryContainer: {
+        marginTop: scale(30),
+        width: '90%', 
+        backgroundColor: colors.backgroudGray, 
+        alignSelf: 'center', 
+        padding: scale(10)
     },
-    main_bot: {
-        height: '30%',
-        width: '100%',
-        alignItems: 'center',
-        justifyContent: 'space-evenly',
-        backgroundColor: colors.backgroudGray,
-        borderRadius: verticalScale(5),
+    rowContainer: {
+        flexDirection: 'row', 
+        justifyContent: 'space-between'
     },
-    subtotal_container: {
-        width: '90%',
-        borderBottomWidth: verticalScale(1),
-        borderBottomColor: colors.grayLinesColor,
-        paddingBottom: verticalScale(5),
+    lineStyle: {
+        width: '99%', 
+        height: 1, 
+        backgroundColor: colors.grayLinesColor, 
+        alignSelf: 'center'
     },
-    row: {
-        width: '100%',
-        flexDirection: 'row',
-        justifyContent: 'space-between',
+    btnContainer: {
+        backgroundColor: colors.textBlueColor
     },
-    text: {
-        fontFamily: fontStyles.PoppinsRegular,
-        fontSize: verticalScale(12.5),
-    },
-    text_bold: {
-        fontFamily: fontStyles.PoppinsRegular,
-        fontSize: verticalScale(13),
-    },
-    text_blue: {
-        fontFamily: fontStyles.PoppinsRegular,
-        fontSize: verticalScale(13),
-        color: colors.textBlueColor,
-    },
-    total_container: {
-        width: '90%',
-    },
-    submit_container: {
-        width: '90%',
-    },
-
-    // footer
-    footer: {
-        height: '12%',
-        width: '120%',
-        alignSelf: 'center',
-        justifyContent: 'flex-end',
-        alignItems: 'center',
-    },
-
+    btnText: {
+        color: colors.whiteColor
+    }
 };
