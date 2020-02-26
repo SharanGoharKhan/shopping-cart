@@ -7,34 +7,32 @@ import ProfileContainer from './ProfileContainer/ProfileContainer';
 import BottomTab from '../../components/BottomTab/BottomTab';
 import CardContainer from './CardContainer/CardContainer';
 
-class ProfileDashboard extends React.Component {
-  render() {
+function ProfileDashboard(props){
     return (
       <React.Fragment>
         <View style={styles.flex}>
           <ProfileContainer
-            navigationObj={this.props.navigation}
+            navigationObj={props.navigation}
           />
           <View style={styles.tabContainer}>
             <TouchableOpacity>
               <Text style={styles.tabStyleActive}>My Active Orders (3)</Text>
             </TouchableOpacity>
             <TouchableOpacity
-              onPress={() => this.props.navigation.navigate('PreviousOrders')}
+              onPress={() => props.navigation.navigate('PreviousOrders')}
             >
               <Text style={styles.tabStyle}>Previous Orders (35)</Text>
             </TouchableOpacity>
           </View>
           <CardContainer
-            navigationObj={this.props.navigation}
+            navigationObj={props.navigation}
           />
         </View>
         <BottomTab
-          navigationObj={this.props.navigation}
+          navigationObj={props.navigation}
         />
       </React.Fragment>
     );
-  }
 }
 
 export default ProfileDashboard;
