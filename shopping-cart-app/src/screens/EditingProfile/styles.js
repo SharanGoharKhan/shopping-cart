@@ -21,8 +21,8 @@ export default {
         fontSize: verticalScale(18),
     },
     backImg: {
-        marginBottom:'3%',
-        marginLeft:'5%'
+        marginBottom: '3%',
+        marginLeft: '5%'
     },
     formMainContainer: {
         flex: 1,
@@ -78,8 +78,12 @@ export default {
     inputContainer: {
         width: '100%',
         height: '60%',
+        padding: verticalScale(5),
         borderRadius: verticalScale(3),
         backgroundColor: colors.backgroudGray,
+    },
+    inputText: {
+        textAlign: "center"
     },
     label: {
         fontFamily: fontStyles.PoppinsRegular,
@@ -97,7 +101,7 @@ export default {
         height: '80%',
     },
     addContainer: {
-        width: width*.9,
+        width: width * .9,
         height: height * 0.15,
         justifyContent: 'center',
         alignItems: 'center',
@@ -114,5 +118,5 @@ export default {
         fontFamily: fontStyles.PoppinsRegular,
         color: colors.whiteColor,
     },
-    
+
 };
