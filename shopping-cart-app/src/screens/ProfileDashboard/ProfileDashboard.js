@@ -1,7 +1,5 @@
 import React from 'react';
-import {
-  View, Text, TouchableOpacity, StatusBar
-} from 'react-native';
+import {View, Text, TouchableOpacity} from 'react-native';
 import styles from './styles';
 import ProfileContainer from './ProfileContainer/ProfileContainer';
 import BottomTab from '../../components/BottomTab/BottomTab';
