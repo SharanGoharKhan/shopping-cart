@@ -12,6 +12,6 @@ function Dropdown(props) {
             baseColor='rgb(208, 173, 138)'
             dropdownPosition={0}
         />
-    );
+    )
 }
 export default Dropdown;
