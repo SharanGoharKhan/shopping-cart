@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {
     View, Text, Image, TextInput, StatusBar, TouchableOpacity, Platform
 } from 'react-native';
@@ -20,37 +20,24 @@ const DATA = [
 ];
 
 
-class CheckoutPayment extends React.Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            modalVisible: false,
-        };
-        this.showModal = this.showModal.bind(this);
-        this.hideModal = this.hideModal.bind(this);
+function CheckoutPayment(props) {
+    const [modalVisible,setModalVisible] = useState(false)
+
+    function showModal(){
+        setModalVisible(true)
     }
 
-    showModal = () => {
-        this.setState({
-            modalVisible: true,
-        });
+    function hideModal(){
+        setModalVisible(false)
     }
-
-    hideModal = () => {
-        this.setState({
-            modalVisible: false,
-        });
-    }
-
-    render() {
         return (
             <React.Fragment>
                 <View style={styles.flex}>
                     <View style={styles.container}>
                         <CheckoutReciept
-                            navigationObj={this.props.navigation}
-                            modalVisible={this.state.modalVisible}
-                            hideModal={this.hideModal}
+                            navigationObj={props.navigation}
+                            modalVisible={modalVisible}
+                            hideModal={hideModal}
                         />
                         <View style={styles.body}>
                             <View style={styles.header}>
@@ -146,7 +133,7 @@ class CheckoutPayment extends React.Component {
                                     </View>
                                     <View style={styles.submitContainer}>
                                         <BlueBtn
-                                            onPress={() => this.showModal()}
+                                            onPress={() => showModal()}
                                             text="Pay"
                                         />
                                     </View>
@@ -157,13 +144,13 @@ class CheckoutPayment extends React.Component {
                     </View>
                 </View>
                 <BottomTab
-                    navigationObj={this.props.navigation}
+                    navigationObj={props.navigation}
                 />
             </React.Fragment>
         );
     }
 
-    renderItem(item, index) {
+    function renderItem(item, index) {
         return (
             <View key={index} style={styles.listItem}>
                 <View style={styles.simpleRow}>
@@ -182,7 +169,6 @@ class CheckoutPayment extends React.Component {
             </View>
 
         );
-    }
 }
 
 export default CheckoutPayment;
