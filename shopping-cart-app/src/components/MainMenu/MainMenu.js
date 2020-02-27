@@ -34,7 +34,7 @@ const navItems = [
 
 function MainMenu(props) {
     return (
-        <SafeAreaView forceInset={{top:'always', bottom:'always'}} style={styles.container}>
+        <SafeAreaView forceInset={{top:'never', bottom:'always'}} style={styles.container}>
             <View style={styles.container}>
                 <View style={styles.profileContainer}>
                     <View style={styles.profileSubContainer}>

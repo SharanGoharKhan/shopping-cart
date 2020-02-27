@@ -57,7 +57,7 @@ function renderCarosel(props) {
 }
 function MainLanding(props) {
     return (
-        <SafeAreaView forceInset={{ top: "always", bottom: 'always' }} style={styles.flex}>
+        <SafeAreaView forceInset={{ top: "never", bottom: 'always' }} style={styles.flex}>
             <View style={styles.grayBackground}>
                 <FlatList
                     keyExtractor={(item, index) => index.toString()}
