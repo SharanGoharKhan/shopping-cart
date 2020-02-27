@@ -1,13 +1,12 @@
 import React from 'react';
 import {
-    View, Text, Image, StatusBar, TouchableOpacity, Platform
+    View, Text, Image, TouchableOpacity, ScrollView
 } from 'react-native';
-
-import { ScrollView } from 'react-native-gesture-handler';
 import styles from './styles';
 import BottomTab from '../../components/BottomTab/BottomTab';
 import Card from './Card/AddressCard';
 import { verticalScale } from '../../utils/scaling';
+import { SafeAreaView } from 'react-navigation';
 
 
 /* Config/Constants
@@ -22,14 +21,14 @@ const DATA = [
     },
 ];
 
-class AddressList extends React.Component {
-    render() {
-        return (
+function AddressList(props) {
+    return (
+        <SafeAreaView forceInset={{ top: "never", bottom: "always" }} style={{ flex: 1}}>
             <View style={styles.container}>
                 <View style={styles.header}>
                     <View style={styles.headerRow}>
                         <TouchableOpacity
-                            onPress={() => this.props.navigation.goBack()}
+                            onPress={() => props.navigation.goBack()}
                             style={styles.backImg}>
                             <Image
                                 source={require('../../assets/icons/back.png')}
@@ -54,7 +53,7 @@ class AddressList extends React.Component {
                         <ScrollView style={styles.mainScroll}>
                             {DATA.map((item, index) => (
                                 <Card
-                                    navigationObj={this.props.navigation}
+                                    navigationObj={props.navigation}
                                     title={item.title}
                                     country={item.country}
                                     city={item.city}
@@ -67,15 +66,13 @@ class AddressList extends React.Component {
                     </View>
 
                 </View>
-                <View style={styles.footer}>
-                    <BottomTab
-                        navigationObj={this.props.navigation}
-                    />
-                </View>
+                <BottomTab
+                    navigationObj={props.navigation}
+                />
 
             </View>
-        );
-    }
+        </SafeAreaView>
+    );
 }
 
 export default AddressList;

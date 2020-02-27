@@ -4,13 +4,12 @@ import { fontStyles } from '../../utils/fontStyles';
 
 export default {
     container: {
-        height: '100%',
-        width: '100%',
+        flex:1,
         alignItems: 'center',
     },
     body: {
         // adjust body height in order to accomodate footer
-        height: '80%',
+        height: '85%',
         width: '100%',
         alignItems: 'center',
         backgroundColor: colors.backgroudGray,
@@ -48,18 +47,12 @@ export default {
     },
     // main
     main: {
-        height: '80%',
+        height: '100%',
         width: '95%',
         paddingTop: verticalScale(10),
     },
     mainScroll: {
         height: '100%',
         width: '100%',
-    },
-    // footer
-    footer: {
-        height: '10%',
-        width: '100%',
-        justifyContent: 'center',
     },
 };
