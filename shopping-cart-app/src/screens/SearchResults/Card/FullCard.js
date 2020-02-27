@@ -15,7 +15,6 @@ import { verticalScale } from '../../../utils/scaling';
 /* =============================================================================
 <FullCard />
 --------------------------------------------------------------------------------
-
 Props:
   ?
 // ImageURL is currently a placeholder add URI functionality on DYS basis
@@ -27,12 +26,8 @@ productNewPrice - Current Price of the unit
 productBagde - Is it new product?
 productImageURI - URI of the image - DYS basis
 ============================================================================= */
-class FullCard extends React.Component {
-    constructor(props) {
-        super(props);
-    }
-
-    renderPrevousPrice(amount) {
+function FullCard(props) {
+    function renderPrevousPrice(amount) {
         return (
             <Text includeFontPadding={false} textAlignVertical="bottom" style={style = styles.prevPriceText}>
                 {amount}
@@ -43,47 +38,50 @@ class FullCard extends React.Component {
     }
 
     // if product is new
-    renderBadge() {
+    function renderBadge() {
         return (
             <Text style={styles.badge}>
                 New
           </Text>
         );
     }
-
-    render() {
+    function renderPreviousPage() {
         let renderPreviousAmount = null;
-        if (this.props.productPreviousPrice) renderPreviousAmount = this.renderPrevousPrice(this.props.productPreviousPrice);
+        if (props.productPreviousPrice)
+            renderPreviousAmount = renderPrevousPrice(props.productPreviousPrice);
 
         let renderBage = null;
-        if (this.props.productBadge) renderBage = this.renderBadge();
-        // render the whole content
-        return (
-            <View style={styles.container}>
+        if (props.productBadge) renderBage = renderBadge();
+    }
+    // render the whole content
+    return (
+        <>
+            {renderPreviousPage()}
+            <View style={styles.container} >
 
                 <View style={styles.leftside}>
                     <Image
                         style={styles.thumbnail}
                         resizeMode="cover"
-                        source={this.props.productImage}
+                        source={props.productImage}
                     />
-                    {renderBage}
+                    {renderBadge}
                 </View>
                 <View style={styles.rightside_container}>
                     <View style={styles.rightside}>
                         <View style={styles.rightside_top}>
                             <Text style={styles.product} numberOfLines={2}>
-                                {this.props.productName}
+                                {props.productName}
                             </Text>
                             <View style={styles.ratingContainer}>
                                 <Rating
                                     isDisabled
                                     ratingCount={5}
-                                    startingValue={this.props.productRating}
+                                    startingValue={props.productRating}
                                     imageSize={verticalScale(14)}
                                 />
                                 <Text style={styles.votesCount}>
-                                    {this.props.productTotalVotes}
+                                    {props.productTotalVotes}
                                 </Text>
                             </View>
 
@@ -92,7 +90,7 @@ class FullCard extends React.Component {
                             {renderPreviousAmount}
                             <View style={styles.special_row}>
                                 <Text style={styles.amount}>
-                                    {this.props.productNewPrice}
+                                    {props.productNewPrice}
                                     {' '}
                                     PKR
                               </Text>
@@ -107,9 +105,9 @@ class FullCard extends React.Component {
 
                     </View>
                 </View>
-            </View>
-        );
-    }
+            </View >
+        </>
+    );
 }
 
 export default FullCard;
