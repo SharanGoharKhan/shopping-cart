@@ -2,11 +2,12 @@ import { verticalScale } from '../../../utils/scaling';
 import { colors } from '../../../utils/colors';
 import { fontStyles } from '../../../utils/fontStyles';
 
+
 // We can use Dimensions module and use percentage from it as well; a decent usecase
 export default {
     container: {
         width: '100%',
-        height: verticalScale(85),
+        height: verticalScale(90),
         marginBottom: verticalScale(15),
         borderRadius: verticalScale(3),
         borderWidth: verticalScale(1),
@@ -24,11 +25,37 @@ export default {
         borderBottomLeftRadius: verticalScale(3),
     },
     rightside_container: {
+        backgroundColor: colors.secondaryWhiteColor,
         height: '100%',
         width: '65%',
         justifyContent: 'center',
         alignItems: 'center',
-        paddingBottom: verticalScale(5),
+        borderTopRightRadius: verticalScale(3),
+        borderBottomRightRadius: verticalScale(3),
+    },
+    ratingContainer: {
+        flexDirection: 'row',
+    },
+    votesCount: {
+        fontFamily: fontStyles.PoppinsRegular,
+        fontSize: verticalScale(8),
+        paddingTop: verticalScale(3),
+        paddingLeft: verticalScale(3),
+    },
+    badge: {
+        backgroundColor: 'purple',
+        color: 'white',
+        width: '30%',
+        position: 'absolute',
+        textAlign: 'center',
+        lineHeight: verticalScale(18),
+        fontFamily: fontStyles.PoppinsRegular,
+        fontSize: verticalScale(11),
+        borderRadius: verticalScale(3),
+        zIndex: 1,
+        elevation: 1,
+        top: 10,
+        left: 10,
     },
     rightside: {
         height: '80%',
@@ -40,12 +67,10 @@ export default {
         flexDirection: 'row',
     },
     rightside_top: {
-
-    },
-    rightside_bot: {
-
+        alignItems: 'flex-start',
     },
     special_row: {
+        width: '100%',
         flexDirection: 'row',
         justifyContent: 'space-between',
     },
@@ -60,12 +85,16 @@ export default {
         color: colors.textBlueColor,
         fontSize: verticalScale(13),
         fontWeight: '500',
+        lineHeight: verticalScale(13),
+        paddingTop: verticalScale(5),
+
     },
     product: {
+        width: '95%',
         fontFamily: fontStyles.PoppinsRegular,
         color: colors.primaryBlackColor,
         fontSize: verticalScale(13),
-        fontWeight: '500',
+        lineHeight: verticalScale(14.5),
     },
     by: {
         fontFamily: fontStyles.PoppinsRegular,
@@ -78,11 +107,16 @@ export default {
         fontSize: verticalScale(11),
     },
     prevPrice: {
-        alignSelf: 'flex-end',
+        alignSelf: 'flex-start',
     },
     prevPriceText: {
         color: colors.googleRedColor,
         fontFamily: fontStyles.PoppinsRegular,
         fontSize: verticalScale(9),
+        lineHeight: verticalScale(10),
+        alignSelf: 'flex-start',
+        paddingBottom: 0,
+        marginBottom: 0,
+
     },
 };

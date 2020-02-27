@@ -1,6 +1,11 @@
 import React from 'react';
-import { View, Text, Image } from 'react-native';
+import {
+    View, Text, Image, TouchableOpacity,
+} from 'react-native';
+
+import { Rating } from 'react-native-ratings';
 import styles from './styles';
+import { verticalScale } from '../../../utils/scaling';
 
 
 /* Config/Constants
@@ -10,83 +15,99 @@ import styles from './styles';
 /* =============================================================================
 <FullCard />
 --------------------------------------------------------------------------------
-
 Props:
   ?
 // ImageURL is currently a placeholder add URI functionality on DYS basis
 productName - Name of the product
-productBrand - Company/ Manufacturer
-productQuantity - amount
-productPreviousPrice - Previous price of unit, if null wont be showed
+productRating - 1-5 stars rating
+productTotalVotes - total amount of users that voted
+productPrevPrice - Previous price of unit, if null wont be showed
 productNewPrice - Current Price of the unit
+productBagde - Is it new product?
+productImageURI - URI of the image - DYS basis
 ============================================================================= */
-class FullCard extends React.Component {
-    constructor(props) {
-        super(props);
-    }
-
-    renderPrevousPrice(amount) {
+function FullCard(props) {
+    function renderPrevousPrice(amount) {
         return (
-            <View style={styles.prevPrice}>
-                <Text style={style = styles.prevPriceText}>
-                    {amount}
-                    {' '}
-                    PKR
-              </Text>
-            </View>
+            <Text includeFontPadding={false} textAlignVertical="bottom" style={style = styles.prevPriceText}>
+                {amount}
+                {' '}
+                PKR
+            </Text>
         );
     }
 
-    render() {
-        // check if previous price needs to be rendered
-        let renderPreviousAmount = null;
-        if (this.props.productPreviousPrice) renderPreviousAmount = this.renderPrevousPrice(this.props.productPreviousPrice);
-
-        // render the whole content
+    // if product is new
+    function renderBadge() {
         return (
-            <View style={styles.container}>
+            <Text style={styles.badge}>
+                New
+          </Text>
+        );
+    }
+    function renderPreviousPage() {
+        let renderPreviousAmount = null;
+        if (props.productPreviousPrice)
+            renderPreviousAmount = renderPrevousPrice(props.productPreviousPrice);
+
+        let renderBage = null;
+        if (props.productBadge) renderBage = renderBadge();
+    }
+    // render the whole content
+    return (
+        <>
+            {renderPreviousPage()}
+            <View style={styles.container} >
+
                 <View style={styles.leftside}>
                     <Image
                         style={styles.thumbnail}
                         resizeMode="cover"
-                        source={this.props.productImage}
+                        source={props.productImage}
                     />
+                    {renderBadge}
                 </View>
                 <View style={styles.rightside_container}>
                     <View style={styles.rightside}>
                         <View style={styles.rightside_top}>
-                            <Text style={styles.product} numberOfLines={1}>{this.props.productName}</Text>
-                            <View style={styles.row}>
-                                <Text style={styles.by}>By </Text>
-                                <Text style={styles.brand} numberOfLines={1}>
-                                    {this.props.productBrand}
-                                    {' '}
+                            <Text style={styles.product} numberOfLines={2}>
+                                {props.productName}
+                            </Text>
+                            <View style={styles.ratingContainer}>
+                                <Rating
+                                    isDisabled
+                                    ratingCount={5}
+                                    startingValue={props.productRating}
+                                    imageSize={verticalScale(14)}
+                                />
+                                <Text style={styles.votesCount}>
+                                    {props.productTotalVotes}
                                 </Text>
                             </View>
+
                         </View>
                         <View style={styles.rightside_bot}>
                             {renderPreviousAmount}
                             <View style={styles.special_row}>
-                                <Text style={styles.qty}>
-                                    {' '}
-                                    x
-                                  {this.props.productQuantity}
-                                    {' '}
-                                </Text>
                                 <Text style={styles.amount}>
-                                    {' '}
-                                    {this.props.productNewPrice}
+                                    {props.productNewPrice}
                                     {' '}
                                     PKR
-                      </Text>
+                              </Text>
+                                <TouchableOpacity onPress={() => { console.log('Go to Cart'); }}>
+                                    <Image
+                                        style={{ width: verticalScale(16), height: verticalScale(16) }}
+                                        source={require('../../../assets/icons/shopcart.png')}
+                                    />
+                                </TouchableOpacity>
                             </View>
                         </View>
 
                     </View>
                 </View>
-            </View>
-        );
-    }
+            </View >
+        </>
+    );
 }
 
 export default FullCard;
