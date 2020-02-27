@@ -41,6 +41,7 @@ const Drawer = createDrawerNavigator(
     {
         initialRouteName: 'MainLanding',
         contentComponent: MainMenu,
+        overlayColor:1
     },
 );
 const noDrawer = createStackNavigator({
