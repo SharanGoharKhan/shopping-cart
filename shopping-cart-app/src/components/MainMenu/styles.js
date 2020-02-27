@@ -69,7 +69,7 @@ export default {
         alignItems: 'center',
     },
     middleSubContainer: {
-        width: '60%',
+        width: '90%',
         height: '80%',
     },
     navItemContainer: {
