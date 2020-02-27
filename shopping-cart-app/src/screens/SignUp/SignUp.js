@@ -5,8 +5,8 @@ import {
 import styles from './styles';
 import { scale } from '../../utils/scaling';
 import TextField from '../../ui/Textfield/Textfield';
-import Button from '../../ui/Buttons/Button';
-import { colors } from '../../utils/colors';
+import MainBtn from '../../ui/Buttons/MainBtn';
+import AlternateBtn from '../../ui/Buttons/AlternateBtn';
 
 function SignUp(props) {
     return (
@@ -16,11 +16,9 @@ function SignUp(props) {
                     <View style={styles.body}>
                         <View style={styles.header}>
                             <Text style={styles.header_text}>Sign Up</Text>
-                            <Button
-                                onPress={() => props.navigation.navigate('MainLanding')}
+                            <AlternateBtn
+                                onPress={() => this.props.navigation.navigate('MainLanding')}
                                 text="Continue as a Guest"
-                                textStyle={{ color: colors.brownColor, borderColor: colors.darkGrayText }}
-                                containerStyle={{ backgroundColor: colors.whiteColor }}
                             />
                         </View>
                         <View style={styles.main}>
@@ -41,11 +39,9 @@ function SignUp(props) {
                                 </View>
                                 <View style={styles.mainBot}>
                                     <View style={styles.botBtnContainer}>
-                                        <Button
-                                            onPress={() => props.navigation.navigate('MainLanding')}
+                                        <MainBtn
+                                            onPress={() => props.navigation.navigate('OtpValidation')}
                                             text="Sign up"
-                                            containerStyle={{ backgroundColor: colors.brownColor }}
-                                            textStyle={{ color: colors.whiteColor }}
                                         />
                                     </View>
                                     <View style={styles.mixedLine}>

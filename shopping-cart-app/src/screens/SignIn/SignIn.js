@@ -6,7 +6,7 @@ import styles from './styles';
 import { verticalScale } from '../../utils/scaling';
 import TextField from '../../ui/Textfield/Textfield';
 import ForgotPassword from './ForgotPassword/ForgotPassword';
-import Button from '../../ui/Buttons/Button';
+import MainBtn from '../../ui/Buttons/MainBtn';
 import { colors } from '../../utils/colors';
 
 function SignIn(props) {
@@ -57,11 +57,15 @@ function SignIn(props) {
                             <TextField
                                 placeholder="Password"
                             />
-                            <Button
+                            <MainBtn
+                                    onPress={() => props.navigation.navigate('MainLanding')}
+                                    text="Sign In"
+                                />
+                            {/* <Button
                             onPress={() => props.navigation.navigate('MainLanding')}
                             text="Sign In"
                             textStyle={{color:colors.whiteColor}}
-                            />
+                            /> */}
                             <TouchableOpacity onPress={() => showModal()}>
                                 <Text style={styles.passwordText}>
                                     Forgot my password

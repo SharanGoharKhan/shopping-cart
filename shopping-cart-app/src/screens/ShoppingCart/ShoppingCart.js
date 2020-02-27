@@ -1,11 +1,12 @@
 import React from 'react';
 import {
-    View, Text, ScrollView} from 'react-native';
+    View, Text, ScrollView
+} from 'react-native';
 import styles from './styles';
 import BottomTab from '../../components/BottomTab/BottomTab';
 import { BackHeader } from '../../components/Headers/Headers';
 import ShoppingCard from './ShoppingCard/ShoppingCard';
-import Button from '../../ui/Buttons/Button';
+import BlueBtn from '../../ui/Buttons/BlueBtn';
 import { CARTDATA } from '../../utils/mockData';
 
 function ShoppingCart(props) {
@@ -40,15 +41,19 @@ function ShoppingCart(props) {
                         <Text style={[styles.textStyle, styles.totalStyle]}>$150</Text>
                     </View>
                     <View style={styles.spacer} />
-                    <Button
+                    {/* <Button
                         containerStyle={styles.btnContainer}
                         textStyle={styles.btnText}
-                        onPress={()=>props.navigation.navigate('Checkout')}
-                        text="Proceed" />
+                        onPress={() => props.navigation.navigate('Checkout')}
+                        text="Proceed" /> */}
+                    <BlueBtn
+                        onPress={() => props.navigation.navigate('Checkout')}
+                        text="Proceed"
+                    />
                 </View>
             </ScrollView>
-            <BottomTab 
-            navigationObj={props.navigation}/>
+            <BottomTab
+                navigationObj={props.navigation} />
         </View>
     );
 }
