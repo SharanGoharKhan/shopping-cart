@@ -64,6 +64,8 @@ export default {
         width: '100%',
         height: '60%',
         borderRadius: verticalScale(3),
+        padding: verticalScale(5),
+        justifyContent:'center',
         backgroundColor: colors.backgroudGray,
     },
     label: {
@@ -121,5 +123,8 @@ export default {
         fontSize: verticalScale(20),
         borderBottomWidth: verticalScale(1),
         borderBottomColor: '#9B9B9B',
+    },
+    inputText: {
+        textAlign: "center",
     },
 };
