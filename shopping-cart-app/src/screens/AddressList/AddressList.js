@@ -14,10 +14,10 @@ DATA for the address
 ============================================================================= */
 const DATA = [
     {
-        title: 'My Home', country: 'Pakistan', city: 'Islamabad', address: 'Block 4, Apartment 102', poBox: 'P.O Vox 65000',
+       default:true, title: 'My Home', country: 'Pakistan', city: 'Islamabad', address: 'Block 4, Apartment 102', poBox: 'P.O Vox 65000',
     },
     {
-        title: 'My Work', country: 'Pakistan', city: 'Karachi', address: 'Block 4350, Floor 1, Office 3', poBox: 'P.O Vox 65002',
+       default:false, title: 'My Work', country: 'Pakistan', city: 'Karachi', address: 'Block 4350, Floor 1, Office 3', poBox: 'P.O Vox 65002',
     },
 ];
 
@@ -60,6 +60,7 @@ function AddressList(props) {
                                     address={item.address}
                                     poBox={item.poBox}
                                     key={index}
+                                    default={item.default}
                                 />
                             ))}
                         </ScrollView>
