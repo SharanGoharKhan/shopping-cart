@@ -2,7 +2,6 @@ import React from 'react';
 import {
     Text, View, Image, TouchableOpacity,
 } from 'react-native';
-import { Rating } from 'react-native-ratings';
 import styles from './styles';
 import { verticalScale } from '../../../utils/scaling';
 
@@ -62,17 +61,6 @@ const cardItem = props => (
                         <Text style={[styles.textStyle]}>{data.category}</Text>
                     </View>
                     <View style={[styles.botContainer,{justifyContent:'flex-end'}]}>
-                        <View style={styles.ratingContainer}>
-                            <Rating
-                                style={styles.ratingStyle}
-                                type="star"
-                                ratingCount={5}
-                                imageSize={verticalScale(12)}
-                                startingValue={data.ratingOverall}
-                                readonly
-                            />
-                            <Text style={styles.ratingNumber}>{data.ratingNumber}</Text>
-                        </View>
                         <View style={styles.priceContainer}>
                             <Text style={styles.priceStyle}>
                                 {data.price}
