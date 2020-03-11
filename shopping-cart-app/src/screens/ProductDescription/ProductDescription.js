@@ -5,6 +5,7 @@ import {
 import BottomTab from '../../components/BottomTab/BottomTab';
 import styles from './styles';
 import { BackHeader } from '../../components/Headers/Headers';
+import Button from '../../ui/Buttons/Button';
 import VariationSection from './VariationSection/VariationSection';
 
 const caroselData = [
@@ -109,12 +110,11 @@ function ProductDescription(props) {
                     <Text style={[styles.textStyle, styles.boldStyle, styles.smallSpacer]}>Description</Text>
                     <Text style={[styles.textStyle, styles.smallSpacer]}>{DESCRIPTION}</Text>
                 </View>
-                <TouchableOpacity
+                <Button
+                    containerStyle={styles.shoppingCartContainer}
+                    textStyle={styles.shoppingCartText}
                     onPress={() => props.navigation.navigate('ShoppingCart')}
-                    style={styles.shoppingCartSubContainer}
-                >
-                    <Text style={styles.shoppingCartText}>Add to Shopping Cart</Text>
-                </TouchableOpacity>
+                    text="Add to Shopping Cart" />
             </ScrollView>
             <BottomTab
                 navigationObj={props.navigation}
