@@ -4,6 +4,7 @@ import {
 } from 'react-native';
 import styles from './styles';
 import BottomTab from '../../components/BottomTab/BottomTab';
+import { SafeAreaView } from 'react-native-safe-area-context';
 
 /* Config/Constants
 ============================================================================= */
@@ -69,7 +70,7 @@ const cardData = [
 
 function PreviousOrder(props) {
     return (
-        <React.Fragment>
+        <SafeAreaView style={styles.flex}>
             <View style={styles.flex}>
                 <View style={styles.headerContainer}>
                     <TouchableOpacity
@@ -159,7 +160,7 @@ function PreviousOrder(props) {
             <BottomTab
                 navigationObj={props.navigation}
             />
-        </React.Fragment>
+        </SafeAreaView>
     )
 }
 

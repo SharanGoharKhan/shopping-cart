@@ -7,6 +7,7 @@ import styles from './styles';
 import { BackHeader } from '../../components/Headers/Headers';
 import Button from '../../ui/Buttons/Button';
 import VariationSection from './VariationSection/VariationSection';
+import { SafeAreaView } from 'react-native-safe-area-context';
 
 const caroselData = [
     {
@@ -47,81 +48,81 @@ const VARIATIONS = [
 function ProductDescription(props) {
     const [caroselImage, setCaroselImage] = useState(require('../../assets/images/MainLanding/carosel_img_3.png'))
     return (
-        <View style={styles.flex}>
-            <BackHeader
-                title="Description"
-                backPressed={() => props.navigation.goBack()} />
-            <ScrollView
-                showsVerticalScrollIndicator={false}
-                style={styles.mainScrollViewContainer}>
-                <View style={styles.caroselContainer}>
-                    <View style={styles.caroselSubContainer}>
-                        <View style={styles.caroselTitleContainer}>
-                            <Text numberOfLines={2} style={styles.textStyle}>Southdown Spinning Fibre</Text>
-                        </View>
-                        <View style={styles.caroselPriceContainer}>
-                            <View style={styles.caroselPriceSubContainer}>
-                                <Text style={[styles.textStyle, styles.priceColor, styles.boldStyle]}>$7.50</Text>
+        <SafeAreaView style={styles.flex}>
+            <View style={styles.flex}>
+                <BackHeader
+                    title="Description"
+                    backPressed={() => props.navigation.goBack()} />
+                <ScrollView
+                    showsVerticalScrollIndicator={false}
+                    style={styles.mainScrollViewContainer}>
+                    <View style={styles.caroselContainer}>
+                        <View style={styles.caroselSubContainer}>
+                            <View style={styles.caroselTitleContainer}>
+                                <Text numberOfLines={2} style={styles.textStyle}>Southdown Spinning Fibre</Text>
+                            </View>
+                            <View style={styles.caroselPriceContainer}>
+                                <View style={styles.caroselPriceSubContainer}>
+                                    <Text style={[styles.textStyle, styles.priceColor, styles.boldStyle]}>$7.50</Text>
+                                </View>
                             </View>
                         </View>
                     </View>
-                </View>
-                <View style={styles.caroselMainImgCnt}>
-                    <Image
-                        source={caroselImage}
-                        resizeMode="cover"
-                        style={styles.imgResponsive}
-                    />
-                </View>
-                <View style={styles.scrollViewStyle}>
-                    <ScrollView
-                        horizontal
-                        showsHorizontalScrollIndicator={false}
-                    >
-                        <View style={styles.caroselItemsContainer}>
-                            {
-                                caroselData.map((data, ind) => (
-                                    <TouchableOpacity
-                                        activeOpacity={1}
-                                        onPress={() => setCaroselImage(data.img)}
-                                        key={ind}
-                                        style={styles.caroselItems}
-                                    >
-                                        <Image
-                                            source={data.img}
-                                            resizeMode="cover"
-                                            style={styles.imgResponsive}
-                                        />
-                                    </TouchableOpacity>
-                                ))
-                            }
-                        </View>
-                    </ScrollView>
-                </View>
-                <View style={styles.spacer} />
-                <View style={styles.variationContainer}>
-                    {
-                        VARIATIONS.map((variation, index) => (
-                            <VariationSection
-                                key={index}
-                                variation={variation} />
-                        ))
-                    }
-                    <Text style={[styles.textStyle, styles.boldStyle, styles.smallSpacer]}>Description</Text>
-                    <Text style={[styles.textStyle, styles.smallSpacer]}>{DESCRIPTION}</Text>
-                </View>
-                <Button
-                    containerStyle={styles.shoppingCartContainer}
-                    textStyle={styles.shoppingCartText}
-                    onPress={() => props.navigation.navigate('ShoppingCart')}
-                    text="Add to Shopping Cart" />
-            </ScrollView>
-            <BottomTab
-                navigationObj={props.navigation}
-            />
-
-
-        </View>
+                    <View style={styles.caroselMainImgCnt}>
+                        <Image
+                            source={caroselImage}
+                            resizeMode="cover"
+                            style={styles.imgResponsive}
+                        />
+                    </View>
+                    <View style={styles.scrollViewStyle}>
+                        <ScrollView
+                            horizontal
+                            showsHorizontalScrollIndicator={false}
+                        >
+                            <View style={styles.caroselItemsContainer}>
+                                {
+                                    caroselData.map((data, ind) => (
+                                        <TouchableOpacity
+                                            activeOpacity={1}
+                                            onPress={() => setCaroselImage(data.img)}
+                                            key={ind}
+                                            style={styles.caroselItems}
+                                        >
+                                            <Image
+                                                source={data.img}
+                                                resizeMode="cover"
+                                                style={styles.imgResponsive}
+                                            />
+                                        </TouchableOpacity>
+                                    ))
+                                }
+                            </View>
+                        </ScrollView>
+                    </View>
+                    <View style={styles.spacer} />
+                    <View style={styles.variationContainer}>
+                        {
+                            VARIATIONS.map((variation, index) => (
+                                <VariationSection
+                                    key={index}
+                                    variation={variation} />
+                            ))
+                        }
+                        <Text style={[styles.textStyle, styles.boldStyle, styles.smallSpacer]}>Description</Text>
+                        <Text style={[styles.textStyle, styles.smallSpacer]}>{DESCRIPTION}</Text>
+                    </View>
+                    <Button
+                        containerStyle={styles.shoppingCartContainer}
+                        textStyle={styles.shoppingCartText}
+                        onPress={() => props.navigation.navigate('ShoppingCart')}
+                        text="Add to Shopping Cart" />
+                </ScrollView>
+                <BottomTab
+                    navigationObj={props.navigation}
+                />
+            </View>
+        </SafeAreaView>
     );
 }
 

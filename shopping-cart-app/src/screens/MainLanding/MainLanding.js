@@ -10,6 +10,7 @@ import CategoryCard from '../../ui/CategoryCard/CategoryCard';
 import BottomTab from '../../components/BottomTab/BottomTab';
 import { OFFERS, PRODUCTS, CATEGORIES } from '../../utils/mockData';
 import ProductCard from '../../ui/ProductCard/ProductCard';
+import { SafeAreaView } from 'react-native-safe-area-context';
 
 const caroselImage = [
     require('../../assets/images/MainLanding/banner-1.png'),
@@ -56,68 +57,70 @@ function renderCarosel(props) {
 }
 function MainLanding(props) {
     return (
-        <View style={styles.grayBackground}>
-            <FlatList
-                keyExtractor={(item, index) => index.toString()}
-                showsVerticalScrollIndicator={false}
-                numColumns={2}
-                ListHeaderComponent={() =>
-                    <>
-                        {renderCarosel(props)}
-                        <View style={styles.categoryContainer}>
-                            {CATEGORIES.map((category, index) => {
-                                return (
-                                    <CategoryCard
-                                        key={index}
-                                        cardLabel={category.label}
-                                        navigationObj={props.navigation}
-                                    />
-                                )
-                            })}
-                        </View>
-                        {
-                            OFFERS.map((offer, index) => {
-                                return (
-                                    <View key={index} style={styles.titleSpacer}>
-                                        <Text style={styles.headingText}>{offer.offer_name}</Text>
-                                        <FlatList
-                                            horizontal={true}
-                                            showsHorizontalScrollIndicator={false}
-                                            keyExtractor={(item, index) => index.toString()}
-                                            data={offer.items}
-                                            renderItem={({ item, index }) => {
-                                                return (
-                                                    <View
-                                                        key={index}
-                                                        style={styles.itemCardContainer}>
-                                                        <ProductCard
-                                                            cardPressed={() => props.navigation.navigate('ProductListing')}
-                                                            item={item} />
-                                                    </View>
-                                                )
-                                            }}
+        <SafeAreaView style={styles.flex}>
+            <View style={styles.grayBackground}>
+                <FlatList
+                    keyExtractor={(item, index) => index.toString()}
+                    showsVerticalScrollIndicator={false}
+                    numColumns={2}
+                    ListHeaderComponent={() =>
+                        <>
+                            {renderCarosel(props)}
+                            <View style={styles.categoryContainer}>
+                                {CATEGORIES.map((category, index) => {
+                                    return (
+                                        <CategoryCard
+                                            key={index}
+                                            cardLabel={category.label}
+                                            navigationObj={props.navigation}
                                         />
-                                    </View>
-                                )
-                            })
-                        }
-                        <View style={styles.titleSpacer}>
-                            <Text style={styles.headingText}>All Items</Text>
-                        </View>
-                    </>
-                }
-                data={PRODUCTS}
-                renderItem={({ item }) => <ProductCard
-                    styles={styles.productCard}
-                    cardPressed={() => props.navigation.navigate('ProductListing')}
-                    item={item} />
-                }
+                                    )
+                                })}
+                            </View>
+                            {
+                                OFFERS.map((offer, index) => {
+                                    return (
+                                        <View key={index} style={styles.titleSpacer}>
+                                            <Text style={styles.headingText}>{offer.offer_name}</Text>
+                                            <FlatList
+                                                horizontal={true}
+                                                showsHorizontalScrollIndicator={false}
+                                                keyExtractor={(item, index) => index.toString()}
+                                                data={offer.items}
+                                                renderItem={({ item, index }) => {
+                                                    return (
+                                                        <View
+                                                            key={index}
+                                                            style={styles.itemCardContainer}>
+                                                            <ProductCard
+                                                                cardPressed={() => props.navigation.navigate('ProductListing')}
+                                                                item={item} />
+                                                        </View>
+                                                    )
+                                                }}
+                                            />
+                                        </View>
+                                    )
+                                })
+                            }
+                            <View style={styles.titleSpacer}>
+                                <Text style={styles.headingText}>All Items</Text>
+                            </View>
+                        </>
+                    }
+                    data={PRODUCTS}
+                    renderItem={({ item }) => <ProductCard
+                        styles={styles.productCard}
+                        cardPressed={() => props.navigation.navigate('ProductListing')}
+                        item={item} />
+                    }
 
-            />
-            <BottomTab
-                navigationObj={props.navigation}
-            />
-        </View>
+                />
+                <BottomTab
+                    navigationObj={props.navigation}
+                />
+            </View>
+        </SafeAreaView>
     );
 }
 export default MainLanding;

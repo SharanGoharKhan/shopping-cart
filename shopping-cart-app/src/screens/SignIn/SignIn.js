@@ -57,7 +57,7 @@ function SignIn(props) {
                                     placeholder="Password"
                                 />
                                 <MainBtn
-                                    onPress={() => props.navigation.navigate('MainLanding')}
+                                    onPress={() => props.navigation.navigate('noDrawer', { screen: 'MainLanding' })}
                                     text="Sign In"
                                 />
                                 {/* <Button
@@ -74,7 +74,7 @@ function SignIn(props) {
                             <View style={styles.bcSocialBtns}>
                                 <View style={[styles.socialBtnsView, styles.googleBtn]}>
                                     <TouchableOpacity
-                                        onPress={() => props.navigation.navigate('MainLanding')}
+                                        onPress={() => props.navigation.navigate('noDrawer', { screen: 'MainLanding' })}
                                         style={styles.socialBtn}
                                     >
                                         <Image
@@ -89,7 +89,7 @@ function SignIn(props) {
                                 </View>
                                 <View style={[styles.socialBtnsView, styles.facebookBtn]}>
                                     <TouchableOpacity
-                                        onPress={() => props.navigation.navigate('MainLanding')}
+                                        onPress={() => props.navigation.navigate('noDrawer', { screen: 'MainLanding' })}
                                         style={styles.socialBtn}
                                     >
                                         <Image

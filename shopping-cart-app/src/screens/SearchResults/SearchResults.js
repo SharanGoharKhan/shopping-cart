@@ -10,6 +10,7 @@ import Dropdown from '../../ui/Dropdowns/Dropdown';
 import SearchBar from '../../ui/SearchBar/SearchBar';
 import BottomTab from '../../components/BottomTab/BottomTab';
 import FullCard from './Card/FullCard';
+import { SafeAreaView } from 'react-native-safe-area-context';
 
 const CATEGORIES = [
     {
@@ -57,7 +58,7 @@ const searchedTerm = 'Leather'
 
 function SearchResult(props) {
     return (
-        <React.Fragment>
+        <SafeAreaView style={styles.flex}>
             <View style={styles.flex}>
                 <View>
                     <View style={[styles.body]}>
@@ -117,7 +118,7 @@ function SearchResult(props) {
             <BottomTab
                 navigationObj={props.navigation}
             />
-        </React.Fragment>
+        </SafeAreaView>
     )
 }
 

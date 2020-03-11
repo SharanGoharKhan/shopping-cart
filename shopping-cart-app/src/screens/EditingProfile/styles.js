@@ -32,7 +32,7 @@ export default {
     formContainer: {
         marginTop: '15%',
         width: '90%',
-        height: height * 0.8,
+        height: '100%',
         backgroundColor: colors.whiteColor,
         borderRadius: verticalScale(8),
         alignItems: 'center',
@@ -77,13 +77,16 @@ export default {
     },
     inputContainer: {
         width: '100%',
-        height: '60%',
+        height: '70%',
         padding: verticalScale(5),
         borderRadius: verticalScale(3),
+        paddingBottom:verticalScale(5),
         backgroundColor: colors.backgroudGray,
     },
     inputText: {
-        textAlign: "center"
+        textAlign: "center",
+        paddingTop:5,
+        paddingBottom:5
     },
     label: {
         fontFamily: fontStyles.PoppinsRegular,

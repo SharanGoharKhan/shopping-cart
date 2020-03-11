@@ -5,6 +5,7 @@ import Dropdown from '../../ui/Dropdowns/Dropdown';
 import SearchBar from '../../ui/SearchBar/SearchBar';
 import CategoryCard from './CategoryCard/CategoryCard';
 import BottomTab from '../../components/BottomTab/BottomTab';
+import { SafeAreaView } from 'react-native-safe-area-context';
 
 const CATEGORIES = [
     {
@@ -31,7 +32,7 @@ const CATEGORIES = [
 
 function Search(props) {
     return (
-        <React.Fragment>
+        <SafeAreaView style={styles.flex}>
             <View style={[styles.flex]}>
                 <View style={styles.container}>
                     <View style={[styles.body]}>
@@ -91,7 +92,7 @@ function Search(props) {
             <BottomTab
                 navigationObj={props.navigation}
             />
-        </React.Fragment>
+        </SafeAreaView>
     );
 }
 

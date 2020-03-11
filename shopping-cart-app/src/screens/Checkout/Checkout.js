@@ -1,9 +1,10 @@
 import React from 'react';
-import {View, Text, Image, ScrollView, TouchableOpacity} from 'react-native';
+import { View, Text, Image, ScrollView, TouchableOpacity } from 'react-native';
 import styles from './styles';
 import { verticalScale } from '../../utils/scaling';
 import BottomTab from '../../components/BottomTab/BottomTab';
 import BlueBtn from '../../ui/Buttons/BlueBtn';
+import { SafeAreaView } from 'react-native-safe-area-context';
 
 /* Config/Constants
 ============================================================================= */
@@ -30,7 +31,7 @@ function Checkout(props) {
     }
 
     return (
-        <React.Fragment>
+        <SafeAreaView style={styles.flex}>
             <View style={styles.flex}>
                 <View style={styles.container}>
                     <View style={styles.body}>
@@ -149,7 +150,7 @@ function Checkout(props) {
             <BottomTab
                 navigationObj={props.navigation}
             />
-        </React.Fragment>
+        </SafeAreaView>
     );
 }
 

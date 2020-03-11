@@ -20,9 +20,10 @@ export default {
     summaryContainer: {
         marginTop: scale(30),
         width: '90%', 
-        backgroundColor: colors.backgroudGray, 
+        backgroundColor: colors.grayLinesColor, 
         alignSelf: 'center', 
-        padding: scale(10)
+        padding: scale(10),
+        justifyContent: 'flex-end'
     },
     rowContainer: {
         flexDirection: 'row', 
