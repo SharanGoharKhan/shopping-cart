@@ -87,7 +87,7 @@ function MainMenu(props) {
             </View>
             <View style={styles.bottomContainer}>
                 <TouchableOpacity
-                    onPress={() => props.navigation.navigate('SignIn')}
+                    onPress={() => props.navigation.navigate('Auth', { screen: 'SignIn' })}
                     style={styles.bottomSubContainer}
                 >
                     <View

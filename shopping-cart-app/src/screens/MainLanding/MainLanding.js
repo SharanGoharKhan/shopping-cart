@@ -3,7 +3,7 @@ import {
     View, TouchableOpacity, Image, FlatList, Text, ImageBackground
 } from 'react-native';
 import SwiperFlatList from 'react-native-swiper-flatlist';
-import { DrawerActions } from 'react-navigation-drawer';
+import { DrawerActions } from '@react-navigation/native';
 import styles from './styles';
 import { verticalScale } from '../../utils/scaling';
 import CategoryCard from '../../ui/CategoryCard/CategoryCard';

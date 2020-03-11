@@ -6,7 +6,7 @@ import styles from './styles';
 import BottomTab from '../../components/BottomTab/BottomTab';
 import Card from './Card/AddressCard';
 import { verticalScale } from '../../utils/scaling';
-import { SafeAreaView } from 'react-navigation';
+import {SafeAreaView} from 'react-native-safe-area-context'
 
 
 /* Config/Constants

@@ -27,7 +27,7 @@ function profileContainer(props) {
           >
             <View style={styles.profileCenterContainerTop}>
               <TouchableOpacity
-                onPress={() => props.navigationObj.navigate('SignIn')}
+                onPress={() => props.navigation.navigate('Auth', { screen: 'SignIn' })}
                 style={styles.signOutContainer}
               >
                 <Image
