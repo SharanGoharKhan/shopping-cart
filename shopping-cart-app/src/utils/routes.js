@@ -46,28 +46,30 @@ function Drawer() {
     )
 }
 function noDrawer() {
-    <NavigationStack.Navigator headerMode='none'>
-        <NavigationStack.Screen name='Drawer' component={Drawer} />
-        <NavigationStack.Screen name='AddressList' component={AddressList} />
-        <NavigationStack.Screen name='Checkout' component={Checkout} />
-        <NavigationStack.Screen name='CheckoutPayment' component={CheckoutPayment} />
-        <NavigationStack.Screen name='EditingAddress' component={EditingAddress} />
-        <NavigationStack.Screen name='EditingProfile' component={EditingProfile} />
-        <NavigationStack.Screen name='OrderDetail' component={OrderDetail} />
-        <NavigationStack.Screen name='PreviousOrders' component={PreviousOrders} />
-        <NavigationStack.Screen name='ProductDescription' component={ProductDescription} />
-        <NavigationStack.Screen name='ProductListing' component={ProductListing} />
-        <NavigationStack.Screen name='ProfileDashboard' component={ProfileDashboard} />
-        <NavigationStack.Screen name='SearchResult' component={SearchResult} />
-        <NavigationStack.Screen name='ShoppingCart' component={ShoppingCart} />
-        <NavigationStack.Screen name='Search' component={Search} />
-        <NavigationStack.Screen name='TrackOrder' component={TrackOrder} />
-    </NavigationStack.Navigator>
+    return (
+        <NavigationStack.Navigator headerMode='none'>
+            <NavigationStack.Screen name='Drawer' component={Drawer} />
+            <NavigationStack.Screen name='AddressList' component={AddressList} />
+            <NavigationStack.Screen name='Checkout' component={Checkout} />
+            <NavigationStack.Screen name='CheckoutPayment' component={CheckoutPayment} />
+            <NavigationStack.Screen name='EditingAddress' component={EditingAddress} />
+            <NavigationStack.Screen name='EditingProfile' component={EditingProfile} />
+            <NavigationStack.Screen name='OrderDetail' component={OrderDetail} />
+            <NavigationStack.Screen name='PreviousOrders' component={PreviousOrders} />
+            <NavigationStack.Screen name='ProductDescription' component={ProductDescription} />
+            <NavigationStack.Screen name='ProductListing' component={ProductListing} />
+            <NavigationStack.Screen name='ProfileDashboard' component={ProfileDashboard} />
+            <NavigationStack.Screen name='SearchResult' component={SearchResult} />
+            <NavigationStack.Screen name='ShoppingCart' component={ShoppingCart} />
+            <NavigationStack.Screen name='Search' component={Search} />
+            <NavigationStack.Screen name='TrackOrder' component={TrackOrder} />
+        </NavigationStack.Navigator>
+    )
 
 }
 
 function AppContainer() {
-    return(
+    return (
         <SafeAreaProvider>
             <NavigationContainer>
                 <MainStack.Navigator headerMode='none' initialRouteName='AuthLoading'>
@@ -78,7 +80,7 @@ function AppContainer() {
             </NavigationContainer>
         </SafeAreaProvider>
     )
-    
+
 }
 
 export default AppContainer;
