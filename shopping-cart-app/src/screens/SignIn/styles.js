@@ -6,6 +6,9 @@ import { Dimensions, Platform } from 'react-native';
 const { width, height } = Dimensions.get('window');
 
 export default {
+    flex: {
+        flex: 1
+    },
     container: {
         height: '100%',
         width: '100%',
@@ -16,7 +19,7 @@ export default {
         backgroundColor: 'black',
     },
     body: {
-        height: height*.95,
+        height: height * .95,
         width: '95%',
         alignSelf: 'center',
     },
