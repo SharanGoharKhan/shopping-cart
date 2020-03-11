@@ -2,8 +2,6 @@ import React from 'react';
 import {
     View, Text, Image, TouchableOpacity,
 } from 'react-native';
-
-import { Rating } from 'react-native-ratings';
 import styles from './styles';
 import { verticalScale } from '../../../utils/scaling';
 
@@ -73,18 +71,6 @@ function FullCard(props) {
                             <Text style={styles.product} numberOfLines={2}>
                                 {props.productName}
                             </Text>
-                            <View style={styles.ratingContainer}>
-                                <Rating
-                                    isDisabled
-                                    ratingCount={5}
-                                    startingValue={props.productRating}
-                                    imageSize={verticalScale(14)}
-                                />
-                                <Text style={styles.votesCount}>
-                                    {props.productTotalVotes}
-                                </Text>
-                            </View>
-
                         </View>
                         <View style={styles.rightside_bot}>
                             {renderPreviousAmount}
