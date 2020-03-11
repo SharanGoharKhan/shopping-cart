@@ -23,7 +23,7 @@ export default function App() {
   if (fontLoaded) {
     //testing 4
     return (
-      <SafeAreaView forceInset={{ top: 'always' }} style={styles.flex}>
+      <SafeAreaView forceInset={{ top: 'always', bottom:'always' }} style={styles.flex}>
         <View style={styles.container}>
           <AppContainer />
         </View>
