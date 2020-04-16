@@ -1,6 +1,6 @@
 import React from 'react';
 import {
-    View, Text, ImageBackground, ScrollView, KeyboardAvoidingView
+    View, Text, ImageBackground, ScrollView, KeyboardAvoidingView, StatusBar, Dimensions
 } from 'react-native';
 import styles from './styles';
 import { scale } from '../../utils/scaling';
@@ -12,14 +12,16 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 function SignUp(props) {
     return (
         <SafeAreaView style={styles.flex}>
-            <KeyboardAvoidingView behavior={Platform.OS === "ios" ? "padding" : "height"} style={styles.flex}>
-                <ScrollView showsVerticalScrollIndicator={false} contentContainerStyle={{ flexGrow: 1 }}>
+            <KeyboardAvoidingView behavior={Platform.OS === "ios" ? "padding" : "height"} style={[styles.flex, { marginTop: Platform.OS === 'ios' ? 0 : StatusBar.currentHeight }]}>
+                <ScrollView showsVerticalScrollIndicator={false}
+                    contentContainerStyle={{ flexGrow: 1 }}
+                >
                     <View style={styles.container}>
                         <View style={styles.body}>
                             <View style={styles.header}>
-                                <Text style={styles.header_text}>Sign Up</Text>
+                                <Text style={styles.headerText}>Sign Up</Text>
                                 <AlternateBtn
-                                    onPress={() => this.props.navigation.navigate('MainLanding')}
+                                    onPress={() => props.navigation.navigate('noDrawer', { screen: 'MainLanding' })}
                                     text="Continue as a Guest"
                                 />
                             </View>
@@ -42,7 +44,7 @@ function SignUp(props) {
                                     <View style={styles.mainBot}>
                                         <View style={styles.botBtnContainer}>
                                             <MainBtn
-                                                onPress={() => props.navigation.navigate('OtpValidation')}
+                                                onPress={() => props.navigation.navigate('Auth', { screen: 'SignIn' })}
                                                 text="Sign up"
                                             />
                                         </View>

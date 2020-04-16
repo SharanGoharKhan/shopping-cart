@@ -1,4 +1,3 @@
-import { StatusBar } from 'react-native';
 import { verticalScale, scale } from '../../utils/scaling';
 import { colors } from '../../utils/colors';
 import { fontStyles } from '../../utils/fontStyles';
@@ -13,10 +12,7 @@ export default {
         height: '100%',
         width: '100%',
         alignSelf: 'center',
-    },
-    statusbarImage: {
-        height: Platform.OS === 'ios' ? 0 : StatusBar.currentHeight,
-        backgroundColor: 'black',
+        justifyContent:'center'
     },
     body: {
         height: height * .95,

@@ -1,4 +1,4 @@
-import { StatusBar, Platform, Dimensions } from 'react-native';
+import { Dimensions } from 'react-native';
 import { verticalScale } from '../../utils/scaling';
 import { colors } from '../../utils/colors';
 import { fontStyles } from '../../utils/fontStyles';
@@ -9,17 +9,14 @@ export default {
         flex: 1
     },
     container: {
-        height: height*.95,
+        height: '100%',
         width: '100%',
         alignSelf: 'center',
-    },
-    statusbarImage: {
-        height: Platform.OS === 'ios' ? 0 : StatusBar.currentHeight,
-        backgroundColor: 'black',
+        justifyContent: 'center'
     },
     body: {
-        height: height*.93,
-        width: '90%',
+        height: height * .95,
+        width: '95%',
         alignSelf: 'center',
     },
 
@@ -27,6 +24,8 @@ export default {
     header: {
         justifyContent: 'space-evenly',
         height: '20%',
+        width:'90%',
+        alignSelf:'center',
     },
     headerText: {
         paddingLeft: '5%',
@@ -41,7 +40,8 @@ export default {
     main: {
         backgroundColor: colors.backgroudGray,
         height: '80%',
-        width: '100%',
+        width: '90%',
+        alignSelf:'center',
         borderRadius: verticalScale(5),
     },
     bodyContainerBackground: {
