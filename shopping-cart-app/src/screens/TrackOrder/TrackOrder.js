@@ -5,6 +5,8 @@ import {
 import Timeline from 'react-native-timeline-flatlist';
 import styles from './styles';
 import BottomTab from '../../components/BottomTab/BottomTab';
+import { SafeAreaView } from 'react-native-safe-area-context';
+import { BackHeader } from '../../components/Headers/Headers';
 
 /* Config/Constants
 ============================================================================= */
@@ -29,42 +31,11 @@ const data = [
 
 function TrackOrder(props) {
     return (
-        <View style={styles.flex}>
-            <ScrollView>
-                <View style={styles.headerContainer}>
-                    <TouchableOpacity
-                        onPress={() => props.navigation.goBack()}
-                        style={styles.backImg}>
-                        <Image
-                            source={require('../../assets/icons/back.png')}
-                            resizeMode="contain"
-                            style={{
-                                width: 16,
-                                height: 17
-                            }}
-                        />
-                    </TouchableOpacity>
-                    <Text style={styles.headerContainerText}>Order No. 10352</Text>
-                </View>
-                <View style={styles.line}></View>
-                <View style={styles.profileContainer}>
-                    <View style={styles.profileContentContainer}>
-                        <Image
-                            source={require('../../assets/images/MainLanding/shop-1-avatar.png')}
-                            style={styles.imgFixed}
-                        />
-                        <View>
-                            <Text style={styles.profileTitlStyle}>Orders to</Text>
-                            <Text style={styles.profileSubTitleStyle}>ViVo H&T</Text>
-                        </View>
-
-                    </View>
-                    <TouchableOpacity style={styles.dotsContainer}>
-                        <View style={styles.dot} />
-                        <View style={styles.dot} />
-                        <View style={styles.dot} />
-                    </TouchableOpacity>
-                </View>
+        <SafeAreaView style={styles.flex}>
+            <ScrollView contentContainerStyle={[styles.flex, styles.mainContainer]}>
+                <BackHeader
+                    title="Order No. 10352"
+                    backPressed={() => props.navigation.goBack()} />
                 <View style={styles.line}></View>
                 <View style={styles.cardContainer}>
                     <View style={styles.card}>
@@ -104,7 +75,7 @@ function TrackOrder(props) {
             <BottomTab
                 navigationObj={props.navigation}
             />
-        </View>
+        </SafeAreaView>
     )
 }
 
