@@ -10,23 +10,29 @@ export default {
         height: height * .07,
         backgroundColor: colors.whiteColor,
         justifyContent: 'center',
-        alignItems: 'center'
+        alignItems: 'center',
+        borderBottomWidth: 1,
+        borderBottomColor: '#e6e6e6'
     },
     subContainer: {
-        width: '90%',
+        width: '100%',
         height: '80%',
         flexDirection: 'row',
+        alignItems: 'center'
+    },
+    leftContainer: {
+        width: '15%',
+        justifyContent: 'center',
         alignItems: 'center'
     },
     headerText: {
         flex: 1,
         fontFamily: fontStyles.PoppinsRegular,
         fontSize: scale(18),
-        marginLeft: scale(20),
     },
     titleContainer: {
         flexDirection: 'row',
-        width: '70%'
+        width: '85%'
     },
     iconStyle: {
         width: scale(20),
@@ -35,5 +41,11 @@ export default {
     rightTitle: {
         fontFamily: fontStyles.PoppinsRegular,
         fontSize: scale(14)
+    },
+    rightContainer: {
+        width: '15%',
+        height: '70%',
+        justifyContent: 'center',
+        alignItems: 'center'
     },
 }

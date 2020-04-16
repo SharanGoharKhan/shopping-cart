@@ -10,6 +10,7 @@ function BackHeader(props) {
         <View style={styles.container}>
             <View style={styles.subContainer}>
                 <TouchableOpacity
+                style={styles.leftContainer}
                     onPress={() => props.backPressed()}>
                     <Ionicons name="ios-arrow-back" size={30} />
                 </TouchableOpacity>
@@ -42,12 +43,14 @@ function HeaderRightIcon(props) {
             <View style={[styles.subContainer, { justifyContent: 'space-between' }]}>
                 <View style={styles.titleContainer}>
                     <TouchableOpacity
+                        style={styles.leftContainer}
                         onPress={() => props.backPressed()}>
                         <Ionicons name="ios-arrow-back" size={30} />
                     </TouchableOpacity>
                     <Text numberOfLines={1} style={styles.headerText}>{props.title}</Text>
                 </View>
                 <TouchableOpacity
+                    style={styles.rightContainer}
                     onPress={() => props.rightIconPresed()}>
                     <Image source={require('../../assets/images/ProductListing/settings.png')}
                         resizeMode="contain"
