@@ -5,6 +5,7 @@ import { verticalScale } from '../../utils/scaling';
 import BottomTab from '../../components/BottomTab/BottomTab';
 import BlueBtn from '../../ui/Buttons/BlueBtn';
 import { SafeAreaView } from 'react-native-safe-area-context';
+import { BackHeader } from '../../components/Headers/Headers';
 
 /* Config/Constants
 ============================================================================= */
@@ -32,19 +33,12 @@ function Checkout(props) {
 
     return (
         <SafeAreaView style={styles.flex}>
-            <View style={styles.flex}>
+            <View style={[styles.flex, styles.mainContainer]}>
+                <BackHeader
+                    title="Summary"
+                    backPressed={() => props.navigation.goBack()} />
                 <View style={styles.container}>
                     <View style={styles.body}>
-                        <View style={styles.header}>
-                            <Image
-                                source={require('../../assets/icons/summary.png')}
-                                style={{
-                                    height: verticalScale(14),
-                                    width: verticalScale(15),
-                                }}
-                            />
-                            <Text style={styles.header_text}>Summary</Text>
-                        </View>
                         <View style={styles.main}>
                             <View style={styles.main_top}>
                                 <View style={styles.orders}>
