@@ -33,7 +33,7 @@ function CheckoutPayment(props) {
     }
     return (
         <SafeAreaView style={styles.flex}>
-            <View style={styles.flex}>
+            <View style={[styles.flex, styles.mainContainer]}>
                 <View style={styles.container}>
                     <CheckoutReciept
                         navigationObj={props.navigation}
@@ -70,10 +70,10 @@ function CheckoutPayment(props) {
                                                     key={index}
                                                     activeOpacity={1}
                                                     style={styles.card}
-                                                    onPress={() => this[`child_${index}`].toggleActive()}
+                                                    onPress={() => console.log("Card")}
                                                 >
                                                     <ViewCard
-                                                        onRef={ref => (this[`child_${index}`] = ref)}
+                                                        // onRef={ref => (this[`child_${index}`] = ref)}
                                                     />
                                                 </TouchableOpacity>
                                             ))
