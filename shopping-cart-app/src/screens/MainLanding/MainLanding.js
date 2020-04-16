@@ -58,7 +58,7 @@ function renderCarosel(props) {
 function MainLanding(props) {
     return (
         <SafeAreaView style={styles.flex}>
-            <View style={styles.grayBackground}>
+            <View style={[styles.grayBackground, styles.flex]}>
                 <FlatList
                     keyExtractor={(item, index) => index.toString()}
                     showsVerticalScrollIndicator={false}

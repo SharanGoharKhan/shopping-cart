@@ -1,4 +1,4 @@
-import { Dimensions } from 'react-native';
+import { Dimensions, Platform, StatusBar } from 'react-native';
 import { verticalScale, scale } from '../../utils/scaling';
 import { colors } from '../../utils/colors';
 import { fontStyles } from '../../utils/fontStyles';
@@ -14,7 +14,7 @@ export default {
     },
     grayBackground: {
         backgroundColor: colors.backgroudGray,
-        flex: 1
+        marginTop: Platform.OS === 'ios' ? 0 : StatusBar.currentHeight
     },
     caroselContainer: {
         width: '100%',
@@ -51,22 +51,22 @@ export default {
         borderWidth: scale(4)
     },
     categoryContainer: {
-        width: '90%', 
-        alignSelf: 'center', 
-        marginTop: scale(20), 
-        flexDirection: 'row', 
-        flexWrap: 'wrap', 
+        width: '90%',
+        alignSelf: 'center',
+        marginTop: scale(20),
+        flexDirection: 'row',
+        flexWrap: 'wrap',
         justifyContent: 'space-between'
     },
     titleSpacer: {
-        marginLeft: '5%', 
-        marginTop: scale(30)  
+        marginLeft: '5%',
+        marginTop: scale(30)
     },
     productCard: {
-        marginLeft: '5%', 
-        width: '42%', 
-        height: scale(225), 
-        marginTop: scale(10), 
+        marginLeft: '5%',
+        width: '42%',
+        height: scale(225),
+        marginTop: scale(10),
         marginBottom: scale(20)
     }
 };
