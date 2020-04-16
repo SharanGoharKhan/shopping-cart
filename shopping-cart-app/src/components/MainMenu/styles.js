@@ -1,10 +1,13 @@
-import { verticalScale } from '../../utils/scaling';
+import { StatusBar, Platform } from 'react-native';
+import { verticalScale, scale } from '../../utils/scaling';
 import { colors } from '../../utils/colors';
 import { fontStyles } from '../../utils/fontStyles';
 
 export default {
     container: {
         flex: 1,
+        backgroundColor: 'white',
+        marginTop: Platform.OS === 'ios' ? 0 : StatusBar.currentHeight
     },
     profileContainer: {
         width: '100%',
@@ -30,7 +33,7 @@ export default {
         borderWidth: verticalScale(2),
         borderColor: '#DDDDDD',
         backgroundColor: 'white',
-        justifyContent:'center',
+        justifyContent: 'center',
         alignItems: 'center'
     },
     imgResponsive3: {
@@ -73,18 +76,20 @@ export default {
         height: '80%',
     },
     navItemContainer: {
-        width: '100%',
+        width: '80%',
         height: '10%',
         justifyContent: 'center',
-        alignItems: 'center',
+        alignSelf: 'center',
     },
     navItemStyle: {
         fontFamily: fontStyles.PoppinsRegular,
         fontSize: verticalScale(16),
+        paddingLeft: scale(20)
     },
     navItemContainerImage: {
         width: '100%',
         height: '8%',
+        marginTop: verticalScale(30),
         flexDirection: 'row',
         justifyContent: 'center',
         alignItems: 'center',
@@ -100,7 +105,7 @@ export default {
         alignItems: 'center',
     },
     bottomSubContainer: {
-        width: '80%',
+        width: '95%',
         height: '80%',
         alignItems: 'center',
         flexDirection: 'row',
@@ -110,12 +115,14 @@ export default {
         height: '50%',
     },
     signoutContainerText: {
-        width: '65%',
+        width: '85%',
         height: '50%',
-        alignItems: 'center',
+        alignItems: 'flex-start',
         justifyContent: 'center',
     },
     signoutContainerStyle: {
+        width:"100%",
+        paddingLeft:scale(10),
         fontFamily: fontStyles.PoppinsRegular,
         fontSize: verticalScale(16),
         color: colors.pinkColor,

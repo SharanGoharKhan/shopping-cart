@@ -1,7 +1,5 @@
 import React from 'react';
-import {
-    View, Text, Image, TouchableOpacity
-} from 'react-native';
+import {View, Text, Image, TouchableOpacity} from 'react-native';
 import styles from './styles';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
