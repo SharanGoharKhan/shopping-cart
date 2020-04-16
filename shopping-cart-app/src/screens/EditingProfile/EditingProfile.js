@@ -4,29 +4,18 @@ import styles from './styles';
 import BottomTab from '../../components/BottomTab/BottomTab';
 import { verticalScale } from '../../utils/scaling';
 import { SafeAreaView } from 'react-native-safe-area-context';
+import { BackHeader } from '../../components/Headers/Headers';
 
 function EditingProfile(props) {
     return (
         <SafeAreaView style={styles.flex}>
-            <View style={styles.flex}>
-                <View style={styles.headerContainer}>
-                    <TouchableOpacity
-                        onPress={() => props.navigation.goBack()}
-                        style={styles.backImg}>
-                        <Image
-                            source={require('../../assets/icons/back.png')}
-                            resizeMode="contain"
-                            style={{
-                                width: verticalScale(16),
-                                height: verticalScale(17)
-                            }}
-                        />
-                    </TouchableOpacity>
-                    <Text style={styles.headerContainerText}>Editing Profile</Text>
-                </View>
-                <ScrollView>
+            <View style={[styles.flex, styles.mainContainer]}>
+                <BackHeader
+                    title="Editing Profile"
+                    backPressed={() => props.navigation.goBack()} />
+                <ScrollView showsVerticalScrollIndicator={false} style={{ flex: 1 }} contentContainerStyle={{ flexGrow: 1 }}>
                     <View style={styles.formMainContainer}>
-                        <KeyboardAvoidingView style={{ flex: 1 }} behavior="padding">
+                        <KeyboardAvoidingView style={{ flex: 1 }} behavior={Platform.OS === "ios" ? "padding" : null} keyboardVerticalOffset={100}>
                             <View style={styles.formContainer}>
                                 <View style={styles.profileImageContainer}>
                                     <Image
