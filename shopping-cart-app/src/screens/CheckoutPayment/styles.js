@@ -6,16 +6,15 @@ const { width, height } = Dimensions.get('window');
 
 export default {
     flex: {
-        flex:1
+        flex: 1
+    },
+    mainContainer: {
+        marginTop: Platform.OS === 'ios' ? 0 : StatusBar.currentHeight
     },
     container: {
         height: '100%',
         width: '100%',
         alignSelf: 'center',
-    },
-    statusbarImage: {
-        height: Platform.OS === 'ios' ? 0 : StatusBar.currentHeight,
-        backgroundColor: 'black',
     },
     body: {
         height: '95%',
