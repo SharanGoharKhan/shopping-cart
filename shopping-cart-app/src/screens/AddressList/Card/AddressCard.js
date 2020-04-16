@@ -21,11 +21,11 @@ Props:
 ============================================================================= */
 
 function Card(props) {
-    const [isDefault, isDefaultSetter] = useState(props.default)
+    const isDefault = props.default
     const buttonJSX = isDefault ? renderSelectedButton() : renderUnselectedButton();
 
     function toggleActive() {
-        isDefaultSetter(pre => !pre)
+        props.defaultSetter()
     }
 
     function renderSelectedButton() {
@@ -51,30 +51,30 @@ function Card(props) {
 
 
     return (
-            <View style={styles.container}>
-                <View style={styles.headerRow}>
-                    <Text style={styles.titleText}>
-                        {' '}{props.title}
-                    </Text>
-                    <TouchableOpacity
-                        onPress={() => props.navigationObj.navigate('EditingAddress')}
-                    >
-                        <Image
-                            style={{ height: verticalScale(16), width: verticalScale(16) }}
-                            source={require('../../../assets/icons/edit.png')}
-                        />
-                    </TouchableOpacity>
-                </View>
-                <View style={styles.address}>
-                    <Text style={styles.addressText}>{props.country}</Text>
-                    <Text style={styles.addressText}>{props.city}</Text>
-                    <Text style={styles.addressText}>{props.address}</Text>
-                    <Text style={styles.addressText}>{props.poBox}</Text>
-                </View>
-                <View style={styles.btnContainer}>
-                    {buttonJSX}
-                </View>
+        <View style={styles.container}>
+            <View style={styles.headerRow}>
+                <Text style={styles.titleText}>
+                    {' '}{props.title}
+                </Text>
+                <TouchableOpacity
+                    onPress={() => props.navigationObj.navigate('EditingAddress')}
+                >
+                    <Image
+                        style={{ height: verticalScale(16), width: verticalScale(16) }}
+                        source={require('../../../assets/icons/edit.png')}
+                    />
+                </TouchableOpacity>
             </View>
+            <View style={styles.address}>
+                <Text style={styles.addressText}>{props.country}</Text>
+                <Text style={styles.addressText}>{props.city}</Text>
+                <Text style={styles.addressText}>{props.address}</Text>
+                <Text style={styles.addressText}>{props.poBox}</Text>
+            </View>
+            <View style={styles.btnContainer}>
+                {buttonJSX}
+            </View>
+        </View>
     );
 }
 
