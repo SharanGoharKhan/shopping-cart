@@ -1,11 +1,13 @@
 import { verticalScale } from '../../utils/scaling';
 import { colors } from '../../utils/colors';
 import { fontStyles } from '../../utils/fontStyles';
+import { StatusBar, Platform } from 'react-native';
 
 export default {
     container: {
         flex:1,
         alignItems: 'center',
+        marginTop: Platform.OS === 'ios' ? 0 : StatusBar.currentHeight
     },
     body: {
         // adjust body height in order to accomodate footer

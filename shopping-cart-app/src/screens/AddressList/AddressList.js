@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import {
     View, Text, Image, TouchableOpacity, ScrollView
 } from 'react-native';
@@ -6,7 +6,7 @@ import styles from './styles';
 import BottomTab from '../../components/BottomTab/BottomTab';
 import Card from './Card/AddressCard';
 import { verticalScale } from '../../utils/scaling';
-import {SafeAreaView} from 'react-native-safe-area-context'
+import { SafeAreaView } from 'react-native-safe-area-context'
 
 
 /* Config/Constants
@@ -14,16 +14,17 @@ DATA for the address
 ============================================================================= */
 const DATA = [
     {
-       default:true, title: 'My Home', country: 'Pakistan', city: 'Islamabad', address: 'Block 4, Apartment 102', poBox: 'P.O Vox 65000',
+        id: 1, default: false, title: 'My Home', country: 'Pakistan', city: 'Islamabad', address: 'Block 4, Apartment 102', poBox: 'P.O Vox 65000',
     },
     {
-       default:false, title: 'My Work', country: 'Pakistan', city: 'Karachi', address: 'Block 4350, Floor 1, Office 3', poBox: 'P.O Vox 65002',
+        id: 2, default: true, title: 'My Work', country: 'Pakistan', city: 'Karachi', address: 'Block 4350, Floor 1, Office 3', poBox: 'P.O Vox 65002',
     },
 ];
 
 function AddressList(props) {
+    const [isDefault, isDefaultSetter] = useState(DATA.find(element => element.default === true).id)
     return (
-        <SafeAreaView forceInset={{ top: "never", bottom: "always" }} style={{ flex: 1}}>
+        <SafeAreaView style={{ flex: 1 }}>
             <View style={styles.container}>
                 <View style={styles.header}>
                     <View style={styles.headerRow}>
@@ -60,7 +61,8 @@ function AddressList(props) {
                                     address={item.address}
                                     poBox={item.poBox}
                                     key={index}
-                                    default={item.default}
+                                    default={item.id === isDefault}
+                                    defaultSetter={() => isDefaultSetter(item.id)}
                                 />
                             ))}
                         </ScrollView>
