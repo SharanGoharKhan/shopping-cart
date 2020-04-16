@@ -7,6 +7,9 @@ export default {
     flex: {
         flex: 1
     },
+    mainContainer:{
+        marginTop: Platform.OS === 'ios' ? 0 : StatusBar.currentHeight
+    },
     spacer: {
         marginTop: scale(10)
     },
@@ -40,5 +43,5 @@ export default {
     },
     btnText: {
         color: colors.whiteColor
-    }
+    },
 };

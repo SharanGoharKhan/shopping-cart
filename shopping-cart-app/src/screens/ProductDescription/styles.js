@@ -1,4 +1,4 @@
-import { Dimensions } from 'react-native';
+import { Dimensions, Platform, StatusBar } from 'react-native';
 import { verticalScale, scale } from '../../utils/scaling';
 import { colors } from '../../utils/colors';
 import { fontStyles } from '../../utils/fontStyles';
@@ -7,6 +7,9 @@ const { height, width } = Dimensions.get('window');
 export default {
     flex: {
         flex: 1,
+    },
+    mainContainer: {
+        marginTop: Platform.OS === 'ios' ? 0 : StatusBar.currentHeight
     },
     imgResponsive: {
         flex: 1,
@@ -77,7 +80,7 @@ export default {
     },
     shoppingCartContainer: {
         width: '90%',
-        alignSelf:'center',
+        alignSelf: 'center',
         marginTop: scale(20),
         marginBottom: scale(20),
         backgroundColor: colors.textBlueColor
@@ -94,7 +97,7 @@ export default {
         marginTop: scale(5)
     },
     variationContainer: {
-        width: '90%', 
+        width: '90%',
         alignSelf: 'center'
     }
 };

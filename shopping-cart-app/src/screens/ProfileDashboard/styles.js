@@ -8,9 +8,8 @@ export default {
     flex: {
         flex: 1,
     },
-    statusBarImage: {
-        height: Platform.OS=='ios'? 20 : StatusBar.currentHeight,
-        width: '100%',
+    mainContainer: {
+        marginTop: Platform.OS === 'ios' ? 0 : StatusBar.currentHeight
     },
     tabContainer: {
         width: '90%',

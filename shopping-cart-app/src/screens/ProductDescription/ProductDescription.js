@@ -49,7 +49,7 @@ function ProductDescription(props) {
     const [caroselImage, setCaroselImage] = useState(require('../../assets/images/MainLanding/carosel_img_3.png'))
     return (
         <SafeAreaView style={styles.flex}>
-            <View style={styles.flex}>
+            <View style={[styles.flex, styles.mainContainer]}>
                 <BackHeader
                     title="Description"
                     backPressed={() => props.navigation.goBack()} />

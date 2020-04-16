@@ -8,6 +8,9 @@ export default {
     flex: {
         flex: 1
     },
+        mainContainer: {
+        marginTop: Platform.OS === 'ios' ? 0 : StatusBar.currentHeight
+    },
     container: {
         height: '100%',
         width: '100%',

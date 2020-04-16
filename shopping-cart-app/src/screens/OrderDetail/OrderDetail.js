@@ -4,45 +4,16 @@ import {
 } from 'react-native';
 import styles from './styles';
 import BottomTab from '../../components/BottomTab/BottomTab';
+import { BackHeader } from '../../components/Headers/Headers';
+import { SafeAreaView } from 'react-native-safe-area-context';
 
 function OrderDetail(props) {
     return (
-        <React.Fragment>
-            <View style={styles.flex}>
-                <View style={styles.headerContainer}>
-                    <TouchableOpacity
-                        onPress={() => props.navigation.goBack()}
-                        style={styles.backImg}>
-                        <Image
-                            source={require('../../assets/icons/back.png')}
-                            resizeMode="contain"
-                            style={{
-                                width: 16,
-                                height: 17
-                            }}
-                        />
-                    </TouchableOpacity>
-                    <Text style={styles.headerContainerText}>Order No. 10352</Text>
-                </View>
-                <View style={styles.line}></View>
-                <View style={styles.profileContainer}>
-                    <View style={styles.profileContentContainer}>
-                        <Image
-                            source={require('../../assets/images/MainLanding/shop-1-avatar.png')}
-                            style={styles.imgFixed}
-                        />
-                        <View>
-                            <Text style={styles.profileTitlStyle}>Orders to</Text>
-                            <Text style={styles.profileSubTitleStyle}>ViVo H&T</Text>
-                        </View>
-
-                    </View>
-                    <TouchableOpacity style={styles.dotsContainer}>
-                        <View style={styles.dot} />
-                        <View style={styles.dot} />
-                        <View style={styles.dot} />
-                    </TouchableOpacity>
-                </View>
+        <SafeAreaView style={styles.flex} >
+            <View style={[styles.flex, styles.mainContainer]}>
+                <BackHeader
+                    title="Order No. 10352"
+                    backPressed={() => props.navigation.goBack()} />
                 <View style={styles.line}></View>
                 <ScrollView>
                     <View style={styles.cardContainer}>
@@ -123,7 +94,7 @@ function OrderDetail(props) {
             <BottomTab
                 navigationObj={props.navigation}
             />
-        </React.Fragment>
+        </SafeAreaView>
     )
 }
 

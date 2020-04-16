@@ -25,9 +25,10 @@ productBagde - Is it new product?
 productImageURI - URI of the image - DYS basis
 ============================================================================= */
 function FullCard(props) {
+    let renderPreviousAmount = null;
     function renderPrevousPrice(amount) {
         return (
-            <Text includeFontPadding={false} textAlignVertical="bottom" style={style = styles.prevPriceText}>
+            <Text includeFontPadding={false} textAlignVertical="bottom" style={styles.prevPriceText}>
                 {amount}
                 {' '}
                 PKR
@@ -40,11 +41,10 @@ function FullCard(props) {
         return (
             <Text style={styles.badge}>
                 New
-          </Text>
+            </Text>
         );
     }
     function renderPreviousPage() {
-        let renderPreviousAmount = null;
         if (props.productPreviousPrice)
             renderPreviousAmount = renderPrevousPrice(props.productPreviousPrice);
 

@@ -5,6 +5,7 @@ import {
 import styles from './styles';
 import BottomTab from '../../components/BottomTab/BottomTab';
 import { SafeAreaView } from 'react-native-safe-area-context';
+import { BackHeader } from '../../components/Headers/Headers';
 
 /* Config/Constants
 ============================================================================= */
@@ -71,23 +72,10 @@ const cardData = [
 function PreviousOrder(props) {
     return (
         <SafeAreaView style={styles.flex}>
-            <View style={styles.flex}>
-                <View style={styles.headerContainer}>
-                    <TouchableOpacity
-                        onPress={() => props.navigation.goBack()}
-                        style={styles.backImg}>
-                        <Image
-                            source={require('../../assets/icons/back.png')}
-                            resizeMode="contain"
-                            style={{
-                                width: 16,
-                                height: 17
-                            }}
-                        />
-                    </TouchableOpacity>
-                    <Text style={styles.headerContainerText}>Previous Orders</Text>
-                </View>
-                <View style={styles.line}></View>
+            <View style={[styles.flex, styles.mainContainer]}>
+                <BackHeader
+                    title="Previous Orders"
+                    backPressed={() => props.navigation.goBack()} />
                 <ScrollView>
                     <View style={styles.mainCardContainer}>
                         {

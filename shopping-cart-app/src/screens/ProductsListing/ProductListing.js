@@ -12,7 +12,7 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 function ProductListing(props) {
     return (
         <SafeAreaView style={styles.flex}>
-            <View style={styles.flex}>
+            <View style={[styles.flex,styles.container]}>
                 <HeaderRightIcon
                     title='Arts & Crafts'
                     backPressed={() => props.navigation.goBack()}

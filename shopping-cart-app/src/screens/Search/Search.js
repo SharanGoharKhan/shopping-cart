@@ -33,7 +33,7 @@ const CATEGORIES = [
 function Search(props) {
     return (
         <SafeAreaView style={styles.flex}>
-            <View style={[styles.flex]}>
+            <View style={[styles.flex, styles.mainContainer]}>
                 <View style={styles.container}>
                     <View style={[styles.body]}>
                         <View style={[styles.header]}>
@@ -45,13 +45,13 @@ function Search(props) {
                                 <SearchBar onPress={() => props.navigation.navigate('SearchResult')} placeholderText="What are you looking for?" />
                             </View>
                             <View style={styles.mainBodyContainer}>
-                                <View style={styles.mainBody}>
-                                    <View style={styles.mixed_text}>
-                                        <Text style={styles.text}>Our </Text>
+                                <View style={styles.mixed_text}>
+                                    <Text style={styles.text}>Our
                                         <Text style={styles.colored_text}>1342 </Text>
                                         <Text style={styles.text}>Products are distributed in these categories</Text>
-                                    </View>
-
+                                    </Text>
+                                </View>
+                                <View style={styles.mainBody}>
                                     <View>
                                         <View style={styles.row}>
                                             <CategoryCard

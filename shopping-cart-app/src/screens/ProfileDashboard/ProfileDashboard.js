@@ -9,7 +9,7 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 function ProfileDashboard(props) {
   return (
     <SafeAreaView style={styles.flex}>
-      <View style={styles.flex}>
+      <View style={[styles.flex, styles.mainContainer]}>
         <ProfileContainer
           navigationObj={props.navigation}
         />

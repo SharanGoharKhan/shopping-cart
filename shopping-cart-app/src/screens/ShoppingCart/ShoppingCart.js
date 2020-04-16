@@ -13,7 +13,7 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 function ShoppingCart(props) {
     return (
         <SafeAreaView style={styles.flex}>
-            <View style={styles.flex}>
+            <View style={[styles.flex, styles.mainContainer]}>
                 <BackHeader
                     title="Cart"
                     backPressed={() => props.navigation.goBack()} />
