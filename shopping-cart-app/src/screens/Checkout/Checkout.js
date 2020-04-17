@@ -71,7 +71,7 @@ function Checkout(props) {
                                             </Text>
                                     </View>
                                     <View style={styles.items}>
-                                        <ScrollView>
+                                        <ScrollView showsVerticalScrollIndicator={false}>
                                             {DATA.map((item, index) => renderItem(item, index))}
                                         </ScrollView>
                                     </View>
