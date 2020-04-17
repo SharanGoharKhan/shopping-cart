@@ -6,6 +6,7 @@ import styles from './styles';
 import BottomTab from '../../components/BottomTab/BottomTab';
 import Card from './Card/AddressCard';
 import { verticalScale } from '../../utils/scaling';
+import Ionicons from 'react-native-vector-icons/Ionicons'
 import { SafeAreaView } from 'react-native-safe-area-context'
 
 
@@ -31,15 +32,7 @@ function AddressList(props) {
                         <TouchableOpacity
                             onPress={() => props.navigation.goBack()}
                             style={styles.backImg}>
-                            <Image
-                                source={require('../../assets/icons/back.png')}
-                                resizeMode="contain"
-                                style={{
-                                    width: verticalScale(16),
-                                    height: verticalScale(17),
-                                    marginRight: verticalScale(20)
-                                }}
-                            />
+                            <Ionicons name="ios-arrow-back" size={30} />
                         </TouchableOpacity>
                         <Text style={styles.headerText}>My Adresses</Text>
                         <View style={styles.headerBtn}>

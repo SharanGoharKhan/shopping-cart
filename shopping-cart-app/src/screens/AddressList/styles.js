@@ -5,7 +5,7 @@ import { StatusBar, Platform } from 'react-native';
 
 export default {
     container: {
-        flex:1,
+        flex: 1,
         alignItems: 'center',
         marginTop: Platform.OS === 'ios' ? 0 : StatusBar.currentHeight
     },
@@ -16,6 +16,11 @@ export default {
         alignItems: 'center',
         backgroundColor: colors.backgroudGray,
 
+    },
+    backImg: {
+        width: '15%',
+        justifyContent: 'center',
+        alignItems: 'center'
     },
     // header
     header: {
@@ -28,7 +33,7 @@ export default {
     },
     headerRow: {
         height: '100%',
-        width: '90%',
+        width: '100%',
         flexDirection: 'row',
         alignItems: 'center',
     },
@@ -36,11 +41,13 @@ export default {
         fontFamily: fontStyles.PoppinsRegular,
         fontSize: verticalScale(16),
         color: colors.blackText,
+        width:'60%',
     },
     headerBtn: {
-        flex:1,
-        flexDirection:'row',
-        justifyContent:'flex-end'
+        width:'30%',
+        height:'80%',
+        justifyContent: 'center',
+        alignItems: 'flex-start',
     },
     headerBtnText: {
         fontFamily: fontStyles.PoppinsRegular,
