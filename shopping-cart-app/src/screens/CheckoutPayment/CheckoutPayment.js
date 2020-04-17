@@ -12,6 +12,7 @@ import { colors } from '../../utils/colors';
 import BottomTab from '../../components/BottomTab/BottomTab';
 import CheckoutReciept from './CheckoutReciept/CheckoutReciept';
 import { SafeAreaView } from 'react-native-safe-area-context';
+import { BackHeader } from '../../components/Headers/Headers';
 
 /* Config/Constants
 ============================================================================= */
@@ -34,6 +35,9 @@ function CheckoutPayment(props) {
     return (
         <SafeAreaView style={styles.flex}>
             <View style={[styles.flex, styles.mainContainer]}>
+                <BackHeader
+                    title="Payment"
+                    backPressed={() => props.navigation.goBack()} />
                 <View style={styles.container}>
                     <CheckoutReciept
                         navigationObj={props.navigation}
@@ -41,16 +45,6 @@ function CheckoutPayment(props) {
                         hideModal={hideModal}
                     />
                     <View style={styles.body}>
-                        <View style={styles.header}>
-                            <Image
-                                source={require('../../assets/icons/creditcard.png')}
-                                style={{
-                                    height: verticalScale(15),
-                                    width: verticalScale(19),
-                                }}
-                            />
-                            <Text style={styles.header_text}>Payment</Text>
-                        </View>
                         <View style={styles.main}>
                             <View style={styles.mainTop}>
                                 <View style={styles.mainTopHeadline}>
@@ -73,7 +67,7 @@ function CheckoutPayment(props) {
                                                     onPress={() => console.log("Card")}
                                                 >
                                                     <ViewCard
-                                                        // onRef={ref => (this[`child_${index}`] = ref)}
+                                                    // onRef={ref => (this[`child_${index}`] = ref)}
                                                     />
                                                 </TouchableOpacity>
                                             ))
