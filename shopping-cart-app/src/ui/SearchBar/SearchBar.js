@@ -11,7 +11,9 @@ function SearchBar(props) {
                 placeholder={props.placeholderText}
                 placeholderTextColor={colors.primaryBlackColor}
             />
-            <TouchableOpacity onPress={props.onPress}>
+            <TouchableOpacity
+                activeOpacity={0}
+                onPress={props.onPress}>
                 <Image
                     style={styles.image}
                     source={require('../../assets/icons/search.png')}

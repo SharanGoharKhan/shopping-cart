@@ -37,6 +37,7 @@ function cardContainer(props) {
                 {
                     cardData.map((data, ind) => (
                         <TouchableOpacity
+                            activeOpacity={0}
                             onPress={() => props.navigationObj.navigate('OrderDetail')}
                             key={ind}
                             style={styles.cardContainer}
@@ -67,6 +68,7 @@ function cardContainer(props) {
                                         <View style={styles.subActionsContainer}>
                                             <Text style={styles.statusStyle}>{data.status}</Text>
                                             <TouchableOpacity
+                                                activeOpacity={0}
                                                 onPress={() => props.navigationObj.navigate('TrackOrder')}
                                                 style={styles.actionContainer}>
                                                 <Text style={styles.actionStyle}>{data.action}</Text>

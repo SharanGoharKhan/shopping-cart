@@ -30,7 +30,9 @@ function Card(props) {
 
     function renderSelectedButton() {
         return (
-            <TouchableOpacity onPress={() => { toggleActive() }} style={styles.selectedBtn}>
+            <TouchableOpacity
+                activeOpacity={0}
+                onPress={() => { toggleActive() }} style={styles.selectedBtn}>
 
                 <Image
                     style={styles.tickImage}
@@ -43,7 +45,9 @@ function Card(props) {
 
     function renderUnselectedButton() {
         return (
-            <TouchableOpacity style={styles.unselectedButton} onPress={() => { toggleActive(); }}>
+            <TouchableOpacity
+                activeOpacity={0}
+                style={styles.unselectedButton} onPress={() => { toggleActive(); }}>
                 <Text style={styles.unselectedText}>Mark it as Default Address</Text>
             </TouchableOpacity>
         );
@@ -57,6 +61,7 @@ function Card(props) {
                     {' '}{props.title}
                 </Text>
                 <TouchableOpacity
+                    activeOpacity={0}
                     onPress={() => props.navigationObj.navigate('EditingAddress')}
                 >
                     <Image

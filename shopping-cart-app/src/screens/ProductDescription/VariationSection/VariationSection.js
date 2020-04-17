@@ -15,7 +15,7 @@ function VariationSection(props) {
                     props.variation.items.map((item, index) => (
                         <TouchableOpacity
                             key={index}
-                            activeOpacity={0.7}
+                            activeOpacity={0}
                             onPress={() => setSelected(item)}
                             style={item === selected ? [styles.container, { borderColor: colors.blueColor }] : styles.container}>
                             <Text style={item === selected ? [styles.textStyle, { color: colors.blueColor }] : styles.textStyle}>{item}</Text>

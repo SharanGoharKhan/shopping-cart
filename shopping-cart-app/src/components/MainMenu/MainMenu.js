@@ -1,5 +1,5 @@
 import React from 'react';
-import {View, Text, Image, TouchableOpacity} from 'react-native';
+import { View, Text, Image, TouchableOpacity } from 'react-native';
 import styles from './styles';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
@@ -56,6 +56,7 @@ function MainMenu(props) {
                         {
                             navItems.map((item, ind) => (
                                 <TouchableOpacity
+                                    activeOpacity={0}
                                     onPress={() => props.navigation.navigate(item.navigateTo)}
                                     key={ind}
                                     style={styles.navItemContainer}
@@ -66,6 +67,7 @@ function MainMenu(props) {
                         }
                         <View style={styles.navItemContainerImage}>
                             <TouchableOpacity
+                                activeOpacity={0}
                                 style={styles.navItemImg}>
                                 <Image
                                     source={require('../../assets/images/mainMenu/twitter.png')}
@@ -75,6 +77,7 @@ function MainMenu(props) {
 
                             </TouchableOpacity>
                             <TouchableOpacity
+                                activeOpacity={0}
                                 style={styles.navItemImg}>
                                 <Image
                                     source={require('../../assets/images/mainMenu/instagram.png')}
@@ -87,6 +90,7 @@ function MainMenu(props) {
                 </View>
                 <View style={styles.bottomContainer}>
                     <TouchableOpacity
+                        activeOpacity={0}
                         onPress={() => props.navigation.navigate('Auth', { screen: 'SignIn' })}
                         style={styles.bottomSubContainer}
                     >

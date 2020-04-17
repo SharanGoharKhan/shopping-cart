@@ -1,11 +1,8 @@
 import React, { useState } from 'react';
-import {
-    View, Text, Image, TouchableOpacity, ScrollView
-} from 'react-native';
+import { View, Text, TouchableOpacity, ScrollView } from 'react-native';
 import styles from './styles';
 import BottomTab from '../../components/BottomTab/BottomTab';
 import Card from './Card/AddressCard';
-import { verticalScale } from '../../utils/scaling';
 import Ionicons from 'react-native-vector-icons/Ionicons'
 import { SafeAreaView } from 'react-native-safe-area-context'
 
@@ -30,13 +27,15 @@ function AddressList(props) {
                 <View style={styles.header}>
                     <View style={styles.headerRow}>
                         <TouchableOpacity
+                            activeOpacity={0}
                             onPress={() => props.navigation.goBack()}
                             style={styles.backImg}>
                             <Ionicons name="ios-arrow-back" size={30} />
                         </TouchableOpacity>
                         <Text style={styles.headerText}>My Adresses</Text>
                         <View style={styles.headerBtn}>
-                            <TouchableOpacity>
+                            <TouchableOpacity
+                                activeOpacity={0}>
                                 <Text style={styles.headerBtnText}>New Address</Text>
                             </TouchableOpacity>
                         </View>

@@ -68,7 +68,7 @@ function CheckoutPayment(props) {
                                             DATA.map((item, index) => (
                                                 <TouchableOpacity
                                                     key={index}
-                                                    activeOpacity={1}
+                                                    activeOpacity={0}
                                                     style={styles.card}
                                                     onPress={() => console.log("Card")}
                                                 >

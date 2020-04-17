@@ -42,7 +42,7 @@ function FullCard(props) {
         return (
             <Text style={styles.badge}>
                 New
-          </Text>
+            </Text>
         );
     }
     function renderPreviousPage() {
@@ -94,7 +94,9 @@ function FullCard(props) {
                                     {' '}
                                     PKR
                               </Text>
-                                <TouchableOpacity onPress={() => { console.log('Go to Cart'); }}>
+                                <TouchableOpacity
+                                    activeOpacity={0}
+                                    onPress={() => { console.log('Go to Cart'); }}>
                                     <Image
                                         style={{ width: verticalScale(16), height: verticalScale(16) }}
                                         source={require('../../../assets/icons/shopcart.png')}

@@ -107,6 +107,7 @@ function EditingProfile(props) {
                                     </View>
                                     <View style={styles.addContainer}>
                                         <TouchableOpacity
+                                        activeOpacity={0}
                                             onPress={() => props.navigation.navigate('ProfileDashboard')}
                                             style={styles.addBtn}
                                         >

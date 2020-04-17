@@ -82,6 +82,7 @@ function OrderDetail(props) {
                     <View style={styles.trackOrderContainer}>
                         <View style={styles.trackOrderSubContainer}>
                             <TouchableOpacity
+                                activeOpacity={0}
                                 onPress={() => props.navigation.navigate('TrackOrder')}
                                 style={styles.trackStyle}
                             >

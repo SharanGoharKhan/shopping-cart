@@ -50,6 +50,7 @@ function CheckoutReceipt(props) {
                         </View>
                     </View>
                     <TouchableOpacity
+                        activeOpacity={0}
                         onPress={() => {
                             props.hideModal();
                             props.navigationObj.navigate('OrderDetail');
@@ -60,6 +61,7 @@ function CheckoutReceipt(props) {
                         <Text style={styles.btnStyle}>Order Details</Text>
                     </TouchableOpacity>
                     <TouchableOpacity
+                        activeOpacity={0}
                         onPress={() => {
                             props.hideModal();
                             props.navigationObj.navigate('MainLanding');

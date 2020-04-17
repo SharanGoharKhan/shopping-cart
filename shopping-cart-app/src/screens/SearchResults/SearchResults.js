@@ -1,5 +1,5 @@
 import React from 'react';
-import {View, Text, Image, ScrollView, TouchableOpacity} from 'react-native';
+import { View, Text, Image, ScrollView, TouchableOpacity } from 'react-native';
 import styles from './styles';
 import { verticalScale } from '../../utils/scaling';
 import Dropdown from '../../ui/Dropdowns/Dropdown';
@@ -62,7 +62,9 @@ function SearchResult(props) {
                             <Text style={[styles.header_text]}>Search  In  </Text>
                             <Dropdown items={CATEGORIES} />
                         </View>
-                        <TouchableOpacity onPress={() => console.log('Show modal')}>
+                        <TouchableOpacity
+                            activeOpacity={0}
+                            onPress={() => console.log('Show modal')}>
                             <Image
                                 style={{ height: verticalScale(32), width: verticalScale(42), marginBottom: verticalScale(5) }}
                                 source={require('../../assets/icons/header.png')}

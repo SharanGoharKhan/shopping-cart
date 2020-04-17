@@ -155,6 +155,7 @@ function EditingAddress(props) {
                             </View>
                             <View style={styles.addContainer}>
                                 <TouchableOpacity
+                                    activeOpacity={0}
                                     onPress={() => props.navigation.navigate('AddressList')}
                                     style={styles.addBtn}
                                 >

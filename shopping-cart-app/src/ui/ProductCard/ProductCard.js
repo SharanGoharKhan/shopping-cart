@@ -15,7 +15,7 @@ function ProductCard(props) {
     const [liked, setLiked] = useState(false)
     return (
         <TouchableOpacity
-            activeOpacity={1}
+            activeOpacity={0}
             onPress={() => props.cardPressed()}
             style={[styles.cardContainer, props.styles]}>
             <View style={styles.topCardContainer}>
@@ -40,7 +40,7 @@ function ProductCard(props) {
                             <Text style={[styles.botPriceStyle, props.item.tag ? { textDecorationLine: 'line-through' } : null]}>${props.item.price.toFixed(2)}</Text>
                         </View>
                         <TouchableOpacity
-                            activeOpacity={0.7}
+                            activeOpacity={0}
                             onPress={() => setLiked(!liked)}
                             style={styles.likeContainer}>
                             <Ionicons name={liked ? "ios-heart" : "ios-heart-empty"} size={24}/>

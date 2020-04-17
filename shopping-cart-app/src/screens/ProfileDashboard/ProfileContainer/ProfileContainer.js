@@ -27,6 +27,7 @@ function profileContainer(props) {
           >
             <View style={styles.profileCenterContainerTop}>
               <TouchableOpacity
+                activeOpacity={0}
                 onPress={() => props.navigationObj.navigate('Auth', { screen: 'SignIn' })}
                 style={styles.signOutContainer}
               >
@@ -37,6 +38,7 @@ function profileContainer(props) {
                 />
               </TouchableOpacity>
               <TouchableOpacity
+                activeOpacity={0}
                 onPress={() => props.navigationObj.navigate('EditingProfile')}
                 style={styles.editContainer}
               >
@@ -75,6 +77,7 @@ function profileContainer(props) {
 
               </View>
               <TouchableOpacity
+                activeOpacity={0}
                 onPress={() => props.navigationObj.navigate('AddressList')}
                 style={styles.addressText}
               >

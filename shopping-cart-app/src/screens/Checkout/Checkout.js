@@ -46,7 +46,9 @@ function Checkout(props) {
                                         <Text style={styles.goldenText}>
                                             My Orders
                                             </Text>
-                                        <TouchableOpacity onPress={() => console.log('Pressed Edit')}>
+                                        <TouchableOpacity
+                                            activeOpacity={0}
+                                            onPress={() => console.log('Pressed Edit')}>
                                             <Image
                                                 source={require('../../assets/icons/edit.png')}
                                                 style={{
@@ -93,7 +95,9 @@ function Checkout(props) {
                                     <View style={styles.borderBottom}>
                                         <View style={styles.row}>
                                             <Text style={styles.addressBoldText}>Pakistan</Text>
-                                            <TouchableOpacity onPress={() => console.log('Pressed Edit')}>
+                                            <TouchableOpacity
+                                                activeOpacity={0}
+                                                onPress={() => console.log('Pressed Edit')}>
                                                 <Image
                                                     source={require('../../assets/icons/edit.png')}
                                                     style={{

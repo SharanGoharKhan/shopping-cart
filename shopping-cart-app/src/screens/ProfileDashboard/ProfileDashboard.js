@@ -14,10 +14,12 @@ function ProfileDashboard(props) {
           navigationObj={props.navigation}
         />
         <View style={styles.tabContainer}>
-          <TouchableOpacity>
+          <TouchableOpacity
+            activeOpacity={0}>
             <Text style={styles.tabStyleActive}>My Active Orders (3)</Text>
           </TouchableOpacity>
           <TouchableOpacity
+            activeOpacity={0}
             onPress={() => props.navigation.navigate('PreviousOrders')}
           >
             <Text style={styles.tabStyle}>Previous Orders (35)</Text>

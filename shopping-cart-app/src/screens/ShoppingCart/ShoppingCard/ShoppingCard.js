@@ -34,21 +34,22 @@ function ShoppingCard(props) {
                             <Text style={styles.sizeStyle}>{props.item.size}</Text>
                             <View style={styles.quantitySelContainer}>
                                 <TouchableOpacity
+                                    activeOpacity={0}
                                     style={styles.quantityIconStyle}
                                     activeOpacity={1}>
                                     <Ionicons name="ios-arrow-back" size={25} />
                                 </TouchableOpacity>
                                 <Text style={styles.quantityTextStyle}>{props.item.quantity}</Text>
                                 <TouchableOpacity
-                                    style={styles.quantityIconStyle}
-                                    activeOpacity={1}>
+                                    activeOpacity={0}
+                                    style={styles.quantityIconStyle}>
                                     <Ionicons name="ios-arrow-forward" size={25} />
                                 </TouchableOpacity>
                             </View>
                         </View>
                         <View style={styles.bottomContainer}>
                             <TouchableOpacity
-                                activeOpacity={0.7}
+                                activeOpacity={0}
                                 onPress={() => setLiked(!liked)}
                                 style={styles.likeContainer}>
                                 <Ionicons name={liked ? "ios-heart" : "ios-heart-empty"} size={25} />

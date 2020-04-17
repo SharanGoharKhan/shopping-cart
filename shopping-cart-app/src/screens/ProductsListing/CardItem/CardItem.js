@@ -44,6 +44,7 @@ const cardItem = props => (
         {
             cardData.map((data, ind) => (
                 <TouchableOpacity
+                    activeOpacity={0}
                     onPress={() => props.navigationObj.navigate('ProductDescription')}
                     key={ind} style={styles.cardContainer}
                 >
@@ -54,13 +55,13 @@ const cardItem = props => (
                             style={styles.imgResponsive}
                         />
                     </View>
-                    <View style={[styles.textContainer,{justifyContent:'flex-end'}]}>
+                    <View style={[styles.textContainer, { justifyContent: 'flex-end' }]}>
                         <Text style={[styles.textStyle]}>{data.title}</Text>
                     </View>
-                    <View style={[styles.textContainer,{justifyContent:'flex-start',marginTop:-3}]}>
+                    <View style={[styles.textContainer, { justifyContent: 'flex-start', marginTop: -3 }]}>
                         <Text style={[styles.textStyle]}>{data.category}</Text>
                     </View>
-                    <View style={[styles.botContainer,{justifyContent:'flex-end'}]}>
+                    <View style={[styles.botContainer, { justifyContent: 'flex-end' }]}>
                         <View style={styles.priceContainer}>
                             <Text style={styles.priceStyle}>
                                 {data.price}

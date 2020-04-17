@@ -20,6 +20,7 @@ Props:
 const BlueBtn = props => (
   <View style={styles.backgroundColor}>
     <TouchableOpacity
+      activeOpacity={0}
       onPress={props.onPress}
       style={styles.main_blue_btn}
     >

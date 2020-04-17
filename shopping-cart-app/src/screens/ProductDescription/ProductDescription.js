@@ -84,7 +84,7 @@ function ProductDescription(props) {
                                 {
                                     caroselData.map((data, ind) => (
                                         <TouchableOpacity
-                                            activeOpacity={1}
+                                            activeOpacity={0}
                                             onPress={() => setCaroselImage(data.img)}
                                             key={ind}
                                             style={styles.caroselItems}

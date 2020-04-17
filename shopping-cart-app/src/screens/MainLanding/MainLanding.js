@@ -43,6 +43,7 @@ function renderCarosel(props) {
                 ))}
             </SwiperFlatList>
             <TouchableOpacity
+                activeOpacity={0}
                 onPress={() => props.navigation.dispatch(DrawerActions.toggleDrawer())}
                 style={styles.menuDrawerContainer}
             >

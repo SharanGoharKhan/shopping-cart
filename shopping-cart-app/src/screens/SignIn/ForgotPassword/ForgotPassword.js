@@ -23,12 +23,13 @@ function ForgotPassword(props) {
                     </View>
                     <View style={styles.inputContainer}>
                         <TextField
-                        placeholder="Your Email"
-                        style={{textAlign:'center', backgroundColor: '#F7F7F7'}}
-                        placeholderTextColor="black" 
+                            placeholder="Your Email"
+                            style={{ textAlign: 'center', backgroundColor: '#F7F7F7' }}
+                            placeholderTextColor="black"
                         />
                     </View>
                     <TouchableOpacity
+                        activeOpacity={0}
                         onPress={props.hideModal}
                         style={[styles.btnContainer, styles.brownColor]}
                     >
