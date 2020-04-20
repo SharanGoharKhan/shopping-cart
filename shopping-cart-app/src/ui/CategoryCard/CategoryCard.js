@@ -7,7 +7,6 @@ import styles from './styles';
 function CategoryCard(props) {
     return (
         <TouchableOpacity
-            activeOpacity={0}
             onPress={() => props.navigationObj.navigate('ProductListing')}
             style={styles.container}>
             <View style={styles.textViewContainer}>

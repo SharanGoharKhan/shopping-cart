@@ -3,8 +3,9 @@ import AppContainer from './src/utils/routes'
 import * as Font from 'expo-font'
 import { View, ActivityIndicator, StatusBar, StyleSheet, Platform } from 'react-native'
 import { colors } from './src/utils/colors'
-import {SafeAreaView} from 'react-native-safe-area-context'
 
+
+console.disableYellowBox = true;
 export default function App() {
   const [fontLoaded, fontLoadedSetter] = useState(false);
 
@@ -21,7 +22,6 @@ export default function App() {
   }
 
   if (fontLoaded) {
-    //testing 4
     return (
         <View style={styles.container}>
           <AppContainer />

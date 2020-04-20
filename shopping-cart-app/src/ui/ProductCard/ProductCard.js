@@ -15,7 +15,7 @@ function ProductCard(props) {
     const [liked, setLiked] = useState(false)
     return (
         <TouchableOpacity
-            activeOpacity={0}
+            activeOpacity={1}
             onPress={() => props.cardPressed()}
             style={[styles.cardContainer, props.styles]}>
             <View style={styles.topCardContainer}>

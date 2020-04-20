@@ -91,7 +91,7 @@ function PreviousOrder(props) {
                                     {
                                         data.cards.map((card, ind) => (
                                             <TouchableOpacity
-                                                activeOpacity={0}
+                                                activeOpacity={1}
                                                 onPress={() => props.navigation.navigate('OrderDetail')}
                                                 key={ind}
                                                 style={styles.cardContainer}
@@ -122,7 +122,6 @@ function PreviousOrder(props) {
                                                             <View style={styles.subActionsContainer}>
                                                                 <Text style={styles.statusStyle}>{card.status}</Text>
                                                                 <TouchableOpacity
-                                                                    activeOpacity={0}
                                                                     style={styles.actionContainer}>
                                                                     <Text style={styles.actionStyle}>{card.action}</Text>
                                                                 </TouchableOpacity>

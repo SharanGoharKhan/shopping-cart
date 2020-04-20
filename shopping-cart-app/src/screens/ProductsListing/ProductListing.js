@@ -6,17 +6,16 @@ import styles from './styles';
 import BottomTab from '../../components/BottomTab/BottomTab';
 import { PRODUCTS } from '../../utils/mockData';
 import ProductCard from '../../ui/ProductCard/ProductCard';
-import { HeaderRightIcon } from '../../components/Headers/Headers';
+import { BackHeader } from '../../components/Headers/Headers';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
 function ProductListing(props) {
     return (
         <SafeAreaView style={styles.flex}>
             <View style={[styles.flex,styles.container]}>
-                <HeaderRightIcon
+                <BackHeader
                     title='Arts & Crafts'
                     backPressed={() => props.navigation.goBack()}
-                    rightIconPresed={() => console.log('modal open')}
                 />
                 <FlatList
                     keyExtractor={(item, index) => index.toString()}
