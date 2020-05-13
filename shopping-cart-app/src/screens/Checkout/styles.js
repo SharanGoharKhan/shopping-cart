@@ -1,5 +1,5 @@
-import { StatusBar } from 'react-native';
-import { verticalScale } from '../../utils/scaling';
+import { StatusBar, Platform } from 'react-native';
+import { verticalScale, scale } from '../../utils/scaling';
 import { colors } from '../../utils/colors';
 import { fontStyles } from '../../utils/fontStyles';
 
@@ -10,7 +10,11 @@ export default {
     container: {
         height: '100%',
         width: '100%',
-        alignSelf: 'center',
+        justifyContent:'center',
+        marginTop:scale(20),
+    },
+    mainContainer: {
+        marginTop: Platform.OS === 'ios' ? 0 : StatusBar.currentHeight
     },
     statusbarImage: {
         height: StatusBar.currentHeight,
@@ -19,23 +23,11 @@ export default {
     body: {
         height: '95%',
         width: '90%',
+        marginTop:'5%',
         alignSelf: 'center',
     },
     main_scroller: {
         marginBottom: verticalScale(10),
-    },
-    // header
-    header: {
-        height: '8%',
-        width: '100%',
-        flexDirection: 'row',
-        alignSelf: 'center',
-        alignItems: 'center',
-    },
-    header_text: {
-        fontFamily: fontStyles.PoppinsRegular,
-        fontSize: verticalScale(16),
-        paddingLeft: verticalScale(8),
     },
 
     // main
@@ -117,7 +109,7 @@ export default {
         paddingBottom: verticalScale(15),
     },
     main_bot: {
-        marginTop:verticalScale(-55),
+        marginTop: verticalScale(-55),
         height: verticalScale(200),
         width: '100%',
         alignItems: 'center',

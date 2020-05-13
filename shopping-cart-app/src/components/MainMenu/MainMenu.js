@@ -1,8 +1,7 @@
 import React from 'react';
-import {
-    View, Text, Image, TouchableOpacity
-} from 'react-native';
+import { View, Text, Image, TouchableOpacity } from 'react-native';
 import styles from './styles';
+import { SafeAreaView } from 'react-native-safe-area-context';
 
 const navItems = [
     {
@@ -30,17 +29,10 @@ const navItems = [
         navigateTo: 'AddressList',
     }
 ];
-/* =============================================================================
-<MainMenu />
---------------------------------------------------------------------------------
 
-Props:
-  ?
-
-============================================================================= */
-class MainMenu extends React.Component {
-    render() {
-        return (
+function MainMenu(props) {
+    return (
+        <SafeAreaView style={styles.container}>
             <View style={styles.container}>
                 <View style={styles.profileContainer}>
                     <View style={styles.profileSubContainer}>
@@ -64,7 +56,8 @@ class MainMenu extends React.Component {
                         {
                             navItems.map((item, ind) => (
                                 <TouchableOpacity
-                                    onPress={() => this.props.navigation.navigate(item.navigateTo)}
+                                    activeOpacity={0}
+                                    onPress={() => props.navigation.navigate(item.navigateTo)}
                                     key={ind}
                                     style={styles.navItemContainer}
                                 >
@@ -74,6 +67,7 @@ class MainMenu extends React.Component {
                         }
                         <View style={styles.navItemContainerImage}>
                             <TouchableOpacity
+                                activeOpacity={0}
                                 style={styles.navItemImg}>
                                 <Image
                                     source={require('../../assets/images/mainMenu/twitter.png')}
@@ -83,6 +77,7 @@ class MainMenu extends React.Component {
 
                             </TouchableOpacity>
                             <TouchableOpacity
+                                activeOpacity={0}
                                 style={styles.navItemImg}>
                                 <Image
                                     source={require('../../assets/images/mainMenu/instagram.png')}
@@ -95,7 +90,8 @@ class MainMenu extends React.Component {
                 </View>
                 <View style={styles.bottomContainer}>
                     <TouchableOpacity
-                        onPress={() => this.props.navigation.navigate('SignIn')}
+                        activeOpacity={0}
+                        onPress={() => props.navigation.navigate('Auth', { screen: 'SignIn' })}
                         style={styles.bottomSubContainer}
                     >
                         <View
@@ -113,8 +109,8 @@ class MainMenu extends React.Component {
                     </TouchableOpacity>
                 </View>
             </View>
-        );
-    }
+        </SafeAreaView>
+    );
 }
 
 export default MainMenu;

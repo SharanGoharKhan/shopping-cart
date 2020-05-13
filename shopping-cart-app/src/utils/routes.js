@@ -1,10 +1,8 @@
-import {
-    createStackNavigator,
-    createSwitchNavigator,
-    createAppContainer,
-    createDrawerNavigator,
-} from 'react-navigation';
-
+import React from 'react';
+import { createStackNavigator } from '@react-navigation/stack'
+import { NavigationContainer } from '@react-navigation/native'
+import { createDrawerNavigator } from '@react-navigation/drawer'
+import { SafeAreaProvider } from 'react-native-safe-area-context'
 import AddressList from '../screens/AddressList/AddressList';
 import Checkout from '../screens/Checkout/Checkout';
 import CheckoutPayment from '../screens/CheckoutPayment/CheckoutPayment';
@@ -24,58 +22,65 @@ import SignUp from '../screens/SignUp/SignUp';
 import TrackOrder from '../screens/TrackOrder/TrackOrder';
 import MainMenu from '../components/MainMenu/MainMenu';
 import AuthLoading from './authLoading';
-import OtpValidation from '../screens/SignUp/OtpValidation/OtpValidation'
 
-const authenticationNavigator = createStackNavigator(
-    {
-        SignIn,
-        SignUp,
-    }, {
-        headerMode: 'none',
-    },
-);
-const Drawer = createDrawerNavigator(
-    {
-        MainLanding: { screen: MainLanding },
-        ProfileDashboard: { screen: ProfileDashboard },
-    },
-    {
-        initialRouteName: 'MainLanding',
-        contentComponent: MainMenu,
-    },
-);
-const noDrawer = createStackNavigator({
-    Drawer,
-    AddressList,
-    Checkout,
-    CheckoutPayment,
-    EditingAddress,
-    EditingProfile,
-    OrderDetail,
-    PreviousOrders,
-    ProductDescription,
-    ProductListing,
-    ProfileDashboard,
-    SearchResult,
-    ShoppingCart,
-    Search,
-    TrackOrder,
-    OtpValidation,
-}, {
-        headerMode: 'none',
-    })
+const NavigationStack = createStackNavigator();
+const AuthenticationStack = createStackNavigator();
+const MainStack = createStackNavigator();
+const SideDrawer = createDrawerNavigator();
 
+function authenticationNavigator() {
+    return (
+        <AuthenticationStack.Navigator headerMode='none'>
+            <AuthenticationStack.Screen name='SignIn' component={SignIn} />
+            <AuthenticationStack.Screen name='SignUp' component={SignUp} />
+        </AuthenticationStack.Navigator>
+    )
+}
 
-const AppNavigator = createSwitchNavigator(
-    {
-        AuthLoading,
-        Auth: authenticationNavigator,
-        noDrawer,
-    },
-    {
-        initialRouteName: 'AuthLoading',
-    },
-);
-const AppContainer = createAppContainer(AppNavigator);
+function Drawer() {
+    return (
+        <SideDrawer.Navigator initialRouteName='MainLanding' drawerContent={props => <MainMenu {...props} />}>
+            <SideDrawer.Screen name='MainLanding' component={MainLanding} />
+            <SideDrawer.Screen name='ProfileDashboard' component={ProfileDashboard} />
+        </SideDrawer.Navigator>
+    )
+}
+function noDrawer() {
+    return (
+        <NavigationStack.Navigator headerMode='none'>
+            <NavigationStack.Screen name='Drawer' component={Drawer} />
+            <NavigationStack.Screen name='AddressList' component={AddressList} />
+            <NavigationStack.Screen name='Checkout' component={Checkout} />
+            <NavigationStack.Screen name='CheckoutPayment' component={CheckoutPayment} />
+            <NavigationStack.Screen name='EditingAddress' component={EditingAddress} />
+            <NavigationStack.Screen name='EditingProfile' component={EditingProfile} />
+            <NavigationStack.Screen name='OrderDetail' component={OrderDetail} />
+            <NavigationStack.Screen name='PreviousOrders' component={PreviousOrders} />
+            <NavigationStack.Screen name='ProductDescription' component={ProductDescription} />
+            <NavigationStack.Screen name='ProductListing' component={ProductListing} />
+            <NavigationStack.Screen name='ProfileDashboard' component={ProfileDashboard} />
+            <NavigationStack.Screen name='SearchResult' component={SearchResult} />
+            <NavigationStack.Screen name='ShoppingCart' component={ShoppingCart} />
+            <NavigationStack.Screen name='Search' component={Search} />
+            <NavigationStack.Screen name='TrackOrder' component={TrackOrder} />
+        </NavigationStack.Navigator>
+    )
+
+}
+
+function AppContainer() {
+    return (
+        <SafeAreaProvider>
+            <NavigationContainer>
+                <MainStack.Navigator headerMode='none' initialRouteName='AuthLoading'>
+                    <MainStack.Screen name='AuthLoading' component={AuthLoading} />
+                    <MainStack.Screen name='Auth' component={authenticationNavigator} />
+                    <MainStack.Screen name='noDrawer' component={noDrawer} />
+                </MainStack.Navigator>
+            </NavigationContainer>
+        </SafeAreaProvider>
+    )
+
+}
 
 export default AppContainer;

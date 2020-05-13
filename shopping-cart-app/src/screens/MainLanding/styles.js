@@ -1,5 +1,5 @@
-import { Dimensions } from 'react-native';
-import { verticalScale } from '../../utils/scaling';
+import { Dimensions, Platform, StatusBar } from 'react-native';
+import { verticalScale, scale } from '../../utils/scaling';
 import { colors } from '../../utils/colors';
 import { fontStyles } from '../../utils/fontStyles';
 const { height, width } = Dimensions.get('window');
@@ -14,12 +14,16 @@ export default {
     },
     grayBackground: {
         backgroundColor: colors.backgroudGray,
-        flex: 1
+        marginTop: Platform.OS === 'ios' ? 0 : StatusBar.currentHeight
     },
     caroselContainer: {
         width: '100%',
         height: height * 0.3,
         position: 'relative',
+    },
+    caroselStyle: {
+        width,
+        height: height * 0.3,
     },
     menuDrawerContainer: {
         width: verticalScale(20),
@@ -33,35 +37,36 @@ export default {
         width: undefined,
         height: undefined,
     },
-    searchContainer: {
-        width: width * 0.9,
-        height: height * 0.06,
-        backgroundColor: '#fff',
-        alignSelf: 'center',
-        position: 'absolute',
-        bottom: verticalScale(-20),
-        borderRadius: verticalScale(5),
-        flexDirection: 'row',
-    },
-    searchTextContainer: {
-        width: '80%',
-        height: '100%',
-        justifyContent: 'center',
-    },
-    searchTextStyle: {
-        fontSize: verticalScale(15),
-        marginLeft: '5%',
+    headingText: {
         fontFamily: fontStyles.PoppinsRegular,
+        fontSize: scale(16)
     },
-    searchIconContainer: {
-        width: '20%',
-        height: '100%',
-        justifyContent: 'center',
-        alignItems: 'center',
+    itemCardContainer: {
+        width: scale(200),
+        height: scale(225),
+        marginTop: scale(10),
+        marginRight: scale(20),
+        borderRadius: scale(5),
+        borderColor: colors.whiteColor,
+        borderWidth: scale(4)
     },
-    searchIconBtnContainer: {
-        width: '50%',
-        height: '50%',
+    categoryContainer: {
+        width: '90%',
+        alignSelf: 'center',
+        marginTop: scale(20),
+        flexDirection: 'row',
+        flexWrap: 'wrap',
+        justifyContent: 'space-between'
     },
-
+    titleSpacer: {
+        marginLeft: '5%',
+        marginTop: scale(30)
+    },
+    productCard: {
+        marginLeft: '5%',
+        width: '42%',
+        height: scale(225),
+        marginTop: scale(10),
+        marginBottom: scale(20)
+    }
 };

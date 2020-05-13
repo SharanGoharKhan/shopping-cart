@@ -4,6 +4,7 @@ import styles from './styles';
 
 const CardCategory = props => (
   <TouchableOpacity
+    activeOpacity={0}
     onPress={props.onPress}
     style={[styles.container]}
   >

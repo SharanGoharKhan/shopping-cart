@@ -1,34 +1,21 @@
 import React from 'react';
-import {
-    View, Text, Image, TextInput, KeyboardAvoidingView, TouchableOpacity, Platform, StatusBar
-} from 'react-native';
+import { View, Text, Image, TextInput, KeyboardAvoidingView, TouchableOpacity, ScrollView } from 'react-native';
 import styles from './styles';
 import BottomTab from '../../components/BottomTab/BottomTab';
 import { verticalScale } from '../../utils/scaling';
-import { ScrollView } from 'react-native-gesture-handler';
+import { SafeAreaView } from 'react-native-safe-area-context';
+import { BackHeader } from '../../components/Headers/Headers';
 
-class EditingProfile extends React.Component {
-    render() {
-        return (
-            <View style={styles.flex}>
-                <View style={styles.headerContainer}>
-                    <TouchableOpacity
-                        onPress={() => this.props.navigation.goBack()}
-                        style={styles.backImg}>
-                        <Image
-                            source={require('../../assets/icons/back.png')}
-                            resizeMode="contain"
-                            style={{
-                                width: verticalScale(16),
-                                height: verticalScale(17)
-                            }}
-                        />
-                    </TouchableOpacity>
-                    <Text style={styles.headerContainerText}>Editing Profile</Text>
-                </View>
-                <ScrollView>
+function EditingProfile(props) {
+    return (
+        <SafeAreaView style={styles.flex}>
+            <View style={[styles.flex, styles.mainContainer]}>
+                <BackHeader
+                    title="Editing Profile"
+                    backPressed={() => props.navigation.goBack()} />
+                <ScrollView showsVerticalScrollIndicator={false} style={{ flex: 1 }} contentContainerStyle={{ flexGrow: 1 }}>
                     <View style={styles.formMainContainer}>
-                        <KeyboardAvoidingView style={{ flex: 1 }} behavior="padding">
+                        <KeyboardAvoidingView style={{ flex: 1 }} behavior={Platform.OS === "ios" ? "padding" : null} keyboardVerticalOffset={100}>
                             <View style={styles.formContainer}>
                                 <View style={styles.profileImageContainer}>
                                     <Image
@@ -45,6 +32,7 @@ class EditingProfile extends React.Component {
                                             </View>
                                             <View style={styles.inputContainer}>
                                                 <TextInput
+                                                    style={[styles.flex, styles.inputText]}
                                                     placeholder="Sharan"
                                                     placeholderTextColor="black"
                                                 />
@@ -56,6 +44,7 @@ class EditingProfile extends React.Component {
                                             </View>
                                             <View style={styles.inputContainer}>
                                                 <TextInput
+                                                    style={[styles.flex, styles.inputText]}
                                                     placeholder="Khan"
                                                     placeholderTextColor="black"
                                                 />
@@ -69,6 +58,7 @@ class EditingProfile extends React.Component {
                                             </View>
                                             <View style={styles.inputContainer}>
                                                 <TextInput
+                                                    style={[styles.flex, styles.inputText]}
                                                     placeholder="sharan.gohar@gmail.com"
                                                     placeholderTextColor="black"
                                                 />
@@ -82,6 +72,7 @@ class EditingProfile extends React.Component {
                                             </View>
                                             <View style={styles.inputContainer}>
                                                 <TextInput
+                                                    style={[styles.flex, styles.inputText]}
                                                     placeholder="+92 3339461270"
                                                     placeholderTextColor="black"
                                                 />
@@ -95,6 +86,7 @@ class EditingProfile extends React.Component {
                                             </View>
                                             <View style={styles.inputContainer}>
                                                 <TextInput
+                                                    style={[styles.flex, styles.inputText]}
                                                     placeholder="16-06-1993"
                                                     placeholderTextColor="black"
                                                 />
@@ -106,6 +98,7 @@ class EditingProfile extends React.Component {
                                             </View>
                                             <View style={styles.inputContainer}>
                                                 <TextInput
+                                                    style={[styles.flex, styles.inputText]}
                                                     placeholder="Male"
                                                     placeholderTextColor="black"
                                                 />
@@ -114,7 +107,8 @@ class EditingProfile extends React.Component {
                                     </View>
                                     <View style={styles.addContainer}>
                                         <TouchableOpacity
-                                            onPress={() => this.props.navigation.navigate('ProfileDashboard')}
+                                        activeOpacity={0}
+                                            onPress={() => props.navigation.navigate('ProfileDashboard')}
                                             style={styles.addBtn}
                                         >
                                             <Text style={styles.addStyle}>Save</Text>
@@ -126,11 +120,11 @@ class EditingProfile extends React.Component {
                     </View>
                 </ScrollView>
                 <BottomTab
-                    navigationObj={this.props.navigation}
+                    navigationObj={props.navigation}
                 />
             </View>
-        );
-    }
+        </SafeAreaView>
+    );
 }
 
 export default EditingProfile;

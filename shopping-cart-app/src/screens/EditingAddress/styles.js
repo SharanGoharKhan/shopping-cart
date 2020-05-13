@@ -1,4 +1,4 @@
-import { Dimensions } from 'react-native';
+import { Dimensions, Platform, StatusBar } from 'react-native';
 import { verticalScale } from '../../utils/scaling';
 import { colors } from '../../utils/colors';
 import { fontStyles } from '../../utils/fontStyles';
@@ -8,21 +8,8 @@ export default {
     flex: {
         flex: 1,
     },
-    headerContainer: {
-        width: '100%',
-        height: '8%',
-        flexDirection:'row',
-        alignItems: 'flex-end',
-    },
-    backImg: {
-        marginBottom: '3%',
-        marginLeft: '5%'
-    },
-    headerContainerText: {
-        marginBottom: '1%',
-        marginLeft: '5%',
-        fontFamily: fontStyles.PoppinsRegular,
-        fontSize: verticalScale(18),
+    mainContainer: {
+        marginTop: Platform.OS === 'ios' ? 0 : StatusBar.currentHeight
     },
     formMainContainer: {
         flex: 1,
@@ -64,12 +51,14 @@ export default {
         width: '100%',
         height: '60%',
         borderRadius: verticalScale(3),
+        padding: verticalScale(5),
+        justifyContent:'center',
         backgroundColor: colors.backgroudGray,
     },
     label: {
         fontFamily: fontStyles.PoppinsRegular,
         color: colors.darkGrayText,
-        fontSize: verticalScale(14),
+        fontSize: verticalScale(12),
     },
     oneItemContainer: {
         width: '100%',
@@ -121,5 +110,9 @@ export default {
         fontSize: verticalScale(20),
         borderBottomWidth: verticalScale(1),
         borderBottomColor: '#9B9B9B',
+    },
+    inputText: {
+        textAlign: "left",
+        padding:5
     },
 };

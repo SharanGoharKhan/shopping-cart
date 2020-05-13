@@ -1,5 +1,5 @@
 import { StatusBar, Dimensions } from 'react-native';
-import { verticalScale } from '../../utils/scaling';
+import { verticalScale, scale } from '../../utils/scaling';
 import { colors } from '../../utils/colors';
 import { fontStyles } from '../../utils/fontStyles';
 const { width, height } = Dimensions.get('window');
@@ -7,6 +7,9 @@ const { width, height } = Dimensions.get('window');
 export default {
     flex: {
         flex: 1,
+    },
+    mainContainer: {
+        marginTop: Platform.OS === 'ios' ? 0 : StatusBar.currentHeight
     },
     container: {
         height: '100%',
@@ -28,7 +31,7 @@ export default {
 
     // header
     header: {
-        height: height*.08,
+        height: height * .08,
         width: '95%',
         flexDirection: 'row',
         alignSelf: 'center',
@@ -41,7 +44,7 @@ export default {
     },
     // main
     main: {
-        height: height*.8,
+        height: height * .8,
         width: '100%',
         marginLeft: 0,
         justifyContent: 'center',
@@ -62,15 +65,19 @@ export default {
         backgroundColor: colors.backgroudGray,
     },
     mainBody: {
-        marginTop: '5%',
-        width: '95%',
+        width: '100%',
+        paddingLeft:'3%',
+        paddingRight:'3%',
     },
     mixed_text: {
         flexDirection: 'row',
-        justifyContent:'center',
+        justifyContent: 'center',
         marginBottom: verticalScale(20),
+        width:'95%',
+        marginTop: scale(5),
     },
     text: {
+        width:"100%",
         fontFamily: fontStyles.PoppinsRegular,
         fontSize: verticalScale(12),
     },

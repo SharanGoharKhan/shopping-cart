@@ -1,16 +1,14 @@
-import React from 'react';
+import React, { useState } from 'react';
 import {
-    View, Text, TouchableOpacity, Image, ScrollView
+    View, Text, TouchableOpacity, Image, ScrollView,
 } from 'react-native';
 import BottomTab from '../../components/BottomTab/BottomTab';
 import styles from './styles';
-import ModalGlance from './ModalGlance/ModalGlance'
-import AccordionList from './Accordion/AccordionList';
-import { fontStyles } from '../../utils/fontStyles';
-import { verticalScale } from '../../utils/scaling';
+import { BackHeader } from '../../components/Headers/Headers';
+import Button from '../../ui/Buttons/Button';
+import VariationSection from './VariationSection/VariationSection';
+import { SafeAreaView } from 'react-native-safe-area-context';
 
-/* Config/Constants
-============================================================================= */
 const caroselData = [
     {
         img: require('../../assets/images/MainLanding/carosel_img_3.png'),
@@ -19,7 +17,7 @@ const caroselData = [
         img: require('../../assets/images/MainLanding/carosel_img_2.png'),
     },
     {
-        img: require('../../assets/images/MainLanding/recommended-2.png'),
+        img: require('../../assets/images/MainLanding/recommended_2.png'),
     },
     {
         img: require('../../assets/images/MainLanding/carosel_img_3.png'),
@@ -28,138 +26,51 @@ const caroselData = [
         img: require('../../assets/images/MainLanding/carosel_img_2.png'),
     },
     {
-        img: require('../../assets/images/MainLanding/recommended-2.png'),
+        img: require('../../assets/images/MainLanding/recommended_2.png'),
     },
     {
         img: require('../../assets/images/MainLanding/carosel_img_3.png'),
     },
 ];
 
-const FORMS = [
+const DESCRIPTION = "Soft stretch elasticated waistband Hemmed bottom Light weight and comfortable.\n\nSize chart is provided in the photos\n\nFabric 100% Cotton Single Jersey 160 GSM"
+const VARIATIONS = [
     {
-        header: 'Description',
-        body: 'British heritage Beed. Dense, resiilient, bulky white wool. Dyes well and resuusuts felting. Versatuly medium handle 28-30 nucribs, 89mm staple length.',
-
+        title: 'Select Color',
+        items: ['Black', 'White', 'Red', 'Graphite', 'Blue', 'Bottle Green', 'Charcoal', 'Florescent Yellow', 'Green', 'Heather Grey', 'Jeans Marl', 'Orange', 'Parrot', 'Royal', 'Navy']
     },
     {
-        header: 'Product Detail',
-        body: 'Weight: 198. Color: Pink. British heritage Beed. Dense, resiilient, bulky white wool. Dyes well and resuusuts felting. Versatuly medium handle 28-30 nucribs, 89mm staple length.',
+        title: 'Select Size',
+        items: ['S', 'M', 'L']
     },
+]
 
-];
-
-class ProductDescription extends React.Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            carosel_img: require('../../assets/images/MainLanding/carosel_img_3.png'),
-            modalVisible: false,
-        };
-        this.mounted = false;
-        this.changeCaroselImg = this.changeCaroselImg.bind(this);
-
-    }
-
-    componentDidMount = () => {
-        this.mounted = true;
-    }
-
-    componentWillMount = () => {
-        this.mounted = false;
-    }
-
-    changeCaroselImg = (imgPath) => {
-        if (this.mounted) this.setState({ carosel_img: imgPath });
-    }
-
-    render_form_head(form) {
-        return (
-            <View>
-                <Text style={{ fontFamily: fontStyles.PoppinsRegular, fontSize: verticalScale(11) }}>
-                    {form.header}
-                </Text>
-            </View>
-        );
-    }
-
-    render_form_body(form) {
-        return (
-            <View>
-                <Text style={{ fontFamily: fontStyles.PoppinsRegular, fontSize: verticalScale(10) }}>{form.body}</Text>
-            </View>
-        );
-    }
-
-    showModal(visible){
-        this.setState({modalVisible:visible})
-    }
-    
-
-    render() {
-        return (
-            <View style={styles.flex}>
-                {/* Header starts */}
-                <ModalGlance
-                visible={this.state.modalVisible}
-                hidden = {()=>this.showModal(false)}
-                />
-                
-                <View style={styles.headerContainer}>
-                    <View style={styles.headerSubContainer}>
-                        <View style={styles.backCnt}>
-                            <TouchableOpacity
-                                onPress={() => this.props.navigation.goBack()}
-                                style={styles.backImg}>
-                                <Image
-                                    source={require('../../assets/icons/back.png')}
-                                    resizeMode="contain"
-                                    style={styles.imgResponsive}
-                                />
-                            </TouchableOpacity>
-                        </View>
-                        <View style={styles.headerTextContainer}>
-                            <Text style={styles.headerText}>Details</Text>
-                        </View>
-                        <View style={styles.headerIconsContainer}>
-                            <TouchableOpacity style={styles.headerImg}
-                            onPress={()=>this.showModal(true)}
-                            >
-                                <Image
-                                    source={require('../../assets/images/ProductDescription/kiosk.png')}
-                                    resizeMode="contain"
-                                    style={styles.imgResponsive}
-                                />
-                            </TouchableOpacity>
-                            <TouchableOpacity style={[styles.headerImg, styles.marginLeft5]}>
-                                <Image
-                                    source={require('../../assets/images/ProductDescription/upload.png')}
-                                    resizeMode="contain"
-                                    style={styles.imgResponsive}
-                                />
-                            </TouchableOpacity>
-                        </View>
-                    </View>
-                </View>
-                {/* Header ends */}
-                {/* Carosel Title starts */}
-                <ScrollView style={styles.mainScrollViewContainer}>
+function ProductDescription(props) {
+    const [caroselImage, setCaroselImage] = useState(require('../../assets/images/MainLanding/carosel_img_3.png'))
+    return (
+        <SafeAreaView style={styles.flex}>
+            <View style={[styles.flex, styles.mainContainer]}>
+                <BackHeader
+                    title="Description"
+                    backPressed={() => props.navigation.goBack()} />
+                <ScrollView
+                    showsVerticalScrollIndicator={false}
+                    style={styles.mainScrollViewContainer}>
                     <View style={styles.caroselContainer}>
                         <View style={styles.caroselSubContainer}>
                             <View style={styles.caroselTitleContainer}>
-                                <Text style={styles.textStyle}>Southdown Spinning Fibre</Text>
+                                <Text numberOfLines={2} style={styles.textStyle}>Southdown Spinning Fibre</Text>
                             </View>
                             <View style={styles.caroselPriceContainer}>
                                 <View style={styles.caroselPriceSubContainer}>
-                                    <Text style={[styles.textStyle, styles.priceColor]}>7.5 PKR</Text>
+                                    <Text style={[styles.textStyle, styles.priceColor, styles.boldStyle]}>$7.50</Text>
                                 </View>
                             </View>
                         </View>
                     </View>
-                    {/* Carosel Title ends */}
-                    {/* Carosel selectable starts */}
                     <View style={styles.caroselMainImgCnt}>
                         <Image
-                            source={this.state.carosel_img}
+                            source={caroselImage}
                             resizeMode="cover"
                             style={styles.imgResponsive}
                         />
@@ -173,7 +84,7 @@ class ProductDescription extends React.Component {
                                 {
                                     caroselData.map((data, ind) => (
                                         <TouchableOpacity
-                                            onPress={() => this.changeCaroselImg(data.img)}
+                                            onPress={() => setCaroselImage(data.img)}
                                             key={ind}
                                             style={styles.caroselItems}
                                         >
@@ -188,62 +99,30 @@ class ProductDescription extends React.Component {
                             </View>
                         </ScrollView>
                     </View>
-                    {/* Carosel selectable ends */}
-                    {/* Products by starts */}
-                    <View style={styles.productsByContainer}>
-                        <View style={styles.productsBySubContainer}>
-                            <View style={styles.productsText}>
-                                <Text style={styles.textStyle}>Product provided by</Text>
-                            </View>
-                            <TouchableOpacity style={styles.productCardContainer}>
-                                <View style={styles.productImgContainer}>
-                                    <Image
-                                        source={require('../../assets/images/MainLanding/shop-1-avatar.png')}
-                                        resizeMode="contain"
-                                        style={styles.imgResponsive}
-                                    />
-                                </View>
-                                <View style={styles.productTextContainer}>
-                                    <Text style={styles.textStyle}>Pink Tulip Loom</Text>
-                                </View>
-                                <View style={styles.dotContainer}>
-                                    <View style={styles.dot} />
-                                    <View style={styles.dot} />
-                                    <View style={styles.dot} />
-                                </View>
-                            </TouchableOpacity>
-                        </View>
+                    <View style={styles.spacer} />
+                    <View style={styles.variationContainer}>
+                        {
+                            VARIATIONS.map((variation, index) => (
+                                <VariationSection
+                                    key={index}
+                                    variation={variation} />
+                            ))
+                        }
+                        <Text style={[styles.textStyle, styles.boldStyle, styles.smallSpacer]}>Description</Text>
+                        <Text style={[styles.textStyle, styles.smallSpacer]}>{DESCRIPTION}</Text>
                     </View>
-                    {/* Products by ends */}
-                    {/* Accrodian starts */}
-                    <View style={styles.accordianContainer}>
-                        <AccordionList
-                            list={FORMS}
-                            header={this.render_form_head}
-                            body={this.render_form_body}
-                        />
-                    </View>
-
-                    {/* Accrodian ends */}
-                    {/* Add to shopping cart starts */}
-                    <View style={styles.shoppingCartContainer}>
-                        <TouchableOpacity
-                            onPress={() => this.props.navigation.navigate('ShoppingCart')}
-                            style={styles.shoppingCartSubContainer}
-                        >
-                            <Text style={styles.shoppingCartText}>Add to Shopping Cart</Text>
-                        </TouchableOpacity>
-                    </View>
-                    {/* Add to shopping cart ends */}
+                    <Button
+                        containerStyle={styles.shoppingCartContainer}
+                        textStyle={styles.shoppingCartText}
+                        onPress={() => props.navigation.navigate('ShoppingCart')}
+                        text="Add to Shopping Cart" />
                 </ScrollView>
                 <BottomTab
-                    navigationObj={this.props.navigation}
+                    navigationObj={props.navigation}
                 />
-
-
             </View>
-        );
-    }
+        </SafeAreaView>
+    );
 }
 
 export default ProductDescription;

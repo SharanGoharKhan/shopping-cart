@@ -1,20 +1,26 @@
 import { verticalScale } from '../../utils/scaling';
 import { colors } from '../../utils/colors';
 import { fontStyles } from '../../utils/fontStyles';
+import { StatusBar, Platform } from 'react-native';
 
 export default {
     container: {
-        height: '100%',
-        width: '100%',
+        flex: 1,
         alignItems: 'center',
+        marginTop: Platform.OS === 'ios' ? 0 : StatusBar.currentHeight
     },
     body: {
         // adjust body height in order to accomodate footer
-        height: '80%',
+        height: '85%',
         width: '100%',
         alignItems: 'center',
         backgroundColor: colors.backgroudGray,
 
+    },
+    backImg: {
+        width: '15%',
+        justifyContent: 'center',
+        alignItems: 'center'
     },
     // header
     header: {
@@ -27,7 +33,7 @@ export default {
     },
     headerRow: {
         height: '100%',
-        width: '90%',
+        width: '100%',
         flexDirection: 'row',
         alignItems: 'center',
     },
@@ -35,11 +41,13 @@ export default {
         fontFamily: fontStyles.PoppinsRegular,
         fontSize: verticalScale(16),
         color: colors.blackText,
+        width:'60%',
     },
     headerBtn: {
-        flex:1,
-        flexDirection:'row',
-        justifyContent:'flex-end'
+        width:'30%',
+        height:'80%',
+        justifyContent: 'center',
+        alignItems: 'flex-start',
     },
     headerBtnText: {
         fontFamily: fontStyles.PoppinsRegular,
@@ -48,18 +56,12 @@ export default {
     },
     // main
     main: {
-        height: '80%',
+        height: '100%',
         width: '95%',
         paddingTop: verticalScale(10),
     },
     mainScroll: {
         height: '100%',
         width: '100%',
-    },
-    // footer
-    footer: {
-        height: '10%',
-        width: '100%',
-        justifyContent: 'center',
     },
 };

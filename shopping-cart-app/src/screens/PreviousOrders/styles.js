@@ -11,22 +11,8 @@ export default {
     flex: {
         flex: 1,
     },
-    headerContainer: {
-        width: '100%',
-        height: '8%',
-        flexDirection: 'row',
-        alignItems: 'flex-end'
-    },
-    headerContainerText: {
-        marginBottom: '1%',
-        marginLeft: '5%',
-        fontFamily: fontStyles.PoppinsRegular,
-        fontSize: verticalScale(18),
-    },
-    line: {
-        height:verticalScale(1),
-        width: width,
-        backgroundColor: '#edeaea',
+    mainContainer: {
+        marginTop: Platform.OS === 'ios' ? 0 : StatusBar.currentHeight
     },
     backImg: {
         marginBottom: '3%',
@@ -75,8 +61,8 @@ export default {
         height: '100%',
     },
     imgResponsive3: {
-        width:'70%',
-        height:'70%'
+        width: '70%',
+        height: '70%'
     },
     imgResponsive: {
         flex: 1,
@@ -114,7 +100,7 @@ export default {
         height: '60%',
     },
     subTitleContainer: {
-        marginTop:'-3%',
+        marginTop: '-3%',
         width: '100%',
         height: '17%',
     },

@@ -1,21 +1,22 @@
-import { StatusBar } from 'react-native';
+import { Dimensions } from 'react-native';
 import { verticalScale } from '../../utils/scaling';
 import { colors } from '../../utils/colors';
 import { fontStyles } from '../../utils/fontStyles';
 
+const { height } = Dimensions.get('window')
 export default {
+    flex: {
+        flex: 1
+    },
     container: {
         height: '100%',
         width: '100%',
         alignSelf: 'center',
-    },
-    statusbarImage: {
-        height: StatusBar.currentHeight,
-        backgroundColor: 'black',
+        justifyContent: 'center'
     },
     body: {
-        height: '93%',
-        width: '90%',
+        height: height * .95,
+        width: '95%',
         alignSelf: 'center',
     },
 
@@ -23,13 +24,15 @@ export default {
     header: {
         justifyContent: 'space-evenly',
         height: '20%',
+        width:'90%',
+        alignSelf:'center',
     },
-    header_text: {
+    headerText: {
         paddingLeft: '5%',
         fontFamily: fontStyles.PoppinsRegular,
         fontSize: verticalScale(16),
     },
-    header_btn: {
+    headerBtn: {
 
     },
 
@@ -37,53 +40,54 @@ export default {
     main: {
         backgroundColor: colors.backgroudGray,
         height: '80%',
-        width: '100%',
+        width: '90%',
+        alignSelf:'center',
         borderRadius: verticalScale(5),
     },
-    body_container_background: {
+    bodyContainerBackground: {
         alignItems: 'center',
         width: '100%',
         height: '100%',
     },
 
-    main_top: {
+    mainTop: {
         height: '20%',
         width: '90%',
         justifyContent: 'center',
         alignItems: 'center',
     },
-    h1_text: {
+    h1Text: {
         fontFamily: fontStyles.PoppinsRegular,
         fontSize: verticalScale(17.5),
         fontWeight: '500',
         letterSpacing: verticalScale(0.5),
         marginTop: '5%',
     },
-    h2_text: {
+    h2Text: {
         fontFamily: fontStyles.PoppinsRegular,
         fontSize: verticalScale(12),
     },
-    main_mid: {
+    mainMid: {
         height: '55%',
         width: '90%',
     },
-    main_bot: {
+    mainBot: {
         height: '25%',
         width: '90%',
         justifyContent: 'space-around',
         alignItems: 'center',
     },
-    bot_btn_container: {
+    botBtnContainer: {
         width: '100%',
     },
-    mixed_line: {
+    mixedLine: {
         flexDirection: 'row',
     },
-    ft_text: {
+    ftText: {
         fontFamily: fontStyles.PoppinsRegular,
         fontSize: verticalScale(10),
     },
-    ft_text_underline: {
+    ftTextUnderline: {
         textDecorationLine: 'underline',
     },
 

@@ -18,6 +18,7 @@ Props:
 const MainBtn = props => (
   <View style={styles.backgroundColor}>
     <TouchableOpacity
+      activeOpacity={0}
       onPress={props.onPress}
       style={styles.main_alt_btn}
     >

@@ -1,4 +1,4 @@
-import { StatusBar, Dimensions } from 'react-native';
+import { StatusBar, Platform, Dimensions } from 'react-native';
 import { verticalScale } from '../../utils/scaling';
 import { colors } from '../../utils/colors';
 import { fontStyles } from '../../utils/fontStyles';
@@ -6,16 +6,16 @@ const { width, height } = Dimensions.get('window');
 
 export default {
     flex: {
-        flex:1
+        flex: 1
+    },
+    mainContainer: {
+        marginTop: Platform.OS === 'ios' ? 0 : StatusBar.currentHeight
     },
     container: {
-        height: '100%',
+        height: '95%',
         width: '100%',
         alignSelf: 'center',
-    },
-    statusbarImage: {
-        height: StatusBar.currentHeight,
-        backgroundColor: 'black',
+        justifyContent:'center',
     },
     body: {
         height: '95%',
@@ -24,19 +24,6 @@ export default {
     },
     main_scroller: {
         marginBottom: verticalScale(10),
-    },
-    // header
-    header: {
-        height: '8%',
-        width: '100%',
-        flexDirection: 'row',
-        alignSelf: 'center',
-        alignItems: 'center',
-    },
-    header_text: {
-        fontFamily: fontStyles.PoppinsRegular,
-        fontSize: verticalScale(16),
-        paddingLeft: verticalScale(8),
     },
     // main
     main: {

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import {
     View, Text, Image, TextInput, StatusBar, TouchableOpacity, Platform
 } from 'react-native';
@@ -11,6 +11,8 @@ import { verticalScale } from '../../utils/scaling';
 import { colors } from '../../utils/colors';
 import BottomTab from '../../components/BottomTab/BottomTab';
 import CheckoutReciept from './CheckoutReciept/CheckoutReciept';
+import { SafeAreaView } from 'react-native-safe-area-context';
+import { BackHeader } from '../../components/Headers/Headers';
 
 /* Config/Constants
 ============================================================================= */
@@ -20,169 +22,146 @@ const DATA = [
 ];
 
 
-class CheckoutPayment extends React.Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            modalVisible: false,
-        };
-        this.showModal = this.showModal.bind(this);
-        this.hideModal = this.hideModal.bind(this);
+function CheckoutPayment(props) {
+    const [modalVisible, setModalVisible] = useState(false)
+
+    function showModal() {
+        setModalVisible(true)
     }
 
-    showModal = () => {
-        this.setState({
-            modalVisible: true,
-        });
+    function hideModal() {
+        setModalVisible(false)
     }
-
-    hideModal = () => {
-        this.setState({
-            modalVisible: false,
-        });
-    }
-
-    render() {
-        return (
-            <React.Fragment>
-                <View style={styles.flex}>
-                    <View style={styles.container}>
-                        <CheckoutReciept
-                            navigationObj={this.props.navigation}
-                            modalVisible={this.state.modalVisible}
-                            hideModal={this.hideModal}
-                        />
-                        <View style={styles.body}>
-                            <View style={styles.header}>
-                                <Image
-                                    source={require('../../assets/icons/creditcard.png')}
-                                    style={{
-                                        height: verticalScale(15),
-                                        width: verticalScale(19),
-                                    }}
-                                />
-                                <Text style={styles.header_text}>Payment</Text>
-                            </View>
-                            <View style={styles.main}>
-                                <View style={styles.mainTop}>
-                                    <View style={styles.mainTopHeadline}>
-                                        <Text style={styles.headlineText}>Choose one of your saved card(s)</Text>
-                                    </View>
-                                    <View style={styles.cardContainer}>
-                                        <SwiperFlatList
-                                            paginationDefaultColor={colors.grayLinesColor}
-                                            paginationActiveColor="#000"
-                                            paginationStyleItem={styles.paginationItem}
-                                            autoplayLoop
-                                            showPagination
-                                        >
-                                            {
-                                                DATA.map((item, index) => (
-                                                    <TouchableOpacity
-                                                        key={index}
-                                                        activeOpacity={1}
-                                                        style={styles.card}
-                                                        onPress={() => this[`child_${index}`].toggleActive()}
-                                                    >
-                                                        <ViewCard
-                                                            onRef={ref => (this[`child_${index}`] = ref)}
-                                                        />
-                                                    </TouchableOpacity>
-                                                ))
-                                            }
-                                        </SwiperFlatList>
-                                    </View>
-                                    <View style={styles.manualBtnContainer}>
-                                        <Text style={styles.manBtnContText}>Or</Text>
-                                        <BlueAlternateBtn
-                                            containerStyles={{ marginTop: verticalScale(5) }}
-                                            text="Enter Credit Card Manually"
-                                        />
-                                    </View>
-
-
+    return (
+        <SafeAreaView style={styles.flex}>
+            <View style={[styles.flex, styles.mainContainer]}>
+                <BackHeader
+                    title="Payment"
+                    backPressed={() => props.navigation.goBack()} />
+                <View style={styles.container}>
+                    <CheckoutReciept
+                        navigationObj={props.navigation}
+                        modalVisible={modalVisible}
+                        hideModal={hideModal}
+                    />
+                    <View style={styles.body}>
+                        <View style={styles.main}>
+                            <View style={styles.mainTop}>
+                                <View style={styles.mainTopHeadline}>
+                                    <Text style={styles.headlineText}>Choose one of your saved card(s)</Text>
                                 </View>
-                                <View style={styles.mainBot}>
-                                    <View style={styles.subtotalContainer}>
-                                        <View style={styles.row}>
-                                            <Text style={styles.text}>Card Number</Text>
-                                            <Text style={styles.text}>
-                                                {'\u002A'}
-                                                {'\u002A'}
-                                                {'\u002A'}
-                                                {'\u002A'}
-                                                {' '}
-                                                {'\u002A'}
-                                                {'\u002A'}
-                                                {'\u002A'}
-                                                {'\u002A'}
-                                                {' '}
-                                                {'\u002A'}
-                                                {'\u002A'}
-                                                {'\u002A'}
-                                                {'\u002A'}
-                                                {' '}
+                                <View style={styles.cardContainer}>
+                                    <SwiperFlatList
+                                        paginationDefaultColor={colors.grayLinesColor}
+                                        paginationActiveColor="#000"
+                                        paginationStyleItem={styles.paginationItem}
+                                        autoplayLoop
+                                        showPagination
+                                    >
+                                        {
+                                            DATA.map((item, index) => (
+                                                <TouchableOpacity
+                                                    key={index}
+                                                    style={styles.card}
+                                                    onPress={() => console.log("Card")}
+                                                >
+                                                    <ViewCard
+                                                    // onRef={ref => (this[`child_${index}`] = ref)}
+                                                    />
+                                                </TouchableOpacity>
+                                            ))
+                                        }
+                                    </SwiperFlatList>
+                                </View>
+                                <View style={styles.manualBtnContainer}>
+                                    <Text style={styles.manBtnContText}>Or</Text>
+                                    <BlueAlternateBtn
+                                        containerStyles={{ marginTop: verticalScale(5) }}
+                                        text="Enter Credit Card Manually"
+                                    />
+                                </View>
+
+
+                            </View>
+                            <View style={styles.mainBot}>
+                                <View style={styles.subtotalContainer}>
+                                    <View style={styles.row}>
+                                        <Text style={styles.text}>Card Number</Text>
+                                        <Text style={styles.text}>
+                                            {'\u002A'}
+                                            {'\u002A'}
+                                            {'\u002A'}
+                                            {'\u002A'}
+                                            {' '}
+                                            {'\u002A'}
+                                            {'\u002A'}
+                                            {'\u002A'}
+                                            {'\u002A'}
+                                            {' '}
+                                            {'\u002A'}
+                                            {'\u002A'}
+                                            {'\u002A'}
+                                            {'\u002A'}
+                                            {' '}
                                                 4567
                                     </Text>
-                                        </View>
-                                        <View style={styles.row}>
-                                            <Text style={styles.text}>CVV</Text>
-                                            <View style={styles.cvvContainer}>
-                                                <TextInput
-                                                    editable={false}
-                                                    maxLength={3}
-                                                    keyboardType="numeric"
-                                                    style={styles.cvvInput}
-                                                    placeholder="CVV"
-                                                />
-                                            </View>
-                                        </View>
                                     </View>
-                                    <View style={styles.totalContainer}>
-                                        <View style={styles.row}>
-                                            <Text style={styles.textBold}>Total</Text>
-                                            <Text style={styles.textBlue}>192 PKR</Text>
+                                    <View style={styles.row}>
+                                        <Text style={styles.text}>CVV</Text>
+                                        <View style={styles.cvvContainer}>
+                                            <TextInput
+                                                editable={false}
+                                                maxLength={3}
+                                                keyboardType="numeric"
+                                                style={styles.cvvInput}
+                                                placeholder="CVV"
+                                            />
                                         </View>
                                     </View>
-                                    <View style={styles.submitContainer}>
-                                        <BlueBtn
-                                            onPress={() => this.showModal()}
-                                            text="Pay"
-                                        />
+                                </View>
+                                <View style={styles.totalContainer}>
+                                    <View style={styles.row}>
+                                        <Text style={styles.textBold}>Total</Text>
+                                        <Text style={styles.textBlue}>192 PKR</Text>
                                     </View>
-
+                                </View>
+                                <View style={styles.submitContainer}>
+                                    <BlueBtn
+                                        onPress={() => showModal()}
+                                        text="Pay"
+                                    />
                                 </View>
                             </View>
                         </View>
                     </View>
                 </View>
-                <BottomTab
-                    navigationObj={this.props.navigation}
-                />
-            </React.Fragment>
-        );
-    }
+            </View>
+            <BottomTab
+                navigationObj={props.navigation}
+            />
+        </SafeAreaView>
+    );
+}
 
-    renderItem(item, index) {
-        return (
-            <View key={index} style={styles.listItem}>
-                <View style={styles.simpleRow}>
-                    <Text style={styles.itemBoldText}>
-                        {item.amount}
+function renderItem(item, index) {
+    return (
+        <View key={index} style={styles.listItem}>
+            <View style={styles.simpleRow}>
+                <Text style={styles.itemBoldText}>
+                    {item.amount}
                         x
                         {' '}
-                    </Text>
-                    <Text style={styles.itemBoldText}>{item.name}</Text>
-                </View>
-                <Text style={styles.itemBlueText}>
-                    {item.price}
-                    {' '}
+                </Text>
+                <Text style={styles.itemBoldText}>{item.name}</Text>
+            </View>
+            <Text style={styles.itemBlueText}>
+                {item.price}
+                {' '}
                     PKR
               </Text>
-            </View>
+        </View>
 
-        );
-    }
+    );
 }
 
 export default CheckoutPayment;

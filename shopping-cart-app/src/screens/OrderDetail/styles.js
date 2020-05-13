@@ -1,77 +1,20 @@
-import { Dimensions } from 'react-native';
+import { Dimensions, Platform, StatusBar } from 'react-native';
 import { verticalScale,scale } from '../../utils/scaling';
 import { colors } from '../../utils/colors';
 import { fontStyles } from '../../utils/fontStyles';
-import { StatusBar } from 'react-native'
 const { height, width } = Dimensions.get('window');
 
 export default {
     flex: {
         flex: 1,
     },
+    mainContainer: {
+        marginTop: Platform.OS === 'ios' ? 0 : StatusBar.currentHeight
+    },
     line: {
         width: '100%',
         height: verticalScale(1),
         backgroundColor: '#edeaea'
-    },
-    headerContainer: {
-        width: '100%',
-        height: '8%',
-        flexDirection: 'row',
-        alignItems: 'flex-end'
-    },
-    backImg: {
-        marginBottom: '3%',
-        marginLeft: '5%',
-    },
-    headerContainerText: {
-        marginBottom: '1%',
-        marginLeft: '5%',
-        fontFamily: fontStyles.PoppinsRegular,
-        fontSize: verticalScale(18),
-    },
-    profileContainer: {
-        height: height * 0.1,
-        width: '100%',
-        flexDirection: 'row',
-        justifyContent: 'space-between',
-        alignItems: 'center',
-    },
-    profileContentContainer: {
-        marginLeft: '5%',
-        width: '30%',
-        height: '80%',
-        flexDirection: 'row',
-        alignItems: 'center',
-        justifyContent: 'space-around',
-    },
-    imgFixed: {
-        width: verticalScale(30),
-        height: verticalScale(30),
-    },
-    profileTitlStyle: {
-        fontFamily: fontStyles.PoppinsRegular,
-        color: '#4A4A4A',
-        fontSize: verticalScale(12),
-    },
-    profileSubTitleStyle: {
-        fontFamily: fontStyles.PoppinsRegular,
-        fontSize: verticalScale(14),
-    },
-    dotsContainer: {
-        width: '30%',
-        height: '80%',
-        marginRight: '5%',
-        flexDirection: 'row',
-        justifyContent: 'flex-end',
-        alignItems: 'center',
-    },
-    dot: {
-        width: verticalScale(4),
-        height: verticalScale(4),
-        marginLeft: verticalScale(1),
-        borderRadius: verticalScale(2),
-        backgroundColor: colors.brownColor,
     },
     cardContainer: {
         backgroundColor: colors.backgroudGray,
@@ -138,13 +81,14 @@ export default {
     },
     deliverContainer: {
         width: '100%',
-        height: height * 0.35,
+        height: height * 0.29,
         backgroundColor: colors.backgroudGray,
-        justifyContent: 'center'
+        justifyContent: 'center',
     },
     deliverSubContainer: {
-        marginLeft: '5%',
-        width: '50%',
+        paddingLeft: '5%',
+        paddingRight: '5%',
+        width: '100%',
         height: '90%',
     },
     titleStyle: {
