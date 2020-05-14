@@ -2,6 +2,7 @@ import React from 'react';
 import {
   Text, TouchableOpacity, View, Image, ImageBackground,
 } from 'react-native';
+import { Ionicons } from '@expo/vector-icons'
 import styles from './styles';
 
 function profileContainer(props) {
@@ -68,21 +69,23 @@ function profileContainer(props) {
               <Text style={styles.placeStyle}>Pakistan</Text>
             </View>
             <View style={styles.addressContainer}>
-              <View style={styles.addressIcon}>
-                <Image
-                  source={require('../../../assets/images/ProfileDashboard/address.png')}
-                  resizeMode="contain"
-                  style={styles.imgResponsive}
-                />
-
-              </View>
               <TouchableOpacity
                 activeOpacity={0}
                 onPress={() => props.navigationObj.navigate('AddressList')}
-                style={styles.addressText}
-              >
-                <Text style={styles.placeStyle}>Addresses</Text>
+                style={{alignItems: 'center' }}>
+                <Image
+                  source={require('../../../assets/images/ProfileDashboard/address.png')}
+                  resizeMode="contain"
+                  style={styles.iconsStyle}
+                />
+                <Text style={styles.addressText}>Addresses</Text>
               </TouchableOpacity>
+              <View style={{alignItems: 'center' }}>
+                <Ionicons
+                  name="ios-heart-empty"
+                  size={24} />
+                <Text style={styles.addressText}>Favourites</Text>
+              </View>
             </View>
           </ImageBackground>
         </View>

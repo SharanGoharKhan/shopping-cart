@@ -1,6 +1,5 @@
-import { verticalScale } from '../../../utils/scaling';
+import { verticalScale, scale } from '../../../utils/scaling';
 import { fontStyles } from '../../../utils/fontStyles';
-import { StatusBar } from 'react-native';
 
 export default {
     flex: {
@@ -108,13 +107,23 @@ export default {
         fontSize: verticalScale(12),
     },
     addressContainer: {
-        flex: 1,
-        alignItems: 'center',
-        marginBottom: '3%',
-        justifyContent: 'flex-end',
+        alignSelf:'center',
+        width: '90%',
+        flexDirection: 'row',
+        justifyContent:'space-between',
+        marginTop: '3%'
+    },
+    iconsStyle: {
+        width: scale(20),
+        height: scale(20),
+        marginBottom: scale(4)
     },
     addressIcon: {
         width: '15%',
         height: '50%',
+    },
+    addressText: {
+        fontFamily: fontStyles.PoppinsRegular,
+        fontSize: verticalScale(12),
     },
 };
