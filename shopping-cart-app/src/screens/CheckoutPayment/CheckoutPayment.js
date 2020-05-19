@@ -1,13 +1,11 @@
 import React, { useState } from 'react';
 import {
-    View, Text, Image, TextInput, StatusBar, TouchableOpacity, Platform
+    View, Text, TextInput,
 } from 'react-native';
 import SwiperFlatList from 'react-native-swiper-flatlist';
 import BlueBtn from '../../ui/Buttons/BlueBtn';
-import BlueAlternateBtn from '../../ui/Buttons/BlueAlternateBtn';
 import ViewCard from './Card/ViewCard';
 import styles from './styles';
-import { verticalScale } from '../../utils/scaling';
 import { colors } from '../../utils/colors';
 import BottomTab from '../../components/BottomTab/BottomTab';
 import CheckoutReciept from './CheckoutReciept/CheckoutReciept';
@@ -60,27 +58,18 @@ function CheckoutPayment(props) {
                                     >
                                         {
                                             DATA.map((item, index) => (
-                                                <TouchableOpacity
+                                                <View
                                                     key={index}
                                                     style={styles.card}
-                                                    onPress={() => console.log("Card")}
                                                 >
                                                     <ViewCard
-                                                    // onRef={ref => (this[`child_${index}`] = ref)}
+                                                        data={item}
                                                     />
-                                                </TouchableOpacity>
+                                                </View>
                                             ))
                                         }
                                     </SwiperFlatList>
                                 </View>
-                                <View style={styles.manualBtnContainer}>
-                                    <Text style={styles.manBtnContText}>Or</Text>
-                                    <BlueAlternateBtn
-                                        containerStyles={{ marginTop: verticalScale(5) }}
-                                        text="Enter Credit Card Manually"
-                                    />
-                                </View>
-
 
                             </View>
                             <View style={styles.mainBot}>
@@ -143,25 +132,5 @@ function CheckoutPayment(props) {
     );
 }
 
-function renderItem(item, index) {
-    return (
-        <View key={index} style={styles.listItem}>
-            <View style={styles.simpleRow}>
-                <Text style={styles.itemBoldText}>
-                    {item.amount}
-                        x
-                        {' '}
-                </Text>
-                <Text style={styles.itemBoldText}>{item.name}</Text>
-            </View>
-            <Text style={styles.itemBlueText}>
-                {item.price}
-                {' '}
-                    PKR
-              </Text>
-        </View>
-
-    );
-}
 
 export default CheckoutPayment;

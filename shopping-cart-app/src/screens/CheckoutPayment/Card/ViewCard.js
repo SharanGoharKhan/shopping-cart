@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { View, Text, Image } from 'react-native';
+import { View, Text, Image, TouchableOpacity } from 'react-native';
 import styles from './styles';
 import { colors } from '../../../utils/colors';
 
@@ -7,19 +7,11 @@ import { colors } from '../../../utils/colors';
 function ViewCard(props) {
     const [isActive, setIsActive] = useState(false)
     const outlineColor = isActive ? colors.textBlueColor : colors.secondaryWhiteColor;
-    // componentDidMount() {
-    //     props.onRef(this);
-    // }
-
-    // componentWillUnmount() {
-    //     props.onRef(undefined);
-    // }
-    function toggleActive() {
-        setIsActive(!isActive)
-    }
 
     return (
-        <View style={[styles.outline, { borderColor: outlineColor }]}>
+        <TouchableOpacity
+            onPress={() => setIsActive(!isActive)}
+            style={[styles.outline, { borderColor: outlineColor }]}>
             <View style={styles.container}>
                 <View style={styles.topContainer}>
                     <Image
@@ -66,11 +58,11 @@ function ViewCard(props) {
                             <Text style={styles.expiryText}>THRU</Text>
                         </View>
                         <View style={styles.expiryMonthYear}>
-                            <Text style={styles.expiryNumberText}>11/12</Text>
+                            <Text style={styles.expiryNumberText}>{props.data.expiry.month}/{props.data.expiry.year}</Text>
                         </View>
                     </View>
                     <View style={styles.row}>
-                        <Text style={styles.cardOwnerName}>JOHN M.Smith</Text>
+                        <Text style={styles.cardOwnerName}>{props.data.cardHolderName}</Text>
                         <Image
                             style={styles.visaImage}
                             source={require('../../../assets/icons/visa.png')}
@@ -78,7 +70,7 @@ function ViewCard(props) {
                     </View>
                 </View>
             </View>
-        </View>
+        </TouchableOpacity>
     );
 }
 
