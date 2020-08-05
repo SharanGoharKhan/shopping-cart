@@ -18,6 +18,7 @@
     "expo-font": "~8.2.1",
     "react": "16.11.0",
     "react-native": "https://github.com/expo/react-native/archive/sdk-38.0.2.tar.gz",
+    "react-native-flash-message": "^0.1.15",
     "react-native-gesture-handler": "~1.6.0",
     "react-native-material-dropdown-v2": "^0.11.1",
     "react-native-modal": "^11.5.6",
@@ -26,7 +27,10 @@
     "react-native-safe-area-context": "^3.0.7",
     "react-native-screens": "~2.9.0",
     "react-native-swiper-flatlist": "^2.0.4",
-    "react-native-timeline-flatlist": "^0.7.3"
+    "react-native-timeline-flatlist": "^0.7.3",
+    "react-native-maps": "0.27.1",
+    "expo-location": "~8.2.1",
+    "expo-permissions": "~9.0.1"
   },
   "devDependencies": {
     "babel-eslint": "^10.1.0",

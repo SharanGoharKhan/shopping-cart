@@ -1,10 +1,8 @@
-import { Dimensions, Platform, StatusBar } from 'react-native';
-import { verticalScale } from '../../utils/scaling';
-import { colors } from '../../utils/colors';
-import { fontStyles } from '../../utils/fontStyles';
+import { Dimensions, Platform, StatusBar, StyleSheet } from 'react-native';
+import { colors, scale, verticalScale, textStyles, alignment } from '../../utils';
 const { height, width } = Dimensions.get('window');
 
-export default {
+const styles = StyleSheet.create({
     flex: {
         flex: 1,
     },
@@ -13,14 +11,13 @@ export default {
     },
     formMainContainer: {
         flex: 1,
-        backgroundColor: colors.backgroudGray,
+        backgroundColor: colors.themeBackground,
         alignItems: 'center',
     },
     formContainer: {
         width: '90%',
-        height: height * 0.8,
-        backgroundColor: colors.whiteColor,
-        borderRadius: verticalScale(8),
+        backgroundColor: colors.container,
+        borderRadius: scale(8),
         alignItems: 'center',
     },
     imgResponsive: {
@@ -28,20 +25,19 @@ export default {
         height: '60%',
     },
     formContentContainer: {
-        marginTop: '3%',
+        ...alignment.MTmedium,
         width: '95%',
-        height: '80%',
     },
     twoItemsContainer: {
         width: '100%',
-        height: '20%',
+        height: scale(70),
         flexDirection: 'row',
         alignItems: 'center',
         justifyContent: 'space-around',
     },
     halfContainer: {
         width: '45%',
-        height: '80%',
+        height: '90%',
     },
     labelContainer: {
         width: '100%',
@@ -50,25 +46,19 @@ export default {
     inputContainer: {
         width: '100%',
         height: '60%',
-        borderRadius: verticalScale(3),
-        padding: verticalScale(5),
-        justifyContent:'center',
-        backgroundColor: colors.backgroudGray,
-    },
-    label: {
-        fontFamily: fontStyles.PoppinsRegular,
-        color: colors.darkGrayText,
-        fontSize: verticalScale(12),
+        borderRadius: scale(3),
+        justifyContent: 'center',
+        backgroundColor: colors.themeBackground,
     },
     oneItemContainer: {
         width: '100%',
-        height: '20%',
+        height: scale(80),
         flexDirection: 'row',
         justifyContent: 'center',
     },
     fullContainer: {
         width: '95%',
-        height: '80%',
+        height: '90%',
     },
     addContainer: {
         width,
@@ -79,17 +69,13 @@ export default {
     addBtn: {
         width: '80%',
         height: '45%',
-        backgroundColor: colors.brownColor,
+        backgroundColor: colors.buttonBackground,
         justifyContent: 'center',
         alignItems: 'center',
-        borderRadius: verticalScale(4),
-    },
-    addStyle: {
-        fontFamily: fontStyles.PoppinsRegular,
-        color: colors.whiteColor,
+        borderRadius: scale(4),
     },
     nameAddressContainer: {
-        marginTop: '3%',
+        ...alignment.MTmedium,
         width: '85%',
         height: height * 0.1,
     },
@@ -101,18 +87,25 @@ export default {
         width: '60%',
         height: '70%',
     },
-    nameAddressLabelStyle: {
-        fontFamily: fontStyles.PoppinsRegular,
-        fontSize: verticalScale(10),
-    },
     addressInputStyle: {
-        fontFamily: fontStyles.PoppinsRegular,
-        fontSize: verticalScale(20),
-        borderBottomWidth: verticalScale(1),
-        borderBottomColor: '#9B9B9B',
+        ...textStyles.Regular,
+        ...textStyles.H2,
+        color: colors.fontBrown
+    },
+    titleBorder: {
+        borderBottomWidth: scale(1),
+        borderBottomColor: colors.horizontalLine,
     },
     inputText: {
         textAlign: "left",
-        padding:5
+        color: colors.fontMainColor,
+        ...alignment.PxSmall,
+        ...alignment.PLsmall
     },
-};
+    error: {
+        borderWidth: scale(1),
+        borderColor: colors.errorColor,
+        borderRadius: scale(3)
+    }
+})
+export default styles

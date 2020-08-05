@@ -53,16 +53,15 @@ function Card(props) {
         );
     }
 
-
     return (
         <View style={styles.container}>
             <View style={styles.headerRow}>
                 <TextDefault textColor={colors.fontBrown} H4>
-                    {' '}{props.title}
+                    {' '}{props.item.title}
                 </TextDefault>
                 <TouchableOpacity
                     activeOpacity={0}
-                    onPress={() => navigation.navigate('EditingAddress')}
+                    onPress={() => navigation.navigate('EditAddress', { ...props.item })}
                 >
                     <Image
                         style={{ height: verticalScale(16), width: verticalScale(16) }}
@@ -72,16 +71,16 @@ function Card(props) {
             </View>
             <View style={styles.address}>
                 <TextDefault textColor={colors.fontMainColor}>
-                    {props.country}
+                    {props.item.country}
                 </TextDefault>
                 <TextDefault textColor={colors.fontMainColor}>
-                    {props.city}
+                    {props.item.city}
                 </TextDefault>
                 <TextDefault textColor={colors.fontMainColor}>
-                    {props.address}
+                    {props.item.address}
                 </TextDefault>
                 <TextDefault textColor={colors.fontMainColor}>
-                    {props.poBox}
+                    {props.item.poBox}
                 </TextDefault>
             </View>
             <View style={styles.btnContainer}>

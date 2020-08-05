@@ -52,7 +52,7 @@ const DATA = [
 ];
 const searchedTerm = 'Leather'
 
-function SearchResult(props) {
+function SearchResults(props) {
     return (
         <SafeAreaView style={styles.flex}>
             <View style={[styles.flex, styles.mainContainer]}>
@@ -116,4 +116,4 @@ function SearchResult(props) {
     )
 }
 
-export default SearchResult;
+export default SearchResults;

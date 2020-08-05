@@ -4,6 +4,7 @@ export const colors = {
     themeBackground: '#F7F7F7',
     fontMainColor: '#212121',
     fontSecondColor: '#4A4A4A',
+    fontThirdColor: '#949393',
     fontBlue: '#6178DE',
     fontBrown: '#D0AD8A',
     fontPlaceholder: '#cccccc',
@@ -14,7 +15,11 @@ export const colors = {
     buttonBackground: '#D0AD8A',
     buttonText: '#FFF',
     selected: '#33cc33',
+    container: '#FFF',
+    messageBackground: 'rgba(52, 52, 52, .9)',
+    errorColor: '#FA7751',
 
+    //
     blackText: '#4A4A4A',
     whiteColor: '#fff',
     brownColor: '#D0AD8A',

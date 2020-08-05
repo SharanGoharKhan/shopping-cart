@@ -1,49 +1,50 @@
-import { colors, scale, verticalScale } from '../../../utils';
+import { colors, scale, alignment } from '../../../utils';
 import { StyleSheet } from 'react-native';
 
 const styles = StyleSheet.create({
     container: {
-        height: verticalScale(160),
         width: '100%',
-        backgroundColor: colors.whiteColor,
-        marginBottom: verticalScale(10),
-        borderRadius: verticalScale(5),
+        backgroundColor: colors.container,
+        borderRadius: scale(5),
         overflow: 'hidden',
         alignItems: 'center',
+        ...alignment.MBmedium,
+        ...alignment.PTmedium,
+        ...alignment.PBmedium
     },
     headerRow: {
         flexDirection: 'row',
-        height: '25%',
         width: '90%',
         justifyContent: 'space-between',
         alignItems: 'center',
     },
     address: {
-        height: '45%',
+        ...alignment.MTmedium,
+        ...alignment.MBsmall,
+        ...alignment.PLxSmall,
         width: '90%',
         justifyContent: 'center',
     },
     btnContainer: {
-        height: '30%',
         width: '90%',
         justifyContent: 'flex-start',
     },
     selectedBtn: {
-        height: verticalScale(40),
+        height: scale(40),
         width: '100%',
         backgroundColor: colors.themeBackground,
         flexDirection: 'row',
         alignItems: 'center',
         justifyContent: 'center',
-        borderRadius: verticalScale(3),
+        borderRadius: scale(3),
     },
     unselectedButton: {
-        height: verticalScale(40),
+        height: scale(40),
         width: '100%',
         backgroundColor: colors.brownColor,
         justifyContent: 'center',
         alignItems: 'center',
-        borderRadius: verticalScale(3),
+        borderRadius: scale(3),
     },
     tickImage: {
         position: 'absolute',

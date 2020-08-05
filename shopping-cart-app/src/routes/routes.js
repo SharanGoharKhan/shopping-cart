@@ -3,28 +3,11 @@ import { createStackNavigator } from '@react-navigation/stack'
 import { NavigationContainer } from '@react-navigation/native'
 import { createDrawerNavigator } from '@react-navigation/drawer'
 import { SafeAreaProvider } from 'react-native-safe-area-context'
-import AddressList from '../screens/AddressList/AddressList';
-import Checkout from '../screens/Checkout/Checkout';
-import CheckoutPayment from '../screens/CheckoutPayment/CheckoutPayment';
-import EditingAddress from '../screens/EditingAddress/EditingAddress';
-import EditingProfile from '../screens/EditingProfile/EditingProfile';
-import MainLanding from '../screens/MainLanding/MainLanding';
-import OrderDetail from '../screens/OrderDetail/OrderDetail';
-import PreviousOrders from '../screens/PreviousOrders/PreviousOrders';
-import ProductDescription from '../screens/ProductDescription/ProductDescription';
-import ProductListing from '../screens/ProductsListing/ProductListing';
-import ProfileDashboard from '../screens/ProfileDashboard/ProfileDashboard';
-import Search from '../screens/Search/Search';
-import SearchResult from '../screens/SearchResults/SearchResults';
-import ShoppingCart from '../screens/ShoppingCart/ShoppingCart';
-import SignIn from '../screens/SignIn/SignIn';
-import SignUp from '../screens/SignUp/SignUp';
-import TrackOrder from '../screens/TrackOrder/TrackOrder';
+import * as Screen from '../screens';
 import MainMenu from '../components/MainMenu/MainMenu';
 import AuthLoading from '../utils/authLoading';
 
 const NavigationStack = createStackNavigator();
-const AuthenticationStack = createStackNavigator();
 const MainStack = createStackNavigator();
 const SideDrawer = createDrawerNavigator();
 
@@ -38,24 +21,26 @@ function Drawer() {
 function noDrawer() {
     return (
         <NavigationStack.Navigator headerMode='none'>
-            <NavigationStack.Screen name='MainLanding' component={MainLanding} />
-            <NavigationStack.Screen name='AddressList' component={AddressList} />
-            <NavigationStack.Screen name='Checkout' component={Checkout} />
-            <NavigationStack.Screen name='CheckoutPayment' component={CheckoutPayment} />
-            <NavigationStack.Screen name='EditingAddress' component={EditingAddress} />
-            <NavigationStack.Screen name='EditingProfile' component={EditingProfile} />
-            <NavigationStack.Screen name='OrderDetail' component={OrderDetail} />
-            <NavigationStack.Screen name='PreviousOrders' component={PreviousOrders} />
-            <NavigationStack.Screen name='ProductDescription' component={ProductDescription} />
-            <NavigationStack.Screen name='ProductListing' component={ProductListing} />
-            <NavigationStack.Screen name='ProfileDashboard' component={ProfileDashboard} />
-            <NavigationStack.Screen name='SearchResult' component={SearchResult} />
-            <NavigationStack.Screen name='ShoppingCart' component={ShoppingCart} />
-            <NavigationStack.Screen name='Search' component={Search} />
-            <NavigationStack.Screen name='TrackOrder' component={TrackOrder} />
+            <NavigationStack.Screen name='MainLanding' component={Screen.MainLanding} />
+            <NavigationStack.Screen name='AddressList' component={Screen.AddressList} />
+            <NavigationStack.Screen name='Checkout' component={Screen.Checkout} />
+            <NavigationStack.Screen name='CheckoutPayment' component={Screen.CheckoutPayment} />
+            <NavigationStack.Screen name='EditAddress' component={Screen.EditAddress} />
+            <NavigationStack.Screen name='NewAddress' component={Screen.NewAddress} />
+            <NavigationStack.Screen name='FullMap' component={Screen.FullMap} />
+            <NavigationStack.Screen name='EditingProfile' component={Screen.EditingProfile} />
+            <NavigationStack.Screen name='OrderDetail' component={Screen.OrderDetail} />
+            <NavigationStack.Screen name='PreviousOrders' component={Screen.PreviousOrders} />
+            <NavigationStack.Screen name='ProductDescription' component={Screen.ProductDescription} />
+            <NavigationStack.Screen name='ProductListing' component={Screen.ProductListing} />
+            <NavigationStack.Screen name='ProfileDashboard' component={Screen.ProfileDashboard} />
+            <NavigationStack.Screen name='SearchResult' component={Screen.SearchResults} />
+            <NavigationStack.Screen name='ShoppingCart' component={Screen.ShoppingCart} />
+            <NavigationStack.Screen name='Search' component={Screen.Search} />
+            <NavigationStack.Screen name='TrackOrder' component={Screen.TrackOrder} />
 
-            <NavigationStack.Screen name='SignIn' component={SignIn} />
-            <NavigationStack.Screen name='SignUp' component={SignUp} />
+            <NavigationStack.Screen name='SignIn' component={Screen.SignIn} />
+            <NavigationStack.Screen name='SignUp' component={Screen.SignUp} />
         </NavigationStack.Navigator>
     )
 
