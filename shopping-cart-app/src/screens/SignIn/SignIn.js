@@ -64,7 +64,7 @@ function SignIn(props) {
                                             text="Sign In"
                                         />
                                         <TouchableOpacity
-                                            activeOpacity={0}
+                                            activeOpacity={0.7}
                                             onPress={() => showModal()}>
                                             <Text style={styles.passwordText}>
                                                 Forgot my password
@@ -74,7 +74,7 @@ function SignIn(props) {
                                     <View style={styles.bcSocialBtns}>
                                         <View style={[styles.socialBtnsView, styles.googleBtn]}>
                                             <TouchableOpacity
-                                                activeOpacity={0}
+                                                activeOpacity={0.7}
                                                 onPress={() => props.navigation.navigate('noDrawer', { screen: 'MainLanding' })}
                                                 style={styles.socialBtn}
                                             >
@@ -90,7 +90,7 @@ function SignIn(props) {
                                         </View>
                                         <View style={[styles.socialBtnsView, styles.facebookBtn]}>
                                             <TouchableOpacity
-                                                activeOpacity={0}
+                                                activeOpacity={0.7}
                                                 onPress={() => props.navigation.navigate('noDrawer', { screen: 'MainLanding' })}
                                                 style={styles.socialBtn}
                                             >

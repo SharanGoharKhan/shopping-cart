@@ -21,7 +21,7 @@ const MainBtn = props => (
     <TouchableOpacity
       onPress={props.onPress}
       style={styles.main_brown_btn}
-      activeOpacity={0}
+      activeOpacity={0.7}
     >
       <Text style={styles.btn_text}>
         {' '}
