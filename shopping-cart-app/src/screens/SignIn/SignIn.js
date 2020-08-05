@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { View, Text, Image, TouchableOpacity, ImageBackground, KeyboardAvoidingView, ScrollView, Platform, StatusBar } from 'react-native';
 import styles from './styles';
-import { verticalScale } from '../../utils/scaling';
+import { verticalScale } from '../../utils';
 import TextField from '../../ui/Textfield/Textfield';
 import ForgotPassword from './ForgotPassword/ForgotPassword';
 import MainBtn from '../../ui/Buttons/MainBtn';

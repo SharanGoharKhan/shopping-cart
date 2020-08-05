@@ -1,7 +1,7 @@
 import React from 'react'
 import { Text, StyleSheet } from 'react-native'
 import color from './styles'
-import { textStyles } from '../../../utils/textStyles'
+import { textStyles } from '../../../utils'
 import PropTypes from 'prop-types'
 
 function TextDefault(props) {

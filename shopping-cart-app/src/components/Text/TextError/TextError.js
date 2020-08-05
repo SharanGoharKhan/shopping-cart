@@ -1,7 +1,7 @@
 import React from 'react'
 import { View } from 'react-native'
 import TextDefault from '../TextDefault/TextDefault'
-import { colors } from '../../../utils/colors'
+import { colors } from '../../../utils'
 import PropTypes from 'prop-types'
 
 function TextError(props) {
