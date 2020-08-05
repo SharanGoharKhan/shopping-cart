@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import AppContainer from './src/utils/routes'
+import AppContainer from './src/routes/routes'
 import * as Font from 'expo-font'
 import { View, ActivityIndicator, StatusBar, StyleSheet, Platform } from 'react-native'
 import { colors } from './src/utils/colors'
@@ -22,9 +22,9 @@ export default function App() {
 
   if (fontLoaded) {
     return (
-        <View style={styles.container}>
-          <AppContainer />
-        </View>
+      <View style={styles.container}>
+        <AppContainer />
+      </View>
     )
   } else return (
     <View style={styles.spinnerContainer}>

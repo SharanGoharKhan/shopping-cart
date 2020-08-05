@@ -4,6 +4,9 @@ import {
 } from 'react-native';
 import { Ionicons } from '@expo/vector-icons'
 import styles from './styles';
+import { scale } from '../../../utils/scaling';
+import { colors } from '../../../utils/colors';
+import { SimpleLineIcons } from '@expo/vector-icons';
 
 function profileContainer(props) {
   return (
@@ -32,11 +35,7 @@ function profileContainer(props) {
                 onPress={() => props.navigationObj.navigate('Auth', { screen: 'SignIn' })}
                 style={styles.signOutContainer}
               >
-                <Image
-                  source={require('../../../assets/images/mainMenu/signout.png')}
-                  resizeMode="contain"
-                  style={styles.imgResponsive}
-                />
+                <SimpleLineIcons name="logout" size={scale(20)} color={colors.pinkColor} />
               </TouchableOpacity>
               <TouchableOpacity
                 activeOpacity={0}
@@ -72,7 +71,7 @@ function profileContainer(props) {
               <TouchableOpacity
                 activeOpacity={0}
                 onPress={() => props.navigationObj.navigate('AddressList')}
-                style={{alignItems: 'center' }}>
+                style={{ alignItems: 'center' }}>
                 <Image
                   source={require('../../../assets/images/ProfileDashboard/address.png')}
                   resizeMode="contain"
@@ -80,7 +79,7 @@ function profileContainer(props) {
                 />
                 <Text style={styles.addressText}>Addresses</Text>
               </TouchableOpacity>
-              <View style={{alignItems: 'center' }}>
+              <View style={{ alignItems: 'center' }}>
                 <Ionicons
                   name="ios-heart-empty"
                   size={24} />
