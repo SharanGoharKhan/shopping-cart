@@ -5,10 +5,9 @@ import {
 import SwiperFlatList from 'react-native-swiper-flatlist';
 import { DrawerActions } from '@react-navigation/native';
 import styles from './styles';
-import { verticalScale } from '../../utils/scaling';
 import CategoryCard from '../../ui/CategoryCard/CategoryCard';
 import BottomTab from '../../components/BottomTab/BottomTab';
-import { OFFERS, PRODUCTS, CATEGORIES } from '../../utils/mockData';
+import { OFFERS, PRODUCTS, CATEGORIES, verticalScale } from '../../utils';
 import ProductCard from '../../ui/ProductCard/ProductCard';
 import { SafeAreaView } from 'react-native-safe-area-context';
 

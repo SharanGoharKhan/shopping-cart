@@ -1,16 +1,16 @@
-import { Dimensions, Platform, StatusBar } from 'react-native';
+import { Dimensions, Platform, StatusBar, StyleSheet } from 'react-native';
 import { verticalScale, scale } from '../../utils/scaling';
 import { colors } from '../../utils/colors';
 import { fontStyles } from '../../utils/fontStyles';
 const { height, width } = Dimensions.get('window');
 
-export default {
+const styles = StyleSheet.create({
     flex: {
         flex: 1,
     },
     scrollViewStyle: {
         marginTop: verticalScale(20),
-        backgroundColor: colors.backgroudGray,
+        backgroundColor: colors.themeBackground,
     },
     grayBackground: {
         backgroundColor: colors.backgroudGray,
@@ -69,4 +69,5 @@ export default {
         marginTop: scale(10),
         marginBottom: scale(20)
     }
-};
+})
+export default styles
