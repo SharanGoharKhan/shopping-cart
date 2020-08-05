@@ -1,8 +1,7 @@
-import { verticalScale } from '../../../utils/scaling';
-import { colors } from '../../../utils/colors';
-import { fontStyles } from '../../../utils/fontStyles';
+import { colors, scale, verticalScale } from '../../../utils';
+import { StyleSheet } from 'react-native';
 
-export default {
+const styles = StyleSheet.create({
     container: {
         height: verticalScale(160),
         width: '100%',
@@ -19,20 +18,10 @@ export default {
         justifyContent: 'space-between',
         alignItems: 'center',
     },
-    titleText: {
-        fontFamily: fontStyles.PoppinsRegular,
-        fontSize: verticalScale(14),
-        color: colors.brownColor,
-    },
     address: {
         height: '45%',
         width: '90%',
         justifyContent: 'center',
-    },
-    addressText: {
-        fontSize: verticalScale(11),
-        fontFamily: fontStyles.PoppinsRegular,
-        lineHeight: verticalScale(15),
     },
     btnContainer: {
         height: '30%',
@@ -42,15 +31,11 @@ export default {
     selectedBtn: {
         height: verticalScale(40),
         width: '100%',
-        backgroundColor: colors.backgroudGray,
+        backgroundColor: colors.themeBackground,
         flexDirection: 'row',
         alignItems: 'center',
         justifyContent: 'center',
         borderRadius: verticalScale(3),
-    },
-    selectedText: {
-        fontFamily: fontStyles.PoppinsRegular,
-        fontSize: verticalScale(13),
     },
     unselectedButton: {
         height: verticalScale(40),
@@ -60,15 +45,9 @@ export default {
         alignItems: 'center',
         borderRadius: verticalScale(3),
     },
-    unselectedText: {
-        color: colors.whiteColor,
-        fontFamily: fontStyles.PoppinsRegular,
-        fontSize: verticalScale(13),
-    },
     tickImage: {
-        height: verticalScale(16),
-        width: verticalScale(16),
         position: 'absolute',
-        left: verticalScale(20),
+        left: scale(20),
     },
-};
+});
+export default styles

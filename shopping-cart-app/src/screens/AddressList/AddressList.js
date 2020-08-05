@@ -46,7 +46,6 @@ function AddressList(props) {
                         <ScrollView style={styles.mainScroll}>
                             {DATA.map((item, index) => (
                                 <Card
-                                    navigationObj={props.navigation}
                                     title={item.title}
                                     country={item.country}
                                     city={item.city}

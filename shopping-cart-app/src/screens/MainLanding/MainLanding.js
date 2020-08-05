@@ -9,6 +9,7 @@ import ProductCard from '../../ui/ProductCard/ProductCard';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { HeaderBackButton } from '@react-navigation/stack'
 import { MaterialIcons } from '@expo/vector-icons'
+import { useNavigation } from '@react-navigation/native';
 
 const caroselImage = [
     require('../../assets/images/MainLanding/banner-1.png'),
@@ -19,45 +20,49 @@ const caroselImage = [
     require('../../assets/images/MainLanding/carosel_img_3.png'),
 ]
 
-function renderCarosel(props) {
-    return (
-        <View style={styles.caroselContainer}>
-            <SwiperFlatList
-                index={0}
-                showPagination
-                autoplay
-                autoplayDelay={3}
-                autoplayLoop={true}
-                paginationActiveColor="#fff"
-                paginationStyle={{ marginBottom: '7%' }}
-                paginationStyleItem={{ height: verticalScale(8), width: verticalScale(8), marginLeft: 0 }}
-            >
-                {Array(caroselImage.length).fill(0).map((value, index) => (
-                    <ImageBackground
-                        key={index}
-                        source={caroselImage[index]}
-                        style={styles.caroselStyle}
-                    />
-                ))}
-            </SwiperFlatList>
-            <View style={styles.menuDrawerContainer}>
-                <HeaderBackButton
-                    labelVisible={false}
-                    backImage={() =>
-                        <MaterialIcons
-                            name="menu"
-                            size={scale(30)}
-                            style={styles.leftIconPadding}
-                            color={colors.fontSecondColor}
-                        />
-                    }
-                    onPress={() => navigation.toggleDrawer()}
-                />
-            </View>
-        </View>
-    )
-}
+
 function MainLanding(props) {
+    const navigation = useNavigation()
+
+    function renderCarosel() {
+        return (
+            <View style={styles.caroselContainer}>
+                <SwiperFlatList
+                    index={0}
+                    showPagination
+                    autoplay
+                    autoplayDelay={3}
+                    autoplayLoop={true}
+                    paginationActiveColor="#fff"
+                    paginationStyle={{ marginBottom: '7%' }}
+                    paginationStyleItem={{ height: verticalScale(8), width: verticalScale(8), marginLeft: 0 }}
+                >
+                    {Array(caroselImage.length).fill(0).map((value, index) => (
+                        <ImageBackground
+                            key={index}
+                            source={caroselImage[index]}
+                            style={styles.caroselStyle}
+                        />
+                    ))}
+                </SwiperFlatList>
+                <View style={styles.menuDrawerContainer}>
+                    <HeaderBackButton
+                        labelVisible={false}
+                        backImage={() =>
+                            <MaterialIcons
+                                name="menu"
+                                size={scale(30)}
+                                style={styles.leftIconPadding}
+                                color={colors.fontSecondColor}
+                            />
+                        }
+                        onPress={() => navigation.toggleDrawer()}
+                    />
+                </View>
+            </View>
+        )
+    }
+
     return (
         <SafeAreaView style={styles.flex}>
             <View style={[styles.grayBackground, styles.flex]}>
@@ -67,14 +72,14 @@ function MainLanding(props) {
                     numColumns={2}
                     ListHeaderComponent={() =>
                         <>
-                            {renderCarosel(props)}
+                            {renderCarosel()}
                             <View style={styles.categoryContainer}>
                                 {CATEGORIES.map((category, index) => {
                                     return (
                                         <CategoryCard
                                             key={index}
                                             cardLabel={category.label}
-                                            navigationObj={props.navigation}
+                                            navigationObj={navigation}
                                         />
                                     )
                                 })}
@@ -95,7 +100,7 @@ function MainLanding(props) {
                                                             key={index}
                                                             style={styles.itemCardContainer}>
                                                             <ProductCard
-                                                                cardPressed={() => props.navigation.navigate('ProductListing')}
+                                                                cardPressed={() => navigation.navigate('ProductListing')}
                                                                 item={item} />
                                                         </View>
                                                     )
@@ -113,12 +118,12 @@ function MainLanding(props) {
                     data={PRODUCTS}
                     renderItem={({ item }) => <ProductCard
                         styles={styles.productCard}
-                        cardPressed={() => props.navigation.navigate('ProductListing')}
+                        cardPressed={() => navigation.navigate('ProductListing')}
                         item={item} />
                     }
                 />
                 <BottomTab
-                    navigationObj={props.navigation}
+                    navigationObj={navigation}
                 />
             </View>
         </SafeAreaView>
