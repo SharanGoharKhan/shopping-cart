@@ -1,5 +1,5 @@
 import React from 'react';
-import { Dropdown as DropdownMaterial } from 'react-native-material-dropdown';
+import { Dropdown as DropdownMaterial } from 'react-native-material-dropdown-v2';
 
 function Dropdown(props) {
     return (
