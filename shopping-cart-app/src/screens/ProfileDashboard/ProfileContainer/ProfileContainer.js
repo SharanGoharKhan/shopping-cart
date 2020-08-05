@@ -32,7 +32,7 @@ function profileContainer(props) {
             <View style={styles.profileCenterContainerTop}>
               <TouchableOpacity
                 activeOpacity={0}
-                onPress={() => props.navigationObj.navigate('Auth', { screen: 'SignIn' })}
+                onPress={() => props.navigationObj.navigate('SignIn')}
                 style={styles.signOutContainer}
               >
                 <SimpleLineIcons name="logout" size={scale(20)} color={colors.pinkColor} />

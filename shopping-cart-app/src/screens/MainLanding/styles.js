@@ -1,12 +1,14 @@
 import { Dimensions, Platform, StatusBar, StyleSheet } from 'react-native';
-import { verticalScale, scale } from '../../utils/scaling';
-import { colors } from '../../utils/colors';
-import { fontStyles } from '../../utils/fontStyles';
+import { alignment, fontStyles, colors, scale, verticalScale } from '../../utils';
 const { height, width } = Dimensions.get('window');
 
 const styles = StyleSheet.create({
     flex: {
         flex: 1,
+    },
+    leftIconPadding: {
+        ...alignment.PLsmall,
+        ...alignment.PRlarge
     },
     scrollViewStyle: {
         marginTop: verticalScale(20),
@@ -26,11 +28,9 @@ const styles = StyleSheet.create({
         height: height * 0.3,
     },
     menuDrawerContainer: {
-        width: verticalScale(20),
-        height: verticalScale(18),
         position: 'absolute',
-        top: '15%',
-        left: '6%',
+        top: '10%',
+        left: '2%',
     },
     imgResponsive: {
         flex: 1,

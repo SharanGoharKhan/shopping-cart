@@ -16,7 +16,7 @@ function AuthLoading(props) {
         // This will switch to the App screen or Auth screen and this loading
         // screen will be unmounted and thrown away.
         // for testing purpose
-        props.navigation.navigate('Auth', { screen: 'SignIn' });
+        props.navigation.navigate('Drawer', { screen: 'SignIn' });
     };
 
     // Render any loading content that you like here

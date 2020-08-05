@@ -44,14 +44,14 @@ function SignUp(props) {
                                     <View style={styles.mainBot}>
                                         <View style={styles.botBtnContainer}>
                                             <MainBtn
-                                                onPress={() => props.navigation.navigate('Auth', { screen: 'SignIn' })}
+                                                onPress={() => props.navigation.navigate('SignIn')}
                                                 text="Sign up"
                                             />
                                         </View>
                                         <View style={styles.mixedLine}>
                                             <Text style={[styles.ft_text]}>Already have an account: </Text>
                                             <Text
-                                                onPress={() => props.navigation.navigate('Auth', { screen: 'SignIn' })}
+                                                onPress={() => props.navigation.navigate('SignIn')}
                                                 style={[styles.ft_text, styles.ftTextUnderline]}
                                             >Sign in
                                   </Text>

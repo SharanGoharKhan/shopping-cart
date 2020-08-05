@@ -28,27 +28,17 @@ const AuthenticationStack = createStackNavigator();
 const MainStack = createStackNavigator();
 const SideDrawer = createDrawerNavigator();
 
-function authenticationNavigator() {
-    return (
-        <AuthenticationStack.Navigator headerMode='none'>
-            <AuthenticationStack.Screen name='SignIn' component={SignIn} />
-            <AuthenticationStack.Screen name='SignUp' component={SignUp} />
-        </AuthenticationStack.Navigator>
-    )
-}
-
 function Drawer() {
     return (
         <SideDrawer.Navigator initialRouteName='MainLanding' drawerContent={props => <MainMenu {...props} />}>
-            <SideDrawer.Screen name='MainLanding' component={MainLanding} />
-            <SideDrawer.Screen name='ProfileDashboard' component={ProfileDashboard} />
+            <SideDrawer.Screen name='noDrawer' component={noDrawer} />
         </SideDrawer.Navigator>
     )
 }
 function noDrawer() {
     return (
         <NavigationStack.Navigator headerMode='none'>
-            <NavigationStack.Screen name='Drawer' component={Drawer} />
+            <NavigationStack.Screen name='MainLanding' component={MainLanding} />
             <NavigationStack.Screen name='AddressList' component={AddressList} />
             <NavigationStack.Screen name='Checkout' component={Checkout} />
             <NavigationStack.Screen name='CheckoutPayment' component={CheckoutPayment} />
@@ -63,6 +53,9 @@ function noDrawer() {
             <NavigationStack.Screen name='ShoppingCart' component={ShoppingCart} />
             <NavigationStack.Screen name='Search' component={Search} />
             <NavigationStack.Screen name='TrackOrder' component={TrackOrder} />
+
+            <NavigationStack.Screen name='SignIn' component={SignIn} />
+            <NavigationStack.Screen name='SignUp' component={SignUp} />
         </NavigationStack.Navigator>
     )
 
@@ -74,8 +67,7 @@ function AppContainer() {
             <NavigationContainer>
                 <MainStack.Navigator headerMode='none' initialRouteName='AuthLoading'>
                     <MainStack.Screen name='AuthLoading' component={AuthLoading} />
-                    <MainStack.Screen name='Auth' component={authenticationNavigator} />
-                    <MainStack.Screen name='noDrawer' component={noDrawer} />
+                    <MainStack.Screen name='Drawer' component={Drawer} />
                 </MainStack.Navigator>
             </NavigationContainer>
         </SafeAreaProvider>

@@ -94,7 +94,7 @@ function MainMenu(props) {
                 <View style={styles.bottomContainer}>
                     <TouchableOpacity
                         activeOpacity={0}
-                        onPress={() => props.navigation.navigate('Auth', { screen: 'SignIn' })}
+                        onPress={() => props.navigation.navigate('SignIn')}
                         style={styles.bottomSubContainer}
                     >
                         <SimpleLineIcons name="logout" size={scale(20)} color={colors.pinkColor} />

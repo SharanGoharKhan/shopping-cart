@@ -60,7 +60,7 @@ function SignIn(props) {
                                             placeholder="Password"
                                         />
                                         <MainBtn
-                                            onPress={() => props.navigation.navigate('noDrawer', { screen: 'MainLanding' })}
+                                            onPress={() => props.navigation.navigate('MainLanding')}
                                             text="Sign In"
                                         />
                                         <TouchableOpacity
@@ -75,7 +75,7 @@ function SignIn(props) {
                                         <View style={[styles.socialBtnsView, styles.googleBtn]}>
                                             <TouchableOpacity
                                                 activeOpacity={0.7}
-                                                onPress={() => props.navigation.navigate('noDrawer', { screen: 'MainLanding' })}
+                                                onPress={() => props.navigation.navigate('MainLanding')}
                                                 style={styles.socialBtn}
                                             >
                                                 <Image
