@@ -5,6 +5,7 @@ export const colors = {
     fontMainColor: '#212121',
     fontSecondColor: '#4A4A4A',
     fontBlue: '#6178DE',
+    fontPlaceholder:'#cccccc',
     iconColor: '#F48B98',
     horizontalLine: '#949393',
     lightHorizontalLine: '#f0f0f0',
