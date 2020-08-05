@@ -2,6 +2,7 @@ import { verticalScale, scale } from '../../utils/scaling';
 import { colors } from '../../utils/colors';
 import { fontStyles } from '../../utils/fontStyles';
 import { Dimensions, Platform } from 'react-native';
+import { alignment } from '../../utils';
 const { width, height } = Dimensions.get('window');
 
 export default {
@@ -12,7 +13,7 @@ export default {
         height: '100%',
         width: '100%',
         alignSelf: 'center',
-        justifyContent:'center'
+        justifyContent: 'center'
     },
     body: {
         height: height * .95,
@@ -130,25 +131,34 @@ export default {
         justifyContent: 'center',
         alignItems: 'center',
     },
+    bgCircle: {
+        justifyContent: "center",
+        alignItems: 'center',
+        width: scale(30),
+        height: scale(30),
+        backgroundColor: colors.white,
+        borderRadius: scale(15),
+        ...alignment.PxSmall
+
+    },
     googleBtn: {
-        height: verticalScale(50),
+        height: scale(60),
         borderWidth: 0,
         borderRightWidth: 0,
         borderRadius: 3,
         borderColor: 'orange',
         borderTopRightRadius: 0,
         borderBottomRightRadius: 0,
-        backgroundColor: '#DC4E41',
+        backgroundColor: colors.google,
     },
     facebookBtn: {
-        height: verticalScale(50),
+        height: scale(60),
         borderWidth: 0,
         borderLeftWidth: 0,
         borderRadius: 3,
         borderTopLeftRadius: 0,
         borderBottomLeftRadius: 0,
-
-        backgroundColor: '#3B5998',
+        backgroundColor: colors.facebook,
     },
     fbText: {
         color: colors.secondaryWhiteColor,

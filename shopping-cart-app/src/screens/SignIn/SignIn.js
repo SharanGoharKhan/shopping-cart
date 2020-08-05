@@ -1,11 +1,12 @@
 import React, { useState } from 'react';
 import { View, Text, Image, TouchableOpacity, ImageBackground, KeyboardAvoidingView, ScrollView, Platform, StatusBar } from 'react-native';
 import styles from './styles';
-import { verticalScale } from '../../utils';
+import { verticalScale, colors, scale } from '../../utils';
 import TextField from '../../ui/Textfield/Textfield';
 import ForgotPassword from './ForgotPassword/ForgotPassword';
 import MainBtn from '../../ui/Buttons/MainBtn';
 import { SafeAreaView } from 'react-native-safe-area-context';
+import { EvilIcons } from '@expo/vector-icons';
 
 function SignIn(props) {
     const [modalVisible, setModalVisible] = useState(false)
@@ -78,13 +79,9 @@ function SignIn(props) {
                                                 onPress={() => props.navigation.navigate('MainLanding')}
                                                 style={styles.socialBtn}
                                             >
-                                                <Image
-                                                    source={require('../../assets/icons/google.png')}
-                                                    style={{
-                                                        height: verticalScale(25),
-                                                        width: verticalScale(25),
-                                                    }}
-                                                />
+                                                <View style={styles.bgCircle}>
+                                                    <EvilIcons name="sc-google-plus" size={scale(20)} color={colors.google} />
+                                                </View>
                                                 <Text style={styles.fbText}>Google</Text>
                                             </TouchableOpacity>
                                         </View>
@@ -94,13 +91,9 @@ function SignIn(props) {
                                                 onPress={() => props.navigation.navigate('noDrawer', { screen: 'MainLanding' })}
                                                 style={styles.socialBtn}
                                             >
-                                                <Image
-                                                    source={require('../../assets/icons/facebook.png')}
-                                                    style={{
-                                                        height: verticalScale(24),
-                                                        width: verticalScale(24),
-                                                    }}
-                                                />
+                                                <View style={styles.bgCircle}>
+                                                    <EvilIcons name="sc-facebook" size={scale(20)} color={colors.facebook} />
+                                                </View>
                                                 <Text style={styles.fbText}>Facebook</Text>
                                             </TouchableOpacity>
                                         </View>

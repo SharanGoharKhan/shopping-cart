@@ -18,13 +18,12 @@ export const colors = {
     container: '#FFF',
     messageBackground: 'rgba(52, 52, 52, .9)',
     errorColor: '#FA7751',
-
+    google: '#DC4E41',
+    facebook: '#3B5998',
     //
     blackText: '#4A4A4A',
     whiteColor: '#fff',
     brownColor: '#D0AD8A',
-    facebookBlueColor: '#3B5998',
-    googleRedColor: '#DC4E41',
     blueColor: '#2962FF',
     secondaryWhiteColor: '#fff',
     greenColor: '#8CB65E',
