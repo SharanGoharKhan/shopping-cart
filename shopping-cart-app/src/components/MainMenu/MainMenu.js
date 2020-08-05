@@ -2,6 +2,9 @@ import React from 'react';
 import { View, Text, Image, TouchableOpacity } from 'react-native';
 import styles from './styles';
 import { SafeAreaView } from 'react-native-safe-area-context';
+import { SimpleLineIcons } from '@expo/vector-icons';
+import { colors } from '../../utils/colors';
+import { scale } from '../../utils/scaling';
 
 const navItems = [
     {
@@ -94,15 +97,7 @@ function MainMenu(props) {
                         onPress={() => props.navigation.navigate('Auth', { screen: 'SignIn' })}
                         style={styles.bottomSubContainer}
                     >
-                        <View
-                            style={styles.signoutContainerImg}
-                        >
-                            <Image
-                                source={require('../../assets/images/mainMenu/signout.png')}
-                                resizeMode="contain"
-                                style={styles.imgResponsive}
-                            />
-                        </View>
+                        <SimpleLineIcons name="logout" size={scale(20)} color={colors.pinkColor} />
                         <View style={styles.signoutContainerText}>
                             <Text style={styles.signoutContainerStyle}>Sign Out</Text>
                         </View>

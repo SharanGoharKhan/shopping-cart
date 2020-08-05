@@ -5,7 +5,6 @@ import { View, ActivityIndicator, StatusBar, StyleSheet, Platform } from 'react-
 import { colors } from './src/utils/colors'
 
 
-console.disableYellowBox = true;
 export default function App() {
   const [fontLoaded, fontLoadedSetter] = useState(false);
 

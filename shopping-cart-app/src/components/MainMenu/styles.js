@@ -105,14 +105,14 @@ export default {
         alignItems: 'center',
     },
     bottomSubContainer: {
-        width: '95%',
+        width: '85%',
         height: '80%',
         alignItems: 'center',
         flexDirection: 'row',
     },
     signoutContainerImg: {
         width: '15%',
-        height: '50%',
+        height: '40%',
     },
     signoutContainerText: {
         width: '85%',
@@ -124,7 +124,7 @@ export default {
         width:"100%",
         paddingLeft:scale(10),
         fontFamily: fontStyles.PoppinsRegular,
-        fontSize: verticalScale(16),
+        fontSize: scale(16),
         color: colors.pinkColor,
     },
 };
