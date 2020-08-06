@@ -50,6 +50,8 @@ function FullCard(props) {
 
         let renderBage = null;
         if (props.productBadge) renderBage = renderBadge();
+
+        return null
     }
     // render the whole content
     return (
@@ -63,7 +65,7 @@ function FullCard(props) {
                         resizeMode="cover"
                         source={props.productImage}
                     />
-                    {renderBadge}
+                    {renderBadge()}
                 </View>
                 <View style={styles.rightside_container}>
                     <View style={styles.rightside}>
