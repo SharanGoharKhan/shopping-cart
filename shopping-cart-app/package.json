@@ -29,7 +29,8 @@
     "react-native-safe-area-context": "^3.0.7",
     "react-native-screens": "~2.9.0",
     "react-native-swiper-flatlist": "^2.0.4",
-    "react-native-timeline-flatlist": "^0.7.3"
+    "react-native-timeline-flatlist": "^0.7.3",
+    "react-native-webview": "9.4.0"
   },
   "devDependencies": {
     "babel-eslint": "^10.1.0",
