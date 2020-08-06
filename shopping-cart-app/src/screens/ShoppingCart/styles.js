@@ -5,9 +5,10 @@ import { fontStyles } from '../../utils/fontStyles';
 
 export default {
     flex: {
-        flex: 1
+        flex: 1,
     },
-    mainContainer:{
+    mainContainer: {
+        backgroundColor: colors.themeBackground,
         marginTop: Platform.OS === 'ios' ? 0 : StatusBar.currentHeight
     },
     spacer: {
@@ -22,20 +23,20 @@ export default {
     },
     summaryContainer: {
         marginTop: scale(30),
-        width: '90%', 
-        backgroundColor: colors.grayLinesColor, 
-        alignSelf: 'center', 
+        width: '90%',
+        backgroundColor: colors.grayLinesColor,
+        alignSelf: 'center',
         padding: scale(10),
         justifyContent: 'flex-end'
     },
     rowContainer: {
-        flexDirection: 'row', 
+        flexDirection: 'row',
         justifyContent: 'space-between'
     },
     lineStyle: {
-        width: '99%', 
-        height: 1, 
-        backgroundColor: colors.grayLinesColor, 
+        width: '99%',
+        height: 1,
+        backgroundColor: colors.grayLinesColor,
         alignSelf: 'center'
     },
     btnContainer: {

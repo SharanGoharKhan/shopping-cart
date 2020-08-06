@@ -19,7 +19,7 @@ export const colors = {
     messageBackground: 'rgba(52, 52, 52, .9)',
     errorColor: '#FA7751',
     google: '#DC4E41',
-    facebook: '#3B5998',
+    facefok: '#3B5998',
     //
     blackText: '#4A4A4A',
     whiteColor: '#fff',

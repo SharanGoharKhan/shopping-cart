@@ -9,6 +9,7 @@ import ShoppingCard from './ShoppingCard/ShoppingCard';
 import BlueBtn from '../../ui/Buttons/BlueBtn';
 import { CARTDATA } from '../../utils/mockData';
 import { SafeAreaView } from 'react-native-safe-area-context';
+import { alignment } from '../../utils';
 
 function ShoppingCart(props) {
     return (
@@ -20,7 +21,7 @@ function ShoppingCart(props) {
                 <ScrollView
                     contentContainerStyle={{ flexGrow: 1, justifyContent: 'space-between', flexDirection: 'column' }}
                     showsVerticalScrollIndicator={false}>
-                    <View style={{ justifyContent: 'flex-start' }}>
+                    <View style={{ justifyContent: 'flex-start', ...alignment.Psmall }}>
                         {CARTDATA.map((item, index) =>
                             <ShoppingCard
                                 key={index}
@@ -57,8 +58,7 @@ function ShoppingCart(props) {
                         />
                     </View>
                 </ScrollView>
-                <BottomTab
-                    navigationObj={props.navigation} />
+                <BottomTab />
             </View>
         </SafeAreaView>
     );
