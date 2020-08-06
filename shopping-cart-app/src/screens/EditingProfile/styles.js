@@ -1,10 +1,11 @@
-import { Dimensions, Platform, StatusBar } from 'react-native';
-import { verticalScale } from '../../utils/scaling';
+import { Dimensions, Platform, StyleSheet, StatusBar } from 'react-native';
+import { verticalScale, scale } from '../../utils/scaling';
 import { colors } from '../../utils/colors';
 import { fontStyles } from '../../utils/fontStyles';
+import { alignment } from '../../utils';
 const { height, width } = Dimensions.get('window');
 
-export default {
+const styles = StyleSheet.create({
     flex: {
         flex: 1,
     },
@@ -13,16 +14,14 @@ export default {
     },
     formMainContainer: {
         flex: 1,
-        backgroundColor: colors.backgroudGray,
+        backgroundColor: colors.themeBackground,
         alignItems: 'center',
     },
     formContainer: {
         marginTop: '15%',
         width: '90%',
-        height: '85%',
-        backgroundColor: colors.whiteColor,
-        borderRadius: verticalScale(8),
-        alignItems: 'center',
+        backgroundColor: colors.container,
+        borderRadius: scale(8),
         position: 'relative',
     },
     profileImageContainer: {
@@ -30,7 +29,7 @@ export default {
         height: verticalScale(80),
         position: 'absolute',
         alignSelf: 'center',
-        backgroundColor: colors.whiteColor,
+        backgroundColor: colors.container,
         borderRadius: verticalScale(40),
         top: verticalScale(-40),
         borderWidth: verticalScale(3),
@@ -38,25 +37,23 @@ export default {
         justifyContent: 'center',
         alignItems: 'center',
     },
-    imgResponsive: {
-        width: '60%',
-        height: '60%',
-    },
     formContentContainer: {
-        marginTop: '15%',
-        width: '95%',
-        height: '80%',
+        width: '100%',
+        marginTop: scale(50),
+        alignItems: 'center',
+        ...alignment.MBmedium,
     },
     twoItemsContainer: {
         width: '100%',
-        height: '20%',
+        height: scale(80),
         flexDirection: 'row',
         alignItems: 'center',
-        justifyContent: 'space-around',
+        justifyContent: 'space-evenly',
+        ...alignment.MBxSmall
     },
     halfContainer: {
         width: '45%',
-        height: '80%',
+        height: '80%'
     },
     labelContainer: {
         width: '100%',
@@ -64,15 +61,15 @@ export default {
     },
     inputContainer: {
         width: '100%',
-        height: '70%',
-        padding: verticalScale(5),
-        borderRadius: verticalScale(3),
-        paddingBottom: verticalScale(5),
-        backgroundColor: colors.backgroudGray,
+        height: '60%',
+        borderRadius: scale(3),
+        justifyContent: 'center',
+        backgroundColor: colors.themeBackground,
+        ...alignment.PxSmall
     },
     inputText: {
         textAlign: "left",
-        padding: 5
+        ...alignment.PxSmall
     },
     label: {
         fontFamily: fontStyles.PoppinsRegular,
@@ -81,7 +78,7 @@ export default {
     },
     oneItemContainer: {
         width: '100%',
-        height: '20%',
+        height: scale(80),
         flexDirection: 'row',
         justifyContent: 'center',
     },
@@ -98,14 +95,11 @@ export default {
     addBtn: {
         width: '80%',
         height: '45%',
-        backgroundColor: colors.brownColor,
+        backgroundColor: colors.buttonBackground,
         justifyContent: 'center',
         alignItems: 'center',
-        borderRadius: verticalScale(4),
-    },
-    addStyle: {
-        fontFamily: fontStyles.PoppinsRegular,
-        color: colors.whiteColor,
+        borderRadius: scale(4),
     },
 
-};
+});
+export default styles

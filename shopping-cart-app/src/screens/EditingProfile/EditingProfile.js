@@ -3,7 +3,7 @@ import { View, Text, TextInput, KeyboardAvoidingView, TouchableOpacity, ScrollVi
 import styles from './styles';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { BackHeader } from '../../components/Headers/Headers';
-import { BottomTab } from '../../components'
+import { BottomTab, TextDefault } from '../../components'
 import { SimpleLineIcons } from '@expo/vector-icons';
 import { scale, colors } from '../../utils';
 
@@ -76,39 +76,15 @@ function EditingProfile(props) {
                                             </View>
                                         </View>
                                     </View>
-                                    <View style={styles.twoItemsContainer}>
-                                        <View style={styles.halfContainer}>
-                                            <View style={styles.labelContainer}>
-                                                <Text style={styles.label}>Date of Birth</Text>
-                                            </View>
-                                            <View style={styles.inputContainer}>
-                                                <TextInput
-                                                    style={[styles.flex, styles.inputText]}
-                                                    placeholder="16-06-1993"
-                                                    placeholderTextColor="black"
-                                                />
-                                            </View>
-                                        </View>
-                                        <View style={styles.halfContainer}>
-                                            <View style={styles.labelContainer}>
-                                                <Text style={styles.label}>Gender</Text>
-                                            </View>
-                                            <View style={styles.inputContainer}>
-                                                <TextInput
-                                                    style={[styles.flex, styles.inputText]}
-                                                    placeholder="Male"
-                                                    placeholderTextColor="black"
-                                                />
-                                            </View>
-                                        </View>
-                                    </View>
                                     <View style={styles.addContainer}>
                                         <TouchableOpacity
                                             activeOpacity={0}
                                             onPress={() => props.navigation.navigate('ProfileDashboard')}
                                             style={styles.addBtn}
                                         >
-                                            <Text style={styles.addStyle}>Save</Text>
+                                            <TextDefault textColor={colors.buttonText} H5 bold>
+                                                {'Save'}
+                                            </TextDefault>
                                         </TouchableOpacity>
                                     </View>
                                 </View>
