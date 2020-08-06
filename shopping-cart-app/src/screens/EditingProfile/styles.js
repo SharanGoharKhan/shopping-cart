@@ -1,8 +1,5 @@
 import { Dimensions, Platform, StyleSheet, StatusBar } from 'react-native';
-import { verticalScale, scale } from '../../utils/scaling';
-import { colors } from '../../utils/colors';
-import { fontStyles } from '../../utils/fontStyles';
-import { alignment } from '../../utils';
+import { colors, alignment, verticalScale, scale } from '../../utils';
 const { height, width } = Dimensions.get('window');
 
 const styles = StyleSheet.create({
@@ -71,11 +68,6 @@ const styles = StyleSheet.create({
         textAlign: "left",
         ...alignment.PxSmall
     },
-    label: {
-        fontFamily: fontStyles.PoppinsRegular,
-        color: colors.darkGrayText,
-        fontSize: verticalScale(14),
-    },
     oneItemContainer: {
         width: '100%',
         height: scale(80),
@@ -99,7 +91,6 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         alignItems: 'center',
         borderRadius: scale(4),
-    },
-
+    }
 });
 export default styles

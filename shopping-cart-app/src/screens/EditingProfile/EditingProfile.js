@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Text, TextInput, KeyboardAvoidingView, TouchableOpacity, ScrollView } from 'react-native';
+import { View, TextInput, KeyboardAvoidingView, TouchableOpacity, ScrollView } from 'react-native';
 import styles from './styles';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { BackHeader } from '../../components/Headers/Headers';
@@ -25,7 +25,9 @@ function EditingProfile(props) {
                                     <View style={styles.twoItemsContainer}>
                                         <View style={styles.halfContainer}>
                                             <View style={styles.labelContainer}>
-                                                <Text style={styles.label}>First Name</Text>
+                                                <TextDefault textColor={colors.fontThirdColor} H5>
+                                                    {'First Name'}
+                                                </TextDefault>
                                             </View>
                                             <View style={styles.inputContainer}>
                                                 <TextInput
@@ -37,7 +39,9 @@ function EditingProfile(props) {
                                         </View>
                                         <View style={styles.halfContainer}>
                                             <View style={styles.labelContainer}>
-                                                <Text style={styles.label}>Last Name</Text>
+                                                <TextDefault textColor={colors.fontThirdColor} H5>
+                                                    {'Last Name'}
+                                                </TextDefault>
                                             </View>
                                             <View style={styles.inputContainer}>
                                                 <TextInput
@@ -51,7 +55,9 @@ function EditingProfile(props) {
                                     <View style={styles.oneItemContainer}>
                                         <View style={styles.fullContainer}>
                                             <View style={styles.labelContainer}>
-                                                <Text style={styles.label}>Email</Text>
+                                                <TextDefault textColor={colors.fontThirdColor} H5>
+                                                    {'Email'}
+                                                </TextDefault>
                                             </View>
                                             <View style={styles.inputContainer}>
                                                 <TextInput
@@ -65,7 +71,9 @@ function EditingProfile(props) {
                                     <View style={styles.oneItemContainer}>
                                         <View style={styles.fullContainer}>
                                             <View style={styles.labelContainer}>
-                                                <Text style={styles.label}>Phone Number</Text>
+                                                <TextDefault textColor={colors.fontThirdColor} H5>
+                                                    {'Phone Number'}
+                                                </TextDefault>
                                             </View>
                                             <View style={styles.inputContainer}>
                                                 <TextInput
