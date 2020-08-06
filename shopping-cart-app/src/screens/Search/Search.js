@@ -1,11 +1,11 @@
 import React from 'react';
 import { View, Text } from 'react-native';
 import styles from './styles';
-import Dropdown from '../../ui/Dropdowns/Dropdown';
 import SearchBar from '../../ui/SearchBar/SearchBar';
 import CategoryCard from './CategoryCard/CategoryCard';
 import BottomTab from '../../components/BottomTab/BottomTab';
 import { SafeAreaView } from 'react-native-safe-area-context';
+import { BackHeader } from '../../components/Headers/Headers';
 
 const CATEGORIES = [
     {
@@ -34,12 +34,11 @@ function Search(props) {
     return (
         <SafeAreaView style={styles.flex}>
             <View style={[styles.flex, styles.mainContainer]}>
+                <BackHeader
+                    title="Search"
+                    backPressed={() => props.navigation.goBack()} />
                 <View style={styles.container}>
                     <View style={[styles.body]}>
-                        <View style={[styles.header]}>
-                            <Text style={styles.header_text}>Search  In  </Text>
-                            <Dropdown items={CATEGORIES} />
-                        </View>
                         <View style={[styles.main]}>
                             <View style={styles.searchBarContainer}>
                                 <SearchBar onPress={() => props.navigation.navigate('SearchResult')} placeholderText="What are you looking for?" />

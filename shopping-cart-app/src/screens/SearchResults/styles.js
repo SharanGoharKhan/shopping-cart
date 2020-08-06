@@ -1,14 +1,14 @@
-import { StatusBar, Dimensions, Platform } from 'react-native';
-import { verticalScale } from '../../utils/scaling';
+import { StatusBar, Dimensions, Platform, StyleSheet } from 'react-native';
+import { verticalScale, alignment } from '../../utils';
 import { colors } from '../../utils/colors';
 import { fontStyles } from '../../utils/fontStyles';
 const { width, height } = Dimensions.get('window');
 
-export default {
+const styles = StyleSheet.create({
     flex: {
         flex: 1
     },
-        mainContainer: {
+    mainContainer: {
         marginTop: Platform.OS === 'ios' ? 0 : StatusBar.currentHeight
     },
     container: {
@@ -31,7 +31,7 @@ export default {
 
     // header
     header: {
-        height: height*.08,
+        height: height * .08,
         width: '95%',
         flexDirection: 'row',
         alignSelf: 'center',
@@ -51,7 +51,7 @@ export default {
 
     // main
     main: {
-        height: height*.8,
+        height: height * .8,
         width: '100%',
         marginLeft: 0,
         justifyContent: 'center',
@@ -76,10 +76,7 @@ export default {
         height: '93%',
     },
     mixed_text: {
-        height: '7%',
-        width: '100%',
-        paddingTop: verticalScale(5),
-        flexDirection: 'row',
+        width: '80%',
     },
     text: {
         fontFamily: fontStyles.PoppinsRegular,
@@ -104,5 +101,22 @@ export default {
         justifyContent: 'flex-end',
         alignItems: 'center',
     },
-
-};
+    filter: {
+        flexDirection: 'row',
+        justifyContent: "space-between",
+        alignItems: 'center',
+        width: '100%',
+        ...alignment.PLsmall,
+        ...alignment.PRsmall,
+    },
+    filterButton: {
+        width: '20%',
+        height: '100%',
+        alignItems: 'flex-end',
+        ...alignment.PRsmall,
+        ...alignment.PLsmall,
+        ...alignment.PTmedium,
+        ...alignment.PBmedium,
+    }
+})
+export default styles;
