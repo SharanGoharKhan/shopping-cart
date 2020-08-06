@@ -21,6 +21,9 @@ export const colors = {
     errorColor: '#FA7751',
     google: '#DC4E41',
     facefok: '#3B5998',
+    radioColor: '#FFF',
+    radioOuterColor: '#D0AD8A',
+
     //
     blackText: '#4A4A4A',
     whiteColor: '#fff',

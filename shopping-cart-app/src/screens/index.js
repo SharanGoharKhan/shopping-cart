@@ -16,5 +16,6 @@ import SignIn from './SignIn/SignIn'
 import SignUp from './SignUp/SignUp'
 import TrackOrder from './TrackOrder/TrackOrder'
 import FullMap from './FullMap/FullMap'
+import Payment from './Payment/Payment'
 
-export { AddressList, Checkout, EditAddress, EditingProfile, MainLanding, NewAddress, OrderDetail, PreviousOrders, ProfileDashboard, ProductDescription, ProductListing, Search, SearchResults, ShoppingCart, SignIn, SignUp, TrackOrder, FullMap }
+export { AddressList, Checkout, EditAddress, EditingProfile, MainLanding, NewAddress, OrderDetail, PreviousOrders, ProfileDashboard, ProductDescription, ProductListing, Search, SearchResults, ShoppingCart, SignIn, SignUp, TrackOrder, FullMap, Payment }

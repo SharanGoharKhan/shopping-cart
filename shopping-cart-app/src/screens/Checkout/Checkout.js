@@ -1,11 +1,11 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { View, Image, ScrollView, TouchableOpacity } from 'react-native';
 import styles from './styles';
 import { verticalScale, colors, alignment, scale } from '../../utils';
 import BlueBtn from '../../ui/Buttons/BlueBtn';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { BackHeader, BottomTab, TextDefault } from '../../components';
-import { useNavigation } from '@react-navigation/native';
+import { useNavigation, useRoute } from '@react-navigation/native';
 import { AntDesign } from '@expo/vector-icons'
 
 /* Config/Constants
@@ -23,7 +23,14 @@ const COD_PAYMENT = {
 
 function Checkout() {
     const navigation = useNavigation()
-    const [payment, paymentSetter] = useState(false)
+    const route = useRoute()
+    const [paymentMethod, setPaymentMethod] = useState(null)
+    const payObj = route.params ? route.params.PayObject : null
+
+    useEffect(() => {
+        setPaymentMethod(payObj || COD_PAYMENT)
+    }, [payObj])
+
     function renderItem(item, index) {
         return (
             <View key={index} style={styles.listItem}>
@@ -144,7 +151,9 @@ function Checkout() {
                                     </TextDefault>
                                     <TouchableOpacity
                                         activeOpacity={0.7}
-                                        style={styles.changeText}>
+                                        style={styles.changeText}
+                                        onPress={() => navigation.navigate('Payment', { payment: paymentMethod })}
+                                    >
                                         <TextDefault
                                             textColor={colors.buttonBackground}
                                             right>
@@ -152,9 +161,10 @@ function Checkout() {
                                         </TextDefault>
                                     </TouchableOpacity>
                                 </View>
-                                {payment ? (
+                                {paymentMethod === null ? (
                                     <TouchableOpacity
-                                        style={styles.floatView}>
+                                        style={styles.floatView}
+                                        onPress={() => navigation.navigate('Payment', { payment: paymentMethod })}>
                                         <AntDesign
                                             name="plus"
                                             size={scale(20)}
@@ -168,18 +178,19 @@ function Checkout() {
                                     </TouchableOpacity>
                                 ) : (
                                         <TouchableOpacity
-                                            style={styles.floatView}>
+                                            style={styles.floatView}
+                                            onPress={() => navigation.navigate('Payment', { payment: paymentMethod })}>
                                             <View style={{ width: '10%' }}>
                                                 <Image
                                                     resizeMode="cover"
                                                     style={styles.iconStyle}
-                                                    source={COD_PAYMENT.icon}
+                                                    source={paymentMethod.icon}
                                                 />
                                             </View>
                                             <TextDefault
                                                 textColor={colors.buttonBackground}
                                                 style={[alignment.PLsmall, { width: '90%' }]}>
-                                                {COD_PAYMENT.label}
+                                                {paymentMethod.label}
                                             </TextDefault>
                                         </TouchableOpacity>
                                     )
