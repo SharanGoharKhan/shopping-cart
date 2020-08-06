@@ -68,7 +68,7 @@ const styles = StyleSheet.create({
     },
     product: {
         width: '95%',
-        lineHeight: verticalScale(14.5)
+        lineHeight: scale(17)
     },
     prevPrice: {
         alignSelf: 'flex-start',

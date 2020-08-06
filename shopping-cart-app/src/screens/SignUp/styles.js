@@ -1,10 +1,10 @@
-import { Dimensions } from 'react-native';
+import { Dimensions, StyleSheet } from 'react-native';
 import { verticalScale } from '../../utils/scaling';
 import { colors } from '../../utils/colors';
 import { fontStyles } from '../../utils/fontStyles';
 
 const { height } = Dimensions.get('window')
-export default {
+const styles = StyleSheet.create({
     flex: {
         flex: 1
     },
@@ -24,8 +24,8 @@ export default {
     header: {
         justifyContent: 'space-evenly',
         height: '20%',
-        width:'90%',
-        alignSelf:'center',
+        width: '90%',
+        alignSelf: 'center',
     },
     headerText: {
         paddingLeft: '5%',
@@ -41,7 +41,7 @@ export default {
         backgroundColor: colors.backgroudGray,
         height: '80%',
         width: '90%',
-        alignSelf:'center',
+        alignSelf: 'center',
         borderRadius: verticalScale(5),
     },
     bodyContainerBackground: {
@@ -70,6 +70,7 @@ export default {
     mainMid: {
         height: '55%',
         width: '90%',
+        justifyContent:"center"
     },
     mainBot: {
         height: '25%',
@@ -90,5 +91,5 @@ export default {
     ftTextUnderline: {
         textDecorationLine: 'underline',
     },
-
-};
+});
+export default styles;
