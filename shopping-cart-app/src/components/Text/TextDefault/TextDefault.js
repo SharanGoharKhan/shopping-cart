@@ -28,6 +28,7 @@ function TextDefault(props) {
   customStyles = StyleSheet.flatten([customStyles, props.style])
   return (
     <Text
+      onPress={props.onPress ? props.onPress : null}
       numberOfLines={props.numberOfLines ? props.numberOfLines : 0}
       style={customStyles}>
       {props.children}

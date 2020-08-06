@@ -1,11 +1,8 @@
-import { verticalScale, scale } from '../../utils/scaling';
-import { colors } from '../../utils/colors';
-import { fontStyles } from '../../utils/fontStyles';
-import { Dimensions, Platform } from 'react-native';
-import { alignment } from '../../utils';
+import { Dimensions, StyleSheet } from 'react-native';
+import { alignment, colors, scale, verticalScale } from '../../utils';
 const { width, height } = Dimensions.get('window');
 
-export default {
+const styles = StyleSheet.create({
     flex: {
         flex: 1
     },
@@ -28,19 +25,17 @@ export default {
         alignItems: 'center',
     },
     headerText: {
-        fontFamily: fontStyles.PoppinsRegular,
-        fontSize: verticalScale(16),
-        paddingLeft: verticalScale(8),
+        ...alignment.PLsmall
     },
     bodyContainer: {
         width: '90%',
         height: '63%',
         alignSelf: 'center',
-        backgroundColor: colors.greyLinesColor,
-        borderRadius: verticalScale(5),
+        backgroundColor: colors.themeBackground,
+        borderRadius: scale(5),
     },
     bodyContainerBackground: {
-        backgroundColor: colors.backgroudGray,
+        backgroundColor: colors.themeBackground,
         alignItems: 'center',
         width: '100%',
         height: '100%',
@@ -56,17 +51,8 @@ export default {
         justifyContent: 'center',
         alignItems: 'flex-start',
         borderRadius: verticalScale(5),
-        paddingLeft: verticalScale(15),
-        backgroundColor: '#fcead9',
-    },
-    bcH1: {
-        fontSize: verticalScale(22),
-        fontFamily: fontStyles.PoppinsRegular,
-    },
-    bcH2: {
-        fontSize: verticalScale(12),
-        fontFamily: fontStyles.PoppinsRegular,
-        lineHeight: verticalScale(13),
+        backgroundColor: colors.lightBrown,
+        ...alignment.PLmedium
     },
     bcTexts: {
         alignItems: 'center',
@@ -82,39 +68,6 @@ export default {
     bcInputs: {
         width: '90%',
     },
-    bcInputView: {
-        backgroundColor: colors.secondaryWhiteColor,
-        borderRadius: 3,
-        height: verticalScale(38),
-        justifyContent: 'center',
-        borderWidth: 1,
-        borderColor: colors.greyLinesColor,
-    },
-    bcInput: {
-        fontFamily: fontStyles.PoppinsRegular,
-        fontSize: verticalScale(13),
-        paddingLeft: '3%',
-    },
-    bcLoginBtns: {
-        width: '90%',
-    },
-    mainBrownBtn: {
-        backgroundColor: '#D0AD8A',
-        alignItems: 'center',
-        justifyContent: 'center',
-        flexDirection: 'row',
-        width: '100%',
-        height: verticalScale(50),
-        borderRadius: 5,
-    },
-    bbText: {
-        color: colors.secondaryWhiteColor,
-        fontFamily: fontStyles.PoppinsRegular,
-        fontSize: verticalScale(16),
-    },
-    passwordText: {
-        color: '#DC4E41',
-    },
     bcSocialBtns: {
         flexDirection: 'row',
         width: '90%',
@@ -123,10 +76,11 @@ export default {
     },
     socialBtnsView: {
         width: '50%',
+        justifyContent: 'center'
     },
     socialBtn: {
         flexDirection: 'row',
-        height: verticalScale(50),
+        height: '100%',
         width: '100%',
         justifyContent: 'center',
         alignItems: 'center',
@@ -136,7 +90,7 @@ export default {
         alignItems: 'center',
         width: scale(30),
         height: scale(30),
-        backgroundColor: colors.white,
+        backgroundColor: colors.container,
         borderRadius: scale(15),
         ...alignment.PxSmall
 
@@ -161,26 +115,10 @@ export default {
         backgroundColor: colors.facebook,
     },
     fbText: {
-        color: colors.secondaryWhiteColor,
-        fontFamily: fontStyles.PoppinsRegular,
-        fontSize: verticalScale(16),
-        paddingLeft: verticalScale(5),
-    },
-    mixedLine: {
-        flexDirection: 'row',
-    },
-    boldText: {
-        fontFamily: fontStyles.PoppinsRegular,
-        fontWeight: '500',
-        fontSize: verticalScale(10),
-    },
-    ftText: {
-        fontFamily: fontStyles.PoppinsRegular,
-        fontSize: scale(10),
+        ...alignment.PLxSmall
     },
     ftUnderline: {
         textDecorationLine: 'underline',
     },
-
-
-};
+});
+export default styles

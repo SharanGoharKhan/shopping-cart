@@ -23,6 +23,7 @@ export const colors = {
     facebook: '#3B5998',
     radioColor: '#FFF',
     radioOuterColor: '#D0AD8A',
+    lightBrown: '#fcead9',
 
     //
     blackText: '#4A4A4A',

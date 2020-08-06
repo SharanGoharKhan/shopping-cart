@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
-import { View, Text, Image, TouchableOpacity, ImageBackground, KeyboardAvoidingView, ScrollView, Platform, StatusBar } from 'react-native';
+import { View, Image, TouchableOpacity, ImageBackground, KeyboardAvoidingView, ScrollView, Platform, StatusBar } from 'react-native';
 import styles from './styles';
 import { verticalScale, colors, scale } from '../../utils';
+import { TextDefault } from '../../components'
 import TextField from '../../ui/Textfield/Textfield';
 import ForgotPassword from './ForgotPassword/ForgotPassword';
 import MainBtn from '../../ui/Buttons/MainBtn';
@@ -38,7 +39,9 @@ function SignIn(props) {
                                         width: verticalScale(16),
                                     }}
                                 />
-                                <Text style={styles.headerText}>Sign In</Text>
+                                <TextDefault style={styles.headerText} textColor={colors.fontMainColor} H5>
+                                    {'Sign In'}
+                                </TextDefault>
                             </View>
                             <View style={styles.bodyContainer}>
                                 <ImageBackground
@@ -46,12 +49,12 @@ function SignIn(props) {
                                     source={require('../../assets/images/formBackground.png')}
                                 >
                                     <View style={styles.bcTexts}>
-                                        <Text style={styles.bcH1}>
-                                            Hello Guest!
-                                </Text>
-                                        <Text style={styles.bcH2}>
-                                            Sign In
-                                </Text>
+                                        <TextDefault textColor={colors.fontMainColor} H3>
+                                            {'Hello Guest!'}
+                                        </TextDefault>
+                                        <TextDefault textColor={colors.fontMainColor}>
+                                            {'Sign In'}
+                                        </TextDefault>
                                     </View>
                                     <View style={styles.bcMain}>
                                         <TextField
@@ -67,9 +70,9 @@ function SignIn(props) {
                                         <TouchableOpacity
                                             activeOpacity={0.7}
                                             onPress={() => showModal()}>
-                                            <Text style={styles.passwordText}>
-                                                Forgot my password
-                                  </Text>
+                                            <TextDefault textColor={colors.google}>
+                                                {'Forgot my password'}
+                                            </TextDefault>
                                         </TouchableOpacity>
                                     </View>
                                     <View style={styles.bcSocialBtns}>
@@ -82,7 +85,9 @@ function SignIn(props) {
                                                 <View style={styles.bgCircle}>
                                                     <EvilIcons name="sc-google-plus" size={scale(20)} color={colors.google} />
                                                 </View>
-                                                <Text style={styles.fbText}>Google</Text>
+                                                <TextDefault style={styles.fbText} textColor={colors.white} H5>
+                                                    {'Google'}
+                                                </TextDefault>
                                             </TouchableOpacity>
                                         </View>
                                         <View style={[styles.socialBtnsView, styles.facebookBtn]}>
@@ -94,7 +99,9 @@ function SignIn(props) {
                                                 <View style={styles.bgCircle}>
                                                     <EvilIcons name="sc-facebook" size={scale(20)} color={colors.facebook} />
                                                 </View>
-                                                <Text style={styles.fbText}>Facebook</Text>
+                                                <TextDefault style={styles.fbText} textColor={colors.white} H5>
+                                                    {'Facebook'}
+                                                </TextDefault>
                                             </TouchableOpacity>
                                         </View>
                                     </View>
@@ -102,34 +109,22 @@ function SignIn(props) {
                             </View>
                             <View style={styles.bodyFooter}>
                                 <View style={styles.footer}>
-                                    <View style={styles.mixedLine}>
-                                        <Text style={[styles.ftText, styles.boldText]}>Create New Account: </Text>
-                                        <Text style={styles.ftText}>By creating a new account, you</Text>
-                                    </View>
-                                    <Text style={styles.ftText}>
-                                        will become a valuable customer/buyer to Enatega by
-                            </Text>
-                                    <View style={styles.mixedLine}>
-                                        <Text style={styles.ftText}>default. While registering, </Text>
-                                        <Text
-                                            onPress={() => props.navigation.navigate('SignUp')}
-                                            style={[styles.ftUnderline, styles.ftText]}
-                                        >you can also choose to
-                                </Text>
-                                    </View>
-                                    <Text
-                                        onPress={() => props.navigation.navigate('SignUp')}
-                                        style={[styles.ftUnderline, styles.ftText]}
-                                    >
-                                        become a seller and open your own shop
-                          </Text>
+                                    <TextDefault textColor={colors.fontMainColor} small bold>
+                                        {'Create New Account:'}
+                                    </TextDefault>
+                                    <TextDefault textColor={colors.fontMainColor} small>
+                                        {'By creating a new account, you will become a valuable customer/buyer to Enatega by default. While registering, '}
+                                        <TextDefault style={styles.ftUnderline} small onPress={() => props.navigation.navigate('SignUp')}>
+                                            {'you can also choose to become a seller and open your own shop'}
+                                        </TextDefault>
+                                    </TextDefault>
                                 </View>
                             </View>
                         </View>
                     </View>
                 </ScrollView>
             </KeyboardAvoidingView>
-        </SafeAreaView>
+        </SafeAreaView >
     );
 }
 
