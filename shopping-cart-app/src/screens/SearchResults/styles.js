@@ -113,7 +113,6 @@ const styles = StyleSheet.create({
         width: '20%',
         height: '100%',
         alignItems: 'flex-end',
-        ...alignment.PRsmall,
         ...alignment.PLsmall,
         ...alignment.PTmedium,
         ...alignment.PBmedium,
