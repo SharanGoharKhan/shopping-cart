@@ -1,13 +1,17 @@
-import { StatusBar, Platform } from 'react-native';;
-import { fontStyles, colors, scale } from '../../utils';
+import { StatusBar, Platform, StyleSheet } from 'react-native';;
+import { fontStyles, colors, scale, alignment } from '../../utils';
 
-export default {
+const styles = StyleSheet.create({
     flex: {
         flex: 1,
     },
     mainContainer: {
         backgroundColor: colors.themeBackground,
         marginTop: Platform.OS === 'ios' ? 0 : StatusBar.currentHeight
+    },
+    subContainer: {
+        flexGrow: 1,
+        ...alignment.Psmall
     },
     spacer: {
         marginTop: scale(10)
@@ -19,13 +23,17 @@ export default {
     totalStyle: {
         color: colors.blueColor
     },
+    priceBox: {
+        width: '100%',
+        ...alignment.Psmall
+    },
     summaryContainer: {
-        marginTop: scale(30),
-        width: '90%',
+        width: '100%',
         backgroundColor: colors.containerDark,
         alignSelf: 'center',
         padding: scale(10),
-        justifyContent: 'flex-end'
+        justifyContent: "flex-end",
+        borderRadius: scale(10)
     },
     rowContainer: {
         flexDirection: 'row',
@@ -43,4 +51,5 @@ export default {
     btnText: {
         color: colors.whiteColor
     },
-};
+});
+export default styles

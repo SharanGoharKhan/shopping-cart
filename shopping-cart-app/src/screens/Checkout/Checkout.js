@@ -13,6 +13,8 @@ import { AntDesign } from '@expo/vector-icons'
 const DATA = [
     { name: 'Leather Crossbody MID Bag', amount: 3, price: 120 },
     { name: 'Ves Bread Storage', amount: 1, price: 35 },
+    { name: 'Ves Bread Storage', amount: 1, price: 35 },
+    { name: 'Ves Bread Storage', amount: 1, price: 35 },
 ];
 const COD_PAYMENT = {
     payment: 'COD',
@@ -93,9 +95,7 @@ function Checkout() {
                                     </TextDefault>
                                 </View>
                                 <View style={styles.items}>
-                                    <ScrollView showsVerticalScrollIndicator={false}>
-                                        {DATA.map((item, index) => renderItem(item, index))}
-                                    </ScrollView>
+                                    {DATA.map((item, index) => renderItem(item, index))}
                                 </View>
                             </View>
 

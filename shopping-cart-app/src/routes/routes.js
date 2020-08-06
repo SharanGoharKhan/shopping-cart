@@ -25,6 +25,8 @@ function noDrawer() {
             <NavigationStack.Screen name='AddressList' component={Screen.AddressList} />
             <NavigationStack.Screen name='Checkout' component={Screen.Checkout} />
             <NavigationStack.Screen name='Payment' component={Screen.Payment} />
+            <NavigationStack.Screen name='Paypal' component={Screen.Paypal} />
+            <NavigationStack.Screen name='StripeCheckout' component={Screen.StripeCheckout} />
             <NavigationStack.Screen name='EditAddress' component={Screen.EditAddress} />
             <NavigationStack.Screen name='NewAddress' component={Screen.NewAddress} />
             <NavigationStack.Screen name='FullMap' component={Screen.FullMap} />

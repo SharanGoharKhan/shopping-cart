@@ -3,9 +3,10 @@ import { View, TextInput, KeyboardAvoidingView, ScrollView, TouchableOpacity } f
 import styles from './styles';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { BackHeader, BottomTab, TextDefault } from '../../components';
-import { colors, alignment } from '../../utils';
+import { colors, alignment, scale } from '../../utils';
 import { useNavigation, useRoute } from '@react-navigation/native';
 import * as Location from 'expo-location'
+import { MaterialIcons } from '@expo/vector-icons';
 
 function NewAddress() {
     const navigation = useNavigation()
@@ -114,11 +115,12 @@ function NewAddress() {
                                             <TouchableOpacity
                                                 activeOpacity={0}
                                                 onPress={() => navigation.navigate('FullMap', { currentScreen: 'NewAddress' })}
-                                                style={[styles.inputContainer, regionError.length > 0 && styles.error]}
+                                                style={[styles.inputContainer, styles.row, regionError.length > 0 && styles.error]}
                                             >
                                                 <TextDefault textColor={colors.fontPlaceholder} style={{ ...alignment.PLxSmall }}>
                                                     {regionObj !== null ? (parseFloat(regionObj.latitude).toFixed(2) + '°N, ' + parseFloat(regionObj.longitude).toFixed(2) + '°E') : '25°"N 55°E '}
                                                 </TextDefault>
+                                                <MaterialIcons name="location-on" size={scale(25)} color={colors.google} />
                                             </TouchableOpacity>
                                         </View>
                                     </View>

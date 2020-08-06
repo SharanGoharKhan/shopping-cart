@@ -1,13 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import { View, TextInput, KeyboardAvoidingView, ScrollView, TouchableOpacity } from 'react-native';
 import styles from './styles';
-import BottomTab from '../../components/BottomTab/BottomTab';
 import { SafeAreaView } from 'react-native-safe-area-context';
-import { BackHeader } from '../../components/Headers/Headers';
-import { colors, alignment } from '../../utils';
-import { TextDefault } from '../../components/Text';
+import { colors, alignment, scale } from '../../utils';
+import { TextDefault, BackHeader, BottomTab } from '../../components';
 import { useNavigation, useRoute } from '@react-navigation/native';
 import * as Location from 'expo-location'
+import { MaterialIcons } from '@expo/vector-icons';
 
 function EditAddress(props) {
     const navigation = useNavigation()
@@ -126,11 +125,12 @@ function EditAddress(props) {
                                                     longitude: region.longitude,
                                                     currentScreen: 'EditAddress'
                                                 })}
-                                                style={[styles.inputContainer, regionError.length > 0 && styles.error]}
+                                                style={[styles.inputContainer, styles.row, regionError.length > 0 && styles.error]}
                                             >
                                                 <TextDefault textColor={colors.fontMainColor} style={{ ...alignment.PLxSmall }}>
                                                     {region.latitude !== null && region.longitude !== null ? (parseFloat(region.latitude).toFixed(2) + '°N, ' + parseFloat(region.longitude).toFixed(2) + '°E') : '25°"N 55°E '}
                                                 </TextDefault>
+                                                <MaterialIcons name="location-on" size={scale(25)} color={colors.google} />
                                             </TouchableOpacity>
                                         </View>
                                     </View>

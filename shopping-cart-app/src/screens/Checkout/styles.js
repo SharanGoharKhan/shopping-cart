@@ -29,7 +29,6 @@ const styles = StyleSheet.create({
         ...alignment.MBmedium
     },
     orders: {
-        height: scale(110),
         width: '100%',
     },
     line: {
@@ -37,8 +36,8 @@ const styles = StyleSheet.create({
         borderColor: colors.horizontalLine
     },
     items: {
-        height: verticalScale(50),
-        width: '100%'
+        width: '100%',
+        ...alignment.PBsmall
     },
     deliveryDate: {
         ...alignment.PTxSmall,

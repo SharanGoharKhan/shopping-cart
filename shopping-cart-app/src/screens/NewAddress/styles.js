@@ -9,6 +9,13 @@ const styles = StyleSheet.create({
     mainContainer: {
         marginTop: Platform.OS === 'ios' ? 0 : StatusBar.currentHeight
     },
+    row: {
+        flexDirection: 'row',
+        alignItems: "center",
+        justifyContent:'space-between',
+        ...alignment.PRxSmall,
+        ...alignment.PLxSmall
+    },
     formMainContainer: {
         flex: 1,
         backgroundColor: colors.themeBackground,
