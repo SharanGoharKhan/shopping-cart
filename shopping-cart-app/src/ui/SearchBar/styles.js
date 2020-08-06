@@ -1,5 +1,4 @@
-import { verticalScale } from '../../utils/scaling';
-import { fontStyles, colors, alignment, textStyles } from '../../utils';
+import { colors, alignment, textStyles, scale } from '../../utils';
 import { StyleSheet } from 'react-native';
 
 const styles = StyleSheet.create({
@@ -9,8 +8,7 @@ const styles = StyleSheet.create({
         justifyContent: 'space-between',
         alignItems: 'center',
         width: '100%',
-        height: verticalScale(32),
-        borderRadius: verticalScale(5),
+        borderRadius: scale(5),
     },
     button: {
         height: '100%',

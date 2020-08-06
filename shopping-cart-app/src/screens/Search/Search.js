@@ -5,7 +5,7 @@ import SearchBar from '../../ui/SearchBar/SearchBar';
 import CategoryCard from './CategoryCard/CategoryCard';
 import BottomTab from '../../components/BottomTab/BottomTab';
 import { SafeAreaView } from 'react-native-safe-area-context';
-import { BackHeader } from '../../components/Headers/Headers';
+import { BackHeader } from '../../components';
 
 const CATEGORIES = [
     {

@@ -1,7 +1,5 @@
 import { StatusBar, Dimensions, Platform, StyleSheet } from 'react-native';
-import { verticalScale, alignment } from '../../utils';
-import { colors } from '../../utils/colors';
-import { fontStyles } from '../../utils/fontStyles';
+import { verticalScale, alignment, colors } from '../../utils';
 const { width, height } = Dimensions.get('window');
 
 const styles = StyleSheet.create({
@@ -38,11 +36,6 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         justifyContent: 'space-between',
     },
-    header_text: {
-        fontFamily: fontStyles.PoppinsRegular,
-        fontSize: verticalScale(14),
-        paddingLeft: verticalScale(8),
-    },
     headerLeft: {
         flexDirection: 'row',
         alignItems: 'center'
@@ -68,7 +61,7 @@ const styles = StyleSheet.create({
         height: '90%',
         width: '100%',
         alignItems: 'center',
-        backgroundColor: colors.backgroudGray,
+        backgroundColor: colors.themeBackground,
 
     },
     mainBody: {
@@ -78,24 +71,12 @@ const styles = StyleSheet.create({
     mixed_text: {
         width: '80%',
     },
-    text: {
-        fontFamily: fontStyles.PoppinsRegular,
-        fontSize: verticalScale(14),
-        paddingRight: verticalScale(4),
-    },
-    bold: {
-        fontFamily: fontStyles.PoppinsRegular,
-        fontSize: verticalScale(14),
-        fontWeight: '500',
-        paddingRight: verticalScale(4),
-
-    },
     main_scroller: {
         height: '93%',
     },
     // footer
     footer: {
-        backgroundColor: colors.backgroudGray,
+        backgroundColor: colors.themeBackground,
         height: '100%',
         width: '100%',
         justifyContent: 'flex-end',
