@@ -50,16 +50,9 @@ function profileContainer(props) {
               </TouchableOpacity>
             </View>
             <View style={styles.profileImageContainer}>
-              <View
-                style={styles.profileImage}
-              >
-                <Image
-                  source={require('../../../assets/images/mainMenu/menu_avatar.png')}
-                  style={styles.imgResponsive2}
-                  resizeMode="contain"
-                />
+              <View style={styles.profileImage}>
+                <SimpleLineIcons name="user" size={scale(40)} color={colors.fontBrown} />
               </View>
-
             </View>
             <View style={styles.nameContainer}>
               <Text style={styles.nameStyle}>Sharan Khan</Text>

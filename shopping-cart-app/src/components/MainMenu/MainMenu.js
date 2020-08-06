@@ -40,11 +40,7 @@ function MainMenu(props) {
                 <View style={styles.profileContainer}>
                     <View style={styles.profileSubContainer}>
                         <View style={styles.profileImage}>
-                            <Image
-                                source={require('../../assets/images/mainMenu/menu_avatar.png')}
-                                resizeMode="contain"
-                                style={styles.imgResponsive3}
-                            />
+                            <SimpleLineIcons name="user" size={scale(30)} color={colors.fontBrown} />
                         </View>
                         <View style={styles.profileTitle}>
                             <Text style={styles.profileTitleStyle}>Sharan Khan</Text>

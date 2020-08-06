@@ -1,10 +1,11 @@
 import React from 'react';
-import { View, Text, Image, TextInput, KeyboardAvoidingView, TouchableOpacity, ScrollView } from 'react-native';
+import { View, Text, TextInput, KeyboardAvoidingView, TouchableOpacity, ScrollView } from 'react-native';
 import styles from './styles';
-import BottomTab from '../../components/BottomTab/BottomTab';
-import { verticalScale } from '../../utils/scaling';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { BackHeader } from '../../components/Headers/Headers';
+import { BottomTab } from '../../components'
+import { SimpleLineIcons } from '@expo/vector-icons';
+import { scale, colors } from '../../utils';
 
 function EditingProfile(props) {
     return (
@@ -18,11 +19,7 @@ function EditingProfile(props) {
                         <KeyboardAvoidingView style={{ flex: 1 }} behavior={Platform.OS === "ios" ? "padding" : null} keyboardVerticalOffset={100}>
                             <View style={styles.formContainer}>
                                 <View style={styles.profileImageContainer}>
-                                    <Image
-                                        source={require('../../assets/images/mainMenu/menu_avatar.png')}
-                                        style={styles.imgResponsive}
-                                        resizeMode="contain"
-                                    />
+                                    <SimpleLineIcons name="user" size={scale(40)} color={colors.fontBrown} />
                                 </View>
                                 <View style={styles.formContentContainer}>
                                     <View style={styles.twoItemsContainer}>
@@ -107,7 +104,7 @@ function EditingProfile(props) {
                                     </View>
                                     <View style={styles.addContainer}>
                                         <TouchableOpacity
-                                        activeOpacity={0}
+                                            activeOpacity={0}
                                             onPress={() => props.navigation.navigate('ProfileDashboard')}
                                             style={styles.addBtn}
                                         >
@@ -119,9 +116,7 @@ function EditingProfile(props) {
                         </KeyboardAvoidingView>
                     </View>
                 </ScrollView>
-                <BottomTab
-                    navigationObj={props.navigation}
-                />
+                <BottomTab />
             </View>
         </SafeAreaView>
     );
