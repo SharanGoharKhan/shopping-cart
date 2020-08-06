@@ -1,7 +1,5 @@
-import { StatusBar, Platform } from 'react-native';
-import { verticalScale, scale } from '../../utils/scaling';
-import { colors } from '../../utils/colors';
-import { fontStyles } from '../../utils/fontStyles';
+import { StatusBar, Platform } from 'react-native';;
+import { fontStyles, colors, scale } from '../../utils';
 
 export default {
     flex: {
@@ -24,7 +22,7 @@ export default {
     summaryContainer: {
         marginTop: scale(30),
         width: '90%',
-        backgroundColor: colors.grayLinesColor,
+        backgroundColor: colors.containerDark,
         alignSelf: 'center',
         padding: scale(10),
         justifyContent: 'flex-end'
@@ -36,7 +34,7 @@ export default {
     lineStyle: {
         width: '99%',
         height: 1,
-        backgroundColor: colors.grayLinesColor,
+        backgroundColor: colors.horizontalLine,
         alignSelf: 'center'
     },
     btnContainer: {

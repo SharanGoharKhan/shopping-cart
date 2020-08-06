@@ -1,6 +1,5 @@
 import AddressList from './AddressList/AddressList'
 import Checkout from './Checkout/Checkout'
-import CheckoutPayment from './CheckoutPayment/CheckoutPayment'
 import EditAddress from './EditAddress/EditAddress'
 import EditingProfile from './EditingProfile/EditingProfile'
 import MainLanding from './MainLanding/MainLanding'
@@ -18,4 +17,4 @@ import SignUp from './SignUp/SignUp'
 import TrackOrder from './TrackOrder/TrackOrder'
 import FullMap from './FullMap/FullMap'
 
-export { AddressList, Checkout, CheckoutPayment, EditAddress, EditingProfile, MainLanding, NewAddress, OrderDetail, PreviousOrders, ProfileDashboard, ProductDescription, ProductListing, Search, SearchResults, ShoppingCart, SignIn, SignUp, TrackOrder, FullMap }
+export { AddressList, Checkout, EditAddress, EditingProfile, MainLanding, NewAddress, OrderDetail, PreviousOrders, ProfileDashboard, ProductDescription, ProductListing, Search, SearchResults, ShoppingCart, SignIn, SignUp, TrackOrder, FullMap }

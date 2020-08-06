@@ -17,7 +17,7 @@ const styles = StyleSheet.create({
     contentContainer: {
         flex: 1,
         flexDirection: 'row',
-        borderBottomWidth: StyleSheet.hairlineWidth,
+        borderWidth: StyleSheet.hairlineWidth,
         borderColor: colors.horizontalLine,
         backgroundColor: colors.container,
         borderRadius: scale(5),

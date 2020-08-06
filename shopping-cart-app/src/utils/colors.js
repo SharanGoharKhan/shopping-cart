@@ -16,6 +16,7 @@ export const colors = {
     buttonText: '#FFF',
     selected: '#33cc33',
     container: '#FFF',
+    containerDark: '#EAEAEA',
     messageBackground: 'rgba(52, 52, 52, .9)',
     errorColor: '#FA7751',
     google: '#DC4E41',

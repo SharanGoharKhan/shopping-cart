@@ -24,7 +24,6 @@ function noDrawer() {
             <NavigationStack.Screen name='MainLanding' component={Screen.MainLanding} />
             <NavigationStack.Screen name='AddressList' component={Screen.AddressList} />
             <NavigationStack.Screen name='Checkout' component={Screen.Checkout} />
-            <NavigationStack.Screen name='CheckoutPayment' component={Screen.CheckoutPayment} />
             <NavigationStack.Screen name='EditAddress' component={Screen.EditAddress} />
             <NavigationStack.Screen name='NewAddress' component={Screen.NewAddress} />
             <NavigationStack.Screen name='FullMap' component={Screen.FullMap} />
