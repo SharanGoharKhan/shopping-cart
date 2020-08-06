@@ -20,7 +20,7 @@ export const colors = {
     messageBackground: 'rgba(52, 52, 52, .9)',
     errorColor: '#FA7751',
     google: '#DC4E41',
-    facefok: '#3B5998',
+    facebook: '#3B5998',
     radioColor: '#FFF',
     radioOuterColor: '#D0AD8A',
 
