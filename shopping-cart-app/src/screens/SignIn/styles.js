@@ -10,7 +10,7 @@ const styles = StyleSheet.create({
         height: '100%',
         width: '100%',
         alignSelf: 'center',
-        justifyContent: 'center'
+        justifyContent: 'space-between'
     },
     body: {
         height: '100%',
@@ -102,7 +102,7 @@ const styles = StyleSheet.create({
 
     },
     googleBtn: {
-        height: scale(60),
+        height: scale(50),
         borderWidth: 0,
         borderRightWidth: 0,
         borderRadius: 3,
@@ -112,7 +112,7 @@ const styles = StyleSheet.create({
         backgroundColor: colors.google,
     },
     facebookBtn: {
-        height: scale(60),
+        height: scale(50),
         borderWidth: 0,
         borderLeftWidth: 0,
         borderRadius: 3,
@@ -128,7 +128,7 @@ const styles = StyleSheet.create({
     },
     LoginBtn: {
         backgroundColor: colors.buttonBackground,
-        height: scale(50),
+        height: scale(40),
         borderRadius: scale(3),
     },
     main_brown_btn: {

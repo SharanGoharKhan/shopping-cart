@@ -55,8 +55,6 @@ function SignIn(props) {
         })
         if (type === 'success')
             return user
-        if (type === 'cancel')
-            return null
     }
 
     async function _FacebookSignUp() {
@@ -87,7 +85,7 @@ function SignIn(props) {
                             }}
                             onPress={async () => {
                                 const googleUser = await _GoogleSignUp()
-                                props.navigation.navigate('MainLanding')
+                                navigation.navigate('MainLanding')
                             }
 
                             }
@@ -114,7 +112,7 @@ function SignIn(props) {
                             activeOpacity={0.7}
                             onPress={async () => {
                                 const user = await _FacebookSignUp()
-                                props.navigation.navigate('MainLanding')
+                                navigation.navigate('MainLanding')
                             }}
                             style={styles.socialBtn}>
                             <View style={styles.bgCircle}>
@@ -176,7 +174,7 @@ function SignIn(props) {
                         <TouchableOpacity
                             style={styles.main_brown_btn}
                             activeOpacity={0.7}
-                            onPress={() => props.navigation.navigate('noDrawer', { screen: 'MainLanding' })}>
+                            onPress={() => navigation.navigate('noDrawer', { screen: 'MainLanding' })}>
                             <TextDefault textColor={colors.buttonText} H5>
                                 {'Sign In'}
                             </TextDefault>
@@ -254,7 +252,7 @@ function SignIn(props) {
                                     </TextDefault>
                                     <TextDefault textColor={colors.fontMainColor} small>
                                         {'By creating a new account, you will become a valuable customer/buyer to Enatega by default. While registering, '}
-                                        <TextDefault style={styles.ftUnderline} small onPress={() => props.navigation.navigate('SignUp')}>
+                                        <TextDefault style={styles.ftUnderline} small onPress={() => navigation.navigate('SignUp')}>
                                             {'you can also choose to become a seller and open your own shop'}
                                         </TextDefault>
                                     </TextDefault>
