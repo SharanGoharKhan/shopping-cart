@@ -1,5 +1,6 @@
 import { scale } from '../../utils/scaling';
 import { Platform, StatusBar } from 'react-native';
+import { colors } from '../../utils/colors';
 
 export default {
     flex: {

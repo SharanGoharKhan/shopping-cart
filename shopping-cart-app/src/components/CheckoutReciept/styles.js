@@ -1,7 +1,5 @@
 import { Dimensions } from 'react-native';
-import { verticalScale } from '../../../utils/scaling';
-import { colors } from '../../../utils/colors';
-import { fontStyles } from '../../../utils/fontStyles';
+import { colors, verticalScale } from '../../utils';
 const { height, width } = Dimensions.get('window');
 
 export default {
@@ -41,26 +39,16 @@ export default {
         justifyContent: 'center',
         alignItems: 'flex-start',
     },
-    titleStyle: {
-        fontFamily: fontStyles.PoppinsRegular,
-        fontSize: verticalScale(16),
-    },
     line: {
         marginTop: '3%',
         width: '100%',
         height: verticalScale(1),
-        backgroundColor: colors.grayLinesColor,
+        backgroundColor: colors.containerDark,
     },
     dateContainer: {
         marginTop: '3%',
         width: '100%',
         height: '8%',
-    },
-    dateStyle: {
-        color: colors.darkGrayText,
-        fontFamily: fontStyles.PoppinsRegular,
-        fontSize: verticalScale(12),
-        marginBottom: '3%',
     },
     fullWidth: {
         width: '100%',
@@ -79,15 +67,6 @@ export default {
         justifyContent: 'center',
         alignItems: 'flex-end',
     },
-    normalStyle: {
-        fontFamily: fontStyles.PoppinsRegular,
-        fontSize: verticalScale(14),
-    },
-    blueFont: {
-        fontFamily: fontStyles.PoppinsRegular,
-        color: colors.blueColor,
-        fontSize: verticalScale(14),
-    },
     btnContainer: {
         width: '100%',
         height: '13%',
@@ -96,12 +75,5 @@ export default {
         borderRadius: verticalScale(3),
         justifyContent: 'center',
         alignItems: 'center',
-    },
-    btnStyle: {
-        marginTop:'2%',
-        fontFamily: fontStyles.PoppinsRegular,
-        fontSize: verticalScale(14),
-        color: colors.whiteColor,
-    },
-
+    }
 };
