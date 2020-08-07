@@ -1,16 +1,35 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { View, Image, TouchableOpacity, ImageBackground, KeyboardAvoidingView, ScrollView, Platform, StatusBar } from 'react-native';
 import styles from './styles';
 import { verticalScale, colors, scale } from '../../utils';
-import { TextDefault } from '../../components'
+import { TextDefault, Spinner } from '../../components'
 import TextField from '../../ui/Textfield/Textfield';
 import ForgotPassword from './ForgotPassword/ForgotPassword';
-import MainBtn from '../../ui/Buttons/MainBtn';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { EvilIcons } from '@expo/vector-icons';
+import * as AppAuth from 'expo-app-auth'
+import * as Facebook from 'expo-facebook'
+import * as Google from 'expo-google-app-auth'
+import getEnvVars from '../../../environment'
+import { useNavigation } from '@react-navigation/native';
+import * as AppleAuthentication from 'expo-apple-authentication'
+
+const {
+    IOS_CLIENT_ID_GOOGLE,
+    ANDROID_CLIENT_ID_GOOGLE,
+    FACEBOOK_APP_ID
+} = getEnvVars()
 
 function SignIn(props) {
+    const navigation = useNavigation()
     const [modalVisible, setModalVisible] = useState(false)
+    const [loginButton, loginButtonSetter] = useState(null)
+    const [loading, setLoading] = useState(false)
+    const [enableApple, setEnableApple] = useState(false)
+
+    useEffect(() => {
+        checkIfSupportsAppleAuthentication()
+    }, [])
 
     function showModal() {
         setModalVisible(true)
@@ -18,6 +37,153 @@ function SignIn(props) {
 
     function hideModal() {
         setModalVisible(false)
+    }
+
+    async function checkIfSupportsAppleAuthentication() {
+        setEnableApple(await AppleAuthentication.isAvailableAsync())
+        console.log(enableApple)
+    }
+
+    async function _GoogleSignUp() {
+        const { type, user } = await Google.logInAsync({
+            iosClientId: IOS_CLIENT_ID_GOOGLE,
+            androidClientId: ANDROID_CLIENT_ID_GOOGLE,
+            iosStandaloneAppClientId: IOS_CLIENT_ID_GOOGLE,
+            iosStandaloneAppClientId: ANDROID_CLIENT_ID_GOOGLE,
+            redirectUrl: `${AppAuth.OAuthRedirect}:/oauth2redirect/google`,
+            scopes: ['profile', 'email']
+        })
+        if (type === 'success')
+            return user
+        if (type === 'cancel')
+            return null
+    }
+
+    async function _FacebookSignUp() {
+        await Facebook.initializeAsync(FACEBOOK_APP_ID)
+        const { type, token } = await Facebook.logInWithReadPermissionsAsync(
+            FACEBOOK_APP_ID, {
+            permissions: ['public_profile', 'email']
+        })
+        if (type === 'success') {
+            const response = await fetch(`https://graph.facebook.com/me?access_token=${token}&fields=email,name`);
+            const user = await response.json()
+            console.log(token, user)
+            return user
+        }
+    }
+
+
+    function renderGoogle() {
+        return (
+            <View style={[styles.socialBtnsView, styles.googleBtn]}>
+                {(loading && loginButton === 'Google') ?
+                    <Spinner backColor="rgba(0,0,0,0.1)" spinnerColor={'#FFF'} />
+                    : (
+                        <TouchableOpacity
+                            activeOpacity={0.7}
+                            onPressIn={() => {
+                                loginButtonSetter('Google')
+                            }}
+                            onPress={async () => {
+                                const googleUser = await _GoogleSignUp()
+                                props.navigation.navigate('MainLanding')
+                            }
+
+                            }
+                            style={styles.socialBtn}>
+                            <View style={styles.bgCircle}>
+                                <EvilIcons name="sc-google-plus" size={scale(20)} color={colors.google} />
+                            </View>
+                            <TextDefault style={styles.fbText} textColor={colors.white} H5>
+                                {'Google'}
+                            </TextDefault>
+                        </TouchableOpacity>
+                    )}
+            </View>
+        )
+    }
+
+    function renderFacebook() {
+        return (
+            <View style={[styles.socialBtnsView, styles.facebookBtn]}>
+                {(loading && loginButton === 'Facebook') ?
+                    <Spinner backColor="rgba(0,0,0,0.1)" spinnerColor={'#FFF'} />
+                    : (
+                        <TouchableOpacity
+                            activeOpacity={0.7}
+                            onPress={async () => {
+                                const user = await _FacebookSignUp()
+                                props.navigation.navigate('MainLanding')
+                            }}
+                            style={styles.socialBtn}>
+                            <View style={styles.bgCircle}>
+                                <EvilIcons name="sc-facebook" size={scale(20)} color={colors.facebook} />
+                            </View>
+                            <TextDefault style={styles.fbText} textColor={colors.white} H5>
+                                {'Facebook'}
+                            </TextDefault>
+                        </TouchableOpacity>
+                    )}
+            </View>
+        )
+    }
+    function renderApple() {
+        if (loading && loginButton === 'Apple') {
+            return (
+                <View style={[styles.socialBtnsView, styles.appleBtn]}>
+                    <Spinner backColor="rgba(0,0,0,0.1)" spinnerColor={'#FFF'} />
+                </View>
+            )
+        }
+        return (
+            <AppleAuthentication.AppleAuthenticationButton
+                buttonType={AppleAuthentication.AppleAuthenticationButtonType.SIGN_IN}
+                buttonStyle={AppleAuthentication.AppleAuthenticationButtonStyle.BLACK}
+                cornerRadius={3}
+                style={styles.appleBtn}
+                onPress={async () => {
+                    try {
+                        const credential = await AppleAuthentication.signInAsync({
+                            requestedScopes: [
+                                AppleAuthentication.AppleAuthenticationScope.FULL_NAME,
+                                AppleAuthentication.AppleAuthenticationScope.EMAIL
+                            ]
+                        })
+                        loginButtonSetter('Apple')
+                    } catch (e) {
+                        if (e.code === 'ERR_CANCELED') {
+                            // handle that the user canceled the sign-in flow
+                            loginButtonSetter(null)
+                        } else {
+                            // handle other errors
+                            loginButtonSetter(null)
+                        }
+                    }
+
+                }}
+            />
+        )
+
+    }
+
+    function rennderLogin() {
+        return (
+            <View style={styles.LoginBtn}>
+                {(loading && loginButton === 'Login') ?
+                    <Spinner backColor="rgba(0,0,0,0.1)" spinnerColor={'#FFF'} />
+                    : (
+                        <TouchableOpacity
+                            style={styles.main_brown_btn}
+                            activeOpacity={0.7}
+                            onPress={() => props.navigation.navigate('noDrawer', { screen: 'MainLanding' })}>
+                            <TextDefault textColor={colors.buttonText} H5>
+                                {'Sign In'}
+                            </TextDefault>
+                        </TouchableOpacity>
+                    )}
+            </View>
+        )
     }
 
     return (
@@ -63,10 +229,7 @@ function SignIn(props) {
                                         <TextField
                                             placeholder="Password"
                                         />
-                                        <MainBtn
-                                            onPress={() => props.navigation.navigate('MainLanding')}
-                                            text="Sign In"
-                                        />
+                                        {rennderLogin()}
                                         <TouchableOpacity
                                             activeOpacity={0.7}
                                             onPress={() => showModal()}>
@@ -75,35 +238,12 @@ function SignIn(props) {
                                             </TextDefault>
                                         </TouchableOpacity>
                                     </View>
-                                    <View style={styles.bcSocialBtns}>
-                                        <View style={[styles.socialBtnsView, styles.googleBtn]}>
-                                            <TouchableOpacity
-                                                activeOpacity={0.7}
-                                                onPress={() => props.navigation.navigate('MainLanding')}
-                                                style={styles.socialBtn}
-                                            >
-                                                <View style={styles.bgCircle}>
-                                                    <EvilIcons name="sc-google-plus" size={scale(20)} color={colors.google} />
-                                                </View>
-                                                <TextDefault style={styles.fbText} textColor={colors.white} H5>
-                                                    {'Google'}
-                                                </TextDefault>
-                                            </TouchableOpacity>
+                                    <View style={styles.bcSocialBox} >
+                                        <View style={styles.bcSocialBtns}>
+                                            {renderGoogle()}
+                                            {renderFacebook()}
                                         </View>
-                                        <View style={[styles.socialBtnsView, styles.facebookBtn]}>
-                                            <TouchableOpacity
-                                                activeOpacity={0.7}
-                                                onPress={() => props.navigation.navigate('noDrawer', { screen: 'MainLanding' })}
-                                                style={styles.socialBtn}
-                                            >
-                                                <View style={styles.bgCircle}>
-                                                    <EvilIcons name="sc-facebook" size={scale(20)} color={colors.facebook} />
-                                                </View>
-                                                <TextDefault style={styles.fbText} textColor={colors.white} H5>
-                                                    {'Facebook'}
-                                                </TextDefault>
-                                            </TouchableOpacity>
-                                        </View>
+                                        {enableApple && renderApple()}
                                     </View>
                                 </ImageBackground>
                             </View>

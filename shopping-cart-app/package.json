@@ -15,7 +15,11 @@
     "@react-navigation/native": "^5.7.3",
     "@react-navigation/stack": "^5.9.0",
     "expo": "^38.0.9",
+    "expo-app-auth": "~9.1.1",
+    "expo-constants": "~9.1.1",
+    "expo-facebook": "~8.2.1",
     "expo-font": "~8.2.1",
+    "expo-google-app-auth": "^8.1.2",
     "expo-location": "~8.2.1",
     "expo-permissions": "~9.0.1",
     "react": "16.11.0",
@@ -30,7 +34,8 @@
     "react-native-screens": "~2.9.0",
     "react-native-swiper-flatlist": "^2.0.4",
     "react-native-timeline-flatlist": "^0.7.3",
-    "react-native-webview": "9.4.0"
+    "react-native-webview": "9.4.0",
+    "expo-apple-authentication": "~2.2.1"
   },
   "devDependencies": {
     "babel-eslint": "^10.1.0",

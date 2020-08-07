@@ -13,7 +13,7 @@ const styles = StyleSheet.create({
         justifyContent: 'center'
     },
     body: {
-        height: height * .95,
+        height: '100%',
         width: '95%',
         alignSelf: 'center',
     },
@@ -29,7 +29,7 @@ const styles = StyleSheet.create({
     },
     bodyContainer: {
         width: '90%',
-        height: '63%',
+        height: '70%',
         alignSelf: 'center',
         backgroundColor: colors.themeBackground,
         borderRadius: scale(5),
@@ -37,6 +37,7 @@ const styles = StyleSheet.create({
     bodyContainerBackground: {
         backgroundColor: colors.themeBackground,
         alignItems: 'center',
+        justifyContent: 'center',
         width: '100%',
         height: '100%',
     },
@@ -55,24 +56,29 @@ const styles = StyleSheet.create({
         ...alignment.PLmedium
     },
     bcTexts: {
+        width: '100%',
         alignItems: 'center',
         justifyContent: 'center',
-        height: '30%',
+        height: '20%',
     },
     bcMain: {
         height: '45%',
         width: '90%',
         flexDirection: 'column',
         justifyContent: 'space-around',
+
     },
     bcInputs: {
         width: '90%',
     },
+    bcSocialBox: {
+        width: '90%',
+        height: '35%',
+        alignItems: 'center',
+        justifyContent: "center",
+    },
     bcSocialBtns: {
         flexDirection: 'row',
-        width: '90%',
-        height: '25%',
-        alignItems: 'center',
     },
     socialBtnsView: {
         width: '50%',
@@ -119,6 +125,22 @@ const styles = StyleSheet.create({
     },
     ftUnderline: {
         textDecorationLine: 'underline',
+    },
+    LoginBtn: {
+        backgroundColor: colors.buttonBackground,
+        height: scale(50),
+        borderRadius: scale(3),
+    },
+    main_brown_btn: {
+        alignItems: 'center',
+        justifyContent: 'center',
+        width: '100%',
+        height: '100%',
+    },
+    appleBtn: {
+        width: '100%',
+        height: scale(50),
+        ...alignment.MTsmall
     },
 });
 export default styles
