@@ -53,11 +53,12 @@ function ShoppingCart(props) {
                     <FlatList
                         data={CARTDATA}
                         style={styles.flex}
+                        keyExtractor={item => item._id}
                         contentContainerStyle={styles.subContainer}
                         showsVerticalScrollIndicator={false}
                         renderItem={({ item, index }) => (
                             <ShoppingCard
-                                key={index}
+                                key={item._id}
                                 item={item}
                             />
                         )

@@ -27,6 +27,8 @@ function SignIn(props) {
     const [loading, setLoading] = useState(false)
     const [enableApple, setEnableApple] = useState(false)
 
+    console.log(AppAuth.OAuthRedirect)
+
     useEffect(() => {
         checkIfSupportsAppleAuthentication()
     }, [])

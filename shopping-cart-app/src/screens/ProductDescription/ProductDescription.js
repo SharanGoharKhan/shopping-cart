@@ -8,6 +8,7 @@ import { BackHeader } from '../../components/Headers/Headers';
 import Button from '../../ui/Buttons/Button';
 import VariationSection from './VariationSection/VariationSection';
 import { SafeAreaView } from 'react-native-safe-area-context';
+import { useNavigation } from '@react-navigation/native';
 
 const caroselData = [
     {
@@ -47,6 +48,8 @@ const VARIATIONS = [
 
 function ProductDescription(props) {
     const [caroselImage, setCaroselImage] = useState(require('../../assets/images/MainLanding/carosel_img_3.png'))
+    const navigation = useNavigation()
+    const isLogin = false
     return (
         <SafeAreaView style={styles.flex}>
             <View style={[styles.flex, styles.mainContainer]}>
@@ -114,12 +117,15 @@ function ProductDescription(props) {
                     <Button
                         containerStyle={styles.shoppingCartContainer}
                         textStyle={styles.shoppingCartText}
-                        onPress={() => props.navigation.navigate('ShoppingCart')}
+                        onPress={() => {
+                            isLogin ?
+                                navigation.navigate('ShoppingCart')
+                                :
+                                navigation.navigate('SignIn')
+                        }}
                         text="Add to Shopping Cart" />
                 </ScrollView>
-                <BottomTab
-                    navigationObj={props.navigation}
-                />
+                <BottomTab />
             </View>
         </SafeAreaView>
     );
