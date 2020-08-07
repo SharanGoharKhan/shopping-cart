@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { View, Text, ScrollView, FlatList } from 'react-native';
+import { View, Text, FlatList } from 'react-native';
 import styles from './styles';
 import { BackHeader, BottomTab, CheckoutReceipt } from '../../components';
 import ShoppingCard from './ShoppingCard/ShoppingCard';
