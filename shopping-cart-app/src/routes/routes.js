@@ -50,14 +50,12 @@ function noDrawer() {
 
 function AppContainer() {
     return (
-        <SafeAreaProvider>
-            <NavigationContainer>
-                <MainStack.Navigator headerMode='none' initialRouteName='AuthLoading'>
-                    <MainStack.Screen name='AuthLoading' component={AuthLoading} />
-                    <MainStack.Screen name='Drawer' component={Drawer} />
-                </MainStack.Navigator>
-            </NavigationContainer>
-        </SafeAreaProvider>
+        <NavigationContainer>
+            <MainStack.Navigator headerMode='none' initialRouteName='AuthLoading'>
+                <MainStack.Screen name='AuthLoading' component={AuthLoading} />
+                <MainStack.Screen name='Drawer' component={Drawer} />
+            </MainStack.Navigator>
+        </NavigationContainer>
     )
 
 }

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { View, ScrollView, TouchableOpacity } from 'react-native';
 import styles from './styles';
 import SearchBar from '../../ui/SearchBar/SearchBar';
@@ -7,6 +7,7 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 import { BackHeader, TextDefault, BottomTab } from '../../components';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 import { scale, colors } from '../../utils';
+import FilterModal from '../../components/FilterMoal/FilterModal';
 
 const DATA = [
     {
@@ -32,6 +33,12 @@ const DATA = [
 const searchedTerm = 'Leather'
 
 function SearchResults(props) {
+    const [filterModal, setFilterModal] = useState(false)
+    const [filters, setFilters] = useState({})
+
+    function toggleFilterModal() {
+        setFilterModal(prev => !prev)
+    }
     return (
         <SafeAreaView style={styles.flex}>
             <View style={[styles.flex, styles.mainContainer]}>
@@ -54,7 +61,7 @@ function SearchResults(props) {
                                     <TouchableOpacity
                                         style={styles.filterButton}
                                         activeOpacity={0}
-                                        onPress={() => console.log('Show modal')}>
+                                        onPress={toggleFilterModal}>
                                         <MaterialCommunityIcons name="tune-vertical" size={scale(20)} color={colors.buttonBackground} />
                                     </TouchableOpacity>
                                 </View>
@@ -79,6 +86,11 @@ function SearchResults(props) {
                     </View>
                 </View>
             </View>
+            <FilterModal
+                visible={filterModal}
+                onModalToggle={toggleFilterModal}
+                setFilters={setFilters}
+            />
             <BottomTab />
         </SafeAreaView>
     )

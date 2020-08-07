@@ -24,6 +24,8 @@ export const colors = {
     radioColor: '#FFF',
     radioOuterColor: '#D0AD8A',
     lightBrown: '#fcead9',
+    headerbackground: '#FFF',
+    headerText: '#000',
 
     //
     blackText: '#4A4A4A',

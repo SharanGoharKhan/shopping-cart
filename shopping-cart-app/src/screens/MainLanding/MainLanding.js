@@ -64,7 +64,7 @@ function MainLanding(props) {
     }
 
     return (
-        <SafeAreaView style={styles.flex}>
+        <SafeAreaView style={[styles.flex, styles.safeAreaStyle]}>
             <View style={[styles.grayBackground, styles.flex]}>
                 <FlatList
                     keyExtractor={(item, index) => index.toString()}
@@ -122,9 +122,7 @@ function MainLanding(props) {
                         item={item} />
                     }
                 />
-                <BottomTab
-                    navigationObj={navigation}
-                />
+                <BottomTab />
             </View>
         </SafeAreaView>
     );

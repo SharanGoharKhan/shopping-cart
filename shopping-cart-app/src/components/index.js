@@ -5,5 +5,6 @@ import MainMenu from './MainMenu/MainMenu'
 import { BackHeader, HeaderRightIcon, HeaderRightText } from './Headers/Headers'
 import RadioButton from './RadioBtn/RadioBtn'
 import Spinner from './Spinner/Spinner'
+import FilterMoal from './FilterMoal/FilterModal'
 
-export { FlashMessage, TextDefault, TextError, BottomTab, MainMenu, BackHeader, HeaderRightIcon, HeaderRightText, RadioButton, Spinner }
+export { FlashMessage, TextDefault, TextError, BottomTab, MainMenu, BackHeader, HeaderRightIcon, HeaderRightText, RadioButton, Spinner, FilterMoal }
