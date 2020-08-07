@@ -6,6 +6,9 @@ const styles = StyleSheet.create({
     flex: {
         flex: 1,
     },
+    safeAreaStyle: {
+        backgroundColor: colors.headerbackground
+    },
     mainContainer: {
         marginTop: Platform.OS === 'ios' ? 0 : StatusBar.currentHeight
     },

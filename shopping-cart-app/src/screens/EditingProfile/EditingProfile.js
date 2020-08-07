@@ -2,14 +2,13 @@ import React from 'react';
 import { View, TextInput, KeyboardAvoidingView, TouchableOpacity, ScrollView } from 'react-native';
 import styles from './styles';
 import { SafeAreaView } from 'react-native-safe-area-context';
-import { BackHeader } from '../../components/Headers/Headers';
-import { BottomTab, TextDefault } from '../../components'
+import { BottomTab, TextDefault, BackHeader } from '../../components'
 import { SimpleLineIcons } from '@expo/vector-icons';
 import { scale, colors } from '../../utils';
 
 function EditingProfile(props) {
     return (
-        <SafeAreaView style={styles.flex}>
+        <SafeAreaView style={[styles.flex, styles.safeAreaStyle]}>
             <View style={[styles.flex, styles.mainContainer]}>
                 <BackHeader
                     title="Editing Profile"

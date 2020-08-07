@@ -5,6 +5,9 @@ export default {
     flex: {
         flex: 1,
     },
+    safeAreaStyle: {
+        backgroundColor: colors.headerbackground
+    },
     container: {
         marginTop: Platform.OS === 'ios' ? 0 : StatusBar.currentHeight
     },

@@ -4,6 +4,12 @@ import { fontStyles } from '../../utils/fontStyles';
 import { StatusBar, Platform } from 'react-native';
 
 export default {
+    flex: {
+        flex: 1
+    },
+    safeAreaStyle: {
+        backgroundColor: colors.headerbackground
+    },
     container: {
         flex: 1,
         alignItems: 'center',
@@ -41,11 +47,11 @@ export default {
         fontFamily: fontStyles.PoppinsRegular,
         fontSize: verticalScale(16),
         color: colors.blackText,
-        width:'60%',
+        width: '60%',
     },
     headerBtn: {
-        width:'30%',
-        height:'80%',
+        width: '30%',
+        height: '80%',
         justifyContent: 'center',
         alignItems: 'flex-start',
     },

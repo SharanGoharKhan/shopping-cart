@@ -38,7 +38,7 @@ function Payment() {
     navigation.navigate('Checkout', { PayObject: payment })
   }
   return (
-    <SafeAreaView style={styles.flex}>
+    <SafeAreaView style={[styles.flex, styles.safeAreaStyle]}>
       <BackHeader
         title="Payment"
         backPressed={() => navigation.goBack()} />

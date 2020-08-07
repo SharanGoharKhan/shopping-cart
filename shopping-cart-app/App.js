@@ -23,6 +23,7 @@ export default function App() {
   if (fontLoaded) {
     return (
       <View style={styles.container}>
+        <StatusBar barStyle={'dark-content'} backgroundColor={colors.headerbackground} />
         <AppContainer />
       </View>
     )

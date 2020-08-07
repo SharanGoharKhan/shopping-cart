@@ -24,7 +24,7 @@ function AddressList() {
     const navigation = useNavigation()
     const [isDefault, isDefaultSetter] = useState(DATA.find(element => element.default === true).id)
     return (
-        <SafeAreaView style={{ flex: 1 }}>
+        <SafeAreaView style={[styles.flex, styles.safeAreaStyle]}>
             <View style={styles.container}>
                 <View style={styles.header}>
                     <View style={styles.headerRow}>

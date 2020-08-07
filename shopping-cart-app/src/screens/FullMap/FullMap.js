@@ -66,7 +66,7 @@ export default function FullMap() {
   }
 
   return (
-    <SafeAreaView style={styles.flex}>
+    <SafeAreaView style={[styles.flex, styles.safeAreaStyle]}>
       <View style={[styles.flex, styles.background]}>
         <BackHeader
           title="Map"

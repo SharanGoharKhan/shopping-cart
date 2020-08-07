@@ -1,10 +1,13 @@
 import { Dimensions, Platform, StatusBar, StyleSheet } from 'react-native';
-import { colors, scale, verticalScale, textStyles, alignment } from '../../utils';
+import { colors, scale, textStyles, alignment } from '../../utils';
 const { height, width } = Dimensions.get('window');
 
 const styles = StyleSheet.create({
     flex: {
         flex: 1,
+    },
+    safeAreaStyle: {
+        backgroundColor: colors.headerbackground
     },
     mainContainer: {
         marginTop: Platform.OS === 'ios' ? 0 : StatusBar.currentHeight

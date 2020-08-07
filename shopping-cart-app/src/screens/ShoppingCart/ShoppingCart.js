@@ -44,7 +44,7 @@ function ShoppingCart(props) {
         )
     }
     return (
-        <SafeAreaView style={styles.flex}>
+        <SafeAreaView style={[styles.flex, styles.safeAreaStyle]}>
             <View style={[styles.flex, styles.mainContainer]}>
                 <BackHeader
                     title="Cart"

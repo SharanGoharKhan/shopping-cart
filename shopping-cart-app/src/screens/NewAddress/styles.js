@@ -6,13 +6,16 @@ const styles = StyleSheet.create({
     flex: {
         flex: 1,
     },
+    safeAreaStyle: {
+        backgroundColor: colors.headerbackground
+    },
     mainContainer: {
         marginTop: Platform.OS === 'ios' ? 0 : StatusBar.currentHeight
     },
     row: {
         flexDirection: 'row',
         alignItems: "center",
-        justifyContent:'space-between',
+        justifyContent: 'space-between',
         ...alignment.PRxSmall,
         ...alignment.PLxSmall
     },
