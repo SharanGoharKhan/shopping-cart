@@ -1,55 +1,34 @@
 import React from 'react';
-import { View, Text } from 'react-native';
+import { View } from 'react-native';
 import styles from './styles';
-import Dropdown from '../../ui/Dropdowns/Dropdown';
 import SearchBar from '../../ui/SearchBar/SearchBar';
 import CategoryCard from './CategoryCard/CategoryCard';
-import BottomTab from '../../components/BottomTab/BottomTab';
+import { BottomTab, TextDefault, BackHeader } from '../../components';
 import { SafeAreaView } from 'react-native-safe-area-context';
-
-const CATEGORIES = [
-    {
-        value: 'Arts & Crafts',
-    },
-    {
-        value: 'Event Ideas',
-    },
-    {
-        value: 'Food & Drinks',
-    },
-    {
-        value: 'Accessories',
-    },
-    {
-        value: 'Fashion'
-
-    },
-    {
-        value: 'Health & Beauty'
-    }
-
-];
+import { colors } from '../../utils';
 
 function Search(props) {
     return (
-        <SafeAreaView style={styles.flex}>
+        <SafeAreaView style={[styles.flex, styles.safeAreaStyle]}>
             <View style={[styles.flex, styles.mainContainer]}>
+                <BackHeader
+                    title="Search"
+                    backPressed={() => props.navigation.goBack()} />
                 <View style={styles.container}>
                     <View style={[styles.body]}>
-                        <View style={[styles.header]}>
-                            <Text style={styles.header_text}>Search  In  </Text>
-                            <Dropdown items={CATEGORIES} />
-                        </View>
                         <View style={[styles.main]}>
                             <View style={styles.searchBarContainer}>
                                 <SearchBar onPress={() => props.navigation.navigate('SearchResult')} placeholderText="What are you looking for?" />
                             </View>
                             <View style={styles.mainBodyContainer}>
                                 <View style={styles.mixed_text}>
-                                    <Text style={styles.text}>Our
-                                        <Text style={styles.colored_text}>1342 </Text>
-                                        <Text style={styles.text}>Products are distributed in these categories</Text>
-                                    </Text>
+                                    <TextDefault textColor={colors.fontMainColor}>
+                                        {'Our'}
+                                        <TextDefault textColor={colors.fontBrown}>
+                                            {' 1342 '}
+                                        </TextDefault>
+                                        {'Products are distributed in these categories'}
+                                    </TextDefault>
                                 </View>
                                 <View style={styles.mainBody}>
                                     <View>

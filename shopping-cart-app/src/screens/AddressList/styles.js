@@ -1,9 +1,13 @@
-import { verticalScale } from '../../utils/scaling';
-import { colors } from '../../utils/colors';
-import { fontStyles } from '../../utils/fontStyles';
-import { StatusBar, Platform } from 'react-native';
+import { verticalScale, scale, colors, fontStyles, alignment } from '../../utils';
+import { StatusBar, Platform, StyleSheet } from 'react-native';
 
-export default {
+const styles = StyleSheet.create({
+    flex: {
+        flex: 1
+    },
+    safeAreaStyle: {
+        backgroundColor: colors.headerbackground
+    },
     container: {
         flex: 1,
         alignItems: 'center',
@@ -41,11 +45,11 @@ export default {
         fontFamily: fontStyles.PoppinsRegular,
         fontSize: verticalScale(16),
         color: colors.blackText,
-        width:'60%',
+        width: '60%',
     },
     headerBtn: {
-        width:'30%',
-        height:'80%',
+        width: '30%',
+        height: '80%',
         justifyContent: 'center',
         alignItems: 'flex-start',
     },
@@ -64,4 +68,34 @@ export default {
         height: '100%',
         width: '100%',
     },
-};
+    //Empty View
+    emptyContainer: {
+        width: '100%',
+        backgroundColor: colors.container,
+        borderRadius: scale(5),
+        alignItems: 'center',
+        ...alignment.MBmedium,
+        ...alignment.PTmedium,
+        ...alignment.PBmedium
+    },
+    address: {
+        ...alignment.MTmedium,
+        ...alignment.MBsmall,
+        ...alignment.PLxSmall,
+        width: '90%',
+        justifyContent: 'center',
+    },
+    btnContainer: {
+        width: '90%',
+        justifyContent: 'flex-start',
+    },
+    unselectedButton: {
+        height: scale(40),
+        width: '100%',
+        backgroundColor: colors.brownColor,
+        justifyContent: 'center',
+        alignItems: 'center',
+        borderRadius: scale(3),
+    },
+})
+export default styles

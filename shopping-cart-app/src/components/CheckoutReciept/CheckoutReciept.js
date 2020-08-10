@@ -1,11 +1,13 @@
 import React from 'react';
-import {
-    Text, TouchableOpacity, View, Image,
-} from 'react-native';
+import { TouchableOpacity, View, Image } from 'react-native';
 import Modal from 'react-native-modal';
 import styles from './styles';
+import { useNavigation } from '@react-navigation/native';
+import { TextDefault } from '../Text';
+import { colors } from '../../utils';
 
 function CheckoutReceipt(props) {
+    const navigation = useNavigation()
     return (
         <Modal
             isVisible={props.modalVisible}
@@ -17,59 +19,73 @@ function CheckoutReceipt(props) {
                     <View style={styles.imageContainer}>
                         <View style={styles.imageSubContainer}>
                             <Image
-                                source={require('../../../assets/icons/shoppingBagTick.png')}
+                                source={require('../../assets/icons/shoppingBagTick.png')}
                                 resizeMode="contain"
                                 style={styles.imageResponsive}
                             />
                         </View>
                     </View>
                     <View style={styles.titleContainer}>
-                        <Text style={styles.titleStyle}>Hey Sharan,</Text>
+                        <TextDefault textColor={colors.fontMainColor} H4>
+                            {'Hey Sharan,'}
+                        </TextDefault>
                     </View>
                     <View style={styles.titleContainer}>
-                        <Text style={styles.titleStyle}>Thanks for your purchase.</Text>
+                        <TextDefault textColor={colors.fontMainColor} H4>
+                            {'Thanks for your purchase.'}
+                        </TextDefault>
                     </View>
                     <View style={styles.line} />
                     <View style={styles.dateContainer}>
-                        <Text style={styles.dateStyle}>Sunday 20, Jan 2019</Text>
+                        <TextDefault textColor={colors.fontThirdColor} >
+                            {'Sunday 20, Jan 2019'}
+                        </TextDefault>
                     </View>
                     <View style={styles.fullWidth}>
                         <View style={styles.halfWidth}>
-                            <Text style={styles.normalStyle}>Total</Text>
+                            <TextDefault textColor={colors.fontMainColor} H5>
+                                {'Total'}
+                            </TextDefault>
                         </View>
                         <View style={[styles.halfRightWidth]}>
-                            <Text style={styles.blueFont}>193 PKR</Text>
+                            <TextDefault textColor={colors.fontBlue} H5>
+                                {'193 PKR'}
+                            </TextDefault>
                         </View>
                     </View>
                     <View style={styles.fullWidth}>
                         <View style={styles.halfWidth}>
-                            <Text style={styles.normalStyle}>Order Number</Text>
+                            <TextDefault textColor={colors.fontMainColor} H5>
+                                {'Order Number'}
+                            </TextDefault>
                         </View>
                         <View style={[styles.halfRightWidth]}>
-                            <Text style={styles.blueFont}>#123456789</Text>
+                            <TextDefault textColor={colors.fontBlue} H5>
+                                {'#123456789'}
+                            </TextDefault>
                         </View>
                     </View>
                     <TouchableOpacity
                         activeOpacity={0}
                         onPress={() => {
                             props.hideModal();
-                            props.navigationObj.navigate('OrderDetail');
-                        }
-                        }
-                        style={styles.btnContainer}
-                    >
-                        <Text style={styles.btnStyle}>Order Details</Text>
+                            navigation.navigate('OrderDetail');
+                        }}
+                        style={styles.btnContainer}>
+                        <TextDefault textColor={colors.buttonText} H5 >
+                            {'Order Details'}
+                        </TextDefault>
                     </TouchableOpacity>
                     <TouchableOpacity
                         activeOpacity={0}
                         onPress={() => {
                             props.hideModal();
-                            props.navigationObj.navigate('MainLanding');
-                        }
-                        }
-                        style={styles.btnContainer}
-                    >
-                        <Text style={styles.btnStyle}>Continue Shopping</Text>
+                            navigation.navigate('MainLanding');
+                        }}
+                        style={styles.btnContainer} >
+                        <TextDefault textColor={colors.buttonText} H5>
+                            {'Continue Shopping'}
+                        </TextDefault>
                     </TouchableOpacity>
                 </View>
             </View>

@@ -1,12 +1,13 @@
 import { StatusBar, Dimensions } from 'react-native';
-import { verticalScale, scale } from '../../utils/scaling';
-import { colors } from '../../utils/colors';
-import { fontStyles } from '../../utils/fontStyles';
+import { verticalScale, scale, colors } from '../../utils';
 const { width, height } = Dimensions.get('window');
 
 export default {
     flex: {
         flex: 1,
+    },
+    safeAreaStyle: {
+        backgroundColor: colors.headerbackground
     },
     mainContainer: {
         marginTop: Platform.OS === 'ios' ? 0 : StatusBar.currentHeight
@@ -37,11 +38,6 @@ export default {
         alignSelf: 'center',
         alignItems: 'center',
     },
-    header_text: {
-        fontFamily: fontStyles.PoppinsRegular,
-        fontSize: verticalScale(16),
-        paddingLeft: verticalScale(8),
-    },
     // main
     main: {
         height: height * .8,
@@ -62,29 +58,19 @@ export default {
         width: '100%',
         justifyContent: 'flex-start',
         alignItems: 'center',
-        backgroundColor: colors.backgroudGray,
+        backgroundColor: colors.themeBackground,
     },
     mainBody: {
         width: '100%',
-        paddingLeft:'3%',
-        paddingRight:'3%',
+        paddingLeft: '3%',
+        paddingRight: '3%',
     },
     mixed_text: {
         flexDirection: 'row',
         justifyContent: 'center',
         marginBottom: verticalScale(20),
-        width:'95%',
+        width: '95%',
         marginTop: scale(5),
-    },
-    text: {
-        width:"100%",
-        fontFamily: fontStyles.PoppinsRegular,
-        fontSize: verticalScale(12),
-    },
-    colored_text: {
-        fontFamily: fontStyles.PoppinsRegular,
-        fontSize: verticalScale(12),
-        color: colors.brownColor,
     },
     row: {
         flexDirection: 'row',
@@ -93,7 +79,7 @@ export default {
     },
     // footer
     footer: {
-        backgroundColor: colors.backgroudGray,
+        backgroundColor: colors.themeBackground,
         height: '100%',
         width: '100%',
         justifyContent: 'flex-end',

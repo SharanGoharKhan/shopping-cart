@@ -1,15 +1,13 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import {
     ActivityIndicator,
-    StatusBar,
     View,
 } from 'react-native';
 
-class AuthLoading extends React.Component {
-    constructor(props) {
-        super(props);
-        this._bootstrapAsync();
-    }
+function AuthLoading(props) {
+    useEffect(() => {
+        _bootstrapAsync()
+    }, [])
 
     // Fetch the token from storage then navigate to our appropriate place
     _bootstrapAsync = async () => {
@@ -18,17 +16,15 @@ class AuthLoading extends React.Component {
         // This will switch to the App screen or Auth screen and this loading
         // screen will be unmounted and thrown away.
         // for testing purpose
-        this.props.navigation.navigate('Auth', { screen: 'SignIn' });
+        props.navigation.navigate('Drawer', { screen: 'SignIn' });
     };
 
     // Render any loading content that you like here
-    render() {
-        return (
-            <View>
-                <ActivityIndicator />
-          </View>
-        );
-    }
+    return (
+        <View>
+            <ActivityIndicator />
+        </View>
+    );
 }
 
 export default (AuthLoading);

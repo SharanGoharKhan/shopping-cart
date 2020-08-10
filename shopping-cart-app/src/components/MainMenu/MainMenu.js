@@ -2,6 +2,9 @@ import React from 'react';
 import { View, Text, Image, TouchableOpacity } from 'react-native';
 import styles from './styles';
 import { SafeAreaView } from 'react-native-safe-area-context';
+import { SimpleLineIcons } from '@expo/vector-icons';
+import { colors } from '../../utils/colors';
+import { scale } from '../../utils/scaling';
 
 const navItems = [
     {
@@ -37,11 +40,7 @@ function MainMenu(props) {
                 <View style={styles.profileContainer}>
                     <View style={styles.profileSubContainer}>
                         <View style={styles.profileImage}>
-                            <Image
-                                source={require('../../assets/images/mainMenu/menu_avatar.png')}
-                                resizeMode="contain"
-                                style={styles.imgResponsive3}
-                            />
+                            <SimpleLineIcons name="user" size={scale(30)} color={colors.fontBrown} />
                         </View>
                         <View style={styles.profileTitle}>
                             <Text style={styles.profileTitleStyle}>Sharan Khan</Text>
@@ -91,18 +90,10 @@ function MainMenu(props) {
                 <View style={styles.bottomContainer}>
                     <TouchableOpacity
                         activeOpacity={0}
-                        onPress={() => props.navigation.navigate('Auth', { screen: 'SignIn' })}
+                        onPress={() => props.navigation.navigate('SignIn')}
                         style={styles.bottomSubContainer}
                     >
-                        <View
-                            style={styles.signoutContainerImg}
-                        >
-                            <Image
-                                source={require('../../assets/images/mainMenu/signout.png')}
-                                resizeMode="contain"
-                                style={styles.imgResponsive}
-                            />
-                        </View>
+                        <SimpleLineIcons name="logout" size={scale(20)} color={colors.pinkColor} />
                         <View style={styles.signoutContainerText}>
                             <Text style={styles.signoutContainerStyle}>Sign Out</Text>
                         </View>

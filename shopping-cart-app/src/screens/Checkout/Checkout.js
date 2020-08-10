@@ -1,54 +1,136 @@
-import React from 'react';
-import { View, Text, Image, ScrollView, TouchableOpacity } from 'react-native';
+import React, { useState, useEffect } from 'react';
+import { View, Image, ScrollView, TouchableOpacity } from 'react-native';
 import styles from './styles';
-import { verticalScale } from '../../utils/scaling';
-import BottomTab from '../../components/BottomTab/BottomTab';
+import { verticalScale, colors, alignment, scale } from '../../utils';
 import BlueBtn from '../../ui/Buttons/BlueBtn';
 import { SafeAreaView } from 'react-native-safe-area-context';
-import { BackHeader } from '../../components/Headers/Headers';
+import { BackHeader, BottomTab, TextDefault, CheckoutReceipt } from '../../components';
+import { useNavigation, useRoute } from '@react-navigation/native';
+import { AntDesign } from '@expo/vector-icons'
 
 /* Config/Constants
 ============================================================================= */
 const DATA = [
     { name: 'Leather Crossbody MID Bag', amount: 3, price: 120 },
     { name: 'Ves Bread Storage', amount: 1, price: 35 },
+    { name: 'Ves Bread Storage', amount: 1, price: 35 },
+    { name: 'Ves Bread Storage', amount: 1, price: 35 },
 ];
+const COD_PAYMENT = {
+    payment: 'COD',
+    label: 'COD',
+    index: 2,
+    icon: require('../../assets/images/cashIcon.png')
+}
 
-function Checkout(props) {
+function Checkout() {
+    const navigation = useNavigation()
+    const route = useRoute()
+    const [paymentMethod, setPaymentMethod] = useState(null)
+    const payObj = route.params ? route.params.PayObject : null
+    const [modalVisible, setModalVisible] = useState(false)
+
+    useEffect(() => {
+        setPaymentMethod(payObj || COD_PAYMENT)
+    }, [payObj])
+
+    function showModal() {
+        setModalVisible(true)
+    }
+
+    function hideModal() {
+        setModalVisible(false)
+    }
+
     function renderItem(item, index) {
         return (
             <View key={index} style={styles.listItem}>
                 <View style={styles.simpleRow}>
-                    <Text style={styles.itemBoldText}>
+                    <TextDefault textColor={colors.fontSecondColor}>
                         {item.amount}x{' '}
-                    </Text>
-                    <Text style={styles.itemBoldText}>{item.name}</Text>
+                    </TextDefault>
+                    <TextDefault textColor={colors.fontSecondColor}>
+                        {item.name}
+                    </TextDefault>
                 </View>
-                <Text style={styles.itemBlueText}>
+                <TextDefault textColor={colors.fontBlue}>
                     {item.price}{' '}PKR
-                </Text>
+                </TextDefault>
             </View>
         );
     }
 
     return (
-        <SafeAreaView style={styles.flex}>
+        <SafeAreaView style={[styles.flex, styles.safeAreaStyle]}>
             <View style={[styles.flex, styles.mainContainer]}>
                 <BackHeader
                     title="Summary"
-                    backPressed={() => props.navigation.goBack()} />
-                <View style={styles.container}>
+                    backPressed={() => navigation.goBack()} />
+                <ScrollView
+                    showsVerticalScrollIndicator={false}
+                    style={styles.flex}
+                    contentContainerStyle={styles.container}
+                >
+
                     <View style={styles.body}>
-                        <View style={styles.main}>
-                            <View style={styles.main_top}>
-                                <View style={styles.orders}>
+                        <View style={styles.main_top}>
+                            <View style={[styles.orders, styles.line]}>
+                                <View style={styles.row}>
+                                    <TextDefault textColor={colors.fontBrown} H5>
+                                        {'My Orders'}
+                                    </TextDefault>
+                                    <TouchableOpacity
+                                        activeOpacity={0}
+                                        onPress={() => console.log('Pressed Edit')}>
+                                        <Image
+                                            source={require('../../assets/icons/edit.png')}
+                                            style={{
+                                                height: verticalScale(16),
+                                                width: verticalScale(16),
+                                            }}
+                                        />
+                                    </TouchableOpacity>
+                                </View>
+                                <View style={[styles.simpleRow, styles.padding]}>
+                                    <Image
+                                        source={require('../../assets/icons/delivery.png')}
+                                        style={{
+                                            height: verticalScale(13),
+                                            width: verticalScale(25),
+                                        }}
+                                    />
+                                    <TextDefault textColor={colors.fontBlue} style={styles.deliveryDate} >
+                                        {' Delivery Date: 2/10/2019'}
+                                    </TextDefault>
+                                </View>
+                                <View style={styles.items}>
+                                    {DATA.map((item, index) => renderItem(item, index))}
+                                </View>
+                            </View>
+
+                            <View style={[styles.address, styles.line]}>
+                                <TextDefault textColor={colors.fontBrown} H5>
+                                    {'Deliver to'}
+                                </TextDefault>
+                                <View style={styles.addressDetail}>
+                                    <TextDefault textColor={colors.fontSecondColor}>
+                                        Sharan Khan
+                                    </TextDefault>
+                                    <TextDefault textColor={colors.fontSecondColor}>
+                                        sharan.gohar@gmail.com
+                                    </TextDefault>
+                                    <TextDefault textColor={colors.fontSecondColor}>
+                                        +92 3339461270
+                                    </TextDefault>
+                                </View>
+                                <View style={styles.borderBottom}>
                                     <View style={styles.row}>
-                                        <Text style={styles.goldenText}>
-                                            My Orders
-                                            </Text>
+                                        <TextDefault textColor={colors.fontMainColor}>
+                                            Pakistan
+                                        </TextDefault>
                                         <TouchableOpacity
                                             activeOpacity={0}
-                                            onPress={() => console.log('Pressed Edit')}>
+                                            onPress={() => navigation.navigate('AddressList')}>
                                             <Image
                                                 source={require('../../assets/icons/edit.png')}
                                                 style={{
@@ -58,96 +140,117 @@ function Checkout(props) {
                                             />
                                         </TouchableOpacity>
                                     </View>
-                                    <View style={[styles.simpleRow, styles.padding]}>
-                                        <Image
-                                            source={require('../../assets/icons/delivery.png')}
-                                            style={{
-                                                height: verticalScale(13),
-                                                width: verticalScale(25),
-                                            }}
-                                        />
-                                        <Text style={styles.deliveryDate}>
-                                            Delivery Date: 2/10/2019
-                                            </Text>
-                                    </View>
-                                    <View style={styles.items}>
-                                        <ScrollView showsVerticalScrollIndicator={false}>
-                                            {DATA.map((item, index) => renderItem(item, index))}
-                                        </ScrollView>
-                                    </View>
-                                </View>
-
-                                <View style={styles.address}>
-                                    <Text style={styles.goldenText}>
-                                        Deliver to
-                                        </Text>
-                                    <View style={styles.addressDetail}>
-                                        <Text style={styles.addressSmallText}>
-                                            Sharan Khan
-                                            </Text>
-                                        <Text style={styles.addressSmallText}>
-                                            sharan.gohar@gmail.com
-                                            </Text>
-                                        <Text style={styles.addressSmallText}>
-                                            +92 3339461270
-                                            </Text>
-                                    </View>
-                                    <View style={styles.borderBottom}>
-                                        <View style={styles.row}>
-                                            <Text style={styles.addressBoldText}>Pakistan</Text>
-                                            <TouchableOpacity
-                                                activeOpacity={0}
-                                                onPress={() => console.log('Pressed Edit')}>
-                                                <Image
-                                                    source={require('../../assets/icons/edit.png')}
-                                                    style={{
-                                                        height: verticalScale(16),
-                                                        width: verticalScale(16),
-                                                    }}
-                                                />
-                                            </TouchableOpacity>
-                                        </View>
-                                        <Text style={styles.addressBoldText}>Ali Sabah Alsaelem,</Text>
-                                        <Text style={styles.addressBoldText}>Block 4, AParatment 102</Text>
-                                        <Text style={styles.addressBoldText}>P.O Box 65000</Text>
-                                    </View>
+                                    <TextDefault textColor={colors.fontMainColor}>
+                                        Ali Sabah Alsaelem,
+                                        </TextDefault>
+                                    <TextDefault textColor={colors.fontMainColor}>
+                                        Block 4, AParatment 102
+                                        </TextDefault>
+                                    <TextDefault textColor={colors.fontMainColor}>
+                                        P.O Box 65000
+                                        </TextDefault>
                                 </View>
                             </View>
-                            <View style={styles.main_bot}>
-                                <View style={styles.subtotal_container}>
-                                    <View style={styles.row}>
-                                        <Text style={styles.text}> Total</Text>
-                                        <Text style={styles.text}>191 PKR</Text>
-                                    </View>
-                                    <View style={styles.row}>
-                                        <Text style={styles.text}>Delivery</Text>
-                                        <Text style={styles.text}>1 PKR</Text>
-                                    </View>
+                            <View style={styles.dealContainer}>
+                                <View style={[styles.floatView]}>
+                                    <TextDefault
+                                        textColor={colors.fontSecondColor}
+                                        style={{ width: '70%' }}>
+                                        {'Payment Method'}
+                                    </TextDefault>
+                                    <TouchableOpacity
+                                        activeOpacity={0.7}
+                                        style={styles.changeText}
+                                        onPress={() => navigation.navigate('Payment', { payment: paymentMethod })}
+                                    >
+                                        <TextDefault
+                                            textColor={colors.buttonBackground}
+                                            right>
+                                            {'Change'}
+                                        </TextDefault>
+                                    </TouchableOpacity>
                                 </View>
-                                <View style={styles.total_container}>
-                                    <View style={styles.row}>
-                                        <Text style={styles.text_bold}>Total</Text>
-                                        <Text style={styles.text_blue}>192 PKR</Text>
-                                    </View>
-                                </View>
-                                <View style={styles.submit_container}>
-                                    <BlueBtn
-                                        onPress={() => props.navigation.navigate('CheckoutPayment')}
-                                        text="Pay"
-                                    />
-                                </View>
-
+                                {paymentMethod === null ? (
+                                    <TouchableOpacity
+                                        style={styles.floatView}
+                                        onPress={() => navigation.navigate('Payment', { payment: paymentMethod })}>
+                                        <AntDesign
+                                            name="plus"
+                                            size={scale(20)}
+                                            color={colors.buttonBackground}
+                                        />
+                                        <TextDefault
+                                            textColor={colors.buttonBackground}
+                                            style={[alignment.PLsmall, { width: '70%' }]}>
+                                            {'Payment Method'}
+                                        </TextDefault>
+                                    </TouchableOpacity>
+                                ) : (
+                                        <TouchableOpacity
+                                            style={styles.floatView}
+                                            onPress={() => navigation.navigate('Payment', { payment: paymentMethod })}>
+                                            <View style={{ width: '10%' }}>
+                                                <Image
+                                                    resizeMode="cover"
+                                                    style={styles.iconStyle}
+                                                    source={paymentMethod.icon}
+                                                />
+                                            </View>
+                                            <TextDefault
+                                                textColor={colors.buttonBackground}
+                                                style={[alignment.PLsmall, { width: '90%' }]}>
+                                                {paymentMethod.label}
+                                            </TextDefault>
+                                        </TouchableOpacity>
+                                    )
+                                }
                             </View>
                         </View>
-                        <View style={styles.footer}>
 
+                        <View style={styles.main_bot}>
+                            <View style={[styles.subtotal_container, styles.line]}>
+                                <View style={styles.row}>
+                                    <TextDefault textColor={colors.fontSecondColor} H5>
+                                        {'Sub Total'}
+                                    </TextDefault>
+                                    <TextDefault textColor={colors.fontMainColor} H5>
+                                        {'191 PKR'}
+                                    </TextDefault>
+                                </View>
+                                <View style={styles.row}>
+                                    <TextDefault textColor={colors.fontSecondColor} H5>
+                                        {'Delivery'}
+                                    </TextDefault>
+                                    <TextDefault textColor={colors.fontMainColor} H5>
+                                        {'1 PKR'}
+                                    </TextDefault>
+                                </View>
+                            </View>
+                            <View style={styles.total_container}>
+                                <View style={styles.row}>
+                                    <TextDefault textColor={colors.fontMainColor} H5 style={styles.text_bold}>
+                                        {'Total'}
+                                    </TextDefault>
+                                    <TextDefault textColor={colors.fontBlue} H5 bold>
+                                        {'192 PKR'}
+                                    </TextDefault>
+                                </View>
+                            </View>
+                            <View style={styles.submit_container}>
+                                <BlueBtn
+                                    onPress={() => showModal()}
+                                    text="Order Now"
+                                />
+                            </View>
                         </View>
                     </View>
-                </View>
+                </ScrollView>
             </View>
-            <BottomTab
-                navigationObj={props.navigation}
+            <CheckoutReceipt
+                modalVisible={modalVisible}
+                hideModal={hideModal}
             />
+            <BottomTab />
         </SafeAreaView>
     );
 }

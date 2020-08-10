@@ -1,7 +1,8 @@
 import React from 'react';
-import { View, Image, TextInput, TouchableOpacity } from 'react-native';
+import { View, TextInput, TouchableOpacity } from 'react-native';
 import styles from './styles';
-import { colors } from '../../utils/colors';
+import { colors, scale } from '../../utils';
+import { Ionicons } from '@expo/vector-icons';
 
 function SearchBar(props) {
     return (
@@ -12,12 +13,10 @@ function SearchBar(props) {
                 placeholderTextColor={colors.primaryBlackColor}
             />
             <TouchableOpacity
+                style={styles.button}
                 activeOpacity={0}
                 onPress={props.onPress}>
-                <Image
-                    style={styles.image}
-                    source={require('../../assets/icons/search.png')}
-                />
+                <Ionicons name="ios-search" size={scale(25)} color={colors.buttonBackground} />
             </TouchableOpacity>
         </View>
     );

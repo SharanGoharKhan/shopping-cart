@@ -1,5 +1,5 @@
 import { Dimensions, Platform, StatusBar } from 'react-native';
-import { verticalScale,scale } from '../../utils/scaling';
+import { verticalScale, scale } from '../../utils/scaling';
 import { colors } from '../../utils/colors';
 import { fontStyles } from '../../utils/fontStyles';
 const { height, width } = Dimensions.get('window');
@@ -7,6 +7,9 @@ const { height, width } = Dimensions.get('window');
 export default {
     flex: {
         flex: 1,
+    },
+    safeAreaStyle: {
+        backgroundColor: colors.headerbackground
     },
     mainContainer: {
         marginTop: Platform.OS === 'ios' ? 0 : StatusBar.currentHeight

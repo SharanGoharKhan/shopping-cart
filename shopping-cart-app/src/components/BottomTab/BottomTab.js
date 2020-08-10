@@ -1,12 +1,14 @@
 import React from 'react';
 import { View, Text, Image, TouchableOpacity } from 'react-native';
 import styles from './styles';
+import { useNavigation } from '@react-navigation/native';
 
-function BottomTab(props) {
+function BottomTab() {
+    const navigation = useNavigation()
     return (
         <View style={styles.footerContainer}>
             <TouchableOpacity
-                onPress={() => props.navigationObj.navigate('MainLanding')}
+                onPress={() => navigation.navigate('MainLanding')}
                 style={styles.footerBtnContainer}
             >
                 <View style={styles.imgContainer}>
@@ -18,7 +20,7 @@ function BottomTab(props) {
                 </View>
             </TouchableOpacity>
             <TouchableOpacity
-                onPress={() => props.navigationObj.navigate('Search')}
+                onPress={() => navigation.navigate('Search')}
                 style={styles.footerBtnContainer}
             >
                 <View style={styles.imgContainer}>
@@ -30,7 +32,7 @@ function BottomTab(props) {
                 </View>
             </TouchableOpacity>
             <TouchableOpacity
-                onPress={() => props.navigationObj.navigate('ProfileDashboard')}
+                onPress={() => navigation.navigate('ProfileDashboard')}
                 style={styles.footerBtnContainer}
             >
                 <View style={styles.profileContainer}>
@@ -43,7 +45,7 @@ function BottomTab(props) {
                 </View>
             </TouchableOpacity>
             <TouchableOpacity
-                onPress={() => props.navigationObj.navigate('ShoppingCart')}
+                onPress={() => navigation.navigate('ShoppingCart')}
                 style={styles.footerBtnContainer}
             >
                 <View style={styles.shoppingContainer}>

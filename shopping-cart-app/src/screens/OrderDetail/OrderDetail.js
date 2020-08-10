@@ -9,7 +9,7 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 
 function OrderDetail(props) {
     return (
-        <SafeAreaView style={styles.flex} >
+        <SafeAreaView style={[styles.flex, styles.safeAreaStyle]}>
             <View style={[styles.flex, styles.mainContainer]}>
                 <BackHeader
                     title="Order No. 10352"

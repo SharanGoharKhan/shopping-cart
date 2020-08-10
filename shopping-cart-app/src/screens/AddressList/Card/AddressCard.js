@@ -1,11 +1,10 @@
-import React, { useState } from 'react';
-import {
-    View, Text, TouchableOpacity, Image,
-} from 'react-native';
-
+import React from 'react';
+import { View, TouchableOpacity, Image, } from 'react-native';
 import styles from './styles';
-import { verticalScale } from '../../../utils/scaling';
-import { SafeAreaView } from 'react-native-safe-area-context';
+import { verticalScale, colors, scale } from '../../../utils';
+import { TextDefault } from '../../../components/Text';
+import { MaterialIcons } from '@expo/vector-icons';
+import { useNavigation } from '@react-navigation/native'
 
 /* =============================================================================
 <Card />
@@ -21,6 +20,7 @@ Props:
 ============================================================================= */
 
 function Card(props) {
+    const navigation = useNavigation()
     const isDefault = props.default
     const buttonJSX = isDefault ? renderSelectedButton() : renderUnselectedButton();
 
@@ -33,12 +33,10 @@ function Card(props) {
             <TouchableOpacity
                 activeOpacity={0}
                 onPress={() => { toggleActive() }} style={styles.selectedBtn}>
-
-                <Image
-                    style={styles.tickImage}
-                    source={require('../../../assets/icons/tick.png')}
-                />
-                <Text style={styles.selectedText}>My Default Address</Text>
+                <View style={styles.tickImage}>
+                    <MaterialIcons name="check" size={scale(25)} color={colors.selected} />
+                </View>
+                <TextDefault textColor={colors.fontMainColor} H5>{'My Default Address'}</TextDefault>
             </TouchableOpacity>
         );
     }
@@ -48,22 +46,22 @@ function Card(props) {
             <TouchableOpacity
                 activeOpacity={0}
                 style={styles.unselectedButton} onPress={() => { toggleActive(); }}>
-                <Text style={styles.unselectedText}>Mark it as Default Address</Text>
+                <TextDefault textColor={colors.buttonText} H5>
+                    {'Mark it as Default Address'}
+                </TextDefault>
             </TouchableOpacity>
         );
     }
 
-
     return (
         <View style={styles.container}>
             <View style={styles.headerRow}>
-                <Text style={styles.titleText}>
-                    {' '}{props.title}
-                </Text>
+                <TextDefault textColor={colors.fontBrown} H4>
+                    {' '}{props.item.title}
+                </TextDefault>
                 <TouchableOpacity
                     activeOpacity={0}
-                    onPress={() => props.navigationObj.navigate('EditingAddress')}
-                >
+                    onPress={() => navigation.navigate('EditAddress', { ...props.item })}>
                     <Image
                         style={{ height: verticalScale(16), width: verticalScale(16) }}
                         source={require('../../../assets/icons/edit.png')}
@@ -71,10 +69,18 @@ function Card(props) {
                 </TouchableOpacity>
             </View>
             <View style={styles.address}>
-                <Text style={styles.addressText}>{props.country}</Text>
-                <Text style={styles.addressText}>{props.city}</Text>
-                <Text style={styles.addressText}>{props.address}</Text>
-                <Text style={styles.addressText}>{props.poBox}</Text>
+                <TextDefault textColor={colors.fontMainColor}>
+                    {props.item.country}
+                </TextDefault>
+                <TextDefault textColor={colors.fontMainColor}>
+                    {props.item.city}
+                </TextDefault>
+                <TextDefault textColor={colors.fontMainColor}>
+                    {props.item.address}
+                </TextDefault>
+                <TextDefault textColor={colors.fontMainColor}>
+                    {props.item.poBox}
+                </TextDefault>
             </View>
             <View style={styles.btnContainer}>
                 {buttonJSX}

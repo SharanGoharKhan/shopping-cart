@@ -1,7 +1,7 @@
 import React from 'react';
 import { View, TextInput } from 'react-native';
-import { colors } from '../../utils/colors';
-import Styles from './styles';
+import { colors } from '../../utils';
+import styles from './styles';
 
 /* Config/Constants
 ============================================================================= */
@@ -21,19 +21,19 @@ Props:
 ============================================================================= */
 
 const TextField = (props) => {
-    const placeholderColor = props.placeholderColor ? props.placeholderColor : colors.primaryBlackColor;
-    const password = props.password ? props.password : false;
-    return (
-        <View style={[Styles.input_view, props.containerStyle]}>
-        <TextInput
-                onChange={props.onChange}
-                style={Styles.input}
-                placeholderTextColor={placeholderColor}
-                placeholder={props.placeholder}
-                secureTextEntry = {password}
-          />
-      </View>
-    );
+  const placeholderColor = props.placeholderColor ? props.placeholderColor : colors.fontPlaceholder;
+  const password = props.password ? props.password : false;
+  return (
+    <View style={[styles.input_view, props.containerStyle]}>
+      <TextInput
+        onChange={props.onChange}
+        style={styles.input}
+        placeholderTextColor={placeholderColor}
+        placeholder={props.placeholder}
+        secureTextEntry={password}
+      />
+    </View>
+  );
 };
 /* Export
 ============================================================================= */

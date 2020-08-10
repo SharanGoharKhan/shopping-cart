@@ -1,166 +1,125 @@
-import { StatusBar, Platform } from 'react-native';
-import { verticalScale, scale } from '../../utils/scaling';
-import { colors } from '../../utils/colors';
-import { fontStyles } from '../../utils/fontStyles';
+import { StatusBar, Platform, StyleSheet } from 'react-native';
+import { alignment, colors, scale, verticalScale } from '../../utils';
 
-export default {
+const styles = StyleSheet.create({
     flex: {
         flex: 1
     },
+    safeAreaStyle: {
+        backgroundColor: colors.headerbackground
+    },
     container: {
-        height: '100%',
-        width: '100%',
-        justifyContent:'center',
-        marginTop:scale(20),
+        flexGrow: 1,
+        justifyContent: 'center',
+        ...alignment.PTlarge,
+        ...alignment.PBlarge
     },
     mainContainer: {
-        marginTop: Platform.OS === 'ios' ? 0 : StatusBar.currentHeight
-    },
-    statusbarImage: {
-        height: StatusBar.currentHeight,
-        backgroundColor: 'black',
+        marginTop: Platform.OS === 'ios' ? 0 : StatusBar.currentHeight,
+        backgroundColor: colors.themeBackground
     },
     body: {
-        height: '95%',
+        height: '100%',
         width: '90%',
-        marginTop:'5%',
-        alignSelf: 'center',
-    },
-    main_scroller: {
-        marginBottom: verticalScale(10),
-    },
-
-    // main
-    main: {
-        height: '80%',
-        width: '100%',
-        alignItems: 'center',
+        alignSelf: 'center'
     },
     simpleRow: {
         flexDirection: 'row',
         alignItems: 'center',
     },
     main_top: {
-        height: '70%',
         width: '100%',
+        ...alignment.MBmedium
     },
     orders: {
-        height: '32%',
         width: '100%',
-        borderBottomWidth: verticalScale(1),
-        borderColor: colors.grayLinesColor,
-        borderStyle: 'dashed',
+    },
+    line: {
+        borderBottomWidth: StyleSheet.hairlineWidth,
+        borderColor: colors.horizontalLine
     },
     items: {
-        height: verticalScale(50),
         width: '100%',
-        paddingTop: verticalScale(3),
-    },
-    itemBoldText: {
-        fontFamily: fontStyles.PoppinsRegular,
-        fontSize: verticalScale(13),
-        fontWeight: '500',
-    },
-    itemBlueText: {
-        color: colors.textBlueColor,
-        fontFamily: fontStyles.PoppinsRegular,
-        fontSize: verticalScale(13),
-        fontWeight: '500',
-    },
-
-    goldenText: {
-        color: colors.brownColor,
-        fontFamily: fontStyles.PoppinsRegular,
-        fontSize: verticalScale(13),
-    },
-    addressSmallText: {
-        fontFamily: fontStyles.PoppinsRegular,
-        fontSize: verticalScale(11),
-        color: colors.fontGreyColor,
-    },
-    addressBoldText: {
-        fontFamily: fontStyles.PoppinsRegular,
-        fontSize: verticalScale(11),
-        fontWeight: '500',
+        ...alignment.PBsmall
     },
     deliveryDate: {
-        paddingTop: verticalScale(5),
-        color: colors.textBlueColor,
-        fontSize: verticalScale(11),
-        fontFamily: fontStyles.PoppinsRegular,
-        paddingLeft: verticalScale(5),
+        ...alignment.PTxSmall,
+        ...alignment.PBxSmall
     },
     padding: {
-        paddingTop: verticalScale(6),
-        paddingBottom: verticalScale(2),
+        ...alignment.PTxSmall
     },
     address: {
-        height: '60%',
         width: '100%',
-        paddingTop: verticalScale(10),
+        ...alignment.PTsmall
     },
     addressDetail: {
-        paddingTop: verticalScale(5),
+        ...alignment.PTxSmall
     },
     borderBottom: {
-        borderBottomWidth: verticalScale(1),
-        borderColor: colors.grayLinesColor,
-        borderStyle: 'dashed',
-        paddingBottom: verticalScale(15),
+        ...alignment.PBsmall
     },
     main_bot: {
-        marginTop: verticalScale(-55),
-        height: verticalScale(200),
         width: '100%',
         alignItems: 'center',
         justifyContent: 'space-evenly',
-        backgroundColor: colors.backgroudGray,
-        borderRadius: verticalScale(5),
+        backgroundColor: colors.containerDark,
+        borderRadius: scale(5),
+        ...alignment.PTlarge,
+        ...alignment.PBlarge
     },
     subtotal_container: {
         width: '90%',
-        borderBottomWidth: verticalScale(1),
-        borderBottomColor: colors.grayLinesColor,
-        paddingBottom: verticalScale(5),
+        ...alignment.PBsmall
     },
     listItem: {
         width: '100%',
         flexDirection: 'row',
-        justifyContent: 'space-between',
-        marginBottom: verticalScale(3),
+        justifyContent: 'space-between'
     },
     row: {
         width: '100%',
         flexDirection: 'row',
         justifyContent: 'space-between',
     },
-    text: {
-        fontFamily: fontStyles.PoppinsRegular,
-        fontSize: verticalScale(12.5),
-    },
     text_bold: {
-        fontFamily: fontStyles.PoppinsRegular,
-        fontSize: verticalScale(13),
         fontWeight: '500',
-    },
-    text_blue: {
-        fontFamily: fontStyles.PoppinsRegular,
-        fontSize: verticalScale(13),
-        fontWeight: '500',
-        color: colors.textBlueColor,
     },
     total_container: {
         width: '90%',
+        ...alignment.PTsmall,
+        ...alignment.MBlarge
     },
     submit_container: {
         width: '90%',
     },
-    // footer
-    footer: {
-        height: '100%',
-        width: '120%',
-        alignSelf: 'center',
-        justifyContent: 'flex-end',
-        alignItems: 'center',
+    //Paymeny
+    dealContainer: {
+        width: '100%',
+        backgroundColor: colors.container,
+        borderRadius: scale(5),
+        ...alignment.PLsmall,
+        ...alignment.PRsmall,
+        ...alignment.PBxSmall,
+        ...alignment.MBsmall,
+        ...alignment.MTsmall
     },
-};
+    floatView: {
+        width: '100%',
+        flexDirection: 'row',
+        alignItems: 'center',
+        ...alignment.PBxSmall
+    },
+    changeText: {
+        width: '30%',
+        height: '100%',
+        ...alignment.PTxSmall,
+        ...alignment.PBxSmall,
+    },
+    iconStyle: {
+        height: scale(15),
+        width: scale(25),
+        ...alignment.MRsmall
+    },
+})
+export default styles

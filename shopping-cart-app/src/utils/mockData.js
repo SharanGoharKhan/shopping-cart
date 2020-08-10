@@ -128,6 +128,7 @@ export const PRODUCTS = [
 ]
 export const CARTDATA = [
     {
+        _id: '1',
         name: 'Leather Crossbody MID Premium',
         category: 'EQ Custom Leather',
         quantity: 3,
@@ -137,6 +138,7 @@ export const CARTDATA = [
         size: 'L'
     },
     {
+        _id: '2',
         name: "Photography's belt & hooch",
         category: 'EQ Custom Leather',
         quantity: 1,

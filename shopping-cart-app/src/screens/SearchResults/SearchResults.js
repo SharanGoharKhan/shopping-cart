@@ -1,34 +1,14 @@
-import React from 'react';
-import { View, Text, Image, ScrollView, TouchableOpacity } from 'react-native';
+import React, { useState } from 'react';
+import { View, ScrollView, TouchableOpacity } from 'react-native';
 import styles from './styles';
-import { verticalScale } from '../../utils/scaling';
-import Dropdown from '../../ui/Dropdowns/Dropdown';
 import SearchBar from '../../ui/SearchBar/SearchBar';
-import BottomTab from '../../components/BottomTab/BottomTab';
 import FullCard from './Card/FullCard';
 import { SafeAreaView } from 'react-native-safe-area-context';
+import { BackHeader, TextDefault, BottomTab } from '../../components';
+import { MaterialCommunityIcons } from '@expo/vector-icons';
+import { scale, colors } from '../../utils';
+import FilterModal from '../../components/FilterMoal/FilterModal';
 
-const CATEGORIES = [
-    {
-        value: 'Arts & Crafts',
-    },
-    {
-        value: 'Event Ideas',
-    },
-    {
-        value: 'Food & Drinks',
-    },
-    {
-        value: 'Accessories',
-    },
-    {
-        value: 'Fashion'
-
-    },
-    {
-        value: 'Health & Beauty'
-    }
-];
 const DATA = [
     {
         name: 'Leather crossbody MID Bag',
@@ -52,41 +32,38 @@ const DATA = [
 ];
 const searchedTerm = 'Leather'
 
-function SearchResult(props) {
+function SearchResults(props) {
+    const [filterModal, setFilterModal] = useState(false)
+    const [filters, setFilters] = useState({})
+
+    function toggleFilterModal() {
+        setFilterModal(prev => !prev)
+    }
     return (
-        <SafeAreaView style={styles.flex}>
+        <SafeAreaView style={[styles.flex, styles.safeAreaStyle]}>
             <View style={[styles.flex, styles.mainContainer]}>
+                <BackHeader
+                    title="Search"
+                    backPressed={() => props.navigation.goBack()} />
                 <View style={[styles.body]}>
-                    <View style={[styles.header]}>
-                        <View style={[styles.headerLeft]}>
-                            <Text style={[styles.header_text]}>Search  In  </Text>
-                            <Dropdown items={CATEGORIES} />
-                        </View>
-                        <TouchableOpacity
-                            activeOpacity={0}
-                            onPress={() => console.log('Show modal')}>
-                            <Image
-                                style={{ height: verticalScale(32), width: verticalScale(42), marginBottom: verticalScale(5) }}
-                                source={require('../../assets/icons/header.png')}
-                            />
-                        </TouchableOpacity>
-                    </View>
                     <View style={[styles.main]}>
                         <View style={styles.searchBarContainer}>
                             <SearchBar placeholderText={searchedTerm} />
                         </View>
                         <View style={styles.mainBodyContainer}>
                             <View style={styles.mainBody}>
-                                <View style={styles.mixed_text}>
-                                    <Text style={styles.bold}>
-                                        {DATA.length}
-                                    </Text>
-                                    <Text style={styles.text}>
-                                        results found for:
-                                            </Text>
-                                    <Text style={styles.bold}>
-                                        {searchedTerm}
-                                    </Text>
+                                <View style={styles.filter}>
+                                    <View style={styles.mixed_text}>
+                                        <TextDefault textColor={colors.fontSecondColor} H5>
+                                            {DATA.length}{' results found for: '} {searchedTerm}
+                                        </TextDefault>
+                                    </View>
+                                    <TouchableOpacity
+                                        style={styles.filterButton}
+                                        activeOpacity={0}
+                                        onPress={toggleFilterModal}>
+                                        <MaterialCommunityIcons name="tune-vertical" size={scale(20)} color={colors.buttonBackground} />
+                                    </TouchableOpacity>
                                 </View>
                                 <ScrollView style={styles.main_scroller}>
                                     {DATA.map((item, i) => (
@@ -109,11 +86,14 @@ function SearchResult(props) {
                     </View>
                 </View>
             </View>
-            <BottomTab
-                navigationObj={props.navigation}
+            <FilterModal
+                visible={filterModal}
+                onModalToggle={toggleFilterModal}
+                setFilters={setFilters}
             />
+            <BottomTab />
         </SafeAreaView>
     )
 }
 
-export default SearchResult;
+export default SearchResults;

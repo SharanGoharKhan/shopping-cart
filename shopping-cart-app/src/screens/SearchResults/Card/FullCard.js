@@ -1,9 +1,8 @@
 import React from 'react';
-import {
-    View, Text, Image, TouchableOpacity,
-} from 'react-native';
+import { View, Image, TouchableOpacity, } from 'react-native';
 import styles from './styles';
-import { verticalScale } from '../../../utils/scaling';
+import { TextDefault } from '../../../components';
+import { colors, verticalScale } from '../../../utils';
 
 
 /* Config/Constants
@@ -28,20 +27,20 @@ function FullCard(props) {
     let renderPreviousAmount = null;
     function renderPrevousPrice(amount) {
         return (
-            <Text includeFontPadding={false} textAlignVertical="bottom" style={styles.prevPriceText}>
+            <TextDefault style={styles.prevPriceText} small>
                 {amount}
                 {' '}
-                PKR
-            </Text>
+                {'PKR'}
+            </ TextDefault>
         );
     }
 
     // if product is new
     function renderBadge() {
         return (
-            <Text style={styles.badge}>
-                New
-            </Text>
+            <TextDefault style={styles.badge} textColor={colors.white} center small>
+                {'New'}
+            </TextDefault>
         );
     }
     function renderPreviousPage() {
@@ -50,6 +49,8 @@ function FullCard(props) {
 
         let renderBage = null;
         if (props.productBadge) renderBage = renderBadge();
+
+        return null
     }
     // render the whole content
     return (
@@ -63,23 +64,23 @@ function FullCard(props) {
                         resizeMode="cover"
                         source={props.productImage}
                     />
-                    {renderBadge}
+                    {renderBadge()}
                 </View>
                 <View style={styles.rightside_container}>
                     <View style={styles.rightside}>
                         <View style={styles.rightside_top}>
-                            <Text style={styles.product} numberOfLines={2}>
+                            <TextDefault numberOfLines={2} style={styles.product} textColor={colors.fontMainColor} H4>
                                 {props.productName}
-                            </Text>
+                            </TextDefault>
                         </View>
                         <View style={styles.rightside_bot}>
                             {renderPreviousAmount}
                             <View style={styles.special_row}>
-                                <Text style={styles.amount}>
+                                <TextDefault textColor={colors.fontBlue} style={styles.amount} H5>
                                     {props.productNewPrice}
                                     {' '}
-                                    PKR
-                              </Text>
+                                    {'PKR'}
+                                </TextDefault>
                                 <TouchableOpacity
                                     activeOpacity={0}
                                     onPress={() => { console.log('Go to Cart'); }}>

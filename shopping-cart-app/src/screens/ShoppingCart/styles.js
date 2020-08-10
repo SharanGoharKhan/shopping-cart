@@ -1,14 +1,20 @@
-import { StatusBar, Platform } from 'react-native';
-import { verticalScale, scale } from '../../utils/scaling';
-import { colors } from '../../utils/colors';
-import { fontStyles } from '../../utils/fontStyles';
+import { StatusBar, Platform, StyleSheet } from 'react-native';;
+import { fontStyles, colors, scale, alignment } from '../../utils';
 
-export default {
+const styles = StyleSheet.create({
     flex: {
-        flex: 1
+        flex: 1,
     },
-    mainContainer:{
+    safeAreaStyle: {
+        backgroundColor: colors.headerbackground
+    },
+    mainContainer: {
+        backgroundColor: colors.themeBackground,
         marginTop: Platform.OS === 'ios' ? 0 : StatusBar.currentHeight
+    },
+    subContainer: {
+        flexGrow: 1,
+        ...alignment.Psmall
     },
     spacer: {
         marginTop: scale(10)
@@ -20,22 +26,26 @@ export default {
     totalStyle: {
         color: colors.blueColor
     },
+    priceBox: {
+        width: '100%',
+        ...alignment.Psmall
+    },
     summaryContainer: {
-        marginTop: scale(30),
-        width: '90%', 
-        backgroundColor: colors.grayLinesColor, 
-        alignSelf: 'center', 
+        width: '100%',
+        backgroundColor: colors.containerDark,
+        alignSelf: 'center',
         padding: scale(10),
-        justifyContent: 'flex-end'
+        justifyContent: "flex-end",
+        borderRadius: scale(10)
     },
     rowContainer: {
-        flexDirection: 'row', 
+        flexDirection: 'row',
         justifyContent: 'space-between'
     },
     lineStyle: {
-        width: '99%', 
-        height: 1, 
-        backgroundColor: colors.grayLinesColor, 
+        width: '99%',
+        height: 1,
+        backgroundColor: colors.horizontalLine,
         alignSelf: 'center'
     },
     btnContainer: {
@@ -44,4 +54,5 @@ export default {
     btnText: {
         color: colors.whiteColor
     },
-};
+});
+export default styles

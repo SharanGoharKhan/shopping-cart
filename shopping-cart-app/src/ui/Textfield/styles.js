@@ -1,19 +1,19 @@
-import { verticalScale } from '../../utils/scaling';
-import { colors } from '../../utils/colors';
-import { fontStyles } from '../../utils/fontStyles';
+import { alignment, fontStyles, colors, scale } from '../../utils';
+import { StyleSheet } from 'react-native';
 
-export default {
+const styles = StyleSheet.create({
     input_view: {
-        backgroundColor: colors.secondaryWhiteColor,
+        backgroundColor: colors.white,
         borderRadius: 3,
-        height: verticalScale(38),
+        height: scale(40),
         justifyContent: 'center',
         borderWidth: 1,
         borderColor: colors.backgroudGray,
     },
     input: {
         fontFamily: fontStyles.PoppinsRegular,
-        fontSize: verticalScale(13),
-        paddingLeft: '3%',
+        fontSize: scale(13),
+        ...alignment.PLsmall
     },
-};
+})
+export default styles
