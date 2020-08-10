@@ -7,7 +7,8 @@ const styles = StyleSheet.create({
         flex: 1,
     },
     safeAreaStyle: {
-        backgroundColor: colors.headerbackground
+        backgroundColor: colors.headerbackground,
+        marginTop: Platform.OS === 'ios' ? 0 : -(StatusBar.currentHeight)
     },
     leftIconPadding: {
         ...alignment.PLsmall,

@@ -22,10 +22,10 @@ export default function App() {
 
   if (fontLoaded) {
     return (
-      <View style={styles.container}>
+      <>
         <StatusBar barStyle={'dark-content'} backgroundColor={colors.headerbackground} />
         <AppContainer />
-      </View>
+      </>
     )
   } else return (
     <View style={styles.spinnerContainer}>
@@ -37,10 +37,6 @@ export default function App() {
 const styles = StyleSheet.create({
   flex: {
     flex: 1
-  },
-  container: {
-    flex: 1,
-    marginTop: Platform.OS === 'ios' ? 0 : -(StatusBar.currentHeight)
   },
   spinnerContainer: {
     flex: 1,

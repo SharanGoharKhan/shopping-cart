@@ -12,7 +12,9 @@ const styles = StyleSheet.create({
     line: {
         width: '100%',
         borderBottomColor: colors.horizontalLine,
-        borderBottomWidth: StyleSheet.hairlineWidth
+        borderBottomWidth: StyleSheet.hairlineWidth,
+        ...alignment.MTsmall,
+        ...alignment.MBsmall
     },
     safeAreaStyle: {
         backgroundColor: colors.headerbackground
@@ -116,7 +118,6 @@ const styles = StyleSheet.create({
     review: {
         width: '90%',
         alignSelf: 'center',
-        ...alignment.MTlarge
     },
     reviewerContainer: {
         flexDirection: "row",
@@ -137,9 +138,7 @@ const styles = StyleSheet.create({
     },
     reviewHeader: {
         alignSelf: "center",
-        width: "90%",
-        ...alignment.PTsmall,
-        ...alignment.PBsmall
+        width: "90%"
     }
 });
 export default styles;

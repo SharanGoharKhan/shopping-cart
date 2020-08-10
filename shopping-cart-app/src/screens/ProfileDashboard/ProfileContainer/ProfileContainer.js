@@ -72,12 +72,12 @@ function profileContainer(props) {
                 />
                 <Text style={styles.addressText}>Addresses</Text>
               </TouchableOpacity>
-              <View style={{ alignItems: 'center' }}>
+              {/* <View style={{ alignItems: 'center' }}>
                 <Ionicons
                   name="ios-heart-empty"
                   size={24} />
                 <Text style={styles.addressText}>Favourites</Text>
-              </View>
+              </View> */}
             </View>
           </ImageBackground>
         </View>

@@ -15,16 +15,16 @@ DATA for the address
 ============================================================================= */
 const DATA = [
     {
-        _id: "1", default: false, title: 'My Home', country: 'Pakistan', city: 'Islamabad', region: 'Federal', address: 'Block 4, Apartment 102', poBox: 'P.O Vox 65000', latitude: 33.6844, longitude: 73.0479
+        _id: 1, default: false, title: 'My Home', country: 'Pakistan', city: 'Islamabad', region: 'Federal', address: 'Block 4, Apartment 102', poBox: 'P.O Vox 65000', latitude: 33.6844, longitude: 73.0479
     },
     {
-        _id: "2", default: true, title: 'My Work', country: 'Pakistan', city: 'Karachi', region: 'Sindh', address: 'Block 4350, Floor 1, Office 3', poBox: 'P.O Vox 65002', latitude: 24.8607, longitude: 74.3587
+        _id: 2, default: true, title: 'My Work', country: 'Pakistan', city: 'Karachi', region: 'Sindh', address: 'Block 4350, Floor 1, Office 3', poBox: 'P.O Vox 65002', latitude: 24.8607, longitude: 74.3587
     },
 ];
 
 function AddressList() {
     const navigation = useNavigation()
-    const [isDefault, isDefaultSetter] = useState(DATA.find(element => element.default === true).id)
+    const [isDefault, isDefaultSetter] = useState(DATA.find(element => element.default === true)._id)
 
     function emptyView() {
         return (
@@ -78,13 +78,13 @@ function AddressList() {
                         <FlatList
                             style={styles.flex}
                             data={DATA}
-                            keyExtractor={(item) => item._id}
+                            keyExtractor={(item) => item._id.toString()}
                             ListEmptyComponent={emptyView}
                             renderItem={({ item, index }) => (
                                 <Card
                                     item={item}
-                                    default={item.id === isDefault}
-                                    defaultSetter={() => isDefaultSetter(item.id)}
+                                    default={item._id === isDefault}
+                                    defaultSetter={() => isDefaultSetter(item._id)}
                                 />
                             )}
                         />

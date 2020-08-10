@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { View, Text, FlatList } from 'react-native';
 import styles from './styles';
 import { BackHeader, BottomTab, CheckoutReceipt } from '../../components';
@@ -9,16 +9,7 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 import { useNavigation } from '@react-navigation/native';
 
 function ShoppingCart(props) {
-    const [modalVisible, setModalVisible] = useState(false)
     const navigation = useNavigation()
-
-    function showModal() {
-        setModalVisible(true)
-    }
-
-    function hideModal() {
-        setModalVisible(false)
-    }
 
     function PriceContainer() {
         return (
@@ -47,7 +38,7 @@ function ShoppingCart(props) {
                         onPress={() => props.navigation.navigate('Checkout')}
                         text="Proceed" /> */}
                     <BlueBtn
-                        onPress={() => showModal()}
+                        onPress={() => props.navigation.navigate('Checkout')}
                         text="Proceed"
                     />
                 </View>
@@ -72,16 +63,10 @@ function ShoppingCart(props) {
                                 key={item._id}
                                 item={item}
                             />
-                        )
-                        }
-
+                        )}
                     />
                     <PriceContainer />
                 </View>
-                <CheckoutReceipt
-                    modalVisible={modalVisible}
-                    hideModal={hideModal}
-                />
                 <BottomTab />
             </View>
         </SafeAreaView>

@@ -4,7 +4,7 @@ import styles from './styles';
 import { verticalScale, colors, alignment, scale } from '../../utils';
 import BlueBtn from '../../ui/Buttons/BlueBtn';
 import { SafeAreaView } from 'react-native-safe-area-context';
-import { BackHeader, BottomTab, TextDefault } from '../../components';
+import { BackHeader, BottomTab, TextDefault, CheckoutReceipt } from '../../components';
 import { useNavigation, useRoute } from '@react-navigation/native';
 import { AntDesign } from '@expo/vector-icons'
 
@@ -28,10 +28,19 @@ function Checkout() {
     const route = useRoute()
     const [paymentMethod, setPaymentMethod] = useState(null)
     const payObj = route.params ? route.params.PayObject : null
+    const [modalVisible, setModalVisible] = useState(false)
 
     useEffect(() => {
         setPaymentMethod(payObj || COD_PAYMENT)
     }, [payObj])
+
+    function showModal() {
+        setModalVisible(true)
+    }
+
+    function hideModal() {
+        setModalVisible(false)
+    }
 
     function renderItem(item, index) {
         return (
@@ -229,7 +238,7 @@ function Checkout() {
                             </View>
                             <View style={styles.submit_container}>
                                 <BlueBtn
-                                    onPress={() => navigation.navigate('CheckoutPayment')}
+                                    onPress={() => showModal()}
                                     text="Order Now"
                                 />
                             </View>
@@ -237,6 +246,10 @@ function Checkout() {
                     </View>
                 </ScrollView>
             </View>
+            <CheckoutReceipt
+                modalVisible={modalVisible}
+                hideModal={hideModal}
+            />
             <BottomTab />
         </SafeAreaView>
     );

@@ -75,7 +75,7 @@ const REVIEW = [
 function ProductDescription(props) {
     const [caroselImage, setCaroselImage] = useState(require('../../assets/images/MainLanding/carosel_img_3.png'))
     const navigation = useNavigation()
-    const isLogin = false
+    const isLogin = true
 
 
     function ListHeader() {
@@ -149,7 +149,7 @@ function ProductDescription(props) {
                     </View>
                 </View>
                 <View style={styles.reviewHeader}>
-                    <TextDefault textColor={colors.fontMainColor} bold>Reviews</TextDefault>
+                    <TextDefault textColor={colors.fontMainColor} bold>{'Reviews (10)'}</TextDefault>
                 </View>
             </>
         )
@@ -182,16 +182,15 @@ function ProductDescription(props) {
                     contentContainerStyle={styles.contentStyle}
                     keyExtractor={(item, index) => index.toString()}
                     ListFooterComponentStyle={alignment.MTlarge}
-                    ItemSeparatorComponent={() => <View style={[styles.line, { ...alignment.MTmedium }]} />}
+                    ItemSeparatorComponent={() => <View style={styles.line} />}
                     ListHeaderComponent={<ListHeader />}
                     ListFooterComponent={<ListFooter />}
                     renderItem={({ item }) => (
                         <View style={styles.review}>
                             <View style={styles.reviewerContainer} >
                                 <TextDefault
-                                    style={styles.reviewerName}
                                     textColor={colors.fontMainColor}
-                                    bold small
+
                                 >
                                     {item.name}
                                 </TextDefault>
