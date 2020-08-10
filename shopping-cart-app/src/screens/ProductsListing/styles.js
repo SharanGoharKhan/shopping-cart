@@ -10,7 +10,8 @@ export default {
         backgroundColor: colors.headerbackground
     },
     container: {
-        marginTop: Platform.OS === 'ios' ? 0 : StatusBar.currentHeight
+        marginTop: Platform.OS === 'ios' ? 0 : StatusBar.currentHeight,
+        backgroundColor: colors.themeBackground
     },
     productCard: {
         marginLeft: '5%',

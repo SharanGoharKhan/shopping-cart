@@ -1,14 +1,13 @@
 import React, { useState } from 'react';
-import {
-    View, Text, TouchableOpacity, Image, ScrollView,
-} from 'react-native';
-import BottomTab from '../../components/BottomTab/BottomTab';
+import { View, TouchableOpacity, Image, ScrollView, FlatList } from 'react-native';
 import styles from './styles';
-import { BackHeader } from '../../components/Headers/Headers';
+import { BackHeader, BottomTab, TextDefault } from '../../components';
 import Button from '../../ui/Buttons/Button';
 import VariationSection from './VariationSection/VariationSection';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useNavigation } from '@react-navigation/native';
+import { colors, alignment, scale } from '../../utils';
+import { MaterialIcons } from '@expo/vector-icons';
 
 const caroselData = [
     {
@@ -46,27 +45,57 @@ const VARIATIONS = [
     },
 ]
 
+const REVIEW = [
+    {
+        name: 'ABC',
+        rating: 4,
+        description: 'THis is good one',
+        date: 'Aug 7, 2020'
+    },
+    {
+        name: 'ABC',
+        rating: 4,
+        description: 'THis is good one',
+        date: 'Aug 7, 2020'
+    },
+    {
+        name: 'ABC',
+        rating: 4,
+        description: 'THis is good one',
+        date: 'Aug 7, 2020'
+    },
+    {
+        name: 'ABC',
+        rating: 4,
+        description: 'THis is good one',
+        date: 'Aug 7, 2020'
+    },
+]
+
 function ProductDescription(props) {
     const [caroselImage, setCaroselImage] = useState(require('../../assets/images/MainLanding/carosel_img_3.png'))
     const navigation = useNavigation()
     const isLogin = false
-    return (
-        <SafeAreaView style={[styles.flex, styles.safeAreaStyle]}>
-            <View style={[styles.flex, styles.mainContainer]}>
-                <BackHeader
-                    title="Description"
-                    backPressed={() => props.navigation.goBack()} />
-                <ScrollView
-                    showsVerticalScrollIndicator={false}
-                    style={styles.mainScrollViewContainer}>
+
+
+    function ListHeader() {
+        return (
+            <>
+                <View style={alignment.MBlarge}>
                     <View style={styles.caroselContainer}>
                         <View style={styles.caroselSubContainer}>
                             <View style={styles.caroselTitleContainer}>
-                                <Text numberOfLines={2} style={styles.textStyle}>Southdown Spinning Fibre</Text>
+                                <TextDefault
+                                    textColor={colors.fontMainColor}
+                                    numberOfLines={2}>
+                                    {'Southdown Spinning Fibre'}
+                                </TextDefault>
                             </View>
                             <View style={styles.caroselPriceContainer}>
                                 <View style={styles.caroselPriceSubContainer}>
-                                    <Text style={[styles.textStyle, styles.priceColor, styles.boldStyle]}>$7.50</Text>
+                                    <TextDefault textColor={colors.fontBlue} bold>
+                                        {'$7.50'}
+                                    </TextDefault>
                                 </View>
                             </View>
                         </View>
@@ -111,20 +140,90 @@ function ProductDescription(props) {
                                     variation={variation} />
                             ))
                         }
-                        <Text style={[styles.textStyle, styles.boldStyle, styles.smallSpacer]}>Description</Text>
-                        <Text style={[styles.textStyle, styles.smallSpacer]}>{DESCRIPTION}</Text>
+                        <TextDefault bold style={styles.smallSpacer}>
+                            {'Description'}
+                        </TextDefault>
+                        <TextDefault textColor={colors.fontSecondColor} style={styles.smallSpacer}>
+                            {DESCRIPTION}
+                        </TextDefault>
                     </View>
-                    <Button
-                        containerStyle={styles.shoppingCartContainer}
-                        textStyle={styles.shoppingCartText}
-                        onPress={() => {
-                            isLogin ?
-                                navigation.navigate('ShoppingCart')
-                                :
-                                navigation.navigate('SignIn')
-                        }}
-                        text="Add to Shopping Cart" />
-                </ScrollView>
+                </View>
+                <View style={styles.reviewHeader}>
+                    <TextDefault textColor={colors.fontMainColor} bold>Reviews</TextDefault>
+                </View>
+            </>
+        )
+    }
+
+    function ListFooter() {
+        return (
+            <Button
+                containerStyle={styles.shoppingCartContainer}
+                textStyle={styles.shoppingCartText}
+                onPress={() => {
+                    isLogin ?
+                        navigation.navigate('ShoppingCart')
+                        :
+                        navigation.navigate('SignIn')
+                }}
+                text="Add to Shopping Cart" />
+        )
+    }
+    return (
+        <SafeAreaView style={[styles.flex, styles.safeAreaStyle]}>
+            <View style={[styles.flex, styles.mainContainer]}>
+                <BackHeader
+                    title="Description"
+                    backPressed={() => props.navigation.goBack()} />
+                <FlatList
+                    data={REVIEW}
+                    style={styles.mainScrollViewContainer}
+                    showsVerticalScrollIndicator={false}
+                    contentContainerStyle={styles.contentStyle}
+                    keyExtractor={(item, index) => index.toString()}
+                    ListFooterComponentStyle={alignment.MTlarge}
+                    ItemSeparatorComponent={() => <View style={[styles.line, { ...alignment.MTmedium }]} />}
+                    ListHeaderComponent={<ListHeader />}
+                    ListFooterComponent={<ListFooter />}
+                    renderItem={({ item }) => (
+                        <View style={styles.review}>
+                            <View style={styles.reviewerContainer} >
+                                <TextDefault
+                                    style={styles.reviewerName}
+                                    textColor={colors.fontMainColor}
+                                    bold small
+                                >
+                                    {item.name}
+                                </TextDefault>
+                                <View style={styles.ratingContainer}>
+                                    {
+                                        Array(5).fill(1).map((value, index) => {
+                                            if (index < item.rating) {
+                                                return <MaterialIcons key={index} name="star" size={scale(10)} color={'blue'} />
+                                            }
+                                            else if (index >= item.rating && index < 5) {
+                                                return <MaterialIcons key={index} name="star" size={scale(10)} color={colors.fontPlaceholder} />
+                                            }
+                                        })
+                                    }
+                                </View>
+                            </View>
+                            <TextDefault
+                                style={styles.dateReview}
+                                textColor={colors.fontSecondColor}
+                                numberOfLines={1}
+                                small>
+                                {item.date}
+                            </TextDefault>
+                            <TextDefault
+                                style={styles.textReview}
+                                textColor={colors.fontSecondColor}
+                                small>
+                                {item.description}
+                            </TextDefault>
+                        </View>
+                    )}
+                />
                 <BottomTab />
             </View>
         </SafeAreaView>

@@ -19,5 +19,6 @@ import FullMap from './FullMap/FullMap'
 import Payment from './Payment/Payment'
 import Paypal from './Paypal/Paypal'
 import StripeCheckout from './Stripe/StripeCheckout'
+import Review from './Review/Review'
 
-export { AddressList, Checkout, EditAddress, EditingProfile, MainLanding, NewAddress, OrderDetail, PreviousOrders, ProfileDashboard, ProductDescription, ProductListing, Search, SearchResults, ShoppingCart, SignIn, SignUp, TrackOrder, FullMap, Payment, Paypal, StripeCheckout }
+export { AddressList, Checkout, EditAddress, EditingProfile, MainLanding, NewAddress, OrderDetail, PreviousOrders, ProfileDashboard, ProductDescription, ProductListing, Search, SearchResults, ShoppingCart, SignIn, SignUp, TrackOrder, FullMap, Payment, Paypal, StripeCheckout, Review }

@@ -61,8 +61,7 @@ function Card(props) {
                 </TextDefault>
                 <TouchableOpacity
                     activeOpacity={0}
-                    onPress={() => navigation.navigate('EditAddress', { ...props.item })}
-                >
+                    onPress={() => navigation.navigate('EditAddress', { ...props.item })}>
                     <Image
                         style={{ height: verticalScale(16), width: verticalScale(16) }}
                         source={require('../../../assets/icons/edit.png')}

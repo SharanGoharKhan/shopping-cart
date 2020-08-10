@@ -40,6 +40,7 @@ function noDrawer() {
             <NavigationStack.Screen name='ShoppingCart' component={Screen.ShoppingCart} />
             <NavigationStack.Screen name='Search' component={Screen.Search} />
             <NavigationStack.Screen name='TrackOrder' component={Screen.TrackOrder} />
+            <NavigationStack.Screen name='Review' component={Screen.Review} />
 
             <NavigationStack.Screen name='SignIn' component={Screen.SignIn} />
             <NavigationStack.Screen name='SignUp' component={Screen.SignUp} />

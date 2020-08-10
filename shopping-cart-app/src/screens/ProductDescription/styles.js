@@ -1,18 +1,27 @@
-import { Dimensions, Platform, StatusBar } from 'react-native';
+import { Dimensions, Platform, StatusBar, StyleSheet } from 'react-native';
 import { verticalScale, scale } from '../../utils/scaling';
 import { colors } from '../../utils/colors';
 import { fontStyles } from '../../utils/fontStyles';
+import { alignment } from '../../utils';
 const { height, width } = Dimensions.get('window');
 
-export default {
+const styles = StyleSheet.create({
     flex: {
         flex: 1,
+    },
+    line: {
+        width: '100%',
+        borderBottomColor: colors.horizontalLine,
+        borderBottomWidth: StyleSheet.hairlineWidth
     },
     safeAreaStyle: {
         backgroundColor: colors.headerbackground
     },
     mainContainer: {
         marginTop: Platform.OS === 'ios' ? 0 : StatusBar.currentHeight
+    },
+    contentStyle: {
+        flexGrow: 1
     },
     imgResponsive: {
         flex: 1,
@@ -50,7 +59,7 @@ export default {
         backgroundColor: colors.grayLinesColor
     },
     mainScrollViewContainer: {
-        backgroundColor: '#F8F8F8',
+        backgroundColor: colors.themeBackground,
     },
     textStyle: {
         fontFamily: fontStyles.PoppinsRegular,
@@ -102,5 +111,35 @@ export default {
     variationContainer: {
         width: '90%',
         alignSelf: 'center'
+    },
+    // REview Styling
+    review: {
+        width: '90%',
+        alignSelf: 'center',
+        ...alignment.MTlarge
+    },
+    reviewerContainer: {
+        flexDirection: "row",
+        justifyContent: "space-between",
+        width: "100%",
+    },
+    ratingContainer: {
+        flexDirection: "row",
+        width: '25%',
+        justifyContent: "flex-end",
+        alignItems: "center",
+    },
+    dateReview: {
+        width: "100%",
+        textAlign: 'left',
+        ...alignment.PTsmall,
+        ...alignment.PBxSmall
+    },
+    reviewHeader: {
+        alignSelf: "center",
+        width: "90%",
+        ...alignment.PTsmall,
+        ...alignment.PBsmall
     }
-};
+});
+export default styles;

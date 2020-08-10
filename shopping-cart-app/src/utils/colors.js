@@ -10,6 +10,7 @@ export const colors = {
     fontPlaceholder: '#cccccc',
     iconColor: '#F48B98',
     horizontalLine: '#949393',
+    medHorizontalLine: '#D8D8D8',
     lightHorizontalLine: '#f0f0f0',
     spinnerColor: '#F48B98',
     buttonBackground: '#D0AD8A',
@@ -26,6 +27,8 @@ export const colors = {
     lightBrown: '#fcead9',
     headerbackground: '#FFF',
     headerText: '#000',
+    startColor: '#F48B98',
+    startOutlineColor: '#F48B98',
 
     //
     blackText: '#4A4A4A',
