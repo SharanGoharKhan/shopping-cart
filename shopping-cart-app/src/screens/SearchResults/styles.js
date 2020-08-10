@@ -1,14 +1,15 @@
-import { StatusBar, Dimensions, Platform } from 'react-native';
-import { verticalScale } from '../../utils/scaling';
-import { colors } from '../../utils/colors';
-import { fontStyles } from '../../utils/fontStyles';
+import { StatusBar, Dimensions, Platform, StyleSheet } from 'react-native';
+import { verticalScale, alignment, colors } from '../../utils';
 const { width, height } = Dimensions.get('window');
 
-export default {
+const styles = StyleSheet.create({
     flex: {
         flex: 1
     },
-        mainContainer: {
+    safeAreaStyle: {
+        backgroundColor: colors.headerbackground
+    },
+    mainContainer: {
         marginTop: Platform.OS === 'ios' ? 0 : StatusBar.currentHeight
     },
     container: {
@@ -31,17 +32,12 @@ export default {
 
     // header
     header: {
-        height: height*.08,
+        height: height * .08,
         width: '95%',
         flexDirection: 'row',
         alignSelf: 'center',
         alignItems: 'center',
         justifyContent: 'space-between',
-    },
-    header_text: {
-        fontFamily: fontStyles.PoppinsRegular,
-        fontSize: verticalScale(14),
-        paddingLeft: verticalScale(8),
     },
     headerLeft: {
         flexDirection: 'row',
@@ -51,7 +47,7 @@ export default {
 
     // main
     main: {
-        height: height*.8,
+        height: height * .8,
         width: '100%',
         marginLeft: 0,
         justifyContent: 'center',
@@ -68,7 +64,7 @@ export default {
         height: '90%',
         width: '100%',
         alignItems: 'center',
-        backgroundColor: colors.backgroudGray,
+        backgroundColor: colors.themeBackground,
 
     },
     mainBody: {
@@ -76,33 +72,34 @@ export default {
         height: '93%',
     },
     mixed_text: {
-        height: '7%',
-        width: '100%',
-        paddingTop: verticalScale(5),
-        flexDirection: 'row',
-    },
-    text: {
-        fontFamily: fontStyles.PoppinsRegular,
-        fontSize: verticalScale(14),
-        paddingRight: verticalScale(4),
-    },
-    bold: {
-        fontFamily: fontStyles.PoppinsRegular,
-        fontSize: verticalScale(14),
-        fontWeight: '500',
-        paddingRight: verticalScale(4),
-
+        width: '80%',
     },
     main_scroller: {
         height: '93%',
     },
     // footer
     footer: {
-        backgroundColor: colors.backgroudGray,
+        backgroundColor: colors.themeBackground,
         height: '100%',
         width: '100%',
         justifyContent: 'flex-end',
         alignItems: 'center',
     },
-
-};
+    filter: {
+        flexDirection: 'row',
+        justifyContent: "space-between",
+        alignItems: 'center',
+        width: '100%',
+        ...alignment.PLsmall,
+        ...alignment.PRsmall,
+    },
+    filterButton: {
+        width: '20%',
+        height: '100%',
+        alignItems: 'flex-end',
+        ...alignment.PLsmall,
+        ...alignment.PTmedium,
+        ...alignment.PBmedium,
+    }
+})
+export default styles;

@@ -1,16 +1,22 @@
-import { Dimensions, Platform, StatusBar } from 'react-native';
-import { verticalScale, scale } from '../../utils/scaling';
-import { colors } from '../../utils/colors';
-import { fontStyles } from '../../utils/fontStyles';
+import { Dimensions, Platform, StatusBar, StyleSheet } from 'react-native';
+import { alignment, fontStyles, colors, scale, verticalScale } from '../../utils';
 const { height, width } = Dimensions.get('window');
 
-export default {
+const styles = StyleSheet.create({
     flex: {
         flex: 1,
     },
+    safeAreaStyle: {
+        backgroundColor: colors.headerbackground,
+        marginTop: Platform.OS === 'ios' ? 0 : -(StatusBar.currentHeight)
+    },
+    leftIconPadding: {
+        ...alignment.PLsmall,
+        ...alignment.PRlarge
+    },
     scrollViewStyle: {
         marginTop: verticalScale(20),
-        backgroundColor: colors.backgroudGray,
+        backgroundColor: colors.themeBackground,
     },
     grayBackground: {
         backgroundColor: colors.backgroudGray,
@@ -26,11 +32,9 @@ export default {
         height: height * 0.3,
     },
     menuDrawerContainer: {
-        width: verticalScale(20),
-        height: verticalScale(18),
         position: 'absolute',
-        top: '15%',
-        left: '6%',
+        top: '10%',
+        left: '2%',
     },
     imgResponsive: {
         flex: 1,
@@ -69,4 +73,5 @@ export default {
         marginTop: scale(10),
         marginBottom: scale(20)
     }
-};
+})
+export default styles

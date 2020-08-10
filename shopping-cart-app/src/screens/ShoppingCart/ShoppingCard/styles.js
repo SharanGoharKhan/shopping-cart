@@ -1,112 +1,111 @@
-import { scale } from '../../../utils/scaling';
-import { colors } from '../../../utils/colors';
-import { fontStyles } from '../../../utils/fontStyles';
+import { fontStyles, colors, scale, alignment } from '../../../utils';
+import { StyleSheet } from 'react-native';
 
-export default {
+const styles = StyleSheet.create({
     container: {
-        width: '100%', 
-        height: scale(100), 
-        justifyContent: 'center', 
-        alignItems: 'center', 
-        borderBottomWidth: 1, 
-        borderColor: colors.darkGrayText, 
-        backgroundColor: colors.whiteColor
-    },
-    subContainer: {
-        width: '95%', 
-        height: '90%', 
-        flexDirection: 'row'
+        width: '100%',
+        justifyContent: 'center',
+        alignItems: 'center',
+        ...alignment.MBsmall,
     },
     removeContainer: {
-        width: '10%', 
-        height: '100%', 
-        alignItems: 'center', 
+        width: '10%',
+        height: '100%',
+        alignItems: 'center',
         justifyContent: 'center'
     },
     contentContainer: {
-        flex: 1, 
-        flexDirection: 'row'
+        flex: 1,
+        flexDirection: 'row',
+        borderWidth: StyleSheet.hairlineWidth,
+        borderColor: colors.horizontalLine,
+        backgroundColor: colors.container,
+        borderRadius: scale(5),
+        overflow: 'hidden',
+        ...alignment.PRsmall
     },
     imgContainer: {
-        width: '23%', 
-        height: '100%'
+        width: '30%'
     },
     imgResponsive: {
-        flex: 1, 
-        width: undefined, 
+        flex: 1,
+        width: undefined,
         height: undefined
     },
     itemContainer: {
-        flex: 1, 
-        marginLeft: '2%' 
+        flex: 1,
+        ...alignment.MLsmall,
+        ...alignment.PTsmall,
+        ...alignment.PBsmall
     },
     itemDetailContainer: {
-        width: '100%', 
-        height: '40%'
+        width: '100%'
     },
     titleStyle: {
-        fontSize: scale(12), 
+        fontSize: scale(12),
         fontFamily: fontStyles.PoppinsBold
     },
     descStyle: {
-        fontSize: scale(10), 
-        fontFamily: fontStyles.PoppinsRegular, 
+        fontSize: scale(10),
+        fontFamily: fontStyles.PoppinsRegular,
         color: colors.brownColor
     },
     quantityContainer: {
-        width: '100%', 
-        height: '30%', 
-        flexDirection: 'row', 
-        alignItems: 'center', 
+        width: '100%',
+        height: '30%',
+        flexDirection: 'row',
+        alignItems: 'center',
         justifyContent: 'space-between'
     },
     sizeStyle: {
-        fontSize: scale(16), 
+        fontSize: scale(16),
         fontFamily: fontStyles.PoppinsBold
     },
     quantitySelContainer: {
-        flexDirection: 'row' 
+        flexDirection: 'row',
     },
     quantityIconStyle: {
-        paddingLeft: scale(5), 
-        paddingRight: scale(5)
+        ...alignment.PLlarge,
+        ...alignment.PRlarge
     },
     quantityTextStyle: {
-        marginLeft: scale(30), 
-        marginRight: scale(30), 
-        fontFamily: fontStyles.PoppinsRegular, 
+        marginLeft: scale(30),
+        marginRight: scale(30),
+        fontFamily: fontStyles.PoppinsRegular,
         fontSize: scale(15)
     },
     bottomContainer: {
-        flex: 1, 
+        flex: 1,
         flexDirection: 'row'
     },
     likeContainer: {
-        width: '30%', 
-        flexDirection: 'row', 
-        alignItems: 'center'
+        width: '30%',
+        flexDirection: 'row',
+        alignItems: 'center',
+        justifyContent: "flex-start"
     },
     likeTextStyle: {
-        marginLeft: scale(5), 
-        fontFamily: fontStyles.PoppinsRegular, 
+        marginLeft: scale(5),
+        fontFamily: fontStyles.PoppinsRegular,
         fontSize: scale(10)
     },
     priceContainer: {
-        flex: 1, 
-        flexDirection: 'row', 
-        alignItems: 'center', 
+        flex: 1,
+        flexDirection: 'row',
+        alignItems: 'center',
         justifyContent: 'flex-end'
     },
     actualPriceStyle: {
-        textDecorationLine: 'line-through', 
-        fontFamily: fontStyles.PoppinsBold, 
-        fontSize: scale(14), 
+        textDecorationLine: 'line-through',
+        fontFamily: fontStyles.PoppinsBold,
+        fontSize: scale(14),
         color: colors.googleRedColor
     },
     discountedPriceStyle: {
-        marginLeft: scale(10), 
-        fontFamily: fontStyles.PoppinsBold, 
-        fontSize: scale(14), 
+        marginLeft: scale(10),
+        fontFamily: fontStyles.PoppinsBold,
+        fontSize: scale(14),
         color: colors.blueColor
     }
-}
+});
+export default styles
