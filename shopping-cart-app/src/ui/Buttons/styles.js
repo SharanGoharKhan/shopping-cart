@@ -1,12 +1,10 @@
-import { verticalScale, scale } from '../../utils/scaling';
-import { colors } from '../../utils/colors';
-import { fontStyles } from '../../utils/fontStyles';
+import { verticalScale, scale, colors, fontStyles } from '../../utils';
 
 const mainBtnStyles = {
     backgroundColor: {
         backgroundColor: colors.brownColor,
-        height: verticalScale(50),
-        borderRadius: verticalScale(3),
+        height: scale(50),
+        borderRadius: scale(4),
     },
     main_brown_btn: {
         alignItems: 'center',
@@ -24,10 +22,10 @@ const mainBtnStyles = {
 const alternateBtn = {
     backgroundColor: {
         backgroundColor: colors.secondaryWhiteColor,
-        height: verticalScale(50),
-        borderRadius: verticalScale(3),
-        borderWidth: verticalScale(2),
-        borderColor: colors.backgroudGray,
+        height: scale(50),
+        borderRadius: scale(3),
+        borderWidth: scale(2),
+        borderColor: colors.horizontalLine,
     },
     main_alt_btn: {
         alignItems: 'center',

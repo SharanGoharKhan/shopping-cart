@@ -1,6 +1,8 @@
 import React from 'react';
-import { View, TouchableOpacity, Text } from 'react-native';
+import { View, TouchableOpacity } from 'react-native';
 import { mainBtnStyles as styles } from './styles';
+import { Spinner, TextDefault } from '../../components';
+import { colors } from '../../utils';
 
 /* Config/Constants
 ============================================================================= */
@@ -17,18 +19,20 @@ Props:
 ============================================================================= */
 
 const MainBtn = props => (
-  <View style={styles.backgroundColor}>
-    <TouchableOpacity
-      onPress={props.onPress}
-      style={styles.main_brown_btn}
-      activeOpacity={0.7}
-    >
-      <Text style={styles.btn_text}>
-        {' '}
-        {props.text}
-        {' '}
-      </Text>
-    </TouchableOpacity>
+  <View style={[styles.backgroundColor, props.style]}>
+    {props.loading ?
+      <Spinner backColor="rgba(0,0,0,0.1)" spinnerColor={'#FFF'} />
+      :
+      <TouchableOpacity
+        onPress={props.onPress}
+        style={styles.main_brown_btn}
+        activeOpacity={0.7}
+      >
+        <TextDefault textColor={colors.buttonText} H5 center>
+          {props.text}
+        </TextDefault>
+      </TouchableOpacity>
+    }
   </View>
 );
 

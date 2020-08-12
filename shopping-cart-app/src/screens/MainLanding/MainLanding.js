@@ -3,7 +3,7 @@ import { View, FlatList, Text, ImageBackground } from 'react-native';
 import SwiperFlatList from 'react-native-swiper-flatlist';
 import styles from './styles';
 import CategoryCard from '../../ui/CategoryCard/CategoryCard';
-import BottomTab from '../../components/BottomTab/BottomTab';
+import { BottomTab } from '../../components';
 import { OFFERS, PRODUCTS, CATEGORIES, verticalScale, scale, colors } from '../../utils';
 import ProductCard from '../../ui/ProductCard/ProductCard';
 import { SafeAreaView } from 'react-native-safe-area-context';
@@ -23,7 +23,6 @@ const caroselImage = [
 
 function MainLanding(props) {
     const navigation = useNavigation()
-
     function renderCarosel() {
         return (
             <View style={styles.caroselContainer}>

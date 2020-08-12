@@ -1,5 +1,5 @@
 import React, { useState, useContext } from 'react';
-import { View, ImageBackground, ScrollView, KeyboardAvoidingView, StatusBar, Text } from 'react-native';
+import { View, ImageBackground, ScrollView, KeyboardAvoidingView, StatusBar } from 'react-native';
 import { Notifications } from 'expo'
 import * as Permissions from 'expo-permissions'
 import styles from './styles';
@@ -9,10 +9,9 @@ import MainBtn from '../../ui/Buttons/MainBtn';
 import AlternateBtn from '../../ui/Buttons/AlternateBtn';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useMutation, gql } from '@apollo/client'
-import { TextDefault } from '../../components'
+import { TextDefault, Spinner } from '../../components'
 import UserContext from '../../context/User'
 import { createUser } from '../../apollo/server'
-import { LongPressGestureHandler } from 'react-native-gesture-handler';
 import { useNavigation } from '@react-navigation/native'
 
 const CREATEUSER = gql`
@@ -25,7 +24,7 @@ function SignUp(props) {
     const [email, setEmail] = useState('')
     const [phone, setPhone] = useState('')
     const [password, setPassword] = useState('')
-    const [fullnameError, setFullnameError] = useState(null)
+    const [nameError, setNameError] = useState(null)
     const [emailError, setEmailError] = useState(null)
     const [passwordError, setPasswordError] = useState(null)
     const [phoneError, setPhoneError] = useState(null)
@@ -41,7 +40,7 @@ function SignUp(props) {
         setEmailError(null)
         setPasswordError(null)
         setPhoneError(null)
-        setFullnameError(null)
+        setNameError(null)
         const emailRegex = /^\w+([\\.-]?\w+)*@\w+([\\.-]?\w+)*(\.\w{2,3})+$/
         if (!emailRegex.test(email.trim())) {
             setEmailError('Provide a valid email address')
@@ -57,9 +56,9 @@ function SignUp(props) {
             result = false
         }
         const nameRegex = /([a-zA-Z]{3,30}\s*)+/
-        console.log('full name', fullname,!nameRegex.test(fullname))
+        console.log('full name', fullname, !nameRegex.test(fullname))
         if (!nameRegex.test(fullname)) {
-            setFullnameError('Full name is required')
+            setNameError('Full name is required')
             result = false
         }
         return result
@@ -84,9 +83,7 @@ function SignUp(props) {
 
     function onError(error) {
         try {
-            FlashMessage({
-                message: error.graphQLErrors[0].message
-            })
+            FlashMessage({ message: error.message, type: "warning", position: 'top' })
         } catch (e) {
             console.log(e)
         } finally {
@@ -139,26 +136,37 @@ function SignUp(props) {
                                         </TextDefault>
                                     </View>
                                     <View style={styles.mainMid}>
-                                        {!!fullnameError && <Text>{fullnameError}</Text>}
-                                        <TextField placeholder="Full Name" onChange={event => {
-                                            setFullname(event.nativeEvent.text.toLowerCase().trim())
-                                        }} containerStyle={{ ...alignment.MBsmall }} />
-                                        {!!emailError && <Text>{emailError}</Text>}
-                                        <TextField placeholder="Email" onChange={event => {
-                                            setEmail(event.nativeEvent.text.toLowerCase().trim())
-                                        }} containerStyle={{ ...alignment.MBsmall }} />
-                                        {!!phoneError && <Text>{phoneError}</Text>}
-                                        <TextField placeholder="Mobile" onChange={event => {
-                                            setPhone(event.nativeEvent.text.toLowerCase().trim())
-                                        }} containerStyle={{ ...alignment.MBsmall }} />
-                                        {!!passwordError && <Text>{passwordError}</Text>}
-                                        <TextField placeholder="Password" onChange={event => {
-                                            setPassword(event.nativeEvent.text.toLowerCase().trim())
-                                        }} containerStyle={{ ...alignment.MBsmall }} />
+                                        <TextField
+                                            error={!!nameError}
+                                            placeholder="Full Name"
+                                            onChange={event => {
+                                                setFullname(event.nativeEvent.text.toLowerCase().trim())
+                                            }} containerStyle={{ ...alignment.MBsmall }} />
+                                        <TextField
+                                            error={!!emailError}
+                                            placeholder="Email"
+                                            onChange={event => {
+                                                setEmail(event.nativeEvent.text.toLowerCase().trim())
+                                            }} containerStyle={{ ...alignment.MBsmall }} />
+
+                                        <TextField
+                                            error={!!phoneError}
+                                            placeholder="Mobile"
+                                            onChange={event => {
+                                                setPhone(event.nativeEvent.text.toLowerCase().trim())
+                                            }} containerStyle={{ ...alignment.MBsmall }} />
+
+                                        <TextField
+                                            error={!!passwordError}
+                                            placeholder="Password"
+                                            onChange={event => {
+                                                setPassword(event.nativeEvent.text.toLowerCase().trim())
+                                            }} containerStyle={{ ...alignment.MBsmall }} />
                                     </View>
                                     <View style={styles.mainBot}>
                                         <View style={styles.botBtnContainer}>
                                             <MainBtn
+                                                loading={loading}
                                                 onPress={async () => {
                                                     if (validateCredentials()) {
                                                         const user = {
@@ -173,6 +181,7 @@ function SignUp(props) {
                                                 }}
                                                 text="Sign up"
                                             />
+
                                         </View>
                                         <View style={styles.mixedLine}>
                                             <TextDefault textColor={colors.fontSecondColor}>

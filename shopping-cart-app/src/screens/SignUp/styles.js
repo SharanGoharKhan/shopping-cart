@@ -1,5 +1,5 @@
 import { Dimensions, StyleSheet } from 'react-native';
-import { verticalScale } from '../../utils/scaling';
+import { verticalScale, scale } from '../../utils/scaling';
 import { colors } from '../../utils/colors';
 
 const { height } = Dimensions.get('window')
@@ -69,6 +69,6 @@ const styles = StyleSheet.create({
     },
     ftTextUnderline: {
         textDecorationLine: 'underline',
-    },
+    }
 });
 export default styles;
