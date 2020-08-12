@@ -5,6 +5,7 @@ import { verticalScale, colors, scale } from '../../../utils';
 import { TextDefault } from '../../../components/Text';
 import { MaterialIcons } from '@expo/vector-icons';
 import { useNavigation } from '@react-navigation/native'
+import { FontAwesome } from '@expo/vector-icons'; 
 
 /* =============================================================================
 <Card />
@@ -57,29 +58,36 @@ function Card(props) {
         <View style={styles.container}>
             <View style={styles.headerRow}>
                 <TextDefault textColor={colors.fontBrown} H4>
-                    {' '}{props.item.title}
+                    {' '}{props.item.label}
                 </TextDefault>
+                <View style={{flexDirection:'row',justifyContent:'space-around'}}>
                 <TouchableOpacity
                     activeOpacity={0}
                     onPress={() => navigation.navigate('EditAddress', { ...props.item })}>
                     <Image
-                        style={{ height: verticalScale(16), width: verticalScale(16) }}
+                        style={{ height: verticalScale(16), width: verticalScale(16),marginRight:20}}
                         source={require('../../../assets/icons/edit.png')}
                     />
                 </TouchableOpacity>
+                <TouchableOpacity>
+                <FontAwesome name="trash-o" size={22} color="red" />
+                </TouchableOpacity>
+                </View>
             </View>
             <View style={styles.address}>
-                <TextDefault textColor={colors.fontMainColor}>
+                {/* <TextDefault textColor={colors.fontMainColor}>
                     {props.item.country}
+                    danyl
                 </TextDefault>
                 <TextDefault textColor={colors.fontMainColor}>
                     {props.item.city}
+                    sdsa
+                </TextDefault> */}
+                <TextDefault textColor={colors.fontMainColor}>
+                    {props.item.deliveryAddress}
                 </TextDefault>
                 <TextDefault textColor={colors.fontMainColor}>
-                    {props.item.address}
-                </TextDefault>
-                <TextDefault textColor={colors.fontMainColor}>
-                    {props.item.poBox}
+                    Details: {props.item.details}
                 </TextDefault>
             </View>
             <View style={styles.btnContainer}>

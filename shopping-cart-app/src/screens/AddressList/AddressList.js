@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import { View, Text, TouchableOpacity, FlatList } from 'react-native';
 import styles from './styles';
 import BottomTab from '../../components/BottomTab/BottomTab';
@@ -8,23 +8,22 @@ import { SafeAreaView } from 'react-native-safe-area-context'
 import { useNavigation } from '@react-navigation/native';
 import { colors, alignment } from '../../utils';
 import { TextDefault } from '../../components';
+import UserContext from '../../context/User'
 
 
 /* Config/Constants
 DATA for the address
 ============================================================================= */
-const DATA = [
-    {
-        _id: 1, default: false, title: 'My Home', country: 'Pakistan', city: 'Islamabad', region: 'Federal', address: 'Block 4, Apartment 102', poBox: 'P.O Vox 65000', latitude: 33.6844, longitude: 73.0479
-    },
-    {
-        _id: 2, default: true, title: 'My Work', country: 'Pakistan', city: 'Karachi', region: 'Sindh', address: 'Block 4350, Floor 1, Office 3', poBox: 'P.O Vox 65002', latitude: 24.8607, longitude: 74.3587
-    },
-];
+
 
 function AddressList() {
     const navigation = useNavigation()
-    const [isDefault, isDefaultSetter] = useState(DATA.find(element => element.default === true)._id)
+    const { profile } = useContext(UserContext)
+    console.log(profile.addresses)
+    const [isDefault, isDefaultSetter] = useState(
+        profile.addresses.length ? profile.addresses.find(address => address.selected === true)._id : null
+        )
+        
 
     function emptyView() {
         return (
@@ -74,10 +73,11 @@ function AddressList() {
                     </View>
                 </View>
                 <View style={styles.body}>
+                    <Text>{JSON.stringify(profile.address)}</Text>
                     <View style={styles.main}>
                         <FlatList
                             style={styles.flex}
-                            data={DATA}
+                            data={profile.addresses}
                             keyExtractor={(item) => item._id.toString()}
                             ListEmptyComponent={emptyView}
                             renderItem={({ item, index }) => (
