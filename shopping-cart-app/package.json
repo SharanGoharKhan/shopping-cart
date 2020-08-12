@@ -16,6 +16,8 @@
     "@react-navigation/drawer": "^5.9.0",
     "@react-navigation/native": "^5.7.3",
     "@react-navigation/stack": "^5.9.0",
+    "apollo-cache-persist": "^0.1.1",
+    "apollo-link": "^1.2.14",
     "expo": "^38.0.9",
     "expo-app-auth": "~9.1.1",
     "expo-apple-authentication": "~2.2.1",
@@ -39,7 +41,8 @@
     "react-native-star-rating": "^1.1.0",
     "react-native-swiper-flatlist": "^2.0.4",
     "react-native-timeline-flatlist": "^0.7.3",
-    "react-native-webview": "9.4.0"
+    "react-native-webview": "9.4.0",
+    "subscriptions-transport-ws": "^0.9.17"
   },
   "devDependencies": {
     "babel-eslint": "^10.1.0",

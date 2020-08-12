@@ -1,14 +1,111 @@
-import React from 'react';
-import { View, ImageBackground, ScrollView, KeyboardAvoidingView, StatusBar } from 'react-native';
+import React, { useState, useContext } from 'react';
+import { View, ImageBackground, ScrollView, KeyboardAvoidingView, StatusBar, Text } from 'react-native';
+import { Notifications } from 'expo'
+import * as Permissions from 'expo-permissions'
 import styles from './styles';
 import { colors, alignment } from '../../utils';
 import TextField from '../../ui/Textfield/Textfield';
 import MainBtn from '../../ui/Buttons/MainBtn';
 import AlternateBtn from '../../ui/Buttons/AlternateBtn';
 import { SafeAreaView } from 'react-native-safe-area-context';
+import { useMutation, gql } from '@apollo/client'
 import { TextDefault } from '../../components'
+import UserContext from '../../context/User'
+import { createUser } from '../../apollo/server'
+import { LongPressGestureHandler } from 'react-native-gesture-handler';
+import { useNavigation } from '@react-navigation/native'
+
+const CREATEUSER = gql`
+  ${createUser}
+`
 
 function SignUp(props) {
+    const navigation = useNavigation()
+    const [fullname, setFullname] = useState('')
+    const [email, setEmail] = useState('')
+    const [phone, setPhone] = useState('')
+    const [password, setPassword] = useState('')
+    const [fullnameError, setFullnameError] = useState(null)
+    const [emailError, setEmailError] = useState(null)
+    const [passwordError, setPasswordError] = useState(null)
+    const [phoneError, setPhoneError] = useState(null)
+    const [loading, setLoading] = useState(false)
+
+    const { setTokenAsync } = useContext(UserContext)
+
+    const [mutate] = useMutation(CREATEUSER, { onCompleted, onError })
+
+    function validateCredentials() {
+        let result = true
+
+        setEmailError(null)
+        setPasswordError(null)
+        setPhoneError(null)
+        setFullnameError(null)
+        const emailRegex = /^\w+([\\.-]?\w+)*@\w+([\\.-]?\w+)*(\.\w{2,3})+$/
+        if (!emailRegex.test(email.trim())) {
+            setEmailError('Provide a valid email address')
+            result = false
+        }
+        if (!password) {
+            setPasswordError('Password is required')
+            result = false
+        }
+        const phoneRegex = /^\d{11,15}$/
+        if (!phoneRegex.test(phone)) {
+            setPhoneError('Provide a valid phone number')
+            result = false
+        }
+        const nameRegex = /([a-zA-Z]{3,30}\s*)+/
+        console.log('full name', fullname,!nameRegex.test(fullname))
+        if (!nameRegex.test(fullname)) {
+            setFullnameError('Full name is required')
+            result = false
+        }
+        return result
+    }
+
+    async function onCompleted(data) {
+        try {
+            //   const trackingOpts = {
+            //     id: data.createUser.userId,
+            //     usernameOrEmail: data.createUser.email
+            //   }
+            //   Analytics.identify(data.createUser.userId, trackingOpts)
+            //   Analytics.track(Analytics.events.USER_CREATED_ACCOUNT, trackingOpts)
+            setTokenAsync(data.createUser.token)
+            navigation.navigate('MainLanding')
+        } catch (e) {
+            console.log(e)
+        } finally {
+            setLoading(false)
+        }
+    }
+
+    function onError(error) {
+        try {
+            FlashMessage({
+                message: error.graphQLErrors[0].message
+            })
+        } catch (e) {
+            console.log(e)
+        } finally {
+            setLoading(false)
+        }
+    }
+
+    async function mutateLogin(user) {
+        setLoading(true)
+        let notificationToken = null
+        const { status: existingStatus } = await Permissions.getAsync(
+            Permissions.NOTIFICATIONS
+        )
+        if (existingStatus === 'granted') {
+            notificationToken = await Notifications.getExpoPushTokenAsync()
+        }
+        mutate({ variables: { ...user, notificationToken } })
+    }
+
     return (
         <SafeAreaView style={[styles.flex, styles.safeAreaStyle]}>
             <KeyboardAvoidingView behavior={Platform.OS === "ios" ? "padding" : "height"} style={[styles.flex, { marginTop: Platform.OS === 'ios' ? 0 : StatusBar.currentHeight }]}>
@@ -42,15 +139,38 @@ function SignUp(props) {
                                         </TextDefault>
                                     </View>
                                     <View style={styles.mainMid}>
-                                        <TextField placeholder="Full Name" containerStyle={{ ...alignment.MBsmall }} />
-                                        <TextField placeholder="Email" containerStyle={{ ...alignment.MBsmall }} />
-                                        <TextField placeholder="Mobile" containerStyle={{ ...alignment.MBsmall }} />
-                                        <TextField placeholder="Password" containerStyle={{ ...alignment.MBsmall }} />
+                                        {!!fullnameError && <Text>{fullnameError}</Text>}
+                                        <TextField placeholder="Full Name" onChange={event => {
+                                            setFullname(event.nativeEvent.text.toLowerCase().trim())
+                                        }} containerStyle={{ ...alignment.MBsmall }} />
+                                        {!!emailError && <Text>{emailError}</Text>}
+                                        <TextField placeholder="Email" onChange={event => {
+                                            setEmail(event.nativeEvent.text.toLowerCase().trim())
+                                        }} containerStyle={{ ...alignment.MBsmall }} />
+                                        {!!phoneError && <Text>{phoneError}</Text>}
+                                        <TextField placeholder="Mobile" onChange={event => {
+                                            setPhone(event.nativeEvent.text.toLowerCase().trim())
+                                        }} containerStyle={{ ...alignment.MBsmall }} />
+                                        {!!passwordError && <Text>{passwordError}</Text>}
+                                        <TextField placeholder="Password" onChange={event => {
+                                            setPassword(event.nativeEvent.text.toLowerCase().trim())
+                                        }} containerStyle={{ ...alignment.MBsmall }} />
                                     </View>
                                     <View style={styles.mainBot}>
                                         <View style={styles.botBtnContainer}>
                                             <MainBtn
-                                                onPress={() => props.navigation.navigate('SignIn')}
+                                                onPress={async () => {
+                                                    if (validateCredentials()) {
+                                                        const user = {
+                                                            phone: phone.trim(),
+                                                            email: email.toLowerCase().trim(),
+                                                            password: password,
+                                                            name: fullname,
+                                                            picture: ''
+                                                        }
+                                                        mutateLogin(user)
+                                                    }
+                                                }}
                                                 text="Sign up"
                                             />
                                         </View>

@@ -1,6 +1,9 @@
-import React, { useState, useEffect } from 'react';
-import { View, Image, TouchableOpacity, ImageBackground, KeyboardAvoidingView, ScrollView, Platform, StatusBar } from 'react-native';
+import React, { useState, useEffect, useContext } from 'react';
+import { View, Image, TouchableOpacity, ImageBackground, KeyboardAvoidingView, ScrollView, Platform, StatusBar, Text } from 'react-native';
+import * as Permissions from 'expo-permissions'
 import styles from './styles';
+import { login } from '../../apollo/server'
+import { Notifications } from 'expo'
 import { verticalScale, colors, scale } from '../../utils';
 import { TextDefault, Spinner } from '../../components'
 import TextField from '../../ui/Textfield/Textfield';
@@ -13,6 +16,9 @@ import * as Google from 'expo-google-app-auth'
 import getEnvVars from '../../../environment'
 import { useNavigation } from '@react-navigation/native';
 import * as AppleAuthentication from 'expo-apple-authentication'
+import { useMutation, gql } from '@apollo/client'
+import UserContext from '../../context/User'
+import { FlashMessage } from '../../components/FlashMessage/FlashMessage'
 
 const {
     IOS_CLIENT_ID_GOOGLE,
@@ -20,14 +26,24 @@ const {
     FACEBOOK_APP_ID
 } = getEnvVars()
 
+const LOGIN = gql`
+  ${login}
+`
+
 function SignIn(props) {
     const navigation = useNavigation()
+    const [email, setEmail] = useState('')
+    const [password, setPassword] = useState('')
+    const [emailError, setEmailError] = useState('')
+    const [passwordError, setPasswordError] = useState(null)
     const [modalVisible, setModalVisible] = useState(false)
     const [loginButton, loginButtonSetter] = useState(null)
     const [loading, setLoading] = useState(false)
     const [enableApple, setEnableApple] = useState(false)
 
-    console.log(AppAuth.OAuthRedirect)
+    const { setTokenAsync } = useContext(UserContext)
+
+    const [mutate] = useMutation(LOGIN, { onCompleted, onError })
 
     useEffect(() => {
         checkIfSupportsAppleAuthentication()
@@ -43,7 +59,76 @@ function SignIn(props) {
 
     async function checkIfSupportsAppleAuthentication() {
         setEnableApple(await AppleAuthentication.isAvailableAsync())
-        console.log(enableApple)
+    }
+
+    function validateCredentials() {
+        let result = true
+        setEmailError(null)
+        setPasswordError(null)
+        console.log("email", email, 'password', password)
+        if (!email) {
+            setEmailError('Email is required')
+            result = false
+        } else {
+            const emailRegex = /^\w+([\\.-]?\w+)*@\w+([\\.-]?\w+)*(\.\w{2,3})+$/
+            const phoneRegex = /^[+]\d{6,15}$/
+            if (emailRegex.test(email) !== true && phoneRegex.test(email) !== true) {
+                setEmailError('Invalid Email/Phone')
+                result = false
+            }
+        }
+        if (!password) {
+            setPasswordError('Password is required')
+            result = false
+        }
+        return result
+    }
+    async function onCompleted(data) {
+        try {
+            // const trackingOpts = {
+            //     id: data.login.userId,
+            //     usernameOrEmail: data.login.email
+            // }
+            // Analytics.identify(data.login.userId, trackingOpts)
+            // Analytics.track(Analytics.events.USER_LOGGED_IN, trackingOpts)
+            setTokenAsync(data.login.token)
+            navigation.navigate('MainLanding')
+        } catch (e) {
+            console.log(e)
+        } finally {
+            setLoading(false)
+        }
+    }
+    function onError(error) {
+        try {
+            console.log(JSON.stringify(error))
+
+            console.log('graphql', error.message)
+            FlashMessage({
+                message: error.message
+            })
+        } catch (e) {
+            console.log(e)
+        } finally {
+            setLoading(false)
+        }
+    }
+
+    async function mutateLogin(user) {
+        try {
+            setLoading(true)
+            let notificationToken = null
+            const { status: existingStatus } = await Permissions.getAsync(
+                Permissions.NOTIFICATIONS
+            )
+            if (existingStatus === 'granted') {
+                notificationToken = await Notifications.getExpoPushTokenAsync()
+            }
+            mutate({ variables: { ...user, notificationToken } })
+        } catch (e) {
+            console.log(e)
+        } finally {
+        }
     }
 
     async function _GoogleSignUp() {
@@ -87,7 +172,17 @@ function SignIn(props) {
                             }}
                             onPress={async () => {
                                 const googleUser = await _GoogleSignUp()
-                                navigation.navigate('MainLanding')
+                                if (googleUser) {
+                                    const user = {
+                                      phone: '',
+                                      email: googleUser.email,
+                                      password: '',
+                                      name: googleUser.name,
+                                      picture: googleUser.photoUrl,
+                                      type: 'google'
+                                    }
+                                    mutateLogin(user)
+                                  }
                             }
 
                             }
@@ -113,8 +208,20 @@ function SignIn(props) {
                         <TouchableOpacity
                             activeOpacity={0.7}
                             onPress={async () => {
-                                const user = await _FacebookSignUp()
-                                navigation.navigate('MainLanding')
+                                const facebookUser = await _FacebookSignUp()
+                                console.log('facebook',facebookUser)
+                                // if (facebookUser) {
+                                //     const user = {
+                                //       facebookId: facebookUser.id,
+                                //       phone: '',
+                                //       email: facebookUser.email,
+                                //       password: '',
+                                //       name: facebookUser.name,
+                                //       picture: '',
+                                //       type: 'facebook'
+                                //     }
+                                //     mutateLogin(user)
+                                //   }
                             }}
                             style={styles.socialBtn}>
                             <View style={styles.bgCircle}>
@@ -150,6 +257,21 @@ function SignIn(props) {
                                 AppleAuthentication.AppleAuthenticationScope.EMAIL
                             ]
                         })
+                        if (credential) {
+                            const user = {
+                                appleId: credential.user,
+                                phone: '',
+                                email: credential.email,
+                                password: '',
+                                name:
+                                    credential.fullName.givenName +
+                                    ' ' +
+                                    credential.fullName.familyName,
+                                picture: '',
+                                type: 'apple'
+                            }
+                            mutateLogin(user)
+                        }
                         loginButtonSetter('Apple')
                     } catch (e) {
                         if (e.code === 'ERR_CANCELED') {
@@ -176,7 +298,17 @@ function SignIn(props) {
                         <TouchableOpacity
                             style={styles.main_brown_btn}
                             activeOpacity={0.7}
-                            onPress={() => navigation.navigate('noDrawer', { screen: 'MainLanding' })}>
+                            onPress={async () => {
+                                const user = {
+                                    email: email,
+                                    password: password,
+                                    type: 'default'
+                                }
+
+                                if (validateCredentials()) {
+                                    mutateLogin(user)
+                                }
+                            }}>
                             <TextDefault textColor={colors.buttonText} H5>
                                 {'Sign In'}
                             </TextDefault>
@@ -223,11 +355,21 @@ function SignIn(props) {
                                         </TextDefault>
                                     </View>
                                     <View style={styles.bcMain}>
+                                        <Text>{emailError}</Text>
                                         <TextField
-                                            placeholder="Username"
+                                            placeholder="Email"
+                                            onChange={event => {
+                                                setEmail(event.nativeEvent.text.toLowerCase().trim())
+                                            }}
                                         />
+                                        <Text>{passwordError}</Text>
+
                                         <TextField
                                             placeholder="Password"
+                                            password={true}
+                                            onChange={event => {
+                                                setPassword(event.nativeEvent.text.trim())
+                                            }}
                                         />
                                         {rennderLogin()}
                                         <TouchableOpacity

@@ -11,21 +11,25 @@ import { MaterialIcons } from '@expo/vector-icons';
 function NewAddress() {
     const navigation = useNavigation()
     const route = useRoute()
-    const regionObj = route.params?.regionChange ?? null
+    // const regionObj = route.params?.regionChange ?? null
     const [title, titleSetter] = useState('')
     const [city, citySetter] = useState('')
     const [regionName, regionNameSetter] = useState('')
     const [additional, additionalSetter] = useState('')
+    const [aptNumber, aptNumberSetter] = useState('')
+    const [building, buildingSetter] = useState('')
     const [titleError, titleErrorSetter] = useState('')
     const [cityError, cityErrorSetter] = useState('')
-    const [regionError, regionErrorSetter] = useState('')
+    // const [regionError, regionErrorSetter] = useState('')
     const [regionNameError, regionNameErrorSetter] = useState('')
     const [additionalError, additionalErrorSetter] = useState('')
+    const [aptNumberError, aptNumberErrorSetter] = useState('')
+    const [buildingError, buildingErrorSetter] = useState('')
 
-    useEffect(() => {
-        if (regionObj !== null) regionChange(regionObj)
-        return () => clearFields()
-    }, [regionObj])
+    // useEffect(() => {
+    //     if (regionObj !== null) regionChange(regionObj)
+    //     return () => clearFields()
+    // }, [regionObj])
 
     function regionChange(region) {
         Location.reverseGeocodeAsync({ ...region })
@@ -54,21 +58,26 @@ function NewAddress() {
         const cityError = !city.trim().length ? 'Error' : ''
         const regionError = !regionName.trim().length ? 'Error' : ''
         const additionalError = !additional.trim().length ? 'Error' : ''
-        const coordinateError = regionObj === null ? 'Error' : ''
+        const aptNumberError = !aptNumber.trim().length ? 'Error' : ''
+        const buildingError = !building.trim().length ? 'Error' : ''
 
-        regionErrorSetter(coordinateError)
+        
         titleErrorSetter(titleError)
         cityErrorSetter(cityError)
         regionNameErrorSetter(regionError)
         additionalErrorSetter(additionalError)
-        return !titleError.length && !cityError.length && !regionError.length && !additionalError.length && !coordinateError.length
+        aptNumberErrorSetter(aptNumberError)
+        buildingErrorSetter(buildingError)
+        console.log(!aptNumberError.length, !buildingError.length)
+        return !titleError.length && !cityError.length && !regionError.length && !additionalError.length && !aptNumberError.length && !buildingError.length
     }
     function clearFields() {
-        regionErrorSetter('')
         titleErrorSetter('')
         cityErrorSetter('')
         regionNameErrorSetter('')
         additionalErrorSetter('')
+        aptNumberErrorSetter('')
+        buildingErrorSetter('')
     }
 
     return (
@@ -105,7 +114,7 @@ function NewAddress() {
                         <ScrollView style={styles.flex} showsVerticalScrollIndicator={false} contentContainerStyle={{ alignItems: 'center', flexGrow: 1 }}>
                             <View style={styles.formContainer}>
                                 <View style={styles.formContentContainer}>
-                                    <View style={styles.oneItemContainer}>
+                                    {/* <View style={styles.oneItemContainer}>
                                         <View style={styles.fullContainer}>
                                             <View style={styles.labelContainer}>
                                                 <TextDefault textColor={colors.fontSecondColor} H5>
@@ -123,7 +132,7 @@ function NewAddress() {
                                                 <MaterialIcons name="location-on" size={scale(25)} color={colors.google} />
                                             </TouchableOpacity>
                                         </View>
-                                    </View>
+                                    </View> */}
                                     <View style={styles.twoItemsContainer}>
                                         <View style={styles.halfContainer}>
                                             <View style={styles.labelContainer}>
@@ -181,9 +190,17 @@ function NewAddress() {
                                             </View>
                                             <View style={styles.inputContainer}>
                                                 <TextInput
-                                                    style={[styles.flex, styles.inputText]}
+                                                    style={[styles.flex, styles.inputText,aptNumberError.length > 0 && styles.error]}
                                                     placeholder="01"
                                                     placeholderTextColor={colors.fontPlaceholder}
+                                                    onChangeText={(text) => aptNumberSetter(text)}
+                                                    onBlur={() => {
+                                                        aptNumberErrorSetter(
+                                                            !aptNumber.trim().length
+                                                                ? 'Error'
+                                                                : ''
+                                                        )
+                                                    }}
                                                 />
                                             </View>
                                         </View>
@@ -195,9 +212,17 @@ function NewAddress() {
                                             </View>
                                             <View style={styles.inputContainer}>
                                                 <TextInput
-                                                    style={[styles.flex, styles.inputText]}
+                                                    style={[styles.flex, styles.inputText,buildingError.length > 0 && styles.error]}
                                                     placeholder="Block 4"
                                                     placeholderTextColor={colors.fontPlaceholder}
+                                                    onChangeText={(text) => buildingSetter(text)}
+                                                    onBlur={() => {
+                                                        buildingErrorSetter(
+                                                            !building.trim().length
+                                                                ? 'Error'
+                                                                : ''
+                                                        )
+                                                    }}
                                                 />
                                             </View>
                                         </View>

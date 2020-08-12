@@ -1,27 +1,80 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import AppContainer from './src/routes/routes'
-import { View, ActivityIndicator, StatusBar, StyleSheet } from 'react-native'
+import * as Permissions from 'expo-permissions'
+import { Notifications } from 'expo'
+import { ApolloProvider } from '@apollo/client'
+import { View, ActivityIndicator, StatusBar, Platform, StyleSheet } from 'react-native'
+import { ConfigurationProvider } from './src/context/Configuration'
+import { UserProvider } from './src/context/User'
 import { colors } from './src/utils/colors'
-import { useFonts } from 'expo-font';
-import { ApolloClient, InMemoryCache, ApolloProvider } from '@apollo/client';
+import * as Font from 'expo-font';
+import setupApolloClient from './src/apollo/index'
 
 
 export default function App() {
-  const [fontLoaded] = useFonts({
-    'Poppins-Regular': require('./src/assets/font/Poppins/Poppins-Regular.ttf'),
-    'Poppins-Bold': require('./src/assets/font/Poppins/Poppins-Bold.ttf')
-  });
+  const [fontLoaded, setFontLoaded] = useState(false)
+  const [client, setupClient] = useState(null)
 
-  const client = new ApolloClient({
-    // uri: 'https://48p1r2roz4.sse.codesandbox.io',
-    cache: new InMemoryCache()
-  });
+  useEffect(() => {
+    loadAppData()
+  }, [])
 
-  if (fontLoaded) {
+
+  async function loadAppData() {
+    const client = await setupApolloClient()
+
+    setupClient(client)
+    await Font.loadAsync({
+      'Poppins-Regular': require('./src/assets/font/Poppins/Poppins-Regular.ttf'),
+      'Poppins-Bold': require('./src/assets/font/Poppins/Poppins-Bold.ttf')
+    })
+
+    await permissionForPushNotificationsAsync()
+
+    setFontLoaded(true)
+  }
+
+
+
+  async function permissionForPushNotificationsAsync() {
+    const { status: existingStatus } = await Permissions.getAsync(
+      Permissions.NOTIFICATIONS
+    )
+    let finalStatus = existingStatus
+    // only ask if permissions have not already been determined, because
+    // iOS won't necessarily prompt the user a second time.
+    if (existingStatus !== 'granted') {
+      // Android remote notification permissions are granted during the app
+      // install, so this will only ask on iOS
+      const { status } = await Permissions.askAsync(Permissions.NOTIFICATIONS)
+      finalStatus = status
+    }
+
+    // Stop here if the user did not grant permissions
+    if (finalStatus !== 'granted') {
+      return
+    }
+
+    if (Platform.OS === 'android') {
+      Notifications.createChannelAndroidAsync('default', {
+        name: 'default',
+        sound: true,
+        priority: 'max',
+        vibrate: [0, 250, 250, 250]
+      })
+    }
+  }
+
+
+  if (fontLoaded && client) {
     return (
       <ApolloProvider client={client}>
         <StatusBar barStyle={'dark-content'} backgroundColor={colors.headerbackground} />
-        <AppContainer />
+        <ConfigurationProvider>
+          <UserProvider>
+            <AppContainer />
+          </UserProvider>
+        </ConfigurationProvider>
       </ApolloProvider>
     )
   } else return (
