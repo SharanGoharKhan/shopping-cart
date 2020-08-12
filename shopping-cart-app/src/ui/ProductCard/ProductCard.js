@@ -3,7 +3,7 @@ import {
     Text, View, Image, TouchableOpacity
 } from 'react-native'
 import styles from './styles'
-import {Ionicons} from '@expo/vector-icons'
+import { Ionicons } from '@expo/vector-icons'
 
 const icons = {
     shop_1_collage_4: require('../../assets/images/MainLanding/shop_1_collage_4.png'),
@@ -43,7 +43,7 @@ function ProductCard(props) {
                             activeOpacity={0}
                             onPress={() => setLiked(!liked)}
                             style={styles.likeContainer}>
-                            <Ionicons name={liked ? "ios-heart" : "ios-heart-empty"} size={24}/>
+                            <Ionicons name={liked ? "ios-heart" : "ios-heart-empty"} size={24} />
                         </TouchableOpacity>
                     </View>
                 </View>
@@ -52,4 +52,4 @@ function ProductCard(props) {
     )
 }
 
-export default ProductCard;
+export default React.memo(ProductCard);

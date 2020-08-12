@@ -4,8 +4,8 @@ import styles from './styles';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { SimpleLineIcons } from '@expo/vector-icons';
 import UserContext from '../../context/User'
-import { colors } from '../../utils/colors';
-import { scale } from '../../utils/scaling';
+import { scale, colors, alignment } from '../../utils';
+import { TextDefault } from '../../components'
 import { useNavigation, DrawerActions } from '@react-navigation/native'
 
 const navItems = [
@@ -60,13 +60,15 @@ function MainMenu(props) {
                         </View>
                     </View>)}
                     {!isLoggedIn && (
-                        <View style={styles.profilePlace}>
+                        <View style={styles.loginContainer}>
                             <TouchableOpacity activeOpacity={0.6}
                                 onPress={() => {
                                     navigation.navigate('SignIn')
                                 }}
                             >
-                                <Text style={styles.profilePlaceStyle}>Login/Create Account</Text>
+                                <TextDefault textColor={colors.fontMainColor} H5 style={[alignment.PTmedium, alignment.PBmedium]}>
+                                    {'Login/Create Account'}
+                                </TextDefault>
                             </TouchableOpacity>
                         </View>
                     )}

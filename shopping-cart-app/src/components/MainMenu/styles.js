@@ -16,6 +16,14 @@ export default {
         justifyContent: 'center',
         alignItems: 'center',
     },
+    loginContainer: {
+        width: '80%',
+        height: '70%',
+        backgroundColor: '#F7F7F7',
+        alignItems: 'center',
+        justifyContent: 'center',
+        borderRadius: verticalScale(5),
+    },
     profileSubContainer: {
         width: '60%',
         height: '70%',
@@ -121,8 +129,8 @@ export default {
         justifyContent: 'center',
     },
     signoutContainerStyle: {
-        width:"100%",
-        paddingLeft:scale(10),
+        width: "100%",
+        paddingLeft: scale(10),
         fontFamily: fontStyles.PoppinsRegular,
         fontSize: scale(16),
         color: colors.pinkColor,
