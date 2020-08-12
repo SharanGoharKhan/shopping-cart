@@ -25,18 +25,25 @@ const styles = StyleSheet.create({
         alignItems: 'center',
     },
     formContainer: {
-        width: '90%',
-        backgroundColor: colors.container,
-        borderRadius: scale(8),
+        width: '95%',
+        height: "100%",
         alignItems: 'center',
+        justifyContent: 'space-between',
+        ...alignment.PBmedium
     },
     imgResponsive: {
         width: '60%',
         height: '60%',
     },
     formContentContainer: {
-        ...alignment.MTmedium,
-        width: '95%',
+        width: '100%',
+        backgroundColor: colors.container,
+        borderRadius: scale(8),
+        ...alignment.PTlarge,
+        ...alignment.MBmedium,
+        ...alignment.PLsmall,
+        ...alignment.PRsmall,
+        ...alignment.PBlarge
     },
     twoItemsContainer: {
         width: '100%',
@@ -69,20 +76,6 @@ const styles = StyleSheet.create({
     fullContainer: {
         width: '95%',
         height: '90%',
-    },
-    addContainer: {
-        width,
-        height: height * 0.15,
-        justifyContent: 'center',
-        alignItems: 'center',
-    },
-    addBtn: {
-        width: '80%',
-        height: '45%',
-        backgroundColor: colors.buttonBackground,
-        justifyContent: 'center',
-        alignItems: 'center',
-        borderRadius: scale(4),
     },
     nameAddressContainer: {
         ...alignment.MTmedium,
