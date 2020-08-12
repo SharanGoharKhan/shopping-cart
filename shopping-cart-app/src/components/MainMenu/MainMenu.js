@@ -1,11 +1,11 @@
 import React, { useContext } from 'react';
-import { View, Text, Image, TouchableOpacity } from 'react-native';
+import { View, Image, TouchableOpacity } from 'react-native';
 import styles from './styles';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { SimpleLineIcons } from '@expo/vector-icons';
 import UserContext from '../../context/User'
 import { scale, colors, alignment } from '../../utils';
-import { TextDefault } from '../../components'
+import { TextDefault } from '../Text'
 import { useNavigation, DrawerActions } from '@react-navigation/native'
 
 const navItems = [
@@ -48,17 +48,22 @@ function MainMenu(props) {
         <SafeAreaView style={styles.container}>
             <View style={styles.container}>
                 <View style={styles.profileContainer}>
-                    {isLoggedIn && profile && (<View style={styles.profileSubContainer}>
-                        <View style={styles.profileImage}>
-                            <SimpleLineIcons name="user" size={scale(30)} color={colors.fontBrown} />
-                        </View>
-                        <View style={styles.profileTitle}>
-                            <Text style={styles.profileTitleStyle}>{profile.name}</Text>
-                        </View>
-                        <View style={styles.profilePlace}>
-                            <Text style={styles.profilePlaceStyle}>Pakistan</Text>
-                        </View>
-                    </View>)}
+                    {isLoggedIn && profile && (
+                        <View style={styles.profileSubContainer}>
+                            <View style={styles.profileImage}>
+                                <SimpleLineIcons name="user" size={scale(30)} color={colors.fontBrown} />
+                            </View>
+                            <View style={styles.profileTitle}>
+                                <TextDefault numberOfLines={2} textColor={colors.fontMainColor} H4 center>
+                                    {profile.name}
+                                </TextDefault>
+                            </View>
+                            <View style={styles.profilePlace}>
+                                <TextDefault textColor={colors.fontMainColor} center>
+                                    {'Pakistan'}
+                                </TextDefault>
+                            </View>
+                        </View>)}
                     {!isLoggedIn && (
                         <View style={styles.loginContainer}>
                             <TouchableOpacity activeOpacity={0.6}
@@ -87,9 +92,10 @@ function MainMenu(props) {
                                         }
                                     }}
                                     key={ind}
-                                    style={styles.navItemContainer}
-                                >
-                                    <Text style={styles.navItemStyle}>{item.title}</Text>
+                                    style={styles.navItemContainer}>
+                                    <TextDefault textColor={colors.fontMainColor} H4 style={alignment.PLlarge}>
+                                        {item.title}
+                                    </TextDefault>
                                 </TouchableOpacity>
                             ))
                         }
@@ -128,7 +134,9 @@ function MainMenu(props) {
                         >
                             <SimpleLineIcons name="logout" size={scale(20)} color={colors.pinkColor} />
                             <View style={styles.signoutContainerText}>
-                                <Text style={styles.signoutContainerStyle}>Sign Out</Text>
+                                <TextDefault numberOfLines={1} textColor={colors.pinkColor} style={styles.signoutContainerStyle} H4>
+                                    {'Sign Out'}
+                                </TextDefault>
                             </View>
                         </TouchableOpacity>
                     </View>)}
