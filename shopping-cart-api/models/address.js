@@ -5,12 +5,12 @@ const Schema = mongoose.Schema
 
 const AddressSchema = new Schema(
   {
-    location: {
-      type: pointSchema,
-    },
-    deliveryAddress: { type: String, required: true },
-    details: { type: String },
     label: { type: String, required: true },
+    region: { type: String, required: true },
+    city: { type: String, required: true },
+    apartment: { type: String, required: true },
+    building: { type: String, required: true },
+    details: String,
     selected: { type: Boolean, default: true },
     isActive: { type: Boolean, default: true }
   },

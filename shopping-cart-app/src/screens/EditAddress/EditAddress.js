@@ -1,35 +1,47 @@
-import React, { useEffect, useState } from 'react';
-import { View, TextInput, KeyboardAvoidingView, ScrollView, TouchableOpacity } from 'react-native';
+import React, { useState } from 'react';
+import { View, TextInput, KeyboardAvoidingView, ScrollView } from 'react-native';
 import styles from './styles';
 import { SafeAreaView } from 'react-native-safe-area-context';
-import { colors, alignment, scale } from '../../utils';
-import { TextDefault, BackHeader, BottomTab } from '../../components';
+import { colors } from '../../utils';
+import { TextDefault, BackHeader, BottomTab, FlashMessage } from '../../components';
 import { useNavigation, useRoute } from '@react-navigation/native';
-import * as Location from 'expo-location'
-import { MaterialIcons } from '@expo/vector-icons';
 import MainBtn from '../../ui/Buttons/MainBtn';
+import { gql, useMutation } from '@apollo/client';
+import { editAddress } from '../../apollo/server';
+
+const EDIT_ADDRESS = gql`${editAddress}`
 
 function EditAddress(props) {
+    console.log(props)
     const navigation = useNavigation()
     const route = useRoute()
-    const [title, titleSetter] = useState(route.params?.title ?? '')
+    const _id = route.params?._id ?? null
+    const [title, titleSetter] = useState(route.params?.label ?? '')
     const [city, citySetter] = useState(route.params?.city ?? '')
     const [regionName, regionNameSetter] = useState(route.params?.region ?? '')
-    const [additional, additionalSetter] = useState('')
-    const [aptNumber, aptNumberSetter] = useState('')
-    const [building, buidlingSetter] = useState(route.params?.address ?? '')
+    const [additional, additionalSetter] = useState(route.params?.details ?? '')
+    const [aptNumber, aptNumberSetter] = useState(route.params?.apartment ?? '')
+    const [building, buildingSetter] = useState(route.params?.building ?? '')
     const [titleError, titleErrorSetter] = useState('')
     const [cityError, cityErrorSetter] = useState('')
-    const [additionalError, additionalErrorSetter] = useState('')
     const [regionNameError, regionNameErrorSetter] = useState('')
     const [aptNumberError, aptNumberErrorSetter] = useState('')
     const [buildingError, buildingErrorSetter] = useState('')
+    const [mutate, { loading }] = useMutation(EDIT_ADDRESS, { onCompleted, onError })
+
+    function onCompleted(data) {
+        FlashMessage({ message: 'Address updated', type: 'success' })
+        navigation.goBack()
+    }
+
+    function onError(error) {
+        FlashMessage({ message: `An error occured. Please try again ${error}`, type: "warning" })
+    }
 
     function validate() {
         const titleError = !title.trim().length ? 'Error' : ''
         const cityError = !city.trim().length ? 'Error' : ''
         const regionError = !regionName.trim().length ? 'Error' : ''
-        const additionalError = !additional.trim().length ? 'Error' : ''
         const aptNumberError = !aptNumber.trim().length ? 'Error' : ''
         const buildingError = !building.trim().length ? 'Error' : ''
 
@@ -37,19 +49,9 @@ function EditAddress(props) {
         titleErrorSetter(titleError)
         cityErrorSetter(cityError)
         regionNameErrorSetter(regionError)
-        additionalErrorSetter(additionalError)
         aptNumberErrorSetter(aptNumberError)
         buildingErrorSetter(buildingError)
-        return !titleError.length && !cityError.length && !regionError.length && !additionalError.length && !aptNumberError.length && !buildingError.length
-    }
-
-    function clearFields() {
-        titleErrorSetter('')
-        cityErrorSetter('')
-        regionNameErrorSetter('')
-        additionalErrorSetter('')
-        aptNumberErrorSetter('')
-        buildingErrorSetter('')
+        return !titleError.length && !cityError.length && !regionError.length && !aptNumberError.length && !buildingError.length
     }
     return (
         <SafeAreaView style={[styles.flex, styles.safeAreaStyle]}>
@@ -142,6 +144,7 @@ function EditAddress(props) {
                                             </View>
                                             <View style={styles.inputContainer}>
                                                 <TextInput
+                                                    value={aptNumber}
                                                     style={[styles.flex, styles.inputText, aptNumberError.length > 0 && styles.error]}
                                                     placeholder="01"
                                                     placeholderTextColor={colors.fontPlaceholder}
@@ -164,6 +167,7 @@ function EditAddress(props) {
                                             </View>
                                             <View style={styles.inputContainer}>
                                                 <TextInput
+                                                    value={building}
                                                     style={[styles.flex, styles.inputText, buildingError.length > 0 && styles.error]}
                                                     placeholder="Block 4"
                                                     placeholderTextColor={colors.fontPlaceholder}
@@ -189,28 +193,34 @@ function EditAddress(props) {
                                             <View style={styles.inputContainer}>
                                                 <TextInput
                                                     value={additional}
-                                                    style={[styles.flex, styles.inputText, additionalError.length > 0 && styles.error]}
+                                                    style={[styles.flex, styles.inputText]}
                                                     placeholder="N/A"
                                                     placeholderTextColor={colors.fontPlaceholder}
                                                     onChangeText={(text) => additionalSetter(text)}
-                                                    onBlur={() => {
-                                                        additionalErrorSetter(
-                                                            !additional.trim().length
-                                                                ? 'Error'
-                                                                : ''
-                                                        )
-                                                    }}
                                                 />
                                             </View>
                                         </View>
                                     </View>
                                 </View>
                                 <MainBtn
+                                    loading={loading}
                                     text="Edit address"
-                                    style={{ width: '80%' }}
+                                    style={{ width: '90%' }}
                                     onPress={() => {
                                         if (validate()) {
-                                            navigation.navigate('AddressList')
+                                            mutate({
+                                                variables: {
+                                                    addressInput: {
+                                                        _id: _id,
+                                                        label: title.trim(),
+                                                        region: regionName.trim(),
+                                                        city: city.trim(),
+                                                        apartment: aptNumber.trim(),
+                                                        building: building.trim(),
+                                                        details: additional.trim()
+                                                    }
+                                                }
+                                            })
                                         }
                                     }}
                                 />

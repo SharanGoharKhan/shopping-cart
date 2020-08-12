@@ -20,11 +20,7 @@ module.exports = {
                 )
 
                 const address = new Address({
-                    ...addressInput,
-                    location: new Point({
-                        type: 'Point',
-                        coordinates: [addressInput.longitude, addressInput.latitude]
-                    })
+                    ...addressInput
                 })
                 const savedAddress = await address.save()
                 user.addresses.push(savedAddress)
@@ -47,14 +43,12 @@ module.exports = {
                 if (!address) {
                     throw new Error('Address not found')
                 }
-                const location = new Point({
-                    type: 'Point',
-                    coordinates: [addressInput.longitude, addressInput.latitude]
-                })
-                address.location = location
-                address.deliveryAddress = addressInput.deliveryAddress
-                address.details = addressInput.details
                 address.label = addressInput.label
+                address.region = addressInput.region
+                address.city = addressInput.city
+                address.apartment= addressInput.apartment
+                address.building = addressInput.building
+                address.details = addressInput.details
 
                 const updatedAddress = await address.save()
                 return { ...updatedAddress._doc, _id: updatedAddress.id }

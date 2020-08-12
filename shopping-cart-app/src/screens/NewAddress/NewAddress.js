@@ -2,14 +2,18 @@ import React, { useState } from 'react';
 import { View, TextInput, KeyboardAvoidingView, ScrollView, TouchableOpacity } from 'react-native';
 import styles from './styles';
 import { SafeAreaView } from 'react-native-safe-area-context';
-import { BackHeader, BottomTab, TextDefault, } from '../../components';
+import { BackHeader, BottomTab, TextDefault, FlashMessage, } from '../../components';
 import { colors } from '../../utils';
 import { useNavigation, useRoute } from '@react-navigation/native';
 import MainBtn from '../../ui/Buttons/MainBtn'
+import { gql, useMutation } from '@apollo/client';
+import { createAddress } from '../../apollo/server';
+
+
+const CREATE_ADDRESS = gql`${createAddress}`
 
 function NewAddress() {
     const navigation = useNavigation()
-    const route = useRoute()
     const [title, titleSetter] = useState('')
     const [city, citySetter] = useState('')
     const [regionName, regionNameSetter] = useState('')
@@ -19,15 +23,23 @@ function NewAddress() {
     const [titleError, titleErrorSetter] = useState('')
     const [cityError, cityErrorSetter] = useState('')
     const [regionNameError, regionNameErrorSetter] = useState('')
-    const [additionalError, additionalErrorSetter] = useState('')
     const [aptNumberError, aptNumberErrorSetter] = useState('')
     const [buildingError, buildingErrorSetter] = useState('')
+    const [mutate, { loading }] = useMutation(CREATE_ADDRESS, { onCompleted, onError })
+
+    function onCompleted(data) {
+        FlashMessage({ message: 'Address added', type: 'success' })
+        navigation.goBack()
+    }
+
+    function onError(error) {
+        FlashMessage({ message: `An error occured. Please try again. ${error}`, type: 'warning' })
+    }
 
     function validate() {
         const titleError = !title.trim().length ? 'Error' : ''
         const cityError = !city.trim().length ? 'Error' : ''
         const regionError = !regionName.trim().length ? 'Error' : ''
-        const additionalError = !additional.trim().length ? 'Error' : ''
         const aptNumberError = !aptNumber.trim().length ? 'Error' : ''
         const buildingError = !building.trim().length ? 'Error' : ''
 
@@ -35,19 +47,10 @@ function NewAddress() {
         titleErrorSetter(titleError)
         cityErrorSetter(cityError)
         regionNameErrorSetter(regionError)
-        additionalErrorSetter(additionalError)
         aptNumberErrorSetter(aptNumberError)
         buildingErrorSetter(buildingError)
         console.log(!aptNumberError.length, !buildingError.length)
-        return !titleError.length && !cityError.length && !regionError.length && !additionalError.length && !aptNumberError.length && !buildingError.length
-    }
-    function clearFields() {
-        titleErrorSetter('')
-        cityErrorSetter('')
-        regionNameErrorSetter('')
-        additionalErrorSetter('')
-        aptNumberErrorSetter('')
-        buildingErrorSetter('')
+        return !titleError.length && !cityError.length && !regionError.length && !aptNumberError.length && !buildingError.length
     }
 
     return (
@@ -188,28 +191,33 @@ function NewAddress() {
                                             <View style={styles.inputContainer}>
                                                 <TextInput
                                                     value={additional}
-                                                    style={[styles.flex, styles.inputText, additionalError.length > 0 && styles.error]}
+                                                    style={[styles.flex, styles.inputText]}
                                                     placeholder="N/A"
                                                     placeholderTextColor={colors.fontPlaceholder}
                                                     onChangeText={(text) => additionalSetter(text)}
-                                                    onBlur={() => {
-                                                        additionalErrorSetter(
-                                                            !additional.trim().length
-                                                                ? 'Error'
-                                                                : ''
-                                                        )
-                                                    }}
                                                 />
                                             </View>
                                         </View>
                                     </View>
                                 </View>
                                 <MainBtn
+                                    loading={loading}
                                     text="Add new address"
-                                    style={{ width: '80%' }}
+                                    style={{ width: '90%' }}
                                     onPress={() => {
                                         if (validate()) {
-                                            navigation.navigate('AddressList')
+                                            mutate({
+                                                variables: {
+                                                    addressInput: {
+                                                        label: title.trim(),
+                                                        region: regionName.trim(),
+                                                        city: city.trim(),
+                                                        apartment: aptNumber.trim(),
+                                                        building: building.trim(),
+                                                        details: additional.trim()
+                                                    }
+                                                }
+                                            })
                                         }
                                     }}
                                 />

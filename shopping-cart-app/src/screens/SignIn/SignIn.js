@@ -85,6 +85,7 @@ function SignIn(props) {
         return result
     }
     async function onCompleted(data) {
+        // console.log('login: ', data)
         try {
             // const trackingOpts = {
             //     id: data.login.userId,
@@ -172,6 +173,7 @@ function SignIn(props) {
                             }}
                             onPress={async () => {
                                 const googleUser = await _GoogleSignUp()
+                                console.log(googleUser)
                                 if (googleUser) {
                                     const user = {
                                         phone: '',

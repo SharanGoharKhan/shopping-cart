@@ -23,13 +23,14 @@ const styles = StyleSheet.create({
         borderRadius: verticalScale(5),
     },
     profileSubContainer: {
-        width: '80%',
+        width: '85%',
         height: '85%',
         backgroundColor: '#F7F7F7',
         flexDirection: 'column',
         alignItems: 'center',
         justifyContent: 'space-evenly',
         borderRadius: scale(5),
+        ...alignment.PxSmall
     },
     profileImage: {
         width: verticalScale(60),

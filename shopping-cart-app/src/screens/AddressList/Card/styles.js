@@ -30,25 +30,20 @@ const styles = StyleSheet.create({
         justifyContent: 'flex-start',
     },
     selectedBtn: {
-        height: scale(40),
+        height: scale(50),
         width: '100%',
         backgroundColor: colors.themeBackground,
         flexDirection: 'row',
         alignItems: 'center',
         justifyContent: 'center',
-        borderRadius: scale(3),
-    },
-    unselectedButton: {
-        height: scale(40),
-        width: '100%',
-        backgroundColor: colors.brownColor,
-        justifyContent: 'center',
-        alignItems: 'center',
-        borderRadius: scale(3),
+        borderRadius: scale(4),
     },
     tickImage: {
         position: 'absolute',
         left: scale(20),
     },
+    icon: {
+        ...alignment.PxSmall
+    }
 });
 export default styles

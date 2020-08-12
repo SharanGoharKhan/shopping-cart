@@ -26,7 +26,7 @@ const MainBtn = props => (
       <TouchableOpacity
         onPress={props.onPress}
         style={styles.main_brown_btn}
-        activeOpacity={0.7}
+        activeOpacity={0}
       >
         <TextDefault textColor={colors.buttonText} H5 center>
           {props.text}

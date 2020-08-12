@@ -58,11 +58,6 @@ function MainMenu(props) {
                                     {profile.name}
                                 </TextDefault>
                             </View>
-                            <View style={styles.profilePlace}>
-                                <TextDefault textColor={colors.fontMainColor} center>
-                                    {'Pakistan'}
-                                </TextDefault>
-                            </View>
                         </View>)}
                     {!isLoggedIn && (
                         <View style={styles.loginContainer}>

@@ -7,10 +7,12 @@ const typeDefs = gql`
 
   type Address {
     _id: ID!
-    location:Point
-    deliveryAddress: String!
-    details: String
     label: String!
+    region: String!
+    city: String!
+    apartment: String!
+    building: String!
+    details: String
     selected: Boolean
   }
 
@@ -380,11 +382,12 @@ const typeDefs = gql`
 
   input AddressInput {
     _id: String
-    latitude: String!
-    longitude: String!
-    deliveryAddress: String!
+    label:String!
+    region:String!
+    city:String!
+    apartment:String!
+    building:String!
     details: String
-    label: String!
   }
 
   type Query {

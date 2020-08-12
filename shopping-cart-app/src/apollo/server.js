@@ -10,24 +10,6 @@ mutation Login($facebookId:String,$email:String,$password:String,$type:String!,$
    }
 }
 `
-export const profile = `
-        query{
-          profile{
-            _id
-            name
-            phone
-            email
-            notificationToken
-            addresses{
-              _id
-              label
-              deliveryAddress
-              details
-              location{coordinates}
-              selected
-            }
-          }
-        }`
 
 export const createUser = `
   mutation CreateUser($facebookId:String,$phone:String,$email:String,$password:String,$name:String,$notificationToken:String,$appleId:String){
@@ -49,6 +31,88 @@ export const createUser = `
           notificationToken
       }
     }`
+
+export const profile = `
+  query{
+    profile{
+      _id
+      name
+      phone
+      email
+      notificationToken
+      addresses{
+        _id
+        label
+        region
+        city
+        apartment
+        building
+        details
+        selected
+      }
+    }
+  }`
+
+export const createAddress = `mutation CreateAddress($addressInput:AddressInput!){
+  createAddress(addressInput:$addressInput){
+    _id
+    addresses{
+      _id
+      label
+      region
+      city
+      apartment
+      building
+      details
+      selected
+    }
+  }
+}`
+
+export const editAddress = `mutation EditAddress($addressInput:AddressInput!){
+  editAddress(addressInput:$addressInput){
+    _id
+    label
+    region
+    city
+    apartment
+    building
+    details
+    selected
+  }
+}`
+export const deleteAddress = `mutation DeleteAddress($id:ID!){
+  deleteAddress(id:$id){
+    _id
+    addresses{
+      _id
+      label
+      region
+      city
+      apartment
+      building
+      details
+      selected
+    }
+  }
+}`
+
+export const selectAddress = `mutation SelectAddress($id:String!){
+  selectAddress(id:$id){
+    _id
+    addresses{
+      _id
+      label
+      region
+      city
+      apartment
+      building
+      details
+      selected
+    }
+  }
+}`
+
 
 export const getConfiguration = `query Configuration{
     configuration{
