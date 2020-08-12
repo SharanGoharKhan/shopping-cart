@@ -2,7 +2,6 @@ import React from 'react';
 import { createStackNavigator } from '@react-navigation/stack'
 import { NavigationContainer } from '@react-navigation/native'
 import { createDrawerNavigator } from '@react-navigation/drawer'
-import { SafeAreaProvider } from 'react-native-safe-area-context'
 import * as Screen from '../screens';
 import MainMenu from '../components/MainMenu/MainMenu';
 import AuthLoading from '../utils/authLoading';
@@ -29,7 +28,6 @@ function noDrawer() {
             <NavigationStack.Screen name='StripeCheckout' component={Screen.StripeCheckout} />
             <NavigationStack.Screen name='EditAddress' component={Screen.EditAddress} />
             <NavigationStack.Screen name='NewAddress' component={Screen.NewAddress} />
-            <NavigationStack.Screen name='FullMap' component={Screen.FullMap} />
             <NavigationStack.Screen name='EditingProfile' component={Screen.EditingProfile} />
             <NavigationStack.Screen name='OrderDetail' component={Screen.OrderDetail} />
             <NavigationStack.Screen name='PreviousOrders' component={Screen.PreviousOrders} />
