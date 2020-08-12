@@ -7,8 +7,7 @@ const styles = StyleSheet.create({
         borderRadius: 3,
         height: scale(40),
         justifyContent: 'center',
-        borderWidth: 1,
-        borderColor: colors.backgroudGray,
+        borderWidth: 1
     },
     input: {
         fontFamily: fontStyles.PoppinsRegular,
