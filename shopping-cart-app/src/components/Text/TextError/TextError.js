@@ -13,14 +13,14 @@ function TextError(props) {
         alignItems: 'center',
         backgroundColor: props.backColor
           ? props.backColor
-          : colors.fontSecondColor
+          : colors.containerDark
       }}>
       <TextDefault
         textColor={
           props.textColor ? props.textColor : colors.fontMainColor
         }
         bold
-        H4
+        H5
         center>
         {props.text}{' '}
       </TextDefault>

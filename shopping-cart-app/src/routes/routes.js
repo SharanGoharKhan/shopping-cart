@@ -39,6 +39,8 @@ function noDrawer() {
             <NavigationStack.Screen name='Search' component={Screen.Search} />
             <NavigationStack.Screen name='TrackOrder' component={Screen.TrackOrder} />
             <NavigationStack.Screen name='Review' component={Screen.Review} />
+            <NavigationStack.Screen name='Category' component={Screen.Category} />
+            <NavigationStack.Screen name='SubCategory' component={Screen.SubCategory} />
 
             <NavigationStack.Screen name='SignIn' component={Screen.SignIn} />
             <NavigationStack.Screen name='SignUp' component={Screen.SignUp} />

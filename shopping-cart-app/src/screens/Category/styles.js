@@ -1,6 +1,6 @@
 import { Dimensions, Platform, StatusBar, StyleSheet } from 'react-native';
-import { alignment, fontStyles, colors, scale, verticalScale } from '../../utils';
-const { height, width } = Dimensions.get('window');
+import { alignment, colors, scale } from '../../utils';
+const { width } = Dimensions.get('window');
 
 const styles = StyleSheet.create({
     flex: {

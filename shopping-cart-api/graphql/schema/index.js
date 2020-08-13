@@ -393,6 +393,7 @@ const typeDefs = gql`
   type Query {
     categories: [Category!]!
     subCategories: [SubCategory!]!
+    subCategoriesById(id: String!): [SubCategory!]!
     allCategories(page: Int): [Category!]!
     orders(offset: Int): [Order!]!
     products(page: Int): [Product!]!

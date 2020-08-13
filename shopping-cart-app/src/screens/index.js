@@ -19,5 +19,7 @@ import Payment from './Payment/Payment'
 import Paypal from './Paypal/Paypal'
 import StripeCheckout from './Stripe/StripeCheckout'
 import Review from './Review/Review'
+import Category from './Category/Category'
+import SubCategory from './SubCategory/SubCategory'
 
-export { AddressList, Checkout, EditAddress, EditingProfile, MainLanding, NewAddress, OrderDetail, PreviousOrders, ProfileDashboard, ProductDescription, ProductListing, Search, SearchResults, ShoppingCart, SignIn, SignUp, TrackOrder, Payment, Paypal, StripeCheckout, Review }
+export { AddressList, Checkout, EditAddress, EditingProfile, MainLanding, NewAddress, OrderDetail, PreviousOrders, ProfileDashboard, ProductDescription, ProductListing, Search, SearchResults, ShoppingCart, SignIn, SignUp, TrackOrder, Payment, Paypal, StripeCheckout, Review, Category, SubCategory }

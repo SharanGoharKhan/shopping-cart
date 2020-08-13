@@ -17,7 +17,7 @@ const navItems = [
     },
     {
         title: 'Categories',
-        navigateTo: 'ProductListing',
+        navigateTo: 'Category',
         isAuth: false,
     },
     {
@@ -46,7 +46,6 @@ function MainMenu(props) {
     const navigation = useNavigation()
     const { isLoggedIn, logout, profile, loadingProfile } = useContext(UserContext)
     if (loadingProfile) return <Spinner />
-    console.log('Profile: ', profile)
     return (
         <SafeAreaView style={styles.container}>
             <View style={styles.container}>

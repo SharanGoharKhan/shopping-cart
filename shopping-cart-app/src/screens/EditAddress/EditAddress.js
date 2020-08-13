@@ -12,7 +12,6 @@ import { editAddress } from '../../apollo/server';
 const EDIT_ADDRESS = gql`${editAddress}`
 
 function EditAddress(props) {
-    console.log(props)
     const navigation = useNavigation()
     const route = useRoute()
     const _id = route.params?._id ?? null

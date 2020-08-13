@@ -49,7 +49,6 @@ function NewAddress() {
         regionNameErrorSetter(regionError)
         aptNumberErrorSetter(aptNumberError)
         buildingErrorSetter(buildingError)
-        console.log(!aptNumberError.length, !buildingError.length)
         return !titleError.length && !cityError.length && !regionError.length && !aptNumberError.length && !buildingError.length
     }
 

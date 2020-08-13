@@ -57,10 +57,10 @@ const styles = StyleSheet.create({
     categoryContainer: {
         width: '90%',
         alignSelf: 'center',
-        marginTop: scale(20),
         flexDirection: 'row',
         flexWrap: 'wrap',
-        justifyContent: 'space-between'
+        justifyContent: 'space-between',
+        ...alignment.MTlarge
     },
     titleSpacer: {
         marginLeft: '5%',

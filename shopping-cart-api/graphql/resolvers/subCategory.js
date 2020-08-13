@@ -4,9 +4,22 @@ const { transformSubCategory } = require('./merge')
 module.exports = {
     Query: {
         subCategories: async (_, args, context) => {
-            console.log('subCategories')
+            console.log('SubCategory')
             try {
                 const subCategories = await SubCategory.find({ isActive: true })
+                return subCategories.map(subCategory => {
+                    return transformSubCategory(subCategory)
+                })
+            } catch (err) {
+                throw err
+            }
+        },
+        subCategoriesById: async (_, args, context) => {
+            console.log('subCategoryById: ', args.id)
+            try {
+                if (!args.id)
+                    throw new Error('Invalid Query')
+                const subCategories = await SubCategory.find({ category: args.id, isActive: true })
                 return subCategories.map(subCategory => {
                     return transformSubCategory(subCategory)
                 })

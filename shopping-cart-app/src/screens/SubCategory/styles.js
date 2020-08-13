@@ -1,6 +1,6 @@
 import { Dimensions, Platform, StatusBar, StyleSheet } from 'react-native';
-import { alignment, fontStyles, colors, scale, verticalScale } from '../../utils';
-const { height, width } = Dimensions.get('window');
+import { alignment, colors, scale } from '../../utils';
+const { width } = Dimensions.get('window');
 
 const styles = StyleSheet.create({
     flex: {
@@ -26,9 +26,12 @@ const styles = StyleSheet.create({
         paddingRight: width * 0.05,
         ...alignment.MTlarge
     },
-    spacer: {
+    cardStyle: {
         marginRight: width * 0.1,
+        height: scale(130),
+        width: width * 0.4,
         ...alignment.MBlarge
-    }
+    },
+
 })
 export default styles

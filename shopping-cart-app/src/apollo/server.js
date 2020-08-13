@@ -53,7 +53,7 @@ export const profile = `
     }
   }`
 
-  export const updateUser = `
+export const updateUser = `
     mutation UpdateUser($name:String!,$phone:String!){
         updateUser(updateUserInput:{name:$name,phone:$phone}){
           _id
@@ -121,6 +121,27 @@ export const selectAddress = `mutation SelectAddress($id:String!){
     }
   }
 }`
+
+export const categories = `
+{
+  categories{
+  _id
+  title
+  }
+}`
+
+export const subCategories = `query SubCategoriesById($id: String!){
+  subCategoriesById(id:$id){
+    _id
+    title
+    image
+    category{
+      _id
+      title
+    }
+  }
+}`
+
 
 
 export const getConfiguration = `query Configuration{
