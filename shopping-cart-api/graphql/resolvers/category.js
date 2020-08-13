@@ -15,7 +15,7 @@ module.exports = {
         throw err
       }
     },
-    allCategories: async(_, args, context) => {psu
+    allCategories: async(_, args, context) => {
       console.log('allcategories')
       try {
         const categories = await Category.find({ isActive: true })

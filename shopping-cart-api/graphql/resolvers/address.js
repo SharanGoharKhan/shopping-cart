@@ -1,4 +1,3 @@
-const Point = require("../../models/point")
 const Address = require('../../models/address')
 const User = require('../../models/user')
 const { transformUser } = require('./merge')
