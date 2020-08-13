@@ -103,8 +103,6 @@ function SignIn(props) {
     }
     function onError(error) {
         try {
-            console.log(JSON.stringify(error))
-
             console.log('graphql', error.message)
             FlashMessage({ message: error.message, type: "warning", position: 'top' })
             loginButtonSetter(null)
@@ -173,7 +171,6 @@ function SignIn(props) {
                             }}
                             onPress={async () => {
                                 const googleUser = await _GoogleSignUp()
-                                console.log(googleUser)
                                 if (googleUser) {
                                     const user = {
                                         phone: '',
@@ -214,19 +211,18 @@ function SignIn(props) {
                             }}
                             onPress={async () => {
                                 const facebookUser = await _FacebookSignUp()
-                                console.log('facebook', facebookUser)
-                                // if (facebookUser) {
-                                //     const user = {
-                                //       facebookId: facebookUser.id,
-                                //       phone: '',
-                                //       email: facebookUser.email,
-                                //       password: '',
-                                //       name: facebookUser.name,
-                                //       picture: '',
-                                //       type: 'facebook'
-                                //     }
-                                //     mutateLogin(user)
-                                //   }
+                                if (facebookUser) {
+                                    const user = {
+                                        facebookId: facebookUser.id,
+                                        phone: '',
+                                        email: facebookUser.email,
+                                        password: '',
+                                        name: facebookUser.name,
+                                        picture: '',
+                                        type: 'facebook'
+                                    }
+                                    mutateLogin(user)
+                                }
                             }}
                             style={styles.socialBtn}>
                             <View style={styles.bgCircle}>
