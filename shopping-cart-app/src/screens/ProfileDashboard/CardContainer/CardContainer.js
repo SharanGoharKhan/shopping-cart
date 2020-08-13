@@ -3,6 +3,7 @@ import {
     Text, TouchableOpacity, View, Image, ScrollView,
 } from 'react-native';
 import styles from './styles';
+import { useNavigation } from '@react-navigation/native';
 
 /* Config/Constants
 ============================================================================= */
@@ -31,6 +32,7 @@ const cardData = [
 ];
 
 function cardContainer(props) {
+    const navigation = useNavigation()
     return (
         <ScrollView style={styles.scrollViewContainer}>
             <View style={styles.mainCardContainer}>
@@ -38,7 +40,7 @@ function cardContainer(props) {
                     cardData.map((data, ind) => (
                         <TouchableOpacity
                             activeOpacity={1}
-                            onPress={() => props.navigationObj.navigate('OrderDetail')}
+                            onPress={() => navigation.navigate('OrderDetail')}
                             key={ind}
                             style={styles.cardContainer}
                         >
@@ -69,7 +71,7 @@ function cardContainer(props) {
                                             <Text style={styles.statusStyle}>{data.status}</Text>
                                             <TouchableOpacity
                                                 activeOpacity={0}
-                                                onPress={() => props.navigationObj.navigate('TrackOrder')}
+                                                onPress={() => navigation.navigate('TrackOrder')}
                                                 style={styles.actionContainer}>
                                                 <Text style={styles.actionStyle}>{data.action}</Text>
                                             </TouchableOpacity>

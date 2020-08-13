@@ -1,12 +1,13 @@
 import React, { useContext } from 'react';
-import { View, Text, TouchableOpacity } from 'react-native';
+import { View, TouchableOpacity } from 'react-native';
 import styles from './styles';
 import ProfileContainer from './ProfileContainer/ProfileContainer';
-import { BottomTab } from '../../components';
+import { BottomTab, TextDefault } from '../../components';
 import CardContainer from './CardContainer/CardContainer';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useNavigation } from '@react-navigation/native';
 import UserContext from '../../context/User';
+import { colors } from '../../utils';
 
 function ProfileDashboard(props) {
   const navigation = useNavigation()
@@ -14,19 +15,21 @@ function ProfileDashboard(props) {
   return (
     <SafeAreaView style={[styles.flex, styles.safeAreaStyle]}>
       <View style={[styles.flex, styles.mainContainer]}>
-        <ProfileContainer  />
+        <ProfileContainer />
         <View style={styles.tabContainer}>
           <TouchableOpacity>
-            <Text style={styles.tabStyleActive}>My Active Orders (3)</Text>
+            <TextDefault textColor={colors.fontBrown} H5>
+              {'My Active Orders (3)'}
+            </TextDefault>
           </TouchableOpacity>
           <TouchableOpacity
             onPress={() => props.navigation.navigate('PreviousOrders')}>
-            <Text style={styles.tabStyle}>Previous Orders (35)</Text>
+            <TextDefault H5>
+              {'Previous Orders (35)'}
+            </TextDefault>
           </TouchableOpacity>
         </View>
-        <CardContainer
-          navigationObj={props.navigation}
-        />
+        <CardContainer />
       </View>
       <BottomTab />
     </SafeAreaView>
