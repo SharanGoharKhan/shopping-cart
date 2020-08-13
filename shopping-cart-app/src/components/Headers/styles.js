@@ -7,7 +7,7 @@ const { width, height } = Dimensions.get('window')
 export default {
     container: {
         width: width,
-        height: '8%',
+        height: height * 0.07,
         backgroundColor: colors.whiteColor,
         justifyContent: 'center',
         alignItems: 'center',

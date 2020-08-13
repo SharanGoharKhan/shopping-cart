@@ -53,6 +53,15 @@ export const profile = `
     }
   }`
 
+  export const updateUser = `
+    mutation UpdateUser($name:String!,$phone:String!){
+        updateUser(updateUserInput:{name:$name,phone:$phone}){
+          _id
+          name
+          phone
+        }
+      }`
+
 export const createAddress = `mutation CreateAddress($addressInput:AddressInput!){
   createAddress(addressInput:$addressInput){
     _id

@@ -4,7 +4,7 @@ import styles from './styles';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { BackHeader, BottomTab, TextDefault, FlashMessage, } from '../../components';
 import { colors } from '../../utils';
-import { useNavigation, useRoute } from '@react-navigation/native';
+import { useNavigation } from '@react-navigation/native';
 import MainBtn from '../../ui/Buttons/MainBtn'
 import { gql, useMutation } from '@apollo/client';
 import { createAddress } from '../../apollo/server';

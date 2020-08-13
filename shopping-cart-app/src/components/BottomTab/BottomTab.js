@@ -1,10 +1,12 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { View, Text, Image, TouchableOpacity } from 'react-native';
 import styles from './styles';
 import { useNavigation } from '@react-navigation/native';
+import UserContext from '../../context/User';
 
 function BottomTab() {
     const navigation = useNavigation()
+    const { isLoggedIn } = useContext(UserContext)
     return (
         <View style={styles.footerContainer}>
             <TouchableOpacity
@@ -32,9 +34,13 @@ function BottomTab() {
                 </View>
             </TouchableOpacity>
             <TouchableOpacity
-                onPress={() => navigation.navigate('ProfileDashboard')}
-                style={styles.footerBtnContainer}
-            >
+                onPress={() => {
+                    if (isLoggedIn)
+                        navigation.navigate('ProfileDashboard')
+                    else
+                        navigation.navigate('SignIn')
+                }}
+                style={styles.footerBtnContainer}>
                 <View style={styles.profileContainer}>
                     <Image
                         source={require('../../assets/images/footer/profile.png')}
@@ -59,7 +65,7 @@ function BottomTab() {
                     </View>
                 </View>
             </TouchableOpacity>
-        </View>
+        </View >
     );
 }
 

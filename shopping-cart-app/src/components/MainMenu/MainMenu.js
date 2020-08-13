@@ -7,6 +7,7 @@ import UserContext from '../../context/User'
 import { scale, colors, alignment } from '../../utils';
 import { TextDefault } from '../Text'
 import { useNavigation, DrawerActions } from '@react-navigation/native'
+import Spinner from '../Spinner/Spinner';
 
 const navItems = [
     {
@@ -43,7 +44,9 @@ const navItems = [
 
 function MainMenu(props) {
     const navigation = useNavigation()
-    const { isLoggedIn, logout, profile } = useContext(UserContext)
+    const { isLoggedIn, logout, profile, loadingProfile } = useContext(UserContext)
+    if (loadingProfile) return <Spinner />
+    console.log('Profile: ', profile)
     return (
         <SafeAreaView style={styles.container}>
             <View style={styles.container}>

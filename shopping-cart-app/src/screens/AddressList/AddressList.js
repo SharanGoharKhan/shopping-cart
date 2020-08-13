@@ -73,7 +73,6 @@ function AddressList() {
                                 <Card
                                     item={item}
                                     default={item.selected}
-                                // defaultSetter={() => isDefaultSetter(item._id)}
                                 />
                             )}
                         />
