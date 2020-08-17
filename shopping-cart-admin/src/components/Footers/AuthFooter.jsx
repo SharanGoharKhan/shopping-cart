@@ -16,7 +16,7 @@ function AuthFooter(props) {
               <div className="copyright text-center text-xl-left text-muted">
                 © {t('2019-20')}{' '}
                 <a className="font-weight-bold ml-1" href={server_url}>
-                  Enatega
+                  Ecommero
                 </a>
               </div>
             </Col>

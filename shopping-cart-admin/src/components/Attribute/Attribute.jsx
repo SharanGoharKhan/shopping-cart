@@ -12,40 +12,43 @@ import {
     Button
 } from 'reactstrap'
 import { withTranslation } from 'react-i18next'
-import { createOptions, getOptions, editOption, categories } from '../../apollo/server'
+import { createAttributes, editAttributes, subCategories, attributes } from '../../apollo/server'
 import { validateFunc } from '../../constraints/constraints'
 import Loader from 'react-loader-spinner'
-import { gql, useQuery } from '@apollo/client'
+import { gql, useQuery, useMutation } from '@apollo/client'
 import { useRef } from 'react'
 
-const CREATE_OPTIONS = gql`
-  ${createOptions}
+const CREATE_ATTRIBUTE = gql`
+  ${createAttributes}
 `
-const GET_OPTIONS = gql`
-  ${getOptions}
-`
-const EDIT_OPTION = gql`
-  ${editOption}
+const EDIT_ATTRIBUTE = gql`
+  ${editAttributes}
 `
 
-const GET_CATEGORIES = gql`
-  ${categories}
+const GET_ATTRIBUTES = gql`
+  ${attributes}
 `
+const GET_CATEGORIES = gql`
+${subCategories}`
 
 function Attribute(props) {
     const formRef = useRef()
-    const category = null
-    const title = ''
+    const mutation = props.attribute ? EDIT_ATTRIBUTE : CREATE_ATTRIBUTE
     const { data, loading: loadingCategory, error: dropDownError } = useQuery(GET_CATEGORIES)
-    const option = null
-    const [options, optionsSetter] = useState(
-        option || [
-            {
-                optionName: '',
-                optionError: null
-            }
-        ]
-    )
+    const [mutate, { loading }] = useMutation(mutation, { onCompleted, onError, refetchQueries: [{ query: GET_ATTRIBUTES }] })
+
+    const option = props.attribute ? props.attribute.options.map(({ _id, title }) => ({
+        _id,
+        title,
+        optionError: null
+    })) : [{
+        _id: '',
+        title: '',
+        optionError: null
+    }]
+    const [category, categorySetter] = useState(props.attribute ? props.attribute.subCategory._id : '')
+    const [title, titleSetter] = useState(props.attribute ? props.attribute.title : '')
+    const [options, optionsSetter] = useState(option)
     const [success, successSetter] = useState('')
     const [error, errorSetter] = useState('')
     const [categoryError, categoryErrorSetter] = useState(null)
@@ -58,7 +61,7 @@ function Attribute(props) {
     const onBlurOptions = (index, type) => {
         const option = options
         option[index].optionError = !validateFunc({ optionTitle: option[index][type] },
-            'optionTitle'
+            'title'
         )
         optionsSetter([...option])
     }
@@ -67,10 +70,44 @@ function Attribute(props) {
         option[index][state] = event.target.value
         optionsSetter([...option])
     }
+
+    function onCompleted() {
+        const message = props.attribute
+            ? 'Attribute updated successfully'
+            : 'Attribute added successfully'
+        successSetter(message)
+        errorSetter('')
+        if (!props.attribute) clearFields()
+        setTimeout(hideMessage, 3000)
+    }
+
+    function onError() {
+        const message = 'Action failed. Please Try again'
+        successSetter('')
+        errorSetter(message)
+        setTimeout(hideMessage, 3000)
+    }
+
+    const hideMessage = () => {
+        successSetter('')
+        errorSetter('')
+    }
+
+    const clearFields = () => {
+        formRef.current['input-attribute'].value = ''
+        titleErrorSetter(null)
+        optionsSetter([{
+            _id: '',
+            title: '',
+            optionError: null
+        }])
+        categoryErrorSetter(null)
+    }
+
     const onAdd = index => {
         const option = options
         if (index === option.length - 1) {
-            option.push({ optionName: '', optionError: null })
+            option.push({ _id: '', title: '', optionError: null })
         } else {
             option.splice(index + 1, 0, { optionName: '', optionError: null })
         }
@@ -87,11 +124,11 @@ function Attribute(props) {
 
     const validate = () => {
         let mainError = false
-        const categoryError = !validateFunc({ sub_category: formRef.current['sub_category'].value }, 'sub_category')
+        const categoryError = !validateFunc({ sub_category: category }, 'sub_category')
         const titleError = !validateFunc({ attributeName: formRef.current['input-attribute'].value }, 'attributeName')
         const option = options
         option.map((option, index) => {
-            onBlurOptions(index, 'optionName')
+            onBlurOptions(index, 'title')
             return option
         })
         const error = option.filter(option => option.optionError)
@@ -145,16 +182,19 @@ function Attribute(props) {
                                                     type="select"
                                                     name="sub_category"
                                                     id="sub_category"
-                                                    defaultValue={category}
+                                                    value={category}
+                                                    onChange={(event =>{
+                                                        categorySetter(event.target.value)
+                                                    })}
                                                     onBlur={event => {
                                                         onBlur(
                                                             categoryErrorSetter,
                                                             'sub_category',
-                                                            event.target.value
+                                                            category
                                                         )
                                                     }}>
                                                     {loadingCategory ?
-                                                        <option value={''}>
+                                                        <option >
                                                             {'Loading'}
                                                         </option>
                                                         :
@@ -163,11 +203,11 @@ function Attribute(props) {
                                                                 <option value={''}>
                                                                     {t('Select')}
                                                                 </option>)}
-                                                            {data.categories.map(category => (
+                                                            {data.subCategories.map(subCategory => (
                                                                 <option
-                                                                    value={category._id}
-                                                                    key={category._id}>
-                                                                    {category.title}
+                                                                    value={subCategory._id}
+                                                                    key={subCategory._id}>
+                                                                    {subCategory.category.title + ' / ' + subCategory.title}
                                                                 </option>
                                                             ))}
                                                         </>
@@ -197,6 +237,9 @@ function Attribute(props) {
                                                 placeholder="e.g Color"
                                                 type="text"
                                                 defaultValue={title}
+                                                onChange={event => {
+                                                    titleSetter(event.target.value)
+                                                }}
                                                 onBlur={event => {
                                                     onBlur(titleErrorSetter, 'attributeName', event.target.value)
                                                 }}
@@ -226,12 +269,12 @@ function Attribute(props) {
                                                             id="input-title"
                                                             placeholder="e.g Black"
                                                             type="text"
-                                                            value={option.optionName}
+                                                            value={option.title}
                                                             onChange={event => {
-                                                                onChange(event, index, 'optionName')
+                                                                onChange(event, index, 'title')
                                                             }}
                                                             onBlur={event => {
-                                                                onBlurOptions(index, 'optionName')
+                                                                onBlurOptions(index, 'title')
                                                             }}
                                                         />
                                                     </FormGroup>
@@ -272,8 +315,20 @@ function Attribute(props) {
                                             </Button> :
                                             <Button
                                                 color="primary"
+                                                disabled={loading}
                                                 onClick={() => {
-                                                    validate()
+                                                    if (validate()) {
+                                                        mutate({
+                                                            variables: {
+                                                                optionGroupInput: {
+                                                                    _id: props.attribute ? props.attribute._id : '',
+                                                                    title: formRef.current['input-attribute'].value,
+                                                                    subCategory: formRef.current['sub_category'].value,
+                                                                    options: options.map(option => ({ _id: option._id, title: option.title }))
+                                                                }
+                                                            }
+                                                        })
+                                                    }
                                                 }}>
                                                 {'Save'}
                                             </Button>

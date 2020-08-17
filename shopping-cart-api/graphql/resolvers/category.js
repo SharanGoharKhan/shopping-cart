@@ -36,7 +36,7 @@ module.exports = {
       try {
         const category = new Category({
           title: args.category.title,
-          image: args.category.image
+          // image: args.category.image
         })
 
         const result = await category.save()
@@ -52,7 +52,7 @@ module.exports = {
         const category = await Category.findOne({ _id: args.category._id })
 
         category.title = args.category.title
-        category.image = args.category.image
+        // category.image = args.category.image
 
         const result = await category.save()
 

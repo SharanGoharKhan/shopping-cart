@@ -25,8 +25,6 @@ import {
 } from 'reactstrap'
 import { validateFunc } from '../../constraints/constraints'
 import {
-  getAvailableRiders,
-  assignRider,
   updateOrderStatus,
   getPaymentStatuses,
   updatePaymentStatus,
@@ -38,12 +36,6 @@ import { gql, useQuery, useMutation } from '@apollo/client'
 // constants
 const UPDATE_STATUS = gql`
   ${updateOrderStatus}
-`
-const GET_RIDERS = gql`
-  ${getAvailableRiders}
-`
-const ASSIGN_RIDER = gql`
-  ${assignRider}
 `
 const GET_PAYMENT_STATUSES = gql`
   ${getPaymentStatuses}

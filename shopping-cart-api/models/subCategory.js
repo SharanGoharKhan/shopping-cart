@@ -11,12 +11,10 @@ const subCategoryySchema = new Schema(
         image: {
             type: String
         },
-        category: [
-            {
-                type: Schema.Types.ObjectId,
-                ref: 'Category'
-            }
-        ],
+        category: {
+            type: Schema.Types.ObjectId,
+            ref: 'Category'
+        },
         isActive: {
             type: Boolean,
             default: true

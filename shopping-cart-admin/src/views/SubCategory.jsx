@@ -7,30 +7,27 @@ import CustomLoader from '../components/Loader/CustomLoader'
 import { Badge, Card, Container, Row, Modal } from 'reactstrap'
 // core components
 import Header from 'components/Headers/Header.jsx'
-import { categories, deleteCategory, getFoods } from '../apollo/server'
+import { subCategories, deleteSubCategory } from '../apollo/server'
 import DataTable from 'react-data-table-component'
 import orderBy from 'lodash/orderBy'
 import Loader from 'react-loader-spinner'
 import { gql, useMutation, useQuery } from '@apollo/client'
 
-const GET_CATEGORIES = gql`
-  ${categories}
+const GET_SUB_CATEGORIES = gql`
+  ${subCategories}
 `
-const DELETE_CATEGORY = gql`
-  ${deleteCategory}
-`
-const GET_FOODS = gql`
-  ${getFoods}
+const DELETE_SUB_CATEGORY = gql`
+  ${deleteSubCategory}
 `
 
 const SubCategory = props => {
   const [editModal, setEditModal] = useState(false)
-  const [category, setCategory] = useState(null)
-  const [deleteCategory, { loading: deleteLoading }] = useMutation(DELETE_CATEGORY, { refetchQueries: [{ query: GET_CATEGORIES }, { query: GET_FOODS }] })
-  const { data, loading, error } = useQuery(GET_CATEGORIES, { variables: { page: 0 } })
-  const toggleModal = category => {
+  const [subCategory, setSubCategory] = useState(null)
+  const [deleteCategory, { loading: deleteLoading }] = useMutation(DELETE_SUB_CATEGORY, { refetchQueries: [{ query: GET_SUB_CATEGORIES }] })
+  const { data, loading, error } = useQuery(GET_SUB_CATEGORIES, { variables: { page: 0 } })
+  const toggleModal = subCategory => {
     setEditModal(!editModal)
-    setCategory(category)
+    setSubCategory(subCategory)
   }
 
   const customSort = (rows, field, direction) => {
@@ -55,18 +52,18 @@ const SubCategory = props => {
       selector: 'title'
     },
     {
-      name: 'SubCategory',
+      name: 'Category',
       sortable: true,
-      selector: 'title'
+      selector: 'category.title'
     },
     {
       name: 'Image',
       cell: row => (
         <>
-          {!!row.img_menu && (
-            <img className="img-responsive" src={row.img_menu} alt="img menu" />
+          {!!row.image && (
+            <img className="img-responsive" src={row.image} alt="img menu" />
           )}
-          {!row.img_menu && 'No Image'}
+          {!row.image && 'No Image'}
         </>
       )
     },
@@ -126,9 +123,9 @@ const SubCategory = props => {
                 </span>
                 :
                 <DataTable
-                  title={t('Categories')}
+                  title={t('Sub Categories')}
                   columns={columns}
-                  data={data ? data.categories : []}
+                  data={data ? data.subCategories : []}
                   pagination
                   progressPending={loading}
                   progressComponent={<CustomLoader />}
@@ -147,7 +144,7 @@ const SubCategory = props => {
           toggle={() => {
             toggleModal(null)
           }}>
-          <SubCategoryComponent category={category} />
+          <SubCategoryComponent subCategory={subCategory} />
         </Modal>
       </Container>
     </>

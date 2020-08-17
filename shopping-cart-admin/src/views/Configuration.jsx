@@ -42,27 +42,27 @@ const Configuration = props => {
               width={30}
               visible={loading}
             />
-            <OrderConfiguration prefix={data.configuration.order_id_prefix} />
+            <OrderConfiguration prefix={data.configuration.orderPrefix} />
             <EmailConfiguration
               email={data.configuration.email}
               password={data.configuration.password}
-              enabled={data.configuration.enable_email}
+              enabled={data.configuration.enableEmail}
             />
             <PaypalConfiguration
-              clientId={data.configuration.client_id}
-              clientSecret={data.configuration.client_secret}
+              clientId={data.configuration.clientId}
+              clientSecret={data.configuration.clientSecret}
               sandbox={data.configuration.sandbox}
             />
             <StripeConfiguration
-              publishableKey={data.configuration.publishable_key}
-              secretKey={data.configuration.secret_key}
+              publishableKey={data.configuration.publishableKey}
+              secretKey={data.configuration.secretKey}
             />
             <DeliveryConfiguration
-              deliveryCharges={data.configuration.delivery_charges}
+              deliveryCharges={data.configuration.deliveryCharges}
             />
             <CurrencyConfiguration
               currencyCode={data.configuration.currency}
-              currencySymbol={data.configuration.currency_symbol}
+              currencySymbol={data.configuration.currencySymbol}
             />
           </Container>
       }

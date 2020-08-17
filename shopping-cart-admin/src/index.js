@@ -42,7 +42,7 @@ const wsLink = new WebSocketLink({
 })
 
 const request = async operation => {
-  const data = localStorage.getItem('user-enatega')
+  const data = localStorage.getItem('user-ecommero')
   let token = null
   if (data) {
     token = JSON.parse(data).token

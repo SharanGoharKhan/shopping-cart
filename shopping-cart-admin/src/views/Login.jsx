@@ -26,14 +26,14 @@ const LOGIN = gql`
 `
 
 const Login = props => {
-  const [email, setEmail] = useState('admin@enatega.com')
-  const [password, setPassword] = useState('enatega123')
+  const [email, setEmail] = useState('admin@ecommero.com')
+  const [password, setPassword] = useState('ecommero123')
   const [emailError, setEmailError] = useState(null)
   const [passwordError, setPasswordError] = useState(null)
   const [error, setError] = useState(null)
   const [adminLogin, { loading }] = useMutation(LOGIN, { onCompleted, onError })
   const [redirectToReferrer, setRedirectToReferrer] = useState(
-    !!localStorage.getItem('user-enatega')
+    !!localStorage.getItem('user-ecommero')
   )
 
   const onBlur = (event, field) => {
@@ -54,7 +54,7 @@ const Login = props => {
 
   function onCompleted(data) {
     localStorage.setItem(
-      'user-enatega',
+      'user-commero',
       JSON.stringify(data.adminLogin)
     )
     setRedirectToReferrer(true)

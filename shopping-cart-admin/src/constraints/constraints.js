@@ -26,9 +26,8 @@ const constraints = {
     }
   },
   title: {
-    presence: true,
-    length: {
-      minimum: 1
+    presence: {
+      allowEmpty: false
     }
   },
   description: {

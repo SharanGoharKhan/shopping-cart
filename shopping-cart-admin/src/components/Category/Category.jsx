@@ -56,7 +56,7 @@ function Category(props) {
     titleSetter('')
     titleErrorSetter(null)
   }
-  const onCompleted = data => {
+  function onCompleted(data) {
     const message = props.category
       ? 'Category updated successfully'
       : 'Category added successfully'
@@ -65,7 +65,7 @@ function Category(props) {
     if (!props.category) clearFields()
     setTimeout(hideMessage, 3000)
   }
-  const onError = () => {
+  function onError() {
     const message = 'Action failed. Please Try again'
     successMessageSetter('')
     errorMessageSetter(message)
@@ -142,8 +142,6 @@ function Category(props) {
                         href="#pablo"
                         onClick={async e => {
                           e.preventDefault()
-                          successMessageSetter('')
-                          errorMessageSetter('')
                           if (onSubmitValidaiton()) {
                             mutate({
                               variables: {
@@ -163,7 +161,7 @@ function Category(props) {
                 </Row>
                 <Row>
                   <Col lg="6">
-                    {successMessage && (
+                    {!!successMessage && (
                       <UncontrolledAlert color="success" fade={true}>
                         <span className="alert-inner--icon">
                           <i className="ni ni-like-2" />
@@ -173,7 +171,7 @@ function Category(props) {
                         </span>
                       </UncontrolledAlert>
                     )}
-                    {errorMessage && (
+                    {!!errorMessage && (
                       <UncontrolledAlert color="danger" fade={true}>
                         <span className="alert-inner--icon">
                           <i className="ni ni-like-2" />

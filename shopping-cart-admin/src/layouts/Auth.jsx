@@ -35,7 +35,7 @@ function Auth(props) {
     <>
       <div className="main-content">
         <AuthNavbar />
-        <div className="header bg-gradient-warning py-7 py-lg-8">
+        <div className="header header-gradient py-7 py-lg-8">
           <div className="separator separator-bottom separator-skew zindex-100">
             <svg
               xmlns="http://www.w3.org/2000/svg"

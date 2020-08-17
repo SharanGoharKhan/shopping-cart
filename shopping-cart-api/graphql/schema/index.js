@@ -57,7 +57,6 @@ const typeDefs = gql`
   type Category {
     _id: ID!
     title: String!
-    image: String
     isActive: Boolean!
     createdAt: String!
     updatedAt: String!
@@ -76,6 +75,7 @@ const typeDefs = gql`
   type Product {
     _id: ID!
     title: String!
+    skuCode: String!
     description: String!
     subCategory: SubCategory!
     image: [String!]
@@ -348,7 +348,6 @@ const typeDefs = gql`
   input CategoryInput {
     _id: String
     title: String!
-    image: String
   }
 
   input SubCategoryInput {
@@ -490,8 +489,8 @@ const typeDefs = gql`
     createOptions(optionInput: [OptionInput]): [Option!]
     editOption(optionInput: OptionInput): Option!
     deleteOption(id: String!): String!
-    createOptionGroup(optionGroupInput: OptionGroupInput): OptionGroup!
-    editOptionGroup(optionGroupInput: OptionGroupInput): OptionGroup!
+    createOptionGroup(optionGroupInput: OptionGroupInput!): OptionGroup!
+    editOptionGroup(optionGroupInput: OptionGroupInput!): OptionGroup!
     deleteOptionGroup(id: String!): String!
     createCoupon(couponInput: CouponInput!): Coupon!
     editCoupon(couponInput: CouponInput!): Coupon!
@@ -503,9 +502,9 @@ const typeDefs = gql`
     changePassword(oldPassword: String!, newPassword: String!): Boolean!
     selectAddress(id: String!): User!
     assignOrder(id: String): Order!
-    createProduct(productInput:ProductInput):Product!
+    createProduct(productInput:ProductInput!):Product!
     editProduct(productInput:ProductInput):Product!
-    deleteProduct(id: ID!):Product!
+    deleteProduct(id: String!):Product!
   }
   type Subscription {
     subscribePlaceOrder: Subscription_Orders!

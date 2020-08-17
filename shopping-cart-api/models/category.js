@@ -8,9 +8,6 @@ const categorySchema = new Schema(
       type: String,
       required: true
     },
-    image: {
-      type: String
-    },
     isActive: {
       type: Boolean,
       default: true

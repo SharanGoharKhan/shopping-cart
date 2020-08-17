@@ -61,13 +61,13 @@ function Coupan(props) {
     codeErrorSetter(null)
     discountErrorSetter(null)
   }
-  const onCompleted = data => {
+  function onCompleted (data) {
     const message = props.coupon ? 'Coupon updated' : 'Coupon added'
     successMessageSetter(message)
     errorMessageSetter('')
     if (!props.coupon) clearFields()
   }
-  const onError = error => {
+  function onError(error){
     console.log(error.networkError.result.errors[0].message)
     let message = ''
     try {
