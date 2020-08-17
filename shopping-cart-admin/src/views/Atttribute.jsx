@@ -1,17 +1,17 @@
 /* eslint-disable react/display-name */
 import React, { useState } from 'react'
 import { withTranslation } from 'react-i18next'
-import { useQuery, gql, useMutation } from '@apollo/client'
+import { useQuery, gql } from '@apollo/client'
 import AttributeComponent from '../components/Attribute/Attribute'
 // reactstrap components
-import { Badge, Card, Container, Row, Modal } from 'reactstrap'
+import { Card, Container, Row, Modal } from 'reactstrap'
 // core components
 import Header from 'components/Headers/Header.jsx'
 import CustomLoader from '../components/Loader/CustomLoader'
 import DataTable from 'react-data-table-component'
-import Loader from 'react-loader-spinner'
 import orderBy from 'lodash/orderBy'
 import { attributes, deleteAttribute } from '../apollo/server'
+import ActionButton from '../components/ActionButton/ActionButton'
 
 const GET_ATTRIBUTES = gql`
   ${attributes}
@@ -24,9 +24,6 @@ const DELETE_ATTRIBUTE = gql`${deleteAttribute}`
 const Attribute = props => {
     const [editModal, setEditModal] = useState(false)
     const [attribute, setAttribute] = useState(null)
-
-    const [deleteAttribute, { loading: deleteLoading }] = useMutation(DELETE_ATTRIBUTE, { refetchQueries: [{ query: GET_ATTRIBUTES }] })
-
     const { data, loading, error } = useQuery(GET_ATTRIBUTES)
 
     const toggleModal = attribute => {
@@ -66,45 +63,15 @@ const Attribute = props => {
         },
         {
             name: 'Action',
-            cell: row => <>{actionButtons(row)}</>
+            cell: row => <ActionButton
+                deleteButton={true}
+                editButton={true}
+                row={row}
+                mutation={DELETE_ATTRIBUTE}
+                editModal={toggleModal}
+                refetchQuery={GET_ATTRIBUTES} />
         }
     ]
-
-    const actionButtons = row => {
-        return (
-            <>
-                <Badge
-                    href="#pablo"
-                    onClick={e => {
-                        e.preventDefault()
-                        toggleModal(row)
-                    }}
-                    color="primary">
-                    Edit
-            </Badge>
-            &nbsp;&nbsp;
-                {deleteLoading ?
-                    <Loader
-                        type="ThreeDots"
-                        color="#BB2124"
-                        height={20}
-                        width={40}
-                        visible={deleteLoading}
-                    /> :
-                    <Badge
-                        href="#pablo"
-                        color="danger"
-                        onClick={e => {
-                            e.preventDefault()
-                            deleteAttribute({ variables: { id: row._id } })
-                        }}
-                    >
-                        {'Delete'}
-                    </Badge>
-                }
-            </>
-        )
-    }
 
     const { t } = props
     return (

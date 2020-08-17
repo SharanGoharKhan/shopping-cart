@@ -156,7 +156,7 @@ function Currency(props) {
                               variables: {
                                 configurationInput: {
                                   currency: currencyCode,
-                                  currency_symbol: currencySymbol
+                                  currencySymbol: currencySymbol
                                 }
                               }
                             })

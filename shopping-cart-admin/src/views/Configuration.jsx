@@ -18,6 +18,7 @@ const GET_CONFIGURATION = gql`
 
 const Configuration = props => {
   const { data, loading, error } = useQuery(GET_CONFIGURATION)
+  console.log("err: ", error)
   return (
     <>
       <Header />

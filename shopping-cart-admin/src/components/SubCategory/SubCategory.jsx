@@ -47,8 +47,9 @@ function SubCategory(props) {
   const [successMessage, successMessageSetter] = useState('')
   const [categoryError, categoryErrorSetter] = useState(null)
   const [titleError, titleErrorSetter] = useState(null)
+  const [loader, loaderSetter] = useState(false)
   const mutation = props.subCategory ? EDIT_SUB_CATEGORY : CREATE_SUB_CATEGORY
-  const [mutate, { loading }] = useMutation(mutation, { onCompleted, onError, refetchQueries: [{ query: GET_SUB_CATEGORIES }] })
+  const [mutate] = useMutation(mutation, { onCompleted, onError, refetchQueries: [{ query: GET_SUB_CATEGORIES }] })
   const { data, loading: loadingCategory, error } = useQuery(GET_CATEGORIES)
 
   const filterImage = event => {
@@ -95,10 +96,12 @@ function SubCategory(props) {
       : 'Category added successfully'
     successMessageSetter(message)
     errorMessageSetter('')
+    loaderSetter(false)
     if (!props.subCategory) clearFields()
     setTimeout(hideMessage, 3000)
   }
-  function onError  (error)  {
+  function onError(error) {
+    loaderSetter(false)
     const message = 'Action failed. Please Try again'
     successMessageSetter('')
     errorMessageSetter(message)
@@ -262,7 +265,7 @@ function SubCategory(props) {
                   </Col>
                 </Row>
                 <Row>
-                  {loading ?
+                  {loader ?
                     <Col className="text-right" xs="12">
                       <Button color="primary" onClick={() => null}>
                         <Loader
@@ -270,13 +273,14 @@ function SubCategory(props) {
                           color="#FFF"
                           height={25}
                           width={30}
-                          visible={loading}
+                          visible={loader}
                         />
                       </Button>
                     </Col>
                     :
                     <Col className="text-right" xs="12">
                       <Button
+                        disabled={loader}
                         color="primary"
                         href="#pablo"
                         onClick={async e => {
@@ -284,6 +288,7 @@ function SubCategory(props) {
                           successMessageSetter('')
                           errorMessageSetter('')
                           if (onSubmitValidaiton()) {
+                            loaderSetter(true)
                             const image = await uploadImageToCloudinary()
                             mutate({
                               variables: {

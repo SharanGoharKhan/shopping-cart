@@ -24,6 +24,7 @@ function Order(props) {
   const [prefixError, prefixErrorSetter] = useState(null)
   const [saveConfiguration, { loading, error }] = useMutation(SAVE_ORDER_CONFIGURATION, { onCompleted, onError })
 
+  console.log(prefix)
 
   const validateInput = () => {
     let result = true
@@ -105,7 +106,7 @@ function Order(props) {
                             saveConfiguration({
                               variables: {
                                 configurationInput: {
-                                  order_id_prefix: prefix
+                                  orderPrefix: prefix
                                 }
                               }
                             })

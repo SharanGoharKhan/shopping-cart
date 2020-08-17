@@ -60,7 +60,7 @@ function Attribute(props) {
 
     const onBlurOptions = (index, type) => {
         const option = options
-        option[index].optionError = !validateFunc({ optionTitle: option[index][type] },
+        option[index].optionError = !!validateFunc({ title: option[index][type] },
             'title'
         )
         optionsSetter([...option])
@@ -183,7 +183,7 @@ function Attribute(props) {
                                                     name="sub_category"
                                                     id="sub_category"
                                                     value={category}
-                                                    onChange={(event =>{
+                                                    onChange={(event => {
                                                         categorySetter(event.target.value)
                                                     })}
                                                     onBlur={event => {
@@ -261,8 +261,7 @@ function Attribute(props) {
                                                             option.optionError === null
                                                                 ? ''
                                                                 : option.optionError
-                                                                    ? 'has-success'
-                                                                    : 'has-danger'
+                                                                    ? 'has-danger' : 'has-success'
                                                         }>
                                                         <Input
                                                             className="form-control-alternative"
@@ -303,14 +302,14 @@ function Attribute(props) {
                                 </Row>
                                 <Row>
                                     <Col lg="4">
-                                        {false ?
+                                        {loading ?
                                             <Button disabled color="primary" onClick={() => null}>
                                                 <Loader
                                                     type="TailSpin"
                                                     color="#FFF"
                                                     height={25}
                                                     width={30}
-                                                    visible={true}
+                                                    visible={loading}
                                                 />
                                             </Button> :
                                             <Button

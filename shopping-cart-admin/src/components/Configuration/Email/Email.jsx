@@ -162,7 +162,7 @@ function Email(props) {
                                 configurationInput: {
                                   email: email,
                                   password: password,
-                                  enable_email: enableEmail
+                                  enableEmail: enableEmail
                                 }
                               }
                             })

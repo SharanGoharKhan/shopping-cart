@@ -38,17 +38,6 @@ const Users = props => {
       sortable: true,
       selector: 'phone',
       cell: row => hiddenData(row.phone, 'PHONE')
-    },
-    {
-      name: 'Address',
-      cell: row => (
-        <>
-          {transformToNewline(
-            row.addresses.length ? row.addresses[0].deliveryAddress : '',
-            15
-          )}
-        </>
-      )
     }
   ]
 

@@ -517,9 +517,12 @@ export const getUsers = `query Users($page:Int){
     phone
     addresses{
       _id
-      deliveryAddress
-      details
       label
+      region
+      city
+      apartment
+      building
+      details
     }
   }
 }`
@@ -538,9 +541,7 @@ export const reviews = `query AllReviews($offset:Int){
         email
       }
       items{
-        food{
-          title
-        }
+        product
       }
    }
   }
