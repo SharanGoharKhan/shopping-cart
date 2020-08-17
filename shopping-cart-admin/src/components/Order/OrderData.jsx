@@ -22,9 +22,10 @@ const OrdersData = props => {
   const { data, loading, error } = useQuery(ORDERCOUNT)
 
   const getItems = items => {
+    console.log(items)
     return items
       .map(
-        item => `${item.quantity}x${item.food.title}(${item.variation.title})`
+        item => `${item.quantity}x${item.product}(${item.selectedAttributes.map(i => i.title)})`
       )
       .join('\n')
   }
@@ -89,10 +90,10 @@ const OrdersData = props => {
     {
       name: 'OrderID',
       sortable: true,
-      selector: 'order_id',
+      selector: 'orderId',
       cell: row => (
         <Media>
-          <span className="mb-0 text-sm">{row.order_id}</span>
+          <span className="mb-0 text-sm">{row.orderId}</span>
         </Media>
       )
     },
@@ -110,11 +111,11 @@ const OrdersData = props => {
     },
     {
       name: 'Payment',
-      selector: 'payment_status'
+      selector: 'paymentMethod'
     },
     {
       name: 'Status',
-      selector: 'order_status'
+      selector: 'orderStatus'
     },
     {
       name: 'Datetime',
@@ -122,12 +123,12 @@ const OrdersData = props => {
         <>{new Date(row.createdAt).toLocaleString().replace(/ /g, '\n')}</>
       )
     },
-    {
-      name: 'Address',
-      cell: row => (
-        <>{transformToNewline(row.delivery_address.delivery_address, 3)}</>
-      )
-    }
+    // {
+    //   name: 'Address',
+    //   cell: row => (
+    //     <>{transformToNewline(row., 3)}</>
+    //   )
+    // }
   ]
   const conditionalRowStyles = [
     {
