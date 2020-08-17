@@ -1,49 +1,19 @@
-import React, { useState } from 'react';
-import { View, TouchableOpacity, Image, ScrollView, FlatList } from 'react-native';
+import React, { useState, useContext, useEffect } from 'react';
+import { View, TouchableOpacity, Image, FlatList } from 'react-native';
 import styles from './styles';
-import { BackHeader, BottomTab, TextDefault } from '../../components';
+import { BackHeader, BottomTab, TextDefault, Spinner } from '../../components';
 import Button from '../../ui/Buttons/Button';
 import VariationSection from './VariationSection/VariationSection';
 import { SafeAreaView } from 'react-native-safe-area-context';
-import { useNavigation } from '@react-navigation/native';
+import { useNavigation, useRoute } from '@react-navigation/native';
 import { colors, alignment, scale } from '../../utils';
 import { MaterialIcons } from '@expo/vector-icons';
+import UserContext from '../../context/User';
+import { gql, useQuery } from '@apollo/client';
+import { productById } from '../../apollo/server';
+import ConfigurationContext from '../../context/Configuration';
 
-const caroselData = [
-    {
-        img: require('../../assets/images/MainLanding/carosel_img_3.png'),
-    },
-    {
-        img: require('../../assets/images/MainLanding/carosel_img_2.png'),
-    },
-    {
-        img: require('../../assets/images/MainLanding/recommended_2.png'),
-    },
-    {
-        img: require('../../assets/images/MainLanding/carosel_img_3.png'),
-    },
-    {
-        img: require('../../assets/images/MainLanding/carosel_img_2.png'),
-    },
-    {
-        img: require('../../assets/images/MainLanding/recommended_2.png'),
-    },
-    {
-        img: require('../../assets/images/MainLanding/carosel_img_3.png'),
-    },
-];
-
-const DESCRIPTION = "Soft stretch elasticated waistband Hemmed bottom Light weight and comfortable.\n\nSize chart is provided in the photos\n\nFabric 100% Cotton Single Jersey 160 GSM"
-const VARIATIONS = [
-    {
-        title: 'Select Color',
-        items: ['Black', 'White', 'Red', 'Graphite', 'Blue', 'Bottle Green', 'Charcoal', 'Florescent Yellow', 'Green', 'Heather Grey', 'Jeans Marl', 'Orange', 'Parrot', 'Royal', 'Navy']
-    },
-    {
-        title: 'Select Size',
-        items: ['S', 'M', 'L']
-    },
-]
+const GET_PRODUCT = gql`${productById}`
 
 const REVIEW = [
     {
@@ -73,10 +43,51 @@ const REVIEW = [
 ]
 
 function ProductDescription(props) {
-    const [caroselImage, setCaroselImage] = useState(require('../../assets/images/MainLanding/carosel_img_3.png'))
     const navigation = useNavigation()
-    const isLogin = true
+    const route = useRoute()
+    const productId = route.params?.productId ?? null
+    const { isLoggedIn } = useContext(UserContext)
+    const { data: productData, loading, error } = useQuery(GET_PRODUCT, { variables: { id: productId } })
+    const configuration = useContext(ConfigurationContext)
+    const [caroselImage, setCaroselImage] = useState(productData?.productByIds[0]?.image[0] ?? null)
+    const [price, priceSetter] = useState(null)
+    const itemAttributes = productData?.productByIds[0]?.attributes ?
+        productData.productByIds[0].attributes.map(attribute => {
+            return {
+                ...attribute,
+                options: attribute.options[0]
+            }
+        })
+        : []
+    const [attributes, attributeSetter] = useState(itemAttributes)
 
+    // console.log("ads: ", attributes)
+
+    if (productId === null) {
+        navigation.goBack()
+        return null
+    }
+
+    useEffect(() => {
+        if (productData.productByIds[0])
+            calculateprice()
+    }, [productId])
+
+    function calculateprice() {
+        let totalPrice = 0
+        const mainPrice = productData?.productByIds[0]?.price ?? 0
+        attributes.map(attribute => totalPrice += attribute.options.price)
+        totalPrice += mainPrice
+        priceSetter(totalPrice)
+    }
+
+    function handleAttributes(id, option) {
+        const attribute = attributes
+        const objIndex = attribute.findIndex(item => item._id === id)
+        attribute[objIndex].options = option
+        attributeSetter([...attribute])
+        calculateprice()
+    }
 
     function ListHeader() {
         return (
@@ -88,13 +99,13 @@ function ProductDescription(props) {
                                 <TextDefault
                                     textColor={colors.fontMainColor}
                                     numberOfLines={2}>
-                                    {'Southdown Spinning Fibre'}
+                                    {productData.productByIds[0].title}
                                 </TextDefault>
                             </View>
                             <View style={styles.caroselPriceContainer}>
                                 <View style={styles.caroselPriceSubContainer}>
-                                    <TextDefault textColor={colors.fontBlue} bold>
-                                        {'$7.50'}
+                                    <TextDefault numberOfLines={2} textColor={colors.fontBlue} bold>
+                                        {configuration.currencySymbol}{' '}{price}
                                     </TextDefault>
                                 </View>
                             </View>
@@ -102,49 +113,51 @@ function ProductDescription(props) {
                     </View>
                     <View style={styles.caroselMainImgCnt}>
                         <Image
-                            source={caroselImage}
+                            source={
+                                productData &&
+                                { uri: caroselImage }
+                            }
                             resizeMode="cover"
                             style={styles.imgResponsive}
                         />
                     </View>
                     <View style={styles.scrollViewStyle}>
-                        <ScrollView
+                        <FlatList
+                            style={{ flex: 1 }}
                             horizontal
+                            data={productData?.productByIds[0]?.image ?? []}
+                            keyExtractor={(item, index) => index.toString()}
                             showsHorizontalScrollIndicator={false}
-                        >
-                            <View style={styles.caroselItemsContainer}>
-                                {
-                                    caroselData.map((data, ind) => (
-                                        <TouchableOpacity
-                                            onPress={() => setCaroselImage(data.img)}
-                                            key={ind}
-                                            style={styles.caroselItems}
-                                        >
-                                            <Image
-                                                source={data.img}
-                                                resizeMode="cover"
-                                                style={styles.imgResponsive}
-                                            />
-                                        </TouchableOpacity>
-                                    ))
-                                }
-                            </View>
-                        </ScrollView>
+                            renderItem={({ item, index }) => (
+                                <TouchableOpacity
+                                    onPress={() => setCaroselImage(item)}
+                                    style={styles.caroselItems}
+                                >
+                                    <Image
+                                        source={{ uri: item }}
+                                        resizeMode="cover"
+                                        style={styles.imgResponsive}
+                                    />
+                                </TouchableOpacity>
+                            )}
+                        />
                     </View>
                     <View style={styles.spacer} />
                     <View style={styles.variationContainer}>
                         {
-                            VARIATIONS.map((variation, index) => (
+                            productData.productByIds[0].attributes.map((variation, index) => (
                                 <VariationSection
-                                    key={index}
-                                    variation={variation} />
+                                    key={variation._id}
+                                    variation={variation}
+                                    selected={attributes[index].options._id}
+                                    handleAttributes={handleAttributes} />
                             ))
                         }
                         <TextDefault bold style={styles.smallSpacer}>
                             {'Description'}
                         </TextDefault>
                         <TextDefault textColor={colors.fontSecondColor} style={styles.smallSpacer}>
-                            {DESCRIPTION}
+                            {productData.productByIds[0].description}
                         </TextDefault>
                     </View>
                 </View>
@@ -158,10 +171,11 @@ function ProductDescription(props) {
     function ListFooter() {
         return (
             <Button
+                loading={false}
                 containerStyle={styles.shoppingCartContainer}
                 textStyle={styles.shoppingCartText}
                 onPress={() => {
-                    isLogin ?
+                    isLoggedIn ?
                         navigation.navigate('ShoppingCart')
                         :
                         navigation.navigate('SignIn')
@@ -175,54 +189,58 @@ function ProductDescription(props) {
                 <BackHeader
                     title="Description"
                     backPressed={() => props.navigation.goBack()} />
-                <FlatList
-                    data={REVIEW}
-                    style={styles.mainScrollViewContainer}
-                    showsVerticalScrollIndicator={false}
-                    contentContainerStyle={styles.contentStyle}
-                    keyExtractor={(item, index) => index.toString()}
-                    ListFooterComponentStyle={alignment.MTlarge}
-                    ItemSeparatorComponent={() => <View style={styles.line} />}
-                    ListHeaderComponent={<ListHeader />}
-                    ListFooterComponent={<ListFooter />}
-                    renderItem={({ item }) => (
-                        <View style={styles.review}>
-                            <View style={styles.reviewerContainer} >
-                                <TextDefault
-                                    textColor={colors.fontMainColor}
+                {error ? <TextError text={error.message} /> :
+                    loading ? <Spinner /> :
 
-                                >
-                                    {item.name}
-                                </TextDefault>
-                                <View style={styles.ratingContainer}>
-                                    {
-                                        Array(5).fill(1).map((value, index) => {
-                                            if (index < item.rating) {
-                                                return <MaterialIcons key={index} name="star" size={scale(10)} color={'blue'} />
+                        <FlatList
+                            data={REVIEW}
+                            style={styles.mainScrollViewContainer}
+                            showsVerticalScrollIndicator={false}
+                            contentContainerStyle={styles.contentStyle}
+                            keyExtractor={(item, index) => index.toString()}
+                            ListFooterComponentStyle={alignment.MTlarge}
+                            ItemSeparatorComponent={() => <View style={styles.line} />}
+                            ListHeaderComponent={<ListHeader />}
+                            ListFooterComponent={<ListFooter />}
+                            renderItem={({ item }) => (
+                                <View style={styles.review}>
+                                    <View style={styles.reviewerContainer} >
+                                        <TextDefault
+                                            textColor={colors.fontMainColor}
+
+                                        >
+                                            {item.name}
+                                        </TextDefault>
+                                        <View style={styles.ratingContainer}>
+                                            {
+                                                Array(5).fill(1).map((value, index) => {
+                                                    if (index < item.rating) {
+                                                        return <MaterialIcons key={index} name="star" size={scale(10)} color={'blue'} />
+                                                    }
+                                                    else if (index >= item.rating && index < 5) {
+                                                        return <MaterialIcons key={index} name="star" size={scale(10)} color={colors.fontPlaceholder} />
+                                                    }
+                                                })
                                             }
-                                            else if (index >= item.rating && index < 5) {
-                                                return <MaterialIcons key={index} name="star" size={scale(10)} color={colors.fontPlaceholder} />
-                                            }
-                                        })
-                                    }
+                                        </View>
+                                    </View>
+                                    <TextDefault
+                                        style={styles.dateReview}
+                                        textColor={colors.fontSecondColor}
+                                        numberOfLines={1}
+                                        small>
+                                        {item.date}
+                                    </TextDefault>
+                                    <TextDefault
+                                        style={styles.textReview}
+                                        textColor={colors.fontSecondColor}
+                                        small>
+                                        {item.description}
+                                    </TextDefault>
                                 </View>
-                            </View>
-                            <TextDefault
-                                style={styles.dateReview}
-                                textColor={colors.fontSecondColor}
-                                numberOfLines={1}
-                                small>
-                                {item.date}
-                            </TextDefault>
-                            <TextDefault
-                                style={styles.textReview}
-                                textColor={colors.fontSecondColor}
-                                small>
-                                {item.description}
-                            </TextDefault>
-                        </View>
-                    )}
-                />
+                            )}
+                        />
+                }
                 <BottomTab />
             </View>
         </SafeAreaView>

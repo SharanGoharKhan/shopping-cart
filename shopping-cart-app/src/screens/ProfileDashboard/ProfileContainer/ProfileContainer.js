@@ -1,27 +1,26 @@
-import React from 'react';
-import {
-  Text, TouchableOpacity, View, Image, ImageBackground,
-} from 'react-native';
-import { Ionicons } from '@expo/vector-icons'
+import React, { useContext } from 'react';
+import { TouchableOpacity, View, Image, ImageBackground } from 'react-native';
 import styles from './styles';
-import { scale } from '../../../utils/scaling';
-import { colors } from '../../../utils/colors';
-import { SimpleLineIcons } from '@expo/vector-icons';
+import { scale, colors, alignment } from '../../../utils';
+import { SimpleLineIcons, Feather } from '@expo/vector-icons';
+import UserContext from '../../../context/User';
+import { useNavigation } from '@react-navigation/native';
+import { TextDefault } from '../../../components';
 
 function profileContainer(props) {
+  const navigation = useNavigation()
+  const { logout, profile } = useContext(UserContext)
   return (
     <View style={styles.profileContainer}>
       <View style={styles.profileSubContainer}>
         <View style={styles.topProfileContent}>
           <View style={styles.topProfileIconContainer}>
-            <Image
-              source={require('../../../assets/images/footer/profile.png')}
-              resizeMode="contain"
-              style={styles.imgResponsive}
-            />
+            <SimpleLineIcons name="user" size={scale(15)} color={colors.fontMainColor} />
           </View>
           <View style={styles.topProfileTextContainer}>
-            <Text style={styles.topProfileTextStyle}>Profile</Text>
+            <TextDefault textColor={colors.fontMainColor} H4>
+              {'Profile'}
+            </TextDefault>
           </View>
         </View>
         <View style={styles.profieCenterContainer}>
@@ -32,21 +31,20 @@ function profileContainer(props) {
             <View style={styles.profileCenterContainerTop}>
               <TouchableOpacity
                 activeOpacity={0}
-                onPress={() => props.navigationObj.navigate('SignIn')}
-                style={styles.signOutContainer}
+                onPress={() => {
+                  logout()
+                  navigation.navigate('MainLanding')
+                }}
+                style={styles.iconContainer}
               >
                 <SimpleLineIcons name="logout" size={scale(20)} color={colors.pinkColor} />
               </TouchableOpacity>
               <TouchableOpacity
                 activeOpacity={0}
-                onPress={() => props.navigationObj.navigate('EditingProfile')}
-                style={styles.editContainer}
+                onPress={() => navigation.navigate('EditingProfile', { ...profile })}
+                style={styles.iconContainer}
               >
-                <Image
-                  source={require('../../../assets/images/ProfileDashboard/edit.png')}
-                  resizeMode="contain"
-                  style={styles.imgResponsive}
-                />
+                <Feather name='edit' size={scale(20)} color={colors.fontThirdColor} />
               </TouchableOpacity>
             </View>
             <View style={styles.profileImageContainer}>
@@ -55,34 +53,25 @@ function profileContainer(props) {
               </View>
             </View>
             <View style={styles.nameContainer}>
-              <Text style={styles.nameStyle}>Sharan Khan</Text>
-            </View>
-            <View style={styles.placeContainer}>
-              <Text style={styles.placeStyle}>Pakistan</Text>
+              <TextDefault style={[alignment.PLxSmall, alignment.PRxSmall]} numberOfLines={2} textColor={colors.fontMainColor} H4>
+                {profile.name}
+              </TextDefault>
             </View>
             <View style={styles.addressContainer}>
               <TouchableOpacity
                 activeOpacity={0}
-                onPress={() => props.navigationObj.navigate('AddressList')}
+                onPress={() => navigation.navigate('AddressList')}
                 style={{ alignItems: 'center' }}>
-                <Image
-                  source={require('../../../assets/images/ProfileDashboard/address.png')}
-                  resizeMode="contain"
-                  style={styles.iconsStyle}
-                />
-                <Text style={styles.addressText}>Addresses</Text>
+                <SimpleLineIcons name="location-pin" size={scale(20)} color={colors.fontThirdColor} />
+                <TextDefault textColor={colors.fontSecondColor}>
+                  {'Addresses'}
+                </TextDefault>
               </TouchableOpacity>
-              {/* <View style={{ alignItems: 'center' }}>
-                <Ionicons
-                  name="ios-heart-empty"
-                  size={24} />
-                <Text style={styles.addressText}>Favourites</Text>
-              </View> */}
             </View>
           </ImageBackground>
         </View>
       </View>
-    </View>
+    </View >
   );
 }
 

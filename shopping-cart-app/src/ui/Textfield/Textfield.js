@@ -24,7 +24,7 @@ const TextField = (props) => {
   const placeholderColor = props.placeholderColor ? props.placeholderColor : colors.fontPlaceholder;
   const password = props.password ? props.password : false;
   return (
-    <View style={[styles.input_view, props.containerStyle]}>
+    <View style={[styles.input_view, props.containerStyle, props.error ? { borderColor: colors.errorColor } : { borderColor: colors.backgroudGray, }]}>
       <TextInput
         onChange={props.onChange}
         style={styles.input}

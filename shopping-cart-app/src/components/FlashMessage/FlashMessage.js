@@ -1,15 +1,15 @@
 import { showMessage } from 'react-native-flash-message'
 import styles from './styles'
 import PropTypes from 'prop-types'
-import { colors } from '../../utils'
 
 export const FlashMessage = props => {
   showMessage({
-    backgroundColor: colors.messageBackground,
     message: props.message,
-    position: 'center',
+    type: props.type,
+    position: props.position ?? 'top',
+    floating: true,
     titleStyle: styles.text,
-    style: styles.container
+    style: styles.position
   })
 }
 FlashMessage.propTypes = {

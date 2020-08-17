@@ -5,7 +5,7 @@ const Product = require('../../models/product')
 module.exports = {
   Query: {
     categories: async(_, args, context) => {
-      console.log('categories')
+      console.log('categories: ')
       try {
         const categories = await Category.find({ isActive: true })
         return categories.map(category => {

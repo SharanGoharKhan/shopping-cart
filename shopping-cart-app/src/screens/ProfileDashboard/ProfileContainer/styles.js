@@ -1,7 +1,9 @@
 import { verticalScale, scale } from '../../../utils/scaling';
 import { fontStyles } from '../../../utils/fontStyles';
+import { StyleSheet } from 'react-native';
+import { alignment } from '../../../utils';
 
-export default {
+const styles = StyleSheet.create({
     flex: {
         flex: 1,
     },
@@ -18,19 +20,15 @@ export default {
     topProfileContent: {
         width: '100%',
         height: '10%',
-        marginBottom: '2%',
         flexDirection: 'row',
-        alignItems: 'center',
+        ...alignment.MBxSmall
     },
     topProfileIconContainer: {
-        width: '10%',
-        height: '50%',
+        alignItems: "center",
     },
     topProfileTextContainer: {
         width: '50%',
-        height: '70%',
-        marginLeft: '2%',
-        justifyContent: 'center',
+        ...alignment.MLxSmall
     },
     topProfileTextStyle: {
         fontFamily: fontStyles.PoppinsRegular,
@@ -59,15 +57,11 @@ export default {
         justifyContent: 'space-between',
         alignItems: 'center',
     },
-    signOutContainer: {
-        width: '8%',
-        height: '60%',
-        marginLeft: '5%',
-    },
-    editContainer: {
-        width: '8%',
-        height: '60%',
-        marginRight: '5%',
+    iconContainer: {
+        width: '15%',
+        height: '100%',
+        alignItems: "center",
+        justifyContent: "center",
     },
     profileImageContainer: {
         width: '100%',
@@ -90,8 +84,9 @@ export default {
     },
     nameContainer: {
         width: '100%',
-        height: '10%',
+        height: '20%',
         alignItems: 'center',
+        justifyContent: "center"
     },
     nameStyle: {
         fontFamily: fontStyles.PoppinsRegular,
@@ -107,11 +102,9 @@ export default {
         fontSize: verticalScale(12),
     },
     addressContainer: {
-        alignSelf:'center',
+        alignItems: "flex-start",
         width: '90%',
-        flexDirection: 'row',
-        justifyContent:'space-between',
-        marginTop: '3%'
+        ...alignment.MLsmall
     },
     iconsStyle: {
         width: scale(20),
@@ -126,4 +119,5 @@ export default {
         fontFamily: fontStyles.PoppinsRegular,
         fontSize: verticalScale(12),
     },
-};
+});
+export default styles

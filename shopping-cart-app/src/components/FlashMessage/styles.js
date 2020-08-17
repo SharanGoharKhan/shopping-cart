@@ -1,12 +1,14 @@
-import { alignment, textStyles } from '../../utils'
+import { textStyles, alignment } from '../../utils'
+import { StyleSheet, Dimensions } from 'react-native'
+const { height } = Dimensions.get('window')
 
-export default {
+const styles = StyleSheet.create({
   text: {
-    ...textStyles.Bold,
     ...textStyles.H5,
     ...alignment.PTxSmall
   },
-  container: {
-    borderRadius: 50
+  position: {
+    marginTop: height * 0.08
   }
-}
+})
+export default styles

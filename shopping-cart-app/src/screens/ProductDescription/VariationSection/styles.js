@@ -1,18 +1,9 @@
-import { scale } from "../../../utils/scaling";
-import { colors } from "../../../utils/colors";
-import { fontStyles } from "../../../utils/fontStyles";
+import { colors, scale } from "../../../utils";
 
 export default {
     mainContainer: {
         flexDirection: 'row',
         flexWrap: 'wrap'
-    },
-    textStyle: {
-        fontFamily: fontStyles.PoppinsRegular,
-        fontSize: scale(12)
-    },
-    boldStyle: {
-        fontFamily: fontStyles.PoppinsBold
     },
     container: {
         padding: scale(5),

@@ -1,15 +1,17 @@
 import React from 'react';
-import { View, FlatList, Text, ImageBackground } from 'react-native';
+import { View, FlatList, ImageBackground } from 'react-native';
 import SwiperFlatList from 'react-native-swiper-flatlist';
 import styles from './styles';
 import CategoryCard from '../../ui/CategoryCard/CategoryCard';
-import BottomTab from '../../components/BottomTab/BottomTab';
-import { OFFERS, PRODUCTS, CATEGORIES, verticalScale, scale, colors } from '../../utils';
-import ProductCard from '../../ui/ProductCard/ProductCard';
+import { BottomTab, TextDefault } from '../../components';
+import { verticalScale, scale, colors } from '../../utils';
+import ProductCard from '../../ui/ProductCard/ProductCard'
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { HeaderBackButton } from '@react-navigation/stack'
 import { MaterialIcons } from '@expo/vector-icons'
 import { useNavigation } from '@react-navigation/native';
+import { gql, useQuery } from '@apollo/client';
+import { categories, produccts } from '../../apollo/server'
 
 const caroselImage = [
     require('../../assets/images/MainLanding/banner-1.png'),
@@ -20,9 +22,15 @@ const caroselImage = [
     require('../../assets/images/MainLanding/carosel_img_3.png'),
 ]
 
+const CATEGORIES = gql`${categories}`
+const PRODUCTS_DATA = gql`${produccts}`
+
 
 function MainLanding(props) {
     const navigation = useNavigation()
+    const { data: categoryData } = useQuery(CATEGORIES)
+    const { data: productsData } = useQuery(PRODUCTS_DATA)
+    const Featured = productsData?.products ? productsData.products.filter(item => item.featured) : []
 
     function renderCarosel() {
         return (
@@ -63,6 +71,50 @@ function MainLanding(props) {
         )
     }
 
+    function renderHeader() {
+        return (
+            <>
+                {renderCarosel()}
+                <View style={styles.categoryContainer}>
+                    {categoryData && categoryData.categories.map((category, index) => {
+                        return (
+                            <CategoryCard
+                                key={index}
+                                cardLabel={category.title}
+                                id={category._id}
+                            />
+                        )
+                    })}
+                </View>
+                {Featured.length > 0 &&
+                    < View style={styles.titleSpacer}>
+                        <TextDefault textColor={colors.fontMainColor} H4>
+                            {'Featured'}
+                        </TextDefault>
+                        <FlatList
+                            horizontal={true}
+                            showsHorizontalScrollIndicator={false}
+                            keyExtractor={(item, index) => item._id}
+                            data={Featured}
+                            renderItem={({ item, index }) => {
+                                return (
+                                    <ProductCard
+                                        styles={styles.itemCardContainer}
+                                        {...item} />
+                                )
+                            }}
+                        />
+                    </View>
+                }
+                <View style={styles.titleSpacer}>
+                    <TextDefault textColor={colors.fontMainColor} H4>
+                        {'All Items'}
+                    </TextDefault>
+                </View>
+            </>
+        )
+    }
+
     return (
         <SafeAreaView style={[styles.flex, styles.safeAreaStyle]}>
             <View style={[styles.grayBackground, styles.flex]}>
@@ -70,56 +122,12 @@ function MainLanding(props) {
                     keyExtractor={(item, index) => index.toString()}
                     showsVerticalScrollIndicator={false}
                     numColumns={2}
-                    ListHeaderComponent={() =>
-                        <>
-                            {renderCarosel()}
-                            <View style={styles.categoryContainer}>
-                                {CATEGORIES.map((category, index) => {
-                                    return (
-                                        <CategoryCard
-                                            key={index}
-                                            cardLabel={category.label}
-                                            navigationObj={navigation}
-                                        />
-                                    )
-                                })}
-                            </View>
-                            {
-                                OFFERS.map((offer, index) => {
-                                    return (
-                                        <View key={index} style={styles.titleSpacer}>
-                                            <Text style={styles.headingText}>{offer.offer_name}</Text>
-                                            <FlatList
-                                                horizontal={true}
-                                                showsHorizontalScrollIndicator={false}
-                                                keyExtractor={(item, index) => index.toString()}
-                                                data={offer.items}
-                                                renderItem={({ item, index }) => {
-                                                    return (
-                                                        <View
-                                                            key={index}
-                                                            style={styles.itemCardContainer}>
-                                                            <ProductCard
-                                                                cardPressed={() => navigation.navigate('ProductListing')}
-                                                                item={item} />
-                                                        </View>
-                                                    )
-                                                }}
-                                            />
-                                        </View>
-                                    )
-                                })
-                            }
-                            <View style={styles.titleSpacer}>
-                                <Text style={styles.headingText}>All Items</Text>
-                            </View>
-                        </>
-                    }
-                    data={PRODUCTS}
-                    renderItem={({ item }) => <ProductCard
-                        styles={styles.productCard}
-                        cardPressed={() => navigation.navigate('ProductListing')}
-                        item={item} />
+                    ListHeaderComponent={renderHeader}
+                    data={productsData ? productsData.products : []}
+                    renderItem={({ item }) =>
+                        <ProductCard
+                            styles={styles.productCard}
+                            {...item} />
                     }
                 />
                 <BottomTab />

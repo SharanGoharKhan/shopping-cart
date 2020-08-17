@@ -9,6 +9,7 @@ import { UserProvider } from './src/context/User'
 import { colors } from './src/utils/colors'
 import * as Font from 'expo-font';
 import setupApolloClient from './src/apollo/index'
+import FlashMessage from 'react-native-flash-message'
 
 
 export default function App() {
@@ -75,6 +76,7 @@ export default function App() {
             <AppContainer />
           </UserProvider>
         </ConfigurationProvider>
+        <FlashMessage position="top" />
       </ApolloProvider>
     )
   } else return (

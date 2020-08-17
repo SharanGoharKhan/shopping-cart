@@ -1,19 +1,22 @@
 import React from 'react';
-import {
-    Text, TouchableOpacity, View,
-} from 'react-native';
+import { TouchableOpacity, View, } from 'react-native';
 import styles from './styles';
+import { useNavigation } from '@react-navigation/native';
+import { TextDefault } from '../../components';
 
 function CategoryCard(props) {
+    const navigation = useNavigation()
     return (
         <TouchableOpacity
-            onPress={() => props.navigationObj.navigate('ProductListing')}
-            style={styles.container}>
+            onPress={() => navigation.navigate('SubCategory', { id: props.id })}
+            style={[styles.container, props.style]}>
             <View style={styles.textViewContainer}>
-                <Text numberOfLines={1} style={styles.textStyle}>{props.cardLabel}</Text>
+                <TextDefault numberOfLines={1} H5>
+                    {props.cardLabel}
+                </TextDefault>
             </View>
         </TouchableOpacity>
     )
 }
 
-export default CategoryCard;
+export default React.memo(CategoryCard)

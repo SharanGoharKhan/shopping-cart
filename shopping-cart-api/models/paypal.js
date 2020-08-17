@@ -6,7 +6,6 @@ const {
   order_status,
   payment_method
 } = require('../helpers/enum')
-const item = require('./item')
 
 const Schema = mongoose.Schema
 

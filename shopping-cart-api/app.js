@@ -49,19 +49,19 @@ app.use('/stripe', stripe)
 //   })
 // );
 
-app.get('/', function(req, res) {
+app.get('/', function (req, res) {
   res.sendFile(
     path.join(__dirname + '/static/food-delivery-landingPage/index.html')
   )
 })
-app.get('/privacy-policy', function(req, res) {
+app.get('/privacy-policy', function (req, res) {
   res.sendFile(
     path.join(
       __dirname + '/static/food-delivery-landingPage/privacy-policy.html'
     )
   )
 })
-app.get('/chat', function(req, res) {
+app.get('/chat', function (req, res) {
   res.sendFile(
     path.join(
       __dirname + '/static/food-delivery-landingPage/food-delivery-chat.html'
@@ -70,9 +70,9 @@ app.get('/chat', function(req, res) {
 })
 
 app.use('/dashboard', express.static(path.join(__dirname, '/build')))
-app.get('/*', (req, res) => {
-  res.sendFile(path.join(__dirname + '/build/index.html'))
-})
+// app.get('/*', (req, res) => {
+//   res.sendFile(path.join(__dirname + '/build/index.html'))
+// })
 
 const server = new ApolloServer({
   typeDefs,
@@ -94,6 +94,7 @@ mongoose
   .then(() => {
     console.log('server started at port', process.env.PORT)
     httpServer.listen(process.env.PORT)
+    console.log(`🚀  server started at http://localhost:${process.env.PORT}${server.graphqlPath}`)
   })
   .catch(err => {
     console.log(err)

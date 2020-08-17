@@ -10,7 +10,7 @@ const styles = StyleSheet.create({
         backgroundColor: colors.headerbackground
     },
     container: {
-        height: '100%',
+        height: height * 0.92,
         width: '100%',
         alignSelf: 'center',
         justifyContent: 'space-between'

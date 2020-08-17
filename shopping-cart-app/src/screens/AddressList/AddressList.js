@@ -10,20 +10,9 @@ import { colors, alignment } from '../../utils';
 import { TextDefault } from '../../components';
 import UserContext from '../../context/User'
 
-
-/* Config/Constants
-DATA for the address
-============================================================================= */
-
-
 function AddressList() {
     const navigation = useNavigation()
     const { profile } = useContext(UserContext)
-    console.log(profile.addresses)
-    const [isDefault, isDefaultSetter] = useState(
-        profile.addresses.length ? profile.addresses.find(address => address.selected === true)._id : null
-        )
-        
 
     function emptyView() {
         return (
@@ -83,8 +72,7 @@ function AddressList() {
                             renderItem={({ item, index }) => (
                                 <Card
                                     item={item}
-                                    default={item._id === isDefault}
-                                    defaultSetter={() => isDefaultSetter(item._id)}
+                                    default={item.selected}
                                 />
                             )}
                         />

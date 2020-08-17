@@ -1,9 +1,7 @@
-import { StatusBar, Platform } from 'react-native';
-import { verticalScale, scale } from '../../utils/scaling';
-import { colors } from '../../utils/colors';
-import { fontStyles } from '../../utils/fontStyles';
+import { StatusBar, Platform, StyleSheet } from 'react-native';
+import { verticalScale, scale, alignment } from '../../utils';
 
-export default {
+const styles = StyleSheet.create({
     container: {
         flex: 1,
         backgroundColor: 'white',
@@ -13,18 +11,26 @@ export default {
         width: '100%',
         height: '30%',
         backgroundColor: 'white',
-        justifyContent: 'center',
-        alignItems: 'center',
+        justifyContent: 'flex-end',
+        alignItems: 'center'
     },
-    profileSubContainer: {
-        width: '60%',
+    loginContainer: {
+        width: '80%',
         height: '70%',
-        marginTop: '15%',
         backgroundColor: '#F7F7F7',
-        flexDirection: 'column',
         alignItems: 'center',
         justifyContent: 'center',
         borderRadius: verticalScale(5),
+    },
+    profileSubContainer: {
+        width: '85%',
+        height: '85%',
+        backgroundColor: '#F7F7F7',
+        flexDirection: 'column',
+        alignItems: 'center',
+        justifyContent: 'space-evenly',
+        borderRadius: scale(5),
+        ...alignment.PxSmall
     },
     profileImage: {
         width: verticalScale(60),
@@ -47,23 +53,13 @@ export default {
     },
     profileTitle: {
         width: '100%',
-        height: '20%',
         justifyContent: 'center',
         alignItems: 'center',
-    },
-    profileTitleStyle: {
-        fontFamily: fontStyles.PoppinsRegular,
-        fontSize: verticalScale(14),
     },
     profilePlace: {
         width: '100%',
-        height: '10%',
         justifyContent: 'center',
         alignItems: 'center',
-    },
-    profilePlaceStyle: {
-        fontFamily: fontStyles.PoppinsRegular,
-        fontSize: verticalScale(12),
     },
     middleContainer: {
         width: '100%',
@@ -80,11 +76,6 @@ export default {
         height: '10%',
         justifyContent: 'center',
         alignSelf: 'center',
-    },
-    navItemStyle: {
-        fontFamily: fontStyles.PoppinsRegular,
-        fontSize: verticalScale(16),
-        paddingLeft: scale(20)
     },
     navItemContainerImage: {
         width: '100%',
@@ -121,10 +112,8 @@ export default {
         justifyContent: 'center',
     },
     signoutContainerStyle: {
-        width:"100%",
-        paddingLeft:scale(10),
-        fontFamily: fontStyles.PoppinsRegular,
-        fontSize: scale(16),
-        color: colors.pinkColor,
+        width: "100%",
+        ...alignment.PLmedium
     },
-};
+});
+export default styles

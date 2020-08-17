@@ -14,15 +14,17 @@ const styles = StyleSheet.create({
     },
     formMainContainer: {
         flex: 1,
+        height: height * 0.8,
         backgroundColor: colors.themeBackground,
         alignItems: 'center',
     },
     formContainer: {
-        marginTop: '15%',
+        marginTop: height * 0.1,
         width: '90%',
         backgroundColor: colors.container,
         borderRadius: scale(8),
         position: 'relative',
+        ...alignment.PBlarge
     },
     profileImageContainer: {
         width: verticalScale(80),
@@ -42,6 +44,8 @@ const styles = StyleSheet.create({
         marginTop: scale(50),
         alignItems: 'center',
         ...alignment.MBmedium,
+        ...alignment.PLsmall,
+        ...alignment.PRsmall
     },
     twoItemsContainer: {
         width: '100%',
@@ -71,6 +75,11 @@ const styles = StyleSheet.create({
         textAlign: "left",
         ...alignment.PxSmall
     },
+    disableInput: {
+        textAlign: "left",
+        color: colors.fontThirdColor,
+        ...alignment.PxSmall
+    },
     oneItemContainer: {
         width: '100%',
         height: scale(80),
@@ -82,18 +91,13 @@ const styles = StyleSheet.create({
         height: '80%',
     },
     addContainer: {
-        width: width * .9,
-        height: height * 0.15,
         justifyContent: 'center',
         alignItems: 'center',
     },
-    addBtn: {
-        width: '80%',
-        height: '45%',
-        backgroundColor: colors.buttonBackground,
-        justifyContent: 'center',
-        alignItems: 'center',
-        borderRadius: scale(4),
+    error: {
+        borderWidth: scale(1),
+        borderColor: colors.errorColor,
+        borderRadius: scale(3)
     }
 });
 export default styles

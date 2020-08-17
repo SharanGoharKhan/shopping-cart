@@ -1,17 +1,19 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { View, TextInput, KeyboardAvoidingView, ScrollView, TouchableOpacity } from 'react-native';
 import styles from './styles';
 import { SafeAreaView } from 'react-native-safe-area-context';
-import { BackHeader, BottomTab, TextDefault } from '../../components';
-import { colors, alignment, scale } from '../../utils';
-import { useNavigation, useRoute } from '@react-navigation/native';
-import * as Location from 'expo-location'
-import { MaterialIcons } from '@expo/vector-icons';
+import { BackHeader, BottomTab, TextDefault, FlashMessage, } from '../../components';
+import { colors } from '../../utils';
+import { useNavigation } from '@react-navigation/native';
+import MainBtn from '../../ui/Buttons/MainBtn'
+import { gql, useMutation } from '@apollo/client';
+import { createAddress } from '../../apollo/server';
+
+
+const CREATE_ADDRESS = gql`${createAddress}`
 
 function NewAddress() {
     const navigation = useNavigation()
-    const route = useRoute()
-    // const regionObj = route.params?.regionChange ?? null
     const [title, titleSetter] = useState('')
     const [city, citySetter] = useState('')
     const [regionName, regionNameSetter] = useState('')
@@ -20,64 +22,34 @@ function NewAddress() {
     const [building, buildingSetter] = useState('')
     const [titleError, titleErrorSetter] = useState('')
     const [cityError, cityErrorSetter] = useState('')
-    // const [regionError, regionErrorSetter] = useState('')
     const [regionNameError, regionNameErrorSetter] = useState('')
-    const [additionalError, additionalErrorSetter] = useState('')
     const [aptNumberError, aptNumberErrorSetter] = useState('')
     const [buildingError, buildingErrorSetter] = useState('')
+    const [mutate, { loading }] = useMutation(CREATE_ADDRESS, { onCompleted, onError })
 
-    // useEffect(() => {
-    //     if (regionObj !== null) regionChange(regionObj)
-    //     return () => clearFields()
-    // }, [regionObj])
+    function onCompleted(data) {
+        FlashMessage({ message: 'Address added', type: 'success' })
+        navigation.goBack()
+    }
 
-    function regionChange(region) {
-        Location.reverseGeocodeAsync({ ...region })
-            .then(data => {
-                if (data.length) {
-                    const location = data[0]
-                    citySetter(location.city)
-                    regionNameSetter(location.region)
-                    let detail = location.street + ', ' + location.country
-                    if (location.postalCode != null)
-                        detail.concat(', ' + location.postalCode)
-                    additionalSetter(detail)
-                    // const keys = Object.keys(location)
-                    // .map(key => location[key])
-                    // .join(' ')
-                    // setRegion(region)
-                }
-            })
-            .catch(error => {
-                console.log('Error : ', error)
-            })
+    function onError(error) {
+        FlashMessage({ message: `An error occured. Please try again. ${error}`, type: 'warning' })
     }
 
     function validate() {
         const titleError = !title.trim().length ? 'Error' : ''
         const cityError = !city.trim().length ? 'Error' : ''
         const regionError = !regionName.trim().length ? 'Error' : ''
-        const additionalError = !additional.trim().length ? 'Error' : ''
         const aptNumberError = !aptNumber.trim().length ? 'Error' : ''
         const buildingError = !building.trim().length ? 'Error' : ''
 
-        
+
         titleErrorSetter(titleError)
         cityErrorSetter(cityError)
         regionNameErrorSetter(regionError)
-        additionalErrorSetter(additionalError)
         aptNumberErrorSetter(aptNumberError)
         buildingErrorSetter(buildingError)
-        console.log(!aptNumberError.length, !buildingError.length)
-        return !titleError.length && !cityError.length && !regionError.length && !additionalError.length && !aptNumberError.length && !buildingError.length
-    }
-    function clearFields() {
-        titleErrorSetter('')
-        cityErrorSetter('')
-        regionNameErrorSetter('')
-        additionalErrorSetter('')
-        aptNumberErrorSetter('')
-        buildingErrorSetter('')
+        return !titleError.length && !cityError.length && !regionError.length && !aptNumberError.length && !buildingError.length
     }
 
     return (
@@ -114,25 +86,6 @@ function NewAddress() {
                         <ScrollView style={styles.flex} showsVerticalScrollIndicator={false} contentContainerStyle={{ alignItems: 'center', flexGrow: 1 }}>
                             <View style={styles.formContainer}>
                                 <View style={styles.formContentContainer}>
-                                    {/* <View style={styles.oneItemContainer}>
-                                        <View style={styles.fullContainer}>
-                                            <View style={styles.labelContainer}>
-                                                <TextDefault textColor={colors.fontSecondColor} H5>
-                                                    {'Pin your location on the map'}
-                                                </TextDefault>
-                                            </View>
-                                            <TouchableOpacity
-                                                activeOpacity={0}
-                                                onPress={() => navigation.navigate('FullMap', { currentScreen: 'NewAddress' })}
-                                                style={[styles.inputContainer, styles.row, regionError.length > 0 && styles.error]}
-                                            >
-                                                <TextDefault textColor={colors.fontPlaceholder} style={{ ...alignment.PLxSmall }}>
-                                                    {regionObj !== null ? (parseFloat(regionObj.latitude).toFixed(2) + '°N, ' + parseFloat(regionObj.longitude).toFixed(2) + '°E') : '25°"N 55°E '}
-                                                </TextDefault>
-                                                <MaterialIcons name="location-on" size={scale(25)} color={colors.google} />
-                                            </TouchableOpacity>
-                                        </View>
-                                    </View> */}
                                     <View style={styles.twoItemsContainer}>
                                         <View style={styles.halfContainer}>
                                             <View style={styles.labelContainer}>
@@ -190,7 +143,7 @@ function NewAddress() {
                                             </View>
                                             <View style={styles.inputContainer}>
                                                 <TextInput
-                                                    style={[styles.flex, styles.inputText,aptNumberError.length > 0 && styles.error]}
+                                                    style={[styles.flex, styles.inputText, aptNumberError.length > 0 && styles.error]}
                                                     placeholder="01"
                                                     placeholderTextColor={colors.fontPlaceholder}
                                                     onChangeText={(text) => aptNumberSetter(text)}
@@ -212,7 +165,7 @@ function NewAddress() {
                                             </View>
                                             <View style={styles.inputContainer}>
                                                 <TextInput
-                                                    style={[styles.flex, styles.inputText,buildingError.length > 0 && styles.error]}
+                                                    style={[styles.flex, styles.inputText, buildingError.length > 0 && styles.error]}
                                                     placeholder="Block 4"
                                                     placeholderTextColor={colors.fontPlaceholder}
                                                     onChangeText={(text) => buildingSetter(text)}
@@ -237,37 +190,36 @@ function NewAddress() {
                                             <View style={styles.inputContainer}>
                                                 <TextInput
                                                     value={additional}
-                                                    style={[styles.flex, styles.inputText, additionalError.length > 0 && styles.error]}
+                                                    style={[styles.flex, styles.inputText]}
                                                     placeholder="N/A"
                                                     placeholderTextColor={colors.fontPlaceholder}
                                                     onChangeText={(text) => additionalSetter(text)}
-                                                    onBlur={() => {
-                                                        additionalErrorSetter(
-                                                            !additional.trim().length
-                                                                ? 'Error'
-                                                                : ''
-                                                        )
-                                                    }}
                                                 />
                                             </View>
                                         </View>
                                     </View>
                                 </View>
-                            </View>
-                            <View style={styles.addContainer}>
-                                <TouchableOpacity
-                                    activeOpacity={0}
+                                <MainBtn
+                                    loading={loading}
+                                    text="Add new address"
+                                    style={{ width: '90%' }}
                                     onPress={() => {
                                         if (validate()) {
-                                            navigation.navigate('AddressList')
+                                            mutate({
+                                                variables: {
+                                                    addressInput: {
+                                                        label: title.trim(),
+                                                        region: regionName.trim(),
+                                                        city: city.trim(),
+                                                        apartment: aptNumber.trim(),
+                                                        building: building.trim(),
+                                                        details: additional.trim()
+                                                    }
+                                                }
+                                            })
                                         }
                                     }}
-                                    style={styles.addBtn}
-                                >
-                                    <TextDefault textColor={colors.buttonText} H5>
-                                        {'Add new address'}
-                                    </TextDefault>
-                                </TouchableOpacity>
+                                />
                             </View>
                         </ScrollView>
                     </View>

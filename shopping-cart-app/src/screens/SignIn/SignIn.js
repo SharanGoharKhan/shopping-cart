@@ -19,6 +19,7 @@ import * as AppleAuthentication from 'expo-apple-authentication'
 import { useMutation, gql } from '@apollo/client'
 import UserContext from '../../context/User'
 import { FlashMessage } from '../../components/FlashMessage/FlashMessage'
+import MainBtn from '../../ui/Buttons/MainBtn';
 
 const {
     IOS_CLIENT_ID_GOOGLE,
@@ -34,7 +35,7 @@ function SignIn(props) {
     const navigation = useNavigation()
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
-    const [emailError, setEmailError] = useState('')
+    const [emailError, setEmailError] = useState(null)
     const [passwordError, setPasswordError] = useState(null)
     const [modalVisible, setModalVisible] = useState(false)
     const [loginButton, loginButtonSetter] = useState(null)
@@ -84,6 +85,7 @@ function SignIn(props) {
         return result
     }
     async function onCompleted(data) {
+        // console.log('login: ', data)
         try {
             // const trackingOpts = {
             //     id: data.login.userId,
@@ -101,12 +103,9 @@ function SignIn(props) {
     }
     function onError(error) {
         try {
-            console.log(JSON.stringify(error))
-
             console.log('graphql', error.message)
-            FlashMessage({
-                message: error.message
-            })
+            FlashMessage({ message: error.message, type: "warning", position: 'top' })
+            loginButtonSetter(null)
         } catch (e) {
             console.log(e)
         } finally {
@@ -174,15 +173,15 @@ function SignIn(props) {
                                 const googleUser = await _GoogleSignUp()
                                 if (googleUser) {
                                     const user = {
-                                      phone: '',
-                                      email: googleUser.email,
-                                      password: '',
-                                      name: googleUser.name,
-                                      picture: googleUser.photoUrl,
-                                      type: 'google'
+                                        phone: '',
+                                        email: googleUser.email,
+                                        password: '',
+                                        name: googleUser.name,
+                                        picture: googleUser.photoUrl,
+                                        type: 'google'
                                     }
                                     mutateLogin(user)
-                                  }
+                                }
                             }
 
                             }
@@ -207,21 +206,23 @@ function SignIn(props) {
                     : (
                         <TouchableOpacity
                             activeOpacity={0.7}
+                            onPressIn={() => {
+                                loginButtonSetter('Facebook')
+                            }}
                             onPress={async () => {
                                 const facebookUser = await _FacebookSignUp()
-                                console.log('facebook',facebookUser)
-                                // if (facebookUser) {
-                                //     const user = {
-                                //       facebookId: facebookUser.id,
-                                //       phone: '',
-                                //       email: facebookUser.email,
-                                //       password: '',
-                                //       name: facebookUser.name,
-                                //       picture: '',
-                                //       type: 'facebook'
-                                //     }
-                                //     mutateLogin(user)
-                                //   }
+                                if (facebookUser) {
+                                    const user = {
+                                        facebookId: facebookUser.id,
+                                        phone: '',
+                                        email: facebookUser.email,
+                                        password: '',
+                                        name: facebookUser.name,
+                                        picture: '',
+                                        type: 'facebook'
+                                    }
+                                    mutateLogin(user)
+                                }
                             }}
                             style={styles.socialBtn}>
                             <View style={styles.bgCircle}>
@@ -250,6 +251,7 @@ function SignIn(props) {
                 cornerRadius={3}
                 style={styles.appleBtn}
                 onPress={async () => {
+                    loginButtonSetter('Apple')
                     try {
                         const credential = await AppleAuthentication.signInAsync({
                             requestedScopes: [
@@ -272,7 +274,7 @@ function SignIn(props) {
                             }
                             mutateLogin(user)
                         }
-                        loginButtonSetter('Apple')
+
                     } catch (e) {
                         if (e.code === 'ERR_CANCELED') {
                             // handle that the user canceled the sign-in flow
@@ -291,37 +293,31 @@ function SignIn(props) {
 
     function rennderLogin() {
         return (
-            <View style={styles.LoginBtn}>
-                {(loading && loginButton === 'Login') ?
-                    <Spinner backColor="rgba(0,0,0,0.1)" spinnerColor={'#FFF'} />
-                    : (
-                        <TouchableOpacity
-                            style={styles.main_brown_btn}
-                            activeOpacity={0.7}
-                            onPress={async () => {
-                                const user = {
-                                    email: email,
-                                    password: password,
-                                    type: 'default'
-                                }
+            <MainBtn
+                loading={(loading && loginButton === 'Login')}
+                onPress={async () => {
+                    loginButtonSetter('Login')
+                    const user = {
+                        email: email,
+                        password: password,
+                        type: 'default'
+                    }
 
-                                if (validateCredentials()) {
-                                    mutateLogin(user)
-                                }
-                            }}>
-                            <TextDefault textColor={colors.buttonText} H5>
-                                {'Sign In'}
-                            </TextDefault>
-                        </TouchableOpacity>
-                    )}
-            </View>
+                    if (validateCredentials()) {
+                        mutateLogin(user)
+                    }
+                }}
+                text="Sign In"
+            />
         )
     }
 
     return (
         <SafeAreaView style={[styles.flex, styles.safeAreaStyle]}>
             <KeyboardAvoidingView behavior={Platform.OS === "ios" ? "padding" : "height"} style={[styles.flex, { marginTop: Platform.OS === 'ios' ? 0 : StatusBar.currentHeight }]}>
-                <ScrollView showsVerticalScrollIndicator={false}
+                <ScrollView
+                    style={styles.flex}
+                    showsVerticalScrollIndicator={false}
                     contentContainerStyle={{ flexGrow: 1 }}>
                     <View style={styles.container}>
                         <ForgotPassword
@@ -355,16 +351,15 @@ function SignIn(props) {
                                         </TextDefault>
                                     </View>
                                     <View style={styles.bcMain}>
-                                        <Text>{emailError}</Text>
                                         <TextField
+                                            error={!!emailError}
                                             placeholder="Email"
                                             onChange={event => {
                                                 setEmail(event.nativeEvent.text.toLowerCase().trim())
                                             }}
                                         />
-                                        <Text>{passwordError}</Text>
-
                                         <TextField
+                                            error={!!passwordError}
                                             placeholder="Password"
                                             password={true}
                                             onChange={event => {

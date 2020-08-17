@@ -1,6 +1,6 @@
 import { Dimensions, Platform, StatusBar, StyleSheet } from 'react-native';
-import { alignment, fontStyles, colors, scale, verticalScale } from '../../utils';
-const { height, width } = Dimensions.get('window');
+import { alignment, colors, scale } from '../../utils';
+const { width } = Dimensions.get('window');
 
 const styles = StyleSheet.create({
     flex: {
@@ -13,14 +13,6 @@ const styles = StyleSheet.create({
     grayBackground: {
         backgroundColor: colors.backgroudGray,
         marginTop: Platform.OS === 'ios' ? 0 : StatusBar.currentHeight
-    },
-    tabContainer: {
-        width: '90%',
-        height: '8%',
-        alignSelf: 'center',
-        flexDirection: 'row',
-        alignItems: 'center',
-        justifyContent: 'space-between',
     },
     headerText: {
         height: scale(80),
