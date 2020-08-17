@@ -49,7 +49,7 @@ function AdminNavbar(props) {
                   href="#pablo"
                   onClick={e => {
                     e.preventDefault()
-                    localStorage.removeItem('user-enatega')
+                    localStorage.removeItem('user-ecommero')
                     props.history.push('/auth/login')
                   }}>
                   <i className="ni ni-user-run" />

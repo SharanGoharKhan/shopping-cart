@@ -19,33 +19,36 @@ import {
   UncontrolledAlert
 } from 'reactstrap'
 
-import { cloudinary_upload_url, cloudinary_category } from '../../config/config'
-import { editCategory, createCategory, categories } from '../../apollo/server'
+import { cloudinary_upload_url, cloudinary_sub_categories } from '../../config/config'
+import { editSubCategory, createSubCategory, subCategories, categories } from '../../apollo/server'
 
-const CREATE_CATEGORY = gql`
-  ${createCategory}
+const CREATE_SUB_CATEGORY = gql`
+  ${createSubCategory}
 `
-const EDIT_CATEGORY = gql`
-  ${editCategory}
+const EDIT_SUB_CATEGORY = gql`
+  ${editSubCategory}
 `
 const GET_CATEGORIES = gql`
   ${categories}
 `
+const GET_SUB_CATEGORIES = gql`
+  ${subCategories}
+`
 
 function SubCategory(props) {
   const [title, titleSetter] = useState(
-    props.category ? props.category.title : ''
+    props.subCategory ? props.subCategory.title : ''
   )
   const [imgMenu, imgMenuSetter] = useState(
-    props.category ? props.category.img_menu : ''
+    props.subCategory ? props.subCategory.image : ''
   )
-  const [category, categorySetter] = useState('')
+  const [category, categorySetter] = useState(props.subCategory ? props.subCategory.category._id : '')
   const [errorMessage, errorMessageSetter] = useState('')
   const [successMessage, successMessageSetter] = useState('')
   const [categoryError, categoryErrorSetter] = useState(null)
   const [titleError, titleErrorSetter] = useState(null)
-  const mutation = props.category ? EDIT_CATEGORY : CREATE_CATEGORY
-  const [mutate, { loading }] = useMutation(mutation, { onCompleted, onError, refetchQueries: [{ query: GET_CATEGORIES }] })
+  const mutation = props.subCategory ? EDIT_SUB_CATEGORY : CREATE_SUB_CATEGORY
+  const [mutate, { loading }] = useMutation(mutation, { onCompleted, onError, refetchQueries: [{ query: GET_SUB_CATEGORIES }] })
   const { data, loading: loadingCategory, error } = useQuery(GET_CATEGORIES)
 
   const filterImage = event => {
@@ -86,16 +89,16 @@ function SubCategory(props) {
     titleErrorSetter(null)
     categoryErrorSetter(null)
   }
-  const onCompleted = data => {
-    const message = props.category
+  function onCompleted(data) {
+    const message = props.subCategory
       ? 'Category updated successfully'
       : 'Category added successfully'
     successMessageSetter(message)
     errorMessageSetter('')
-    if (!props.category) clearFields()
+    if (!props.subCategory) clearFields()
     setTimeout(hideMessage, 3000)
   }
-  const onError = () => {
+  function onError  (error)  {
     const message = 'Action failed. Please Try again'
     successMessageSetter('')
     errorMessageSetter(message)
@@ -116,14 +119,14 @@ function SubCategory(props) {
     if (imgMenu === '') {
       return imgMenu
     }
-    if (props.category && props.category.img_menu === imgMenu) {
+    if (props.subCategory && props.subCategory.image === imgMenu) {
       return imgMenu
     }
 
     const apiUrl = cloudinary_upload_url
     const data = {
       file: imgMenu,
-      upload_preset: cloudinary_category
+      upload_preset: cloudinary_sub_categories
     }
     try {
       const result = await fetch(apiUrl, {
@@ -148,7 +151,7 @@ function SubCategory(props) {
             <Row className="align-items-center">
               <Col xs="8">
                 <h3 className="mb-0">
-                  {props.category ? t('Edit Category') : t('Add Category')}
+                  {props.subCategory ? t('Edit Sub Category') : t('Add Sub Category')}
                 </h3>
               </Col>
             </Row>
@@ -281,12 +284,15 @@ function SubCategory(props) {
                           successMessageSetter('')
                           errorMessageSetter('')
                           if (onSubmitValidaiton()) {
+                            const image = await uploadImageToCloudinary()
                             mutate({
                               variables: {
-                                _id: props.category
-                                  ? props.category._id
+                                _id: props.subCategory
+                                  ? props.subCategory._id
                                   : '',
-                                title: title
+                                title: title,
+                                image: image ? image : 'https://www.btklsby.go.id/images/placeholder/camera.jpg',
+                                category: category
                               }
                             })
                           }

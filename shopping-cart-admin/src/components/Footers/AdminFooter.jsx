@@ -1,6 +1,7 @@
 /*eslint-disable*/
 import React from 'react'
 import { withTranslation } from 'react-i18next'
+import { server_url } from '../../config/config'
 // reactstrap components
 import { Row, Col, Nav, NavItem, NavLink } from 'reactstrap'
 
@@ -14,10 +15,10 @@ function Footer(props) {
             © {t('2019-20')}{' '}
             <a
               className="font-weight-bold ml-1"
-              href="https://enatega.com/"
+              href={server_url}
               rel="noopener noreferrer"
               target="_blank">
-              Enatega
+              Ecommero
             </a>
           </div>
         </Col>
@@ -26,10 +27,10 @@ function Footer(props) {
           <Nav className="nav-footer justify-content-center justify-content-xl-end">
             <NavItem>
               <NavLink
-                href="https://enatega.com/"
+                href={server_url}
                 rel="noopener noreferrer"
                 target="_blank">
-                Enatega
+                Ecommero
               </NavLink>
             </NavItem>
 

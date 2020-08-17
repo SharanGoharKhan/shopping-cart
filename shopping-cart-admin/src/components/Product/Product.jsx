@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import {
     Alert,
     Card,
@@ -12,85 +12,55 @@ import {
     Label
 } from 'reactstrap'
 import { withTranslation } from 'react-i18next'
-import { categories } from '../../apollo/server'
+import { subCategories, getAttributesByCategory, createProduct, getProducts, editProduct } from '../../apollo/server'
 import { validateFunc } from '../../constraints/constraints'
 import Loader from 'react-loader-spinner'
-import { gql, useQuery } from '@apollo/client'
+import { gql, useQuery, useLazyQuery, useMutation } from '@apollo/client'
 import { useRef } from 'react'
 import classNames from 'classnames'
+import MultiImageInput from 'react-multiple-image-input';
 
+import { cloudinary_upload_url, cloudinary_products } from '../../config/config'
 
-const ATTRIBUTE = [
-    {
-        _id: '1', title: 'Color', options: [{ _id: '11', title: 'red' }, { _id: '12', title: "green" }]
-    },
-    {
-        _id: '2', title: 'Size', options: [{ _id: '21', title: 'small' }, { _id: '22', title: "Large" }]
-    },
-]
 
 
 const GET_CATEGORIES = gql`
-  ${categories}
+  ${subCategories}
+`
+
+const GET_PRODUCTS = gql`
+  ${getProducts}
+`
+
+const GET_ATTRIBUTES = gql`
+    ${getAttributesByCategory}
+`
+
+const CREATE_PRODUCT = gql`
+    ${createProduct}
+`
+const EDIT_PRODUCT = gql`
+    ${editProduct}
 `
 
 function Product(props) {
     const formRef = useRef()
-    const category = null
-    const productTitle = ''
-    const productCode = ''
-    const description = ''
-    const mainPrice = ''
-    const isFeatured = false
+    const product = props.product ? props.product : null
+    const category = product ? product.subCategory._id : null
+    const productTitle = product ? product.title : ''
+    const productCode = product ? product.skuCode : ''
+    const description = product ? product.description : ''
+    const mainPrice = product ? product.price : ''
+    const isFeatured = product ? product.featured : false
+    const mutation = props.product ? EDIT_PRODUCT : CREATE_PRODUCT
     const { data, loading: loadingCategory, error: dropDownError } = useQuery(GET_CATEGORIES)
-    const product = null
-    // const [products, productsSetter] = useState(
-    //     product || [
-    //         {
-    //             productTitle: '',
-    //             productDescriptio: '',
-    //             productCode: '',
-    //             mainPrice: '',
-    //             category: '',
-    //             attribute: []
-    //         }
-    //     ]
-    // )
-    const [attributes, setAttribute] = useState(
-        ATTRIBUTE.map(({ _id, title, options }) => (
-            {
-                _id,
-                title,
-                options: options.map(option => ({
-                    ...option,
-                    quantity: '',
-                    price: '',
-                    check: false
-                }))
-            }
-        ))
-    )
+    const [getAttributes, { loading: attributesLoading, data: attributesData }] = useLazyQuery(GET_ATTRIBUTES);
+    const [mutate, { loading }] = useMutation(mutation, { onCompleted, onError, refetchQueries: [{ query: GET_PRODUCTS }] })
 
-    // const option = null
-    // const [options, optionsSetter] = useState(
-    //     option || [
-    //         {
-    //             optionName: '',
-    //             optionError: null
-    //         }
-    //     ]
-    // )
-    // const productAttributes = ATTRIBUTE.map(({ title, options }) => {
-    //     return {
-    //         title,
-    //         options: options.map(option => ({
-    //             ...option._id,
-    //             quantityAttribute: '',
-    //             priceAttribute: ''
-    //         })
-    //         )
-    //     }
-    // })
+
+
+    const [attributes, setAttribute] = useState([])
+    console.log('props', props.product)
 
     const [success, successSetter] = useState('')
     const [error, errorSetter] = useState('')
@@ -100,27 +70,56 @@ function Product(props) {
     const [descriptionError, setDescriptionError] = useState(null)
     const [mainPriceError, setMainPriceError] = useState(null)
     const [attributeError, setAttrbuteError] = useState(null)
-    // const [images, imagesSetter] = useState(["", "", "", "", ""])
-    const [images, imagesSetter] = useState([
-        { index: 0, preview: "", raw: "" }
-    ]);
+    const [mutationLoader, setMutationLoader] = useState(false)
+    const [image, setImage] = useState(product ? Object.assign({}, product.image) : {});
 
     const onBlur = (setter, field, state) => {
         setter(!validateFunc({ [field]: state }, field))
+    }
+
+    const clearFields = () => {
+        // formRef.reset()
+        setProductTitleError('')
+        setImage({})
+        categoryErrorSetter(null)
+    }
+
+    function onCompleted(data) {
+        setMutationLoader(false)
+        const message = props.product
+            ? 'Product updated successfully'
+            : 'Product added successfully'
+        successSetter(message)
+        errorSetter('')
+        if (!props.product) clearFields()
+        setTimeout(hideMessage, 3000)
+    }
+    function onError(error) {
+        console.log('error',error)
+        setMutationLoader(false)
+        const message = 'Action failed. Please Try again'
+        successSetter('')
+        errorSetter(message)
+        setTimeout(hideMessage, 3000)
+    }
+
+    const hideMessage = () => {
+        successSetter('')
+        errorSetter('')
     }
 
     function handleAttributeChange(event, outerIndex, index, type) {
         const attribute = attributes
 
         if (type === 'price') {
-            attribute[outerIndex]['options'][index]['price'] = event.target.value
+            attribute[outerIndex]['options'][index]['price'] = Number(event.target.value)
             setAttribute([...attribute])
         } else if (type === 'check') {
             attribute[outerIndex]['options'][index]['check'] = event.target.checked
             setAttribute([...attribute])
         }
         else {
-            attribute[outerIndex]['options'][index]['quantity'] = event.target.value
+            attribute[outerIndex]['options'][index]['stock'] = Number(event.target.value)
             setAttribute([...attribute])
         }
     }
@@ -131,24 +130,24 @@ function Product(props) {
         const titleError = !validateFunc({ productTitle: formRef.current['input-productTitle'].value }, 'productTitle')
         const codeError = !validateFunc({ productCode: formRef.current['input-productCode'].value }, 'productCode')
         const priceError = !validateFunc({ productPrice: formRef.current['input-mainPrice'].value }, 'productPrice')
-        // const categoryError = !validateFunc({ sub_category: formRef.current['sub_category'].value }, 'sub_category')
+        const categoryError = !validateFunc({ sub_category: formRef.current['sub_category'].value }, 'sub_category')
         const attribute = attributes
         attribute.map(item => item.options.map(i => {
             if (i.check)
                 checkCount = checkCount + 1
         }))
         const checkList = attribute.filter(item => item.options.some(i => (
-            i.check && !validateFunc({ optionPrice: i.price }, 'optionPrice') && !validateFunc({ optionQuantity: i.quantity }, 'optionQuantity')
+            i.check && !validateFunc({ optionPrice: i.price }, 'optionPrice') && !validateFunc({ optionQuantity: i.stock }, 'optionQuantity')
         )))
 
         if (checkList.length < 1) {
-            mainError = false
+            return false
         }
         else {
-            if (checkCount === checkList.length)
-                mainError = true
-            else
-                mainError = false
+            // if (checkCount === checkList.length)
+            mainError = true
+            // else
+            // mainError = false
         }
         setProductCodeError(codeError)
         setProductTitleError(titleError)
@@ -163,34 +162,83 @@ function Product(props) {
         errorSetter('')
     }
 
-    // const imageContainer = () => {
-    //     switch (true) {
-    //         case images.length > 0:
-    //             return <Images images={images} removeImage={this.removeImage} />
-    //         default:
-    //             return <Buttons onChange={this.onChange} />
-    //     }
-    // }
-
-    const handleChange = (event, ind) => {
-        if (event.target.files.length) {
-
-            const image = images
-            console.log('i: ', ind)
-            console.log('Imges: ', image)
-            console.log('index: ', image[ind])
-            image[ind] = {
-                index: ind,
-                preview: URL.createObjectURL(event.target.files[0]),
-                raw: event.target.files[0]
-            }
-            imagesSetter([...image]);
-            if (images.length < 5 && ind === image.length - 1) {
-                image.push({ index: ind + 1, preview: '', raw: '' })
-                imagesSetter([...image])
-            }
+    const uploadImageToCloudinary = async (imgMenu, index) => {
+        if (imgMenu === '') {
+            return imgMenu
         }
-    };
+        const dataImage = image
+        if (product && dataImage[index] === imgMenu) {
+            return imgMenu
+        }
+
+        const apiUrl = cloudinary_upload_url
+        const data = {
+            file: imgMenu,
+            upload_preset: cloudinary_products
+        }
+        try {
+            const result = await fetch(apiUrl, {
+                body: JSON.stringify(data),
+                headers: {
+                    'content-type': 'application/json'
+                },
+                method: 'POST'
+            })
+            const imageData = await result.json()
+            return imageData.secure_url
+        } catch (e) {
+            console.log(e)
+        }
+    }
+    useEffect(() => {
+        getSelectedAttributes()
+    }, [])
+
+    function getSelectedAttributes() {
+        if (props.product && props.product.subCategory) {
+            getAttributes({ variables: { subCategory: formRef.current['sub_category'].value } })
+        }
+    }
+
+    useEffect(() => {
+        populateAttributes()
+    }, [attributesData])
+
+    function populateAttributes() {
+        if (attributesData && attributesData.getOptionGroupsByCategory) {
+            const data = attributesData.getOptionGroupsByCategory
+                .map((attribute) => (
+                    {
+                        _id: attribute._id,
+                        title: attribute.title,
+                        options: attribute.options.map(({ _id, title }) => {
+                            if (product && product.attributes) {
+                                const selectedAttribute = product.attributes.find(item => item._id === attribute._id)
+                                if (selectedAttribute && selectedAttribute.options) {
+                                    const selectedOption = selectedAttribute.options.find(data => data._id === _id)
+                                    if (selectedOption)
+                                        return {
+                                            _id,
+                                            title,
+                                            stock: selectedOption.stock,
+                                            price: selectedOption.price,
+                                            check: true
+                                        }
+                                }
+                            }
+                            return {
+                                _id,
+                                title,
+                                stock: 0,
+                                price: 0,
+                                check: false
+                            }
+                        })
+                    }
+                ))
+            setAttribute(data)
+        }
+    }
 
     const { t } = props
     return (
@@ -279,6 +327,7 @@ function Product(props) {
                                             }>
                                             <Input
                                                 className="form-control-alternative"
+                                                name="input-description"
                                                 id="input-description"
                                                 placeholder="e.g "
                                                 type="text"
@@ -304,6 +353,7 @@ function Product(props) {
                                             }>
                                             <Input
                                                 className="form-control-alternative"
+                                                name="input-mainPrice"
                                                 id="input-mainPrice"
                                                 placeholder="e.g 0"
                                                 type="number"
@@ -337,7 +387,10 @@ function Product(props) {
                                                     name="sub_category"
                                                     id="sub_category"
                                                     defaultValue={category}
-                                                    // onChange={handleChange}
+
+                                                    onChange={() => {
+                                                        getAttributes({ variables: { subCategory: formRef.current['sub_category'].value } })
+                                                    }}
                                                     onBlur={event => {
                                                         onBlur(
                                                             categoryErrorSetter,
@@ -355,11 +408,11 @@ function Product(props) {
                                                                 <option value={''}>
                                                                     {t('Select')}
                                                                 </option>)}
-                                                            {data.categories.map(category => (
+                                                            {data.subCategories.map(subCategory => (
                                                                 <option
-                                                                    value={category._id}
-                                                                    key={category._id}>
-                                                                    {category.title}
+                                                                    value={subCategory._id}
+                                                                    key={subCategory._id}>
+                                                                    {subCategory.category.title + ' / ' + subCategory.title}
                                                                 </option>
                                                             ))}
                                                         </>
@@ -411,7 +464,7 @@ function Product(props) {
                                                 <Row>
                                                     <Col lg='6'>
                                                         <label>
-                                                            {outerIndex + 1}{'-'}{options.title}
+                                                            {outerIndex + 1}{' - '}{options.title}
                                                         </label>
                                                     </Col>
                                                     <Col lg='3'>
@@ -454,7 +507,7 @@ function Product(props) {
                                                                 <FormGroup>
                                                                     <Input
                                                                         className="form-control-alternative"
-                                                                        value={option.quantity}
+                                                                        value={option.stock}
                                                                         id="input-quantity"
                                                                         placeholder="e.g 1"
                                                                         type="number"
@@ -499,41 +552,19 @@ function Product(props) {
                                     <Col>
                                         <h3 className="mb-2"> {t('Food Image')}</h3>
                                         <Row>
-                                            {images.map((item, ind) => {
-                                                console.log('map:', ind)
-                                                return (
-                                                    <Col lg='2' key={ind}>
-                                                        <FormGroup>
-                                                            <div>
-                                                                <label htmlFor={item.index}>
-                                                                    {item.preview ? (
-                                                                        <img src={item.preview} alt="dummy" width="80" height="80" />
-                                                                    ) : (
-                                                                            <>
-                                                                                <span className="fa-stack fa-2x mt-3 mb-2">
-                                                                                    <i className="fas fa-square fa-stack-2x" />
-                                                                                    <i class="fas fa-upload fa-stack-1x fa-inverse"></i>
-                                                                                </span>
-                                                                            </>
-                                                                        )}
-                                                                </label>
-                                                                <input
-                                                                    type="file"
-                                                                    id={item.index}
-                                                                    style={{ display: "none" }}
-                                                                    onChange={(event) => handleChange(event, item.index)}
-                                                                />
-                                                            </div>
-                                                        </FormGroup>
-                                                    </Col>
-                                                )
-                                            })}
+                                            <MultiImageInput
+                                                images={image}
+                                                setImages={setImage}
+                                                theme="light"
+                                                allowCrop={false}
+                                            // cropConfig={{ crop, ruleOfThirds: true }}
+                                            />
                                         </Row>
                                     </Col>
                                 </Row>
                                 <Row className='mt-2 justify-content-center'>
                                     <Col lg="4">
-                                        {false ?
+                                        {mutationLoader ?
                                             <Button disabled color="primary" onClick={() => null}>
                                                 <Loader
                                                     type="TailSpin"
@@ -546,9 +577,38 @@ function Product(props) {
                                             <Button
                                                 color="primary"
                                                 size="lg"
+                                                // disabled={mutationLoading}
                                                 className="btn-block"
-                                                onClick={() => {
-                                                    validate()
+                                                onClick={async (e) => {
+                                                    if (validate()) {
+                                                        setMutationLoader(true)
+                                                        const objToArray = Object.keys(image).map((key) => [image[key]]);
+                                                        const images = objToArray.map(async (item, index) => {
+                                                            return await uploadImageToCloudinary(item, index)
+                                                        }
+                                                        )
+                                                        const selectedAttributes = attributes.map(attribute => {
+                                                            return {
+                                                                ...attribute, options: attribute.options.filter(option => option.check).map(({ check, ...item }) => ({ ...item }))
+                                                            }
+                                                        })
+                                                        const cloudinaryImages = await Promise.all(images)
+                                                        mutate({
+                                                            variables: {
+                                                                productInput: {
+                                                                    _id: product ? product._id : '',
+                                                                    title: formRef.current['input-productTitle'].value,
+                                                                    skuCode: formRef.current['input-productCode'].value,
+                                                                    price: Number(formRef.current['input-mainPrice'].value),
+                                                                    image: cloudinaryImages,
+                                                                    attributes: selectedAttributes,
+                                                                    description: formRef.current['input-description'].value,
+                                                                    subCategory: formRef.current['sub_category'].value,
+                                                                    featured: Boolean(formRef.current['input-featured'].value)
+                                                                }
+                                                            }
+                                                        })
+                                                    }
                                                 }}>
                                                 {'Save'}
                                             </Button>

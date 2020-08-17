@@ -7,7 +7,7 @@ import CustomLoader from '../components/Loader/CustomLoader'
 import { Badge, Card, Container, Row, Modal } from 'reactstrap'
 // core components
 import Header from 'components/Headers/Header.jsx'
-import { categories, deleteCategory, getFoods } from '../apollo/server'
+import { categories, deleteCategory } from '../apollo/server'
 import DataTable from 'react-data-table-component'
 import orderBy from 'lodash/orderBy'
 import Loader from 'react-loader-spinner'
@@ -19,14 +19,12 @@ const GET_CATEGORIES = gql`
 const DELETE_CATEGORY = gql`
   ${deleteCategory}
 `
-const GET_FOODS = gql`
-  ${getFoods}
-`
+
 
 const Category = props => {
   const [editModal, setEditModal] = useState(false)
   const [category, setCategory] = useState(null)
-  const [deleteCategory, { loading: deleteLoading }] = useMutation(DELETE_CATEGORY, { refetchQueries: [{ query: GET_CATEGORIES }, { query: GET_FOODS }] })
+  const [deleteCategory, { loading: deleteLoading }] = useMutation(DELETE_CATEGORY, { refetchQueries: [{ query: GET_CATEGORIES }] })
   const { data, loading, error } = useQuery(GET_CATEGORIES, { variables: { page: 0 } })
   const toggleModal = category => {
     setEditModal(!editModal)

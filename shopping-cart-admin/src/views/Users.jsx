@@ -44,7 +44,7 @@ const Users = props => {
       cell: row => (
         <>
           {transformToNewline(
-            row.addresses.length ? row.addresses[0].delivery_address : '',
+            row.addresses.length ? row.addresses[0].deliveryAddress : '',
             15
           )}
         </>
