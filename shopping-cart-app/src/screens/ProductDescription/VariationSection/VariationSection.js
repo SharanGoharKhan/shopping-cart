@@ -1,24 +1,30 @@
 import React, { useState } from 'react';
-import {
-    View, Text, TouchableOpacity,
-} from 'react-native';
-import { colors } from '../../../utils/colors';
+import { View, TouchableOpacity } from 'react-native';
+import { colors } from '../../../utils';
 import styles from './styles'
+import { TextDefault } from '../../../components';
 
 function VariationSection(props) {
-    const [selected, setSelected] = useState(props.variation.items[0])
+    const selected = props.selected
+    function onChange(item) {
+        props.handleAttributes(props.variation._id, item)
+    }
     return (
         <View>
-            <Text style={[styles.textStyle, styles.boldStyle]}>{props.variation.title}</Text>
+            <TextDefault textColor={colors.fontSecondColor} bold>
+                {props.variation.title}
+            </TextDefault>
             <View style={styles.mainContainer}>
                 {
-                    props.variation.items.map((item, index) => (
+                    props.variation.options.map((item, index) => (
                         <TouchableOpacity
-                            key={index}
+                            key={item._id}
                             activeOpacity={0}
-                            onPress={() => setSelected(item)}
-                            style={item === selected ? [styles.container, { borderColor: colors.blueColor }] : styles.container}>
-                            <Text style={item === selected ? [styles.textStyle, { color: colors.blueColor }] : styles.textStyle}>{item}</Text>
+                            onPress={() => onChange(item)}
+                            style={item._id === selected ? [styles.container, { borderColor: colors.blueColor }] : styles.container}>
+                            <TextDefault textColor={item._id === selected ? colors.blueColor : colors.fontSecondColor}>
+                                {item.title}
+                            </TextDefault>
                         </TouchableOpacity>
                     ))
                 }

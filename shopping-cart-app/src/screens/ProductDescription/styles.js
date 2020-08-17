@@ -1,8 +1,5 @@
 import { Dimensions, Platform, StatusBar, StyleSheet } from 'react-native';
-import { verticalScale, scale } from '../../utils/scaling';
-import { colors } from '../../utils/colors';
-import { fontStyles } from '../../utils/fontStyles';
-import { alignment } from '../../utils';
+import { alignment, fontStyles, colors, scale, verticalScale } from '../../utils';
 const { height, width } = Dimensions.get('window');
 
 const styles = StyleSheet.create({
@@ -52,13 +49,13 @@ const styles = StyleSheet.create({
         height: '100%',
         justifyContent: 'center',
         alignItems: 'center',
+        ...alignment.PxSmall
     },
     caroselPriceSubContainer: {
-        minWidth: '80%',
-        height: '35%',
         justifyContent: 'center',
         alignItems: 'center',
-        backgroundColor: colors.grayLinesColor
+        ...alignment.Psmall,
+        backgroundColor: colors.grayLinesColor,
     },
     mainScrollViewContainer: {
         backgroundColor: colors.themeBackground,
@@ -78,11 +75,6 @@ const styles = StyleSheet.create({
         width: '100%'
     },
     scrollViewStyle: {
-        height: height * 0.08,
-    },
-    caroselItemsContainer: {
-        flexDirection: 'row',
-        width: '100%',
         height: height * 0.08,
     },
     caroselItems: {
@@ -105,10 +97,10 @@ const styles = StyleSheet.create({
         fontSize: verticalScale(16),
     },
     spacer: {
-        marginTop: scale(20)
+        ...alignment.MTlarge
     },
     smallSpacer: {
-        marginTop: scale(5)
+        ...alignment.MTxSmall
     },
     variationContainer: {
         width: '90%',

@@ -68,7 +68,7 @@ module.exports = {
           isActive: true
         })
         return products.map(product => {
-          return transformFood(product)
+          return transformProduct(product)
         })
         //     }
       } catch (err) {

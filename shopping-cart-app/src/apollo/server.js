@@ -142,7 +142,59 @@ export const subCategories = `query SubCategoriesById($id: String!){
   }
 }`
 
+export const categoryProduct = `query ProductByCategory($id:String!){
+  productByCategory(subCategory:$id){
+    _id
+    title
+    image
+    price
+    featured
+    subCategory{
+      title
+    }
+  }
+}`
 
+export const productById=`query ProductByIds($id:String!){
+  productByIds(ids:[$id]){
+    _id
+    title
+    description
+    image
+    price
+    featured
+    subCategory{
+      _id
+      title
+    }
+    attributes{
+      _id
+      title
+      options
+      {
+        _id
+        title
+        price
+        stock
+      }
+    }
+  }
+}`
+
+export const produccts = `query{
+  products{
+    _id
+    title
+    price
+    featured
+    price
+    image
+    subCategory{
+      _id
+      title
+    }
+  }
+}`
 
 export const getConfiguration = `query Configuration{
     configuration{

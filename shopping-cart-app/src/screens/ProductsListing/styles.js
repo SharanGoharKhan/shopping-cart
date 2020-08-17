@@ -1,8 +1,9 @@
 import { scale } from '../../utils/scaling';
-import { Platform, StatusBar } from 'react-native';
-import { colors } from '../../utils/colors';
+import { Platform, StatusBar, Dimensions, StyleSheet } from 'react-native';
+import { alignment, colors } from '../../utils';
+const { width } = Dimensions.get('window');
 
-export default {
+const styles = StyleSheet.create({
     flex: {
         flex: 1,
     },
@@ -13,11 +14,17 @@ export default {
         marginTop: Platform.OS === 'ios' ? 0 : StatusBar.currentHeight,
         backgroundColor: colors.themeBackground
     },
-    productCard: {
-        marginLeft: '5%',
-        width: '42%',
-        height: scale(225),
-        marginTop: scale(10),
-        marginBottom: scale(20)
+    categoryContainer: {
+        flexGrow: 1,
+        paddingLeft: width * 0.05,
+        paddingRight: width * 0.05,
+        ...alignment.MTlarge
     },
-};
+    productCard: {
+        marginRight: width * 0.1,
+        height: scale(200),
+        width: width * 0.4,
+        ...alignment.MBlarge
+    },
+})
+export default styles

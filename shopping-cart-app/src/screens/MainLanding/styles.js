@@ -46,13 +46,13 @@ const styles = StyleSheet.create({
         fontSize: scale(16)
     },
     itemCardContainer: {
-        width: scale(200),
-        height: scale(225),
-        marginTop: scale(10),
-        marginRight: scale(20),
+        width: scale(180),
+        height: scale(210),
         borderRadius: scale(5),
         borderColor: colors.whiteColor,
-        borderWidth: scale(4)
+        borderWidth: scale(3),
+        ...alignment.MTsmall,
+        ...alignment.MRlarge
     },
     categoryContainer: {
         width: '90%',
