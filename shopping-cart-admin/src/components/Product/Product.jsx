@@ -54,8 +54,8 @@ function Product(props) {
     const isFeatured = product ? product.featured : false
     const mutation = props.product ? EDIT_PRODUCT : CREATE_PRODUCT
     const { data, loading: loadingCategory, error: dropDownError } = useQuery(GET_CATEGORIES)
-    const [getAttributes, { loading: attributesLoading, data: attributesData }] = useLazyQuery(GET_ATTRIBUTES);
-    const [mutate, { loading }] = useMutation(mutation, { onCompleted, onError, refetchQueries: [{ query: GET_PRODUCTS }] })
+    const [getAttributes, { data: attributesData }] = useLazyQuery(GET_ATTRIBUTES);
+    const [mutate] = useMutation(mutation, { onCompleted, onError, refetchQueries: [{ query: GET_PRODUCTS }] })
 
 
 
@@ -141,6 +141,7 @@ function Product(props) {
             if (i.check) {
                 checkCount.push(i)
             }
+            return null
         }))
 
         const checkList = checkCount.filter(i => (
@@ -161,6 +162,7 @@ function Product(props) {
         setMainPriceError(priceError)
         categoryErrorSetter(categoryError)
         setAttrbuteError(mainError)
+
         return mainError && categoryError && codeError && titleError && priceError
     }
 

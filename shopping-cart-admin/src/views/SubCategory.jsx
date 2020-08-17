@@ -4,14 +4,13 @@ import { withTranslation } from 'react-i18next'
 import SubCategoryComponent from '../components/SubCategory/SubCategory'
 import CustomLoader from '../components/Loader/CustomLoader'
 // reactstrap components
-import { Badge, Card, Container, Row, Modal } from 'reactstrap'
+import { Card, Container, Row, Modal } from 'reactstrap'
 // core components
 import Header from 'components/Headers/Header.jsx'
 import { subCategories, deleteSubCategory } from '../apollo/server'
 import DataTable from 'react-data-table-component'
 import orderBy from 'lodash/orderBy'
-import Loader from 'react-loader-spinner'
-import { gql, useMutation, useQuery } from '@apollo/client'
+import { gql, useQuery } from '@apollo/client'
 import ActionButton from '../components/ActionButton/ActionButton'
 
 const GET_SUB_CATEGORIES = gql`

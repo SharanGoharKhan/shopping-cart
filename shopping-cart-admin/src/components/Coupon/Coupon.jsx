@@ -79,17 +79,6 @@ function Coupan(props) {
     successMessageSetter('')
     errorMessageSetter(message)
   }
-  const update = (proxy, { data: { createCoupon } }) => {
-    try {
-      if (createCoupon) {
-        const data = proxy.readQuery({ query: GET_COUPONS })
-        data.coupons.push(createCoupon)
-        proxy.writeQuery({ query: GET_COUPONS, data })
-      }
-    } catch (error) {
-      console.error(error)
-    }
-  }
   const { t } = props
   return (
     <Row>

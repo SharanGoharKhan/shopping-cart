@@ -53,7 +53,6 @@ const GET_CONFIGURATION = gql`
 function Order(props) {
   const { order } = props
   const [reason, reasonSetter] = useState('')
-  const [selectedRider, selectedRiderSetter] = useState('')
   const [selectedStatus, selectedStatusSetter] = useState('')
   const [selectedPaymentStatus, selectedPaymentStatusSetter] = useState('')
   const [customerCollapse, customerCollapseSetter] = useState(true)
@@ -100,12 +99,6 @@ function Order(props) {
   }
   const onError = error => {
     errorSetter(error.message)
-  }
-  const onChangeRider = event => {
-    selectedRiderSetter(event.target.value)
-  }
-  const validateRider = () => {
-    return !!selectedRider
   }
   const validateStatus = () => {
     return !!selectedStatus

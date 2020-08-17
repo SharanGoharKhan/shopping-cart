@@ -4,7 +4,6 @@ import {
     Card,
     CardHeader,
     CardBody,
-    Form,
     Row,
     Col,
     FormGroup,
@@ -34,7 +33,7 @@ ${subCategories}`
 function Attribute(props) {
     const formRef = useRef()
     const mutation = props.attribute ? EDIT_ATTRIBUTE : CREATE_ATTRIBUTE
-    const { data, loading: loadingCategory, error: dropDownError } = useQuery(GET_CATEGORIES)
+    const { data, loading: loadingCategory } = useQuery(GET_CATEGORIES)
     const [mutate, { loading }] = useMutation(mutation, { onCompleted, onError, refetchQueries: [{ query: GET_ATTRIBUTES }] })
 
     const option = props.attribute ? props.attribute.options.map(({ _id, title }) => ({
