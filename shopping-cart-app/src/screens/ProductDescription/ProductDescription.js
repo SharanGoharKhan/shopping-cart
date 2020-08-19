@@ -1,7 +1,7 @@
 import React, { useState, useContext, useEffect } from 'react';
 import { View, TouchableOpacity, Image, FlatList } from 'react-native';
 import styles from './styles';
-import { BackHeader, BottomTab, TextDefault, Spinner } from '../../components';
+import { BackHeader, BottomTab, TextDefault, Spinner, FlashMessage } from '../../components';
 import Button from '../../ui/Buttons/Button';
 import VariationSection from './VariationSection/VariationSection';
 import { SafeAreaView } from 'react-native-safe-area-context';
@@ -9,11 +9,8 @@ import { useNavigation, useRoute } from '@react-navigation/native';
 import { colors, alignment, scale } from '../../utils';
 import { MaterialIcons } from '@expo/vector-icons';
 import UserContext from '../../context/User';
-import { gql, useQuery } from '@apollo/client';
-import { productById } from '../../apollo/server';
 import ConfigurationContext from '../../context/Configuration';
 
-const GET_PRODUCT = gql`${productById}`
 
 const REVIEW = [
     {
@@ -45,17 +42,16 @@ const REVIEW = [
 function ProductDescription(props) {
     const navigation = useNavigation()
     const route = useRoute()
-    const productId = route.params?.productId ?? null
-    const { isLoggedIn } = useContext(UserContext)
-    const { data: productData, loading, error } = useQuery(GET_PRODUCT, { variables: { id: productId } })
+    const product = route.params?.product ?? null
+    const { addCartItem } = useContext(UserContext)
     const configuration = useContext(ConfigurationContext)
-    const [caroselImage, setCaroselImage] = useState(productData?.productByIds[0]?.image[0] ?? null)
+    const [caroselImage, setCaroselImage] = useState(product.image[0] ?? null)
     const [price, priceSetter] = useState(null)
-    const itemAttributes = productData?.productByIds[0]?.attributes ?
-        productData.productByIds[0].attributes.map(attribute => {
+    const itemAttributes = product?.attributes ?
+        product.attributes.map(attribute => {
             return {
                 ...attribute,
-                options: attribute.options[0]
+                options: attribute.options.filter(item => item.stock >0)[0]
             }
         })
         : []
@@ -63,30 +59,34 @@ function ProductDescription(props) {
 
     // console.log("ads: ", attributes)
 
-    if (productId === null) {
+    if (product === null) {
         navigation.goBack()
         return null
     }
 
     useEffect(() => {
-        if (productData.productByIds[0])
+        if (product)
             calculateprice()
-    }, [productId])
+    }, [product])
 
     function calculateprice() {
         let totalPrice = 0
-        const mainPrice = productData?.productByIds[0]?.price ?? 0
+        const mainPrice = product?.price ?? 0
         attributes.map(attribute => totalPrice += attribute.options.price)
         totalPrice += mainPrice
         priceSetter(totalPrice)
     }
 
     function handleAttributes(id, option) {
-        const attribute = attributes
-        const objIndex = attribute.findIndex(item => item._id === id)
-        attribute[objIndex].options = option
-        attributeSetter([...attribute])
-        calculateprice()
+        if (option.stock > 0) {
+            const attribute = attributes
+            const objIndex = attribute.findIndex(item => item._id === id)
+            attribute[objIndex].options = option
+            attributeSetter([...attribute])
+            calculateprice()
+        } else {
+            FlashMessage({message:"Out Of Stock"})
+        }
     }
 
     function ListHeader() {
@@ -99,7 +99,7 @@ function ProductDescription(props) {
                                 <TextDefault
                                     textColor={colors.fontMainColor}
                                     numberOfLines={2}>
-                                    {productData.productByIds[0].title}
+                                    {product.title}
                                 </TextDefault>
                             </View>
                             <View style={styles.caroselPriceContainer}>
@@ -114,7 +114,7 @@ function ProductDescription(props) {
                     <View style={styles.caroselMainImgCnt}>
                         <Image
                             source={
-                                productData &&
+                                product &&
                                 { uri: caroselImage }
                             }
                             resizeMode="cover"
@@ -125,7 +125,7 @@ function ProductDescription(props) {
                         <FlatList
                             style={{ flex: 1 }}
                             horizontal
-                            data={productData?.productByIds[0]?.image ?? []}
+                            data={product?.image ?? []}
                             keyExtractor={(item, index) => index.toString()}
                             showsHorizontalScrollIndicator={false}
                             renderItem={({ item, index }) => (
@@ -145,7 +145,7 @@ function ProductDescription(props) {
                     <View style={styles.spacer} />
                     <View style={styles.variationContainer}>
                         {
-                            productData.productByIds[0].attributes.map((variation, index) => (
+                            product.attributes.map((variation, index) => (
                                 <VariationSection
                                     key={variation._id}
                                     variation={variation}
@@ -157,7 +157,7 @@ function ProductDescription(props) {
                             {'Description'}
                         </TextDefault>
                         <TextDefault textColor={colors.fontSecondColor} style={styles.smallSpacer}>
-                            {productData.productByIds[0].description}
+                            {product.description}
                         </TextDefault>
                     </View>
                 </View>
@@ -174,11 +174,9 @@ function ProductDescription(props) {
                 loading={false}
                 containerStyle={styles.shoppingCartContainer}
                 textStyle={styles.shoppingCartText}
-                onPress={() => {
-                    isLoggedIn ?
-                        navigation.navigate('ShoppingCart')
-                        :
-                        navigation.navigate('SignIn')
+                onPress={async () => {
+                    await addCartItem(product._id,product.title,1,price,attributes)
+                    navigation.navigate('ShoppingCart')
                 }}
                 text="Add to Shopping Cart" />
         )
@@ -189,58 +187,54 @@ function ProductDescription(props) {
                 <BackHeader
                     title="Description"
                     backPressed={() => props.navigation.goBack()} />
-                {error ? <TextError text={error.message} /> :
-                    loading ? <Spinner /> :
+                <FlatList
+                    data={REVIEW}
+                    style={styles.mainScrollViewContainer}
+                    showsVerticalScrollIndicator={false}
+                    contentContainerStyle={styles.contentStyle}
+                    keyExtractor={(item, index) => index.toString()}
+                    ListFooterComponentStyle={alignment.MTlarge}
+                    ItemSeparatorComponent={() => <View style={styles.line} />}
+                    ListHeaderComponent={<ListHeader />}
+                    ListFooterComponent={<ListFooter />}
+                    renderItem={({ item }) => (
+                        <View style={styles.review}>
+                            <View style={styles.reviewerContainer} >
+                                <TextDefault
+                                    textColor={colors.fontMainColor}
 
-                        <FlatList
-                            data={REVIEW}
-                            style={styles.mainScrollViewContainer}
-                            showsVerticalScrollIndicator={false}
-                            contentContainerStyle={styles.contentStyle}
-                            keyExtractor={(item, index) => index.toString()}
-                            ListFooterComponentStyle={alignment.MTlarge}
-                            ItemSeparatorComponent={() => <View style={styles.line} />}
-                            ListHeaderComponent={<ListHeader />}
-                            ListFooterComponent={<ListFooter />}
-                            renderItem={({ item }) => (
-                                <View style={styles.review}>
-                                    <View style={styles.reviewerContainer} >
-                                        <TextDefault
-                                            textColor={colors.fontMainColor}
-
-                                        >
-                                            {item.name}
-                                        </TextDefault>
-                                        <View style={styles.ratingContainer}>
-                                            {
-                                                Array(5).fill(1).map((value, index) => {
-                                                    if (index < item.rating) {
-                                                        return <MaterialIcons key={index} name="star" size={scale(10)} color={'blue'} />
-                                                    }
-                                                    else if (index >= item.rating && index < 5) {
-                                                        return <MaterialIcons key={index} name="star" size={scale(10)} color={colors.fontPlaceholder} />
-                                                    }
-                                                })
+                                >
+                                    {item.name}
+                                </TextDefault>
+                                <View style={styles.ratingContainer}>
+                                    {
+                                        Array(5).fill(1).map((value, index) => {
+                                            if (index < item.rating) {
+                                                return <MaterialIcons key={index} name="star" size={scale(10)} color={'blue'} />
                                             }
-                                        </View>
-                                    </View>
-                                    <TextDefault
-                                        style={styles.dateReview}
-                                        textColor={colors.fontSecondColor}
-                                        numberOfLines={1}
-                                        small>
-                                        {item.date}
-                                    </TextDefault>
-                                    <TextDefault
-                                        style={styles.textReview}
-                                        textColor={colors.fontSecondColor}
-                                        small>
-                                        {item.description}
-                                    </TextDefault>
+                                            else if (index >= item.rating && index < 5) {
+                                                return <MaterialIcons key={index} name="star" size={scale(10)} color={colors.fontPlaceholder} />
+                                            }
+                                        })
+                                    }
                                 </View>
-                            )}
-                        />
-                }
+                            </View>
+                            <TextDefault
+                                style={styles.dateReview}
+                                textColor={colors.fontSecondColor}
+                                numberOfLines={1}
+                                small>
+                                {item.date}
+                            </TextDefault>
+                            <TextDefault
+                                style={styles.textReview}
+                                textColor={colors.fontSecondColor}
+                                small>
+                                {item.description}
+                            </TextDefault>
+                        </View>
+                    )}
+                />
                 <BottomTab />
             </View>
         </SafeAreaView>

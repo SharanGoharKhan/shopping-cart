@@ -7,11 +7,10 @@ import { useNavigation } from '@react-navigation/native'
 
 function ProductCard(props) {
     const navigation = useNavigation()
-    console.log(props)
     return (
         <TouchableOpacity
             activeOpacity={1}
-            onPress={() => navigation.navigate('ProductDescription', { productId: props._id })}
+            onPress={() => navigation.navigate('ProductDescription', { product: props })}
             style={[styles.cardContainer, props.styles]}>
             <View style={styles.topCardContainer}>
                 <Image

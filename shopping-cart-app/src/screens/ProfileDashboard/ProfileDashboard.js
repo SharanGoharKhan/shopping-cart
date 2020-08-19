@@ -11,7 +11,7 @@ import { colors } from '../../utils';
 
 function ProfileDashboard(props) {
   const navigation = useNavigation()
-  const { profile } = useContext(UserContext)
+  const { orders } = useContext(UserContext)
   return (
     <SafeAreaView style={[styles.flex, styles.safeAreaStyle]}>
       <View style={[styles.flex, styles.mainContainer]}>
@@ -19,13 +19,13 @@ function ProfileDashboard(props) {
         <View style={styles.tabContainer}>
           <TouchableOpacity>
             <TextDefault textColor={colors.fontBrown} H5>
-              {'My Active Orders (3)'}
+              My Active Orders ({orders?orders.filter(o => ['PENDING', 'PICKED', 'ACCEPTED'].includes(o.orderStatus)).length:0})
             </TextDefault>
           </TouchableOpacity>
           <TouchableOpacity
             onPress={() => props.navigation.navigate('PreviousOrders')}>
             <TextDefault H5>
-              {'Previous Orders (35)'}
+              Previous Orders ({orders?orders.filter(o => ['DELIVERED'].includes(o.orderStatus)).length:0})
             </TextDefault>
           </TouchableOpacity>
         </View>

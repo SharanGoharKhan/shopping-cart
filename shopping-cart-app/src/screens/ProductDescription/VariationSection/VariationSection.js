@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { View, TouchableOpacity } from 'react-native';
+import { View, TouchableOpacity, Text } from 'react-native';
 import { colors } from '../../../utils';
 import styles from './styles'
 import { TextDefault } from '../../../components';
@@ -16,17 +16,21 @@ function VariationSection(props) {
             </TextDefault>
             <View style={styles.mainContainer}>
                 {
-                    props.variation.options.map((item, index) => (
-                        <TouchableOpacity
-                            key={item._id}
-                            activeOpacity={0}
-                            onPress={() => onChange(item)}
-                            style={item._id === selected ? [styles.container, { borderColor: colors.blueColor }] : styles.container}>
-                            <TextDefault textColor={item._id === selected ? colors.blueColor : colors.fontSecondColor}>
-                                {item.title}
-                            </TextDefault>
-                        </TouchableOpacity>
-                    ))
+                    props.variation.options.map((item, index) => {
+                        if (item.stock > 0) {
+                            return (<TouchableOpacity
+                                key={item._id}
+                                activeOpacity={0}
+                                onPress={() => onChange(item)}
+                                style={item._id === selected ? [styles.container, { borderColor: colors.blueColor }] : styles.container}>
+                                <TextDefault textColor={item._id === selected ? colors.blueColor : colors.fontSecondColor}>
+                                    {item.title}
+                                </TextDefault>
+                            </TouchableOpacity>)
+                        }else{
+                            return 
+                        }
+                    })
                 }
             </View>
         </View>

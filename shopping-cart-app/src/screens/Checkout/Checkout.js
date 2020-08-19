@@ -1,21 +1,24 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import { View, Image, ScrollView, TouchableOpacity } from 'react-native';
 import styles from './styles';
 import { verticalScale, colors, alignment, scale } from '../../utils';
 import BlueBtn from '../../ui/Buttons/BlueBtn';
 import { SafeAreaView } from 'react-native-safe-area-context';
-import { BackHeader, BottomTab, TextDefault, CheckoutReceipt } from '../../components';
+import { BackHeader, BottomTab, TextDefault, CheckoutReceipt, FlashMessage } from '../../components';
 import { useNavigation, useRoute } from '@react-navigation/native';
 import { AntDesign } from '@expo/vector-icons'
+import UserContext from '../../context/User'
+import ConfigurationContext from '../../context/Configuration'
+import { stripeCurrencies, paypalCurrencies } from '../../utils/currencies'
+import { useMutation, gql } from '@apollo/client'
+import { placeOrder } from '../../apollo/server'
 
+const PLACEORDER = gql`
+  ${placeOrder}
+`
 /* Config/Constants
 ============================================================================= */
-const DATA = [
-    { name: 'Leather Crossbody MID Bag', amount: 3, price: 120 },
-    { name: 'Ves Bread Storage', amount: 1, price: 35 },
-    { name: 'Ves Bread Storage', amount: 1, price: 35 },
-    { name: 'Ves Bread Storage', amount: 1, price: 35 },
-];
+
 const COD_PAYMENT = {
     payment: 'COD',
     label: 'COD',
@@ -29,6 +32,16 @@ function Checkout() {
     const [paymentMethod, setPaymentMethod] = useState(null)
     const payObj = route.params ? route.params.PayObject : null
     const [modalVisible, setModalVisible] = useState(false)
+    const { isLoggedIn, cart, profile, clearCart } = useContext(UserContext)
+    const configuration = useContext(ConfigurationContext)
+
+    const [mutateOrder, { loading: loadingOrderMutation }] = useMutation(
+        PLACEORDER,
+        {
+            onCompleted: placeOrderCompleted,
+            onError: errorPlaceOrder
+        }
+    )
 
     useEffect(() => {
         setPaymentMethod(payObj || COD_PAYMENT)
@@ -42,19 +55,143 @@ function Checkout() {
         setModalVisible(false)
     }
 
+    const address =
+        isLoggedIn && profile.addresses
+            ? profile.addresses.filter(a => a.selected)[0]
+            : null
+
+    function validateOrder() {
+        if (!cart.length) {
+            FlashMessage({
+                message: 'Cart is empty !'
+            })
+            return false
+        }
+        if (!address) {
+            FlashMessage({
+                message: 'Set delivery address before checkout'
+            })
+            return false
+        }
+        if (!paymentMethod) {
+            FlashMessage({
+                message: 'Set payment method before checkout'
+            })
+            return false
+        }
+        if (profile.phone.length < 1) {
+            navigation.navigate('EditProfile', { backScreen: 'Cart' })
+            return false
+        }
+        return true
+    }
+
+    function checkPaymentMethod(currency) {
+        if (paymentMethod.payment === 'STRIPE') {
+            return stripeCurrencies.find(val => val.currency === currency)
+        }
+        if (paymentMethod.payment === 'PAYPAL') {
+            return paypalCurrencies.find(val => val.currency === currency)
+        }
+        return true
+    }
+
+    function transformOrder(cartData) {
+        return cartData.map(product => {
+            return {
+                productId: product._id,
+                product: product.product,
+                quantity: product.quantity,
+                selectedAttributes: product.selectedAttributes,
+                price: parseFloat(product.price)
+            }
+        })
+    }
+
+    async function onPayment() {
+        if (checkPaymentMethod(configuration.currency)) {
+            const Items = transformOrder(cart)
+            // console.log('Items', JSON.stringify(Items))
+            mutateOrder({
+                variables: {
+                    orderInput: Items,
+                    paymentMethod: paymentMethod.payment,
+                    couponCode: "",
+                    address: {
+                        label: address.label,
+                        region: address.region,
+                        city: address.city,
+                        apartment: address.apartment,
+                        building: address.building,
+                        details: address.details,
+                    }
+                }
+            })
+        } else {
+            FlashMessage({
+                message: i18n.t('paymentNotSupported')
+            })
+        }
+    }
+
+    function placeOrderCompleted(data) {
+        if (paymentMethod.payment === 'COD') {
+            clearCart()
+            navigation.reset({
+                routes: [
+                    { name: 'MainLanding' },
+                    {
+                        name: 'OrderDetail',
+                        params: { _id: data.placeOrder._id, clearCart: true }
+                    }
+                ]
+            })
+        } else if (paymentMethod.payment === 'PAYPAL') {
+            navigation.replace('Paypal', {
+                _id: data.placeOrder.orderId,
+                currency: configuration.currency
+            })
+        } else if (paymentMethod.payment === 'STRIPE') {
+            navigation.replace('Stripe', {
+                _id: data.placeOrder.orderId,
+                amount: data.placeOrder.orderAmount,
+                email: data.placeOrder.user.email,
+                currency: configuration.currency
+            })
+        }
+    }
+    function errorPlaceOrder(error) {
+        console.log('error',JSON.stringify(error))
+        FlashMessage({
+            message: error.message
+        })
+    }
+
+
+    function calculatePrice(deliveryCharges = 0) {
+        let itemTotal = 0
+        cart.forEach(cartItem => {
+            if (!cartItem.price) {
+                return
+            }
+            itemTotal += cartItem.price * cartItem.quantity
+        })
+        return (itemTotal + deliveryCharges).toFixed(2)
+    }
+
     function renderItem(item, index) {
         return (
             <View key={index} style={styles.listItem}>
                 <View style={styles.simpleRow}>
                     <TextDefault textColor={colors.fontSecondColor}>
-                        {item.amount}x{' '}
+                        {item.quantity}x{' '}
                     </TextDefault>
                     <TextDefault textColor={colors.fontSecondColor}>
-                        {item.name}
+                        {item.product}
                     </TextDefault>
                 </View>
                 <TextDefault textColor={colors.fontBlue}>
-                    {item.price}{' '}PKR
+                    {configuration.currencySymbol} {item.price * item.quantity}
                 </TextDefault>
             </View>
         );
@@ -100,111 +237,133 @@ function Checkout() {
                                         }}
                                     />
                                     <TextDefault textColor={colors.fontBlue} style={styles.deliveryDate} >
-                                        {' Delivery Date: 2/10/2019'}
+                                        {' Delivery Expected : 3-4 days'}
                                     </TextDefault>
                                 </View>
-                                <View style={styles.items}>
-                                    {DATA.map((item, index) => renderItem(item, index))}
-                                </View>
+                                {!!cart && cart.length > 0 && <View style={styles.items}>
+                                    {cart.map((item, index) => renderItem(item, index))}
+                                </View>}
                             </View>
-
-                            <View style={[styles.address, styles.line]}>
-                                <TextDefault textColor={colors.fontBrown} H5>
-                                    {'Deliver to'}
-                                </TextDefault>
-                                <View style={styles.addressDetail}>
-                                    <TextDefault textColor={colors.fontSecondColor}>
-                                        Sharan Khan
-                                    </TextDefault>
-                                    <TextDefault textColor={colors.fontSecondColor}>
-                                        sharan.gohar@gmail.com
-                                    </TextDefault>
-                                    <TextDefault textColor={colors.fontSecondColor}>
-                                        +92 3339461270
-                                    </TextDefault>
-                                </View>
-                                <View style={styles.borderBottom}>
-                                    <View style={styles.row}>
-                                        <TextDefault textColor={colors.fontMainColor}>
-                                            Pakistan
+                            {isLoggedIn &&
+                                <>
+                                    <View style={[styles.address, styles.line]}>
+                                        <TextDefault textColor={colors.fontBrown} H5>
+                                            {'Deliver to'}
                                         </TextDefault>
-                                        <TouchableOpacity
-                                            activeOpacity={0}
-                                            onPress={() => navigation.navigate('AddressList')}>
-                                            <Image
-                                                source={require('../../assets/icons/edit.png')}
-                                                style={{
-                                                    height: verticalScale(16),
-                                                    width: verticalScale(16),
-                                                }}
-                                            />
-                                        </TouchableOpacity>
-                                    </View>
-                                    <TextDefault textColor={colors.fontMainColor}>
-                                        Ali Sabah Alsaelem,
-                                        </TextDefault>
-                                    <TextDefault textColor={colors.fontMainColor}>
-                                        Block 4, AParatment 102
-                                        </TextDefault>
-                                    <TextDefault textColor={colors.fontMainColor}>
-                                        P.O Box 65000
-                                        </TextDefault>
-                                </View>
-                            </View>
-                            <View style={styles.dealContainer}>
-                                <View style={[styles.floatView]}>
-                                    <TextDefault
-                                        textColor={colors.fontSecondColor}
-                                        style={{ width: '70%' }}>
-                                        {'Payment Method'}
-                                    </TextDefault>
-                                    <TouchableOpacity
-                                        activeOpacity={0.7}
-                                        style={styles.changeText}
-                                        onPress={() => navigation.navigate('Payment', { payment: paymentMethod })}
-                                    >
-                                        <TextDefault
-                                            textColor={colors.buttonBackground}
-                                            right>
-                                            {'Change'}
-                                        </TextDefault>
-                                    </TouchableOpacity>
-                                </View>
-                                {paymentMethod === null ? (
-                                    <TouchableOpacity
-                                        style={styles.floatView}
-                                        onPress={() => navigation.navigate('Payment', { payment: paymentMethod })}>
-                                        <AntDesign
-                                            name="plus"
-                                            size={scale(20)}
-                                            color={colors.buttonBackground}
-                                        />
-                                        <TextDefault
-                                            textColor={colors.buttonBackground}
-                                            style={[alignment.PLsmall, { width: '70%' }]}>
-                                            {'Payment Method'}
-                                        </TextDefault>
-                                    </TouchableOpacity>
-                                ) : (
-                                        <TouchableOpacity
-                                            style={styles.floatView}
-                                            onPress={() => navigation.navigate('Payment', { payment: paymentMethod })}>
-                                            <View style={{ width: '10%' }}>
-                                                <Image
-                                                    resizeMode="cover"
-                                                    style={styles.iconStyle}
-                                                    source={paymentMethod.icon}
-                                                />
-                                            </View>
-                                            <TextDefault
-                                                textColor={colors.buttonBackground}
-                                                style={[alignment.PLsmall, { width: '90%' }]}>
-                                                {paymentMethod.label}
+                                        <View style={styles.addressDetail}>
+                                            <TextDefault textColor={colors.fontSecondColor}>
+                                                {profile.name}
                                             </TextDefault>
-                                        </TouchableOpacity>
-                                    )
-                                }
-                            </View>
+                                            <TextDefault textColor={colors.fontSecondColor}>
+                                                {profile.email}
+                                            </TextDefault>
+                                            <TextDefault textColor={colors.fontSecondColor}>
+                                                {profile.phone}
+                                            </TextDefault>
+                                        </View>
+                                        {!!address ? <View style={styles.borderBottom}>
+                                            <View style={styles.row}>
+                                                <TextDefault textColor={colors.fontMainColor}>
+                                                    {address.region}
+                                                </TextDefault>
+                                                <TouchableOpacity
+                                                    activeOpacity={0}
+                                                    onPress={() => navigation.navigate('AddressList')}>
+                                                    <Image
+                                                        source={require('../../assets/icons/edit.png')}
+                                                        style={{
+                                                            height: verticalScale(16),
+                                                            width: verticalScale(16),
+                                                        }}
+                                                    />
+                                                </TouchableOpacity>
+                                            </View>
+                                            <TextDefault textColor={colors.fontMainColor}>
+                                                {address.city},
+                                        </TextDefault>
+                                            <TextDefault textColor={colors.fontMainColor}>
+                                                {address.apartment}, {address.building}
+                                            </TextDefault>
+                                            {!!address.details && <TextDefault textColor={colors.fontMainColor}>
+                                                {address.details}
+                                            </TextDefault>}
+                                        </View> :
+                                            <View style={styles.borderBottom}>
+                                                <View style={styles.row}>
+                                                    <TextDefault textColor={colors.fontMainColor}>
+                                                        Select Address
+                                                    </TextDefault>
+                                                    <TouchableOpacity
+                                                        activeOpacity={0}
+                                                        onPress={() => navigation.navigate('AddressList')}>
+                                                        <Image
+                                                            source={require('../../assets/icons/edit.png')}
+                                                            style={{
+                                                                height: verticalScale(16),
+                                                                width: verticalScale(16),
+                                                            }}
+                                                        />
+                                                    </TouchableOpacity>
+                                                </View>
+                                            </View>
+                                        }
+
+                                    </View>
+                                    <View style={styles.dealContainer}>
+                                        <View style={[styles.floatView]}>
+                                            <TextDefault
+                                                textColor={colors.fontSecondColor}
+                                                style={{ width: '70%' }}>
+                                                {'Payment Method'}
+                                            </TextDefault>
+                                            <TouchableOpacity
+                                                activeOpacity={0.7}
+                                                style={styles.changeText}
+                                                onPress={() => navigation.navigate('Payment', { payment: paymentMethod })}
+                                            >
+                                                <TextDefault
+                                                    textColor={colors.buttonBackground}
+                                                    right>
+                                                    {'Change'}
+                                                </TextDefault>
+                                            </TouchableOpacity>
+                                        </View>
+                                        {paymentMethod === null ? (
+                                            <TouchableOpacity
+                                                style={styles.floatView}
+                                                onPress={() => navigation.navigate('Payment', { payment: paymentMethod })}>
+                                                <AntDesign
+                                                    name="plus"
+                                                    size={scale(20)}
+                                                    color={colors.buttonBackground}
+                                                />
+                                                <TextDefault
+                                                    textColor={colors.buttonBackground}
+                                                    style={[alignment.PLsmall, { width: '70%' }]}>
+                                                    {'Payment Method'}
+                                                </TextDefault>
+                                            </TouchableOpacity>
+                                        ) : (
+                                                <TouchableOpacity
+                                                    style={styles.floatView}
+                                                    onPress={() => navigation.navigate('Payment', { payment: paymentMethod })}>
+                                                    <View style={{ width: '10%' }}>
+                                                        <Image
+                                                            resizeMode="cover"
+                                                            style={styles.iconStyle}
+                                                            source={paymentMethod.icon}
+                                                        />
+                                                    </View>
+                                                    <TextDefault
+                                                        textColor={colors.buttonBackground}
+                                                        style={[alignment.PLsmall, { width: '90%' }]}>
+                                                        {paymentMethod.label}
+                                                    </TextDefault>
+                                                </TouchableOpacity>
+                                            )
+                                        }
+                                    </View>
+                                </>}
                         </View>
 
                         <View style={styles.main_bot}>
@@ -214,7 +373,7 @@ function Checkout() {
                                         {'Sub Total'}
                                     </TextDefault>
                                     <TextDefault textColor={colors.fontMainColor} H5>
-                                        {'191 PKR'}
+                                        {configuration.currencySymbol} {calculatePrice(0)}
                                     </TextDefault>
                                 </View>
                                 <View style={styles.row}>
@@ -222,7 +381,7 @@ function Checkout() {
                                         {'Delivery'}
                                     </TextDefault>
                                     <TextDefault textColor={colors.fontMainColor} H5>
-                                        {'1 PKR'}
+                                        {configuration.currencySymbol} {configuration.deliveryCharges}
                                     </TextDefault>
                                 </View>
                             </View>
@@ -232,15 +391,24 @@ function Checkout() {
                                         {'Total'}
                                     </TextDefault>
                                     <TextDefault textColor={colors.fontBlue} H5 bold>
-                                        {'192 PKR'}
+                                        {configuration.currencySymbol} {calculatePrice(configuration.deliveryCharges)}
                                     </TextDefault>
                                 </View>
                             </View>
                             <View style={styles.submit_container}>
-                                <BlueBtn
-                                    onPress={() => showModal()}
+                                {isLoggedIn ? <BlueBtn
+                                    loading={loadingOrderMutation}
+                                    onPress={() => {
+                                        // navigation.navigate('OrderDetail')
+                                        if (validateOrder()) onPayment()
+                                    }}
                                     text="Order Now"
-                                />
+                                /> :
+                                    <BlueBtn
+                                        onPress={() => navigation.navigate('SignIn')}
+                                        text="Login/Create Account"
+                                    />
+                                }
                             </View>
                         </View>
                     </View>
