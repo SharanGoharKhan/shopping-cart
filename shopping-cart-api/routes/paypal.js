@@ -26,82 +26,56 @@ var CURRENCY = 'USD'
 var CURRENCY_SYMBOL = '$'
 var isInitialized = false
 
-const initializePaypal = async() => {
+const initializePaypal = async () => {
   const configuration = await Configuration.findOne()
   if (!configuration) return (isInitialized = false)
   paypal.configure({
     mode: configuration.sandbox ? 'sandbox' : 'live', // sandbox or live
-    client_id: configuration.client_id,
-    client_secret: configuration.client_secret
+    client_id: configuration.clientId,
+    client_secret: configuration.clientSecret
   })
-  DELIVERY_CHARGES = configuration.delivery_charges
+  DELIVERY_CHARGES = configuration.deliveryCharges
   CURRENCY = configuration.currency
-  CURRENCY_SYMBOL = configuration.currency_symbol
+  CURRENCY_SYMBOL = configuration.currencySymbol
   isInitialized = true
 }
 
-router.get('/', async(req, res) => {
+router.get('/', async (req, res) => {
   await initializePaypal()
   if (!isInitialized) return res.render('cancel')
   console.log('/', req.query.id)
   return res.render('index', { id: req.query.id })
 })
-router.get('/payment', async(req, res) => {
+router.get('/payment', async (req, res) => {
   if (!isInitialized) await initializePaypal()
   if (!isInitialized) return res.render('cancel')
   console.log('payment')
   // get order information from paypal table against this id
-  const paypalOrder = await Paypal.findOne({ order_id: req.query.id })
+  const paypalOrder = await Paypal.findOne({ orderId: req.query.id })
   if (!paypalOrder) {
     return res.redirect(`${process.env.SERVER_URL}paypal/cancel`)
   }
-
-  const itemsFood = await Item.find({
-    _id: { $in: paypalOrder.items }
-  }).populate('food variation')
+  const configuration = await Configuration.findOne()
 
   const items_list = []
-
-  let price = 0
-  let addonsTitle = ''
+  let itemsTitle = ''
+  let price = 0.0
   let itemsT = []
-  itemsT = itemsFood.map(async item => {
+  itemsT = paypalOrder.items.map(async item => {
     items_list.push({
-      name: item.food.title,
-      sku: item.food.title,
-      price: item.variation.price,
+      name: item.product,
+      sku: item.product,
+      price: item.price,
       currency: CURRENCY,
       quantity: item.quantity
     })
-    let item_price = item.variation.price
-    if (item.addons && item.addons.length > 0) {
-      let addons = []
-      let optionsAll = []
-      item.addons.forEach(({ options }) => {
-        optionsAll = optionsAll.concat(options)
-      })
-      const populatedOptions = await Option.find({ _id: { $in: optionsAll } })
-      optionsAll.forEach(id => {
-        const option = populatedOptions.find(o => o.id === id)
-        item_price += option.price
-        items_list.push({
-          name: option.title,
-          sku: option.title,
-          price: option.price,
-          currency: CURRENCY,
-          quantity: item.quantity
-        })
-        addons.push(`${option.title} ${CURRENCY_SYMBOL}${option.price}`)
-      })
-      addonsTitle = addons.join(',')
-    }
+    let item_price = item.price
     price += item_price * item.quantity
-    return `${item.quantity} x ${item.food.title}(${item.variation.title}) ${CURRENCY_SYMBOL}${item.variation.price}`
+    return `${item.quantity} x ${item.product} ${configuration.currencySymbol}${item.price}`
   })
 
-  let description = await Promise.all(itemsT)
-  description = description.join(',') + `, ${addonsTitle}`
-  console.log(paypalOrder.coupon)
+  const description = await Promise.all(itemsT)
+  itemsTitle = description.join(',')
   if (paypalOrder.coupon) {
     const coupon = await Coupon.findOne({ code: paypalOrder.coupon })
     if (coupon) {
@@ -138,26 +112,26 @@ router.get('/payment', async(req, res) => {
             shipping: DELIVERY_CHARGES.toFixed(2)
           }
         },
-        description: description
+        description: itemsTitle
       }
     ]
   }
 
-  paypal.payment.create(create_payment_json, async function(error, payment) {
+  paypal.payment.create(create_payment_json, async function (error, payment) {
     if (error) {
-      console.log(error.response.details)
+      console.log(error)
       throw error
     } else {
       console.log('Create Payment Response')
       console.log(payment)
-      paypalOrder.paypal_create_payment = payment
+      paypalOrder.paypalCreatePayment = payment
       paypalOrder.paymentId = payment.id
       await paypalOrder.save()
       res.redirect(payment.links[1].href)
     }
   })
 })
-router.get('/success', async(req, res) => {
+router.get('/success', async (req, res) => {
   console.log('success')
   if (!isInitialized) await initializePaypal()
   if (!isInitialized) return res.render('cancel')
@@ -166,31 +140,13 @@ router.get('/success', async(req, res) => {
   var paymentId = req.query.paymentId
   const paypalOrder = await Paypal.findOne({ paymentId: paymentId })
   let user = await User.findById(paypalOrder.user)
-  const itemsFood = await Item.find({
-    _id: { $in: paypalOrder.items }
-  }).populate('food variation')
+  const configuration = await Configuration.findOne()
   let price = 0
-  let addonsTitle = ''
   let itemsT = []
-  itemsT = itemsFood.map(async item => {
-    let item_price = item.variation.price
-
-    if (item.addons && item.addons.length > 0) {
-      let addons = []
-      let optionsAll = []
-      item.addons.forEach(({ options }) => {
-        optionsAll = optionsAll.concat(options)
-      })
-      const populatedOptions = await Option.find({ _id: { $in: optionsAll } })
-      optionsAll.forEach(id => {
-        const option = populatedOptions.find(o => o.id === id)
-        item_price += option.price
-        addons.push(`${option.title} ${CURRENCY_SYMBOL}${option.price}`)
-      })
-      addonsTitle = addons.join(', ')
-    }
+  itemsT = paypalOrder.items.map(async item => {
+    let item_price = item.price
     price += item_price * item.quantity
-    return `${item.quantity} x ${item.food.title}(${item.variation.title}) ${CURRENCY_SYMBOL}${item.variation.price}`
+    return `${item.quantity} x ${item.product} ${configuration.currencySymbol}${item.price}`
   })
   let description = await Promise.all(itemsT)
   description = description.join(', ')
@@ -208,14 +164,14 @@ router.get('/success', async(req, res) => {
       {
         amount: {
           currency:
-            paypalOrder.paypal_create_payment.transactions[0].amount.currency,
-          total: paypalOrder.paypal_create_payment.transactions[0].amount.total
+            paypalOrder.paypalCreatePayment.transactions[0].amount.currency,
+          total: paypalOrder.paypalCreatePayment.transactions[0].amount.total
         }
       }
     ]
   }
 
-  paypal.payment.execute(paymentId, execute_payment_json, async function(
+  paypal.payment.execute(paymentId, execute_payment_json, async function (
     error,
     payment
   ) {
@@ -227,21 +183,22 @@ router.get('/success', async(req, res) => {
       console.log('Get Payment Response')
       if (payment.state === 'approved') {
         console.log(JSON.stringify(payment))
-        paypalOrder.paypal_payment_response = payment
+        paypalOrder.paypalPaymentResponse = payment
         const order = new Order({
           user: paypalOrder.user,
           items: paypalOrder.items,
-          delivery_address: paypalOrder.delivery_address, // dynamic address
-          order_id: paypalOrder.order_id,
-          order_status: 'PENDING',
-          payment_method: 'PAYPAL',
-          payment_status: 'PAID',
-          paid_amount:
-            paypalOrder.paypal_create_payment.transactions[0].amount.total,
-          order_amount: paypalOrder.order_amount,
-          delivery_charges: DELIVERY_CHARGES,
-          status_queue: {
+          deliveryAddress: paypalOrder.deliveryAddress, // dynamic address
+          orderId: paypalOrder.orderId,
+          orderStatus: 'PENDING',
+          paymentMethod: 'PAYPAL',
+          paymentStatus: 'PAID',
+          paidAmount:
+            paypalOrder.paypalCreatePayment.transactions[0].amount.total,
+          orderAmount: paypalOrder.orderAmount,
+          deliveryCharges: DELIVERY_CHARGES,
+          statusQueue: {
             pending: new Date(),
+            accepted: null,
             preparing: null,
             picked: null,
             delivered: null,
@@ -251,22 +208,20 @@ router.get('/success', async(req, res) => {
         const result = await order.save()
         await paypalOrder.save()
         const placeOrder_template = placeOrderTemplate([
-          result.order_id,
+          result.orderId,
           description,
-          result.delivery_address.delivery_address,
+          result.deliveryAddress,
           `${CURRENCY_SYMBOL} ${Number(price).toFixed(2)}`,
           `${CURRENCY_SYMBOL} ${DELIVERY_CHARGES}`,
-          `${CURRENCY_SYMBOL} ${result.paid_amount.toFixed(2)}`,
-          addonsTitle
+          `${CURRENCY_SYMBOL} ${result.paidAmount.toFixed(2)}`,
         ])
         const placeOrder_text = placeOrderText([
-          result.order_id,
+          result.orderId,
           description,
-          result.delivery_address.delivery_address,
+          result.deliveryAddress,
           `${CURRENCY_SYMBOL} ${Number(price).toFixed(2)}`,
           `${CURRENCY_SYMBOL} ${DELIVERY_CHARGES}`,
-          `${CURRENCY_SYMBOL} ${result.paid_amount.toFixed(2)}`,
-          addonsTitle
+          `${CURRENCY_SYMBOL} ${result.paidAmount.toFixed(2)}`
         ])
         user.orders.push(result._id)
         await user.save()
@@ -291,10 +246,10 @@ router.get('/success', async(req, res) => {
           placeOrder_text,
           placeOrder_template
         )
-        sendNotification(order.order_id)
+        sendNotification(order.orderId)
         console.log('success')
         res.render('success')
-        updateStockValue(itemsFood)
+        updateStockValue(paypalOrder.items)
         return
       }
       res.render('cancel')

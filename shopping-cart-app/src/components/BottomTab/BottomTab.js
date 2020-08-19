@@ -6,7 +6,7 @@ import UserContext from '../../context/User';
 
 function BottomTab() {
     const navigation = useNavigation()
-    const { isLoggedIn } = useContext(UserContext)
+    const { isLoggedIn, cartCount } = useContext(UserContext)
     return (
         <View style={styles.footerContainer}>
             <TouchableOpacity
@@ -61,7 +61,7 @@ function BottomTab() {
                         resizeMode="contain"
                     />
                     <View style={styles.shoppingBadgeContainer}>
-                        <Text style={styles.shoppingBadgeStyle}>x5</Text>
+                        <Text style={styles.shoppingBadgeStyle}>x{cartCount}</Text>
                     </View>
                 </View>
             </TouchableOpacity>

@@ -27,7 +27,7 @@ function ShoppingCard(props) {
                 <View style={styles.itemContainer}>
                     <View style={styles.itemDetailContainer}>
                         <TextDefault textColor={colors.fontMainColor} numberOfLines={1} H5>
-                            {props.item.product} {props.item.key}
+                            {props.item.product}
                         </TextDefault>
                         <TextDefault textColor={colors.fontBrown} numberOfLines={1} small>
                             {props.item?.subCategory ?? ''}

@@ -8,18 +8,21 @@ import BottomTab from '../../components/BottomTab/BottomTab';
 import { BackHeader } from '../../components/Headers/Headers';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import UserContext from '../../context/User'
+import { Spinner, TextError } from '../../components'
 import ConfigurationContext from '../../context/Configuration'
 
 function OrderDetail(props) {
     const navigation = useNavigation()
     const route = useRoute()
     const id = route.params._id ?? null
+    console.log('id',id)
     const cart = route.params.clearCart ?? false
-    const { orders, clearCart } = useContext(
+    const { orders, clearCart, loadingOrders, errorOrders } = useContext(
         UserContext
     )
     const configuration = useContext(ConfigurationContext)
     const order = orders.find(o => o._id === id)
+    console.log('orders',JSON.stringify(orders.map(({_id})=>_id)))
     useEffect(() => {
         return () => {
             if (cart) {
@@ -30,7 +33,9 @@ function OrderDetail(props) {
     async function clear() {
         await clearCart()
     }
-
+    
+    if(loadingOrders || !order) return  <Spinner />
+    if(errorOrders) return <TextError text={errorOrders}/>
     return (
         <SafeAreaView style={[styles.flex, styles.safeAreaStyle]}>
             <View style={[styles.flex, styles.mainContainer]}>

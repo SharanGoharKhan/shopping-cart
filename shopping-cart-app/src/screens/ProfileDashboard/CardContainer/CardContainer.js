@@ -19,7 +19,7 @@ function cardContainer(props) {
     } = useContext(UserContext)
 
     if (loadingOrders || !orders) return <Spinner />
-    if (errorOrders) return <TextError text={'error'} />
+    if (errorOrders) return <TextError text={JSON.stringify(errorOrders)} />
     return (
         <ScrollView style={styles.scrollViewContainer}>
             <View style={styles.mainCardContainer}>
@@ -33,7 +33,7 @@ function cardContainer(props) {
                         >
                             <View style={styles.leftContainer}>
                                 <Image
-                                    source={{ uri: data.image ?? 'https://res.cloudinary.com/ecommero/image/upload/v1597658445/products/su6dg1ufmtfuvrjbhgtj.png' }}
+                                    source={{ uri: data.items[0].image?? 'https://res.cloudinary.com/ecommero/image/upload/v1597658445/products/su6dg1ufmtfuvrjbhgtj.png' }}
                                     resizeMode="cover"
                                     style={[styles.imgResponsive, styles.roundedBorder]}
                                 />

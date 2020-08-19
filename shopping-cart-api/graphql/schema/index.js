@@ -29,6 +29,7 @@ const typeDefs = gql`
     _id: ID!
     product: String!
     productId: String!
+    image: String
     price: Float!
     quantity: Int!
     selectedAttributes:[SelectedAttributes!]
@@ -144,6 +145,7 @@ const typeDefs = gql`
 
   type OrderStatus {
     pending: String!
+    accepted: String
     preparing: String
     picked: String
     delivered: String
@@ -303,6 +305,7 @@ const typeDefs = gql`
     product: String!
     productId: String!
     price: Float!
+    image: String
     quantity: Int!
     selectedAttributes: [OrderAttributesInput!]
   }

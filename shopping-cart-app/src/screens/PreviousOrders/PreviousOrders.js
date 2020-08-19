@@ -52,7 +52,7 @@ function PreviousOrder(props) {
             >
                 <View style={styles.leftContainer}>
                     <Image
-                        source={{uri:card.image??'https://res.cloudinary.com/ecommero/image/upload/v1597658445/products/su6dg1ufmtfuvrjbhgtj.png'}}
+                        source={{uri:card.items[0].image??'https://res.cloudinary.com/ecommero/image/upload/v1597658445/products/su6dg1ufmtfuvrjbhgtj.png'}}
                         resizeMode="cover"
                         style={[styles.imgResponsive, styles.roundedBorder]}
                     />

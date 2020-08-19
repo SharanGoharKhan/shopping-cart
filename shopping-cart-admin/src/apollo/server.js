@@ -17,64 +17,53 @@ export const subscribePlaceOrder = `subscription SubscribePaceOrder{
   subscribePlaceOrder{
       order{
         _id
-      deliveryAddress{
-        deliveryAddress
-        details
-        label
-      }
-      deliveryCharges
-      orderAmount
-      paidAmount
-      paymentMethod
-      orderId
-      user{
+    orderId
+    paymentMethod
+    paymentStatus
+    status
+    orderStatus
+    orderAmount
+    reason
+    deliveryCharges
+    createdAt
+    deliveryAddress{
+      label
+      region
+      city
+      apartment
+      building
+      details
+    }
+    items{
+      _id
+      productId
+      product
+      price
+      quantity
+      selectedAttributes{
         _id
-        name
-        email
-        phone
-      }
-      items{
-        _id
-        food{
-          _id
-          title
-          description
-          img_url
-        }
-        variation{
+        title
+        option{
           _id
           title
           price
-          discounted
         }
-        addons{
-          _id
-          title
-          description
-          quantity_minimum
-          quantity_maximum
-          options{
-            _id
-            title
-            price
-          }
-        }
-        quantity
       }
-      reason
-      status
-      payment_status
-      order_status
       createdAt
-      review{
-        _id
-        rating
-        description
-      }
-      rider{
-        _id
-        name
-      }
+    }
+    user{
+      _id
+      name
+      phone
+      email
+    }
+    statusQueue{
+      pending
+      preparing
+      picked
+      delivered
+      cancelled
+    }
     }
     origin
   }
@@ -328,6 +317,7 @@ export const getOrders = `query Orders($page:Int,$rows:Int,$search:String){
         option{
           _id
           title
+          price
         }
       }
       createdAt
