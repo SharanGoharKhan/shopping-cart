@@ -17,10 +17,12 @@ const typeDefs = gql`
   }
 
   type OrderAddress {
-    location:Point
-    deliveryAddress: String!
-    details: String
     label: String!
+    region: String
+    city: String
+    apartment: String
+    building: String
+    details: String
   }
 
   type Item {

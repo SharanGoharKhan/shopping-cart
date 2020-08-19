@@ -1,7 +1,6 @@
 /* eslint-disable react/display-name */
 import React, { useEffect, useState } from 'react'
 import { withTranslation } from 'react-i18next'
-import { transformToNewline } from '../../utils/stringManipulations'
 import DataTable from 'react-data-table-component'
 import orderBy from 'lodash/orderBy'
 import CustomLoader from '../Loader/CustomLoader'
@@ -195,7 +194,7 @@ const OrdersData = props => {
       subHeaderComponent={subHeaderComponent()}
       pagination
       paginationServer
-      paginationTotalRows={data ? data.orderCount : []}
+      paginationTotalRows={data ? data.orderCount : 0}
       onChangeRowsPerPage={handlePerRowsChange}
       onChangePage={handlePageChange}
       conditionalRowStyles={conditionalRowStyles}
