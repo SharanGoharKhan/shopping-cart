@@ -192,12 +192,13 @@ export const UserProvider = props => {
     )
   }
 
-  const addCartItem = async (_id, product, quantity = 1, price, attributes) => {
+  const addCartItem = async (_id, product, image, quantity = 1, price, attributes) => {
       cart.push({
         key: uuid.v4(),
         _id:_id,
         product:product,
         quantity: quantity,
+        image: image,
         price: Number(price),
         selectedAttributes: attributes.map( ({_id,title,options}) =>{
           return {

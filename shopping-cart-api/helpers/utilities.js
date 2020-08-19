@@ -54,8 +54,8 @@ const sendNotification = async orderId => {
       },
       token: configuration.pushToken,
       notification: {
-        title: 'New Order | Enatega',
-        body: 'There are new orders in Enatega'
+        title: 'New Order | Ecommero',
+        body: 'There are new orders in Ecommero'
       },
       webpush: {
         fcm_options: {
@@ -152,10 +152,11 @@ const updateStockValue = async items => {
     let data = [];
      product.attributes.forEach( (productData,index) => {
        item.selectedAttributes.forEach(itemData => {
+         console.log('attribute',itemData)
         if (productData._id === itemData._id) {
           let options=[]
           for (var i = 0; i < productData.options.length; i++) {
-            if (productData.options[i]._id === itemData.options._id) {
+            if (productData.options[i]._id === itemData.option._id) {
               options.push({
                 ...productData.options[i],
                 stock: productData.options[i].stock - item.quantity
@@ -163,11 +164,11 @@ const updateStockValue = async items => {
             }else{
               options.push({...productData.options[i]})
             }
-            data.push({
-              ...productData,
-              options
-            })
           }
+          data.push({
+            ...productData,
+            options
+          })
         }
       })
     })

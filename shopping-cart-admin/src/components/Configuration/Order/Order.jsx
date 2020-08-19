@@ -68,7 +68,7 @@ function Order(props) {
                     <Input
                       className="form-control-alternative"
                       id="input-orderid"
-                      placeholder="e.g FOOD-"
+                      placeholder="e.g EC-"
                       type="text"
                       defaultValue={prefix}
                       onChange={event => {

@@ -11,10 +11,14 @@ import UserContext from '../../context/User'
 import ConfigurationContext from '../../context/Configuration'
 import { stripeCurrencies, paypalCurrencies } from '../../utils/currencies'
 import { useMutation, gql } from '@apollo/client'
-import { placeOrder } from '../../apollo/server'
+import { placeOrder, myOrders } from '../../apollo/server'
 
 const PLACEORDER = gql`
   ${placeOrder}
+`
+
+const ORDERS = gql`
+    ${myOrders}
 `
 /* Config/Constants
 ============================================================================= */
@@ -39,7 +43,9 @@ function Checkout() {
         PLACEORDER,
         {
             onCompleted: placeOrderCompleted,
-            onError: errorPlaceOrder
+            onError: errorPlaceOrder,
+            refetchQueries: [{ query: ORDERS}],
+            awaitRefetchQueries: true
         }
     )
 
@@ -102,6 +108,7 @@ function Checkout() {
                 productId: product._id,
                 product: product.product,
                 quantity: product.quantity,
+                image: product.image,
                 selectedAttributes: product.selectedAttributes,
                 price: parseFloat(product.price)
             }
@@ -136,7 +143,6 @@ function Checkout() {
 
     function placeOrderCompleted(data) {
         if (paymentMethod.payment === 'COD') {
-            clearCart()
             navigation.reset({
                 routes: [
                     { name: 'MainLanding' },
@@ -152,7 +158,7 @@ function Checkout() {
                 currency: configuration.currency
             })
         } else if (paymentMethod.payment === 'STRIPE') {
-            navigation.replace('Stripe', {
+            navigation.replace('StripeCheckout', {
                 _id: data.placeOrder.orderId,
                 amount: data.placeOrder.orderAmount,
                 email: data.placeOrder.user.email,
@@ -161,7 +167,7 @@ function Checkout() {
         }
     }
     function errorPlaceOrder(error) {
-        console.log('error',JSON.stringify(error))
+        console.log('error', JSON.stringify(error))
         FlashMessage({
             message: error.message
         })

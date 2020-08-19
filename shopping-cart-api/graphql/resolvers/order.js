@@ -200,6 +200,7 @@ module.exports = {
             price: item.price,
             productId: item.productId,
             product: item.product,
+            image: item.image,
             quantity: item.quantity,
             selectedAttributes: item.selectedAttributes
           })

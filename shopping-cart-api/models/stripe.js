@@ -1,5 +1,5 @@
 const mongoose = require('mongoose')
-const { pointSchema } = require('./point')
+const { itemSchema } = require('./item')
 const {
   payment_status,
   order_status,
@@ -15,17 +15,17 @@ const stripeSchema = new Schema(
       required: true
     },
     deliveryAddress: {
-      location:{
-        type: pointSchema,
-      },
-      deliveryAddress: { type: String, required: true },
-      details: { type: String },
-      label: { type: String, required: true }
+      label: { type: String, required: true },
+      region: { type: String, required: true },
+      city: { type: String, required: true },
+      apartment: { type: String, required: true },
+      building: { type: String, required: true },
+      details: String,
     },
     items: [
       {
-        type: Schema.Types.ObjectId,
-        ref: 'Item'
+        type: itemSchema,
+        required: true
       }
     ],
     user: {
