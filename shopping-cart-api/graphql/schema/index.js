@@ -40,7 +40,13 @@ const typeDefs = gql`
   type SelectedAttributes {
     _id: String!
     title: String!
-    options: Option!
+    option: SelectedOption!
+  }
+
+  type SelectedOption {
+    _id: String!
+    title: String!
+    price: Float
   }
 
   type PaymentType {
@@ -304,7 +310,7 @@ const typeDefs = gql`
   input OrderAttributesInput {
     _id: String!
     title: String!
-    options: OptionInput!
+    option: OptionInput!
   }
 
   input ProductInput {
@@ -364,6 +370,7 @@ const typeDefs = gql`
   input OptionInput {
     _id: String
     title: String!
+    price: Float
   }
 
   input OptionGroupInput {
@@ -413,6 +420,7 @@ const typeDefs = gql`
     order(id: String!): Order!
     orderCount: Int
     productByIds(ids: [String!]!): [Product!]
+    product(id:String!):Product!
     productByCategory(subCategory:String!):[Product!]
     getOrderStatuses: [String!]
     getPaymentStatuses: [String!]

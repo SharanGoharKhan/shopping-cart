@@ -155,8 +155,38 @@ export const categoryProduct = `query ProductByCategory($id:String!){
   }
 }`
 
-export const productById=`query ProductByIds($id:String!){
-  productByIds(ids:[$id]){
+export const productById=`query ProductByIds($ids:[String!]!){
+  productByIds(ids:$ids){
+    _id
+    title
+    description
+    image
+    price
+    featured
+    subCategory{
+      _id
+      title
+      category{
+        _id
+        title
+      }
+    }
+    attributes{
+      _id
+      title
+      options
+      {
+        _id
+        title
+        price
+        stock
+      }
+    }
+  }
+}`
+
+export const product=`query Product($id:String!){
+  product(ids:$id){
     _id
     title
     description
@@ -185,13 +215,24 @@ export const produccts = `query{
   products{
     _id
     title
+    description
+    image
     price
     featured
-    price
-    image
     subCategory{
       _id
       title
+    }
+    attributes{
+      _id
+      title
+      options
+      {
+        _id
+        title
+        price
+        stock
+      }
     }
   }
 }`
@@ -202,5 +243,137 @@ export const getConfiguration = `query Configuration{
       currency
       currencySymbol
       deliveryCharges
+    }
+  }`
+
+  export const placeOrder = `
+  mutation PlaceOrder($orderInput:[OrderInput!]!,$paymentMethod:String!,$couponCode:String,$address:AddressInput!){
+    placeOrder(orderInput: $orderInput,paymentMethod:$paymentMethod,couponCode:$couponCode,address:$address) {
+      _id
+      orderId
+      deliveryAddress{
+        label
+        region
+        city
+        apartment
+        building
+        details
+      }
+      deliveryCharges
+      items{
+        _id
+        product
+        productId
+        price
+        quantity
+      }
+      user {
+        _id
+        name
+        phone
+        email
+      }
+      paymentStatus
+      paymentMethod
+      paidAmount
+      orderAmount
+      orderStatus
+      statusQueue{
+        pending
+        preparing
+        picked
+        delivered
+        cancelled
+      }
+      createdAt
+    }
+  }`
+
+  export const myOrders = `query Orders($offset:Int){
+    orders(offset:$offset){
+      _id
+      orderId
+      deliveryAddress{
+        label
+        region
+        city
+        apartment
+        building
+        details
+      }
+      deliveryCharges
+      items{
+        _id
+        product
+        productId
+        price
+        quantity
+      }
+      user {
+        _id
+        name
+        phone
+        email
+      }
+      paymentStatus
+      paymentMethod
+      paidAmount
+      orderAmount
+      orderStatus
+      statusQueue{
+        pending
+        preparing
+        picked
+        delivered
+        cancelled
+      }
+      createdAt
+    }
+  }`
+
+  export const orderStatusChanged = `subscription OrderStatusChanged($userId:String!){
+    orderStatusChanged(userId:$userId)
+    {
+      userId
+      origin
+      order{
+        _id
+      orderId
+      deliveryAddress{
+        label
+        region
+        city
+        apartment
+        building
+        details
+      }
+      deliveryCharges
+      items{
+        _id
+        product
+        productId
+        price
+        quantity
+      }
+      user {
+        _id
+        name
+        phone
+        email
+      }
+      paymentStatus
+      paymentMethod
+      paidAmount
+      orderAmount
+      orderStatus
+      statusQueue{
+        pending
+        preparing
+        picked
+        delivered
+        cancelled
+      }
+      createdAt
+      }
     }
   }`
