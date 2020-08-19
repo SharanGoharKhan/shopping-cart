@@ -111,7 +111,7 @@ function Delivery(props) {
                             saveConfiguration({
                               variables: {
                                 configurationInput: {
-                                  delivery_charges: Number(deliveryCharges)
+                                  deliveryCharges: Number(deliveryCharges)
                                 }
                               }
                             })

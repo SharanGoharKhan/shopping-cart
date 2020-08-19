@@ -54,13 +54,12 @@ function Product(props) {
     const isFeatured = product ? product.featured : false
     const mutation = props.product ? EDIT_PRODUCT : CREATE_PRODUCT
     const { data, loading: loadingCategory, error: dropDownError } = useQuery(GET_CATEGORIES)
-    const [getAttributes, { loading: attributesLoading, data: attributesData }] = useLazyQuery(GET_ATTRIBUTES);
-    const [mutate, { loading }] = useMutation(mutation, { onCompleted, onError, refetchQueries: [{ query: GET_PRODUCTS }] })
+    const [getAttributes, { data: attributesData }] = useLazyQuery(GET_ATTRIBUTES);
+    const [mutate] = useMutation(mutation, { onCompleted, onError, refetchQueries: [{ query: GET_PRODUCTS }] })
 
 
 
     const [attributes, setAttribute] = useState([])
-    console.log('props', props.product)
 
     const [success, successSetter] = useState('')
     const [error, errorSetter] = useState('')
@@ -78,10 +77,16 @@ function Product(props) {
     }
 
     const clearFields = () => {
-        // formRef.reset()
-        setProductTitleError('')
+        formRef.current.reset()
+        setProductTitleError(null)
         setImage({})
         categoryErrorSetter(null)
+        setProductTitleError(null)
+        setProductCodeError(null)
+        setDescriptionError(null)
+        setMainPriceError(null)
+        setAttrbuteError(null)
+        setAttribute([])
     }
 
     function onCompleted(data) {
@@ -95,7 +100,7 @@ function Product(props) {
         setTimeout(hideMessage, 3000)
     }
     function onError(error) {
-        console.log('error',error)
+        console.log('error', error)
         setMutationLoader(false)
         const message = 'Action failed. Please Try again'
         successSetter('')
@@ -126,34 +131,38 @@ function Product(props) {
 
     const validate = () => {
         let mainError = false
-        let checkCount = 0
+        const checkCount = []
         const titleError = !validateFunc({ productTitle: formRef.current['input-productTitle'].value }, 'productTitle')
         const codeError = !validateFunc({ productCode: formRef.current['input-productCode'].value }, 'productCode')
         const priceError = !validateFunc({ productPrice: formRef.current['input-mainPrice'].value }, 'productPrice')
         const categoryError = !validateFunc({ sub_category: formRef.current['sub_category'].value }, 'sub_category')
         const attribute = attributes
         attribute.map(item => item.options.map(i => {
-            if (i.check)
-                checkCount = checkCount + 1
+            if (i.check) {
+                checkCount.push(i)
+            }
+            return null
         }))
-        const checkList = attribute.filter(item => item.options.some(i => (
-            i.check && !validateFunc({ optionPrice: i.price }, 'optionPrice') && !validateFunc({ optionQuantity: i.stock }, 'optionQuantity')
-        )))
 
+        const checkList = checkCount.filter(i => (
+            !validateFunc({ optionPrice: i.price }, 'optionPrice') && !validateFunc({ optionQuantity: i.stock }, 'optionQuantity')
+        ))
         if (checkList.length < 1) {
-            return false
+            mainError = false
         }
         else {
-            // if (checkCount === checkList.length)
-            mainError = true
-            // else
-            // mainError = false
+            if (checkCount.length === checkList.length)
+                mainError = true
+            else
+                mainError = false
         }
+
         setProductCodeError(codeError)
         setProductTitleError(titleError)
         setMainPriceError(priceError)
         categoryErrorSetter(categoryError)
         setAttrbuteError(mainError)
+
         return mainError && categoryError && codeError && titleError && priceError
     }
 
@@ -229,8 +238,8 @@ function Product(props) {
                             return {
                                 _id,
                                 title,
-                                stock: 0,
-                                price: 0,
+                                stock: '',
+                                price: '',
                                 check: false
                             }
                         })
@@ -469,7 +478,7 @@ function Product(props) {
                                                     </Col>
                                                     <Col lg='3'>
                                                         <label>
-                                                            {'Quantity'}
+                                                            {'Stock'}
                                                         </label>
                                                     </Col>
                                                     <Col lg='3'>
@@ -508,7 +517,6 @@ function Product(props) {
                                                                     <Input
                                                                         className="form-control-alternative"
                                                                         value={option.stock}
-                                                                        id="input-quantity"
                                                                         placeholder="e.g 1"
                                                                         type="number"
                                                                         onChange={event => {
@@ -527,7 +535,6 @@ function Product(props) {
                                                                     <Input
                                                                         className="form-control-alternative"
                                                                         value={option.price}
-                                                                        id="input-price"
                                                                         placeholder="e.g $10"
                                                                         type="number"
                                                                         onChange={event => {
@@ -555,9 +562,11 @@ function Product(props) {
                                             <MultiImageInput
                                                 images={image}
                                                 setImages={setImage}
-                                                theme="light"
+                                                theme={{
+                                                    outlineColor: 'grey',
+                                                    background: 'transparent',
+                                                }}
                                                 allowCrop={false}
-                                            // cropConfig={{ crop, ruleOfThirds: true }}
                                             />
                                         </Row>
                                     </Col>
@@ -565,19 +574,19 @@ function Product(props) {
                                 <Row className='mt-2 justify-content-center'>
                                     <Col lg="4">
                                         {mutationLoader ?
-                                            <Button disabled color="primary" onClick={() => null}>
+                                            <Button disabled color="primary" size='lg' className="btn-block" onClick={() => null}>
                                                 <Loader
                                                     type="TailSpin"
                                                     color="#FFF"
                                                     height={25}
                                                     width={30}
-                                                    visible={true}
+                                                    visible={mutationLoader}
                                                 />
                                             </Button> :
                                             <Button
                                                 color="primary"
                                                 size="lg"
-                                                // disabled={mutationLoading}
+                                                disabled={mutationLoader}
                                                 className="btn-block"
                                                 onClick={async (e) => {
                                                     if (validate()) {
@@ -604,7 +613,7 @@ function Product(props) {
                                                                     attributes: selectedAttributes,
                                                                     description: formRef.current['input-description'].value,
                                                                     subCategory: formRef.current['sub_category'].value,
-                                                                    featured: Boolean(formRef.current['input-featured'].value)
+                                                                    featured: Boolean(formRef.current['input-featured'].checked)
                                                                 }
                                                             }
                                                         })

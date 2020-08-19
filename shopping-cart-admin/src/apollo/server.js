@@ -299,66 +299,43 @@ export const deleteProduct = `mutation DeleteProduct($id:String!){
 export const getOrders = `query Orders($page:Int,$rows:Int,$search:String){
   allOrders(page:$page,rows:$rows,search:$search){
     _id
-    delivery_address{
-      latitude
-      longitude
-      delivery_address
-      details
-      label
+    orderId
+    items{
+      _id
+      productId
+      product
+      price
+      quantity
+      selectedAttributes{
+        _id
+        title
+        options{
+          _id
+          title
+        }
+      }
+      createdAt
     }
-    delivery_charges
-    order_amount
-    paid_amount
-    payment_method
-    order_id
     user{
       _id
       name
-      email
       phone
+      email
     }
-    items{
-      _id
-      food{
-        _id
-        title
-        description
-        img_url
-      }
-      variation{
-        _id
-        title
-        price
-        discounted
-      }
-      addons{
-        
-        title
-        description
-        quantity_minimum
-        quantity_maximum
-        options{
-         
-          title
-          price
-        }
-      }
-      quantity
-    }
-    reason
+    paymentMethod
+    paymentStatus
     status
-    payment_status
-    order_status
+    orderStatus
+    reason
+    statusQueue{
+      pending
+      preparing
+      picked
+      delivered
+      cancelled
+    }
+    deliveryCharges
     createdAt
-    review{
-      _id
-      rating
-      description
-    }
-    rider{
-      _id
-      name
-    }
   }
 }`
 
@@ -517,9 +494,12 @@ export const getUsers = `query Users($page:Int){
     phone
     addresses{
       _id
-      deliveryAddress
-      details
       label
+      region
+      city
+      apartment
+      building
+      details
     }
   }
 }`
@@ -538,9 +518,7 @@ export const reviews = `query AllReviews($offset:Int){
         email
       }
       items{
-        food{
-          title
-        }
+        product
       }
    }
   }

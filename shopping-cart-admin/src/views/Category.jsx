@@ -4,14 +4,14 @@ import { withTranslation } from 'react-i18next'
 import CategoryComponent from '../components/Category/Category'
 import CustomLoader from '../components/Loader/CustomLoader'
 // reactstrap components
-import { Badge, Card, Container, Row, Modal } from 'reactstrap'
+import { Card, Container, Row, Modal } from 'reactstrap'
 // core components
 import Header from 'components/Headers/Header.jsx'
 import { categories, deleteCategory } from '../apollo/server'
 import DataTable from 'react-data-table-component'
 import orderBy from 'lodash/orderBy'
-import Loader from 'react-loader-spinner'
-import { gql, useMutation, useQuery } from '@apollo/client'
+import { gql, useQuery } from '@apollo/client'
+import ActionButton from '../components/ActionButton/ActionButton'
 
 const GET_CATEGORIES = gql`
   ${categories}
@@ -24,7 +24,6 @@ const DELETE_CATEGORY = gql`
 const Category = props => {
   const [editModal, setEditModal] = useState(false)
   const [category, setCategory] = useState(null)
-  const [deleteCategory, { loading: deleteLoading }] = useMutation(DELETE_CATEGORY, { refetchQueries: [{ query: GET_CATEGORIES }] })
   const { data, loading, error } = useQuery(GET_CATEGORIES, { variables: { page: 0 } })
   const toggleModal = category => {
     setEditModal(!editModal)
@@ -54,43 +53,15 @@ const Category = props => {
     },
     {
       name: 'Action',
-      cell: row => <>{actionButtons(row)}</>
+      cell: row => <ActionButton
+        deleteButton={true}
+        editButton={true}
+        row={row}
+        mutation={DELETE_CATEGORY}
+        editModal={toggleModal}
+        refetchQuery={GET_CATEGORIES} />
     }
   ]
-  const actionButtons = row => {
-    return (
-      <>
-        <Badge
-          href="#pablo"
-          onClick={e => {
-            e.preventDefault()
-            toggleModal(row)
-          }}
-          color="primary">
-          Edit
-        </Badge>
-        &nbsp;&nbsp;
-        {loading ?
-          <Loader
-            type="ThreeDots"
-            color="#BB2124"
-            height={20}
-            width={40}
-            visible={deleteLoading}
-          /> :
-          <Badge
-            href="#pablo"
-            color="danger"
-            onClick={e => {
-              e.preventDefault()
-              deleteCategory({ variables: { id: row._id } })
-            }}>
-            {'Delete'}
-          </Badge>
-        }
-      </>
-    )
-  }
   const { t } = props
   return (
     <>
@@ -114,9 +85,9 @@ const Category = props => {
                   pagination
                   progressPending={loading}
                   progressComponent={<CustomLoader />}
-                      onSort={handleSort}
-                      sortFunction={customSort}
-                      defaultSortField="title"
+                  onSort={handleSort}
+                  sortFunction={customSort}
+                  defaultSortField="title"
                 />
               }
             </Card>

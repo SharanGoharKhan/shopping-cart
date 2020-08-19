@@ -53,7 +53,6 @@ const GET_CONFIGURATION = gql`
 function Order(props) {
   const { order } = props
   const [reason, reasonSetter] = useState('')
-  const [selectedRider, selectedRiderSetter] = useState('')
   const [selectedStatus, selectedStatusSetter] = useState('')
   const [selectedPaymentStatus, selectedPaymentStatusSetter] = useState('')
   const [customerCollapse, customerCollapseSetter] = useState(true)
@@ -84,14 +83,11 @@ function Order(props) {
   }
   const onCompleted = ({
     updateStatus,
-    assignRider,
     updateOrderStatus,
     updatePaymentStatus
   }) => {
     if (updateStatus) {
       successSetter('Status Updated')
-    } else if (assignRider) {
-      successSetter('Rider assinged')
     } else if (updateOrderStatus) {
       successSetter('Order status updated')
     } else if (updatePaymentStatus) {
@@ -100,12 +96,6 @@ function Order(props) {
   }
   const onError = error => {
     errorSetter(error.message)
-  }
-  const onChangeRider = event => {
-    selectedRiderSetter(event.target.value)
-  }
-  const validateRider = () => {
-    return !!selectedRider
   }
   const validateStatus = () => {
     return !!selectedStatus
@@ -248,41 +238,6 @@ function Order(props) {
               order.order_status !== 'CANCELLED' &&
               order.order_status !== 'DELIVERED' && (
                 <>
-                  <Row>
-                    <Col xs="8">
-                      <h3 className="mb-1">{t('Rider')}</h3>
-                    </Col>
-                  </Row>
-                  <Row>
-                    <Col lg="6">
-                      <label
-                        className="form-control-label"
-                        htmlFor="input-rider">
-                        {t('Available Riders')}
-                      </label>
-                    </Col>
-                    <Col lg="6">
-                      <label
-                        className="form-control-label"
-                        htmlFor="rider-name">
-                        {t('Assigned To')}
-                      </label>
-                      <FormGroup>
-                        <Input
-                          className="form-control-alternative"
-                          id="rider-name"
-                          type="text"
-                          readOnly
-                          value={order.rider ? order.rider.name : ''}
-                        />
-                      </FormGroup>
-                    </Col>
-                  </Row>
-                  <Row>
-                    <Col xs="8">
-                      <h3 className="mb-1">{t('Order Status')}</h3>
-                    </Col>
-                  </Row>
                   <Row>
                     <Col lg="6">
                       <label
@@ -507,7 +462,7 @@ function Order(props) {
                   </FormGroup>
                 </Col>
               </Row>
-              <Row>
+              {/* <Row>
                 <Col lg="12">
                   <label className="form-control-label" htmlFor="input-address">
                     {t('Address')}
@@ -522,7 +477,7 @@ function Order(props) {
                     />
                   </FormGroup>
                 </Col>
-              </Row>
+              </Row> */}
             </Collapse>
             <Row className="align-items-center">
               <Col xs="8">
@@ -564,7 +519,7 @@ function Order(props) {
                                 pill>
                                 {item.quantity}
                               </Badge>
-                              {`${item.food.title}(${item.variation.title})`}
+                              {`${item.product}(${item.selectedAttributes.map(i => i.title)})`}
                               <Badge
                                 style={{
                                   fontSize: '12px',
@@ -574,35 +529,33 @@ function Order(props) {
                                 pill>
                                 {configData.configuration.currency_symbol}{' '}
                                 {(
-                                  item.variation.price * item.quantity
+                                  item.price * item.quantity
                                 ).toFixed(2)}
                               </Badge>
-                              {!!item.addons.length && (
+                              {!!item.selectedAttributes.length && (
                                 <UncontrolledDropdown>
                                   <DropdownToggle caret>
                                     Addons
                               </DropdownToggle>
                                   <DropdownMenu>
-                                    {item.addons.map(addon => {
-                                      return addon.options.map(
-                                        (option, index) => (
-                                          <DropdownItem key={index}>
-                                            {addon.title}:- {option.title}{' '}
-                                            <Badge
-                                              style={{
-                                                fontSize: '12px',
-                                                backgroundColor: 'black',
-                                                float: 'right'
-                                              }}
-                                              pill>
-                                              {
-                                                configData.configuration
-                                                  .currency_symbol
-                                              }{' '}
-                                              {option.price}
-                                            </Badge>
-                                          </DropdownItem>
-                                        )
+                                    {item.selectedAttributes.map((attribute, index) => {
+                                      return (
+                                        <DropdownItem key={index}>
+                                          {attribute.title}:- {attribute.options.title}{' '}
+                                          <Badge
+                                            style={{
+                                              fontSize: '12px',
+                                              backgroundColor: 'black',
+                                              float: 'right'
+                                            }}
+                                            pill>
+                                            {
+                                              configData.configuration
+                                                .currency_symbol
+                                            }{' '}
+                                            {0}
+                                          </Badge>
+                                        </DropdownItem>
                                       )
                                     })}
                                   </DropdownMenu>
@@ -635,8 +588,8 @@ function Order(props) {
                                 pill>
                                 {configData.configuration.currency_symbol}{' '}
                                 {(
-                                  order.order_amount -
-                                  order.delivery_charges
+                                  order.price -
+                                  order.deliveryCharges
                                 ).toFixed(2)}
                               </Badge>
                             </ListGroupItem>
@@ -648,8 +601,8 @@ function Order(props) {
                                   float: 'right',
                                   color: 'black'
                                 }}>
-                                {configData.configuration.currency_symbol}{' '}
-                                {order.delivery_charges.toFixed(2)}
+                                {configData.configuration.currencySymbol}{' '}
+                                {order.deliveryCharges.toFixed(2)}
                               </Badge>
                             </ListGroupItem>
                             <ListGroupItem className="justify-content-between">
@@ -662,7 +615,7 @@ function Order(props) {
                                 }}
                                 pill>
                                 {configData.configuration.currency_symbol}{' '}
-                                {order.order_amount.toFixed(2)}
+                                {order.price}
                               </Badge>
                             </ListGroupItem>
                           </ListGroup>

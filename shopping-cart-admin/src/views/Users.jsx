@@ -5,7 +5,6 @@ import { Container, Row, Card } from 'reactstrap'
 import Header from 'components/Headers/Header.jsx'
 import CustomLoader from '../components/Loader/CustomLoader'
 import { getUsers } from '../apollo/server'
-import { transformToNewline } from '../utils/stringManipulations'
 import DataTable from 'react-data-table-component'
 import orderBy from 'lodash/orderBy'
 import { gql, useQuery } from '@apollo/client'
@@ -38,17 +37,6 @@ const Users = props => {
       sortable: true,
       selector: 'phone',
       cell: row => hiddenData(row.phone, 'PHONE')
-    },
-    {
-      name: 'Address',
-      cell: row => (
-        <>
-          {transformToNewline(
-            row.addresses.length ? row.addresses[0].deliveryAddress : '',
-            15
-          )}
-        </>
-      )
     }
   ]
 
