@@ -62,7 +62,6 @@ function AddressList() {
                     </View>
                 </View>
                 <View style={styles.body}>
-                    <Text>{JSON.stringify(profile.address)}</Text>
                     <View style={styles.main}>
                         <FlatList
                             style={styles.flex}

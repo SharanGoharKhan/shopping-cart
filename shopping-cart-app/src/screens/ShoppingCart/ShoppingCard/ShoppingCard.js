@@ -1,5 +1,6 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import { View, Image, TouchableOpacity } from 'react-native';
+import ConfigurationContext from '../../../context/Configuration'
 import styles from './styles';
 import Ionicons from 'react-native-vector-icons/Ionicons'
 import { TextDefault } from '../../../components'
@@ -12,12 +13,13 @@ const images = {
 
 function ShoppingCard(props) {
     const [liked, setLiked] = useState(false)
+    const configuration = useContext(ConfigurationContext)
     return (
         <View style={styles.container}>
             <View style={styles.contentContainer}>
                 <View style={styles.imgContainer}>
                     <Image
-                        source={images[props.item.image]}
+                        source={{ uri: props.item.image }}
                         style={styles.imgResponsive}
                         resizeMode="cover"
                     />
@@ -25,48 +27,43 @@ function ShoppingCard(props) {
                 <View style={styles.itemContainer}>
                     <View style={styles.itemDetailContainer}>
                         <TextDefault textColor={colors.fontMainColor} numberOfLines={1} H5>
-                            {props.item.name}
+                            {props.item.product} {props.item.key}
                         </TextDefault>
                         <TextDefault textColor={colors.fontBrown} numberOfLines={1} small>
-                            {props.item.category}
+                            {props.item?.subCategory ?? ''}
                         </TextDefault>
                     </View>
                     <View style={styles.quantityContainer}>
-                        <TextDefault textColor={colors.fontSecondColor} H4>
-                            {props.item.size}
-                        </TextDefault>
+                        {props.item.selectedAttributes.map((data) => {
+                            return (<TextDefault key={props.item.key+data.option._id} textColor={colors.fontSecondColor} small>
+                                {data.title} : {data.option.title}
+                            </TextDefault>)
+                        })}
                         <View style={styles.quantitySelContainer}>
                             <TouchableOpacity
                                 activeOpacity={0}
+                                onPress={props.removeQuantity}
                                 style={styles.quantityIconStyle}>
                                 <Ionicons name="ios-arrow-back" size={scale(20)} color={colors.fontSecondColor} />
                             </TouchableOpacity>
                             <TextDefault textColor={colors.fontSecondColor} H5>
-                                {props.item.quantity}
+                                {props.quantity}
                             </TextDefault>
                             <TouchableOpacity
                                 activeOpacity={0}
+                                onPress={props.addQuantity}
                                 style={[styles.quantityIconStyle, { paddingRight: 0 }]}>
                                 <Ionicons name="ios-arrow-forward" size={scale(20)} color={colors.fontSecondColor} />
                             </TouchableOpacity>
                         </View>
                     </View>
                     <View style={styles.bottomContainer}>
-                        <TouchableOpacity
-                            activeOpacity={0}
-                            onPress={() => setLiked(!liked)}
-                            style={styles.likeContainer}>
-                            <Ionicons name={liked ? "ios-heart" : "ios-heart-empty"} size={scale(20)} color={colors.fontSecondColor} />
-                            <TextDefault style={{ ...alignment.MLxSmall }} textColor={colors.fontSecondColor} small>
-                                {'Save'}
-                            </TextDefault>
-                        </TouchableOpacity>
                         <View style={styles.priceContainer}>
-                            <TextDefault textColor={colors.google} lineOver>
+                            {/* <TextDefault textColor={colors.google} lineOver>
                                 {'$'}{props.item.prev_price}
-                            </TextDefault>
+                            </TextDefault> */}
                             <TextDefault style={{ ...alignment.MLxSmall }} textColor={colors.blueColor} H5 bold>
-                                {'$'}{props.item.new_price}
+                                {configuration.currencySymbol} {props.price}
                             </TextDefault>
                         </View>
                     </View>

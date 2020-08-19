@@ -1,5 +1,5 @@
-import React from 'react';
-import { View, Text, Image, TouchableOpacity, ScrollView, SectionList } from 'react-native';
+import React, { useContext, useEffect } from 'react';
+import { View, Text, Image, TouchableOpacity, ScrollView, FlatList } from 'react-native';
 import styles from './styles';
 import BottomTab from '../../components/BottomTab/BottomTab';
 import { SafeAreaView } from 'react-native-safe-area-context';
@@ -8,71 +8,30 @@ import { useNavigation } from '@react-navigation/native';
 import { TextDefault } from '../../components';
 import { colors, scale } from '../../utils';
 import { Feather } from '@expo/vector-icons';
+import UserContext from '../../context/User'
 
-/* Config/Constants
-============================================================================= */
-const cardData = [
-    {
-        date: '20 Aug, 2018 At 12:30 PM',
-        data: [
-            {
-                title: 'Order No. 10363',
-                subTitle: 'Delivery Service',
-                status: 'In Delivery',
-                action: 'Review',
-                image: require('../../assets/images/MainLanding/carosel_img_3.png'),
-            },
-            {
-                title: 'Order No. 10352',
-                subTitle: 'Multiple Items/Shops',
-                status: 'In Delivery',
-                action: 'Review',
-                image: require('../../assets/images/MainLanding/shop-2-collage-2.png'),
-            },
-            {
-                title: 'Order No. 10363',
-                subTitle: 'Delivery Service',
-                status: 'In Delivery',
-                action: 'Review',
-                image: require('../../assets/images/MainLanding/carosel_img_3.png'),
-            },
-        ],
-    },
-    {
-        date: '15 Aug, 2018 At 12:30 PM',
-        data: [
-            {
-                title: 'Order No. 10363',
-                subTitle: 'Delivery Service',
-                status: 'Delivered',
-                action: 'Review',
-                image: require('../../assets/images/MainLanding/carosel_img_3.png'),
-            },
-            {
-                title: 'Order No. 10352',
-                subTitle: 'Multiple Items/Shops',
-                status: 'Delivered',
-                action: 'Review',
-                image: require('../../assets/images/MainLanding/shop-2-collage-2.png'),
-            },
-        ],
-    },
-    {
-        date: '12 Aug, 2018 At 12:30 PM',
-        data: [
-            {
-                title: 'Order No. 10387',
-                subTitle: 'Delivery Service',
-                status: 'Delivered',
-                action: 'Review',
-                image: require('../../assets/images/MainLanding/shop-2-collage-4.png'),
-            },
-        ],
-    },
-];
+
 
 function PreviousOrder(props) {
     const navigation = useNavigation()
+    const {
+        orders,
+        loadingOrders,
+        errorOrders,
+        fetchOrders,
+        fetchMoreOrdersFunc,
+        networkStatusOrders
+    } = useContext(UserContext)
+
+    useEffect(() => {
+        didFocus()
+    }, [])
+
+    async function didFocus() {
+        if (orders && orders.length) {
+
+        }
+    }
 
     function SectionHeader({ date }) {
         return (
@@ -88,12 +47,12 @@ function PreviousOrder(props) {
         return (
             <TouchableOpacity
                 activeOpacity={1}
-                onPress={() => navigation.navigate('OrderDetail')}
+                onPress={() => navigation.navigate('OrderDetail', { _id: card._id })}
                 style={styles.cardContainer}
             >
                 <View style={styles.leftContainer}>
                     <Image
-                        source={card.image}
+                        source={{uri:card.image??'https://res.cloudinary.com/ecommero/image/upload/v1597658445/products/su6dg1ufmtfuvrjbhgtj.png'}}
                         resizeMode="cover"
                         style={[styles.imgResponsive, styles.roundedBorder]}
                     />
@@ -102,7 +61,7 @@ function PreviousOrder(props) {
                     <View style={styles.subRightContainer}>
                         <View style={styles.titleContainer}>
                             <TextDefault style={styles.font} numberOfLines={1} textColor={colors.fontMainColor} H5>
-                                {card.title}
+                                {card.orderId}
                             </TextDefault>
                             <Feather
                                 name="chevron-right"
@@ -112,19 +71,19 @@ function PreviousOrder(props) {
                         </View>
                         <View style={styles.subTitleContainer}>
                             <TextDefault textColor={colors.fontThirdColor} small >
-                                {card.subTitle}
+                                {card.items[0].product}
                             </TextDefault>
                         </View>
                         <View style={styles.actionsContainer}>
                             <View style={styles.subActionsContainer}>
                                 <TextDefault textColor={colors.fontBlue} H5>
-                                    {card.status}
+                                    {card.orderStatus}
                                 </TextDefault>
                                 <TouchableOpacity
                                     style={styles.actionContainer}
                                     onPress={() => navigation.navigate('Review')}>
                                     <TextDefault textColor={colors.white} H5>
-                                        {card.action}
+                                        Review
                                     </TextDefault>
                                 </TouchableOpacity>
                             </View>
@@ -140,21 +99,25 @@ function PreviousOrder(props) {
                 <BackHeader
                     title="Previous Orders"
                     backPressed={() => props.navigation.goBack()} />
-                <SectionList
+                <FlatList
                     style={styles.flex}
                     contentContainerStyle={styles.mainCardContainer}
-                    sections={cardData}
-                    keyExtractor={(item, index) => index}
-                    stickySectionHeadersEnabled={false}
+                    data={loadingOrders || errorOrders
+                        ? []
+                        : orders.filter(o => ['DELIVERED'].includes(o.orderStatus))}
+                    keyExtractor={(item, index) => item._id}
                     showsVerticalScrollIndicator={false}
-                    SectionSeparatorComponent={() => <View style={styles.lineSubContainer} />}
-                    renderSectionHeader={({ section: { date } }) => (
-                        <SectionHeader date={date} />
-                    )}
+                    refreshing={networkStatusOrders === 4}
+                    onRefresh={() => networkStatusOrders === 7 && fetchOrders()}
+                    ItemSeparatorComponent={() => <View style={styles.lineSubContainer} />}
+                    // renderSectionHeader={({ section: { date } }) => (
+                    //     <SectionHeader date={date} />
+                    // )}
                     renderItem={({ item, index, section }) => (
-                        <SectionCard card={item} />
+                        <SectionCard key={item._id} card={item} />
                     )
                     }
+                    onEndReached={fetchMoreOrdersFunc}
                 />
             </View>
             <BottomTab />

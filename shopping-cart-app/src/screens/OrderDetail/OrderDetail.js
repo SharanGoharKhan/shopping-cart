@@ -1,55 +1,80 @@
-import React from 'react';
+import React, { useContext, useEffect } from 'react';
 import {
     View, Text, Image, TouchableOpacity, ScrollView
 } from 'react-native';
+import { useNavigation, useRoute } from '@react-navigation/native';
 import styles from './styles';
 import BottomTab from '../../components/BottomTab/BottomTab';
 import { BackHeader } from '../../components/Headers/Headers';
 import { SafeAreaView } from 'react-native-safe-area-context';
+import UserContext from '../../context/User'
+import ConfigurationContext from '../../context/Configuration'
 
 function OrderDetail(props) {
+    const navigation = useNavigation()
+    const route = useRoute()
+    const id = route.params._id ?? null
+    const cart = route.params.clearCart ?? false
+    const { orders, clearCart } = useContext(
+        UserContext
+    )
+    const configuration = useContext(ConfigurationContext)
+    const order = orders.find(o => o._id === id)
+    useEffect(() => {
+        return () => {
+            if (cart) {
+                clear()
+            }
+        }
+    }, [cart])
+    async function clear() {
+        await clearCart()
+    }
+
     return (
         <SafeAreaView style={[styles.flex, styles.safeAreaStyle]}>
             <View style={[styles.flex, styles.mainContainer]}>
                 <BackHeader
-                    title="Order No. 10352"
-                    backPressed={() => props.navigation.goBack()} />
+                    title={order.orderId}
+                    backPressed={() => navigation.goBack()} />
                 <View style={styles.line}></View>
                 <ScrollView>
-                    <View style={styles.cardContainer}>
-                        <View style={styles.card}>
-                            <View style={styles.cardLeftContainer}>
-                                <Image
-                                    source={require('../../assets/images/OrderDetail/basket.png')}
-                                    style={styles.imgResponsive}
-                                    resizeMode="cover"
-                                />
-                            </View>
-                            <View style={styles.cardRightContainer}>
-                                <Text style={[styles.productTitleStyle, styles.marginTop5]}>Leather Crossbody MID...</Text>
-                                <Text style={styles.productDescriptionStyle}>Courier received the order.</Text>
-                                <View style={styles.amountContainer}>
-                                    <View style={styles.quantityContainer}>
-                                        <Text style={styles.productTitleStyle}>x1</Text>
-                                    </View>
-                                    <View style={styles.priceContainer}>
-                                        <Text style={styles.productTitleStyle}>35 PKR</Text>
+                    {order.items.length && order.items.map(data => {
+                        return (<View key={data._id} style={styles.cardContainer}>
+                            <View style={styles.card}>
+                                <View style={styles.cardLeftContainer}>
+                                    <Image
+                                        source={{ uri: data.image ?? 'https://res.cloudinary.com/ecommero/image/upload/v1597658445/products/su6dg1ufmtfuvrjbhgtj.png' }}
+                                        style={styles.imgResponsive}
+                                        resizeMode="cover"
+                                    />
+                                </View>
+                                <View style={styles.cardRightContainer}>
+                                    <Text style={[styles.productTitleStyle, styles.marginTop5]}>{data.product}</Text>
+                                    {/* <Text style={styles.productDescriptionStyle}>Courier received the order.</Text> */}
+                                    <View style={styles.amountContainer}>
+                                        <View style={styles.quantityContainer}>
+                                            <Text style={styles.productTitleStyle}>x{data.quantity}</Text>
+                                        </View>
+                                        <View style={styles.priceContainer}>
+                                            <Text style={styles.productTitleStyle}>{configuration.currencySymbol} {data.price * data.quantity}</Text>
+                                        </View>
                                     </View>
                                 </View>
                             </View>
-                        </View>
-                    </View>
+                        </View>)
+                    })}
                     <View style={styles.line}></View>
                     <View style={styles.deliverContainer}>
                         <View style={styles.deliverSubContainer}>
                             <Text style={styles.titleStyle}>Deliver to</Text>
-                            <Text style={styles.contactStyle}>Sharan Khan</Text>
-                            <Text style={styles.contactStyle}>sharan.gohar@gmail.com</Text>
-                            <Text style={styles.contactStyle}>+92 3339461270</Text>
-                            <Text style={styles.addressStyle}>Pakistan</Text>
-                            <Text style={styles.addressStyle}>Islamabad, Pakistan</Text>
-                            <Text style={styles.addressStyle}>Block 4, Apartment 102</Text>
-                            <Text style={styles.addressStyle}>P.O.Box 6500</Text>
+                            <Text style={styles.contactStyle}>{order.user.name}</Text>
+                            <Text style={styles.contactStyle}>{order.user.email}</Text>
+                            <Text style={styles.contactStyle}>{order.user.phone}</Text>
+                            <Text style={styles.addressStyle}>{order.deliveryAddress.region}</Text>
+                            <Text style={styles.addressStyle}>{order.deliveryAddress.city}</Text>
+                            <Text style={styles.addressStyle}>{order.deliveryAddress.apartment}, {order.deliveryAddress.building}</Text>
+                            {!!order.deliveryAddress.details && <Text style={styles.addressStyle}>{order.deliveryAddress.details}</Text>}
                         </View>
                     </View>
                     <View style={styles.line}></View>
@@ -58,15 +83,15 @@ function OrderDetail(props) {
                             <Text style={styles.titleStyle}>Payment</Text>
                             <View style={styles.twoItems}>
                                 <Text style={styles.contactStyle}>Payment Method</Text>
-                                <Text style={styles.addressStyle}>Credit Card</Text>
+                                <Text style={styles.addressStyle}>{order.paymentMethod}</Text>
                             </View>
                             <View style={styles.twoItems}>
                                 <Text style={styles.contactStyle}>Delivery</Text>
-                                <Text style={styles.addressStyle}>2 PKR</Text>
+                                <Text style={styles.addressStyle}>{configuration.currencySymbol} {configuration.deliveryCharges}</Text>
                             </View>
                             <View style={styles.twoItems}>
                                 <Text style={styles.contactStyle}>Sub Total</Text>
-                                <Text style={styles.addressStyle}>35 PKR</Text>
+                                <Text style={styles.addressStyle}>{configuration.currencySymbol} {order.orderAmount - configuration.deliveryCharges}</Text>
                             </View>
                         </View>
                     </View>
@@ -75,7 +100,7 @@ function OrderDetail(props) {
                         <View style={styles.totalSubContainer}>
                             <View style={styles.twoItems}>
                                 <Text style={styles.addressStyle}>Total</Text>
-                                <Text style={styles.addressStyle}>38 PKR</Text>
+                                <Text style={styles.addressStyle}>{configuration.currencySymbol} {order.orderAmount}</Text>
                             </View>
                         </View>
                     </View>
@@ -83,7 +108,7 @@ function OrderDetail(props) {
                         <View style={styles.trackOrderSubContainer}>
                             <TouchableOpacity
                                 activeOpacity={0}
-                                onPress={() => props.navigation.navigate('TrackOrder')}
+                                onPress={() => navigation.navigate('TrackOrder', { _id: id })}
                                 style={styles.trackStyle}
                             >
                                 <Text style={styles.trackStyleText}>Track Order</Text>
@@ -92,9 +117,7 @@ function OrderDetail(props) {
                     </View>
                 </ScrollView>
             </View>
-            <BottomTab
-                navigationObj={props.navigation}
-            />
+            <BottomTab />
         </SafeAreaView>
     )
 }

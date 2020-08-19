@@ -61,10 +61,10 @@ const terminatingLink = split(({ query }) => {
 }, wsLink)
 
 const setupApollo = async() => {
-  await persistCache({
-    cache,
-    storage: AsyncStorage
-  })
+  // await persistCache({
+  //   cache,
+  //   storage: AsyncStorage
+  // })
   const client = new ApolloClient({
     link: concat(ApolloLink.from([terminatingLink, requestLink]), httpLink),
     cache,

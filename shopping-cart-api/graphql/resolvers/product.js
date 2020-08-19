@@ -3,6 +3,17 @@ const { transformProduct } = require('./merge')
 
 module.exports = {
   Query: {
+    product: async (_, args, context) => {
+      console.log('product')
+      try {
+        const product = await Product.findById(args.id)
+        return transformProduct(product)
+
+      } catch (err) {
+        console.log(err)
+        throw err
+      }
+    },
     productByIds: async (_, args, context) => {
       console.log('productByIds')
       try {

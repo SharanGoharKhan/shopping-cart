@@ -242,14 +242,7 @@ module.exports = {
         const orderObj = {
           user: req.userId,
           items: items,
-          deliveryAddress: {
-            deliveryAddress:args.address.deliveryAddress,
-            details:args.address.details,
-            label: args.address.label,
-            location: new Point({
-              coordinates:[args.address.longitude,args.address.latitude]
-            })
-          },
+          deliveryAddress:args.address,
           orderId: orderid,
           paidAmount: 0,
           orderStatus: 'PENDING',
