@@ -150,8 +150,8 @@ function Order(props) {
                 </Col>
               </Row>
             )}
-            {order.order_status !== 'CANCELLED' &&
-              order.order_status !== 'DELIVERED' && (
+            {order.orderStatus !== 'CANCELLED' &&
+              order.orderStatus !== 'DELIVERED' && (
                 <Row className="mb-2">
                   <Col lg="12">
                     <div>
@@ -177,8 +177,8 @@ function Order(props) {
                             <InputGroupAddon addonType="prepend">
                               <Button
                                 disabled={
-                                  order.order_status !== 'CANCELLED' &&
-                                  order.order_status !== 'PENDING'
+                                  order.orderStatus !== 'CANCELLED' &&
+                                  order.orderStatus !== 'PENDING'
                                 }
                                 color="success"
                                 onClick={() => {
@@ -208,7 +208,7 @@ function Order(props) {
                             <InputGroupAddon addonType="append">
                               <Button
                                 disabled={
-                                  order.order_status === 'CANCELLED'
+                                  order.orderStatus === 'CANCELLED'
                                 }
                                 color="danger"
                                 onClick={() => {
@@ -234,9 +234,9 @@ function Order(props) {
                   </Col>
                 </Row>
               )}
-            {order.order_status !== 'PENDING' &&
-              order.order_status !== 'CANCELLED' &&
-              order.order_status !== 'DELIVERED' && (
+            {order.orderStatus !== 'PENDING' &&
+              order.orderStatus !== 'CANCELLED' &&
+              order.orderStatus !== 'DELIVERED' && (
                 <>
                   <Row>
                     <Col lg="6">
@@ -251,8 +251,9 @@ function Order(props) {
                             type="select"
                             name="select"
                             id="input-rider"
+                            defaultValue={order.orderStatus}
                             onChange={onChangeStatus}>
-                            <option selected></option>
+                            <option></option>
                             <option value="PICKED">PICKED</option>
                             <option value="DELIVERED">DELIVERED</option>
                           </Input>
@@ -275,7 +276,7 @@ function Order(props) {
                               <Button
                                 color="primary"
                                 disabled={
-                                  order.order_status === selectedStatus
+                                  order.orderStatus === selectedStatus
                                 }
                                 onClick={() => {
                                   if (validateStatus()) {
@@ -297,16 +298,16 @@ function Order(props) {
                     <Col lg="6">
                       <label
                         className="form-control-label"
-                        htmlFor="rider-name">
+                        htmlFor="status_Selected">
                         {t('Current Status')}
                       </label>
                       <FormGroup>
                         <Input
                           className="form-control-alternative"
-                          id="rider-name"
+                          id="status_Selected"
                           type="text"
                           readOnly
-                          value={order.order_status || ''}
+                          value={order.orderStatus || ''}
                         />
                       </FormGroup>
                     </Col>
@@ -320,7 +321,7 @@ function Order(props) {
                     <Col lg="6">
                       <label
                         className="form-control-label"
-                        htmlFor="input-rider">
+                        htmlFor="payment_Selected">
                         {t('Select Status')}
                       </label>
                       <FormGroup>
@@ -333,9 +334,9 @@ function Order(props) {
                               <Input
                                 type="select"
                                 name="select"
-                                id="input-rider"
+                                id="payment_Selected"
                                 onChange={onChangePaymentStatus}
-                                defaultValue={order.payment_status}>
+                                defaultValue={order.paymentStatus}>
                                 <option disabled></option>
                                 {paymentData.getPaymentStatuses.map(status => (
                                   <option key={status} value={status}>
@@ -363,7 +364,7 @@ function Order(props) {
                                 <Button
                                   color="primary"
                                   disabled={
-                                    order.payment_status ===
+                                    order.paymentStatus ===
                                     selectedPaymentStatus
                                   }
                                   onClick={() => {
@@ -386,16 +387,16 @@ function Order(props) {
                     <Col lg="6">
                       <label
                         className="form-control-label"
-                        htmlFor="rider-name">
+                        htmlFor="payment_Status">
                         {t('Current Status')}
                       </label>
                       <FormGroup>
                         <Input
                           className="form-control-alternative"
-                          id="rider-name"
+                          id="payment_Status"
                           type="text"
                           readOnly
-                          value={order.payment_status || ''}
+                          value={order.paymentStatus || ''}
                         />
                       </FormGroup>
                     </Col>
@@ -462,22 +463,79 @@ function Order(props) {
                   </FormGroup>
                 </Col>
               </Row>
-              {/* <Row>
-                <Col lg="12">
-                  <label className="form-control-label" htmlFor="input-address">
-                    {t('Address')}
+              <Row>
+                <label className="form-control-label" htmlFor="input-address">
+                  {t('Address')}{' '}
+                  <label className='text-muted'>{!!order.deliveryAddress.label && (`(${order.deliveryAddress.label})`)}</label>
+                </label>
+              </Row>
+
+              <Row>
+                <Col lg="3">
+                  <label className="form-control-label" htmlFor="address_region">
+                    {t('Region')}
                   </label>
                   <FormGroup>
                     <Input
                       className="form-control-alternative"
-                      id="input-address"
+                      id="address_region"
                       type="text"
                       disabled={true}
-                      defaultValue={order.delivery_address.delivery_address}
+                      defaultValue={order.deliveryAddress.region}
                     />
                   </FormGroup>
                 </Col>
-              </Row> */}
+                <Col lg="3">
+                  <label className="form-control-label" htmlFor="address_city">
+                    {t('City')}
+                  </label>
+                  <FormGroup>
+                    <Input
+                      className="form-control-alternative"
+                      id="address_city"
+                      type="text"
+                      disabled={true}
+                      defaultValue={order.deliveryAddress.city}
+                    />
+                  </FormGroup>
+                </Col>
+                <Col lg="3">
+                  <label className="form-control-label" htmlFor="address_building">
+                    {t('Building')}
+                  </label>
+                  <FormGroup>
+                    <Input
+                      className="form-control-alternative"
+                      id="address_building"
+                      type="text"
+                      disabled={true}
+                      defaultValue={
+                        !!order.deliveryAddress.apartment ?
+                          !!order.deliveryAddress.building ?
+                            ("Apartment: " + order.deliveryAddress.apartment + ', Building: ' + order.deliveryAddress.building)
+                            :
+                            ("Apartment: " + order.deliveryAddress.apartment)
+                          : !!order.deliveryAddress.building ?
+                            ("Building: " + order.deliveryAddress.building) : ''
+                      }
+                    />
+                  </FormGroup>
+                </Col>
+                <Col lg="3">
+                  <label className="form-control-label" htmlFor="address_details">
+                    {t('Details')}
+                  </label>
+                  <FormGroup>
+                    <Input
+                      className="form-control-alternative"
+                      id="address_details"
+                      type="text"
+                      disabled={true}
+                      defaultValue={order.deliveryAddress.details}
+                    />
+                  </FormGroup>
+                </Col>
+              </Row>
             </Collapse>
             <Row className="align-items-center">
               <Col xs="8">
@@ -527,7 +585,7 @@ function Order(props) {
                                   float: 'right'
                                 }}
                                 pill>
-                                {configData.configuration.currency_symbol}{' '}
+                                {configData.configuration.currencySymbol}{' '}
                                 {(
                                   item.price * item.quantity
                                 ).toFixed(2)}
@@ -535,13 +593,13 @@ function Order(props) {
                               {!!item.selectedAttributes.length && (
                                 <UncontrolledDropdown>
                                   <DropdownToggle caret>
-                                    Addons
-                              </DropdownToggle>
+                                    {'Attributes'}
+                                  </DropdownToggle>
                                   <DropdownMenu>
                                     {item.selectedAttributes.map((attribute, index) => {
                                       return (
                                         <DropdownItem key={index}>
-                                          {attribute.title}:- {attribute.options.title}{' '}
+                                          {attribute.title}:- {attribute.option.title}{' '}
                                           <Badge
                                             style={{
                                               fontSize: '12px',
@@ -553,7 +611,7 @@ function Order(props) {
                                               configData.configuration
                                                 .currency_symbol
                                             }{' '}
-                                            {0}
+                                            {attribute.option.price ? attribute.option.price : 0}
                                           </Badge>
                                         </DropdownItem>
                                       )
@@ -586,16 +644,16 @@ function Order(props) {
                                   float: 'right'
                                 }}
                                 pill>
-                                {configData.configuration.currency_symbol}{' '}
+                                {configData.configuration.currencySymbol}{' '}
                                 {(
-                                  order.price -
+                                  order.orderAmount -
                                   order.deliveryCharges
                                 ).toFixed(2)}
                               </Badge>
                             </ListGroupItem>
                             <ListGroupItem className="justify-content-between">
-                              Delivery Charges
-                          <Badge
+                              {'Delivery Charges'}
+                              <Badge
                                 style={{
                                   fontSize: '12px',
                                   float: 'right',
@@ -606,16 +664,16 @@ function Order(props) {
                               </Badge>
                             </ListGroupItem>
                             <ListGroupItem className="justify-content-between">
-                              Total
-                          <Badge
+                              {'Total'}
+                              <Badge
                                 style={{
                                   fontSize: '12px',
                                   color: 'black',
                                   float: 'right'
                                 }}
                                 pill>
-                                {configData.configuration.currency_symbol}{' '}
-                                {order.price}
+                                {configData.configuration.currencySymbol}{' '}
+                                {order.orderAmount.toFixed(2)}
                               </Badge>
                             </ListGroupItem>
                           </ListGroup>
@@ -640,10 +698,10 @@ function Order(props) {
                                   float: 'right'
                                 }}
                                 pill>
-                                {order.payment_method}
+                                {order.paymentMethod}
                               </Badge>
                             </ListGroupItem>
-                            {order.order_status !== 'DELIVERED' && <ListGroupItem className="justify-content-between">
+                            {order.orderStatus !== 'DELIVERED' && <ListGroupItem className="justify-content-between">
                               Paid Amount
                           <Badge
                                 style={{

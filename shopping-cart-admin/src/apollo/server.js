@@ -300,6 +300,22 @@ export const getOrders = `query Orders($page:Int,$rows:Int,$search:String){
   allOrders(page:$page,rows:$rows,search:$search){
     _id
     orderId
+    paymentMethod
+    paymentStatus
+    status
+    orderStatus
+    orderAmount
+    reason
+    deliveryCharges
+    createdAt
+    deliveryAddress{
+      label
+      region
+      city
+      apartment
+      building
+      details
+    }
     items{
       _id
       productId
@@ -309,7 +325,7 @@ export const getOrders = `query Orders($page:Int,$rows:Int,$search:String){
       selectedAttributes{
         _id
         title
-        options{
+        option{
           _id
           title
         }
@@ -322,11 +338,6 @@ export const getOrders = `query Orders($page:Int,$rows:Int,$search:String){
       phone
       email
     }
-    paymentMethod
-    paymentStatus
-    status
-    orderStatus
-    reason
     statusQueue{
       pending
       preparing
@@ -334,8 +345,6 @@ export const getOrders = `query Orders($page:Int,$rows:Int,$search:String){
       delivered
       cancelled
     }
-    deliveryCharges
-    createdAt
   }
 }`
 

@@ -18,10 +18,10 @@ const typeDefs = gql`
 
   type OrderAddress {
     label: String!
-    region: String!
-    city: String!
-    apartment: String!
-    building: String!
+    region: String
+    city: String
+    apartment: String
+    building: String
     details: String
   }
 
