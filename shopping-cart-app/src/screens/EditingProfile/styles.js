@@ -9,9 +9,6 @@ const styles = StyleSheet.create({
     safeAreaStyle: {
         backgroundColor: colors.headerbackground
     },
-    mainContainer: {
-        marginTop: Platform.OS === 'ios' ? 0 : StatusBar.currentHeight
-    },
     formMainContainer: {
         flex: 1,
         height: height * 0.8,

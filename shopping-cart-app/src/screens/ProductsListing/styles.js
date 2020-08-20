@@ -1,5 +1,5 @@
 import { scale } from '../../utils/scaling';
-import { Platform, StatusBar, Dimensions, StyleSheet } from 'react-native';
+import { Dimensions, StyleSheet } from 'react-native';
 import { alignment, colors } from '../../utils';
 const { width } = Dimensions.get('window');
 
@@ -11,7 +11,6 @@ const styles = StyleSheet.create({
         backgroundColor: colors.headerbackground
     },
     container: {
-        marginTop: Platform.OS === 'ios' ? 0 : StatusBar.currentHeight,
         backgroundColor: colors.themeBackground
     },
     categoryContainer: {
@@ -26,5 +25,31 @@ const styles = StyleSheet.create({
         width: width * 0.4,
         ...alignment.MBlarge
     },
+    subContainerImage: {
+        flex: 1,
+        width: "100%",
+        justifyContent: 'center',
+        alignContent: 'center'
+    },
+    imageContainer: {
+        justifyContent: 'center',
+        alignItems: 'center',
+        ...alignment.MBlarge
+    },
+    image: {
+        width: scale(130),
+        height: scale(130)
+    },
+    descriptionEmpty: {
+        justifyContent: 'center',
+        alignItems: 'center',
+        ...alignment.Plarge
+    },
+    emptyButton: {
+        width: '80%',
+        justifyContent: 'center',
+        alignItems: 'center',
+        alignSelf: 'center'
+    }
 })
 export default styles

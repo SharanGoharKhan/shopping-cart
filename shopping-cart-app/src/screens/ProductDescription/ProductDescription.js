@@ -51,7 +51,7 @@ function ProductDescription(props) {
         product.attributes.map(attribute => {
             return {
                 ...attribute,
-                options: attribute.options.filter(item => item.stock >0)[0]
+                options: attribute.options.filter(item => item.stock > 0)[0]
             }
         })
         : []
@@ -85,7 +85,7 @@ function ProductDescription(props) {
             attributeSetter([...attribute])
             calculateprice()
         } else {
-            FlashMessage({message:"Out Of Stock"})
+            FlashMessage({ message: "Out Of Stock" })
         }
     }
 
@@ -117,7 +117,7 @@ function ProductDescription(props) {
                                 product &&
                                 { uri: caroselImage }
                             }
-                            resizeMode="cover"
+                            resizeMode="contain"
                             style={styles.imgResponsive}
                         />
                     </View>
@@ -175,7 +175,7 @@ function ProductDescription(props) {
                 containerStyle={styles.shoppingCartContainer}
                 textStyle={styles.shoppingCartText}
                 onPress={async () => {
-                    await addCartItem(product._id,product.title,1,price,attributes)
+                    await addCartItem(product._id, product.title, 1, price, attributes)
                     navigation.navigate('ShoppingCart')
                 }}
                 text="Add to Shopping Cart" />
@@ -197,6 +197,8 @@ function ProductDescription(props) {
                     ItemSeparatorComponent={() => <View style={styles.line} />}
                     ListHeaderComponent={<ListHeader />}
                     ListFooterComponent={<ListFooter />}
+                    // refreshing={networkStatus === 4}
+                    // onRefresh={() => refetch()}
                     renderItem={({ item }) => (
                         <View style={styles.review}>
                             <View style={styles.reviewerContainer} >
@@ -235,7 +237,8 @@ function ProductDescription(props) {
                         </View>
                     )}
                 />
-                <BottomTab />
+                <BottomTab
+                    screen='HOME' />
             </View>
         </SafeAreaView>
     );
