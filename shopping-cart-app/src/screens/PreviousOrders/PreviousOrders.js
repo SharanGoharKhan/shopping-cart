@@ -9,6 +9,8 @@ import { TextDefault } from '../../components';
 import { colors, scale } from '../../utils';
 import { Feather } from '@expo/vector-icons';
 import UserContext from '../../context/User'
+import { empty } from '@apollo/client';
+import MainBtn from '../../ui/Buttons/MainBtn';
 
 
 
@@ -33,12 +35,28 @@ function PreviousOrder(props) {
         }
     }
 
-    function SectionHeader({ date }) {
+    function emptyView() {
         return (
-            <View style={styles.dateContainer}>
-                <TextDefault textColor={colors.fontThirdColor} small center>
-                    {' On '}{date}
-                </TextDefault>
+            <View style={styles.subContainerImage}>
+                <View style={styles.imageContainer}>
+                    <Image
+                        style={styles.image}
+                        source={require('../../assets/images/product.png')}></Image>
+                </View>
+                <View style={styles.descriptionEmpty}>
+                    <TextDefault textColor={colors.fontMainColor} bold center>
+                        {'No Past Orders Yet.'}
+                    </TextDefault>
+                    <TextDefault textColor={colors.fontThirdColor} center>
+                        {"You don't have any past order yet. Try our products and your previous completed orders will show here"}
+                    </TextDefault>
+                </View>
+                <View style={styles.emptyButton}>
+                    <MainBtn
+                        style={{ width: '100%' }}
+                        onPress={() => navigation.navigate('MainLanding')}
+                        text="Browse Product" />
+                </View>
             </View>
         )
     }
@@ -52,7 +70,7 @@ function PreviousOrder(props) {
             >
                 <View style={styles.leftContainer}>
                     <Image
-                        source={{uri:card.image??'https://res.cloudinary.com/ecommero/image/upload/v1597658445/products/su6dg1ufmtfuvrjbhgtj.png'}}
+                        source={{ uri: card.image ?? 'https://res.cloudinary.com/ecommero/image/upload/v1597658445/products/su6dg1ufmtfuvrjbhgtj.png' }}
                         resizeMode="cover"
                         style={[styles.imgResponsive, styles.roundedBorder]}
                     />
@@ -105,14 +123,12 @@ function PreviousOrder(props) {
                     data={loadingOrders || errorOrders
                         ? []
                         : orders.filter(o => ['DELIVERED'].includes(o.orderStatus))}
+                    ListEmptyComponent={emptyView()}
                     keyExtractor={(item, index) => item._id}
                     showsVerticalScrollIndicator={false}
                     refreshing={networkStatusOrders === 4}
                     onRefresh={() => networkStatusOrders === 7 && fetchOrders()}
                     ItemSeparatorComponent={() => <View style={styles.lineSubContainer} />}
-                    // renderSectionHeader={({ section: { date } }) => (
-                    //     <SectionHeader date={date} />
-                    // )}
                     renderItem={({ item, index, section }) => (
                         <SectionCard key={item._id} card={item} />
                     )
@@ -120,7 +136,7 @@ function PreviousOrder(props) {
                     onEndReached={fetchMoreOrdersFunc}
                 />
             </View>
-            <BottomTab />
+            <BottomTab screen='HOME' />
         </SafeAreaView>
     )
 }

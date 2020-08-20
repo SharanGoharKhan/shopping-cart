@@ -1,4 +1,4 @@
-import { StatusBar, Platform, StyleSheet } from 'react-native';;
+import { StyleSheet } from 'react-native';;
 import { fontStyles, colors, scale, alignment } from '../../utils';
 
 const styles = StyleSheet.create({
@@ -10,7 +10,6 @@ const styles = StyleSheet.create({
     },
     mainContainer: {
         backgroundColor: colors.themeBackground,
-        marginTop: Platform.OS === 'ios' ? 0 : StatusBar.currentHeight
     },
     subContainer: {
         flexGrow: 1,
@@ -54,5 +53,32 @@ const styles = StyleSheet.create({
     btnText: {
         color: colors.whiteColor
     },
+    //empty
+    subContainerImage: {
+        flex: 1,
+        width: "100%",
+        justifyContent: 'center',
+        alignContent: 'center'
+    },
+    imageContainer: {
+        justifyContent: 'center',
+        alignItems: 'center',
+        ...alignment.MBlarge
+    },
+    image: {
+        width: scale(100),
+        height: scale(100)
+    },
+    descriptionEmpty: {
+        justifyContent: 'center',
+        alignItems: 'center',
+        ...alignment.Plarge
+    },
+    emptyButton: {
+        width: '80%',
+        justifyContent: 'center',
+        alignItems: 'center',
+        alignSelf: 'center'
+    }
 });
 export default styles

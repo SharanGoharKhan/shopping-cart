@@ -1,7 +1,7 @@
 import React, { useContext, useEffect, useState } from 'react';
-import { View, Text, FlatList } from 'react-native';
+import { View, Text, FlatList, Image } from 'react-native';
 import styles from './styles';
-import { BackHeader, BottomTab, FlashMessage, TextDefault, TextError } from '../../components';
+import { BackHeader, BottomTab, FlashMessage, TextDefault, TextError, Spinner } from '../../components';
 import ShoppingCard from './ShoppingCard/ShoppingCard';
 import BlueBtn from '../../ui/Buttons/BlueBtn';
 import { SafeAreaView } from 'react-native-safe-area-context';
@@ -10,23 +10,19 @@ import { gql, useApolloClient } from '@apollo/client'
 import ConfigurationContext from '../../context/Configuration'
 import UserContext from '../../context/User'
 import { productById } from '../../apollo/server'
+import { colors } from '../../utils';
+import MainBtn from '../../ui/Buttons/MainBtn';
+
+const PRODUCT_BY_IDS = gql`${productById}`
 
 function ShoppingCart(props) {
     const client = useApolloClient()
     const navigation = useNavigation()
     const isFocused = useIsFocused()
     const configuration = useContext(ConfigurationContext)
-    const { cart,
-        updateCart,
-        addQuantity: addQuantityContext,
-        removeQuantity, } = useContext(UserContext)
-
+    const { cart, updateCart, addQuantity: addQuantityContext, removeQuantity, } = useContext(UserContext)
     const [products, setProducts] = useState([])
     const [loadingData, setLoadingData] = useState(true)
-
-    const PRODUCT_BY_IDS = gql`
-        ${productById}
-    `
 
     useEffect(() => {
         didFocus()
@@ -66,13 +62,11 @@ function ShoppingCart(props) {
             }
         } catch (error) {
             setLoadingData(false)
-            console.log('error', JSON.stringify(error))
-            return <TextError>{error.message}</TextError>
+            return <TextError text={error.message} />
         }
     }
 
     async function checkStock(cartData) {
-        console.log('cartData')
         let stockCheck = true
         const product = products.find(p => p._id === cartData._id)
         if (product) {
@@ -91,7 +85,7 @@ function ShoppingCart(props) {
                     stockCheck = false
                 }
             })
-        } 
+        }
         return stockCheck
     }
 
@@ -100,7 +94,7 @@ function ShoppingCart(props) {
         const cartData = cart.find(c => c.key === key)
         if (cartData) {
             const check = await checkStock(cartData)
-            console.log('checkStock',check)
+            console.log('checkStock', check)
             if (check) {
                 await addQuantityContext(key)
             } else {
@@ -112,23 +106,38 @@ function ShoppingCart(props) {
     }
 
     function empty() {
-        if (loadingData) {
-            return <TextDefault>Loading...</TextDefault>
-        } else {
-            return <TextDefault>Empty...</TextDefault>
-        }
+        return (
+            <View style={styles.subContainerImage}>
+                <View style={styles.imageContainer}>
+                    <Image
+                        style={styles.image}
+                        source={require('../../assets/images/activeOrder.png')}></Image>
+                </View>
+                <View style={styles.descriptionEmpty}>
+                    <TextDefault textColor={colors.fontSecondColor} bold center>
+                        {'There is no item in the cart.'}
+                    </TextDefault>
+                </View>
+                <View style={styles.emptyButton}>
+                    <MainBtn
+                        style={{ width: '100%' }}
+                        onPress={() => navigation.navigate('MainLanding')}
+                        text="Browse Product" />
+                </View>
+            </View>
+        )
     }
 
     function calculatePrice(deliveryCharges = 0) {
         let itemTotal = 0
         cart.forEach(cartItem => {
-          if (!cartItem.price) {
-            return
-          }
-          itemTotal += cartItem.price * cartItem.quantity
+            if (!cartItem.price) {
+                return
+            }
+            itemTotal += cartItem.price * cartItem.quantity
         })
         return (itemTotal + deliveryCharges).toFixed(2)
-      }
+    }
 
     function PriceContainer() {
         return (
@@ -152,7 +161,7 @@ function ShoppingCart(props) {
                     </View>
                     <View style={styles.spacer} />
                     <BlueBtn
-                        onPress={() => props.navigation.navigate('Checkout')}
+                        onPress={() => navigation.navigate('Checkout')}
                         text="Proceed"
                     />
                 </View>
@@ -190,9 +199,12 @@ function ShoppingCart(props) {
                             />
                         )}
                     />
-                    <PriceContainer />
+                    {!!cart.length &&
+                        <PriceContainer />
+                    }
                 </View>
-                <BottomTab />
+                <BottomTab
+                    screen='CART' />
             </View>
         </SafeAreaView>
     );
