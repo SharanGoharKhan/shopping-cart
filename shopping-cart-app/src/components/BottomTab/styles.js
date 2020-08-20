@@ -1,10 +1,14 @@
 import { Dimensions } from 'react-native';
 import { verticalScale } from '../../utils/scaling';
 import { fontStyles } from '../../utils/fontStyles';
+import { colors } from '../../utils';
 
 const { height, width } = Dimensions.get('window');
 
 export default {
+    active: {
+        backgroundColor: colors.themeBackground
+    },
     footerContainer: {
         width,
         height: height * 0.07,

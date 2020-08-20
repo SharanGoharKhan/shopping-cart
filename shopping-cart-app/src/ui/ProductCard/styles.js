@@ -5,8 +5,7 @@ const styles = StyleSheet.create({
     cardContainer: {
         width: '100%',
         height: '100%',
-        backgroundColor: colors.container,
-        ...alignment.PBxSmall
+        backgroundColor: colors.medHorizontalLine,
     },
     topCardContainer: {
         width: '100%',
@@ -26,12 +25,13 @@ const styles = StyleSheet.create({
         width: '100%',
         height: '30%',
         alignItems: "center",
+        backgroundColor: colors.container,
         ...alignment.PTxSmall
     },
     botSubCardContainer: {
         width: '90%',
         height: '100%',
-        justifyContent:'space-between'
+        justifyContent: 'space-between'
     }
 })
 export default styles

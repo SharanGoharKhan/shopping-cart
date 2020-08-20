@@ -19,19 +19,20 @@ function ProfileDashboard(props) {
         <View style={styles.tabContainer}>
           <TouchableOpacity>
             <TextDefault textColor={colors.fontBrown} H5>
-              My Active Orders ({orders?orders.filter(o => ['PENDING', 'PICKED', 'ACCEPTED'].includes(o.orderStatus)).length:0})
+              My Active Orders ({orders ? orders.filter(o => ['PENDING', 'PICKED', 'ACCEPTED'].includes(o.orderStatus)).length : 0})
             </TextDefault>
           </TouchableOpacity>
           <TouchableOpacity
             onPress={() => props.navigation.navigate('PreviousOrders')}>
             <TextDefault H5>
-              Previous Orders ({orders?orders.filter(o => ['DELIVERED'].includes(o.orderStatus)).length:0})
+              Previous Orders ({orders ? orders.filter(o => ['DELIVERED'].includes(o.orderStatus)).length : 0})
             </TextDefault>
           </TouchableOpacity>
         </View>
         <CardContainer />
       </View>
-      <BottomTab />
+      <BottomTab
+        screen='PROFILE' />
     </SafeAreaView>
   );
 }

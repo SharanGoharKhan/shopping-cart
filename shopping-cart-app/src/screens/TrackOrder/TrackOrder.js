@@ -1,42 +1,15 @@
-import React, { useContext, useEffect } from 'react';
-import { View, Text, Image, ScrollView } from 'react-native';
+import React, { useContext } from 'react';
+import { View } from 'react-native';
 import Timeline from 'react-native-timeline-flatlist';
 import { useNavigation, useRoute } from '@react-navigation/native';
 import styles from './styles';
-import { Spinner, TextError} from '../../components'
-import BottomTab from '../../components/BottomTab/BottomTab';
+import { BottomTab, BackHeader, Spinner, TextError, TextDefault } from '../../components';
 import { SafeAreaView } from 'react-native-safe-area-context';
-import { BackHeader } from '../../components/Headers/Headers';
 import UserContext from '../../context/User'
 import ConfigurationContext from '../../context/Configuration'
-import { colors } from '../../utils'
- 
-/* Config/Constants
-============================================================================= */
-
-const data = [
-    {
-        time: '09:00', title: 'Order Received', description: '13:32, Nov 05,2019', lineColor: '#8CB65E',
-    },
-    {
-        time: '10:45', title: 'In process', description: '13:40, Nov 05,2019', lineColor: '#8CB65E',
-    },
-    {
-        time: '12:00', title: 'Ready for Delivery', description: '13:55, Nov 05,2019', lineColor: '#8CB65E',
-    },
-    {
-        time: '14:00', title: 'Picked up by the driver', description: '14:15, Nov 05,2019', lineColor: '#8CB65E',
-    },
-    {
-
-    }
-    // {
-    //     time: '14:20', title: 'Delivered', description: '14:15, Nov 05,2019', lineColor: '#8CB65E',
-    // },
-];
+import { colors, scale, alignment } from '../../utils'
 
 function TrackOrder(props) {
-    console.log('props',props)
     const navigation = useNavigation()
     const route = useRoute()
     const id = route.params?._id ?? null
@@ -96,52 +69,60 @@ function TrackOrder(props) {
 
         return timeline
     }
-    if (loadingOrders || !order) return <Spinner />
-    if (errorOrders) return <TextError text={'error'} />
-    return (
-        <SafeAreaView style={[styles.flex, styles.safeAreaStyle]}>
-            <ScrollView contentContainerStyle={[styles.flex, styles.mainContainer]}>
-                <BackHeader
-                    title="Order No. 10352"
-                    backPressed={() => navigation.goBack()} />
-                <View style={styles.line}></View>
+    function Header() {
+        return (
+            <>
                 <View style={styles.cardContainer}>
+                    <TextDefault textColor={colors.fontBlue} H4 style={alignment.MBsmall}>
+                        {'Product Details'}
+                    </TextDefault>
                     <View style={styles.card}>
-                        <View style={styles.cardLeftContainer}>
-                            <Image
-                                source={require('../../assets/images/OrderDetail/basket.png')}
-                                style={styles.imgResponsive}
-                                resizeMode="cover"
-                            />
-                        </View>
-                        <View style={styles.cardRightContainer}>
-                            <Text style={[styles.productTitleStyle, styles.marginTop5]}>Leather Crossbody MID...</Text>
-                            <Text style={styles.productDescriptionStyle}>Courier received the order.</Text>
-                            <View style={styles.amountContainer}>
-                                <View style={styles.quantityContainer}>
-                                    <Text style={styles.productTitleStyle}>x1</Text>
-                                </View>
-                                <View style={styles.priceContainer}>
-                                    <Text style={styles.productTitleStyle}>{configuration.currencySymbol} 35</Text>
-                                </View>
+                        {order && order.items.map((item, index) => (
+                            <View style={{ flexDirection: 'row' }} key={index}>
+                                <TextDefault textColor={colors.fontSecondColor}>
+                                    {item.quantity}{'x '}
+                                </TextDefault>
+                                <TextDefault textColor={colors.fontSecondColor} style={{ width: '95%' }}>
+                                    {item.product}
+                                </TextDefault>
                             </View>
-                        </View>
+                        ))}
                     </View>
                 </View>
-                <View style={styles.line}></View>
-                <View style={styles.timelineContainer}>
-                    <Timeline
-                        data={transformStatusQueue(order.statusQueue)}
-                        circleSize={15}
-                        circleColor="#8CB65E"
-                        showTime={false}
-                        innerCircle="dot"
-                        titleStyle={{ marginTop: -14 }}
-                    />
-                </View>
-            </ScrollView>
-            <BottomTab />
-        </SafeAreaView>
+                <TextDefault textColor={colors.fontBlue} H4 style={alignment.MBsmall} center>
+                    {'Order Status'}
+                </TextDefault>
+            </>
+        )
+    }
+    return (
+        <SafeAreaView style={[styles.flex, styles.safeAreaStyle]}>
+            <View style={[styles.flex, styles.mainContainer]}>
+                <BackHeader
+                    title={"Order No. " + order?.orderId ?? "10352"}
+                    backPressed={() => navigation.goBack()} />
+                {errorOrders ? <TextError text={errorOrders.message} /> :
+                    loadingOrders || !order ? <Spinner /> :
+                        <>
+                            <View style={styles.timelineContainer}>
+                                <Timeline
+                                    data={transformStatusQueue(order.statusQueue)}
+                                    circleSize={scale(15)}
+                                    circleColor="#8CB65E"
+                                    showTime={false}
+                                    innerCircle="dot"
+                                    titleStyle={{ marginTop: -10 }}
+                                    options={{
+                                        ListHeaderComponent: Header()
+                                    }}
+                                />
+                            </View>
+                        </>
+                }
+            </View>
+            <BottomTab
+                screen='HOME' />
+        </SafeAreaView >
     )
 }
 

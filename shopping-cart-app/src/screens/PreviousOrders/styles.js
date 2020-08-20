@@ -14,11 +14,7 @@ const styles = StyleSheet.create({
         backgroundColor: colors.headerbackground
     },
     mainContainer: {
-        marginTop: Platform.OS === 'ios' ? 0 : StatusBar.currentHeight,
-    },
-    backImg: {
-        marginBottom: '3%',
-        marginLeft: '5%',
+        backgroundColor: colors.themeBackground
     },
     dateContainer: {
         height: height * 0.05,
@@ -116,6 +112,34 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         borderRadius: verticalScale(4),
         backgroundColor: colors.textBlueColor,
-    }
+    },
+    //empty
+    subContainerImage: {
+        flex: 1,
+        width: "100%",
+        justifyContent: 'center',
+        alignContent: 'center',
+        ...alignment.PBlarge
+    },
+    imageContainer: {
+        justifyContent: 'center',
+        alignItems: 'center',
+        ...alignment.MBlarge
+    },
+    image: {
+        width: scale(130),
+        height: scale(130)
+    },
+    descriptionEmpty: {
+        justifyContent: 'center',
+        alignItems: 'center',
+        ...alignment.Plarge
+    },
+    emptyButton: {
+        width: '80%',
+        justifyContent: 'center',
+        alignItems: 'center',
+        alignSelf: 'center'
+    },
 })
 export default styles

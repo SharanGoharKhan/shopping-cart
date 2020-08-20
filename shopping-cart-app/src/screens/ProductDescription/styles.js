@@ -1,4 +1,4 @@
-import { Dimensions, Platform, StatusBar, StyleSheet } from 'react-native';
+import { Dimensions, StyleSheet } from 'react-native';
 import { alignment, fontStyles, colors, scale, verticalScale } from '../../utils';
 const { height, width } = Dimensions.get('window');
 
@@ -17,7 +17,7 @@ const styles = StyleSheet.create({
         backgroundColor: colors.headerbackground
     },
     mainContainer: {
-        marginTop: Platform.OS === 'ios' ? 0 : StatusBar.currentHeight
+        backgroundColor: colors.themeBackground
     },
     contentStyle: {
         flexGrow: 1
@@ -72,7 +72,8 @@ const styles = StyleSheet.create({
     },
     caroselMainImgCnt: {
         height: height * 0.5,
-        width: '100%'
+        width: '100%',
+        backgroundColor:'white'
     },
     scrollViewStyle: {
         height: height * 0.08,

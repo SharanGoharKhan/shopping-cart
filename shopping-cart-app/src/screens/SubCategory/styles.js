@@ -8,11 +8,9 @@ const styles = StyleSheet.create({
     },
     safeAreaStyle: {
         backgroundColor: colors.headerbackground,
-        marginTop: Platform.OS === 'ios' ? 0 : -(StatusBar.currentHeight)
     },
     grayBackground: {
         backgroundColor: colors.backgroudGray,
-        marginTop: Platform.OS === 'ios' ? 0 : StatusBar.currentHeight
     },
     headerText: {
         height: scale(80),

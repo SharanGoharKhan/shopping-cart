@@ -105,7 +105,7 @@ function SignUp(props) {
 
     return (
         <SafeAreaView style={[styles.flex, styles.safeAreaStyle]}>
-            <KeyboardAvoidingView behavior={Platform.OS === "ios" ? "padding" : "height"} style={[styles.flex, { marginTop: Platform.OS === 'ios' ? 0 : StatusBar.currentHeight }]}>
+            <KeyboardAvoidingView behavior={Platform.OS === "ios" ? "padding" : "height"} style={styles.flex}>
                 <ScrollView showsVerticalScrollIndicator={false}
                     contentContainerStyle={{ flexGrow: 1 }}
                     style={styles.flex}

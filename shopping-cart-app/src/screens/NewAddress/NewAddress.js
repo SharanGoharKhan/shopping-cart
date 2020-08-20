@@ -4,7 +4,7 @@ import styles from './styles';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { BackHeader, BottomTab, TextDefault, FlashMessage, } from '../../components';
 import { colors } from '../../utils';
-import { useNavigation } from '@react-navigation/native';
+import { useNavigation, useRoute } from '@react-navigation/native';
 import MainBtn from '../../ui/Buttons/MainBtn'
 import { gql, useMutation } from '@apollo/client';
 import { createAddress } from '../../apollo/server';
@@ -14,6 +14,7 @@ const CREATE_ADDRESS = gql`${createAddress}`
 
 function NewAddress() {
     const navigation = useNavigation()
+    const route = useRoute()
     const [title, titleSetter] = useState('')
     const [city, citySetter] = useState('')
     const [regionName, regionNameSetter] = useState('')
@@ -26,10 +27,13 @@ function NewAddress() {
     const [aptNumberError, aptNumberErrorSetter] = useState('')
     const [buildingError, buildingErrorSetter] = useState('')
     const [mutate, { loading }] = useMutation(CREATE_ADDRESS, { onCompleted, onError })
+    const cartAddress = route.params?.backScreen ?? null
 
     function onCompleted(data) {
         FlashMessage({ message: 'Address added', type: 'success' })
-        navigation.goBack()
+        if (cartAddress === 'Cart') {
+            navigation.navigate('Checkout')
+        } else navigation.goBack()
     }
 
     function onError(error) {
@@ -54,7 +58,7 @@ function NewAddress() {
 
     return (
         <SafeAreaView style={[styles.flex, styles.safeAreaStyle]}>
-            <View style={[styles.flex, styles.mainContainer]}>
+            <View style={styles.flex}>
                 <BackHeader
                     title="New Address"
                     backPressed={() => navigation.goBack()} />
@@ -224,7 +228,8 @@ function NewAddress() {
                         </ScrollView>
                     </View>
                 </KeyboardAvoidingView>
-                <BottomTab />
+                <BottomTab
+                    screen='PROFILE' />
             </View >
         </SafeAreaView >
     );

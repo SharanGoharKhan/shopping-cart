@@ -4,8 +4,7 @@ import { verticalScale, scale, alignment } from '../../utils';
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: 'white',
-        marginTop: Platform.OS === 'ios' ? 0 : StatusBar.currentHeight
+        backgroundColor: 'white'
     },
     profileContainer: {
         width: '100%',

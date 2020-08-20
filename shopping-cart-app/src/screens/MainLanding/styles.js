@@ -1,4 +1,4 @@
-import { Dimensions, Platform, StatusBar, StyleSheet } from 'react-native';
+import { Dimensions, StyleSheet } from 'react-native';
 import { alignment, fontStyles, colors, scale, verticalScale } from '../../utils';
 const { height, width } = Dimensions.get('window');
 
@@ -8,7 +8,6 @@ const styles = StyleSheet.create({
     },
     safeAreaStyle: {
         backgroundColor: colors.headerbackground,
-        marginTop: Platform.OS === 'ios' ? 0 : -(StatusBar.currentHeight)
     },
     leftIconPadding: {
         ...alignment.PLsmall,
@@ -20,7 +19,6 @@ const styles = StyleSheet.create({
     },
     grayBackground: {
         backgroundColor: colors.backgroudGray,
-        marginTop: Platform.OS === 'ios' ? 0 : StatusBar.currentHeight
     },
     caroselContainer: {
         width: '100%',
@@ -72,6 +70,9 @@ const styles = StyleSheet.create({
         height: scale(225),
         marginTop: scale(10),
         marginBottom: scale(20)
+    },
+    spacer: {
+        ...alignment.MBsmall
     }
 })
 export default styles

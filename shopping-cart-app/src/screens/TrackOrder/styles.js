@@ -1,6 +1,5 @@
-import { Dimensions, Platform, StatusBar } from 'react-native';
-import { verticalScale } from '../../utils/scaling';
-import { colors } from '../../utils/colors';
+import { Dimensions, StyleSheet } from 'react-native';
+import { alignment, colors, verticalScale, scale } from '../../utils';
 
 const { height, width } = Dimensions.get('window');
 
@@ -12,12 +11,14 @@ export default {
         backgroundColor: colors.headerbackground
     },
     mainContainer: {
-        marginTop: Platform.OS === 'ios' ? 0 : StatusBar.currentHeight
+        backgroundColor: colors.themeBackground
     },
     line: {
         width: '100%',
-        height: verticalScale(1),
-        backgroundColor: colors.grayLinesColor
+        height: StyleSheet.hairlineWidth,
+        backgroundColor: colors.medHorizontalLine,
+        ...alignment.MTxSmall,
+        ...alignment.MBxSmall
     },
     backImg: {
         marginBottom: '3%',
@@ -26,18 +27,15 @@ export default {
     cardContainer: {
         backgroundColor: colors.backgroudGray,
         width: '100%',
-        height: height * 0.2,
         justifyContent: 'center',
-        alignItems: 'center'
+        alignItems: 'center',
+        ...alignment.MBlarge,
     },
     card: {
         backgroundColor: colors.whiteColor,
-        width: '90%',
-        height: '80%',
-        flexDirection: 'row',
-        borderRadius: verticalScale(8),
-        borderTopLeftRadius: verticalScale(8),
-        borderBottomLeftRadius: verticalScale(8),
+        width: '95%',
+        borderRadius: scale(8),
+        ...alignment.Psmall
     },
     cardLeftContainer: {
         width: '35%',
@@ -46,9 +44,9 @@ export default {
         borderBottomLeftRadius: verticalScale(8),
     },
     cardRightContainer: {
-        marginLeft: '3%',
         width: '60%',
         height: '100%',
+        ...alignment.MLxSmall
     },
     imgResponsive: {
         flex: 1,
@@ -57,12 +55,11 @@ export default {
         borderTopLeftRadius: verticalScale(8),
         borderBottomLeftRadius: verticalScale(8),
     },
-    marginTop5: {
-        marginTop: '5%',
-    },
     timelineContainer: {
         backgroundColor: colors.backgroudGray,
-        paddingTop: verticalScale(10),
         flex: 1,
+        ...alignment.PTlarge,
+        ...alignment.PLsmall,
+        ...alignment.PRsmall
     },
 };

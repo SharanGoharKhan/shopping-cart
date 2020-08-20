@@ -5,14 +5,16 @@ import BottomTab from '../../components/BottomTab/BottomTab';
 import Card from './Card/AddressCard';
 import Ionicons from 'react-native-vector-icons/Ionicons'
 import { SafeAreaView } from 'react-native-safe-area-context'
-import { useNavigation } from '@react-navigation/native';
+import { useNavigation, useRoute } from '@react-navigation/native';
 import { colors, alignment } from '../../utils';
 import { TextDefault } from '../../components';
 import UserContext from '../../context/User'
 
 function AddressList() {
     const navigation = useNavigation()
+    const route = useRoute()
     const { profile } = useContext(UserContext)
+    const cartAddress = route.params?.backScreen ?? null
 
     function emptyView() {
         return (
@@ -31,7 +33,7 @@ function AddressList() {
                 <View style={styles.btnContainer}>
                     <TouchableOpacity
                         activeOpacity={0}
-                        style={styles.unselectedButton} onPress={() => navigation.navigate('NewAddress')}>
+                        style={styles.unselectedButton} onPress={() => navigation.navigate('NewAddress', { backScreen: cartAddress })}>
                         <TextDefault textColor={colors.buttonText} H5>
                             {'Add new address'}
                         </TextDefault>
@@ -54,7 +56,7 @@ function AddressList() {
                         <Text style={styles.headerText}>My Adresses</Text>
                         <View style={styles.headerBtn}>
                             <TouchableOpacity
-                                onPress={() => navigation.navigate('NewAddress')}
+                                onPress={() => navigation.navigate('NewAddress', { backScreen: cartAddress })}
                                 activeOpacity={0}>
                                 <Text style={styles.headerBtnText}>{'New Address'}</Text>
                             </TouchableOpacity>
@@ -77,7 +79,8 @@ function AddressList() {
                         />
                     </View>
                 </View>
-                <BottomTab />
+                <BottomTab
+                    screen='PROFILE' />
             </View>
         </SafeAreaView>
     );
