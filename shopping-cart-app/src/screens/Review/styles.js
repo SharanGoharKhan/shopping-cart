@@ -1,14 +1,16 @@
-import { Dimensions, StyleSheet, StatusBar } from 'react-native'
-import { textStyles, colors } from '../../utils'
+import { Dimensions, StyleSheet } from 'react-native'
+import { textStyles, colors, scale } from '../../utils'
 const { height } = Dimensions.get('window')
 
 const styles = StyleSheet.create({
   flex: {
     flex: 1
   },
+  safeAreaView: {
+    backgroundColor: colors.headerbackground
+  },
   mainBackground: {
     backgroundColor: colors.themeBackground,
-    marginTop: Platform.OS === 'ios' ? 0 : StatusBar.currentHeight
   },
   reviewTextContainer: {
     width: '100%',
@@ -55,24 +57,21 @@ const styles = StyleSheet.create({
   },
   textinput: {
     height: '100%',
-    ...textStyles.Bold,
+    ...textStyles.Regular,
     ...textStyles.Normal
-  },
-  btnContainer: {
-    width: '100%',
-    height: height * 0.1,
-    justifyContent: 'center',
-    alignItems: 'center'
   },
   btnSubContainer: {
     width: '80%',
-    height: '60%'
+    height: scale(50),
+    alignSelf: "center"
   },
   btnTouch: {
-    flex: 1,
+    width: "100%",
+    height: "100%",
     backgroundColor: colors.buttonBackground,
     justifyContent: 'center',
-    alignItems: 'center'
+    alignItems: 'center',
+    borderRadius: scale(8)
   }
 })
 export default styles
