@@ -13,14 +13,10 @@ function OrderDetail(props) {
     const navigation = useNavigation()
     const route = useRoute()
     const id = route.params._id ?? null
-    console.log('id', id)
     const cart = route.params.clearCart ?? false
-    const { orders, clearCart, loadingOrders, errorOrders } = useContext(
-        UserContext
-    )
+    const { orders, clearCart, loadingOrders, errorOrders } = useContext(UserContext)
     const configuration = useContext(ConfigurationContext)
     const order = orders.find(o => o._id === id)
-    console.log('orders', JSON.stringify(orders.map(({ _id }) => _id)))
     useEffect(() => {
         return () => {
             if (cart) {
@@ -31,6 +27,7 @@ function OrderDetail(props) {
     async function clear() {
         await clearCart()
     }
+    console.log(loadingOrders)
     return (
         <SafeAreaView style={[styles.flex, styles.safeAreaStyle]}>
             <View style={styles.flex}>
@@ -39,7 +36,9 @@ function OrderDetail(props) {
                     backPressed={() => navigation.goBack()} />
                 {errorOrders ? <TextError text={errorOrders} /> :
                     (loadingOrders || !order) ? <Spinner /> :
-                        <ScrollView style={[styles.itemContainer, styles.flex]}>
+                        <ScrollView
+                            style={[styles.itemContainer, styles.flex]}
+                            showsVerticalScrollIndicator={false}>
                             {order.items.length && order.items.map(data => {
                                 return (<View key={data._id} style={styles.cardContainer}>
                                     <View style={styles.card}>
@@ -56,25 +55,25 @@ function OrderDetail(props) {
                                             </TextDefault>
                                             <View style={styles.amountContainer}>
                                                 <View style={styles.quantityContainer}>
-                                                    <TextDefault textColor={colors.fontMainColor} H5>
+                                                    <TextDefault textColor={colors.fontSecondColor} >
                                                         x{data.quantity}
                                                     </TextDefault>
                                                 </View>
                                                 <View style={styles.priceContainer}>
-                                                    <TextDefault textColor={colors.fontMainColor} H5 right style={alignment.PRxSmall}>
+                                                    <TextDefault textColor={colors.fontSecondColor} right style={alignment.PRxSmall}>
                                                         {configuration.currencySymbol} {data.price * data.quantity}
                                                     </TextDefault>
                                                 </View>
                                             </View>
+                                            {!data.isReviewed && <TouchableOpacity
+                                                style={styles.actionContainer}
+                                                onPress={() => navigation.navigate('Review', { product: data.productId, order: order._id })}>
+                                                <TextDefault textColor={colors.white} H5>
+                                                    {'Review'}
+                                                </TextDefault>
+                                            </TouchableOpacity>}
                                         </View>
                                     </View>
-                                        {!data.isReviewed && <TouchableOpacity
-                                            style={styles.actionContainer}
-                                            onPress={() => navigation.navigate('Review',{product:data.productId, order: order._id })}>
-                                            <TextDefault textColor={colors.white} H5>
-                                                Review
-                                    </TextDefault>
-                                        </TouchableOpacity>}
                                 </View>)
                             })}
                             <View style={styles.line} />

@@ -1,5 +1,5 @@
 import { Dimensions, StyleSheet } from 'react-native';
-import { alignment, colors, scale, verticalScale, fontStyles } from '../../utils';
+import { alignment, colors, scale, verticalScale } from '../../utils';
 const { height, width } = Dimensions.get('window');
 
 const styles = StyleSheet.create({
@@ -20,33 +20,30 @@ const styles = StyleSheet.create({
         ...alignment.MBxSmall
     },
     cardContainer: {
-        backgroundColor: colors.backgroudGray,
+        backgroundColor: colors.themeBackground,
         width: '100%',
-        height: scale(90),
         justifyContent: 'center',
         alignItems: 'center',
-        ...alignment.MTsmall
+        ...alignment.MTxSmall,
+        ...alignment.MBxSmall
     },
     card: {
-        backgroundColor: colors.whiteColor,
+        backgroundColor: colors.container,
         width: '90%',
-        height: '100%',
         flexDirection: 'row',
-        borderRadius: verticalScale(8),
-        borderTopLeftRadius: verticalScale(8),
-        borderBottomLeftRadius: verticalScale(8),
+        borderRadius: scale(8)
     },
     cardLeftContainer: {
         width: '35%',
-        height: '100%',
         borderTopLeftRadius: verticalScale(8),
         borderBottomLeftRadius: verticalScale(8),
     },
     cardRightContainer: {
         width: '60%',
-        height: '100%',
-        ...alignment.MLxSmall,
         justifyContent: "space-around",
+        ...alignment.MLxSmall,
+        ...alignment.PTxSmall,
+        ...alignment.PBxSmall
     },
     imgResponsive: {
         flex: 1,
@@ -55,28 +52,22 @@ const styles = StyleSheet.create({
         borderTopLeftRadius: verticalScale(8),
         borderBottomLeftRadius: verticalScale(8),
     },
-    marginTop5: {
-        marginTop: '5%',
-    },
     amountContainer: {
         width: '100%',
-        height: '30%',
         flexDirection: 'row',
-        marginTop: '10%',
         justifyContent: 'space-between',
+        ...alignment.MTxSmall,
+        ...alignment.MBxSmall
     },
     quantityContainer: {
         width: '40%',
-        height: '100%',
         justifyContent: 'center',
     },
     priceContainer: {
         width: '40%',
-        height: '100%',
         justifyContent: 'center',
     },
     deliverContainer: {
-        width: '100%',
         backgroundColor: colors.backgroudGray,
         justifyContent: 'center',
         ...alignment.PTlarge,
@@ -127,7 +118,7 @@ const styles = StyleSheet.create({
         backgroundColor: colors.whiteColor,
         alignItems: 'center',
         justifyContent: 'center',
-        borderRadius: verticalScale(4),
+        borderRadius: scale(4),
         height: scale(80)
     },
     trackStyle: {
@@ -138,18 +129,14 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         borderRadius: verticalScale(4),
     },
-    trackStyleText: {
-        fontFamily: fontStyles.PoppinsRegular,
-        fontSize: verticalScale(16),
-        color: colors.whiteColor,
-    },
     actionContainer: {
-        width: '40%',
-        height: '25%',
+        width: '90%',
         justifyContent: 'center',
         alignItems: 'center',
-        borderRadius: verticalScale(4),
+        alignSelf: "center",
+        borderRadius: scale(4),
         backgroundColor: colors.textBlueColor,
+        ...alignment.MTxSmall
     }
 })
 export default styles

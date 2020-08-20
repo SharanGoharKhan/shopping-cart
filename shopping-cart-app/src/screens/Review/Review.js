@@ -11,7 +11,7 @@ import { useNavigation, useRoute } from '@react-navigation/native'
 import { colors } from '../../utils'
 import { BackHeader, FlashMessage } from '../../components'
 import { useMutation, gql } from '@apollo/client'
-import { reviewOrder, productById } from '../../apollo/server'
+import { reviewOrder } from '../../apollo/server'
 
 const REVIEWORDER = gql`${reviewOrder}`
 
@@ -20,10 +20,9 @@ function Review() {
   const route = useRoute()
   const product = route.params.product ?? null
   const order = route.params.order ?? null
-  const [rating, setRating] = useState(0)
+  const [rating, setRating] = useState(1)
   const [description, setDescription] = useState('')
-  console.log('o',order)
-  console.log('p',product)
+
   const [mutate, { loading: loadingMutation }] = useMutation(REVIEWORDER, {
     onError,
     onCompleted
@@ -35,6 +34,17 @@ function Review() {
 
   function onChangeText(description) {
     setDescription(description)
+  }
+  function validate() {
+    if (rating < 1) {
+      FlashMessage({ message: 'Star rating is missing!', type: 'warning' })
+      return false
+    }
+    if (!description.length) {
+      FlashMessage({ message: 'Review is missing!', type: 'warning' })
+      return false
+    }
+    return true
   }
 
   function onSubmit() {
@@ -53,14 +63,14 @@ function Review() {
   }
 
   function onError(error) {
-    console.log('error',error)
+    console.log('error', error)
     // FlashMessage({
     //   message: error.networkError.result.errors[0].message
     // })
   }
 
   return (
-    <SafeAreaView style={[styles.flex, styles.mainBackground]}>
+    <SafeAreaView style={[styles.flex, styles.safeAreaView]}>
       <View style={[styles.flex, styles.mainBackground]}>
         <BackHeader
           title="Review"
@@ -107,20 +117,21 @@ function Review() {
             />
           </View>
         </View>
-        <View style={styles.btnContainer}>
-          <View style={styles.btnSubContainer}>
-            {loadingMutation && <Spinner />}
-            {!loadingMutation && (
-              <TouchableOpacity
-                activeOpacity={0.7}
-                onPress={onSubmit}
-                style={styles.btnTouch}>
-                <TextDefault textColor={colors.buttonText} H4 bold>
-                  {'Submit'}
-                </TextDefault>
-              </TouchableOpacity>
-            )}
-          </View>
+        <View style={styles.btnSubContainer}>
+          {loadingMutation && <Spinner />}
+          <TouchableOpacity
+            disabled={loadingMutation}
+            activeOpacity={0.7}
+            onPress={() => {
+              if (validate())
+                onSubmit()
+            }
+            }
+            style={styles.btnTouch}>
+            <TextDefault textColor={colors.buttonText} H4 bold>
+              {'Submit'}
+            </TextDefault>
+          </TouchableOpacity>
         </View>
       </View>
     </SafeAreaView>
