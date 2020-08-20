@@ -6,16 +6,23 @@ import BlueBtn from '../../ui/Buttons/BlueBtn';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { BackHeader, BottomTab, TextDefault, CheckoutReceipt, FlashMessage } from '../../components';
 import { useNavigation, useRoute } from '@react-navigation/native';
-import { AntDesign } from '@expo/vector-icons'
+import { AntDesign, Feather } from '@expo/vector-icons'
 import UserContext from '../../context/User'
 import ConfigurationContext from '../../context/Configuration'
 import { stripeCurrencies, paypalCurrencies } from '../../utils/currencies'
 import { useMutation, gql } from '@apollo/client'
-import { placeOrder } from '../../apollo/server'
+import { placeOrder, getCoupon } from '../../apollo/server'
+import TextField from '../../ui/Textfield/Textfield';
+import MainBtn from '../../ui/Buttons/MainBtn';
+
 
 const PLACEORDER = gql`
   ${placeOrder}
 `
+const GET_COUPON = gql`
+  ${getCoupon}
+`
+
 /* Config/Constants
 ============================================================================= */
 
@@ -27,13 +34,20 @@ const COD_PAYMENT = {
 }
 
 function Checkout() {
-    const navigation = useNavigation()
     const route = useRoute()
-    const [paymentMethod, setPaymentMethod] = useState(null)
+    const navigation = useNavigation()
     const payObj = route.params ? route.params.PayObject : null
+    const [paymentMethod, setPaymentMethod] = useState(null)
+    const [coupan, setCoupan] = useState(null)
+    const [discount, setDiscount] = useState(0)
     const [modalVisible, setModalVisible] = useState(false)
-    const { isLoggedIn, cart, profile, clearCart } = useContext(UserContext)
     const configuration = useContext(ConfigurationContext)
+    const { isLoggedIn, cart, profile, clearCart } = useContext(UserContext)
+
+    const [mutate] = useMutation(GET_COUPON, {
+        onCompleted,
+        onError
+    })
 
     const [mutateOrder, { loading: loadingOrderMutation }] = useMutation(
         PLACEORDER,
@@ -60,27 +74,42 @@ function Checkout() {
             ? profile.addresses.filter(a => a.selected)[0]
             : null
 
+    function applyCoupan() {
+        mutate({ variables: { coupon: coupan } })
+    }
+
+    function onCompleted({ coupon }) {
+        if (coupon) {
+            if (coupon.enabled) {
+                setDiscount(coupon.discount)
+                setCoupan(coupon.code)
+
+                FlashMessage({ message: "Coupan Aplied", type: 'success' })
+            } else {
+                FlashMessage({ message: "Coupan Failed", type: 'warning' })
+            }
+        }
+    }
+
+    function onError(error) {
+        FlashMessage({ message: "Invalid Coupan", type: 'warning' })
+    }
+
     function validateOrder() {
         if (!cart.length) {
-            FlashMessage({
-                message: 'Cart is empty !'
-            })
+            FlashMessage({ message: 'Cart is empty !', type: 'warning' })
             return false
         }
         if (!address) {
-            FlashMessage({
-                message: 'Set delivery address before checkout'
-            })
+            FlashMessage({ message: 'Set delivery address before checkout', type: 'warning' })
             return false
         }
         if (!paymentMethod) {
-            FlashMessage({
-                message: 'Set payment method before checkout'
-            })
+            FlashMessage({ message: 'Set payment method before checkout', type: 'warning' })
             return false
         }
         if (profile.phone.length < 1) {
-            navigation.navigate('EditProfile', { backScreen: 'Cart' })
+            navigation.navigate('EditingProfile', { backScreen: 'Cart' })
             return false
         }
         return true
@@ -129,7 +158,7 @@ function Checkout() {
             })
         } else {
             FlashMessage({
-                message: i18n.t('paymentNotSupported')
+                message: 'Payment not supported yet!', type: 'warning'
             })
         }
     }
@@ -161,14 +190,12 @@ function Checkout() {
         }
     }
     function errorPlaceOrder(error) {
-        console.log('error',JSON.stringify(error))
-        FlashMessage({
-            message: error.message
-        })
+        console.log('error', JSON.stringify(error))
+        FlashMessage({ message: error.message, type: 'warning' })
     }
 
 
-    function calculatePrice(deliveryCharges = 0) {
+    function calculatePrice(deliveryCharges = 0, withDiscount) {
         let itemTotal = 0
         cart.forEach(cartItem => {
             if (!cartItem.price) {
@@ -176,6 +203,9 @@ function Checkout() {
             }
             itemTotal += cartItem.price * cartItem.quantity
         })
+        if (withDiscount && discount) {
+            itemTotal = itemTotal - (discount / 100) * itemTotal
+        }
         return (itemTotal + deliveryCharges).toFixed(2)
     }
 
@@ -218,7 +248,7 @@ function Checkout() {
                                     </TextDefault>
                                     <TouchableOpacity
                                         activeOpacity={0}
-                                        onPress={() => console.log('Pressed Edit')}>
+                                        onPress={() => navigation.goBack()}>
                                         <Image
                                             source={require('../../assets/icons/edit.png')}
                                             style={{
@@ -246,7 +276,33 @@ function Checkout() {
                             </View>
                             {isLoggedIn &&
                                 <>
-                                    <View style={[styles.address, styles.line]}>
+                                    <View style={[styles.coupan, styles.line]}>
+                                        <TextDefault textColor={colors.fontBrown} H5>
+                                            {'Coupan'}
+                                        </TextDefault>
+                                        <View style={styles.coupanRow}>
+                                            <View style={styles.coupanInput}>
+                                                <TextField
+                                                    value={coupan}
+                                                    placeholder="Coupan"
+                                                    onChange={event => {
+                                                        setCoupan(event.nativeEvent.text.trim())
+                                                    }}
+                                                />
+                                            </View>
+                                            <MainBtn
+                                                style={styles.coupanBtn}
+                                                onPress={applyCoupan}
+                                                text={'Apply'}
+                                            />
+                                        </View>
+                                    </View>
+                                    <TouchableOpacity style={[styles.address, styles.line]}
+                                        onPress={() => {
+                                            isLoggedIn &&
+                                                navigation.navigate('AddressList', { backScreen: 'Cart' })
+                                        }}
+                                    >
                                         <TextDefault textColor={colors.fontBrown} H5>
                                             {'Deliver to'}
                                         </TextDefault>
@@ -266,17 +322,7 @@ function Checkout() {
                                                 <TextDefault textColor={colors.fontMainColor}>
                                                     {address.region}
                                                 </TextDefault>
-                                                <TouchableOpacity
-                                                    activeOpacity={0}
-                                                    onPress={() => navigation.navigate('AddressList')}>
-                                                    <Image
-                                                        source={require('../../assets/icons/edit.png')}
-                                                        style={{
-                                                            height: verticalScale(16),
-                                                            width: verticalScale(16),
-                                                        }}
-                                                    />
-                                                </TouchableOpacity>
+                                                <Feather name='edit' size={scale(15)} color={colors.fontThirdColor} />
                                             </View>
                                             <TextDefault textColor={colors.fontMainColor}>
                                                 {address.city},
@@ -293,22 +339,12 @@ function Checkout() {
                                                     <TextDefault textColor={colors.fontMainColor}>
                                                         Select Address
                                                     </TextDefault>
-                                                    <TouchableOpacity
-                                                        activeOpacity={0}
-                                                        onPress={() => navigation.navigate('AddressList')}>
-                                                        <Image
-                                                            source={require('../../assets/icons/edit.png')}
-                                                            style={{
-                                                                height: verticalScale(16),
-                                                                width: verticalScale(16),
-                                                            }}
-                                                        />
-                                                    </TouchableOpacity>
+                                                    <Feather name='edit' size={scale(15)} color={colors.fontThirdColor} />
                                                 </View>
                                             </View>
                                         }
 
-                                    </View>
+                                    </TouchableOpacity>
                                     <View style={styles.dealContainer}>
                                         <View style={[styles.floatView]}>
                                             <TextDefault
@@ -373,7 +409,7 @@ function Checkout() {
                                         {'Sub Total'}
                                     </TextDefault>
                                     <TextDefault textColor={colors.fontMainColor} H5>
-                                        {configuration.currencySymbol} {calculatePrice(0)}
+                                        {configuration.currencySymbol} {calculatePrice(0, false)}
                                     </TextDefault>
                                 </View>
                                 <View style={styles.row}>
@@ -384,6 +420,14 @@ function Checkout() {
                                         {configuration.currencySymbol} {configuration.deliveryCharges}
                                     </TextDefault>
                                 </View>
+                                <View style={styles.row}>
+                                    <TextDefault textColor={colors.fontSecondColor} H5>
+                                        {'Discount'}
+                                    </TextDefault>
+                                    <TextDefault textColor={colors.fontMainColor} H5>
+                                        {'-'}{configuration.currencySymbol} {discount}
+                                    </TextDefault>
+                                </View>
                             </View>
                             <View style={styles.total_container}>
                                 <View style={styles.row}>
@@ -391,7 +435,7 @@ function Checkout() {
                                         {'Total'}
                                     </TextDefault>
                                     <TextDefault textColor={colors.fontBlue} H5 bold>
-                                        {configuration.currencySymbol} {calculatePrice(configuration.deliveryCharges)}
+                                        {configuration.currencySymbol} {calculatePrice(configuration.deliveryCharges, true)}
                                     </TextDefault>
                                 </View>
                             </View>
@@ -418,7 +462,8 @@ function Checkout() {
                 modalVisible={modalVisible}
                 hideModal={hideModal}
             />
-            <BottomTab />
+            <BottomTab
+            screen='CART' />
         </SafeAreaView>
     );
 }
