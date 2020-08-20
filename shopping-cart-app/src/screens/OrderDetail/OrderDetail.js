@@ -8,6 +8,7 @@ import UserContext from '../../context/User'
 import ConfigurationContext from '../../context/Configuration'
 import { colors, alignment } from '../../utils';
 
+
 function OrderDetail(props) {
     const navigation = useNavigation()
     const route = useRoute()
@@ -67,6 +68,13 @@ function OrderDetail(props) {
                                             </View>
                                         </View>
                                     </View>
+                                        {!data.isReviewed && <TouchableOpacity
+                                            style={styles.actionContainer}
+                                            onPress={() => navigation.navigate('Review',{product:data.productId, order: order._id })}>
+                                            <TextDefault textColor={colors.white} H5>
+                                                Review
+                                    </TextDefault>
+                                        </TouchableOpacity>}
                                 </View>)
                             })}
                             <View style={styles.line} />

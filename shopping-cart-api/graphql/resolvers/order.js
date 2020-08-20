@@ -4,15 +4,13 @@ const User = require('../../models/user')
 const Order = require('../../models/order')
 const Item = require('../../models/item')
 const Review = require('../../models/review')
-const Point = require('../../models/point')
 const Coupon = require('../../models/coupon')
 const Configuration = require('../../models/configuration')
 const Paypal = require('../../models/paypal')
 const Stripe = require('../../models/stripe')
 const {
   transformOrder,
-  transformReviews,
-  transformAllReview
+  transformReview
 } = require('./merge')
 const { payment_status, order_status } = require('../../helpers/enum')
 const sendEmail = require('../../helpers/email')
@@ -170,6 +168,30 @@ module.exports = {
         throw err
       }
     },
+    productReviews: async (_, args, { req, res }) => {
+      console.log('productReviews')
+      if (!req.isAuth) {
+        throw new Error('Unauthenticated')
+      }
+      try {
+        const data = await Review.find({ product: args.productId })
+          .sort({ createdAt: -1 })
+          .limit(10)
+        const result = await Review.aggregate([
+          { $match: { product: mongoose.Types.ObjectId(args.productId) } },
+          { $group: { _id: args.productId, average: { $avg: '$rating' } } }
+        ])
+        const reviewData = result.length > 0 ? result[0] : { average: 0 }
+        const reviewCount = await Review.countDocuments({ product: args.productId })
+        return {
+          reviews: data.map(transformReview),
+          ratings: reviewData.average.toFixed(2),
+          total: reviewCount
+        }
+      } catch (error) {
+        throw (error)
+      }
+    },
     allReviews: async (_, args, { req, res }) => {
       console.log('allReviews')
       try {
@@ -243,7 +265,7 @@ module.exports = {
         const orderObj = {
           user: req.userId,
           items: items,
-          deliveryAddress:args.address,
+          deliveryAddress: args.address,
           orderId: orderid,
           paidAmount: 0,
           orderStatus: 'PENDING',
@@ -354,7 +376,7 @@ module.exports = {
         // can be moved outside
         User.findById(result.user)
           .then(user => {
-            if (user.notificationToken ) {
+            if (user.notificationToken) {
               const messages = []
               if (Expo.isExpoPushToken(user.notificationToken)) {
                 console.log('valid token')
@@ -426,18 +448,24 @@ module.exports = {
       }
     },
     reviewOrder: async (_, args, { req, res }) => {
+      console.log('reviewOrder')
       if (!req.isAuth) {
         throw new Error('Unauthenticated')
       }
       try {
         const review = new Review({
-          order: args.reviewInput.orderId,
+          order: args.reviewInput.order,
+          product: args.reviewInput.product,
           rating: args.reviewInput.rating,
           description: args.reviewInput.description
         })
         const result = await review.save()
-  
-        return transformOrder(order)
+        let order = await Order.findById(args.reviewInput.order)
+        const index = order.items.findIndex((obj => obj.productId == args.reviewInput.product));
+        order.items[index].isReviewed = true
+        // order.items = items
+        const orderData = await order.save()
+        return transformOrder(orderData)
       } catch (err) {
         throw err
       }

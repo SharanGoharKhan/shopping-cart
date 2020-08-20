@@ -1,5 +1,5 @@
 import { Dimensions, StyleSheet } from 'react-native';
-import { alignment, colors, scale, verticalScale } from '../../utils';
+import { alignment, colors, scale, verticalScale, fontStyles } from '../../utils';
 const { height, width } = Dimensions.get('window');
 
 const styles = StyleSheet.create({
@@ -138,5 +138,18 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         borderRadius: verticalScale(4),
     },
+    trackStyleText: {
+        fontFamily: fontStyles.PoppinsRegular,
+        fontSize: verticalScale(16),
+        color: colors.whiteColor,
+    },
+    actionContainer: {
+        width: '40%',
+        height: '25%',
+        justifyContent: 'center',
+        alignItems: 'center',
+        borderRadius: verticalScale(4),
+        backgroundColor: colors.textBlueColor,
+    }
 })
 export default styles
