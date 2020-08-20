@@ -4,14 +4,14 @@ import styles from './styles';
 import { useNavigation } from '@react-navigation/native';
 import UserContext from '../../context/User';
 
-function BottomTab() {
+function BottomTab(props) {
     const navigation = useNavigation()
     const { isLoggedIn } = useContext(UserContext)
     return (
         <View style={styles.footerContainer}>
             <TouchableOpacity
                 onPress={() => navigation.navigate('MainLanding')}
-                style={styles.footerBtnContainer}
+                style={[styles.footerBtnContainer,props.screen === 'HOME' && styles.active]}
             >
                 <View style={styles.imgContainer}>
                     <Image
@@ -23,7 +23,7 @@ function BottomTab() {
             </TouchableOpacity>
             <TouchableOpacity
                 onPress={() => navigation.navigate('Search')}
-                style={styles.footerBtnContainer}
+                style={[styles.footerBtnContainer,props.screen === 'SEARCH' && styles.active]}
             >
                 <View style={styles.imgContainer}>
                     <Image
@@ -40,7 +40,7 @@ function BottomTab() {
                     else
                         navigation.navigate('SignIn')
                 }}
-                style={styles.footerBtnContainer}>
+                style={[styles.footerBtnContainer, props.screen === 'PROFILE' && styles.active]}>
                 <View style={styles.profileContainer}>
                     <Image
                         source={require('../../assets/images/footer/profile.png')}
@@ -52,7 +52,7 @@ function BottomTab() {
             </TouchableOpacity>
             <TouchableOpacity
                 onPress={() => navigation.navigate('ShoppingCart')}
-                style={styles.footerBtnContainer}
+                style={[styles.footerBtnContainer,props.screen === 'CART' && styles.active]}
             >
                 <View style={styles.shoppingContainer}>
                     <Image
