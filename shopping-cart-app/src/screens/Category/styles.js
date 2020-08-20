@@ -1,4 +1,4 @@
-import { Dimensions, Platform, StatusBar, StyleSheet } from 'react-native';
+import { Dimensions, StyleSheet } from 'react-native';
 import { alignment, colors, scale } from '../../utils';
 const { width } = Dimensions.get('window');
 
@@ -8,11 +8,9 @@ const styles = StyleSheet.create({
     },
     safeAreaStyle: {
         backgroundColor: colors.headerbackground,
-        marginTop: Platform.OS === 'ios' ? 0 : -(StatusBar.currentHeight)
     },
     grayBackground: {
         backgroundColor: colors.backgroudGray,
-        marginTop: Platform.OS === 'ios' ? 0 : StatusBar.currentHeight
     },
     headerText: {
         height: scale(80),
