@@ -21,13 +21,14 @@ const UPLOAD_TOKEN = gql`
 `
 
 const firebaseConfig = {
-  apiKey: 'AIzaSyDCnSTWqbN7NWg9oVDzWz5dvhw2dX-RTb0',
-  authDomain: 'foodapp-77e88.firebaseapp.com',
-  databaseURL: 'https://foodapp-77e88.firebaseio.com',
-  projectId: 'foodapp-77e88',
-  storageBucket: 'foodapp-77e88.appspot.com',
-  messagingSenderId: '678143951107',
-  appId: '1:678143951107:web:498eca9a1eca6c0b'
+  apiKey: "AIzaSyDKvrBL1aKKBTOYA6uI-DOEcmfyxGmMaUA",
+  authDomain: "ecommero-1f0eb.firebaseapp.com",
+  databaseURL: "https://ecommero-1f0eb.firebaseio.com",
+  projectId: "ecommero-1f0eb",
+  storageBucket: "ecommero-1f0eb.appspot.com",
+  messagingSenderId: "378663620953",
+  appId: "1:378663620953:web:f7fdee12ac941bf7acfc48",
+  measurementId: "G-880ZF4HYKW"
 }
 
 const cache = new InMemoryCache()
@@ -94,7 +95,7 @@ const client = new ApolloClient({
 firebase.initializeApp(firebaseConfig)
 const messaging = firebase.messaging()
 messaging.usePublicVapidKey(
-  'BBFzJyX1yDzhRcnK07MEBYKqI5muEFTwnxPwg94IdPTAbFi1KstIQVeyuvWAo3-5LH_oBsfivWns53iMXEuS6Lg'
+  'BLCxCxZNWKMEdILDgysfBPq6BOMk4srGOe1kyug1RHfmKOJbMXIhqzqFhvhROZ9nDbiLKH9EKEKDf75wX9sCeEc'
 )
 messaging
   .requestPermission()
@@ -118,7 +119,7 @@ messaging
   .catch(function () { })
 
 messaging.onMessage(function (payload) {
-  var notificationTitle = 'New Order on Enatega'
+  var notificationTitle = 'New Order on Ecommero'
   var notificationOptions = {
     body: payload.data.orderid,
     icon: 'https://www.enatega.com/assets/images/logo.png'

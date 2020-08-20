@@ -36,7 +36,7 @@ const styles = StyleSheet.create({
         flex: 1,
         ...alignment.MLsmall,
         ...alignment.PTsmall,
-        ...alignment.PBsmall
+        ...alignment.PBxSmall
     },
     itemDetailContainer: {
         width: '100%'
@@ -52,9 +52,8 @@ const styles = StyleSheet.create({
     },
     quantityContainer: {
         width: '100%',
-        height: '30%',
         flexDirection: 'row',
-        alignItems: 'center',
+        alignItems: 'baseline',
         justifyContent: 'space-between'
     },
     sizeStyle: {
@@ -75,8 +74,9 @@ const styles = StyleSheet.create({
         fontSize: scale(15)
     },
     bottomContainer: {
-        flex: 1,
-        flexDirection: 'row'
+        width: "40%",
+        alignItems: "flex-end",
+        justifyContent: 'space-between'
     },
     likeContainer: {
         width: '30%',
@@ -91,9 +91,9 @@ const styles = StyleSheet.create({
     },
     priceContainer: {
         flex: 1,
-        flexDirection: 'row',
-        alignItems: 'center',
-        justifyContent: 'flex-end'
+        alignSelf: 'flex-end',
+        justifyContent: "flex-end",
+        ...alignment.MTxSmall
     },
     actualPriceStyle: {
         textDecorationLine: 'line-through',

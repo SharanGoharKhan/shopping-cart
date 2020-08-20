@@ -44,15 +44,15 @@ function TrackOrder(props) {
             timeline = [
                 {
                     circleColor: colors.colorPrimary100,
-                    lineColor: statusQueue['preparing'] ? colors.greenColor : colors.horizontalLine,
+                    lineColor: statusQueue['accepted'] ? colors.greenColor : colors.horizontalLine,
                     title: 'Pending',
                     description: statusQueue['pending'] ? formatDate(statusQueue['pending']) : ''
                 },
                 {
                     lineColor: statusQueue['picked'] ? colors.greenColor : colors.horizontalLine,
-                    circleColor: statusQueue['preparing'] ? colors.greenColor : colors.horizontalLine,
+                    circleColor: statusQueue['accepted'] ? colors.greenColor : colors.horizontalLine,
                     title: 'Accepted',
-                    description: statusQueue['preparing'] ? formatDate(statusQueue['preparing']) : ''
+                    description: statusQueue['accepted'] ? formatDate(statusQueue['accepted']) : ''
                 },
                 {
                     lineColor: statusQueue['delivered'] ? colors.greenColor : colors.horizontalLine,

@@ -17,8 +17,8 @@ const ENV = {
     FACEBOOK_APP_ID: '404956210315749',
     AMPLITUDE_API_KEY: '358ef0deb443586e2cc4ddd4380151f0',
     STRIPE_PUBLIC_KEY: 'pk_test_lEaBbVGnTkzja2FyFiNlbqtw',
-    STRIPE_IMAGE_URL: 'https://enatega.ninjascode.com/assets/images/logo.png',
-    STRIPE_STORE_NAME: 'Enatega'
+    STRIPE_IMAGE_URL: 'http://192.168.100.7:8000/assets/images/logo.png',
+    STRIPE_STORE_NAME: 'Ecommero'
   },
   staging: {
     GRAPHQL_URL: 'https://enatega.ninjascode.com/graphql',

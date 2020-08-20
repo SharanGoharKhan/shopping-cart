@@ -175,7 +175,7 @@ function ProductDescription(props) {
                 containerStyle={styles.shoppingCartContainer}
                 textStyle={styles.shoppingCartText}
                 onPress={async () => {
-                    await addCartItem(product._id, product.title, 1, price, attributes)
+                    await addCartItem(product._id, product.title, product.image[0], 1, price, attributes)
                     navigation.navigate('ShoppingCart')
                 }}
                 text="Add to Shopping Cart" />

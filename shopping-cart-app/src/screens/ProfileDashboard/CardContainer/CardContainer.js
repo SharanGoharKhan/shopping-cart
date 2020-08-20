@@ -37,7 +37,7 @@ function cardContainer(props) {
     }
 
     if (loadingOrders || !orders) return <Spinner />
-    if (errorOrders) return <TextError text={'error'} />
+    if (errorOrders) return <TextError text={JSON.stringify(errorOrders)} />
     return (
         <FlatList
             style={styles.scrollViewContainer}
@@ -53,7 +53,7 @@ function cardContainer(props) {
                 >
                     <View style={styles.leftContainer}>
                         <Image
-                            source={{ uri: item.image ?? 'https://res.cloudinary.com/ecommero/image/upload/v1597658445/products/su6dg1ufmtfuvrjbhgtj.png' }}
+                            source={{ uri: item?.items[0]?.image ?? 'https://res.cloudinary.com/ecommero/image/upload/v1597658445/products/su6dg1ufmtfuvrjbhgtj.png' }}
                             resizeMode="cover"
                             style={[styles.imgResponsive, styles.roundedBorder]}
                         />
@@ -71,7 +71,7 @@ function cardContainer(props) {
                                 </View>
                             </View>
                             <View style={styles.subTitleContainer}>
-                                <Text style={styles.subTtitleStyle}>{item.items[0]?.product}</Text>
+                                <Text numberOfLines={1} style={styles.subTtitleStyle}>{item.items[0]?.product}</Text>
                             </View>
                             <View style={styles.actionsContainer}>
                                 <View style={styles.subActionsContainer}>

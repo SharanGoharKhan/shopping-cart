@@ -78,7 +78,6 @@ function ShoppingCart(props) {
                 if (!option) stockCheck = false
                 if (!option.stock) stockCheck = false
                 if (option.stock > cartData.quantity) {
-                    console.log('option', option, cartData.quantity)
                     stockCheck = true
                 }
                 else {
@@ -90,11 +89,9 @@ function ShoppingCart(props) {
     }
 
     async function addQuantity(key) {
-        console.log('add quanity')
         const cartData = cart.find(c => c.key === key)
         if (cartData) {
             const check = await checkStock(cartData)
-            console.log('checkStock', check)
             if (check) {
                 await addQuantityContext(key)
             } else {

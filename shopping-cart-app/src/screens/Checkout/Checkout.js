@@ -11,10 +11,9 @@ import UserContext from '../../context/User'
 import ConfigurationContext from '../../context/Configuration'
 import { stripeCurrencies, paypalCurrencies } from '../../utils/currencies'
 import { useMutation, gql } from '@apollo/client'
-import { placeOrder, getCoupon } from '../../apollo/server'
+import { placeOrder, getCoupon, myOrders } from '../../apollo/server'
 import TextField from '../../ui/Textfield/Textfield';
 import MainBtn from '../../ui/Buttons/MainBtn';
-
 
 const PLACEORDER = gql`
   ${placeOrder}
@@ -22,7 +21,9 @@ const PLACEORDER = gql`
 const GET_COUPON = gql`
   ${getCoupon}
 `
-
+const ORDERS = gql`
+    ${myOrders}
+`
 /* Config/Constants
 ============================================================================= */
 
@@ -53,7 +54,9 @@ function Checkout() {
         PLACEORDER,
         {
             onCompleted: placeOrderCompleted,
-            onError: errorPlaceOrder
+            onError: errorPlaceOrder,
+            refetchQueries: [{ query: ORDERS }],
+            awaitRefetchQueries: true
         }
     )
 
@@ -131,6 +134,7 @@ function Checkout() {
                 productId: product._id,
                 product: product.product,
                 quantity: product.quantity,
+                image: product.image,
                 selectedAttributes: product.selectedAttributes,
                 price: parseFloat(product.price)
             }
@@ -165,7 +169,6 @@ function Checkout() {
 
     function placeOrderCompleted(data) {
         if (paymentMethod.payment === 'COD') {
-            clearCart()
             navigation.reset({
                 routes: [
                     { name: 'MainLanding' },
@@ -181,7 +184,7 @@ function Checkout() {
                 currency: configuration.currency
             })
         } else if (paymentMethod.payment === 'STRIPE') {
-            navigation.replace('Stripe', {
+            navigation.replace('StripeCheckout', {
                 _id: data.placeOrder.orderId,
                 amount: data.placeOrder.orderAmount,
                 email: data.placeOrder.user.email,
@@ -463,7 +466,7 @@ function Checkout() {
                 hideModal={hideModal}
             />
             <BottomTab
-            screen='CART' />
+                screen='CART' />
         </SafeAreaView>
     );
 }

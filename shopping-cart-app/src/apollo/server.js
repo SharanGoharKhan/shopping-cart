@@ -281,6 +281,7 @@ export const getConfiguration = `query Configuration{
         _id
         product
         productId
+        image
         price
         quantity
       }
@@ -297,6 +298,7 @@ export const getConfiguration = `query Configuration{
       orderStatus
       statusQueue{
         pending
+        accepted
         preparing
         picked
         delivered
@@ -323,6 +325,7 @@ export const getConfiguration = `query Configuration{
         _id
         product
         productId
+        image
         price
         quantity
       }
@@ -339,6 +342,7 @@ export const getConfiguration = `query Configuration{
       orderStatus
       statusQueue{
         pending
+        accepted
         preparing
         picked
         delivered
@@ -369,6 +373,7 @@ export const getConfiguration = `query Configuration{
         _id
         product
         productId
+        image
         price
         quantity
       }
