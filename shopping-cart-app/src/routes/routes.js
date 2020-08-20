@@ -3,8 +3,7 @@ import { createStackNavigator } from '@react-navigation/stack'
 import { NavigationContainer } from '@react-navigation/native'
 import { createDrawerNavigator } from '@react-navigation/drawer'
 import * as Screen from '../screens';
-import MainMenu from '../components/MainMenu/MainMenu';
-import AuthLoading from '../utils/authLoading';
+import { MainMenu } from '../components';
 
 const NavigationStack = createStackNavigator();
 const MainStack = createStackNavigator();
@@ -53,7 +52,6 @@ function AppContainer() {
     return (
         <NavigationContainer>
             <MainStack.Navigator headerMode='none' initialRouteName='AuthLoading'>
-                <MainStack.Screen name='AuthLoading' component={AuthLoading} />
                 <MainStack.Screen name='Drawer' component={Drawer} />
             </MainStack.Navigator>
         </NavigationContainer>
