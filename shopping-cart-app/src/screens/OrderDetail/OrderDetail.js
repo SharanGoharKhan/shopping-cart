@@ -1,21 +1,19 @@
 import React, { useContext, useEffect } from 'react';
-import {
-    View, Text, Image, TouchableOpacity, ScrollView
-} from 'react-native';
+import { View, Image, TouchableOpacity, ScrollView } from 'react-native';
 import { useNavigation, useRoute } from '@react-navigation/native';
 import styles from './styles';
-import BottomTab from '../../components/BottomTab/BottomTab';
-import { BackHeader } from '../../components/Headers/Headers';
+import { BackHeader, BottomTab, Spinner, TextDefault } from '../../components';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import UserContext from '../../context/User'
 import ConfigurationContext from '../../context/Configuration'
+import { colors, alignment } from '../../utils';
 
 function OrderDetail(props) {
     const navigation = useNavigation()
     const route = useRoute()
     const id = route.params._id ?? null
     const cart = route.params.clearCart ?? false
-    const { orders, clearCart } = useContext(
+    const { orders, clearCart, loadingOrders } = useContext(
         UserContext
     )
     const configuration = useContext(ConfigurationContext)
@@ -30,94 +28,122 @@ function OrderDetail(props) {
     async function clear() {
         await clearCart()
     }
-
     return (
         <SafeAreaView style={[styles.flex, styles.safeAreaStyle]}>
-            <View style={[styles.flex, styles.mainContainer]}>
+            <View style={styles.flex}>
                 <BackHeader
-                    title={order.orderId}
+                    title={order ? order.orderId ?? 'Order Detail' : 'Order Detail'}
                     backPressed={() => navigation.goBack()} />
-                <View style={styles.line}></View>
-                <ScrollView>
-                    {order.items.length && order.items.map(data => {
-                        return (<View key={data._id} style={styles.cardContainer}>
-                            <View style={styles.card}>
-                                <View style={styles.cardLeftContainer}>
-                                    <Image
-                                        source={{ uri: data.image ?? 'https://res.cloudinary.com/ecommero/image/upload/v1597658445/products/su6dg1ufmtfuvrjbhgtj.png' }}
-                                        style={styles.imgResponsive}
-                                        resizeMode="cover"
-                                    />
-                                </View>
-                                <View style={styles.cardRightContainer}>
-                                    <Text style={[styles.productTitleStyle, styles.marginTop5]}>{data.product}</Text>
-                                    {/* <Text style={styles.productDescriptionStyle}>Courier received the order.</Text> */}
-                                    <View style={styles.amountContainer}>
-                                        <View style={styles.quantityContainer}>
-                                            <Text style={styles.productTitleStyle}>x{data.quantity}</Text>
-                                        </View>
-                                        <View style={styles.priceContainer}>
-                                            <Text style={styles.productTitleStyle}>{configuration.currencySymbol} {data.price * data.quantity}</Text>
+                {loadingOrders ? <Spinner /> :
+                    <ScrollView style={[styles.itemContainer, styles.flex]}>
+                        {order.items.length && order.items.map(data => {
+                            return (<View key={data._id} style={styles.cardContainer}>
+                                <View style={styles.card}>
+                                    <View style={styles.cardLeftContainer}>
+                                        <Image
+                                            source={{ uri: data.image ?? 'https://res.cloudinary.com/ecommero/image/upload/v1597658445/products/su6dg1ufmtfuvrjbhgtj.png' }}
+                                            style={styles.imgResponsive}
+                                            resizeMode="cover"
+                                        />
+                                    </View>
+                                    <View style={styles.cardRightContainer}>
+                                        <TextDefault textColor={colors.fontMainColor} H5>
+                                            {data.product}
+                                        </TextDefault>
+                                        <View style={styles.amountContainer}>
+                                            <View style={styles.quantityContainer}>
+                                                <TextDefault textColor={colors.fontMainColor} H5>
+                                                    x{data.quantity}
+                                                </TextDefault>
+                                            </View>
+                                            <View style={styles.priceContainer}>
+                                                <TextDefault textColor={colors.fontMainColor} H5 right style={alignment.PRxSmall}>
+                                                    {configuration.currencySymbol} {data.price * data.quantity}
+                                                </TextDefault>
+                                            </View>
                                         </View>
                                     </View>
                                 </View>
-                            </View>
-                        </View>)
-                    })}
-                    <View style={styles.line}></View>
-                    <View style={styles.deliverContainer}>
-                        <View style={styles.deliverSubContainer}>
-                            <Text style={styles.titleStyle}>Deliver to</Text>
-                            <Text style={styles.contactStyle}>{order.user.name}</Text>
-                            <Text style={styles.contactStyle}>{order.user.email}</Text>
-                            <Text style={styles.contactStyle}>{order.user.phone}</Text>
-                            <Text style={styles.addressStyle}>{order.deliveryAddress.region}</Text>
-                            <Text style={styles.addressStyle}>{order.deliveryAddress.city}</Text>
-                            <Text style={styles.addressStyle}>{order.deliveryAddress.apartment}, {order.deliveryAddress.building}</Text>
-                            {!!order.deliveryAddress.details && <Text style={styles.addressStyle}>{order.deliveryAddress.details}</Text>}
-                        </View>
-                    </View>
-                    <View style={styles.line}></View>
-                    <View style={styles.paymentContainer}>
-                        <View style={styles.paymentSubContainer}>
-                            <Text style={styles.titleStyle}>Payment</Text>
-                            <View style={styles.twoItems}>
-                                <Text style={styles.contactStyle}>Payment Method</Text>
-                                <Text style={styles.addressStyle}>{order.paymentMethod}</Text>
-                            </View>
-                            <View style={styles.twoItems}>
-                                <Text style={styles.contactStyle}>Delivery</Text>
-                                <Text style={styles.addressStyle}>{configuration.currencySymbol} {configuration.deliveryCharges}</Text>
-                            </View>
-                            <View style={styles.twoItems}>
-                                <Text style={styles.contactStyle}>Sub Total</Text>
-                                <Text style={styles.addressStyle}>{configuration.currencySymbol} {order.orderAmount - configuration.deliveryCharges}</Text>
-                            </View>
-                        </View>
-                    </View>
-                    <View style={styles.line}></View>
-                    <View style={styles.totalContainer}>
-                        <View style={styles.totalSubContainer}>
-                            <View style={styles.twoItems}>
-                                <Text style={styles.addressStyle}>Total</Text>
-                                <Text style={styles.addressStyle}>{configuration.currencySymbol} {order.orderAmount}</Text>
+                            </View>)
+                        })}
+                        <View style={styles.line} />
+                        <View style={styles.deliverContainer}>
+                            <View style={styles.deliverSubContainer}>
+                                <TextDefault textColor={colors.fontBrown} H4 style={alignment.PBxSmall}>
+                                    {'Deliver to'}
+                                </TextDefault>
+                                <TextDefault textColor={colors.fontThirdColor}>
+                                    {order.user.name}
+                                </TextDefault>
+                                <TextDefault textColor={colors.fontThirdColor}>
+                                    {order.user.email}
+                                </TextDefault>
+                                <TextDefault textColor={colors.fontThirdColor}>
+                                    {order.user.phone}
+                                </TextDefault>
+                                <View style={styles.line} />
+                                < TextDefault textColor={colors.fontSecondColor}>
+                                    {order.deliveryAddress.region}
+                                </TextDefault>
+                                <TextDefault textColor={colors.fontSecondColor}>
+                                    {order.deliveryAddress.city}
+                                </TextDefault>
+                                <TextDefault textColor={colors.fontSecondColor}>
+                                    {order.deliveryAddress.apartment}, {order.deliveryAddress.building}
+                                </TextDefault>
+                                {!!order.deliveryAddress.details &&
+                                    <TextDefault textColor={colors.fontSecondColor}>
+                                        {order.deliveryAddress.details}
+                                    </TextDefault>}
                             </View>
                         </View>
-                    </View>
-                    <View style={styles.trackOrderContainer}>
-                        <View style={styles.trackOrderSubContainer}>
-                            <TouchableOpacity
-                                activeOpacity={0}
-                                onPress={() => navigation.navigate('TrackOrder', { _id: id })}
-                                style={styles.trackStyle}
-                            >
-                                <Text style={styles.trackStyleText}>Track Order</Text>
-                            </TouchableOpacity>
+                        <View style={styles.line}></View>
+                        <View style={styles.paymentContainer}>
+                            <View style={styles.paymentSubContainer}>
+                                <TextDefault textColor={colors.fontBrown} H4>
+                                    {'Payment'}
+                                </TextDefault>
+                                <View style={styles.twoItems}>
+                                    <TextDefault textColor={colors.fontThirdColor}>{'Payment Method'}</TextDefault>
+                                    <TextDefault textColor={colors.fontMainColor}>{order.paymentMethod}</TextDefault>
+                                </View>
+                                <View style={styles.twoItems}>
+                                    <TextDefault textColor={colors.fontThirdColor}>{'Delivery'}</TextDefault>
+                                    <TextDefault textColor={colors.fontMainColor}>{configuration.currencySymbol} {configuration.deliveryCharges}</TextDefault>
+                                </View>
+                                <View style={styles.twoItems}>
+                                    <TextDefault textColor={colors.fontThirdColor}>{'Sub Total'}</TextDefault>
+                                    <TextDefault textColor={colors.fontMainColor}>{configuration.currencySymbol} {order.orderAmount - configuration.deliveryCharges}</TextDefault>
+                                </View>
+                            </View>
                         </View>
-                    </View>
-                </ScrollView>
+                        <View style={styles.line}></View>
+                        <View style={styles.totalContainer}>
+                            <View style={styles.totalSubContainer}>
+                                <View style={styles.twoItems}>
+                                    <TextDefault textColor={colors.fontMainColor} H4>{'Total'}</TextDefault>
+                                    <TextDefault textColor={colors.fontMainColor} H4>{configuration.currencySymbol} {order.orderAmount}</TextDefault>
+                                </View>
+                            </View>
+                        </View>
+                        <View style={styles.trackOrderContainer}>
+                            <View style={styles.trackOrderSubContainer}>
+                                <TouchableOpacity
+                                    activeOpacity={0}
+                                    onPress={() => navigation.navigate('TrackOrder', { _id: id })}
+                                    style={styles.trackStyle}
+                                >
+                                    <TextDefault textColor={colors.buttonText} H4>
+                                        {'Track Order'}
+                                    </TextDefault>
+                                </TouchableOpacity>
+                            </View>
+                        </View>
+                    </ScrollView>
+                }
             </View>
-            <BottomTab />
+            <BottomTab
+                screen='HOME' />
         </SafeAreaView>
     )
 }
