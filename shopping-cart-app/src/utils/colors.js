@@ -14,6 +14,7 @@ export const colors = {
     lightHorizontalLine: '#f0f0f0',
     spinnerColor: '#F48B98',
     buttonBackground: '#D0AD8A',
+    blueButton: '#6178DE',
     buttonText: '#FFF',
     selected: '#33cc33',
     container: '#FFF',

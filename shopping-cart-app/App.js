@@ -3,13 +3,14 @@ import AppContainer from './src/routes/routes'
 import * as Permissions from 'expo-permissions'
 import { Notifications } from 'expo'
 import { ApolloProvider } from '@apollo/client'
-import { View, ActivityIndicator, StatusBar, Platform, StyleSheet } from 'react-native'
+import { StatusBar, Platform } from 'react-native'
 import { ConfigurationProvider } from './src/context/Configuration'
 import { UserProvider } from './src/context/User'
 import { colors } from './src/utils/colors'
 import * as Font from 'expo-font';
 import setupApolloClient from './src/apollo/index'
 import FlashMessage from 'react-native-flash-message'
+import { Spinner } from './src/components'
 
 
 export default function App() {
@@ -80,19 +81,6 @@ export default function App() {
       </ApolloProvider>
     )
   } else return (
-    <View style={styles.spinnerContainer}>
-      {fontLoaded}
-      <ActivityIndicator size="large" color={colors.greenColor} />
-    </View>
+    <Spinner spinnerColor={colors.spinnerColor} />
   )
 }
-const styles = StyleSheet.create({
-  flex: {
-    flex: 1
-  },
-  spinnerContainer: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center'
-  }
-})

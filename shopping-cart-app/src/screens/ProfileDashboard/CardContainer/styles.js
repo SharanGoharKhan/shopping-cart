@@ -1,7 +1,8 @@
 import { Dimensions } from 'react-native';
-import { verticalScale } from '../../../utils/scaling';
+import { verticalScale, scale } from '../../../utils/scaling';
 import { colors } from '../../../utils/colors';
 import { fontStyles } from '../../../utils/fontStyles';
+import { alignment } from '../../../utils';
 const { height, width } = Dimensions.get('window');
 
 export default {
@@ -9,6 +10,7 @@ export default {
         flex: 1,
     },
     mainCardContainer: {
+        flexGrow: 1,
         alignItems: 'center',
     },
     cardContainer: {
@@ -26,8 +28,8 @@ export default {
         height: '100%',
     },
     imgResponsive3: {
-        width:'70%',
-        height:'70%'
+        width: '70%',
+        height: '70%'
     },
     imgResponsive: {
         flex: 1,
@@ -65,7 +67,7 @@ export default {
         height: '60%',
     },
     subTitleContainer: {
-        marginTop:'-3%',
+        marginTop: '-3%',
         width: '100%',
         height: '17%',
     },
@@ -104,5 +106,20 @@ export default {
         fontFamily: fontStyles.PoppinsRegular,
         fontSize: verticalScale(12),
         color: colors.whiteColor,
+    },
+    //empty
+    subContainerImage: {
+        flex: 1,
+        justifyContent: 'center',
+        alignContent: 'center',
+    },
+    imageContainer: {
+        justifyContent: 'center',
+        alignItems: 'center',
+        ...alignment.MBlarge
+    },
+    image: {
+        width: scale(50),
+        height: scale(50)
     },
 };

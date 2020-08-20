@@ -1,35 +1,36 @@
-import { Dimensions, Platform, StatusBar } from 'react-native';
-import { verticalScale, scale } from '../../utils/scaling';
-import { colors } from '../../utils/colors';
-import { fontStyles } from '../../utils/fontStyles';
+import { Dimensions, StyleSheet } from 'react-native';
+import { alignment, colors, scale, verticalScale, fontStyles } from '../../utils';
 const { height, width } = Dimensions.get('window');
 
-export default {
+const styles = StyleSheet.create({
     flex: {
         flex: 1,
     },
     safeAreaStyle: {
         backgroundColor: colors.headerbackground
     },
-    mainContainer: {
-        marginTop: Platform.OS === 'ios' ? 0 : StatusBar.currentHeight
+    itemContainer: {
+        backgroundColor: colors.backgroudGray,
     },
     line: {
         width: '100%',
-        height: verticalScale(1),
-        backgroundColor: '#edeaea'
+        height: StyleSheet.hairlineWidth,
+        backgroundColor: colors.medHorizontalLine,
+        ...alignment.MTxSmall,
+        ...alignment.MBxSmall
     },
     cardContainer: {
         backgroundColor: colors.backgroudGray,
         width: '100%',
-        height: height * 0.2,
+        height: scale(90),
         justifyContent: 'center',
-        alignItems: 'center'
+        alignItems: 'center',
+        ...alignment.MTsmall
     },
     card: {
         backgroundColor: colors.whiteColor,
         width: '90%',
-        height: '80%',
+        height: '100%',
         flexDirection: 'row',
         borderRadius: verticalScale(8),
         borderTopLeftRadius: verticalScale(8),
@@ -42,9 +43,10 @@ export default {
         borderBottomLeftRadius: verticalScale(8),
     },
     cardRightContainer: {
-        marginLeft: '3%',
         width: '60%',
         height: '100%',
+        ...alignment.MLxSmall,
+        justifyContent: "space-around",
     },
     imgResponsive: {
         flex: 1,
@@ -55,15 +57,6 @@ export default {
     },
     marginTop5: {
         marginTop: '5%',
-    },
-    productTitleStyle: {
-        fontFamily: fontStyles.PoppinsRegular,
-        fontSize: verticalScale(14),
-    },
-    productDescriptionStyle: {
-        fontFamily: fontStyles.PoppinsRegular,
-        fontSize: verticalScale(12),
-        color: colors.greenColor,
     },
     amountContainer: {
         width: '100%',
@@ -84,40 +77,26 @@ export default {
     },
     deliverContainer: {
         width: '100%',
-        height: height * 0.29,
         backgroundColor: colors.backgroudGray,
         justifyContent: 'center',
+        ...alignment.PTlarge,
+        ...alignment.PBlarge
     },
     deliverSubContainer: {
-        paddingLeft: '5%',
-        paddingRight: '5%',
         width: '100%',
-        height: '90%',
-    },
-    titleStyle: {
-        fontFamily: fontStyles.PoppinsRegular,
-        fontSize: verticalScale(16),
-        color: colors.brownColor,
-    },
-    contactStyle: {
-        fontFamily: fontStyles.PoppinsRegular,
-        fontSize: verticalScale(14),
-        color: '#9B9B9B',
-    },
-    addressStyle: {
-        fontFamily: fontStyles.PoppinsRegular,
-        fontSize: verticalScale(14),
+        ...alignment.MLmedium,
+        ...alignment.MRmedium
     },
     paymentContainer: {
         backgroundColor: colors.backgroudGray,
         width: '100%',
-        height: height * 0.2,
         alignItems: 'center',
-        justifyContent: 'center'
+        justifyContent: 'center',
+        ...alignment.PTlarge,
+        ...alignment.PBlarge
     },
     paymentSubContainer: {
         width: '90%',
-        height: '70%',
     },
     twoItems: {
         flexDirection: 'row',
@@ -126,34 +105,35 @@ export default {
     totalContainer: {
         backgroundColor: colors.backgroudGray,
         width: '100%',
-        height: height * 0.1,
         alignItems: 'center',
         justifyContent: 'center',
+        ...alignment.PTlarge,
+        ...alignment.PBlarge
     },
     totalSubContainer: {
         width: '90%',
-        height: '50%',
-        justifyContent: 'center'
+        justifyContent: 'center',
     },
     trackOrderContainer: {
         width: '100%',
-        height: height * 0.2,
         alignItems: 'center',
         justifyContent: 'center',
         backgroundColor: colors.backgroudGray,
+        ...alignment.PTlarge,
+        ...alignment.PBlarge
     },
     trackOrderSubContainer: {
         width: '90%',
-        height: '80%',
         backgroundColor: colors.whiteColor,
         alignItems: 'center',
         justifyContent: 'center',
         borderRadius: verticalScale(4),
+        height: scale(80)
     },
     trackStyle: {
         width: '90%',
-        height: '40%',
-        backgroundColor: colors.lightBlueColor,
+        height: "60%",
+        backgroundColor: colors.blueButton,
         justifyContent: 'center',
         alignItems: 'center',
         borderRadius: verticalScale(4),
@@ -171,4 +151,5 @@ export default {
         borderRadius: verticalScale(4),
         backgroundColor: colors.textBlueColor,
     }
-};
+})
+export default styles

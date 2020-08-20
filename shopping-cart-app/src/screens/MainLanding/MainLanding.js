@@ -3,7 +3,7 @@ import { View, FlatList, ImageBackground } from 'react-native';
 import SwiperFlatList from 'react-native-swiper-flatlist';
 import styles from './styles';
 import CategoryCard from '../../ui/CategoryCard/CategoryCard';
-import { BottomTab, TextDefault } from '../../components';
+import { BottomTab, TextDefault, TextError, Spinner } from '../../components';
 import { verticalScale, scale, colors } from '../../utils';
 import ProductCard from '../../ui/ProductCard/ProductCard'
 import { SafeAreaView } from 'react-native-safe-area-context';
@@ -30,12 +30,10 @@ const PRODUCTS_DATA = gql`${produccts}`
 function MainLanding(props) {
     const navigation = useNavigation()
     const { data: categoryData } = useQuery(CATEGORIES)
-    const { data: productsData } = useQuery(PRODUCTS_DATA)
+    const { data: productsData, loading, error, refetch, networkStatus } = useQuery(PRODUCTS_DATA)
     const Featured = productsData?.products ? productsData.products.filter(item => item.featured) : []
     const { cart, clearCart } = useContext(UserContext)
 
-    // console.log('cart',cart)
-    // console.log('clear', clearCart())
     function renderCarosel() {
         return (
             <View style={styles.caroselContainer}>
@@ -83,6 +81,7 @@ function MainLanding(props) {
                     {categoryData && categoryData.categories.map((category, index) => {
                         return (
                             <CategoryCard
+                                style={styles.spacer}
                                 key={index}
                                 cardLabel={category.title}
                                 id={category._id}
@@ -91,7 +90,7 @@ function MainLanding(props) {
                     })}
                 </View>
                 {Featured.length > 0 &&
-                    < View style={styles.titleSpacer}>
+                    <View style={styles.titleSpacer}>
                         <TextDefault textColor={colors.fontMainColor} H4>
                             {'Featured'}
                         </TextDefault>
@@ -122,19 +121,25 @@ function MainLanding(props) {
     return (
         <SafeAreaView style={[styles.flex, styles.safeAreaStyle]}>
             <View style={[styles.grayBackground, styles.flex]}>
-                <FlatList
-                    keyExtractor={(item, index) => index.toString()}
-                    showsVerticalScrollIndicator={false}
-                    numColumns={2}
-                    ListHeaderComponent={renderHeader}
-                    data={productsData ? productsData.products : []}
-                    renderItem={({ item }) =>
-                        <ProductCard
-                            styles={styles.productCard}
-                            {...item} />
-                    }
-                />
-                <BottomTab />
+                {error ? <TextError text={error.message} /> :
+                    <FlatList
+                        keyExtractor={(item, index) => index.toString()}
+                        showsVerticalScrollIndicator={false}
+                        numColumns={2}
+                        refreshing={networkStatus === 4}
+                        onRefresh={() => refetch()}
+                        ListFooterComponent={loading && <Spinner />}
+                        ListHeaderComponent={renderHeader}
+                        data={productsData ? productsData.products : []}
+                        renderItem={({ item }) =>
+                            <ProductCard
+                                styles={styles.productCard}
+                                {...item} />
+                        }
+                    />
+                }
+                <BottomTab
+                    screen='HOME' />
             </View>
         </SafeAreaView>
     );

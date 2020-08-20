@@ -146,11 +146,28 @@ export const categoryProduct = `query ProductByCategory($id:String!){
   productByCategory(subCategory:$id){
     _id
     title
+    description
     image
     price
     featured
     subCategory{
+      _id
       title
+      category{
+        _id
+        title
+      }
+    }
+    attributes{
+      _id
+      title
+      options
+      {
+        _id
+        title
+        price
+        stock
+      }
     }
   }
 }`
@@ -438,5 +455,13 @@ export const getConfiguration = `query Configuration{
         cancelled
       }
       createdAt
+    }
+  }`
+  export const getCoupon = `mutation Coupon($coupon:String!){
+    coupon(coupon:$coupon){
+      _id
+      code
+      discount
+      enabled
     }
   }`

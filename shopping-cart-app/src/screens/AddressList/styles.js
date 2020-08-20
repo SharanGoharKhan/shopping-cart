@@ -1,5 +1,5 @@
 import { verticalScale, scale, colors, fontStyles, alignment } from '../../utils';
-import { StatusBar, Platform, StyleSheet } from 'react-native';
+import { StyleSheet } from 'react-native';
 
 const styles = StyleSheet.create({
     flex: {
@@ -10,8 +10,7 @@ const styles = StyleSheet.create({
     },
     container: {
         flex: 1,
-        alignItems: 'center',
-        marginTop: Platform.OS === 'ios' ? 0 : StatusBar.currentHeight
+        alignItems: 'center'
     },
     body: {
         // adjust body height in order to accomodate footer

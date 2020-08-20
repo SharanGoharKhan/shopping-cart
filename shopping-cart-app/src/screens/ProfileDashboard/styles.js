@@ -1,5 +1,5 @@
 import { Dimensions, Platform, StatusBar, StyleSheet } from 'react-native';
-import { alignment, fontStyles, colors, scale, verticalScale } from '../../utils';
+import { alignment, colors, scale } from '../../utils';
 const { height, width } = Dimensions.get('window');
 
 const styles = StyleSheet.create({
@@ -8,10 +8,8 @@ const styles = StyleSheet.create({
     },
     safeAreaStyle: {
         backgroundColor: colors.headerbackground,
-        marginTop: Platform.OS === 'ios' ? 0 : -(StatusBar.currentHeight)
     },
-    grayBackground: {
-        backgroundColor: colors.backgroudGray,
+    mainContainer: {
         marginTop: Platform.OS === 'ios' ? 0 : StatusBar.currentHeight
     },
     tabContainer: {

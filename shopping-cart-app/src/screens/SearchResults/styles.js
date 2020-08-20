@@ -9,40 +9,15 @@ const styles = StyleSheet.create({
     safeAreaStyle: {
         backgroundColor: colors.headerbackground
     },
-    mainContainer: {
-        marginTop: Platform.OS === 'ios' ? 0 : StatusBar.currentHeight
-    },
     container: {
         height: '100%',
         width: '100%',
         alignSelf: 'center',
     },
-    statusbarImage: {
-        height: Platform.OS === 'ios' ? 0 : StatusBar.currentHeight,
-        backgroundColor: 'black',
-    },
     body: {
         height: '95%',
         width: '100%',
         alignSelf: 'center',
-    },
-    main_scroller: {
-        marginBottom: verticalScale(10),
-    },
-
-    // header
-    header: {
-        height: height * .08,
-        width: '95%',
-        flexDirection: 'row',
-        alignSelf: 'center',
-        alignItems: 'center',
-        justifyContent: 'space-between',
-    },
-    headerLeft: {
-        flexDirection: 'row',
-        alignItems: 'center'
-
     },
 
     // main

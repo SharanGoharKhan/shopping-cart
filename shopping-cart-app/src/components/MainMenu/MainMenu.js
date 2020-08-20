@@ -1,5 +1,5 @@
 import React, { useContext } from 'react';
-import { View, Image, TouchableOpacity } from 'react-native';
+import { View, TouchableOpacity } from 'react-native';
 import styles from './styles';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { SimpleLineIcons } from '@expo/vector-icons';
@@ -96,27 +96,6 @@ function MainMenu(props) {
                                 </TouchableOpacity>
                             ))
                         }
-                        <View style={styles.navItemContainerImage}>
-                            <TouchableOpacity
-                                activeOpacity={0}
-                                style={styles.navItemImg}>
-                                <Image
-                                    source={require('../../assets/images/mainMenu/twitter.png')}
-                                    resizeMode="contain"
-                                    style={styles.imgResponsive}
-                                />
-
-                            </TouchableOpacity>
-                            <TouchableOpacity
-                                activeOpacity={0}
-                                style={styles.navItemImg}>
-                                <Image
-                                    source={require('../../assets/images/mainMenu/instagram.png')}
-                                    resizeMode="contain"
-                                    style={styles.imgResponsive}
-                                />
-                            </TouchableOpacity>
-                        </View>
                     </View>
                 </View>
                 {isLoggedIn && (

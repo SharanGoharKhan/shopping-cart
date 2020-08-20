@@ -1,5 +1,5 @@
-import { StatusBar, Platform, StyleSheet } from 'react-native';
-import { alignment, colors, scale, verticalScale } from '../../utils';
+import { StyleSheet } from 'react-native';
+import { alignment, colors, scale } from '../../utils';
 
 const styles = StyleSheet.create({
     flex: {
@@ -15,13 +15,13 @@ const styles = StyleSheet.create({
         ...alignment.PBlarge
     },
     mainContainer: {
-        marginTop: Platform.OS === 'ios' ? 0 : StatusBar.currentHeight,
         backgroundColor: colors.themeBackground
     },
     body: {
         height: '100%',
         width: '90%',
-        alignSelf: 'center'
+        alignSelf: 'center',
+        justifyContent: 'space-between'
     },
     simpleRow: {
         flexDirection: 'row',
@@ -48,6 +48,25 @@ const styles = StyleSheet.create({
     },
     padding: {
         ...alignment.PTxSmall
+    },
+    coupan: {
+        width: '100%',
+        ...alignment.PTsmall,
+        ...alignment.PBsmall
+    },
+    coupanRow: {
+        ...alignment.MTxSmall,
+        width: "100%",
+        flexDirection: 'row',
+        alignItems: "center",
+        justifyContent: 'space-between'
+    },
+    coupanInput: {
+        width: '75%',
+    },
+    coupanBtn: {
+        width: "25%",
+        height: scale(40)
     },
     address: {
         width: '100%',

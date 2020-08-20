@@ -1,5 +1,5 @@
-import React, { useContext, useState } from 'react';
-import { View, TextInput, KeyboardAvoidingView, TouchableOpacity, ScrollView, StatusBar } from 'react-native';
+import React, { useContext, useState, useEffect } from 'react';
+import { View, TextInput, KeyboardAvoidingView, ScrollView } from 'react-native';
 import styles from './styles';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { BottomTab, TextDefault, BackHeader, FlashMessage } from '../../components'
@@ -15,18 +15,31 @@ const UPDATEUSER = gql`${updateUser}`
 
 function EditingProfile(props) {
     const route = useRoute()
-    const [name, nameSetter] = useState(route.params?.name ?? '')
-    const email = route.params?.email ?? ''
-    const [phone, phoneSetter] = useState(route.params?.phone ?? '')
+    const { profile } = useContext(UserContext)
+    const email = profile?.email ?? ''
+    const [name, nameSetter] = useState(profile?.name ?? '')
+    const [phone, phoneSetter] = useState(profile?.phone ?? '')
+    const backScreen = route.params ? route.params.backScreen : null
     const [nameError, nameErrorSetter] = useState(null)
     const [phoneError, phoneErrorSetter] = useState(null)
     const navigation = useNavigation()
-    const { profile } = useContext(UserContext)
     const [mutate, { loading: loadingMutation }] = useMutation(UPDATEUSER, { onCompleted, onError })
+
+    useEffect(() => {
+        if (backScreen) {
+            phoneErrorSetter('Phone number is required')
+            FlashMessage({ message: 'Phone Number is missing' })
+        }
+    }, [backScreen])
+
+
 
     function onCompleted({ updateUser }) {
         if (updateUser) {
             FlashMessage({ message: "User's Info Updated", type: 'success' })
+        }
+        if (backScreen) {
+            navigation.goBack()
         }
     }
     function onError(error) {
@@ -64,10 +77,10 @@ function EditingProfile(props) {
 
     return (
         <SafeAreaView style={[styles.flex, styles.safeAreaStyle]}>
-            <KeyboardAvoidingView behavior={Platform.OS === "ios" ? "padding" : "height"} style={[styles.flex, { marginTop: Platform.OS === 'ios' ? 0 : StatusBar.currentHeight }]}>
+            <KeyboardAvoidingView behavior={Platform.OS === "ios" ? "padding" : "height"} style={styles.flex}>
                 <BackHeader
                     title="Editing Profile"
-                    backPressed={() => props.navigation.goBack()} />
+                    backPressed={() => navigation.goBack()} />
                 <ScrollView
                     style={styles.flex}
                     showsVerticalScrollIndicator={false}
@@ -156,7 +169,8 @@ function EditingProfile(props) {
                     </View>
                 </ScrollView>
             </KeyboardAvoidingView>
-            <BottomTab />
+            <BottomTab
+                screen='PROFILE' />
         </SafeAreaView>
     );
 }

@@ -99,7 +99,7 @@ function SearchResults(props) {
     }
     return (
         <SafeAreaView style={[styles.flex, styles.safeAreaStyle]}>
-            <View style={[styles.flex, styles.mainContainer]}>
+            <View style={styles.flex}>
                 <BackHeader
                     title="Search"
                     backPressed={() => props.navigation.goBack()} />

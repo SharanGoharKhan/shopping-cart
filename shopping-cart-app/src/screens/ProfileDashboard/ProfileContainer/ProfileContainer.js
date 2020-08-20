@@ -1,5 +1,5 @@
 import React, { useContext } from 'react';
-import { TouchableOpacity, View, Image, ImageBackground } from 'react-native';
+import { TouchableOpacity, View, ImageBackground } from 'react-native';
 import styles from './styles';
 import { scale, colors, alignment } from '../../../utils';
 import { SimpleLineIcons, Feather } from '@expo/vector-icons';
@@ -41,7 +41,7 @@ function profileContainer(props) {
               </TouchableOpacity>
               <TouchableOpacity
                 activeOpacity={0}
-                onPress={() => navigation.navigate('EditingProfile', { ...profile })}
+                onPress={() => navigation.navigate('EditingProfile')}
                 style={styles.iconContainer}
               >
                 <Feather name='edit' size={scale(20)} color={colors.fontThirdColor} />
