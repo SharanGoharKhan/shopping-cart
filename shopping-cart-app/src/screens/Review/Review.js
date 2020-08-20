@@ -7,15 +7,27 @@ import StarRating from 'react-native-star-rating'
 import TextDefault from '../../components/Text/TextDefault/TextDefault'
 import { EvilIcons } from '@expo/vector-icons'
 import { scale } from '../../utils/scaling'
-import { useNavigation } from '@react-navigation/native'
+import { useNavigation, useRoute } from '@react-navigation/native'
 import { colors } from '../../utils'
-import { BackHeader } from '../../components'
+import { BackHeader, FlashMessage } from '../../components'
+import { useMutation, gql } from '@apollo/client'
+import { reviewOrder, productById } from '../../apollo/server'
+
+const REVIEWORDER = gql`${reviewOrder}`
 
 function Review() {
   const navigation = useNavigation()
+  const route = useRoute()
+  const product = route.params.product ?? null
+  const order = route.params.order ?? null
   const [rating, setRating] = useState(0)
   const [description, setDescription] = useState('')
-  const loadingMutation = false
+  console.log('o',order)
+  console.log('p',product)
+  const [mutate, { loading: loadingMutation }] = useMutation(REVIEWORDER, {
+    onError,
+    onCompleted
+  })
 
   function onFinishRating(rating) {
     setRating(rating)
@@ -23,6 +35,28 @@ function Review() {
 
   function onChangeText(description) {
     setDescription(description)
+  }
+
+  function onSubmit() {
+    mutate({
+      variables: {
+        order: order,
+        product: product,
+        rating: rating,
+        description: description
+      }
+    })
+  }
+
+  function onCompleted(data) {
+    navigation.goBack()
+  }
+
+  function onError(error) {
+    console.log('error',error)
+    // FlashMessage({
+    //   message: error.networkError.result.errors[0].message
+    // })
   }
 
   return (
@@ -43,7 +77,7 @@ function Review() {
               <EvilIcons
                 name="pencil"
                 size={scale(35)}
-                color={colors.iconColor}
+                color={colors.fontBrown}
               />
             </View>
           </View>
@@ -79,6 +113,7 @@ function Review() {
             {!loadingMutation && (
               <TouchableOpacity
                 activeOpacity={0.7}
+                onPress={onSubmit}
                 style={styles.btnTouch}>
                 <TextDefault textColor={colors.buttonText} H4 bold>
                   {'Submit'}

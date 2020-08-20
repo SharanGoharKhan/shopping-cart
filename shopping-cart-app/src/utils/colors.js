@@ -27,8 +27,8 @@ export const colors = {
     lightBrown: '#fcead9',
     headerbackground: '#FFF',
     headerText: '#000',
-    startColor: '#F48B98',
-    startOutlineColor: '#F48B98',
+    startColor: '#D0AD8A',
+    startOutlineColor: '#D0AD8A',
 
     //
     blackText: '#4A4A4A',

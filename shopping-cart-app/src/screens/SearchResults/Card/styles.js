@@ -10,7 +10,7 @@ const styles = StyleSheet.create({
         marginBottom: verticalScale(15),
         borderRadius: verticalScale(3),
         borderWidth: verticalScale(1),
-        borderColor: colors.themeBackground,
+        borderColor: colors.lightHorizontalLine,
         flexDirection: 'row',
     },
     leftside: {
@@ -60,7 +60,7 @@ const styles = StyleSheet.create({
     special_row: {
         width: '100%',
         flexDirection: 'row',
-        justifyContent: 'space-between',
+        justifyContent: 'flex-end',
     },
     amount: {
         lineHeight: verticalScale(13),

@@ -163,4 +163,12 @@ export default {
         fontSize: verticalScale(16),
         color: colors.whiteColor,
     },
+    actionContainer: {
+        width: '40%',
+        height: '25%',
+        justifyContent: 'center',
+        alignItems: 'center',
+        borderRadius: verticalScale(4),
+        backgroundColor: colors.textBlueColor,
+    }
 };

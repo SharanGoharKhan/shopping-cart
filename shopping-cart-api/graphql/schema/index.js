@@ -33,6 +33,7 @@ const typeDefs = gql`
     price: Float!
     quantity: Int!
     selectedAttributes:[SelectedAttributes!]
+    isReviewed: Boolean!
     isActive: Boolean!
     createdAt: String!
     updatedAt: String!
@@ -185,6 +186,7 @@ const typeDefs = gql`
   type Review {
     _id: ID!
     order: Order!
+    product: Product!
     rating: Int!
     description: String
     is_active: Boolean!
@@ -353,7 +355,8 @@ const typeDefs = gql`
   }
 
   input ReviewInput {
-    orderId: String!
+    order: String!
+    product: String!
     rating: Int!
     description: String
   }
@@ -417,6 +420,7 @@ const typeDefs = gql`
     ): DashboardData!
     allReviews(offset: Int): [Review!]
     reviews(offset: Int): [ReviewOutput!]!
+    productReviews(productId: String!): [Review!]!
     profile: User
     configuration: Configuration!
     users(page: Int): [User!]

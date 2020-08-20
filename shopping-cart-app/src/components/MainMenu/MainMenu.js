@@ -32,7 +32,7 @@ const navItems = [
     },
     {
         title: 'Search',
-        navigateTo: 'Search',
+        navigateTo: 'SearchResult',
         isAuth: false,
     },
     {

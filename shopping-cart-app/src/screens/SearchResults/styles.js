@@ -50,7 +50,7 @@ const styles = StyleSheet.create({
         height: height * .8,
         width: '100%',
         marginLeft: 0,
-        justifyContent: 'center',
+        justifyContent: 'flex-start',
         alignItems: 'center',
 
     },
@@ -73,6 +73,8 @@ const styles = StyleSheet.create({
     },
     mixed_text: {
         width: '80%',
+        ...alignment.PTxSmall,
+        ...alignment.PBxSmall
     },
     main_scroller: {
         height: '93%',

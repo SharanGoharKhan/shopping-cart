@@ -311,6 +311,7 @@ export const getConfiguration = `query Configuration{
         image
         price
         quantity
+        isReviewed
       }
       user {
         _id
@@ -359,6 +360,7 @@ export const getConfiguration = `query Configuration{
         image
         price
         quantity
+        isReviewed
       }
       user {
         _id
@@ -373,6 +375,7 @@ export const getConfiguration = `query Configuration{
       orderStatus
       statusQueue{
         pending
+        accepted
         preparing
         picked
         delivered
@@ -380,5 +383,60 @@ export const getConfiguration = `query Configuration{
       }
       createdAt
       }
+    }
+  }`
+
+  export const reviewOrder = `mutation ReviewOrder(
+    $order:String!,
+    $product: String!,
+    $rating:Int!,
+    $description:String
+  ){
+    reviewOrder(reviewInput:{
+      order:$order,
+      product:$product,
+      rating:$rating,
+      description:$description
+    }){
+      _id
+      orderId
+      deliveryAddress{
+        label
+        region
+        city
+        apartment
+        building
+        details
+      }
+      deliveryCharges
+      items{
+        _id
+        product
+        productId
+        image
+        price
+        quantity
+        isReviewed
+      }
+      user {
+        _id
+        name
+        phone
+        email
+      }
+      paymentStatus
+      paymentMethod
+      paidAmount
+      orderAmount
+      orderStatus
+      statusQueue{
+        pending
+        accepted
+        preparing
+        picked
+        delivered
+        cancelled
+      }
+      createdAt
     }
   }`

@@ -8,21 +8,23 @@ import BottomTab from '../../components/BottomTab/BottomTab';
 import { BackHeader } from '../../components/Headers/Headers';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import UserContext from '../../context/User'
-import { Spinner, TextError } from '../../components'
+import { Spinner, TextError, TextDefault } from '../../components'
+import { colors } from '../../utils'
 import ConfigurationContext from '../../context/Configuration'
+
 
 function OrderDetail(props) {
     const navigation = useNavigation()
     const route = useRoute()
     const id = route.params._id ?? null
-    console.log('id',id)
+    console.log('id', id)
     const cart = route.params.clearCart ?? false
     const { orders, clearCart, loadingOrders, errorOrders } = useContext(
         UserContext
     )
     const configuration = useContext(ConfigurationContext)
     const order = orders.find(o => o._id === id)
-    console.log('orders',JSON.stringify(orders.map(({_id})=>_id)))
+    console.log('orders', JSON.stringify(orders.map(({ _id }) => _id)))
     useEffect(() => {
         return () => {
             if (cart) {
@@ -33,9 +35,9 @@ function OrderDetail(props) {
     async function clear() {
         await clearCart()
     }
-    
-    if(loadingOrders || !order) return  <Spinner />
-    if(errorOrders) return <TextError text={errorOrders}/>
+
+    if (loadingOrders || !order) return <Spinner />
+    if (errorOrders) return <TextError text={errorOrders} />
     return (
         <SafeAreaView style={[styles.flex, styles.safeAreaStyle]}>
             <View style={[styles.flex, styles.mainContainer]}>
@@ -65,6 +67,13 @@ function OrderDetail(props) {
                                             <Text style={styles.productTitleStyle}>{configuration.currencySymbol} {data.price * data.quantity}</Text>
                                         </View>
                                     </View>
+                                        {!data.isReviewed && <TouchableOpacity
+                                            style={styles.actionContainer}
+                                            onPress={() => navigation.navigate('Review',{product:data.productId, order: order._id })}>
+                                            <TextDefault textColor={colors.white} H5>
+                                                Review
+                                    </TextDefault>
+                                        </TouchableOpacity>}
                                 </View>
                             </View>
                         </View>)

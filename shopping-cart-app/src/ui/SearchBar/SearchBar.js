@@ -11,6 +11,7 @@ function SearchBar(props) {
                 style={styles.textfield}
                 placeholder={props.placeholderText}
                 placeholderTextColor={colors.primaryBlackColor}
+                onChange={props.onChange}
             />
             <TouchableOpacity
                 style={styles.button}
