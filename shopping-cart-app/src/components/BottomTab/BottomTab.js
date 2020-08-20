@@ -22,7 +22,7 @@ function BottomTab(props) {
                 </View>
             </TouchableOpacity>
             <TouchableOpacity
-                onPress={() => navigation.navigate('Search')}
+                onPress={() => navigation.navigate('SearchResult')}
                 style={[styles.footerBtnContainer,props.screen === 'SEARCH' && styles.active]}
             >
                 <View style={styles.imgContainer}>

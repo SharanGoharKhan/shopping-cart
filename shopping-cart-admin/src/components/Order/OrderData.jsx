@@ -131,7 +131,7 @@ const OrdersData = props => {
   ]
   const conditionalRowStyles = [
     {
-      when: row => row.order_status !== 'DELIVERED',
+      when: row => row.orderStatus !== 'DELIVERED',
       style: {
         backgroundColor: 'rgba(240, 173, 78,0.2)'
       }

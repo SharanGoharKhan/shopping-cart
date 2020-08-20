@@ -4,6 +4,10 @@ const Schema = mongoose.Schema
 
 const reviewSchema = new Schema(
   {
+    product: {
+      type: Schema.Types.ObjectId,
+      ref: 'Product'
+    },
     order: {
       type: Schema.Types.ObjectId,
       ref: 'Order'

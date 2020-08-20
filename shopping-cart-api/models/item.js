@@ -26,6 +26,10 @@ const itemSchema = new Schema(
     selectedAttributes: {
       type: [Object]
     },
+    isReviewed: {
+      type: Boolean,
+      default: false,
+    },
     isActive: {
       type: Boolean,
       default: true

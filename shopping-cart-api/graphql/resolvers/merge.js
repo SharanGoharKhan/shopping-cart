@@ -140,25 +140,15 @@ const transformOptionGroup = async optionGroup => {
     // options: optionGroup.options.map(transformOption)
   }
 }
-const transformOrderOption = option => {
+
+
+const transformReview = review => {
   return {
-    ...option._doc,
-    __typename: 'ItemOption',
-    _id: option.id
+    ...review._doc,
+    _id: review.id,
+    order: order.bind(this, review.order),
+    product: singleProduct.bind(this, review.product)
   }
-}
-
-// const options = async optionIds => {
-//   const options = await Option.find({
-//     _id: { $in: optionIds },
-//     isActive: true
-//   })
-//   return options.map(transformOption)
-// }
-
-const orderOption = async optionId => {
-  const option = await Option.findById(optionId)
-  return transformOrderOption(option)
 }
 
 
@@ -209,3 +199,4 @@ exports.transformOrder = transformOrder
 exports.transformOption = transformOption
 exports.transformOptionGroup = transformOptionGroup
 exports.transformUser = transformUser
+exports.transformReview = transformReview
