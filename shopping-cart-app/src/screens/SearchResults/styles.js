@@ -1,5 +1,5 @@
-import { StatusBar, Dimensions, Platform, StyleSheet } from 'react-native';
-import { verticalScale, alignment, colors } from '../../utils';
+import { Dimensions, StyleSheet } from 'react-native';
+import { alignment, colors } from '../../utils';
 const { width, height } = Dimensions.get('window');
 
 const styles = StyleSheet.create({
@@ -54,29 +54,5 @@ const styles = StyleSheet.create({
     main_scroller: {
         height: '93%',
     },
-    // footer
-    footer: {
-        backgroundColor: colors.themeBackground,
-        height: '100%',
-        width: '100%',
-        justifyContent: 'flex-end',
-        alignItems: 'center',
-    },
-    filter: {
-        flexDirection: 'row',
-        justifyContent: "space-between",
-        alignItems: 'center',
-        width: '100%',
-        ...alignment.PLsmall,
-        ...alignment.PRsmall,
-    },
-    filterButton: {
-        width: '20%',
-        height: '100%',
-        alignItems: 'flex-end',
-        ...alignment.PLsmall,
-        ...alignment.PTmedium,
-        ...alignment.PBmedium,
-    }
 })
 export default styles;
