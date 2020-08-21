@@ -5,7 +5,7 @@ import BottomTab from '../../components/BottomTab/BottomTab';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { BackHeader } from '../../components/Headers/Headers';
 import { useNavigation } from '@react-navigation/native';
-import { TextDefault } from '../../components';
+import { TextDefault, Spinner, TextError } from '../../components';
 import { colors, scale } from '../../utils';
 import { Feather } from '@expo/vector-icons';
 import UserContext from '../../context/User'
@@ -35,6 +35,8 @@ function PreviousOrder(props) {
     }
 
     function emptyView() {
+        if (loadingOrders) return <Spinner />
+        if (errorOrders) return <TextError text={error.message} />
         return (
             <View style={styles.subContainerImage}>
                 <View style={styles.imageContainer}>
@@ -117,7 +119,7 @@ function PreviousOrder(props) {
                     keyExtractor={(item, index) => item._id}
                     showsVerticalScrollIndicator={false}
                     refreshing={networkStatusOrders === 4}
-                    onRefresh={() => fetchMoreOrdersFunc()}
+                    onRefresh={() => networkStatusOrders === 7 && fetchOrders()}
                     ItemSeparatorComponent={() => <View style={styles.lineSubContainer} />}
                     renderItem={({ item }) => (
                         <SectionCard key={item._id} card={item} />
