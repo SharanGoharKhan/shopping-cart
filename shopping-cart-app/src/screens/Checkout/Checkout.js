@@ -40,6 +40,7 @@ function Checkout() {
     const payObj = route.params ? route.params.PayObject : null
     const [paymentMethod, setPaymentMethod] = useState(null)
     const [coupan, setCoupan] = useState(null)
+    const [coupanError, setCoupanError] = useState(null)
     const [discount, setDiscount] = useState(0)
     const [modalVisible, setModalVisible] = useState(false)
     const configuration = useContext(ConfigurationContext)
@@ -286,6 +287,7 @@ function Checkout() {
                                         <View style={styles.coupanRow}>
                                             <View style={styles.coupanInput}>
                                                 <TextField
+                                                    error={coupanError}
                                                     value={coupan}
                                                     placeholder="Coupan"
                                                     onChange={event => {
@@ -295,7 +297,14 @@ function Checkout() {
                                             </View>
                                             <MainBtn
                                                 style={styles.coupanBtn}
-                                                onPress={applyCoupan}
+                                                onPress={() => {
+                                                    if (!coupan)
+                                                        setCoupanError("Invalid")
+                                                    else {
+                                                        setCoupanError(null)
+                                                        applyCoupan()
+                                                    }
+                                                }}
                                                 text={'Apply'}
                                             />
                                         </View>
