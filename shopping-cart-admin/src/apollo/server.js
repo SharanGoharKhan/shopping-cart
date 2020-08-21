@@ -509,15 +509,14 @@ export const reviews = `query AllReviews($offset:Int){
     rating
     description
     createdAt
-    updatedAt
-    is_active
+    product{
+      title
+    }
     order{
+      orderId
       user{
         name
         email
-      }
-      items{
-        product
       }
    }
   }

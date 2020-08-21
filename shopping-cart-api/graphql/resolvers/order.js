@@ -8,6 +8,8 @@ const Coupon = require('../../models/coupon')
 const Configuration = require('../../models/configuration')
 const Paypal = require('../../models/paypal')
 const Stripe = require('../../models/stripe')
+const mongoose = require('mongoose')
+
 const {
   transformOrder,
   transformReview
@@ -197,7 +199,7 @@ module.exports = {
       try {
         const reviews = await Review.find().sort({ createdAt: -1 })
         return reviews.map(async review => {
-          return await transformAllReview(review)
+          return await transformReview(review)
         })
       } catch (err) {
         throw err
