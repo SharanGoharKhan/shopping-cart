@@ -32,7 +32,6 @@ function MainLanding(props) {
     const { data: categoryData } = useQuery(CATEGORIES)
     const { data: productsData, loading, error, refetch, networkStatus } = useQuery(PRODUCTS_DATA)
     const Featured = productsData?.products ? productsData.products.filter(item => item.featured) : []
-    const { cart, clearCart } = useContext(UserContext)
 
     function renderCarosel() {
         return (
