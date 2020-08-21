@@ -9,7 +9,6 @@ import { TextDefault } from '../../components';
 import { colors, scale } from '../../utils';
 import { Feather } from '@expo/vector-icons';
 import UserContext from '../../context/User'
-import { empty } from '@apollo/client';
 import MainBtn from '../../ui/Buttons/MainBtn';
 
 
@@ -92,19 +91,10 @@ function PreviousOrder(props) {
                                 {card.items[0].product}
                             </TextDefault>
                         </View>
-                        <View style={styles.actionsContainer}>
-                            <View style={styles.subActionsContainer}>
-                                <TextDefault textColor={colors.fontBlue} H5>
-                                    {card.orderStatus}
-                                </TextDefault>
-                                <TouchableOpacity
-                                    style={styles.actionContainer}
-                                    onPress={() => navigation.navigate('Review')}>
-                                    <TextDefault textColor={colors.white} H5>
-                                        Review
-                                    </TextDefault>
-                                </TouchableOpacity>
-                            </View>
+                        <View style={styles.subActionsContainer}>
+                            <TextDefault textColor={colors.fontBlue} H5>
+                                {card.orderStatus}
+                            </TextDefault>
                         </View>
                     </View>
                 </View>
@@ -116,7 +106,7 @@ function PreviousOrder(props) {
             <View style={[styles.flex, styles.mainContainer]}>
                 <BackHeader
                     title="Previous Orders"
-                    backPressed={() => props.navigation.goBack()} />
+                    backPressed={() => navigation.goBack()} />
                 <FlatList
                     style={styles.flex}
                     contentContainerStyle={styles.mainCardContainer}
@@ -127,9 +117,9 @@ function PreviousOrder(props) {
                     keyExtractor={(item, index) => item._id}
                     showsVerticalScrollIndicator={false}
                     refreshing={networkStatusOrders === 4}
-                    onRefresh={() => networkStatusOrders === 7 && fetchOrders()}
+                    onRefresh={() => fetchMoreOrdersFunc()}
                     ItemSeparatorComponent={() => <View style={styles.lineSubContainer} />}
-                    renderItem={({ item, index, section }) => (
+                    renderItem={({ item }) => (
                         <SectionCard key={item._id} card={item} />
                     )
                     }

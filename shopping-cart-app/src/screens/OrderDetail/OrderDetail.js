@@ -27,7 +27,6 @@ function OrderDetail(props) {
     async function clear() {
         await clearCart()
     }
-    console.log(loadingOrders)
     return (
         <SafeAreaView style={[styles.flex, styles.safeAreaStyle]}>
             <View style={styles.flex}>
@@ -65,7 +64,7 @@ function OrderDetail(props) {
                                                     </TextDefault>
                                                 </View>
                                             </View>
-                                            {!data.isReviewed && <TouchableOpacity
+                                            {(!data.isReviewed && order.orderStatus==='DELIVERED') && <TouchableOpacity
                                                 style={styles.actionContainer}
                                                 onPress={() => navigation.navigate('Review', { product: data.productId, order: order._id })}>
                                                 <TextDefault textColor={colors.white} H5>

@@ -1,7 +1,7 @@
 import React, { useState, useContext, useEffect } from 'react';
 import { View, TouchableOpacity, Image, FlatList } from 'react-native';
 import styles from './styles';
-import { BackHeader, BottomTab, TextDefault, Spinner, FlashMessage, TextError } from '../../components';
+import { BackHeader, BottomTab, TextDefault, Spinner, FlashMessage } from '../../components';
 import Button from '../../ui/Buttons/Button';
 import VariationSection from './VariationSection/VariationSection';
 import { SafeAreaView } from 'react-native-safe-area-context';
@@ -14,34 +14,6 @@ import { useQuery, gql } from '@apollo/client'
 import { productReviews } from '../../apollo/server'
 
 const REVIEWS = gql`${productReviews}`
-
-
-const REVIEW = [
-    {
-        name: 'ABC',
-        rating: 4,
-        description: 'THis is good one',
-        date: 'Aug 7, 2020'
-    },
-    {
-        name: 'ABC',
-        rating: 4,
-        description: 'THis is good one',
-        date: 'Aug 7, 2020'
-    },
-    {
-        name: 'ABC',
-        rating: 4,
-        description: 'THis is good one',
-        date: 'Aug 7, 2020'
-    },
-    {
-        name: 'ABC',
-        rating: 4,
-        description: 'THis is good one',
-        date: 'Aug 7, 2020'
-    },
-]
 
 function ProductDescription(props) {
     const navigation = useNavigation()

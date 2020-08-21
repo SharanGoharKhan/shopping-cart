@@ -40,7 +40,7 @@ const styles = StyleSheet.create({
     },
     cardContainer: {
         width: scale(320),
-        height: height * 0.14,
+        height: height * 0.12,
         borderRadius: scale(8),
         flexDirection: 'row',
         borderWidth: scale(1),
@@ -100,9 +100,7 @@ const styles = StyleSheet.create({
     subActionsContainer: {
         width: '100%',
         height: '60%',
-        flexDirection: 'row',
-        justifyContent: 'space-between',
-        alignItems: 'center',
+        justifyContent:"flex-end"
 
     },
     actionContainer: {

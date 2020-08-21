@@ -16,7 +16,9 @@ function cardContainer(props) {
     const {
         orders,
         loadingOrders,
-        errorOrders
+        errorOrders,
+        fetchMoreOrdersFunc,
+        networkStatusOrders
     } = useContext(UserContext)
 
     function emptyView() {
@@ -44,6 +46,9 @@ function cardContainer(props) {
             contentContainerStyle={styles.mainCardContainer}
             data={orders ? orders.filter(o => ['PENDING', 'PICKED', 'ACCEPTED'].includes(o.orderStatus)) : []}
             keyExtractor={(item, index) => index.toString()}
+            onRefresh={() => fetchMoreOrdersFunc()}
+            refreshing={networkStatusOrders === 4}
+            showsVerticalScrollIndicator={false}
             ListEmptyComponent={emptyView()}
             renderItem={({ item }) => (
                 <TouchableOpacity

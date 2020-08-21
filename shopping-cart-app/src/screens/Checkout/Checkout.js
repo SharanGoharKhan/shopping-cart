@@ -150,7 +150,7 @@ function Checkout() {
                 variables: {
                     orderInput: Items,
                     paymentMethod: paymentMethod.payment,
-                    couponCode: "",
+                    couponCode: coupan,
                     address: {
                         label: address.label,
                         region: address.region,
