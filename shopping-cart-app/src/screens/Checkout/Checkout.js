@@ -56,8 +56,6 @@ function Checkout() {
         {
             onCompleted: placeOrderCompleted,
             onError: errorPlaceOrder,
-            refetchQueries: [{ query: ORDERS }],
-            awaitRefetchQueries: true
         }
     )
 
