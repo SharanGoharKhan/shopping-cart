@@ -35,7 +35,6 @@ function noDrawer() {
             <NavigationStack.Screen name='ProfileDashboard' component={Screen.ProfileDashboard} />
             <NavigationStack.Screen name='SearchResult' component={Screen.SearchResults} />
             <NavigationStack.Screen name='ShoppingCart' component={Screen.ShoppingCart} />
-            <NavigationStack.Screen name='Search' component={Screen.Search} />
             <NavigationStack.Screen name='TrackOrder' component={Screen.TrackOrder} />
             <NavigationStack.Screen name='Review' component={Screen.Review} />
             <NavigationStack.Screen name='Category' component={Screen.Category} />
@@ -51,7 +50,7 @@ function noDrawer() {
 function AppContainer() {
     return (
         <NavigationContainer>
-            <MainStack.Navigator headerMode='none' initialRouteName='AuthLoading'>
+            <MainStack.Navigator headerMode='none' initialRouteName='Drawer'>
                 <MainStack.Screen name='Drawer' component={Drawer} />
             </MainStack.Navigator>
         </NavigationContainer>

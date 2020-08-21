@@ -9,7 +9,6 @@ import PreviousOrders from './PreviousOrders/PreviousOrders'
 import ProductDescription from './ProductDescription/ProductDescription'
 import ProductListing from './ProductsListing/ProductListing'
 import ProfileDashboard from './ProfileDashboard/ProfileDashboard'
-import Search from './Search/Search'
 import SearchResults from './SearchResults/SearchResults'
 import ShoppingCart from './ShoppingCart/ShoppingCart'
 import SignIn from './SignIn/SignIn'
@@ -22,4 +21,4 @@ import Review from './Review/Review'
 import Category from './Category/Category'
 import SubCategory from './SubCategory/SubCategory'
 
-export { AddressList, Checkout, EditAddress, EditingProfile, MainLanding, NewAddress, OrderDetail, PreviousOrders, ProfileDashboard, ProductDescription, ProductListing, Search, SearchResults, ShoppingCart, SignIn, SignUp, TrackOrder, Payment, Paypal, StripeCheckout, Review, Category, SubCategory }
+export { AddressList, Checkout, EditAddress, EditingProfile, MainLanding, NewAddress, OrderDetail, PreviousOrders, ProfileDashboard, ProductDescription, ProductListing, SearchResults, ShoppingCart, SignIn, SignUp, TrackOrder, Payment, Paypal, StripeCheckout, Review, Category, SubCategory }

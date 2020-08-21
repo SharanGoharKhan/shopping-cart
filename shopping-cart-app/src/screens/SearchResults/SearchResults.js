@@ -1,50 +1,21 @@
 import React, { useState } from 'react';
-import { View, ScrollView, TouchableOpacity } from 'react-native';
+import { View, ScrollView } from 'react-native';
 import styles from './styles';
 import SearchBar from '../../ui/SearchBar/SearchBar';
 import FullCard from './Card/FullCard';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { BackHeader, TextDefault, BottomTab, Spinner, TextError } from '../../components';
-import { MaterialCommunityIcons } from '@expo/vector-icons';
-import { scale, colors } from '../../utils';
-import FilterModal from '../../components/FilterMoal/FilterModal';
+import { colors } from '../../utils';
 import { useQuery, gql } from '@apollo/client'
-import { produccts, product } from '../../apollo/server'
+import { produccts } from '../../apollo/server'
 
 const PRODUCTS_DATA = gql`${produccts}`
-
-const DATA = [
-    {
-        name: 'Leather crossbody MID Bag',
-        rating: 5,
-        totalVotes: 401,
-        prev_price: null,
-        price: 120,
-        bagde: 'new',
-        image: require('../../assets/images/MainLanding/shop-2-collage-2.png'),
-    },
-    {
-        name: "Photographer's belt and harness",
-        rating: 3,
-        totalVotes: 274,
-        prev_price: 39,
-        price: 29,
-        bagde: null,
-        image: require('../../assets/images/ProductListing/belt.png'),
-    },
-
-];
 
 function SearchResults(props) {
 
     const [search, setSearch] = useState('')
     const [isPressed, setIsPressed] = useState(false)
     const { data, loading, error } = useQuery(PRODUCTS_DATA)
-
-
-
-    if (loading) return <Spinner />
-    if (error) return <TextError text={error} />
 
     const searchProducts = searchText => {
         const productData = []
@@ -68,18 +39,17 @@ function SearchResults(props) {
     }
 
     function renderSearchResult() {
-        return <View style={styles.mainBodyContainer}>
+        return (
             <View style={styles.mainBody}>
                 <View style={styles.filter}>
                     <View style={styles.mixed_text}>
                         {<TextDefault textColor={colors.fontSecondColor} H5>
-                            {searchProducts(search).length}{' results found for: '} {search}
+                            {!!search ? searchProducts(search).length : 0}{' results found for: '} {search}
                         </TextDefault>}
                     </View>
-
                 </View>
                 <ScrollView style={styles.main_scroller}>
-                    {search ? searchProducts(search).map((item, i) => (
+                    {!!search && searchProducts(search).map((item, i) => (
                         <FullCard
                             productImage={item.image[0]}
                             productName={item.title}
@@ -87,15 +57,10 @@ function SearchResults(props) {
                             product={item}
                             key={i}
                         />
-                    )) :
-                        <View style={styles.mixed_text}>
-                            <TextDefault textColor={colors.fontSecondColor} H5>
-                                {' result not found'}
-                            </TextDefault>
-                        </View>}
+                    ))}
                 </ScrollView>
             </View>
-        </View>
+        )
     }
     return (
         <SafeAreaView style={[styles.flex, styles.safeAreaStyle]}>
@@ -116,13 +81,17 @@ function SearchResults(props) {
                                     setIsPressed(true)
                                 }} placeholderText={'Search'} />
                         </View>
-                        {isPressed && renderSearchResult()}
-                    </View>
-                    <View style={styles.footer}>
+                        <View style={styles.mainBodyContainer}>
+                            {error ? <TextError text={error.message} /> :
+                                loading ? <Spinner /> :
+                                    isPressed && renderSearchResult()
+                            }
+                        </View>
                     </View>
                 </View>
             </View>
-            <BottomTab />
+            <BottomTab
+                screen='SEARCH' />
         </SafeAreaView>
     )
 }
