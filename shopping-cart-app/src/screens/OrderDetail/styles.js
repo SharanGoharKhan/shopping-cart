@@ -31,7 +31,7 @@ const styles = StyleSheet.create({
     card: {
         backgroundColor: colors.container,
         width: '90%',
-        height:"100%",
+        height: "100%",
         flexDirection: 'row',
         borderRadius: scale(8)
     },
@@ -62,11 +62,11 @@ const styles = StyleSheet.create({
         ...alignment.MBxSmall
     },
     quantityContainer: {
-        width: '40%',
+        // width: '30%',
         justifyContent: 'center',
     },
     priceContainer: {
-        width: '40%',
+        maxWidth: '60%',
         justifyContent: 'center',
     },
     deliverContainer: {
@@ -126,19 +126,20 @@ const styles = StyleSheet.create({
     trackStyle: {
         width: '90%',
         height: "60%",
-        backgroundColor: colors.blueButton,
+        backgroundColor: colors.buttonBackground,
         justifyContent: 'center',
         alignItems: 'center',
         borderRadius: verticalScale(4),
     },
     actionContainer: {
-        width: '90%',
+        // width: '30%',
         justifyContent: 'center',
         alignItems: 'center',
         alignSelf: "center",
         borderRadius: scale(4),
-        backgroundColor: colors.textBlueColor,
-        ...alignment.MTxSmall
+        backgroundColor: colors.buttonBackground,
+        ...alignment.PLxSmall,
+        ...alignment.PRxSmall
     }
 })
 export default styles

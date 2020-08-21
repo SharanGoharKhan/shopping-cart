@@ -100,7 +100,7 @@ export default {
         alignItems: 'center',
         marginRight: '5%',
         borderRadius: verticalScale(4),
-        backgroundColor: colors.textBlueColor,
+        backgroundColor: colors.buttonBackground,
     },
     actionStyle: {
         fontFamily: fontStyles.PoppinsRegular,

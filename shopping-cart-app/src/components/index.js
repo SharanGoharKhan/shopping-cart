@@ -6,6 +6,5 @@ import { BackHeader, HeaderRightIcon, HeaderRightText } from './Headers/Headers'
 import RadioButton from './RadioBtn/RadioBtn'
 import Spinner from './Spinner/Spinner'
 import FilterMoal from './FilterMoal/FilterModal'
-import CheckoutReceipt from './CheckoutReciept/CheckoutReciept'
 
-export { FlashMessage, TextDefault, TextError, BottomTab, MainMenu, BackHeader, HeaderRightIcon, HeaderRightText, RadioButton, Spinner, FilterMoal, CheckoutReceipt }
+export { FlashMessage, TextDefault, TextError, BottomTab, MainMenu, BackHeader, HeaderRightIcon, HeaderRightText, RadioButton, Spinner, FilterMoal }

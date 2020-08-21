@@ -84,8 +84,7 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
     },
     socialBtnsView: {
-        width: '50%',
-        justifyContent: 'center'
+        width: '100%',
     },
     socialBtn: {
         flexDirection: 'row',
@@ -114,17 +113,8 @@ const styles = StyleSheet.create({
         borderBottomRightRadius: 0,
         backgroundColor: colors.google,
     },
-    facebookBtn: {
-        height: scale(50),
-        borderWidth: 0,
-        borderLeftWidth: 0,
-        borderRadius: 3,
-        borderTopLeftRadius: 0,
-        borderBottomLeftRadius: 0,
-        backgroundColor: colors.facebook,
-    },
     fbText: {
-        ...alignment.PLxSmall
+        ...alignment.PLmedium
     },
     ftUnderline: {
         textDecorationLine: 'underline',

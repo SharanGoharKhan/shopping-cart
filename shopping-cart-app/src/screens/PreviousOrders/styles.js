@@ -103,14 +103,6 @@ const styles = StyleSheet.create({
         justifyContent:"flex-end"
 
     },
-    actionContainer: {
-        width: '40%',
-        height: '80%',
-        justifyContent: 'center',
-        alignItems: 'center',
-        borderRadius: verticalScale(4),
-        backgroundColor: colors.textBlueColor,
-    },
     //empty
     subContainerImage: {
         flex: 1,
