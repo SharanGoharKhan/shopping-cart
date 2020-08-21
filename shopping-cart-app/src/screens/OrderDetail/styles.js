@@ -22,6 +22,7 @@ const styles = StyleSheet.create({
     cardContainer: {
         backgroundColor: colors.themeBackground,
         width: '100%',
+        height: scale(80),
         justifyContent: 'center',
         alignItems: 'center',
         ...alignment.MTxSmall,
@@ -30,17 +31,18 @@ const styles = StyleSheet.create({
     card: {
         backgroundColor: colors.container,
         width: '90%',
+        height:"100%",
         flexDirection: 'row',
         borderRadius: scale(8)
     },
     cardLeftContainer: {
-        width: '35%',
+        width: '30%',
         borderTopLeftRadius: verticalScale(8),
         borderBottomLeftRadius: verticalScale(8),
     },
     cardRightContainer: {
-        width: '60%',
-        justifyContent: "space-around",
+        width: '65%',
+        justifyContent: "space-between",
         ...alignment.MLxSmall,
         ...alignment.PTxSmall,
         ...alignment.PBxSmall

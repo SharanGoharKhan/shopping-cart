@@ -40,7 +40,7 @@ const styles = StyleSheet.create({
     },
     cardContainer: {
         width: scale(320),
-        height: height * 0.12,
+        height: height * 0.14,
         borderRadius: scale(8),
         flexDirection: 'row',
         borderWidth: scale(1),
@@ -50,7 +50,7 @@ const styles = StyleSheet.create({
         ...alignment.PRsmall
     },
     leftContainer: {
-        width: '40%',
+        width: '35%',
         height: '100%',
     },
     imgResponsive3: {
@@ -68,7 +68,7 @@ const styles = StyleSheet.create({
         borderBottomRightRadius: 0,
     },
     rightContainer: {
-        width: '60%',
+        width: '65%',
         height: '100%',
         justifyContent: 'center',
         ...alignment.PLsmall

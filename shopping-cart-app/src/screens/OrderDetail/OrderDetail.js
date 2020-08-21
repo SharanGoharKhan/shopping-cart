@@ -49,7 +49,8 @@ function OrderDetail(props) {
                                             />
                                         </View>
                                         <View style={styles.cardRightContainer}>
-                                            <TextDefault textColor={colors.fontMainColor} H5>
+                                            <TextDefault numberOfLines={1}
+                                                textColor={colors.fontMainColor} H5>
                                                 {data.product}
                                             </TextDefault>
                                             <View style={styles.amountContainer}>
@@ -64,7 +65,7 @@ function OrderDetail(props) {
                                                     </TextDefault>
                                                 </View>
                                             </View>
-                                            {(!data.isReviewed && order.orderStatus==='DELIVERED') && <TouchableOpacity
+                                            {(!data.isReviewed && order.orderStatus === 'DELIVERED') && <TouchableOpacity
                                                 style={styles.actionContainer}
                                                 onPress={() => navigation.navigate('Review', { product: data.productId, order: order._id })}>
                                                 <TextDefault textColor={colors.white} H5>
