@@ -47,12 +47,6 @@ const styles = StyleSheet.create({
         backgroundColor: colors.horizontalLine,
         alignSelf: 'center'
     },
-    btnContainer: {
-        backgroundColor: colors.textBlueColor
-    },
-    btnText: {
-        color: colors.whiteColor
-    },
     //empty
     subContainerImage: {
         flex: 1,

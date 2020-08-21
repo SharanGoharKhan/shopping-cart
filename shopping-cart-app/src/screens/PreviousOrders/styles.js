@@ -50,7 +50,7 @@ const styles = StyleSheet.create({
         ...alignment.PRsmall
     },
     leftContainer: {
-        width: '40%',
+        width: '35%',
         height: '100%',
     },
     imgResponsive3: {
@@ -68,7 +68,7 @@ const styles = StyleSheet.create({
         borderBottomRightRadius: 0,
     },
     rightContainer: {
-        width: '60%',
+        width: '65%',
         height: '100%',
         justifyContent: 'center',
         ...alignment.PLsmall
@@ -100,18 +100,8 @@ const styles = StyleSheet.create({
     subActionsContainer: {
         width: '100%',
         height: '60%',
-        flexDirection: 'row',
-        justifyContent: 'space-between',
-        alignItems: 'center',
+        justifyContent:"flex-end"
 
-    },
-    actionContainer: {
-        width: '40%',
-        height: '80%',
-        justifyContent: 'center',
-        alignItems: 'center',
-        borderRadius: verticalScale(4),
-        backgroundColor: colors.textBlueColor,
     },
     //empty
     subContainerImage: {

@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import { View, FlatList, ImageBackground } from 'react-native';
 import SwiperFlatList from 'react-native-swiper-flatlist';
 import styles from './styles';
@@ -12,7 +12,6 @@ import { MaterialIcons } from '@expo/vector-icons'
 import { useNavigation } from '@react-navigation/native';
 import { gql, useQuery } from '@apollo/client';
 import { categories, produccts } from '../../apollo/server'
-import UserContext from '../../context/User'
 
 const caroselImage = [
     require('../../assets/images/MainLanding/banner-1.png'),
@@ -37,6 +36,7 @@ function MainLanding(props) {
         return (
             <View style={styles.caroselContainer}>
                 <SwiperFlatList
+                    data={caroselImage}
                     index={0}
                     showPagination
                     autoplay
@@ -45,15 +45,13 @@ function MainLanding(props) {
                     paginationActiveColor="#fff"
                     paginationStyle={{ marginBottom: '7%' }}
                     paginationStyleItem={{ height: verticalScale(8), width: verticalScale(8), marginLeft: 0 }}
-                >
-                    {Array(caroselImage.length).fill(0).map((value, index) => (
+                    renderItem={({ item }) => (
                         <ImageBackground
-                            key={index}
-                            source={caroselImage[index]}
+                            source={item}
                             style={styles.caroselStyle}
                         />
-                    ))}
-                </SwiperFlatList>
+                    )}
+                />
                 <View style={styles.menuDrawerContainer}>
                     <HeaderBackButton
                         labelVisible={false}
@@ -68,7 +66,7 @@ function MainLanding(props) {
                         onPress={() => navigation.toggleDrawer()}
                     />
                 </View>
-            </View>
+            </View >
         )
     }
 

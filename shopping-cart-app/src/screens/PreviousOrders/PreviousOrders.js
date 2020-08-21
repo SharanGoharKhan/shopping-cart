@@ -5,11 +5,10 @@ import BottomTab from '../../components/BottomTab/BottomTab';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { BackHeader } from '../../components/Headers/Headers';
 import { useNavigation } from '@react-navigation/native';
-import { TextDefault } from '../../components';
+import { TextDefault, Spinner, TextError } from '../../components';
 import { colors, scale } from '../../utils';
 import { Feather } from '@expo/vector-icons';
 import UserContext from '../../context/User'
-import { empty } from '@apollo/client';
 import MainBtn from '../../ui/Buttons/MainBtn';
 
 
@@ -36,6 +35,8 @@ function PreviousOrder(props) {
     }
 
     function emptyView() {
+        if (loadingOrders) return <Spinner />
+        if (errorOrders) return <TextError text={error.message} />
         return (
             <View style={styles.subContainerImage}>
                 <View style={styles.imageContainer}>
@@ -92,19 +93,10 @@ function PreviousOrder(props) {
                                 {card.items[0].product}
                             </TextDefault>
                         </View>
-                        <View style={styles.actionsContainer}>
-                            <View style={styles.subActionsContainer}>
-                                <TextDefault textColor={colors.fontBlue} H5>
-                                    {card.orderStatus}
-                                </TextDefault>
-                                <TouchableOpacity
-                                    style={styles.actionContainer}
-                                    onPress={() => navigation.navigate('Review')}>
-                                    <TextDefault textColor={colors.white} H5>
-                                        Review
-                                    </TextDefault>
-                                </TouchableOpacity>
-                            </View>
+                        <View style={styles.subActionsContainer}>
+                            <TextDefault textColor={colors.fontBlue} H5>
+                                {card.orderStatus}
+                            </TextDefault>
                         </View>
                     </View>
                 </View>
@@ -116,7 +108,7 @@ function PreviousOrder(props) {
             <View style={[styles.flex, styles.mainContainer]}>
                 <BackHeader
                     title="Previous Orders"
-                    backPressed={() => props.navigation.goBack()} />
+                    backPressed={() => navigation.goBack()} />
                 <FlatList
                     style={styles.flex}
                     contentContainerStyle={styles.mainCardContainer}
@@ -129,7 +121,7 @@ function PreviousOrder(props) {
                     refreshing={networkStatusOrders === 4}
                     onRefresh={() => networkStatusOrders === 7 && fetchOrders()}
                     ItemSeparatorComponent={() => <View style={styles.lineSubContainer} />}
-                    renderItem={({ item, index, section }) => (
+                    renderItem={({ item }) => (
                         <SectionCard key={item._id} card={item} />
                     )
                     }

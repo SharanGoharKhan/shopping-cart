@@ -27,7 +27,6 @@ function OrderDetail(props) {
     async function clear() {
         await clearCart()
     }
-    console.log(loadingOrders)
     return (
         <SafeAreaView style={[styles.flex, styles.safeAreaStyle]}>
             <View style={styles.flex}>
@@ -50,12 +49,13 @@ function OrderDetail(props) {
                                             />
                                         </View>
                                         <View style={styles.cardRightContainer}>
-                                            <TextDefault textColor={colors.fontMainColor} H5>
+                                            <TextDefault numberOfLines={1}
+                                                textColor={colors.fontMainColor} H5>
                                                 {data.product}
                                             </TextDefault>
                                             <View style={styles.amountContainer}>
                                                 <View style={styles.quantityContainer}>
-                                                    <TextDefault textColor={colors.fontSecondColor} >
+                                                    <TextDefault textColor={colors.fontThirdColor} >
                                                         x{data.quantity}
                                                     </TextDefault>
                                                 </View>
@@ -64,14 +64,15 @@ function OrderDetail(props) {
                                                         {configuration.currencySymbol} {data.price * data.quantity}
                                                     </TextDefault>
                                                 </View>
+                                                {(!data.isReviewed && order.orderStatus === 'DELIVERED') && <TouchableOpacity
+                                                    style={styles.actionContainer}
+                                                    onPress={() => navigation.navigate('Review', { product: data.productId, order: order._id })}>
+                                                    <TextDefault textColor={colors.white} H5>
+                                                        {'Review'}
+                                                    </TextDefault>
+                                                </TouchableOpacity>}
                                             </View>
-                                            {!data.isReviewed && <TouchableOpacity
-                                                style={styles.actionContainer}
-                                                onPress={() => navigation.navigate('Review', { product: data.productId, order: order._id })}>
-                                                <TextDefault textColor={colors.white} H5>
-                                                    {'Review'}
-                                                </TextDefault>
-                                            </TouchableOpacity>}
+
                                         </View>
                                     </View>
                                 </View>)

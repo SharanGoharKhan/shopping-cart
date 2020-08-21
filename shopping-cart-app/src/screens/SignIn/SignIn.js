@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useContext } from 'react';
-import { View, Image, TouchableOpacity, ImageBackground, KeyboardAvoidingView, ScrollView, Platform, StatusBar, Text } from 'react-native';
+import { View, Image, TouchableOpacity, ImageBackground, KeyboardAvoidingView, ScrollView, Platform } from 'react-native';
 import * as Permissions from 'expo-permissions'
 import styles from './styles';
 import { login } from '../../apollo/server'
@@ -11,7 +11,6 @@ import ForgotPassword from './ForgotPassword/ForgotPassword';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { EvilIcons } from '@expo/vector-icons';
 import * as AppAuth from 'expo-app-auth'
-import * as Facebook from 'expo-facebook'
 import * as Google from 'expo-google-app-auth'
 import getEnvVars from '../../../environment'
 import { useNavigation } from '@react-navigation/native';
@@ -24,7 +23,6 @@ import MainBtn from '../../ui/Buttons/MainBtn';
 const {
     IOS_CLIENT_ID_GOOGLE,
     ANDROID_CLIENT_ID_GOOGLE,
-    FACEBOOK_APP_ID
 } = getEnvVars()
 
 const LOGIN = gql`
@@ -143,20 +141,6 @@ function SignIn(props) {
             return user
     }
 
-    async function _FacebookSignUp() {
-        await Facebook.initializeAsync(FACEBOOK_APP_ID)
-        const { type, token } = await Facebook.logInWithReadPermissionsAsync(
-            FACEBOOK_APP_ID, {
-            permissions: ['public_profile', 'email']
-        })
-        if (type === 'success') {
-            const response = await fetch(`https://graph.facebook.com/me?access_token=${token}&fields=email,name`);
-            const user = await response.json()
-            console.log(token, user)
-            return user
-        }
-    }
-
 
     function renderGoogle() {
         return (
@@ -190,7 +174,7 @@ function SignIn(props) {
                                 <EvilIcons name="sc-google-plus" size={scale(20)} color={colors.google} />
                             </View>
                             <TextDefault style={styles.fbText} textColor={colors.white} H5>
-                                {'Google'}
+                                {'Signin with Google'}
                             </TextDefault>
                         </TouchableOpacity>
                     )}
@@ -198,44 +182,6 @@ function SignIn(props) {
         )
     }
 
-    function renderFacebook() {
-        return (
-            <View style={[styles.socialBtnsView, styles.facebookBtn]}>
-                {(loading && loginButton === 'Facebook') ?
-                    <Spinner backColor="rgba(0,0,0,0.1)" spinnerColor={'#FFF'} />
-                    : (
-                        <TouchableOpacity
-                            activeOpacity={0.7}
-                            onPressIn={() => {
-                                loginButtonSetter('Facebook')
-                            }}
-                            onPress={async () => {
-                                const facebookUser = await _FacebookSignUp()
-                                if (facebookUser) {
-                                    const user = {
-                                        facebookId: facebookUser.id,
-                                        phone: '',
-                                        email: facebookUser.email,
-                                        password: '',
-                                        name: facebookUser.name,
-                                        picture: '',
-                                        type: 'facebook'
-                                    }
-                                    mutateLogin(user)
-                                }
-                            }}
-                            style={styles.socialBtn}>
-                            <View style={styles.bgCircle}>
-                                <EvilIcons name="sc-facebook" size={scale(20)} color={colors.facebook} />
-                            </View>
-                            <TextDefault style={styles.fbText} textColor={colors.white} H5>
-                                {'Facebook'}
-                            </TextDefault>
-                        </TouchableOpacity>
-                    )}
-            </View>
-        )
-    }
     function renderApple() {
         if (loading && loginButton === 'Apple') {
             return (
@@ -376,10 +322,7 @@ function SignIn(props) {
                                         </TouchableOpacity>
                                     </View>
                                     <View style={styles.bcSocialBox} >
-                                        <View style={styles.bcSocialBtns}>
-                                            {renderGoogle()}
-                                            {renderFacebook()}
-                                        </View>
+                                        {renderGoogle()}
                                         {enableApple && renderApple()}
                                     </View>
                                 </ImageBackground>

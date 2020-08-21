@@ -43,7 +43,7 @@ const alternateBtn = {
 
 const blueBtn = {
     backgroundColor: {
-        backgroundColor: colors.textBlueColor,
+        backgroundColor: colors.buttonBackground,
         height: verticalScale(46),
         borderRadius: verticalScale(3),
     },
@@ -93,15 +93,6 @@ const alternateBlueBtn = {
         fontSize: verticalScale(16),
     },
 };
-
-
-const facebookStyles = {
-
-};
-
-const googleStyles = {
-
-};
 export {
-    alternateBtn, mainBtnStyles, blueBtn, alternateBlueBtn, facebookStyles, googleStyles, styles
+    alternateBtn, mainBtnStyles, blueBtn, alternateBlueBtn, styles
 };

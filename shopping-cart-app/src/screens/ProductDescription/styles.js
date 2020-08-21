@@ -90,7 +90,7 @@ const styles = StyleSheet.create({
         alignSelf: 'center',
         marginTop: scale(20),
         marginBottom: scale(20),
-        backgroundColor: colors.textBlueColor
+        backgroundColor: colors.buttonBackground
     },
     outOfStockContainer: {
         width: '90%',
@@ -132,7 +132,7 @@ const styles = StyleSheet.create({
         flexDirection: "row",
         justifyContent: "flex-end",
         alignItems: "center",
-        width:'25%'
+        width: '25%'
     },
     dateReview: {
         width: "100%",

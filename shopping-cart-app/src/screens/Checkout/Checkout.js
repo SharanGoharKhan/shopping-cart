@@ -4,7 +4,7 @@ import styles from './styles';
 import { verticalScale, colors, alignment, scale } from '../../utils';
 import BlueBtn from '../../ui/Buttons/BlueBtn';
 import { SafeAreaView } from 'react-native-safe-area-context';
-import { BackHeader, BottomTab, TextDefault, CheckoutReceipt, FlashMessage } from '../../components';
+import { BackHeader, BottomTab, TextDefault, FlashMessage } from '../../components';
 import { useNavigation, useRoute } from '@react-navigation/native';
 import { AntDesign, Feather } from '@expo/vector-icons'
 import UserContext from '../../context/User'
@@ -148,7 +148,7 @@ function Checkout() {
                 variables: {
                     orderInput: Items,
                     paymentMethod: paymentMethod.payment,
-                    couponCode: "",
+                    couponCode: coupan,
                     address: {
                         label: address.label,
                         region: address.region,
@@ -296,8 +296,8 @@ function Checkout() {
                                             <MainBtn
                                                 style={styles.coupanBtn}
                                                 onPress={() => {
-                                                    if (!coupanError)
-                                                        setCoupanError('Invalid')
+                                                    if (!coupan)
+                                                        setCoupanError("Invalid")
                                                     else {
                                                         setCoupanError(null)
                                                         applyCoupan()
@@ -468,10 +468,6 @@ function Checkout() {
                     </View>
                 </ScrollView>
             </View>
-            <CheckoutReceipt
-                modalVisible={modalVisible}
-                hideModal={hideModal}
-            />
             <BottomTab
                 screen='CART' />
         </SafeAreaView>
