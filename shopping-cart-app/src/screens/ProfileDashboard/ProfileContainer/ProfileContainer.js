@@ -9,7 +9,7 @@ import { TextDefault } from '../../../components';
 
 function profileContainer(props) {
   const navigation = useNavigation()
-  const { logout, profile } = useContext(UserContext)
+  const { logout, profile, isLoggedIn } = useContext(UserContext)
   return (
     <View style={styles.profileContainer}>
       <View style={styles.profileSubContainer}>
@@ -23,7 +23,7 @@ function profileContainer(props) {
             </TextDefault>
           </View>
         </View>
-        <View style={styles.profieCenterContainer}>
+        {isLoggedIn && <View style={styles.profieCenterContainer}>
           <ImageBackground
             source={require('../../../assets/images/formBackground.png')}
             style={styles.imgResponsive3}
@@ -69,7 +69,7 @@ function profileContainer(props) {
               </TouchableOpacity>
             </View>
           </ImageBackground>
-        </View>
+        </View>}
       </View>
     </View >
   );

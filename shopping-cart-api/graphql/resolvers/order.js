@@ -313,8 +313,8 @@ module.exports = {
           ])
 
           const transformedOrder = await transformOrder(result)
-          // publishToUser(req.userId.toString(), transformedOrder, 'new')
-          // publishToDashboard(transformedOrder, 'new')
+          publishToUser(req.userId.toString(), transformedOrder, 'new')
+          publishToDashboard(transformedOrder, 'new')
 
           sendEmail(
             user.email,
@@ -372,7 +372,7 @@ module.exports = {
 
         const transformedOrder = await transformOrder(result)
 
-        // publishToUser(result.user.toString(), transformedOrder, 'update')
+        publishToUser(result.user.toString(), transformedOrder, 'update')
 
 
         // can be moved outside
