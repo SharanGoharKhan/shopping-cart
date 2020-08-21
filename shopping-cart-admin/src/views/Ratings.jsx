@@ -24,12 +24,10 @@ const Ratings = props => {
       cell: row => <>{row.order.user.name}</>
     },
     {
-      name: 'Items',
+      name: 'Product Title',
       cell: row => (
         <>
-          {row.order.items.map(({ food }) => {
-            return food.title + '\t'
-          })}
+          {row.product.title}
         </>
       )
     },

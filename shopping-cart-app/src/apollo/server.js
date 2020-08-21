@@ -465,3 +465,26 @@ export const getConfiguration = `query Configuration{
       enabled
     }
   }`
+
+  export const productReviews = `query ProductReviews($productId:String!){
+    productReviews(productId:$productId){
+      reviews{
+        _id
+        rating
+        description
+        createdAt
+        product{
+          title
+        }
+        order{
+          orderId
+          user{
+            name
+            email
+          }
+       }
+      }
+      ratings
+      total
+    }
+  }`

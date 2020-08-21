@@ -7,9 +7,9 @@ import Constants from 'expo-constants'
 
 const ENV = {
   development: {
-    GRAPHQL_URL: 'http://192.168.100.7:8000/graphql',
-    WS_GRAPHQL_URL: 'ws://192.168.100.7:8000/graphql',
-    SERVER_URL: 'http://192.168.100.7:8000/', // put / at the end of server url
+    GRAPHQL_URL: 'http://192.168.100.9:8000/graphql',
+    WS_GRAPHQL_URL: 'ws://192.168.100.9:8000/graphql',
+    SERVER_URL: 'http://192.168.100.9:8000/', // put / at the end of server url
     IOS_CLIENT_ID_GOOGLE:
       '967541328677-uq7f7odvmeea2pb2sq0l7q320ds86536.apps.googleusercontent.com',
     ANDROID_CLIENT_ID_GOOGLE:

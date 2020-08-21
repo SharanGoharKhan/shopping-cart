@@ -73,7 +73,7 @@ const styles = StyleSheet.create({
     caroselMainImgCnt: {
         height: height * 0.5,
         width: '100%',
-        backgroundColor:'white'
+        backgroundColor: 'white'
     },
     scrollViewStyle: {
         height: height * 0.08,
@@ -92,6 +92,17 @@ const styles = StyleSheet.create({
         marginBottom: scale(20),
         backgroundColor: colors.textBlueColor
     },
+    outOfStockContainer: {
+        width: '90%',
+        height: scale(40),
+        alignSelf: 'center',
+        justifyContent: 'center',
+        alignItems: "center",
+        borderRadius: scale(4),
+        backgroundColor: colors.medHorizontalLine,
+        ...alignment.MTlarge,
+        ...alignment.MBlarge
+    },
     shoppingCartText: {
         fontFamily: fontStyles.PoppinsRegular,
         color: colors.whiteColor,
@@ -105,7 +116,7 @@ const styles = StyleSheet.create({
     },
     variationContainer: {
         width: '90%',
-        alignSelf: 'center'
+        alignSelf: 'center',
     },
     // REview Styling
     review: {
@@ -119,9 +130,9 @@ const styles = StyleSheet.create({
     },
     ratingContainer: {
         flexDirection: "row",
-        width: '25%',
         justifyContent: "flex-end",
         alignItems: "center",
+        width:'25%'
     },
     dateReview: {
         width: "100%",

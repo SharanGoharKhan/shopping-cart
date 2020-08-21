@@ -194,6 +194,12 @@ const typeDefs = gql`
     updatedAt: String!
   }
 
+  type ReviewData {
+    reviews: [Review!]!
+    ratings: Float!
+    total: Int!
+  }
+
   type ReviewOutput {
     _id: ID!
     order_id: String!
@@ -420,7 +426,7 @@ const typeDefs = gql`
     ): DashboardData!
     allReviews(offset: Int): [Review!]
     reviews(offset: Int): [ReviewOutput!]!
-    productReviews(productId: String!): [Review!]!
+    productReviews(productId: String!): ReviewData!
     profile: User
     configuration: Configuration!
     users(page: Int): [User!]
