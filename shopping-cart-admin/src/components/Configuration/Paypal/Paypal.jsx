@@ -19,7 +19,6 @@ function Paypal(props) {
   const [clientSecretError] = useState(null)
 
   const { t } = props
-  console.log(clientIdError)
   return (
     <Row className="mt-3">
       <div className="col">

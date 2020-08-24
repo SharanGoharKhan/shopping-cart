@@ -24,8 +24,6 @@ function Order(props) {
   const [prefixError, prefixErrorSetter] = useState(null)
   const [saveConfiguration, { loading, error }] = useMutation(SAVE_ORDER_CONFIGURATION, { onCompleted, onError })
 
-  console.log(prefix)
-
   const validateInput = () => {
     let result = true
     result = !validateFunc({ prefix: prefix }, 'prefix')
@@ -36,10 +34,10 @@ function Order(props) {
   const onBlur = (setter, field, event) => {
     setter(!validateFunc({ [field]: event.target.value.trim() }, field))
   }
-  const onCompleted = data => {
+  function onCompleted(data) {
     console.log(data)
   }
-  const onError = error => {
+  function onError(error) {
     console.log(error)
   }
   const { t } = props

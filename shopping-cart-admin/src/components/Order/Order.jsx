@@ -81,11 +81,11 @@ function Order(props) {
     console.log(reasonError)
     return reasonError
   }
-  const onCompleted = ({
+  function onCompleted({
     updateStatus,
     updateOrderStatus,
     updatePaymentStatus
-  }) => {
+  }) {
     if (updateStatus) {
       successSetter('Status Updated')
     } else if (updateOrderStatus) {
@@ -94,7 +94,7 @@ function Order(props) {
       successSetter('Payment status updated')
     }
   }
-  const onError = error => {
+  function onError(error) {
     errorSetter(error.message)
   }
   const validateStatus = () => {

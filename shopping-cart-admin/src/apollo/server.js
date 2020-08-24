@@ -1,11 +1,4 @@
 
-export const getCategories = `query AllCategories($page:Int)
-    {
-      allCategories(page:$page){
-        _id
-        title
-      }}`
-
 export const categories = `query categories
     {
       categories{
@@ -364,19 +357,6 @@ export const getDashboardOrders = `query GetDashboardOrders($startingDate: Strin
   }
 }`
 
-export const getDashboardData = `query GetDashboardData($startingDate: String, $endingDate: String){
-  getDashboardData(starting_date: $startingDate, ending_date: $endingDate){
-    total_orders
-    total_users
-    total_sales
-    orders{
-      day
-      count
-      amount
-    }
-  }
-}`
-
 export const getConfiguration = `query GetConfiguration{
   configuration{
     _id
@@ -409,29 +389,7 @@ export const saveEmailConfiguration = `mutation SaveEmailConfiguration($configur
     enableEmail
   }
 }`
-export const saveMongoConfiguration = `mutation SaveMongoConfiguration($configurationInput:MongoConfigurationInput!){
-  saveMongoConfiguration(configurationInput:$configurationInput){
-    _id
-    mongodbUrl
-  }
-}`
 
-export const savePaypalConfiguration = `mutation SavePaypalConfiguration($configurationInput:PaypalConfigurationInput!){
-  savePaypalConfiguration(configurationInput:$configurationInput){
-    _id
-    clientId
-    clientSecret
-    sandbox
-  }
-}`
-
-export const saveStripeConfiguration = `mutation SaveStripeConfiguration($configurationInput:StripeConfigurationInput!){
-  saveStripeConfiguration(configurationInput:$configurationInput){
-    _id
-    publishableKey
-    secretKey
-  }
-}`
 export const saveDeliveryConfiguration = `mutation SaveDeliveryConfiguration($configurationInput:DeliveryConfigurationInput!){
   saveDeliveryConfiguration(configurationInput:$configurationInput){
     _id
@@ -461,13 +419,7 @@ export const updateOrderStatus = `mutation UpdateOrderStatus($id:String!,$status
     orderStatus
     paymentStatus
   }
-}
-`
-
-export const sendNotificationUser = `mutation SendNotificationUser($notificationTitle:String, $notificationBody: String!){
-  sendNotificationUser(notificationTitle:$notificationTitle,notificationBody:$notificationBody)
-}
-`
+}`
 
 export const updateStatus = `mutation UpdateStatus($id:String!,$status:Boolean!,$reason:String){
   updateStatus(id:$id,status:$status,reason:$reason){
@@ -548,37 +500,7 @@ export const updatePaymentStatus = `mutation UpdatePaymentStatus($id:String!,$st
     paymentStatus
     paidAmount
   }
-}
-`
-
-export const createOptions = `mutation CreateOptions($optionInput:[OptionInput]){
-  createOptions(optionInput:$optionInput){
-    _id
-    title
-    description
-    price
-  }
 }`
-
-export const getOptions = `query Options{
-  options {
-    _id
-    title
-    description
-    price
-  }
-}
-`
-
-export const options = `query AllOptions($page:Int){
-  allOptions(page:$page) {
-    _id
-    title
-    description
-    price
-  }
-}
-`
 
 export const createCoupon = `mutation CreateCoupon($couponInput:CouponInput!){
   createCoupon(couponInput:$couponInput){
