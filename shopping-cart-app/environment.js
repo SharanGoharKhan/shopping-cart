@@ -7,9 +7,9 @@ import Constants from 'expo-constants'
 
 const ENV = {
   development: {
-    GRAPHQL_URL: 'http://192.168.100.7:8000/graphql',
-    WS_GRAPHQL_URL: 'ws://192.168.100.7:8000/graphql',
-    SERVER_URL: 'http://192.168.100.7:8000/', // put / at the end of server url
+    GRAPHQL_URL: 'http://192.168.100.7:8002/graphql',
+    WS_GRAPHQL_URL: 'ws://192.168.100.7:8002/graphql',
+    SERVER_URL: 'http://192.168.100.7:8002/', // put / at the end of server url
     IOS_CLIENT_ID_GOOGLE:
       '967541328677-uq7f7odvmeea2pb2sq0l7q320ds86536.apps.googleusercontent.com',
     ANDROID_CLIENT_ID_GOOGLE:
@@ -17,7 +17,7 @@ const ENV = {
     FACEBOOK_APP_ID: '404956210315749',
     AMPLITUDE_API_KEY: '358ef0deb443586e2cc4ddd4380151f0',
     STRIPE_PUBLIC_KEY: 'pk_test_lEaBbVGnTkzja2FyFiNlbqtw',
-    STRIPE_IMAGE_URL: 'http://192.168.100.7:8000/assets/images/logo.png',
+    STRIPE_IMAGE_URL: 'http://192.168.100.7:8002/assets/images/logo.png',
     STRIPE_STORE_NAME: 'Ecommero'
   },
   staging: {

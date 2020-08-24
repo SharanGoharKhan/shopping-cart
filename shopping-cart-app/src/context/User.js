@@ -155,17 +155,17 @@ export const UserProvider = props => {
     if (networkStatusOrders === 7) {
       fetchMoreOrders({
         variables: { offset: dataOrders.orders.length + 1 },
-        updateQuery: (previousResult, { fetchMoreResult }) => {
-          // Don't do anything if there weren't any new items
-          if (!fetchMoreResult || fetchMoreResult.orders.length === 0) {
-            return previousResult
-          }
-          // setOrders(previousResult.orders.concat(fetchMoreResult.orders))
-          return {
-            // Append the new feed results to the old one
-            orders: previousResult.orders.concat(fetchMoreResult.orders)
-          }
-        }
+        // updateQuery: (previousResult, { fetchMoreResult }) => {
+        //   // Don't do anything if there weren't any new items
+        //   if (!fetchMoreResult || fetchMoreResult.orders.length === 0) {
+        //     return previousResult
+        //   }
+        //   // setOrders(previousResult.orders.concat(fetchMoreResult.orders))
+        //   return {
+        //     // Append the new feed results to the old one
+        //     orders: previousResult.orders.concat(fetchMoreResult.orders)
+        //   }
+        // }
       })
     }
   }

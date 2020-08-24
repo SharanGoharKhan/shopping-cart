@@ -8,7 +8,19 @@ import getEnvVars from '../../environment'
 
 const { GRAPHQL_URL, WS_GRAPHQL_URL } = getEnvVars()
 
-const cache = new InMemoryCache({})
+const cache = new InMemoryCache({
+  typePolicies: {
+    Agenda: {
+      fields: {
+        orders: {
+          merge(existing = [], incoming = []) {
+            return [...existing, ...incoming];
+          },
+        },
+      },
+    },
+  }
+});
 
 const httpLink = createHttpLink({
   uri: GRAPHQL_URL
@@ -60,7 +72,7 @@ const terminatingLink = split(({ query }) => {
   return kind === 'OperationDefinition' && operation === 'subscription'
 }, wsLink)
 
-const setupApollo = async() => {
+const setupApollo = async () => {
   // await persistCache({
   //   cache,
   //   storage: AsyncStorage
