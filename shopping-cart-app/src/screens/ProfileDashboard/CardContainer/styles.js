@@ -63,7 +63,6 @@ export default {
         fontSize: verticalScale(14),
     },
     rightArrowContainer: {
-        width: '6%',
         height: '60%',
     },
     subTitleContainer: {

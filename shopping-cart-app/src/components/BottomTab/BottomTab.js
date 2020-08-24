@@ -3,6 +3,8 @@ import { View, Text, Image, TouchableOpacity } from 'react-native';
 import styles from './styles';
 import { useNavigation } from '@react-navigation/native';
 import UserContext from '../../context/User';
+import { scale, colors } from '../../utils';
+import { Ionicons, SimpleLineIcons } from '@expo/vector-icons'
 
 function BottomTab(props) {
     const navigation = useNavigation()
@@ -11,26 +13,18 @@ function BottomTab(props) {
         <View style={styles.footerContainer}>
             <TouchableOpacity
                 onPress={() => navigation.navigate('MainLanding')}
-                style={[styles.footerBtnContainer,props.screen === 'HOME' && styles.active]}
+                style={[styles.footerBtnContainer, props.screen === 'HOME' && styles.active]}
             >
                 <View style={styles.imgContainer}>
-                    <Image
-                        source={require('../../assets/images/footer/home.png')}
-                        style={styles.imgResponsive}
-                        resizeMode="contain"
-                    />
+                    <SimpleLineIcons name='home' color={colors.fontSecondColor} size={scale(20)} />
                 </View>
             </TouchableOpacity>
             <TouchableOpacity
                 onPress={() => navigation.navigate('SearchResult')}
-                style={[styles.footerBtnContainer,props.screen === 'SEARCH' && styles.active]}
+                style={[styles.footerBtnContainer, props.screen === 'SEARCH' && styles.active]}
             >
                 <View style={styles.imgContainer}>
-                    <Image
-                        source={require('../../assets/images/footer/search.png')}
-                        style={styles.imgResponsive}
-                        resizeMode="contain"
-                    />
+                    <Ionicons name="ios-search" size={scale(27)} color={colors.fontSecondColor} />
                 </View>
             </TouchableOpacity>
             <TouchableOpacity
@@ -42,17 +36,13 @@ function BottomTab(props) {
                 }}
                 style={[styles.footerBtnContainer, props.screen === 'PROFILE' && styles.active]}>
                 <View style={styles.profileContainer}>
-                    <Image
-                        source={require('../../assets/images/footer/profile.png')}
-                        style={styles.imgResponsive}
-                        resizeMode="contain"
-                    />
+                    <SimpleLineIcons name="user" size={scale(20)} color={colors.fontSecondColor} />
                     <View style={styles.profileBadge} />
                 </View>
             </TouchableOpacity>
             <TouchableOpacity
                 onPress={() => navigation.navigate('ShoppingCart')}
-                style={[styles.footerBtnContainer,props.screen === 'CART' && styles.active]}
+                style={[styles.footerBtnContainer, props.screen === 'CART' && styles.active]}
             >
                 <View style={styles.shoppingContainer}>
                     <Image

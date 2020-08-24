@@ -1,11 +1,11 @@
-import { Dimensions } from 'react-native';
-import { verticalScale } from '../../utils/scaling';
+import { Dimensions, StyleSheet } from 'react-native';
+import { verticalScale, scale } from '../../utils/scaling';
 import { fontStyles } from '../../utils/fontStyles';
 import { colors } from '../../utils';
 
 const { height, width } = Dimensions.get('window');
 
-export default {
+const styles = StyleSheet.create({
     active: {
         backgroundColor: colors.themeBackground
     },
@@ -22,8 +22,9 @@ export default {
         alignItems: 'center',
     },
     imgContainer: {
-        width: '40%',
-        height: '40%',
+        justifyContent: 'center',
+        alignItems: "center",
+
     },
     imgResponsive: {
         flex: 1,
@@ -31,15 +32,16 @@ export default {
         height: undefined,
     },
     profileContainer: {
-        width: '40%',
-        height: '40%',
+        width: "100%",
+        justifyContent: 'center',
+        alignItems: "center",
         position: 'relative',
     },
     profileBadge: {
         width: verticalScale(8),
         height: verticalScale(8),
         position: 'absolute',
-        right: 0,
+        right: '25%',
         top: 0,
         backgroundColor: '#EE9826',
         borderRadius: verticalScale(4),
@@ -53,7 +55,7 @@ export default {
         width: '40%',
         height: '50%',
         position: 'absolute',
-        right: 0,
+        right: -scale(3),
         top: 0,
         justifyContent: 'center',
         alignItems: 'center',
@@ -64,4 +66,5 @@ export default {
         fontSize: verticalScale(8),
     },
 
-};
+});
+export default styles

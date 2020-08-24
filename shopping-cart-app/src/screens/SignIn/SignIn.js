@@ -1,15 +1,15 @@
 import React, { useState, useEffect, useContext } from 'react';
-import { View, Image, TouchableOpacity, ImageBackground, KeyboardAvoidingView, ScrollView, Platform } from 'react-native';
+import { View, TouchableOpacity, ImageBackground, KeyboardAvoidingView, ScrollView, Platform } from 'react-native';
 import * as Permissions from 'expo-permissions'
 import styles from './styles';
 import { login } from '../../apollo/server'
 import { Notifications } from 'expo'
-import { verticalScale, colors, scale } from '../../utils';
+import { colors, scale } from '../../utils';
 import { TextDefault, Spinner } from '../../components'
 import TextField from '../../ui/Textfield/Textfield';
 import ForgotPassword from './ForgotPassword/ForgotPassword';
 import { SafeAreaView } from 'react-native-safe-area-context';
-import { EvilIcons } from '@expo/vector-icons';
+import { EvilIcons, SimpleLineIcons } from '@expo/vector-icons';
 import * as AppAuth from 'expo-app-auth'
 import * as Google from 'expo-google-app-auth'
 import getEnvVars from '../../../environment'
@@ -272,13 +272,7 @@ function SignIn(props) {
                         />
                         <View style={styles.body}>
                             <View style={styles.bodyHeader}>
-                                <Image
-                                    source={require('../../assets/icons/avatar.png')}
-                                    style={{
-                                        height: verticalScale(18),
-                                        width: verticalScale(16),
-                                    }}
-                                />
+                                <SimpleLineIcons name="user" size={scale(20)} color={colors.fontSecondColor} />
                                 <TextDefault style={styles.headerText} textColor={colors.fontMainColor} H5>
                                     {'Sign In'}
                                 </TextDefault>
