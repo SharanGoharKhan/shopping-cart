@@ -1,9 +1,9 @@
 {
-  "name": "enatega-dashboard",
+  "name": "ecommero-dashboard",
   "version": "3.0.0",
-  "description": "Enatega dashboard",
+  "description": "Ecommero dashboard",
   "main": "index.js",
-  "homepage": "https://enatega.com/dashboard",
+  "homepage": "https://ecommero.com/dashboard",
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
