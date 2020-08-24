@@ -19,10 +19,10 @@ const messaging = firebase.messaging();
 messaging.setBackgroundMessageHandler(function (payload) {
     // console.log('[firebase-messaging-sw.js] Received background message ', payload);
     // Customize notification here
-    var notificationTitle = 'New Order on Enatega';
+    var notificationTitle = 'New Order on Ecommero';
     var notificationOptions = {
         body: payload.data.orderid,
-        icon: 'https://www.enatega.com/assets/images/logo.png'
+        icon: 'https://ecommero.ninjascode.com/assets/images/logo.png'
     };
 
     return self.registration.showNotification(notificationTitle,

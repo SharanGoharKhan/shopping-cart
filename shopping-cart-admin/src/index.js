@@ -122,12 +122,12 @@ messaging.onMessage(function (payload) {
   var notificationTitle = 'New Order on Ecommero'
   var notificationOptions = {
     body: payload.data.orderid,
-    icon: 'https://www.enatega.com/assets/images/logo.png'
+    icon: 'https://ecommero.ninjascode.com/assets/images/logo.png'
   }
   const nt = new Notification(notificationTitle, notificationOptions)
   nt.onclick = function (event) {
     event.preventDefault() // prevent the browser from focusing the Notification's tab
-    window.open('https://enatega.com/dashboard')
+    window.open('https://ecommero.ninjascode.com/dashboard')
     nt.close()
   }
   // console.log('Message received. ', payload);

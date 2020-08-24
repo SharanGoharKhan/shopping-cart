@@ -17,7 +17,7 @@ import {
 
 function AuthNavbar(props) {
   const handleChange = event => {
-    localStorage.setItem('enatega-language', event.target.value)
+    localStorage.setItem('ecommero-language', event.target.value)
     props.i18n.changeLanguage(event.target.value)
   }
   const { t } = props
@@ -51,7 +51,7 @@ function AuthNavbar(props) {
                   <Input
                     type="select"
                     name="select"
-                    defaultValue={localStorage.getItem('enatega-language')}
+                    defaultValue={localStorage.getItem('ecommero-language')}
                     id="exampleSelect"
                     onChange={handleChange}
                     onBlur={event => {}}>

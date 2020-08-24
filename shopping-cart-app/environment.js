@@ -17,13 +17,13 @@ const ENV = {
     FACEBOOK_APP_ID: '404956210315749',
     AMPLITUDE_API_KEY: '358ef0deb443586e2cc4ddd4380151f0',
     STRIPE_PUBLIC_KEY: 'pk_test_lEaBbVGnTkzja2FyFiNlbqtw',
-    STRIPE_IMAGE_URL: 'http://192.168.100.7:8002/assets/images/logo.png',
+    STRIPE_IMAGE_URL: 'https://ecommero.ninjascode.com/assets/images/logo.png',
     STRIPE_STORE_NAME: 'Ecommero'
   },
   staging: {
-    GRAPHQL_URL: 'https://enatega.ninjascode.com/graphql',
-    WS_GRAPHQL_URL: 'wss://enatega.ninjascode.com/graphql',
-    SERVER_URL: 'https://enatega.ninjascode.com/', // put / at the end of server url
+    GRAPHQL_URL: 'https://ecommero.ninjascode.com/graphql',
+    WS_GRAPHQL_URL: 'wss://ecommero.ninjascode.com/graphql',
+    SERVER_URL: 'https://ecommero.ninjascode.com/', // put / at the end of server url
     IOS_CLIENT_ID_GOOGLE:
       '967541328677-uq7f7odvmeea2pb2sq0l7q320ds86536.apps.googleusercontent.com',
     ANDROID_CLIENT_ID_GOOGLE:
@@ -31,13 +31,13 @@ const ENV = {
     FACEBOOK_APP_ID: '404956210315749',
     AMPLITUDE_API_KEY: '358ef0deb443586e2cc4ddd4380151f0',
     STRIPE_PUBLIC_KEY: 'pk_test_lEaBbVGnTkzja2FyFiNlbqtw',
-    STRIPE_IMAGE_URL: 'https://enatega.ninjascode.com/assets/images/logo.png',
-    STRIPE_STORE_NAME: 'Enatega'
+    STRIPE_IMAGE_URL: 'https://ecommero.ninjascode.com/assets/images/logo.png',
+    STRIPE_STORE_NAME: 'Ecommero'
   },
   production: {
-    GRAPHQL_URL: 'https://enatega.ninjascode.com/graphql',
-    WS_GRAPHQL_URL: 'wss://enatega.ninjascode.com/graphql',
-    SERVER_URL: 'https://enatega.ninjascode.com/', // put / at the end of server url
+    GRAPHQL_URL: 'https://ecommero.ninjascode.com/graphql',
+    WS_GRAPHQL_URL: 'wss://ecommero.ninjascode.com/graphql',
+    SERVER_URL: 'https://ecommero.ninjascode.com/', // put / at the end of server url
     IOS_CLIENT_ID_GOOGLE:
       '94983896797-irt6u2cmq2sjcp7j1rj9m9pqptjd12ue.apps.googleusercontent.com',
     ANDROID_CLIENT_ID_GOOGLE:
@@ -45,8 +45,8 @@ const ENV = {
     FACEBOOK_APP_ID: '3017447961609878',
     AMPLITUDE_API_KEY: '358ef0deb443586e2cc4ddd4380151f0',
     STRIPE_PUBLIC_KEY: 'pk_test_lEaBbVGnTkzja2FyFiNlbqtw',
-    STRIPE_IMAGE_URL: 'https://enatega.ninjascode.com/assets/images/logo.png',
-    STRIPE_STORE_NAME: 'Enatega'
+    STRIPE_IMAGE_URL: 'https://ecommero.ninjascode.com/assets/images/logo.png',
+    STRIPE_STORE_NAME: 'Ecommero'
   }
 }
 

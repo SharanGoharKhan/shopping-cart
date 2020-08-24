@@ -23,11 +23,11 @@ function AuthFooter(props) {
             <Col xl="6">
               <Nav className="nav-footer justify-content-center justify-content-xl-end">
                 <NavItem>
-                  <NavLink href={server_url}>Enatega</NavLink>
+                  <NavLink href={server_url}>Ecommer</NavLink>
                 </NavItem>
                 <NavItem>
                   <NavLink
-                    href="https://ninjascode.com/pages/ourteam.html"
+                    href="https://ecommero.ninjascode.com/pages/ourteam.html"
                     target="_blank">
                     {t('About Us')}
                   </NavLink>

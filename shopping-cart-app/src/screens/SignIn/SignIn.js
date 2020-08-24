@@ -333,7 +333,7 @@ function SignIn(props) {
                                         {'Create New Account:'}
                                     </TextDefault>
                                     <TextDefault textColor={colors.fontMainColor} small>
-                                        {'By creating a new account, you will become a valuable customer/buyer to Enatega by default. While registering, '}
+                                        {'By creating a new account, you will become a valuable customer/buyer to Ecommero by default. While registering, '}
                                         <TextDefault style={styles.ftUnderline} small onPress={() => navigation.navigate('SignUp')}>
                                             {'you can also choose to become a seller and open your own shop'}
                                         </TextDefault>

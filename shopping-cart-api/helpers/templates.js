@@ -1,11 +1,11 @@
 module.exports = {
   signupTemplate: `<h1>Congratulations!</h1>
-    <p>You have successfully created an account for Enatega</p>`,
+    <p>You have successfully created an account for Ecommero</p>`,
   signupText: `<h1>Congratulations</h1>
-    <p>You have success created an account for Enatega</p>`,
+    <p>You have success created an account for Ecommero</p>`,
   placeOrderTemplate(params) {
     return `<h1>Order</h1>
-    <p>You placed an order on Enatega</p>
+    <p>You placed an order on Ecommero</p>
     <p>Order Id : ${params[0]}</p>
     <p>Items : ${params[1]}</p>
     <p> Delivery Address: ${params[2]}</p >
@@ -16,7 +16,7 @@ module.exports = {
   },
   placeOrderText(params) {
     return `<h1>Order</h1>
-<h4>You placed an order on Enatega</h4>
+<h4>You placed an order on Ecommero</h4>
     <p>Order Id : ${params[0]}</p>
     <p>Items : ${params[1]}</p>
     <p> Delivery Address: ${params[2]}</p >
