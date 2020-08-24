@@ -35,10 +35,10 @@ function Currency(props) {
     currencySymbolErrorSetter(currencySymbolError)
     return currencyCodeError && currencySymbolError
   }
-  const onCompleted = data => {
+  function onCompleted(data) {
     console.log(data)
   }
-  const onError = error => {
+  function onError(error) {
     console.log(error)
   }
   const onBlur = (setter, value, field) => {

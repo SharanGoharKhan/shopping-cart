@@ -251,13 +251,7 @@ function Checkout() {
                                     <TouchableOpacity
                                         activeOpacity={0}
                                         onPress={() => navigation.goBack()}>
-                                        <Image
-                                            source={require('../../assets/icons/edit.png')}
-                                            style={{
-                                                height: verticalScale(16),
-                                                width: verticalScale(16),
-                                            }}
-                                        />
+                                        <Feather name='edit' size={scale(18)} color={colors.fontPlaceholder} />
                                     </TouchableOpacity>
                                 </View>
                                 <View style={[styles.simpleRow, styles.padding]}>

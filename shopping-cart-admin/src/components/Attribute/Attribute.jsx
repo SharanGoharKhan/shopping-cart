@@ -253,7 +253,7 @@ function Attribute(props) {
                                         </label>
                                         <br />
                                         {options.map((option, index) => (
-                                            <Row>
+                                            <Row key={index}>
                                                 <Col lg='6'>
                                                     <FormGroup
                                                         className={

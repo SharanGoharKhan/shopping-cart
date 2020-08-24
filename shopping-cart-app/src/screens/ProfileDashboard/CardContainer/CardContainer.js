@@ -1,12 +1,11 @@
 import React, { useContext } from 'react';
-import {
-    Text, TouchableOpacity, View, Image, FlatList,
-} from 'react-native';
+import { Text, TouchableOpacity, View, Image, FlatList } from 'react-native';
 import { Spinner, TextError, TextDefault } from '../../../components'
 import styles from './styles';
 import { useNavigation } from '@react-navigation/native';
 import UserContext from '../../../context/User'
-import { colors } from '../../../utils';
+import { colors, scale } from '../../../utils';
+import { Feather } from '@expo/vector-icons'
 
 /* Config/Constants
 ============================================================================= */
@@ -68,11 +67,7 @@ function cardContainer(props) {
                             <View style={styles.titleContainer}>
                                 <Text style={styles.titleStyle}>{item.orderId}</Text>
                                 <View style={styles.rightArrowContainer}>
-                                    <Image
-                                        source={require('../../../assets/images/ProfileDashboard/rightArrow.png')}
-                                        resizeMode="contain"
-                                        style={styles.imgResponsive3}
-                                    />
+                                    <Feather name="chevron-right" size={scale(20)} color={colors.fontSecondColor} />
                                 </View>
                             </View>
                             <View style={styles.subTitleContainer}>

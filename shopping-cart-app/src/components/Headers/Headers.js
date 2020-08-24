@@ -38,30 +38,4 @@ function HeaderRightText(props) {
         </View>
     )
 }
-
-function HeaderRightIcon(props) {
-    return (
-        <View style={styles.container}>
-            <View style={[styles.subContainer, { justifyContent: 'space-between' }]}>
-                <View style={styles.titleContainer}>
-                    <TouchableOpacity
-                        activeOpacity={0}
-                        style={styles.leftContainer}
-                        onPress={() => props.backPressed()}>
-                        <Ionicons name="ios-arrow-back" size={30} />
-                    </TouchableOpacity>
-                    <Text numberOfLines={1} style={styles.headerText}>{props.title}</Text>
-                </View>
-                <TouchableOpacity
-                    activeOpacity={0}
-                    style={styles.rightContainer}
-                    onPress={() => props.rightIconPresed()}>
-                    <Image source={require('../../assets/images/ProductListing/settings.png')}
-                        resizeMode="contain"
-                        style={styles.iconStyle} />
-                </TouchableOpacity>
-            </View>
-        </View>
-    )
-}
-export { BackHeader, HeaderRightText, HeaderRightIcon }
+export { BackHeader, HeaderRightText }
