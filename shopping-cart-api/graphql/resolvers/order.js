@@ -172,9 +172,6 @@ module.exports = {
     },
     productReviews: async (_, args, { req, res }) => {
       console.log('productReviews')
-      if (!req.isAuth) {
-        throw new Error('Unauthenticated')
-      }
       try {
         const data = await Review.find({ product: args.productId })
           .sort({ createdAt: -1 })

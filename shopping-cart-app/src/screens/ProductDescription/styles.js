@@ -1,5 +1,5 @@
 import { Dimensions, StyleSheet } from 'react-native';
-import { alignment, fontStyles, colors, scale, verticalScale } from '../../utils';
+import { alignment, fontStyles, colors, scale } from '../../utils';
 const { height, width } = Dimensions.get('window');
 
 const styles = StyleSheet.create({
@@ -90,7 +90,6 @@ const styles = StyleSheet.create({
         alignSelf: 'center',
         marginTop: scale(20),
         marginBottom: scale(20),
-        backgroundColor: colors.buttonBackground
     },
     outOfStockContainer: {
         width: '90%',
@@ -102,11 +101,6 @@ const styles = StyleSheet.create({
         backgroundColor: colors.medHorizontalLine,
         ...alignment.MTlarge,
         ...alignment.MBlarge
-    },
-    shoppingCartText: {
-        fontFamily: fontStyles.PoppinsRegular,
-        color: colors.whiteColor,
-        fontSize: verticalScale(16),
     },
     spacer: {
         ...alignment.MTlarge

@@ -13,7 +13,7 @@ const ENV = {
     IOS_CLIENT_ID_GOOGLE:
       '967541328677-uq7f7odvmeea2pb2sq0l7q320ds86536.apps.googleusercontent.com',
     ANDROID_CLIENT_ID_GOOGLE:
-      '967541328677-u9lbhmiesp67j3md9b8nk6mkhooeljur.apps.googleusercontent.com',
+      '378663620953-dtqi67u1022oq54e3rmrusr71v4kocmc.apps.googleusercontent.com',
     FACEBOOK_APP_ID: '404956210315749',
     AMPLITUDE_API_KEY: '358ef0deb443586e2cc4ddd4380151f0',
     STRIPE_PUBLIC_KEY: 'pk_test_lEaBbVGnTkzja2FyFiNlbqtw',
@@ -27,7 +27,7 @@ const ENV = {
     IOS_CLIENT_ID_GOOGLE:
       '967541328677-uq7f7odvmeea2pb2sq0l7q320ds86536.apps.googleusercontent.com',
     ANDROID_CLIENT_ID_GOOGLE:
-      '967541328677-u9lbhmiesp67j3md9b8nk6mkhooeljur.apps.googleusercontent.com',
+      '378663620953-dtqi67u1022oq54e3rmrusr71v4kocmc.apps.googleusercontent.com',
     FACEBOOK_APP_ID: '404956210315749',
     AMPLITUDE_API_KEY: '358ef0deb443586e2cc4ddd4380151f0',
     STRIPE_PUBLIC_KEY: 'pk_test_lEaBbVGnTkzja2FyFiNlbqtw',
@@ -39,10 +39,9 @@ const ENV = {
     WS_GRAPHQL_URL: 'wss://ecommero.ninjascode.com/graphql',
     SERVER_URL: 'https://ecommero.ninjascode.com/', // put / at the end of server url
     IOS_CLIENT_ID_GOOGLE:
-      '94983896797-irt6u2cmq2sjcp7j1rj9m9pqptjd12ue.apps.googleusercontent.com',
+      '378663620953-btsp8b3g44tkclkqogobmp2r8t13v9vf.apps.googleusercontent.com',
     ANDROID_CLIENT_ID_GOOGLE:
-      '94983896797-omp6mi32rl3126siafgnskrqql0rdk5c.apps.googleusercontent.com',
-    FACEBOOK_APP_ID: '3017447961609878',
+      '378663620953-ocloim6fpl97fmu3tmcairgh5ju5flhl.apps.googleusercontent.com',
     AMPLITUDE_API_KEY: '358ef0deb443586e2cc4ddd4380151f0',
     STRIPE_PUBLIC_KEY: 'pk_test_lEaBbVGnTkzja2FyFiNlbqtw',
     STRIPE_IMAGE_URL: 'https://ecommero.ninjascode.com/assets/images/logo.png',
@@ -61,7 +60,7 @@ const getEnvVars = (env = Constants.manifest.releaseChannel) => {
   } else if (env === 'staging') {
     return ENV.staging
   } else {
-    return ENV.production
+    return ENV.staging
   }
 }
 

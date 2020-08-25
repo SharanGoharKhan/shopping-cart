@@ -129,16 +129,23 @@ function SignIn(props) {
     }
 
     async function _GoogleSignUp() {
-        const { type, user } = await Google.logInAsync({
-            iosClientId: IOS_CLIENT_ID_GOOGLE,
-            androidClientId: ANDROID_CLIENT_ID_GOOGLE,
-            iosStandaloneAppClientId: IOS_CLIENT_ID_GOOGLE,
-            iosStandaloneAppClientId: ANDROID_CLIENT_ID_GOOGLE,
-            redirectUrl: `${AppAuth.OAuthRedirect}:/oauth2redirect/google`,
-            scopes: ['profile', 'email']
-        })
-        if (type === 'success')
-            return user
+        try {
+            const { type, user } = await Google.logInAsync({
+                iosClientId: IOS_CLIENT_ID_GOOGLE,
+                androidClientId: ANDROID_CLIENT_ID_GOOGLE,
+                iosStandaloneAppClientId: IOS_CLIENT_ID_GOOGLE,
+                androidStandaloneAppClientId: ANDROID_CLIENT_ID_GOOGLE,
+                redirectUrl: `${AppAuth.OAuthRedirect}:/oauth2redirect/google`,
+                scopes: ['profile', 'email']
+            })
+            if (type === 'success')
+                return user
+        
+            alert(type)
+        }
+        catch (e) {
+            alert(e.message)
+        }
     }
 
 
@@ -149,7 +156,7 @@ function SignIn(props) {
                     <Spinner backColor="rgba(0,0,0,0.1)" spinnerColor={'#FFF'} />
                     : (
                         <TouchableOpacity
-                            activeOpacity={0.7}
+                            activeOpacity={0}
                             onPressIn={() => {
                                 loginButtonSetter('Google')
                             }}
