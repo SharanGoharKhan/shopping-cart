@@ -1,7 +1,7 @@
 import React, { useState, useContext, useEffect } from 'react';
 import { View, TouchableOpacity, Image, FlatList } from 'react-native';
 import styles from './styles';
-import { BackHeader, BottomTab, TextDefault, Spinner, FlashMessage } from '../../components';
+import { BackHeader, BottomTab, TextDefault, Spinner, FlashMessage, TextError } from '../../components';
 import Button from '../../ui/Buttons/Button';
 import VariationSection from './VariationSection/VariationSection';
 import { SafeAreaView } from 'react-native-safe-area-context';
@@ -188,7 +188,7 @@ function ProductDescription(props) {
                     title="Description"
                     backPressed={() => props.navigation.goBack()} />
                 {
-                    !!error ? console.log('error', JSON.stringify(error)) :
+                    !!error ? <TextError text={error.message} /> :
                         (loading || !data.productReviews?.reviews) ? <Spinner /> :
                             <FlatList
                                 data={data.productReviews?.reviews}
