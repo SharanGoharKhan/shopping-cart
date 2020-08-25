@@ -5,7 +5,7 @@ import Orders from './views/Orders'
 import Configuration from './views/Configuration'
 import Users from './views/Users'
 import Ratings from './views/Ratings'
-// import ResetPassword from './views/ForgotPassword'
+import ResetPassword from './views/ForgotPassword'
 import Coupons from './views/Coupons'
 import Dashboard from './views/Dashboard'
 import SubCategory from './views/SubCategory'
@@ -100,13 +100,13 @@ var routes = [
     layout: '/auth',
     appearInSidebar: false
   },
-  // {
-  //   path: '/reset',
-  //   name: 'ResetPassword',
-  //   icon: 'ni ni-key-25 text-info',
-  //   component: ResetPassword,
-  //   layout: '/auth',
-  //   appearInSidebar: false
-  // }
+  {
+    path: '/reset',
+    name: 'ResetPassword',
+    icon: 'ni ni-key-25 text-info',
+    component: ResetPassword,
+    layout: '/auth',
+    appearInSidebar: false
+  }
 ]
 export default routes

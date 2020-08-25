@@ -488,3 +488,9 @@ export const getConfiguration = `query Configuration{
       total
     }
   }`
+
+  export const forgotPassword = `mutation ForgotPassword($email:String!){
+    forgotPassword(email:$email){
+      result
+    }
+  }`

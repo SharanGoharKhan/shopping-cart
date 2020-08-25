@@ -16,8 +16,7 @@ import {
   UncontrolledAlert
 } from 'reactstrap'
 
-import { Mutation } from 'react-apollo'
-import { gql } from '@apollo/client'
+import { gql, useMutation } from '@apollo/client'
 import { resetPassword } from '../apollo/server'
 import { validateFunc } from '../constraints/constraints'
 
@@ -32,6 +31,25 @@ const ResetPassword = props => {
   const [passwordError, setPasswordError] = useState(null)
   const [error, setError] = useState(null)
   const [success, setSuccess] = useState(null)
+
+  const onCompleted = data => {
+    setConfirmPasswordError(null)
+    setPasswordError(null)
+    setSuccess('Password has been updated')
+    setPassword('')
+    setConfirmPassword('')
+  }
+
+  const onError = errors => {
+    setConfirmPasswordError(null)
+    setPasswordError(null)
+    setError(errors.networkError.result.errors[0].message)
+  }
+
+  const [mutation, { loading }] = useMutation(RESET_PASSWORD, {
+    onCompleted,
+    onError
+  })
 
   const onBlur = (event, field) => {
     if (field === 'password') {
@@ -55,11 +73,8 @@ const ResetPassword = props => {
     setConfirmPasswordError(ConfirmPasswordError)
     return ConfirmPasswordError && PasswordError
   }
-  const onCompleted = data => {
-    setConfirmPasswordError(null)
-    setPasswordError(null)
-    setSuccess('Password has been updated')
-  }
+
+
   return (
     <>
       <Col lg="5" md="7">
@@ -126,42 +141,31 @@ const ResetPassword = props => {
                 </InputGroup>
               </FormGroup>
               <div className="text-center">
-                <Mutation
-                  mutation={RESET_PASSWORD}
-                  onCompleted={onCompleted}
-                  onError={error => {
+
+                <Button
+                  className="my-4"
+                  color="primary"
+                  type="button"
+                  disabled={loading}
+                  onClick={() => {
                     setConfirmPasswordError(null)
                     setPasswordError(null)
-                    setError(error.networkError.result.errors[0].message)
-                  }}>
-                  {(resetPassword, { loading, error }) => {
-                    return (
-                      <Button
-                        className="my-4"
-                        color="primary"
-                        type="button"
-                        onClick={() => {
-                          setConfirmPasswordError(null)
-                          setPasswordError(null)
-                          setError(null)
-                          setSuccess(null)
-                          const params = new URLSearchParams(
-                            props.location.search
-                          )
-                          if (validate() && params.get('reset')) {
-                            resetPassword({
-                              variables: {
-                                password: password,
-                                token: params.get('reset')
-                              }
-                            })
-                          }
-                        }}>
-                        Reset
-                      </Button>
+                    setError(null)
+                    setSuccess(null)
+                    const params = new URLSearchParams(
+                      props.location.search
                     )
-                  }}
-                </Mutation>
+                    if (validate() && params.get('reset')) {
+                      mutation({
+                        variables: {
+                          password: password,
+                          token: params.get('reset')
+                        }
+                      })
+                    }
+                  }}>
+                  Reset
+                      </Button>
               </div>
               {error && (
                 <UncontrolledAlert color="danger" fade={true}>
