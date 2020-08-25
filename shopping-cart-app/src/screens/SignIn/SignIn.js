@@ -156,7 +156,7 @@ function SignIn(props) {
                     <Spinner backColor="rgba(0,0,0,0.1)" spinnerColor={'#FFF'} />
                     : (
                         <TouchableOpacity
-                            activeOpacity={0.7}
+                            activeOpacity={0}
                             onPressIn={() => {
                                 loginButtonSetter('Google')
                             }}

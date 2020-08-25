@@ -2,7 +2,7 @@ import React, { useState, useContext, useEffect } from 'react';
 import { View, TouchableOpacity, Image, FlatList } from 'react-native';
 import styles from './styles';
 import { BackHeader, BottomTab, TextDefault, Spinner, FlashMessage, TextError } from '../../components';
-import Button from '../../ui/Buttons/Button';
+import MainBtn from '../../ui/Buttons/MainBtn'
 import VariationSection from './VariationSection/VariationSection';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useNavigation, useRoute } from '@react-navigation/native';
@@ -26,7 +26,7 @@ function ProductDescription(props) {
     const [stockAvailability, setStockAvailability] = useState(false)
     const [attributes, attributeSetter] = useState([])
     const { data, loading, error } = useQuery(REVIEWS, { variables: { productId: product._id } })
-  
+
 
     function didFocus() {
         const itemAttributes = product?.attributes ?
@@ -40,10 +40,10 @@ function ProductDescription(props) {
         setStockAvailability(itemAttributes.every(attribute => attribute.options))
         attributeSetter(itemAttributes)
     }
-    useEffect(()=>{
+    useEffect(() => {
         didFocus()
-    },[])
-    
+    }, [])
+
 
     if (product === null) {
         navigation.goBack()
@@ -163,15 +163,15 @@ function ProductDescription(props) {
         return (
             <>
                 {stockAvailability ?
-                    <Button
-                        loading={false}
-                        containerStyle={styles.shoppingCartContainer}
-                        textStyle={styles.shoppingCartText}
-                        onPress={async () => {
-                            await addCartItem(product._id, product.title, product.image[0], 1, price, attributes)
-                            navigation.navigate('ShoppingCart')
-                        }}
-                        text="Add to Shopping Cart" /> :
+                    <View style={styles.shoppingCartContainer}>
+                        <MainBtn
+                            loading={false}
+                            onPress={async () => {
+                                await addCartItem(product._id, product.title, product.image[0], 1, price, attributes)
+                                navigation.navigate('ShoppingCart')
+                            }}
+                            text="Add to Shopping Cart" />
+                    </View> :
                     <View style={styles.outOfStockContainer} >
                         <TextDefault textColor={colors.white} H4>
                             {"Out Of Stock"}

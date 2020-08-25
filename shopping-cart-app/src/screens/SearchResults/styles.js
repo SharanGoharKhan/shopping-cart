@@ -17,7 +17,7 @@ const styles = StyleSheet.create({
     body: {
         height: '95%',
         width: '100%',
-        alignSelf: 'center',
+        alignSelf: 'center'
     },
 
     // main
@@ -36,14 +36,14 @@ const styles = StyleSheet.create({
         alignItems: 'center',
     },
     mainBodyContainer: {
-        height: '90%',
+        height: '100%',
         width: '100%',
         alignItems: 'center',
         backgroundColor: colors.themeBackground,
 
     },
     mainBody: {
-        width: '93%',
+        width: '94%',
         height: '93%',
     },
     mixed_text: {
