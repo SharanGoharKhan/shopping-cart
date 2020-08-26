@@ -1,11 +1,11 @@
 self.__precacheManifest = [
   {
-    "revision": "51651c2bdb59cfdc63bf",
+    "revision": "1a8c57f7a29bea8c718e",
     "url": "/dashboard/static/css/main.b61985cb.chunk.css"
   },
   {
-    "revision": "51651c2bdb59cfdc63bf",
-    "url": "/dashboard/static/js/main.a5b1d4f2.chunk.js"
+    "revision": "1a8c57f7a29bea8c718e",
+    "url": "/dashboard/static/js/main.63481ab0.chunk.js"
   },
   {
     "revision": "dcfbc05562333eb34d98",
@@ -20,16 +20,16 @@ self.__precacheManifest = [
     "url": "/dashboard/static/media/team-4-800x800.23007132.jpg"
   },
   {
-    "revision": "426439788ec5ba772cdf94057f6f4659",
-    "url": "/dashboard/static/media/nucleo-icons.42643978.woff2"
-  },
-  {
     "revision": "c1733565b32b585676302d4233c39da8",
     "url": "/dashboard/static/media/nucleo-icons.c1733565.eot"
   },
   {
     "revision": "2569aaea6eaaf8cd210db7f2fa016743",
     "url": "/dashboard/static/media/nucleo-icons.2569aaea.woff"
+  },
+  {
+    "revision": "426439788ec5ba772cdf94057f6f4659",
+    "url": "/dashboard/static/media/nucleo-icons.42643978.woff2"
   },
   {
     "revision": "f82ec6ba2dc4181db2af35c499462840",
@@ -64,12 +64,12 @@ self.__precacheManifest = [
     "url": "/dashboard/static/media/fa-regular-400.7422060c.eot"
   },
   {
-    "revision": "73fe7f1effbf382f499831a0a9f18626",
-    "url": "/dashboard/static/media/fa-regular-400.73fe7f1e.ttf"
-  },
-  {
     "revision": "381af09a1366b6c2ae65eac5dd6f0588",
     "url": "/dashboard/static/media/fa-regular-400.381af09a.woff"
+  },
+  {
+    "revision": "73fe7f1effbf382f499831a0a9f18626",
+    "url": "/dashboard/static/media/fa-regular-400.73fe7f1e.ttf"
   },
   {
     "revision": "b5a61b229c9c92a6ac21f5b0e3c6e9f1",
@@ -80,12 +80,12 @@ self.__precacheManifest = [
     "url": "/dashboard/static/media/fa-solid-900.70e65a7d.eot"
   },
   {
-    "revision": "14a08198ec7d1eb96d515362293fed36",
-    "url": "/dashboard/static/media/fa-solid-900.14a08198.woff2"
-  },
-  {
     "revision": "815694de1120d6c1e9d1f0895ee81056",
     "url": "/dashboard/static/media/fa-solid-900.815694de.woff"
+  },
+  {
+    "revision": "14a08198ec7d1eb96d515362293fed36",
+    "url": "/dashboard/static/media/fa-solid-900.14a08198.woff2"
   },
   {
     "revision": "0079a0ab6bec4da7d6e16f2a2e87cd71",
@@ -100,7 +100,7 @@ self.__precacheManifest = [
     "url": "/dashboard/static/media/fa-solid-900.38508b2e.svg"
   },
   {
-    "revision": "dd0674f06b74eb8dfad7d29682983ca0",
+    "revision": "8bd4279d668c4500dbd5c42e2fd2f6db",
     "url": "/dashboard/index.html"
   }
 ];
