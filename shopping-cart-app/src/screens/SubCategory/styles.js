@@ -30,6 +30,32 @@ const styles = StyleSheet.create({
         width: width * 0.4,
         ...alignment.MBlarge
     },
+    subContainerImage: {
+        flex: 1,
+        width: "100%",
+        justifyContent: 'center',
+        alignContent: 'center'
+    },
+    imageContainer: {
+        justifyContent: 'center',
+        alignItems: 'center',
+        ...alignment.MBlarge
+    },
+    image: {
+        width: scale(130),
+        height: scale(130)
+    },
+    descriptionEmpty: {
+        justifyContent: 'center',
+        alignItems: 'center',
+        ...alignment.Plarge
+    },
+    emptyButton: {
+        width: '80%',
+        justifyContent: 'center',
+        alignItems: 'center',
+        alignSelf: 'center'
+    }
 
 })
 export default styles

@@ -19,9 +19,9 @@ module.exports = {
     getOptionGroupsByCategory: async (_, args, context) => {
       console.log("getOptionGroupsByCategory")
       try {
-        const options = await OptionGroup.find({ subCategory: args.subCategory })
+        const options = await OptionGroup.find({ subCategory: args.subCategory, isActive: true })
         return options.map(option => {
-            return transformOptionGroup(option)
+          return transformOptionGroup(option)
         })
       } catch (err) {
         console.log(err)

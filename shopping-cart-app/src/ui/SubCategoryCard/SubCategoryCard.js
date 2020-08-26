@@ -9,6 +9,7 @@ function SubCategoryCard(props) {
     const navigation = useNavigation()
     return (
         <TouchableOpacity
+            activeOpacity={1}
             onPress={() => navigation.navigate('ProductListing', { id: props.data._id })}
             style={[styles.container, props.style]}>
             <View style={styles.cardImageContainer}>

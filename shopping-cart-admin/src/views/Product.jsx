@@ -110,7 +110,7 @@ const Product = props => {
                                 </span>
                                 :
                                 <DataTable
-                                    title={'Attributes'}
+                                    title={'Products'}
                                     columns={columns}
                                     data={data ? data.products : []}
                                     pagination

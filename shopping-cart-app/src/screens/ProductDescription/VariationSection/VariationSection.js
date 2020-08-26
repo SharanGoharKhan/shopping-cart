@@ -20,7 +20,7 @@ function VariationSection(props) {
                         if (item.stock > 0) {
                             return (<TouchableOpacity
                                 key={item._id}
-                                activeOpacity={0}
+                                activeOpacity={1}
                                 onPress={() => onChange(item)}
                                 style={item._id === selected ? [styles.container, { borderColor: colors.blueColor }] : styles.container}>
                                 <TextDefault textColor={item._id === selected ? colors.blueColor : colors.fontSecondColor}>

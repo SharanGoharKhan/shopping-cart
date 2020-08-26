@@ -2,6 +2,7 @@ import React from 'react';
 import { View, TouchableOpacity, Text } from 'react-native';
 import { Spinner } from '../../components'
 import { blueBtn as styles } from './styles';
+import { colors } from '../../utils';
 
 /* Config/Constants
 ============================================================================= */
@@ -21,7 +22,7 @@ Props:
 const BlueBtn = props => (
   <View style={styles.backgroundColor}>
     {props.loading ?
-      <Spinner backColor="rgba(0,0,0,0.1)" spinnerColor={'#FFF'} />
+      <Spinner backColor="rgba(0,0,0,0.1)" spinnerColor={colors.white} />
       :
     <TouchableOpacity
       activeOpacity={0}

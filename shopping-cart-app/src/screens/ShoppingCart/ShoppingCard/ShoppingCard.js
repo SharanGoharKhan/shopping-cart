@@ -31,7 +31,7 @@ function ShoppingCard(props) {
                         <View style={{ width: "60%", flexDirection: "row", flexWrap: "wrap", justifyContent: "space-between" }}>
                             {props.item.selectedAttributes.map((data) => {
                                 return (
-                                    <TextDefault key={props.item.key + data.option._id} textColor={colors.fontSecondColor} small>
+                                    <TextDefault key={props.item.key + data.option.optionId} textColor={colors.fontSecondColor} small>
                                         {data.title} : {data.option.title}
                                     </TextDefault>)
                             })}

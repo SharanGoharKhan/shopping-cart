@@ -222,9 +222,9 @@ function Product(props) {
                         title: attribute.title,
                         options: attribute.options.map(({ _id, title }) => {
                             if (product && product.attributes) {
-                                const selectedAttribute = product.attributes.find(item => item._id === attribute._id)
+                                const selectedAttribute = product.attributes.find(item => item.attributeId === attribute._id)
                                 if (selectedAttribute && selectedAttribute.options) {
-                                    const selectedOption = selectedAttribute.options.find(data => data._id === _id)
+                                    const selectedOption = selectedAttribute.options.find(data => data.optionId === _id)
                                     if (selectedOption)
                                         return {
                                             _id,
@@ -596,9 +596,9 @@ function Product(props) {
                                                             return await uploadImageToCloudinary(item, index)
                                                         }
                                                         )
-                                                        const selectedAttributes = attributes.map(attribute => {
+                                                        const selectedAttributes = attributes.map(({ _id, title, options }) => {
                                                             return {
-                                                                ...attribute, options: attribute.options.filter(option => option.check).map(({ check, ...item }) => ({ ...item }))
+                                                                attributeId: _id, title, options: options.filter(option => option.check).map(({ check, ...item }) => ({ optionId: item._id, title: item.title, stock: item.stock, price: item.price }))
                                                             }
                                                         })
                                                         const cloudinaryImages = await Promise.all(images)

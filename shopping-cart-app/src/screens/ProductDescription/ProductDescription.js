@@ -29,7 +29,7 @@ function ProductDescription(props) {
 
 
     function didFocus() {
-        const itemAttributes = product?.attributes ?
+        const itemAttributes = product?.attributes.length ?
             product.attributes.map(attribute => {
                 return {
                     ...attribute,
@@ -37,7 +37,11 @@ function ProductDescription(props) {
                 }
             })
             : []
-        setStockAvailability(itemAttributes.every(attribute => attribute.options))
+        if(itemAttributes.length){
+            setStockAvailability(itemAttributes.every(attribute => attribute.options))
+        }else{
+            setStockAvailability(false)
+        }
         attributeSetter(itemAttributes)
     }
     useEffect(() => {
@@ -122,6 +126,7 @@ function ProductDescription(props) {
                             showsHorizontalScrollIndicator={false}
                             renderItem={({ item, index }) => (
                                 <TouchableOpacity
+                                    activeOpacity={1}
                                     onPress={() => setCaroselImage(item)}
                                     style={styles.caroselItems}
                                 >
@@ -181,6 +186,13 @@ function ProductDescription(props) {
             </>
         )
     }
+    function noReview() {
+        return (
+            <TextDefault style={alignment.PTxSmall} center >
+                {'No review yet!'}
+            </TextDefault>
+        )
+    }
     return (
         <SafeAreaView style={[styles.flex, styles.safeAreaStyle]}>
             <View style={[styles.flex, styles.mainContainer]}>
@@ -200,6 +212,7 @@ function ProductDescription(props) {
                                 ItemSeparatorComponent={() => <View style={styles.line} />}
                                 ListHeaderComponent={<ListHeader />}
                                 ListFooterComponent={<ListFooter />}
+                                ListEmptyComponent={noReview()}
                                 // refreshing={networkStatus === 4}
                                 // onRefresh={() => refetch()}
                                 renderItem={({ item }) => (

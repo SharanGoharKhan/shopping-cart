@@ -71,10 +71,10 @@ function ShoppingCart(props) {
         const product = products.find(p => p._id === cartData._id)
         if (product) {
             cartData.selectedAttributes.forEach(item => {
-                const attribute = product.attributes.find(data => data._id === item._id)
+                const attribute = product.attributes.find(data => data.attributeId === item.attributeId)
 
                 if (!attribute) stockCheck = false
-                const option = attribute.options.find(op => op._id === item.option._id)
+                const option = attribute.options.find(op => op.optionId === item.option.optionId)
                 if (!option) stockCheck = false
                 if (!option.stock) stockCheck = false
                 if (option.stock > cartData.quantity) {

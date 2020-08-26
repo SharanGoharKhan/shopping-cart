@@ -18,13 +18,13 @@ function ProductListing(props) {
     const route = useRoute()
     const navigation = useNavigation()
     const id = route.params?.id ?? null
-    const { data: categoryData, loading, error } = useQuery(GET_PRODUCT, { variables: { id: id } })
+    const { data: categoryData, loading, error, refetch, networkStatus } = useQuery(GET_PRODUCT, { variables: { id: id } })
 
     if (id === null) {
         navigation.goBack()
         return null
     }
-
+    if(categoryData) console.log(JSON.stringify(categoryData))
     function emptyView() {
         return (
             <View style={styles.subContainerImage}>
@@ -61,6 +61,8 @@ function ProductListing(props) {
                             contentContainerStyle={styles.categoryContainer}
                             showsVerticalScrollIndicator={false}
                             ListEmptyComponent={emptyView()}
+                            refreshing={networkStatus === 4}
+                            onRefresh={() => refetch()}
                             numColumns={2}
                             data={categoryData ? categoryData.productByCategory : []}
                             renderItem={({ item }) =>

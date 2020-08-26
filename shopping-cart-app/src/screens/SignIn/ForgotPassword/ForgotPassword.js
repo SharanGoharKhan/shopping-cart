@@ -5,9 +5,10 @@ import {
 import Modal from 'react-native-modal';
 import styles from './styles';
 import TextField from '../../../ui/Textfield/Textfield';
-import { TextDefault, Spinner } from '../../../components'
+import { TextDefault, Spinner, FlashMessage } from '../../../components'
 import { forgotPassword } from '../../../apollo/server'
 import { gql, useMutation } from '@apollo/client'
+import { colors } from '../../../utils';
 
 const FORGOT_PASSWORD = gql`
   ${forgotPassword}
@@ -41,6 +42,7 @@ function ForgotPassword(props) {
         FlashMessage({
             message: 'Reset password link sent on your email'
         })
+        props.hideModal()
     }
     function onError(error) {
         if (error.networkError) {
@@ -55,20 +57,21 @@ function ForgotPassword(props) {
     }
 
     function renderContinueAction() {
-        if (loading) return <Spinner />
         return (
             <TouchableOpacity
-                activeOpacity={0}
+                disabled={loading}
+                activeOpacity={1}
                 style={[styles.btnContainer, styles.brownColor]}
                 onPress={event => {
                     if (validateCredentials()) {
                         mutate({ variables: { email: email.toLowerCase().trim() } })
                     }
-                    props.hideModal()
                 }}>
-                <TextDefault style={styles.sendStyle}>
-                    CONTINUE
+                {loading ? <Spinner backColor='transparent' spinnerColor={colors.white} /> :
+                    <TextDefault style={styles.sendStyle}>
+                        CONTINUE
             </TextDefault>
+                }
             </TouchableOpacity>
         )
     }

@@ -12,7 +12,7 @@ export const colors = {
     horizontalLine: '#949393',
     medHorizontalLine: '#D8D8D8',
     lightHorizontalLine: '#f0f0f0',
-    spinnerColor: '#F48B98',
+    spinnerColor: '#D0AD8A',
     buttonBackground: '#D0AD8A',
     blueButton: '#6178DE',
     buttonText: '#FFF',

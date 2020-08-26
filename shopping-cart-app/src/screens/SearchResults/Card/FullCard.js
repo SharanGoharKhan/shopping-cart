@@ -16,7 +16,7 @@ function FullCard(props) {
     // render the whole content
     return (
         <>
-            <TouchableOpacity activeOpacity={0}
+            <TouchableOpacity activeOpacity={1}
                 onPress={() => { navigation.navigate('ProductDescription', { product: props.product }) }}>
                 <View style={styles.container} >
                     <View style={styles.leftside}>

@@ -19,6 +19,7 @@ import { useMutation, gql } from '@apollo/client'
 import UserContext from '../../context/User'
 import { FlashMessage } from '../../components/FlashMessage/FlashMessage'
 import MainBtn from '../../ui/Buttons/MainBtn';
+import AlternateBtn from '../../ui/Buttons/AlternateBtn'
 
 const {
     IOS_CLIENT_ID_GOOGLE,
@@ -140,7 +141,7 @@ function SignIn(props) {
             })
             if (type === 'success')
                 return user
-        
+
             alert(type)
         }
         catch (e) {
@@ -153,7 +154,7 @@ function SignIn(props) {
         return (
             <View style={[styles.socialBtnsView, styles.googleBtn]}>
                 {(loading && loginButton === 'Google') ?
-                    <Spinner backColor="rgba(0,0,0,0.1)" spinnerColor={'#FFF'} />
+                    <Spinner backColor="rgba(0,0,0,0.1)" spinnerColor={colors.white} />
                     : (
                         <TouchableOpacity
                             activeOpacity={0}
@@ -329,17 +330,10 @@ function SignIn(props) {
                                 </ImageBackground>
                             </View>
                             <View style={styles.bodyFooter}>
-                                <View style={styles.footer}>
-                                    <TextDefault textColor={colors.fontMainColor} small bold>
-                                        {'Create New Account:'}
-                                    </TextDefault>
-                                    <TextDefault textColor={colors.fontMainColor} small>
-                                        {'By creating a new account, you will become a valuable customer/buyer to Ecommero by default. While registering, '}
-                                        <TextDefault style={styles.ftUnderline} small onPress={() => navigation.navigate('SignUp')}>
-                                            {'you can also choose to become a seller and open your own shop'}
-                                        </TextDefault>
-                                    </TextDefault>
-                                </View>
+                                <AlternateBtn
+                                    onPress={() => navigation.navigate('SignUp')}
+                                    text="Dont't have account"
+                                />
                             </View>
                         </View>
                     </View>

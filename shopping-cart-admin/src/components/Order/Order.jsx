@@ -254,7 +254,7 @@ function Order(props) {
                             defaultValue={order.orderStatus}
                             onChange={onChangeStatus}>
                             <option></option>
-                            <option value="PICKED">PICKED</option>
+                            <option value="DISPATCHED">DISPATCHED</option>
                             <option value="DELIVERED">DELIVERED</option>
                           </Input>
 

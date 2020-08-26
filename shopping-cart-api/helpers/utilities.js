@@ -153,10 +153,10 @@ const updateStockValue = async items => {
      product.attributes.forEach( (productData,index) => {
        item.selectedAttributes.forEach(itemData => {
          console.log('attribute',itemData)
-        if (productData._id === itemData._id) {
+        if (productData.attributeId === itemData.attributeId) {
           let options=[]
           for (var i = 0; i < productData.options.length; i++) {
-            if (productData.options[i]._id === itemData.option._id) {
+            if (productData.options[i].optionId === itemData.option.optionId) {
               options.push({
                 ...productData.options[i],
                 stock: productData.options[i].stock - item.quantity

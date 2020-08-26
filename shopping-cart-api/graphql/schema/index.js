@@ -40,13 +40,15 @@ const typeDefs = gql`
   }
 
   type SelectedAttributes {
-    _id: String!
+    _id: String
+    attributeId: String
     title: String!
     option: SelectedOption!
   }
 
   type SelectedOption {
-    _id: String!
+    _id: String
+    optionId: String
     title: String!
     price: Float
   }
@@ -101,12 +103,14 @@ const typeDefs = gql`
 
   type Attributes {
     _id: String!
+    attributeId:String
     title: String!
     options: [ProductOption!]
   }
 
   type ProductOption {
     _id: String!
+    optionId: String
     title:String!
     price:Float!
     stock:Int!
@@ -319,9 +323,15 @@ const typeDefs = gql`
   }
 
   input OrderAttributesInput {
-    _id: String!
+    attributeId: String!
     title: String!
-    option: OptionInput!
+    option: OrderOptionInput!
+  }
+
+  input OrderOptionInput {
+    optionId:String!
+    title: String
+    price: Float
   }
 
   input ProductInput {
@@ -337,13 +347,15 @@ const typeDefs = gql`
   }
 
   input AttributeInput {
-    _id: String!
+    _id: String
+    attributeId:String!
     title: String!
     options: [ProductOptionInput!]
   }
 
   input ProductOptionInput {
-    _id: String!
+    _id: String
+    optionId: String!
     title: String!
     price: Float!
     stock: Int!

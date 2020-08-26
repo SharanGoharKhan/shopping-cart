@@ -34,10 +34,10 @@ export const subscribePlaceOrder = `subscription SubscribePaceOrder{
       price
       quantity
       selectedAttributes{
-        _id
+        attributeId
         title
         option{
-          _id
+          optionId
           title
           price
         }
@@ -198,9 +198,11 @@ export const getProducts = `query Products{
     image
     attributes{
       _id
+      attributeId
       title
       options{
         _id
+        optionId
         title
         price
         stock
@@ -228,9 +230,11 @@ export const createProduct = `mutation CreateProduct($productInput:ProductInput!
     image
     attributes{
       _id
+      attributeId
       title
       options{
         _id
+        optionId
         title
         price
         stock
@@ -259,9 +263,11 @@ export const editProduct = `mutation EditProduct($productInput:ProductInput!){
   image
   attributes{
     _id
+    attributeId
     title
     options{
       _id
+      optionId
       title
       price
       stock
@@ -305,10 +311,10 @@ export const getOrders = `query Orders($page:Int,$rows:Int,$search:String){
       price
       quantity
       selectedAttributes{
-        _id
+        attributeId
         title
         option{
-          _id
+          optionId
           title
           price
         }

@@ -8,7 +8,7 @@ function CategoryCard(props) {
     const navigation = useNavigation()
     return (
         <TouchableOpacity
-            onPress={() => navigation.navigate('SubCategory', { id: props.id })}
+            onPress={() => navigation.navigate('SubCategory', { id: props.id, title: props.title })}
             style={[styles.container, props.style]}>
             <View style={styles.textViewContainer}>
                 <TextDefault numberOfLines={1} H5>

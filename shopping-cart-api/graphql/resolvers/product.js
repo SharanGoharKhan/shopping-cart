@@ -1,5 +1,7 @@
 const Product = require('../../models/product')
+const Attribute = require('../../models/optionGroup')
 const { transformProduct } = require('./merge')
+const uuidv4 = require('uuid/v4')
 
 module.exports = {
   Query: {
@@ -98,7 +100,22 @@ module.exports = {
         skuCode: args.productInput.skuCode,
         subCategory: args.productInput.subCategory,
         image: args.productInput.image,
-        attributes: args.productInput.attributes,
+        attributes: args.productInput.attributes.map(item =>{
+          if(item.options.length){
+            return {
+              _id: uuidv4(),
+              ...item,
+              options: item.options.map( option => {
+                return {
+                  _id: uuidv4(),
+                  ...option
+                }
+              })
+            }
+          } else{
+            return null
+          }
+        }).filter(data => data!==null),
         price: args.productInput.price,
         featured: args.productInput.featured
       })
@@ -115,15 +132,29 @@ module.exports = {
     },
     editProduct: async (_, args, context) => {
       console.log('editProduct')
-      console.log(args.productInput._id)
-
+      
       const product = await Product.findOne({ _id: args.productInput._id })
       product.title = args.productInput.title
       product.description = args.productInput.description
       product.subCategory = args.productInput.subCategory
       product.skuCode = args.productInput.skuCode
       product.image = args.productInput.image
-      product.attributes = args.productInput.attributes
+      product.attributes = args.productInput.attributes.map(item =>{
+        if(item.options.length){
+          return {
+            _id: uuidv4(),
+            ...item,
+            options: item.options.map( option => {
+              return {
+                _id: uuidv4(),
+                ...option
+              }
+            })
+          }
+        } else{
+          return null
+        }
+      }).filter(data => data!==null)
       product.price = args.productInput.price
       product.featured = args.productInput.featured
 

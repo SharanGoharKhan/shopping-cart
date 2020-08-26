@@ -21,7 +21,7 @@ Props:
 const MainBtn = props => (
   <View style={[styles.backgroundColor, props.style]}>
     {props.loading ?
-      <Spinner backColor="rgba(0,0,0,0.1)" spinnerColor={'#FFF'} />
+      <Spinner backColor="rgba(0,0,0,0.1)" spinnerColor={colors.white} />
       :
       <TouchableOpacity
         onPress={props.onPress}

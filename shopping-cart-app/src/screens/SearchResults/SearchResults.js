@@ -75,7 +75,6 @@ function SearchResults(props) {
                                 onChange={
                                     (e) => {
                                         setSearch(e.nativeEvent.text.trim())
-                                        setIsPressed(false)
                                     }}
                                 onPress={() => {
                                     setIsPressed(true)
@@ -84,7 +83,7 @@ function SearchResults(props) {
                         <View style={styles.mainBodyContainer}>
                             {error ? <TextError text={error.message} /> :
                                 loading ? <Spinner /> :
-                                    isPressed && renderSearchResult()
+                                    renderSearchResult()
                             }
                         </View>
                     </View>

@@ -200,12 +200,12 @@ export const UserProvider = props => {
         quantity: quantity,
         image: image,
         price: Number(price),
-        selectedAttributes: attributes.map( ({_id,title,options}) =>{
+        selectedAttributes: attributes.map( ({attributeId,title,options}) =>{
           return {
-            _id,
             title,
+            attributeId,
             option: {
-              _id: options._id,
+              optionId: options.optionId,
               title: options.title,
               price: options.price
             }

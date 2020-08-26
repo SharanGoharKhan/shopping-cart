@@ -82,6 +82,7 @@ function MainLanding(props) {
                                 key={index}
                                 cardLabel={category.title}
                                 id={category._id}
+                                title={category.title}
                             />
                         )
                     })}

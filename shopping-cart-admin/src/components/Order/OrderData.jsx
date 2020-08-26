@@ -21,6 +21,7 @@ const OrdersData = props => {
   const { data, loading, error } = useQuery(ORDERCOUNT)
 
   const getItems = items => {
+    console.log(`items ${JSON.stringify(items[0])}`)
     return items
       .map(
         item => `${item.quantity}x${item.product}(${item.selectedAttributes.map(i => i.title)})`

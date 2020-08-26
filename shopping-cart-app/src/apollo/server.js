@@ -160,10 +160,12 @@ export const categoryProduct = `query ProductByCategory($id:String!){
     }
     attributes{
       _id
+      attributeId
       title
       options
       {
         _id
+        optionId
         title
         price
         stock
@@ -190,10 +192,12 @@ export const productById=`query ProductByIds($ids:[String!]!){
     }
     attributes{
       _id
+      attributeId
       title
       options
       {
         _id
+        optionId
         title
         price
         stock
@@ -216,10 +220,12 @@ export const product=`query Product($id:String!){
     }
     attributes{
       _id
+      attributeId
       title
       options
       {
         _id
+        optionId
         title
         price
         stock
@@ -242,10 +248,12 @@ export const produccts = `query{
     }
     attributes{
       _id
+      attributeId
       title
       options
       {
         _id
+        optionId
         title
         price
         stock
