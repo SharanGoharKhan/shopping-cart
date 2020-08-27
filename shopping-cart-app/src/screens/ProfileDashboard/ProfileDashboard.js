@@ -19,7 +19,7 @@ function ProfileDashboard(props) {
         <View style={styles.tabContainer}>
           <TouchableOpacity>
             <TextDefault textColor={colors.fontBrown} H5>
-              My Active Orders ({orders ? orders.filter(o => ['PENDING', 'PICKED', 'ACCEPTED'].includes(o.orderStatus)).length : 0})
+              My Active Orders ({orders ? orders.filter(o => ['PENDING', 'DISPATCHED', 'ACCEPTED'].includes(o.orderStatus)).length : 0})
             </TextDefault>
           </TouchableOpacity>
           <TouchableOpacity

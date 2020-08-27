@@ -19,10 +19,10 @@ module.exports = {
         const users_count = await User.countDocuments(filter_date)
         const paid_orders = await Order.find({
           ...filter_date,
-          payment_status: 'PAID'
-        }).select('paid_amount')
+          paymentStatus: 'PAID'
+        }).select('paidAmount')
         const paid_orders_amount = paid_orders.reduce(
-          (acc, order) => acc + order.paid_amount,
+          (acc, order) => acc + order.paidAmount,
           0
         )
         const reviews = await Review.find({ ...filter_date }).select('rating')

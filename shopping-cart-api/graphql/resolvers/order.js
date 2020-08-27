@@ -274,8 +274,9 @@ module.exports = {
           coupon: args.couponCode,
           statusQueue: {
             pending: new Date(),
+            accepted: null,
             preparing: null,
-            picked: null,
+            dispatched: null,
             delivered: null,
             cancelled: null
           }
@@ -291,7 +292,7 @@ module.exports = {
           const placeOrder_template = placeOrderTemplate([
             result.orderId,
             itemsTitle,
-            result.deliveryAddress.deliveryAddress,
+            result.deliveryAddress,
             `${configuration.currencySymbol} ${Number(price).toFixed(2)}`,
             `${configuration.currencySymbol} ${DELIVERY_CHARGES}`,
             `${configuration.currencySymbol} ${(
@@ -301,7 +302,7 @@ module.exports = {
           const placeOrder_text = placeOrderText([
             result.orderId,
             itemsTitle,
-            result.deliveryAddress.deliveryAddress,
+            result.deliveryAddress,
             `${configuration.currencySymbol} ${Number(price).toFixed(2)}`,
             `${configuration.currencySymbol} ${DELIVERY_CHARGES}`,
             `${configuration.currencySymbol} ${(

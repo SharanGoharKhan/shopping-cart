@@ -4,22 +4,24 @@ module.exports = {
   signupText: `<h1>Congratulations</h1>
     <p>You have success created an account for Ecommero</p>`,
   placeOrderTemplate(params) {
+    const address = `Apartment: ${params[2].apartment}, ${params[2].building}, ${params[2].city}, ${params[2].region},${params[2].details}`
     return `<h1>Order</h1>
     <p>You placed an order on Ecommero</p>
     <p>Order Id : ${params[0]}</p>
     <p>Items : ${params[1]}</p>
-    <p> Delivery Address: ${params[2]}</p >
+    <p> Delivery Address: ${address}</p >
     <p>Cost : ${params[3]}</p>
     <p>Delivery Charges : ${params[4]}</p>
     <p>Total : ${params[5]}</p>
     `
   },
   placeOrderText(params) {
+    const address = `Apartment: ${params[2].apartment}, ${params[2].building}, ${params[2].city}, ${params[2].region},${params[2].details}`
     return `<h1>Order</h1>
 <h4>You placed an order on Ecommero</h4>
     <p>Order Id : ${params[0]}</p>
     <p>Items : ${params[1]}</p>
-    <p> Delivery Address: ${params[2]}</p >
+    <p> Delivery Address: ${address}</p >
     <p>Cost : ${params[3]}</p>
     <p>Delivery Charges : ${params[4]}</p>
     <p>Total : ${params[5]}</p>`

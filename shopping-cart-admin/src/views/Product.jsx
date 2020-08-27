@@ -3,7 +3,7 @@ import React, { useState } from 'react'
 import { withTranslation } from 'react-i18next'
 import ProductComponent from '../components/Product/Product'
 // reactstrap components
-import { Card, Container, Row, Modal } from 'reactstrap'
+import { Card, Container, Row, Modal,Badge } from 'reactstrap'
 import { useQuery, gql } from '@apollo/client'
 import { getProducts, deleteProduct } from '../apollo/server'
 // core components
@@ -27,27 +27,38 @@ const Product = props => {
         {
             name: 'Title',
             sortable: true,
-            selector: 'title'
+            selector: 'title',
+            width:'300px',
+            cell: row=>(
+                <>
+                <span>{row.title}</span>
+                {row.featured &&
+                <>&nbsp;&nbsp;<Badge color="success">Featured</Badge></>}
+                </>
+            )
         },
         {
             name: 'Sku Code',
             sortable: true,
             selector: 'skuCode',
+            maxWidth:'200px'
         },
         {
             name: 'Description',
             sortable: true,
             selector: 'description',
+            maxWidth:'300px',
         },
         {
             name: 'Sub Category',
-            sortable: true,
             selector: 'subCategory.title',
+            maxWidth:'200px'
         },
         {
             name: 'Price',
             sortable: true,
             selector: 'price',
+            maxWidth:'200px'
         },
         {
             name: 'Image',
@@ -58,7 +69,8 @@ const Product = props => {
                     )}
                     {!row.image && 'No Image'}
                 </>
-            )
+            ),
+            maxWidth:'200px'
         },
         {
             name: 'Action',
@@ -68,14 +80,15 @@ const Product = props => {
                 row={row}
                 mutation={DELETE_PRODUCT}
                 editModal={toggleModal}
-                refetchQuery={GET_PRODUCTS} />
+                refetchQuery={GET_PRODUCTS} />,
+                maxWidth:'200px'
         }
     ]
 
 
     const customSort = (rows, field, direction) => {
         const handleField = row => {
-            if (row[field]) {
+            if (isNaN(row[field])) {
                 return row[field].toLowerCase()
             }
 

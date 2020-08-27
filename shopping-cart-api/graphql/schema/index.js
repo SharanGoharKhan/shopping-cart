@@ -151,6 +151,7 @@ const typeDefs = gql`
   type OrderStatus {
     pending: String!
     accepted: String
+    dispatched: String
     preparing: String
     picked: String
     delivered: String

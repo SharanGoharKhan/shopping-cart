@@ -307,6 +307,7 @@ export const getConfiguration = `query Configuration{
       statusQueue{
         pending
         accepted
+        dispatched
         preparing
         picked
         delivered
@@ -352,6 +353,7 @@ export const getConfiguration = `query Configuration{
       statusQueue{
         pending
         accepted
+        dispatched
         preparing
         picked
         delivered
@@ -401,6 +403,7 @@ export const getConfiguration = `query Configuration{
       statusQueue{
         pending
         accepted
+        dispatched
         preparing
         picked
         delivered

@@ -122,7 +122,7 @@ function Order(props) {
         <Row className="align-items-center">
           <Col xs="8">
             <h3 className="mb-0">
-              {t('Order')}#{order.order_id}
+              {t('Order')}#{order.orderId}
             </h3>
           </Col>
         </Row>

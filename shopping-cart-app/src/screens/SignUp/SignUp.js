@@ -159,6 +159,7 @@ function SignUp(props) {
                                         <TextField
                                             error={!!passwordError}
                                             placeholder="Password"
+                                            password={true}
                                             onChange={event => {
                                                 setPassword(event.nativeEvent.text.toLowerCase().trim())
                                             }} containerStyle={{ ...alignment.MBsmall }} />

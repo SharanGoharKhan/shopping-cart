@@ -37,9 +37,9 @@ function ProductDescription(props) {
                 }
             })
             : []
-        if(itemAttributes.length){
+        if (itemAttributes.length) {
             setStockAvailability(itemAttributes.every(attribute => attribute.options))
-        }else{
+        } else {
             setStockAvailability(false)
         }
         attributeSetter(itemAttributes)
@@ -101,7 +101,7 @@ function ProductDescription(props) {
                             <View style={styles.caroselPriceContainer}>
                                 <View style={styles.caroselPriceSubContainer}>
                                     <TextDefault numberOfLines={2} textColor={colors.fontBlue} bold>
-                                        {configuration.currencySymbol}{' '}{price}
+                                        {configuration.currencySymbol}{' '}{parseFloat(price).toFixed(2)}
                                     </TextDefault>
                                 </View>
                             </View>
@@ -159,7 +159,8 @@ function ProductDescription(props) {
                     </View>
                 </View>
                 <View style={styles.reviewHeader}>
-                    <TextDefault textColor={colors.fontMainColor} bold>Reviews ({data.productReviews?.total})</TextDefault>
+                    <TextDefault textColor={colors.fontMainColor} bold>Reviews<TextDefault textColor={colors.fontMainColor} small> ({data.productReviews?.total}) </TextDefault>
+                    </TextDefault>
                 </View>
             </>
         )

@@ -2,7 +2,7 @@ exports.payment_status = ['PENDING', 'PAID']
 exports.order_status = [
   'PENDING',
   'ACCEPTED',
-  'PICKED',
+  'DISPATCHED',
   'DELIVERED',
   'CANCELLED'
 ]

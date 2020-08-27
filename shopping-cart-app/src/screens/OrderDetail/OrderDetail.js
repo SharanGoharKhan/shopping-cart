@@ -120,11 +120,11 @@ function OrderDetail(props) {
                                     </View>
                                     <View style={styles.twoItems}>
                                         <TextDefault textColor={colors.fontThirdColor}>{'Delivery'}</TextDefault>
-                                        <TextDefault textColor={colors.fontMainColor}>{configuration.currencySymbol} {configuration.deliveryCharges}</TextDefault>
+                                        <TextDefault textColor={colors.fontMainColor}>{configuration.currencySymbol} {parseFloat(configuration.deliveryCharges).toFixed(2)}</TextDefault>
                                     </View>
                                     <View style={styles.twoItems}>
                                         <TextDefault textColor={colors.fontThirdColor}>{'Sub Total'}</TextDefault>
-                                        <TextDefault textColor={colors.fontMainColor}>{configuration.currencySymbol} {order.orderAmount - configuration.deliveryCharges}</TextDefault>
+                                        <TextDefault textColor={colors.fontMainColor}>{configuration.currencySymbol} {parseFloat(order.orderAmount - configuration.deliveryCharges).toFixed(2)}</TextDefault>
                                     </View>
                                 </View>
                             </View>
@@ -133,7 +133,7 @@ function OrderDetail(props) {
                                 <View style={styles.totalSubContainer}>
                                     <View style={styles.twoItems}>
                                         <TextDefault textColor={colors.fontMainColor} H4>{'Total'}</TextDefault>
-                                        <TextDefault textColor={colors.fontMainColor} H4>{configuration.currencySymbol} {order.orderAmount}</TextDefault>
+                                        <TextDefault textColor={colors.fontMainColor} H4>{configuration.currencySymbol} {parseFloat(order.orderAmount).toFixed(2)}</TextDefault>
                                     </View>
                                 </View>
                             </View>

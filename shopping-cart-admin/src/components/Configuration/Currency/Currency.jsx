@@ -72,6 +72,7 @@ function Currency(props) {
                           : 'has-danger'
                     }>
                     <Typeahead
+                      disabled={true}
                       defaultSelected={[currencyCode || '']}
                       onInputChange={value => {
                         currencyCodeSetter(value)
@@ -106,6 +107,7 @@ function Currency(props) {
                           : 'has-danger'
                     }>
                     <Typeahead
+                      disabled={true}
                       defaultSelected={[currencySymbol || '']}
                       onInputChange={value => {
                         currencySymbolSetter(value)
@@ -149,6 +151,7 @@ function Currency(props) {
                         className="btn-block mb-2"
                         type="button"
                         color="primary"
+                        disabled={true}
                         onClick={e => {
                           e.preventDefault()
                           if (validateInput()) {

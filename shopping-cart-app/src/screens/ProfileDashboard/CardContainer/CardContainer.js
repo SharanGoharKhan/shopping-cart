@@ -43,7 +43,7 @@ function cardContainer(props) {
         <FlatList
             style={styles.scrollViewContainer}
             contentContainerStyle={styles.mainCardContainer}
-            data={orders ? orders.filter(o => ['PENDING', 'PICKED', 'ACCEPTED'].includes(o.orderStatus)) : []}
+            data={orders ? orders.filter(o => ['PENDING', 'DISPATCHED', 'ACCEPTED'].includes(o.orderStatus)) : []}
             keyExtractor={(item, index) => index.toString()}
             onRefresh={() => fetchMoreOrdersFunc()}
             refreshing={networkStatusOrders === 4}

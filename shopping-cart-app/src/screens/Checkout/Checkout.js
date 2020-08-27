@@ -86,7 +86,7 @@ function Checkout() {
                 setDiscount(coupon.discount)
                 setCoupan(coupon.code)
 
-                FlashMessage({ message: "Coupan Aplied", type: 'success' })
+                FlashMessage({ message: "Coupan Applied", type: 'success' })
             } else {
                 FlashMessage({ message: "Coupan Failed", type: 'warning' })
             }
@@ -421,7 +421,7 @@ function Checkout() {
                                         {'Delivery'}
                                     </TextDefault>
                                     <TextDefault textColor={colors.fontMainColor} H5>
-                                        {configuration.currencySymbol} {configuration.deliveryCharges}
+                                        {configuration.currencySymbol} {parseFloat(configuration.deliveryCharges).toFixed(2)}
                                     </TextDefault>
                                 </View>
                                 <View style={styles.row}>
@@ -429,7 +429,9 @@ function Checkout() {
                                         {'Discount'}
                                     </TextDefault>
                                     <TextDefault textColor={colors.fontMainColor} H5>
-                                        {'-'}{configuration.currencySymbol} {discount}
+                                        {'-'}{configuration.currencySymbol} {parseFloat(
+                                            calculatePrice(0, false) - calculatePrice(0, true)
+                                        ).toFixed(2)}
                                     </TextDefault>
                                 </View>
                             </View>
