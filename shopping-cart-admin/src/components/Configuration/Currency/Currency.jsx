@@ -148,6 +148,7 @@ function Currency(props) {
                       </Button>
                       :
                       <Button
+                        disabled
                         className="btn-block mb-2"
                         type="button"
                         color="primary"

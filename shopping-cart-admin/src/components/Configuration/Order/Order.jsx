@@ -68,6 +68,7 @@ function Order(props) {
                       id="input-orderid"
                       placeholder="e.g EC-"
                       type="text"
+                      readOnly
                       defaultValue={prefix}
                       onChange={event => {
                         prefixSetter(event.target.value)
@@ -95,6 +96,7 @@ function Order(props) {
                         />
                       </Button> :
                       <Button
+                        disabled
                         className="btn-block mb-2"
                         type="button"
                         color="primary"
