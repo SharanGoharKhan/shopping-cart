@@ -115,10 +115,13 @@ const styles = StyleSheet.create({
         ...alignment.PTlarge,
         ...alignment.PBlarge
     },
+    buttonText: {
+        width: '90%',
+        alignSelf: 'center'
+    },
     trackOrderSubContainer: {
         width: '90%',
         backgroundColor: colors.whiteColor,
-        alignItems: 'center',
         justifyContent: 'center',
         borderRadius: scale(4),
         height: scale(80)

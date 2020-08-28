@@ -147,7 +147,7 @@ function ShoppingCart(props) {
                     <View style={styles.spacer} />
                     <View style={styles.rowContainer}>
                         <Text style={styles.textStyle}>Delivery</Text>
-                        <Text style={styles.textStyle}>{configuration.currencySymbol} {configuration.deliveryCharges}</Text>
+                        <Text style={styles.textStyle}>{configuration.currencySymbol} {parseFloat(configuration.deliveryCharges).toFixed(2)}</Text>
                     </View>
                     <View style={styles.spacer} />
                     <View style={styles.lineStyle} />

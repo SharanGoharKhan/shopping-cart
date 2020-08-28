@@ -150,7 +150,7 @@ function Email(props) {
                       </Button>
                       :
                       <Button
-                        disabled
+                        // disabled
                         className="btn-block mb-2"
                         type="button"
                         color="primary"

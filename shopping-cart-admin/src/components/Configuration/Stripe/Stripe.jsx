@@ -46,7 +46,7 @@ function Stripe(props) {
                       className="form-control-alternative"
                       id="input-publishablekey"
                       placeholder="e.g pk_test_lEaBbVGnTkzja2FyFiNlbqtw"
-                      type="text"
+                      type="password"
                       defaultValue={publishableKey[0]}
                       disabled></Input>
                   </FormGroup>
@@ -71,7 +71,7 @@ function Stripe(props) {
                       className="form-control-alternative"
                       id="input-secretkey"
                       placeholder="e.g sk_test_rKNqVc2tSkdgZHNO3XnPCLn4"
-                      type="text"
+                      type="password"
                       defaultValue={secretKey[0]}
                       disabled></Input>
                   </FormGroup>

@@ -7,6 +7,7 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 import UserContext from '../../context/User'
 import ConfigurationContext from '../../context/Configuration'
 import { colors, alignment } from '../../utils';
+import MainBtn from '../../ui/Buttons/MainBtn'
 
 
 function OrderDetail(props) {
@@ -65,6 +66,7 @@ function OrderDetail(props) {
                                                     </TextDefault>
                                                 </View>
                                                 {(!data.isReviewed && order.orderStatus === 'DELIVERED') && <TouchableOpacity
+                                                    activeOpacity={1}
                                                     style={styles.actionContainer}
                                                     onPress={() => navigation.navigate('Review', { product: data.productId, order: order._id })}>
                                                     <TextDefault textColor={colors.white} H5>
@@ -139,15 +141,11 @@ function OrderDetail(props) {
                             </View>
                             <View style={styles.trackOrderContainer}>
                                 <View style={styles.trackOrderSubContainer}>
-                                    <TouchableOpacity
-                                        activeOpacity={0}
+                                    <MainBtn
+                                        style={styles.buttonText}
                                         onPress={() => navigation.navigate('TrackOrder', { _id: id })}
-                                        style={styles.trackStyle}
-                                    >
-                                        <TextDefault textColor={colors.buttonText} H4>
-                                            {'Track Order'}
-                                        </TextDefault>
-                                    </TouchableOpacity>
+                                        text='Track Order'
+                                    />
                                 </View>
                             </View>
                         </ScrollView>

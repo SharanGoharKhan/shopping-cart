@@ -46,7 +46,7 @@ function Paypal(props) {
                       className="form-control-alternative"
                       id="input-clientid"
                       placeholder="e.g AeGIgSX--JEVwoQgLjGOb8gh1DUJG0MFVgLc2mBIe6_V5NefV0LM3L78m01fLLI6U2FFB-qJr4ErrtL1"
-                      type="text"
+                      type="password"
                       defaultValue={clientId[0]}
                       disabled></Input>
                   </FormGroup>
@@ -71,7 +71,7 @@ function Paypal(props) {
                       className="form-control-alternative"
                       id="input-clientsecret"
                       placeholder="e.g EHAP6CSZt3kwzcpdxrpw16PqHEspw5wtJCVVux_95e2Qcwbeh6mQp9GncEbxnVFkEbJu4z1i-GuDDthf"
-                      type="text"
+                      type="password"
                       defaultValue={clientSecret[0]}
                       disabled></Input>
                   </FormGroup>

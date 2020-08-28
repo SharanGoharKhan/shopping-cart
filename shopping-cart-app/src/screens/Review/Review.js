@@ -12,6 +12,7 @@ import { colors } from '../../utils'
 import { BackHeader, FlashMessage } from '../../components'
 import { useMutation, gql } from '@apollo/client'
 import { reviewOrder } from '../../apollo/server'
+import MainBtn from '../../ui/Buttons/MainBtn'
 
 const REVIEWORDER = gql`${reviewOrder}`
 
@@ -118,20 +119,14 @@ function Review() {
           </View>
         </View>
         <View style={styles.btnSubContainer}>
-          {loadingMutation && <Spinner />}
-          <TouchableOpacity
-            disabled={loadingMutation}
-            activeOpacity={0.7}
+          <MainBtn
+            loading={loadingMutation}
             onPress={() => {
               if (validate())
                 onSubmit()
-            }
-            }
-            style={styles.btnTouch}>
-            <TextDefault textColor={colors.buttonText} H4 bold>
-              {'Submit'}
-            </TextDefault>
-          </TouchableOpacity>
+            }}
+            text='Submit'
+          />
         </View>
       </View>
     </SafeAreaView>
