@@ -17,13 +17,12 @@ const styles = StyleSheet.create({
     body: {
         height: '95%',
         width: '100%',
-        alignSelf: 'center'
+        alignSelf: 'center',
     },
 
     // main
     main: {
-        height: height * .8,
-        width: '100%',
+        flex: 1,
         marginLeft: 0,
         justifyContent: 'flex-start',
         alignItems: 'center',
@@ -36,15 +35,15 @@ const styles = StyleSheet.create({
         alignItems: 'center',
     },
     mainBodyContainer: {
-        height: '100%',
+        height: '90%',
         width: '100%',
         alignItems: 'center',
         backgroundColor: colors.themeBackground,
 
     },
     mainBody: {
+        flex: 1,
         width: '94%',
-        height: '93%',
     },
     mixed_text: {
         width: '80%',
@@ -54,5 +53,9 @@ const styles = StyleSheet.create({
     main_scroller: {
         height: '93%',
     },
+    scrollContainer: {
+        flexGrow: 1,
+        ...alignment.PBlarge
+    }
 })
 export default styles;

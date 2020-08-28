@@ -70,6 +70,7 @@ function Delivery(props) {
                       id="input-deliverycharges"
                       placeholder="e.g 30.00"
                       type="number"
+                      readOnly
                       defaultValue={deliveryCharges}
                       onChange={event => {
                         deliveryChargesSetter(event.target.value)
@@ -102,6 +103,7 @@ function Delivery(props) {
                       </Button>
                       :
                       <Button
+                        disabled
                         className="btn-block mb-2"
                         type="button"
                         color="primary"

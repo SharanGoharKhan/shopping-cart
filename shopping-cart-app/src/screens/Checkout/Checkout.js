@@ -194,7 +194,7 @@ function Checkout() {
     }
     function errorPlaceOrder(error) {
         console.log('error', JSON.stringify(error))
-        FlashMessage({ message: error.message, type: 'warning' })
+        FlashMessage({ message: JSON.stringify(error), type: 'warning' })
     }
 
 

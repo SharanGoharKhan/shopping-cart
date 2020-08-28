@@ -1,6 +1,8 @@
 import React from 'react';
 import { createStackNavigator } from '@react-navigation/stack'
 import { NavigationContainer } from '@react-navigation/native'
+import navigationService from './navigationService'
+import { Notifications } from 'expo'
 import { createDrawerNavigator } from '@react-navigation/drawer'
 import * as Screen from '../screens';
 import { MainMenu } from '../components';
@@ -48,8 +50,24 @@ function noDrawer() {
 }
 
 function AppContainer() {
+    function _handleNotification(notification) {
+        try {
+          if (notification.origin === 'selected') {
+            if (notification.data.order) {
+              navigationService.navigate('OrderDetail', {
+                _id: notification.data._id
+              })
+            }
+          }
+        } catch (e) {
+          console.log(e)
+        }
+      }
     return (
-        <NavigationContainer>
+        <NavigationContainer ref={ref => {
+            navigationService.setGlobalRef(ref)
+            Notifications.addListener(_handleNotification)
+          }}>
             <MainStack.Navigator headerMode='none' initialRouteName='Drawer'>
                 <MainStack.Screen name='Drawer' component={Drawer} />
             </MainStack.Navigator>

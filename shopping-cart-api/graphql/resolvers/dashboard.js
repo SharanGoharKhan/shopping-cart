@@ -5,7 +5,7 @@ const Review = require('../../models/review')
 const { months } = require('../../helpers/enum')
 module.exports = {
   Query: {
-    getDashboardTotal: async(_, args, context) => {
+    getDashboardTotal: async (_, args, context) => {
       console.log('getOrdersCount from dashboard')
       console.log(args)
       try {
@@ -47,7 +47,7 @@ module.exports = {
         throw err
       }
     },
-    getDashboardSales: async(_, args, context) => {
+    getDashboardSales: async (_, args, context) => {
       console.log('getDashboardSales')
       try {
         const ending_date = new Date(args.ending_date)
@@ -62,15 +62,15 @@ module.exports = {
           const filter = { createdAt: { $gte: filter_start, $lt: filter_end } }
           const orders = await Order.find({
             ...filter,
-            payment_status: 'PAID'
-          }).select('paid_amount')
+            paymentStatus: 'PAID'
+          }).select('paidAmount')
           const day = `${
             months[current_date.getMonth()]
           } ${current_date.getDate()}`
           const temp_sales_value = { day }
           // eslint-disable-next-line dot-notation
           temp_sales_value['amount'] = orders
-            .reduce((acc, order) => acc + order.paid_amount, 0)
+            .reduce((acc, order) => acc + order.paidAmount, 0)
             .toFixed(2)
           sales_value.push(temp_sales_value)
           current_date.setDate(current_date.getDate() + 1)
@@ -83,7 +83,7 @@ module.exports = {
         throw err
       }
     },
-    getDashboardOrders: async(_, args, context) => {
+    getDashboardOrders: async (_, args, context) => {
       console.log('getDashboardOrders')
       try {
         const ending_date = new Date(args.ending_date)

@@ -5,7 +5,7 @@ import SearchBar from '../../ui/SearchBar/SearchBar';
 import FullCard from './Card/FullCard';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { BackHeader, TextDefault, BottomTab, Spinner, TextError } from '../../components';
-import { colors } from '../../utils';
+import { colors, scale, alignment } from '../../utils';
 import { useQuery, gql } from '@apollo/client'
 import { produccts } from '../../apollo/server'
 
@@ -19,21 +19,23 @@ function SearchResults(props) {
 
     const searchProducts = searchText => {
         const productData = []
+        // console.log('Searched Products',productData)
         data.products.forEach(product => {
             const regex = new RegExp(
                 searchText.replace(/[\\[\]()+?.*]/g, c => '\\' + c),
                 'i'
             )
             const result = product.title.search(regex)
-            if (result < 0) {
-                const result = product.subCategory.title.search(regex)
-                if (result < 0) {
-                    const result = product.subCategory.title.search(regex)
-                    return result
-                }
-                if (!result) return
+
+            if (result > -1 && productData.indexOf(product) === -1) {
+                productData.push(product)
             }
-            productData.push(product)
+            const resultSubCategory = product.subCategory.title.search(regex)
+            console.log('sub category', resultSubCategory)
+            if (resultSubCategory > -1 && productData.indexOf(product) === -1) {
+                console.log('product result', product.title, resultSubCategory)
+                productData.push(product)
+            }
         })
         return productData
     }
@@ -41,14 +43,15 @@ function SearchResults(props) {
     function renderSearchResult() {
         return (
             <View style={styles.mainBody}>
-                <View style={styles.filter}>
-                    <View style={styles.mixed_text}>
-                        {<TextDefault textColor={colors.fontSecondColor} H5>
-                            {!!search ? searchProducts(search).length : 0}{' results found for: '} {search}
-                        </TextDefault>}
-                    </View>
+                <View style={styles.mixed_text}>
+                    {<TextDefault textColor={colors.fontSecondColor} H5>
+                        {!!search ? searchProducts(search).length : 0}{' results found for: '} {search}
+                    </TextDefault>}
                 </View>
-                <ScrollView style={styles.main_scroller}>
+                <ScrollView
+                    style={styles.flex} 
+                    contentContainerStyle={styles.scrollContainer}
+                    showsVerticalScrollIndicator={false}>
                     {!!search && searchProducts(search).map((item, i) => (
                         <FullCard
                             productImage={item.image[0]}
