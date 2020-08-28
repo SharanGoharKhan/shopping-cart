@@ -67,7 +67,7 @@ function AddressList() {
                     <View style={styles.main}>
                         <FlatList
                             style={styles.flex}
-                            data={profile.addresses}
+                            data={profile.addresses.filter(a=>a.isActive)}
                             keyExtractor={(item) => item._id.toString()}
                             ListEmptyComponent={emptyView}
                             renderItem={({ item, index }) => (

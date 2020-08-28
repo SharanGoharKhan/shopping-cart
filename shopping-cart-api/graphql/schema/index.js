@@ -14,6 +14,7 @@ const typeDefs = gql`
     building: String!
     details: String
     selected: Boolean
+    isActive: Boolean
   }
 
   type OrderAddress {
@@ -94,6 +95,7 @@ const typeDefs = gql`
     subCategory: SubCategory!
     image: [String!]
     attributes: [Attributes!]
+    reviewData: ReviewData
     price: Float!
     featured: Boolean
     isActive: Boolean!
@@ -538,7 +540,7 @@ const typeDefs = gql`
     coupon(coupon: String!): Coupon!
     createAddress(addressInput: AddressInput!): User!
     editAddress(addressInput: AddressInput!): Address!
-    deleteAddress(id: ID!): User!
+    deleteAddress(id: ID!): Address!
     changePassword(oldPassword: String!, newPassword: String!): Boolean!
     selectAddress(id: String!): User!
     assignOrder(id: String): Order!

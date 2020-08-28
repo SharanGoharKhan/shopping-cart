@@ -41,13 +41,13 @@ function ProductCard(props) {
                                 textColor={colors.fontSecondColor}
                                 style={{ marginLeft: 2 }}
                                 bolder>
-                                4.4
+                                {props.reviewData.ratings}
                             </TextDefault>
                             <TextDefault
                                 textColor={colors.fontSecondColor}
                                 style={{ marginLeft: 2 }}
-                                small>
-                                (2)
+                                small bolder>
+                                ( {props.reviewData.total} )
                 </TextDefault>
                         </View>
                     </View>

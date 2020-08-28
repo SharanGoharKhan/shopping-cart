@@ -49,6 +49,7 @@ export const profile = `
         building
         details
         selected
+        isActive
       }
     }
   }`
@@ -93,17 +94,15 @@ export const editAddress = `mutation EditAddress($addressInput:AddressInput!){
 export const deleteAddress = `mutation DeleteAddress($id:ID!){
   deleteAddress(id:$id){
     _id
-    addresses{
-      _id
-      label
-      region
-      city
-      apartment
-      building
-      details
-      selected
+    label
+    region
+    city
+    apartment
+    building
+    details
+    selected
+    isActive
     }
-  }
 }`
 
 export const selectAddress = `mutation SelectAddress($id:String!){
@@ -150,6 +149,10 @@ export const categoryProduct = `query ProductByCategory($id:String!){
     image
     price
     featured
+    reviewData{
+      ratings
+      total
+    }
     subCategory{
       _id
       title
@@ -182,6 +185,10 @@ export const productById=`query ProductByIds($ids:[String!]!){
     image
     price
     featured
+    reviewData{
+      ratings
+      total
+    }
     subCategory{
       _id
       title
@@ -242,6 +249,10 @@ export const produccts = `query{
     image
     price
     featured
+    reviewData{
+      ratings
+      total
+    }
     subCategory{
       _id
       title

@@ -45,7 +45,7 @@ module.exports = {
                 address.label = addressInput.label
                 address.region = addressInput.region
                 address.city = addressInput.city
-                address.apartment= addressInput.apartment
+                address.apartment = addressInput.apartment
                 address.building = addressInput.building
                 address.details = addressInput.details
 
@@ -68,9 +68,16 @@ module.exports = {
                     throw new Error('Address not found')
                 }
                 address.isActive = false
-                await address.save()
-                const updatedUser = await User.findById(req.userId)
-                return transformUser(updatedUser)
+                const result = await address.save()
+                // const updatedUser = await User.findById(req.userId)
+                console.log({
+                    ...result._doc,
+                    _id: result.id
+                })
+                return {
+                    ...result._doc,
+                    _id: result.id
+                }
             } catch (e) {
                 throw e
             }

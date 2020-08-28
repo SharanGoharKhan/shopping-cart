@@ -3,10 +3,11 @@ const User = require('../../models/user')
 const Category = require('../../models/category')
 const SubCategory = require('../../models/subCategory')
 const Item = require('../../models/item')
-const Option = require('../../models/option')
+const Review = require('../../models/review')
 const Order = require('../../models/order')
 const Address = require('../../models/address')
 const { dateToString } = require('../../helpers/date')
+const mongoose = require('mongoose')
 
 
 const products = async productIds => {
@@ -86,6 +87,7 @@ const transformProduct = product => {
     ...product._doc,
     _id: product.id,
     subCategory: subCategory.bind(this, product.subCategory),
+    reviewData: populateReviewsDetail.bind(this,product.id)
   }
 }
 
@@ -110,6 +112,23 @@ const transformOrder = async order => {
     statusQueue: await transformStatusQueue.bind(this, order.statusQueue),
     createdAt: await dateToString(order._doc.createdAt),
     updatedAt: await dateToString(order._doc.updatedAt)
+  }
+}
+
+const populateReviewsDetail = async productId => {
+  const data = await Review.find({ product: productId })
+    .sort({ createdAt: -1 })
+    .limit(10)
+  const result = await Review.aggregate([
+    { $match: { product: mongoose.Types.ObjectId(productId) } },
+    { $group: { _id: productId, average: { $avg: '$rating' } } }
+  ])
+  const reviewData = result.length > 0 ? result[0] : { average: 0 }
+  const reviewCount = await Review.countDocuments({ product: productId })
+  return {
+    reviews: data.map(transformReview),
+    ratings: reviewData.average.toFixed(2),
+    total: reviewCount
   }
 }
 
