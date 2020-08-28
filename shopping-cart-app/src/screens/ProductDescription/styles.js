@@ -137,6 +137,16 @@ const styles = StyleSheet.create({
     reviewHeader: {
         alignSelf: "center",
         width: "90%"
+    },
+    //modal
+    crossBtn: {
+        ...alignment.Pmedium,
+    },
+    headerZoom: {
+        position: 'absolute',
+        top: 0,
+        right: 0,
+        ...alignment.MTlarge
     }
 });
 export default styles;

@@ -6,7 +6,7 @@ import { colors } from '../../utils'
 function Spinner(props) {
   return (
     <ActivityIndicator
-      animating={true}
+      animating={props.loading ?? true}
       style={{
         flex: 1,
         backgroundColor: props.backColor

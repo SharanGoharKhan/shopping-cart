@@ -6,6 +6,9 @@ const styles = StyleSheet.create({
     flex: {
         flex: 1,
     },
+    height: {
+        height: height
+    },
     safeAreaStyle: {
         backgroundColor: colors.headerbackground
     },

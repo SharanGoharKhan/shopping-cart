@@ -31,7 +31,18 @@ const styles = StyleSheet.create({
     botSubCardContainer: {
         width: '90%',
         height: '100%',
-        justifyContent: 'space-between'
-    }
+        justifyContent: 'space-between',
+    },
+    priceContainer: {
+        flexDirection: "row",
+        justifyContent: "space-between",
+        width: "100%"
+    },
+    aboutRestaurant: {
+        width: "30%",
+        alignItems: 'center',
+        flexDirection: 'row',
+        justifyContent: 'flex-end'
+    },
 })
 export default styles

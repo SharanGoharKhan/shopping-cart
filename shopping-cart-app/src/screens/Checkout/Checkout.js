@@ -104,6 +104,7 @@ function Checkout() {
         }
         if (!address) {
             FlashMessage({ message: 'Set delivery address before checkout', type: 'warning' })
+            navigation.navigate('AddressList', { backScreen: 'Cart' })
             return false
         }
         if (!paymentMethod) {

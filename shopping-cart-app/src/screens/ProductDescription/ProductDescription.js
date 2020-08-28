@@ -1,5 +1,5 @@
 import React, { useState, useContext, useEffect } from 'react';
-import { View, TouchableOpacity, Image, FlatList } from 'react-native';
+import { View, TouchableOpacity, Image, FlatList, Modal } from 'react-native';
 import styles from './styles';
 import { BackHeader, BottomTab, TextDefault, Spinner, FlashMessage, TextError } from '../../components';
 import MainBtn from '../../ui/Buttons/MainBtn'
@@ -12,12 +12,15 @@ import UserContext from '../../context/User';
 import ConfigurationContext from '../../context/Configuration';
 import { useQuery, gql } from '@apollo/client'
 import { productReviews } from '../../apollo/server'
+import ImageViewer from 'react-native-image-zoom-viewer';
 
 const REVIEWS = gql`${productReviews}`
 
 function ProductDescription(props) {
     const navigation = useNavigation()
     const route = useRoute()
+    const [modalShow, modalShowSetter] = useState(false)
+    const [imageIndex, imageIndexSetter] = useState(0)
     const product = route.params?.product ?? null
     const { addCartItem } = useContext(UserContext)
     const configuration = useContext(ConfigurationContext)
@@ -26,8 +29,9 @@ function ProductDescription(props) {
     const [stockAvailability, setStockAvailability] = useState(false)
     const [attributes, attributeSetter] = useState([])
     const { data, loading, error } = useQuery(REVIEWS, { variables: { productId: product._id } })
-
-
+    const zoomImages = product?.image.map((item) => {
+        return ({ url: item })
+    })
     function didFocus() {
         const itemAttributes = product?.attributes.length ?
             product.attributes.map(attribute => {
@@ -107,8 +111,9 @@ function ProductDescription(props) {
                             </View>
                         </View>
                     </View>
-                    <View style={styles.caroselMainImgCnt}>
+                    <TouchableOpacity activeOpacity={1} onPress={() => modalShowSetter(true)} style={styles.caroselMainImgCnt}>
                         <Image
+
                             source={
                                 product &&
                                 { uri: caroselImage }
@@ -116,7 +121,8 @@ function ProductDescription(props) {
                             resizeMode="cover"
                             style={styles.imgResponsive}
                         />
-                    </View>
+
+                    </TouchableOpacity>
                     <View style={styles.scrollViewStyle}>
                         <FlatList
                             style={{ flex: 1 }}
@@ -124,10 +130,14 @@ function ProductDescription(props) {
                             data={product?.image ?? []}
                             keyExtractor={(item, index) => index.toString()}
                             showsHorizontalScrollIndicator={false}
+                            alwaysBounceHorizontal={false}
                             renderItem={({ item, index }) => (
                                 <TouchableOpacity
                                     activeOpacity={1}
-                                    onPress={() => setCaroselImage(item)}
+                                    onPress={() => {
+                                        imageIndexSetter(index)
+                                        setCaroselImage(item)
+                                    }}
                                     style={styles.caroselItems}
                                 >
                                     <Image
@@ -259,6 +269,28 @@ function ProductDescription(props) {
                 }
                 <BottomTab
                     screen='HOME' />
+                <Modal animationType='slide' visible={modalShow} transparent={true}>
+                    <ImageViewer
+                        imageUrls={zoomImages}
+                        backgroundColor={colors.themeBackground}
+                        enableSwipeDown={true}
+                        onCancel={() => {
+                            modalShowSetter(prev => !prev)
+                        }}
+                        renderIndicator={() => null}
+                        renderArrowLeft={() =>  <MaterialIcons name="chevron-left" size={scale(30)} color={colors.black} />}
+                        renderArrowRight={() => < MaterialIcons name="chevron-right" size={scale(30)} color={colors.black} />}
+                        loadingRender={() => <Spinner />}
+                        index={imageIndex}
+                    />
+                    <View style={styles.headerZoom}>
+                        <TouchableOpacity activeOpacity={1} style={styles.crossBtn} onPress={() => {
+                            modalShowSetter(prev => !prev)
+                        }}>
+                            <MaterialIcons name="close" size={scale(25)} color={colors.black} />
+                        </TouchableOpacity>
+                    </View>
+                </Modal>
             </View>
         </SafeAreaView>
     );

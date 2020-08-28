@@ -13,8 +13,8 @@ import MainBtn from '../../ui/Buttons/MainBtn'
 function OrderDetail(props) {
     const navigation = useNavigation()
     const route = useRoute()
-    const id = route.params._id ?? null
-    const cart = route.params.clearCart ?? false
+    const id = route.params?._id ?? null
+    const cart = route.params?.clearCart ?? false
     const { orders, clearCart, loadingOrders, errorOrders } = useContext(UserContext)
     const configuration = useContext(ConfigurationContext)
     const order = orders.find(o => o._id === id)

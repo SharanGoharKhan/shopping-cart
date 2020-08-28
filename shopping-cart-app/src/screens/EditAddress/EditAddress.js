@@ -54,182 +54,180 @@ function EditAddress(props) {
     }
     return (
         <SafeAreaView style={[styles.flex, styles.safeAreaStyle]}>
-            <View style={styles.flex}>
+            <KeyboardAvoidingView style={styles.flex} behavior={Platform.OS === "ios" ? "padding" : 'height'}>
                 <BackHeader
                     title="Edit Address"
                     backPressed={() => props.navigation.goBack()} />
-                <KeyboardAvoidingView style={styles.flex} behavior={Platform.OS === "ios" ? "padding" : 'height'} keyboardVerticalOffset={Platform.OS === 'android' ? 20 : 0}>
-                    <View style={styles.formMainContainer}>
-                        <View style={styles.nameAddressContainer}>
-                            <View style={styles.nameAddressLabel}>
-                                <TextDefault>
-                                    {'Name of address'}
-                                </TextDefault>
-                            </View>
-                            <View style={styles.nameAddressInput}>
-                                <TextInput
-                                    value={title}
-                                    placeholder="My Home"
-                                    placeholderTextColor={colors.fontPlaceholder}
-                                    style={[styles.addressInputStyle, titleError.length > 0 ? styles.error : styles.titleBorder]}
-                                    onChangeText={(text) => titleSetter(text)}
-                                    onBlur={() => {
-                                        titleErrorSetter(
-                                            !title.trim().length
-                                                ? 'Error'
-                                                : ''
-                                        )
-                                    }}
-                                />
-                            </View>
+                <View style={styles.formMainContainer}>
+                    <View style={styles.nameAddressContainer}>
+                        <View style={styles.nameAddressLabel}>
+                            <TextDefault>
+                                {'Name of address'}
+                            </TextDefault>
                         </View>
-                        <ScrollView style={styles.flex} showsVerticalScrollIndicator={false} contentContainerStyle={{ alignItems: 'center', flexGrow: 1 }}>
-                            <View style={styles.formContainer}>
-                                <View style={styles.formContentContainer}>
-                                    <View style={styles.twoItemsContainer}>
-                                        <View style={styles.halfContainer}>
-                                            <View style={styles.labelContainer}>
-                                                <TextDefault textColor={colors.darkGrayText} H5>
-                                                    {'Region'}
-                                                </TextDefault>
-                                            </View>
-                                            <View style={styles.inputContainer}>
-                                                <TextInput
-                                                    value={regionName}
-                                                    style={[styles.flex, styles.inputText, regionNameError.length > 0 && styles.error]}
-                                                    placeholder="Fedral"
-                                                    placeholderTextColor={colors.fontPlaceholder}
-                                                    onChangeText={(text) => regionNameSetter(text)}
-                                                    onBlur={() => {
-                                                        regionNameErrorSetter(
-                                                            !regionName.trim().length
-                                                                ? 'Error'
-                                                                : ''
-                                                        )
-                                                    }}
-                                                />
-                                            </View>
+                        <View style={styles.nameAddressInput}>
+                            <TextInput
+                                value={title}
+                                placeholder="My Home"
+                                placeholderTextColor={colors.fontPlaceholder}
+                                style={[styles.addressInputStyle, titleError.length > 0 ? styles.error : styles.titleBorder]}
+                                onChangeText={(text) => titleSetter(text)}
+                                onBlur={() => {
+                                    titleErrorSetter(
+                                        !title.trim().length
+                                            ? 'Error'
+                                            : ''
+                                    )
+                                }}
+                            />
+                        </View>
+                    </View>
+                    <ScrollView style={styles.flex} showsVerticalScrollIndicator={false} contentContainerStyle={{ alignItems: 'center', flexGrow: 1 }}>
+                        <View style={styles.formContainer}>
+                            <View style={styles.formContentContainer}>
+                                <View style={styles.twoItemsContainer}>
+                                    <View style={styles.halfContainer}>
+                                        <View style={styles.labelContainer}>
+                                            <TextDefault textColor={colors.darkGrayText} H5>
+                                                {'Region'}
+                                            </TextDefault>
                                         </View>
-                                        <View style={styles.halfContainer}>
-                                            <View style={styles.labelContainer}>
-                                                <TextDefault textColor={colors.darkGrayText} H5>
-                                                    {'City'}
-                                                </TextDefault>
-                                            </View>
-                                            <View style={styles.inputContainer}>
-                                                <TextInput
-                                                    value={city}
-                                                    style={[styles.flex, styles.inputText, cityError.length > 0 && styles.error]}
-                                                    placeholder="Islamabad"
-                                                    placeholderTextColor={colors.fontPlaceholder}
-                                                    onChangeText={(text) => citySetter(text)}
-                                                    onBlur={() => {
-                                                        cityErrorSetter(
-                                                            !city.trim().length
-                                                                ? 'Error'
-                                                                : ''
-                                                        )
-                                                    }}
-                                                />
-                                            </View>
+                                        <View style={styles.inputContainer}>
+                                            <TextInput
+                                                value={regionName}
+                                                style={[styles.flex, styles.inputText, regionNameError.length > 0 && styles.error]}
+                                                placeholder="Fedral"
+                                                placeholderTextColor={colors.fontPlaceholder}
+                                                onChangeText={(text) => regionNameSetter(text)}
+                                                onBlur={() => {
+                                                    regionNameErrorSetter(
+                                                        !regionName.trim().length
+                                                            ? 'Error'
+                                                            : ''
+                                                    )
+                                                }}
+                                            />
                                         </View>
                                     </View>
-                                    <View style={styles.twoItemsContainer}>
-                                        <View style={styles.halfContainer}>
-                                            <View style={styles.labelContainer}>
-                                                <TextDefault numberOfLines={1} textColor={colors.darkGrayText} H5>
-                                                    {'Apt/Villa Number'}
-                                                </TextDefault>
-                                            </View>
-                                            <View style={styles.inputContainer}>
-                                                <TextInput
-                                                    value={aptNumber}
-                                                    style={[styles.flex, styles.inputText, aptNumberError.length > 0 && styles.error]}
-                                                    placeholder="01"
-                                                    placeholderTextColor={colors.fontPlaceholder}
-                                                    onChangeText={(text) => aptNumberSetter(text)}
-                                                    onBlur={() => {
-                                                        aptNumberErrorSetter(
-                                                            !aptNumber.trim().length
-                                                                ? 'Error'
-                                                                : ''
-                                                        )
-                                                    }}
-                                                />
-                                            </View>
+                                    <View style={styles.halfContainer}>
+                                        <View style={styles.labelContainer}>
+                                            <TextDefault textColor={colors.darkGrayText} H5>
+                                                {'City'}
+                                            </TextDefault>
                                         </View>
-                                        <View style={styles.halfContainer}>
-                                            <View style={styles.labelContainer}>
-                                                <TextDefault numberOfLines={1} textColor={colors.darkGrayText} H5>
-                                                    {'Building/Villa Name'}
-                                                </TextDefault>
-                                            </View>
-                                            <View style={styles.inputContainer}>
-                                                <TextInput
-                                                    value={building}
-                                                    style={[styles.flex, styles.inputText, buildingError.length > 0 && styles.error]}
-                                                    placeholder="Block 4"
-                                                    placeholderTextColor={colors.fontPlaceholder}
-                                                    onChangeText={(text) => buildingSetter(text)}
-                                                    onBlur={() => {
-                                                        buildingErrorSetter(
-                                                            !building.trim().length
-                                                                ? 'Error'
-                                                                : ''
-                                                        )
-                                                    }}
-                                                />
-                                            </View>
-                                        </View>
-                                    </View>
-                                    <View style={styles.oneItemContainer}>
-                                        <View style={styles.fullContainer}>
-                                            <View style={styles.labelContainer}>
-                                                <TextDefault textColor={colors.darkGrayText} H5>
-                                                    {'Additional Details'}
-                                                </TextDefault>
-                                            </View>
-                                            <View style={styles.inputContainer}>
-                                                <TextInput
-                                                    value={additional}
-                                                    style={[styles.flex, styles.inputText]}
-                                                    placeholder="N/A"
-                                                    placeholderTextColor={colors.fontPlaceholder}
-                                                    onChangeText={(text) => additionalSetter(text)}
-                                                />
-                                            </View>
+                                        <View style={styles.inputContainer}>
+                                            <TextInput
+                                                value={city}
+                                                style={[styles.flex, styles.inputText, cityError.length > 0 && styles.error]}
+                                                placeholder="Islamabad"
+                                                placeholderTextColor={colors.fontPlaceholder}
+                                                onChangeText={(text) => citySetter(text)}
+                                                onBlur={() => {
+                                                    cityErrorSetter(
+                                                        !city.trim().length
+                                                            ? 'Error'
+                                                            : ''
+                                                    )
+                                                }}
+                                            />
                                         </View>
                                     </View>
                                 </View>
-                                <MainBtn
-                                    loading={loading}
-                                    text="Edit address"
-                                    style={{ width: '90%' }}
-                                    onPress={() => {
-                                        if (validate()) {
-                                            mutate({
-                                                variables: {
-                                                    addressInput: {
-                                                        _id: _id,
-                                                        label: title.trim(),
-                                                        region: regionName.trim(),
-                                                        city: city.trim(),
-                                                        apartment: aptNumber.trim(),
-                                                        building: building.trim(),
-                                                        details: additional.trim()
-                                                    }
-                                                }
-                                            })
-                                        }
-                                    }}
-                                />
+                                <View style={styles.twoItemsContainer}>
+                                    <View style={styles.halfContainer}>
+                                        <View style={styles.labelContainer}>
+                                            <TextDefault numberOfLines={1} textColor={colors.darkGrayText} H5>
+                                                {'Apt/Villa Number'}
+                                            </TextDefault>
+                                        </View>
+                                        <View style={styles.inputContainer}>
+                                            <TextInput
+                                                value={aptNumber}
+                                                style={[styles.flex, styles.inputText, aptNumberError.length > 0 && styles.error]}
+                                                placeholder="01"
+                                                placeholderTextColor={colors.fontPlaceholder}
+                                                onChangeText={(text) => aptNumberSetter(text)}
+                                                onBlur={() => {
+                                                    aptNumberErrorSetter(
+                                                        !aptNumber.trim().length
+                                                            ? 'Error'
+                                                            : ''
+                                                    )
+                                                }}
+                                            />
+                                        </View>
+                                    </View>
+                                    <View style={styles.halfContainer}>
+                                        <View style={styles.labelContainer}>
+                                            <TextDefault numberOfLines={1} textColor={colors.darkGrayText} H5>
+                                                {'Building/Villa Name'}
+                                            </TextDefault>
+                                        </View>
+                                        <View style={styles.inputContainer}>
+                                            <TextInput
+                                                value={building}
+                                                style={[styles.flex, styles.inputText, buildingError.length > 0 && styles.error]}
+                                                placeholder="Block 4"
+                                                placeholderTextColor={colors.fontPlaceholder}
+                                                onChangeText={(text) => buildingSetter(text)}
+                                                onBlur={() => {
+                                                    buildingErrorSetter(
+                                                        !building.trim().length
+                                                            ? 'Error'
+                                                            : ''
+                                                    )
+                                                }}
+                                            />
+                                        </View>
+                                    </View>
+                                </View>
+                                <View style={styles.oneItemContainer}>
+                                    <View style={styles.fullContainer}>
+                                        <View style={styles.labelContainer}>
+                                            <TextDefault textColor={colors.darkGrayText} H5>
+                                                {'Additional Details'}
+                                            </TextDefault>
+                                        </View>
+                                        <View style={styles.inputContainer}>
+                                            <TextInput
+                                                value={additional}
+                                                style={[styles.flex, styles.inputText]}
+                                                placeholder="N/A"
+                                                placeholderTextColor={colors.fontPlaceholder}
+                                                onChangeText={(text) => additionalSetter(text)}
+                                            />
+                                        </View>
+                                    </View>
+                                </View>
                             </View>
-                        </ScrollView>
-                    </View>
-                </KeyboardAvoidingView>
-                <BottomTab
-                    screen='PROFILE' />
-            </View >
+                            <MainBtn
+                                loading={loading}
+                                text="Edit address"
+                                style={{ width: '90%' }}
+                                onPress={() => {
+                                    if (validate()) {
+                                        mutate({
+                                            variables: {
+                                                addressInput: {
+                                                    _id: _id,
+                                                    label: title.trim(),
+                                                    region: regionName.trim(),
+                                                    city: city.trim(),
+                                                    apartment: aptNumber.trim(),
+                                                    building: building.trim(),
+                                                    details: additional.trim()
+                                                }
+                                            }
+                                        })
+                                    }
+                                }}
+                            />
+                        </View>
+                    </ScrollView>
+                </View>
+            </KeyboardAvoidingView>
+            <BottomTab
+                screen='PROFILE' />
         </SafeAreaView >
     );
 }
