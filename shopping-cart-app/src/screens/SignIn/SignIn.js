@@ -13,7 +13,7 @@ import { EvilIcons, SimpleLineIcons } from '@expo/vector-icons';
 import * as AppAuth from 'expo-app-auth'
 import * as Google from 'expo-google-app-auth'
 import getEnvVars from '../../../environment'
-import { useNavigation } from '@react-navigation/native';
+import { useNavigation, useRoute } from '@react-navigation/native';
 import * as AppleAuthentication from 'expo-apple-authentication'
 import { useMutation, gql } from '@apollo/client'
 import UserContext from '../../context/User'
@@ -32,6 +32,8 @@ const LOGIN = gql`
 
 function SignIn(props) {
     const navigation = useNavigation()
+    const route = useRoute()
+    const cartAddress = route.params?.backScreen ?? null
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
     const [emailError, setEmailError] = useState(null)
@@ -40,7 +42,6 @@ function SignIn(props) {
     const [loginButton, loginButtonSetter] = useState(null)
     const [loading, setLoading] = useState(false)
     const [enableApple, setEnableApple] = useState(false)
-
     const { setTokenAsync } = useContext(UserContext)
 
     const [mutate] = useMutation(LOGIN, { onCompleted, onError })
@@ -92,8 +93,11 @@ function SignIn(props) {
             // }
             // Analytics.identify(data.login.userId, trackingOpts)
             // Analytics.track(Analytics.events.USER_LOGGED_IN, trackingOpts)
-            setTokenAsync(data.login.token)
-            navigation.navigate('MainLanding')
+            await setTokenAsync(data.login.token)
+            if (cartAddress === 'Cart')
+                navigation.goBack()
+            else
+                navigation.navigate('MainLanding')
         } catch (e) {
             console.log(e)
         } finally {
