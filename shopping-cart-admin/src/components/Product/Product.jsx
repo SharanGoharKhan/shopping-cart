@@ -339,7 +339,8 @@ function Product(props) {
                                                 name="input-description"
                                                 id="input-description"
                                                 placeholder="e.g "
-                                                type="text"
+                                                type="textarea"
+                                                style={{ resize: 'none', height:'150px' }}
                                                 defaultValue={description}
                                                 onBlur={event => {
                                                     onBlur(setDescriptionError, 'productDescription', event.target.value)
