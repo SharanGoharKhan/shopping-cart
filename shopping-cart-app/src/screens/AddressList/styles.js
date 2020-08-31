@@ -41,9 +41,6 @@ const styles = StyleSheet.create({
         alignItems: 'center',
     },
     headerText: {
-        fontFamily: fontStyles.PoppinsRegular,
-        fontSize: verticalScale(16),
-        color: colors.blackText,
         width: '60%',
     },
     headerBtn: {
@@ -51,11 +48,6 @@ const styles = StyleSheet.create({
         height: '80%',
         justifyContent: 'center',
         alignItems: 'flex-start',
-    },
-    headerBtnText: {
-        fontFamily: fontStyles.PoppinsRegular,
-        fontSize: verticalScale(11),
-        color: colors.greenTextColor,
     },
     // main
     main: {

@@ -21,7 +21,7 @@ const styles = StyleSheet.create({
     },
     productCard: {
         marginRight: width * 0.1,
-        height: scale(200),
+        height: scale(230),
         width: width * 0.4,
         ...alignment.MBlarge
     },

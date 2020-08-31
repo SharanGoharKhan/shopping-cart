@@ -299,21 +299,29 @@ function SignIn(props) {
                                         </TextDefault>
                                     </View>
                                     <View style={styles.bcMain}>
-                                        <TextField
-                                            error={!!emailError}
-                                            placeholder="Email"
-                                            onChange={event => {
-                                                setEmail(event.nativeEvent.text.toLowerCase().trim())
-                                            }}
-                                        />
-                                        <TextField
-                                            error={!!passwordError}
-                                            placeholder="Password"
-                                            password={true}
-                                            onChange={event => {
-                                                setPassword(event.nativeEvent.text.trim())
-                                            }}
-                                        />
+                                        <View>
+                                            <TextField
+                                                error={!!emailError}
+                                                placeholder="Email"
+                                                onChange={event => {
+                                                    setEmail(event.nativeEvent.text.toLowerCase().trim())
+                                                }}
+                                            />
+                                            {!!emailError &&
+                                                <TextDefault textColor={colors.errorColor} small>{emailError}</TextDefault>}
+                                        </View>
+                                        <View>
+                                            <TextField
+                                                error={!!passwordError}
+                                                placeholder="Password"
+                                                password={true}
+                                                onChange={event => {
+                                                    setPassword(event.nativeEvent.text.trim())
+                                                }}
+                                            />
+                                            {!!passwordError &&
+                                                <TextDefault textColor={colors.errorColor} small>{passwordError}</TextDefault>}
+                                        </View>
                                         {rennderLogin()}
                                         <TouchableOpacity
                                             activeOpacity={0.7}

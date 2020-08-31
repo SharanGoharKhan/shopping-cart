@@ -2,7 +2,7 @@ import React, { useContext } from 'react';
 import { TouchableOpacity, View, ImageBackground } from 'react-native';
 import styles from './styles';
 import { scale, colors, alignment } from '../../../utils';
-import { SimpleLineIcons, Feather } from '@expo/vector-icons';
+import { SimpleLineIcons, Feather, Ionicons } from '@expo/vector-icons';
 import UserContext from '../../../context/User';
 import { useNavigation } from '@react-navigation/native';
 import { TextDefault } from '../../../components';
@@ -30,7 +30,7 @@ function profileContainer(props) {
           >
             <View style={styles.profileCenterContainerTop}>
               <TouchableOpacity
-                activeOpacity={0}
+                activeOpacity={1}
                 onPress={() => {
                   logout()
                   navigation.navigate('MainLanding')
@@ -40,7 +40,7 @@ function profileContainer(props) {
                 <SimpleLineIcons name="logout" size={scale(20)} color={colors.pinkColor} />
               </TouchableOpacity>
               <TouchableOpacity
-                activeOpacity={0}
+                activeOpacity={1}
                 onPress={() => navigation.navigate('EditingProfile')}
                 style={styles.iconContainer}
               >
@@ -59,12 +59,22 @@ function profileContainer(props) {
             </View>
             <View style={styles.addressContainer}>
               <TouchableOpacity
-                activeOpacity={0}
+                activeOpacity={1}
                 onPress={() => navigation.navigate('AddressList')}
                 style={{ alignItems: 'center' }}>
                 <SimpleLineIcons name="location-pin" size={scale(20)} color={colors.fontThirdColor} />
                 <TextDefault textColor={colors.fontSecondColor}>
                   {'Addresses'}
+                </TextDefault>
+              </TouchableOpacity>
+              <TouchableOpacity activeOpacity={1} style={{ alignItems: 'center' }}
+                onPress={() => navigation.navigate('Favourite')} >
+                <Ionicons
+                  name="ios-heart-empty"
+                  size={scale(20)}
+                  color={colors.fontThirdColor} />
+                <TextDefault textColor={colors.fontSecondColor}>
+                  {'Favourites'}
                 </TextDefault>
               </TouchableOpacity>
             </View>
