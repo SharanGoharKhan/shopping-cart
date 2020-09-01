@@ -18,16 +18,7 @@ function OrderDetail(props) {
     const { orders, clearCart, loadingOrders, errorOrders } = useContext(UserContext)
     const configuration = useContext(ConfigurationContext)
     const order = orders.find(o => o._id === id)
-    useEffect(() => {
-        return () => {
-            if (cart) {
-                clear()
-            }
-        }
-    }, [cart])
-    async function clear() {
-        await clearCart()
-    }
+   
     return (
         <SafeAreaView style={[styles.flex, styles.safeAreaStyle]}>
             <View style={styles.flex}>

@@ -24,7 +24,6 @@ function ProductListing(props) {
         navigation.goBack()
         return null
     }
-    if(categoryData) console.log(JSON.stringify(categoryData))
     function emptyView() {
         return (
             <View style={styles.subContainerImage}>

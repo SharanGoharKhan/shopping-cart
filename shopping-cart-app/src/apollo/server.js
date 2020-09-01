@@ -51,6 +51,35 @@ export const profile = `
         selected
         isActive
       }
+      whishlist{
+        _id
+        title
+        description
+        image
+        price
+        featured
+        reviewData{
+          ratings
+          total
+        }
+        subCategory{
+          _id
+          title
+        }
+        attributes{
+          _id
+          attributeId
+          title
+          options
+          {
+            _id
+            optionId
+            title
+            price
+            stock
+          }
+        }
+      }
     }
   }`
 
@@ -236,6 +265,41 @@ export const product=`query Product($id:String!){
         title
         price
         stock
+      }
+    }
+  }
+}`
+
+export const addToWhishlist = `mutation AddToWhishlist($productId:String!){
+  addToWhishlist(productId:$productId){
+    _id
+    whishlist{
+      _id
+      title
+      description
+      image
+      price
+      featured
+      reviewData{
+        ratings
+        total
+      }
+      subCategory{
+        _id
+        title
+      }
+      attributes{
+        _id
+        attributeId
+        title
+        options
+        {
+          _id
+          optionId
+          title
+          price
+          stock
+        }
       }
     }
   }

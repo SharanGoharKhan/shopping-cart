@@ -1,4 +1,4 @@
-import React, { useLayoutEffect } from 'react'
+import React, { useLayoutEffect, useContext } from 'react'
 import { Platform } from 'react-native'
 import { WebView } from 'react-native-webview'
 import { useNavigation, useRoute } from '@react-navigation/native'
@@ -6,6 +6,7 @@ import { useApolloClient, gql } from '@apollo/client'
 import { stripeCurrencies } from '../../utils/currencies'
 import { myOrders } from '../../apollo/server'
 import getEnvVars from '../../../environment'
+import UserContext from '../../context/User'
 
 const {
   SERVER_URL,
@@ -23,6 +24,7 @@ function StripeCheckout() {
   const client = useApolloClient()
   const route = useRoute()
   const { _id, currency, email: email } = route.params
+  const { clearCart } = useContext(UserContext)
 
   const multiplier = stripeCurrencies.find(
     ({ currency: curr }) => curr === currency
@@ -48,6 +50,7 @@ function StripeCheckout() {
       fetchPolicy: 'network-only'
     })
     const order = result.data.orders.find(order => order.orderId === _id)
+    await clearCart();
     navigation.reset({
       routes: [
         { name: 'MainLanding' },

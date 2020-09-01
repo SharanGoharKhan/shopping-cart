@@ -1,16 +1,31 @@
-import React, { useState } from 'react'
+import React, { useState, useContext, useEffect } from 'react'
 import { View, Image, TouchableOpacity } from 'react-native'
 import styles from './styles'
+import { gql, useMutation } from '@apollo/client'
+import { addToWhishlist } from '../../apollo/server'
 import { TextDefault } from '../../components'
 import { colors, scale } from '../../utils'
 import { useNavigation } from '@react-navigation/native'
 import { Ionicons } from '@expo/vector-icons'
+import UserContext from '../../context/User'
+
+const ADD_TO_WHISHLIST = gql`${addToWhishlist}`
 
 function ProductCard(props) {
     const navigation = useNavigation()
+    const { isLoggedIn, profile } = useContext(UserContext)
     const [liked, setLiked] = useState(false)
+    const [mutate, { loading: loadingMutation }] = useMutation(ADD_TO_WHISHLIST)
+    useEffect(() => {
+        if(isLoggedIn){
+        setLiked(profile.whishlist ? !!profile.whishlist.find(whishlist => whishlist._id === props._id) : false)
+        }else {
+            setLiked(false)
+        }
+    }, [profile])
     return (
         <TouchableOpacity
+            disabled={loadingMutation}
             activeOpacity={1}
             onPress={() => navigation.navigate('ProductDescription', { product: props })}
             style={[styles.cardContainer, props.styles]}>
@@ -54,8 +69,21 @@ function ProductCard(props) {
                         </TextDefault>
                         <View style={[styles.aboutRestaurant]}>
                             <TouchableOpacity
+                                disabled={loadingMutation}
                                 activeOpacity={1}
-                                onPress={() => setLiked(prev => !prev)}
+                                onPress={() => {
+                                    if (isLoggedIn) {
+                                        mutate({
+                                            variables: {
+                                                productId: props._id
+                                            }
+                                        })
+                                        setLiked(prev => !prev)
+                                    }
+                                    else {
+                                        navigation.navigate('SignIn')
+                                    }
+                                }}
                                 style={styles.likeContainer}>
                                 <Ionicons name={liked ? "ios-heart" : "ios-heart-empty"} size={scale(20)} />
                             </TouchableOpacity>
