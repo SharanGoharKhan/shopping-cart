@@ -131,6 +131,7 @@ const typeDefs = gql`
     createdAt: String
     updatedAt: String
     addresses: [Address!]
+    whishlist: [Product]
     notificationToken: String
   }
   type Configuration {
@@ -466,6 +467,7 @@ const typeDefs = gql`
       ending_date: String
     ): DashboardSales!
     coupons: [Coupon!]!
+    whishlistProducts: [Product!]
   }
 
   type Mutation {
@@ -547,6 +549,7 @@ const typeDefs = gql`
     createProduct(productInput:ProductInput!):Product!
     editProduct(productInput:ProductInput):Product!
     deleteProduct(id: String!):Product!
+    addToWhishlist(productId: String!):User!
   }
   type Subscription {
     subscribePlaceOrder: Subscription_Orders!

@@ -177,7 +177,8 @@ const transformUser = async user => {
     ...user._doc,
     password: null,
     _id: user.id,
-    addresses: populateAddresses.bind(this, user.addresses)
+    addresses: populateAddresses.bind(this, user.addresses),
+    whishlist: singleProduct.bind(this, user.whishlist)
   }
 }
 

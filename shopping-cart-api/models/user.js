@@ -68,6 +68,12 @@ const userSchema = new Schema(
         type: Schema.Types.ObjectId,
         ref: 'Address'
       }
+    ],
+    whishlist: [
+      {
+        type: Schema.Types.ObjectId,
+        ref: 'Product'
+      }
     ]
   },
   { timestamps: true }
