@@ -12,34 +12,40 @@ import Spinner from '../Spinner/Spinner';
 const navItems = [
     {
         title: 'Home',
+        icon: 'home',
         navigateTo: 'MainLanding',
         isAuth: false,
     },
     {
-        title: 'Categories',
-        navigateTo: 'Category',
-        isAuth: false,
-    },
-    {
         title: 'Profile',
+        icon: 'user',
         navigateTo: 'ProfileDashboard',
         isAuth: true,
     },
     {
-        title: 'Previous Orders',
-        navigateTo: 'PreviousOrders',
-        isAuth: true,
-    },
-    {
         title: 'Search',
+        icon: 'magnifier',
         navigateTo: 'SearchResult',
         isAuth: false,
     },
     {
         title: 'Address',
+        icon: 'location-pin',
         navigateTo: 'AddressList',
         isAuth: true,
-    }
+    },
+    {
+        title: 'Categories',
+        icon: 'organization',
+        navigateTo: 'Category',
+        isAuth: false,
+    },
+    {
+        title: 'Previous Orders',
+        icon: 'layers',
+        navigateTo: 'PreviousOrders',
+        isAuth: true,
+    },
 ];
 
 function MainMenu(props) {
@@ -90,9 +96,18 @@ function MainMenu(props) {
                                     }}
                                     key={ind}
                                     style={styles.navItemContainer}>
-                                    <TextDefault textColor={colors.fontMainColor} H4 style={alignment.PLlarge}>
-                                        {item.title}
-                                    </TextDefault>
+                                    <View style={styles.leftContainer}>
+                                        <SimpleLineIcons
+                                            name={item.icon}
+                                            size={scale(17)}
+                                            color={colors.iconColor}
+                                        />
+                                    </View>
+                                    <View style={styles.rightContainer}>
+                                        <TextDefault textColor={colors.fontMainColor} H4 style={alignment.PLxSmall}>
+                                            {item.title}
+                                        </TextDefault>
+                                    </View>
                                 </TouchableOpacity>
                             ))
                         }

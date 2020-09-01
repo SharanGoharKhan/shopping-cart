@@ -71,10 +71,11 @@ const styles = StyleSheet.create({
         height: '80%',
     },
     navItemContainer: {
-        width: '80%',
+        flexDirection: 'row',
+        width: '100%',
         height: '10%',
-        justifyContent: 'center',
-        alignSelf: 'center',
+        alignItems:"center",
+        ...alignment.MBxSmall
     },
     navItemContainerImage: {
         width: '100%',
@@ -114,5 +115,16 @@ const styles = StyleSheet.create({
         width: "100%",
         ...alignment.PLmedium
     },
+    leftContainer: {
+        height: '100%',
+        width: '15%',
+        justifyContent: 'center',
+        alignItems: 'center',
+    },
+    rightContainer: {
+        height: '80%',
+        width: '85%',
+        justifyContent: 'center',
+    }
 });
 export default styles

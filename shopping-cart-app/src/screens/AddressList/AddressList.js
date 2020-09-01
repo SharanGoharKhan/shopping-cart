@@ -9,6 +9,7 @@ import { useNavigation, useRoute } from '@react-navigation/native';
 import { colors, alignment } from '../../utils';
 import { TextDefault } from '../../components';
 import UserContext from '../../context/User'
+import MainBtn from '../../ui/Buttons/MainBtn';
 
 function AddressList() {
     const navigation = useNavigation()
@@ -31,13 +32,9 @@ function AddressList() {
                     </TextDefault>
                 </View>
                 <View style={styles.btnContainer}>
-                    <TouchableOpacity
-                        activeOpacity={0}
-                        style={styles.unselectedButton} onPress={() => navigation.navigate('NewAddress', { backScreen: cartAddress })}>
-                        <TextDefault textColor={colors.buttonText} H5>
-                            {'Add new address'}
-                        </TextDefault>
-                    </TouchableOpacity>
+                    <MainBtn
+                        onPress={() => navigation.navigate('NewAddress', { backScreen: cartAddress })}
+                        text={'Add new address'} />
                 </View>
             </View>
         )
@@ -53,12 +50,16 @@ function AddressList() {
                             style={styles.backImg}>
                             <Ionicons name="ios-arrow-back" size={30} />
                         </TouchableOpacity>
-                        <Text style={styles.headerText}>My Adresses</Text>
+                        <TextDefault textColor={colors.fontMainColor} style={styles.headerText} H4>
+                            {'My Addresses'}
+                        </TextDefault>
                         <View style={styles.headerBtn}>
                             <TouchableOpacity
                                 onPress={() => navigation.navigate('NewAddress', { backScreen: cartAddress })}
                                 activeOpacity={0}>
-                                <Text style={styles.headerBtnText}>{'New Address'}</Text>
+                                <TextDefault textColor={colors.greenTextColor} >
+                                    {'New Address'}
+                                </TextDefault>
                             </TouchableOpacity>
                         </View>
                     </View>
@@ -67,7 +68,7 @@ function AddressList() {
                     <View style={styles.main}>
                         <FlatList
                             style={styles.flex}
-                            data={profile.addresses.filter(a=>a.isActive)}
+                            data={profile.addresses.filter(a => a.isActive)}
                             keyExtractor={(item) => item._id.toString()}
                             ListEmptyComponent={emptyView}
                             renderItem={({ item, index }) => (

@@ -102,9 +102,11 @@ const styles = StyleSheet.create({
         fontSize: verticalScale(12),
     },
     addressContainer: {
-        alignItems: "flex-start",
-        width: '90%',
-        ...alignment.MLsmall
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+        width: '100%',
+        ...alignment.PLsmall,
+        ...alignment.PRsmall
     },
     iconsStyle: {
         width: scale(20),
