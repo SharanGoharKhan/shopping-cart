@@ -43,7 +43,7 @@ function Checkout() {
     const [coupanError, setCoupanError] = useState(null)
     const [discount, setDiscount] = useState(0)
     const configuration = useContext(ConfigurationContext)
-    const { isLoggedIn, cart, profile, loadingProfile } = useContext(UserContext)
+    const { isLoggedIn, cart, profile, loadingProfile, clearCart } = useContext(UserContext)
 
     const [mutate] = useMutation(GET_COUPON, {
         onCompleted,
@@ -157,9 +157,13 @@ function Checkout() {
             })
         }
     }
+    async function clear() {
+        await clearCart()
+    }
 
     function placeOrderCompleted(data) {
         if (paymentMethod.payment === 'COD') {
+            clear()
             navigation.reset({
                 routes: [
                     { name: 'MainLanding' },

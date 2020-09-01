@@ -24,11 +24,6 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         alignContent: 'center'
     },
-    imageContainer: {
-        justifyContent: 'center',
-        alignItems: 'center',
-        ...alignment.MBlarge
-    },
     image: {
         width: scale(130),
         height: scale(130)
@@ -118,19 +113,10 @@ const styles = StyleSheet.create({
         alignItems: 'flex-end',
     },
     //empty
-    subContainerImage: {
-        flex: 1,
-        justifyContent: 'center',
-        alignContent: 'center',
-    },
     imageContainer: {
         justifyContent: 'center',
         alignItems: 'center',
         ...alignment.MBlarge
-    },
-    image: {
-        width: scale(50),
-        height: scale(50)
     },
 
 })

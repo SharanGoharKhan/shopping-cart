@@ -98,7 +98,7 @@ export const UserProvider = props => {
     console.log('onCompleted')
   }
   function onError(error) {
-    console.log('error context', error)
+    console.log('error context', JSON.stringify(error))
   }
 
   const setTokenAsync = async token => {

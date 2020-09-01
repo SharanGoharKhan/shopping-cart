@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import { View, FlatList, Image, TouchableOpacity } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import styles from './styles';
@@ -7,15 +7,16 @@ import { colors, scale } from '../../utils';
 import MainBtn from '../../ui/Buttons/MainBtn';
 import { Feather, FontAwesome } from '@expo/vector-icons'
 import { TextError, TextDefault, BackHeader, BottomTab, Spinner } from '../../components';
-import { useQuery, gql } from '@apollo/client';
-import { produccts } from '../../apollo/server';
+import { useMutation, gql } from '@apollo/client';
+import { addToWhishlist } from '../../apollo/server';
+import UserContext from '../../context/User'
 
-const PRODUCTS_DATA = gql`${produccts}`
+const REMOVE_FROM_WHISHLIST = gql`${addToWhishlist}`
 
 function Favourite(props) {
     const navigation = useNavigation()
-    const { data: productsData, loading, error, refetch, networkStatus } = useQuery(PRODUCTS_DATA)
-
+    const { profile, loadingProfile, errorProfile } = useContext(UserContext)
+    const [mutate, { loading: loadingMutation }] = useMutation(REMOVE_FROM_WHISHLIST)
     function emptyView() {
         return (
             <View style={styles.subContainerImage}>
@@ -44,10 +45,10 @@ function Favourite(props) {
                 <BackHeader
                     title={'Favourite'}
                     backPressed={() => navigation.goBack()} />
-                {loading ? <Spinner /> :
-                    error ? <TextError text='something is wrong' /> :
+                {loadingProfile ? <Spinner /> :
+                    errorProfile ? <TextError text={'User Context: ' + errorProfile.message} /> :
                         <FlatList
-                            data={productsData ? productsData.products : []}
+                            data={profile.whishlist ?? []}
                             style={styles.flex}
                             contentContainerStyle={styles.contentContainer}
                             showsVerticalScrollIndicator={false}
@@ -55,6 +56,7 @@ function Favourite(props) {
                             keyExtractor={(item, index) => index.toString()}
                             renderItem={({ item, index }) => (
                                 <TouchableOpacity
+                                    disabled={loadingMutation}
                                     activeOpacity={1}
                                     onPress={() => navigation.navigate('ProductDescription', { product: item })}
                                     style={styles.cardContainer}
@@ -87,7 +89,15 @@ function Favourite(props) {
                                                         ${item.price.toFixed(2)}
                                                     </TextDefault>
                                                     <TouchableOpacity
+                                                        disabled={loadingMutation}
                                                         activeOpacity={1}
+                                                        onPress={() => {
+                                                            mutate({
+                                                                variables: {
+                                                                    productId: item._id
+                                                                }
+                                                            })
+                                                        }}
                                                         style={styles.actionContainer}>
                                                         <FontAwesome name="trash-o" size={scale(20)} color={colors.google} />
                                                     </TouchableOpacity>

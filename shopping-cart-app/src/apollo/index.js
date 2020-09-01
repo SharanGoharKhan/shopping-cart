@@ -16,6 +16,11 @@ const cache = new InMemoryCache({
           merge(existing, incoming) {
             return incoming;
           }
+        },
+        whishlist: {
+          merge(existing, incoming) {
+            return incoming;
+          }
         }
       }
     },

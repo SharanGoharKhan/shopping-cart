@@ -1,5 +1,6 @@
 const Product = require('../../models/product')
 const Attribute = require('../../models/optionGroup')
+const User = require('../../models/user')
 const { transformProduct, transformProducts, transformUser } = require('./merge')
 const uuidv4 = require('uuid/v4')
 
