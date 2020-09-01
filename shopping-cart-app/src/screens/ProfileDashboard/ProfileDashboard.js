@@ -17,13 +17,14 @@ function ProfileDashboard(props) {
       <View style={[styles.flex, styles.mainContainer]}>
         <ProfileContainer />
         <View style={styles.tabContainer}>
-          <TouchableOpacity>
+          <TouchableOpacity activeOpacity={1}>
             <TextDefault textColor={colors.fontBrown} H5>
               My Active Orders ({orders ? orders.filter(o => ['PENDING', 'DISPATCHED', 'ACCEPTED'].includes(o.orderStatus)).length : 0})
             </TextDefault>
           </TouchableOpacity>
           <TouchableOpacity
-            onPress={() => props.navigation.navigate('PreviousOrders')}>
+            activeOpacity={1}
+            onPress={() => navigation.navigate('PreviousOrders')}>
             <TextDefault H5>
               Previous Orders ({orders ? orders.filter(o => ['DELIVERED'].includes(o.orderStatus)).length : 0})
             </TextDefault>

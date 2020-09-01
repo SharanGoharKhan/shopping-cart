@@ -45,12 +45,12 @@ const styles = StyleSheet.create({
     },
     itemCardContainer: {
         width: scale(180),
-        height: scale(210),
+        height: scale(230),
         borderRadius: scale(5),
         borderColor: colors.whiteColor,
-        borderWidth: scale(3),
+        borderWidth: scale(2),
         ...alignment.MTsmall,
-        ...alignment.MRlarge
+        ...alignment.MRlarge,
     },
     categoryContainer: {
         width: '90%',
@@ -67,7 +67,7 @@ const styles = StyleSheet.create({
     productCard: {
         marginLeft: '5%',
         width: '42%',
-        height: scale(225),
+        height: scale(235),
         marginTop: scale(10),
         marginBottom: scale(20)
     },

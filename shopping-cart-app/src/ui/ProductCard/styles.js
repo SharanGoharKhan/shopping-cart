@@ -32,17 +32,27 @@ const styles = StyleSheet.create({
         width: '90%',
         height: '100%',
         justifyContent: 'space-between',
+        ...alignment.PBxSmall
     },
     priceContainer: {
         flexDirection: "row",
         justifyContent: "space-between",
-        width: "100%"
+        width: "100%",
     },
-    aboutRestaurant: {
+    ratingContainer: {
         width: "30%",
         alignItems: 'center',
         flexDirection: 'row',
-        justifyContent: 'flex-end'
+        justifyContent: 'flex-end',
     },
+    aboutRestaurant: {
+        width: "20%",
+        justifyContent: "center",
+    },
+    likeContainer: {
+        flex: 1,
+        alignItems: "flex-end",
+        justifyContent:"center"
+    }
 })
 export default styles

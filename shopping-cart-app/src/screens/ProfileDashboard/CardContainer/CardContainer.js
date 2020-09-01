@@ -77,7 +77,7 @@ function cardContainer(props) {
                                 <View style={styles.subActionsContainer}>
                                     <Text style={styles.statusStyle}>{item.orderStatus}</Text>
                                     <TouchableOpacity
-                                        activeOpacity={0}
+                                        activeOpacity={1}
                                         onPress={() => navigation.navigate('TrackOrder', { _id: item._id })}
                                         style={styles.actionContainer}>
                                         <Text style={styles.actionStyle}>Track</Text>

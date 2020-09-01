@@ -108,6 +108,7 @@ function EditingProfile(props) {
                                                 onBlur={nameValidation}
                                             />
                                         </View>
+                                        {!!nameError && <TextDefault textColor={colors.errorColor} small >{nameError} </TextDefault>}
                                     </View>
                                 </View>
                                 <View style={styles.oneItemContainer}>
@@ -144,6 +145,7 @@ function EditingProfile(props) {
                                                 onBlur={phoneValiation}
                                             />
                                         </View>
+                                        {!!phoneError && <TextDefault textColor={colors.errorColor} small >{phoneError} </TextDefault>}
                                     </View>
                                 </View>
                             </View>

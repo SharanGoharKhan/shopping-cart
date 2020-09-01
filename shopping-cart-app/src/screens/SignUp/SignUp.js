@@ -136,33 +136,50 @@ function SignUp(props) {
                                         </TextDefault>
                                     </View>
                                     <View style={styles.mainMid}>
-                                        <TextField
-                                            error={!!nameError}
-                                            placeholder="Full Name"
-                                            onChange={event => {
-                                                setFullname(event.nativeEvent.text.toLowerCase().trim())
-                                            }} containerStyle={{ ...alignment.MBsmall }} />
-                                        <TextField
-                                            error={!!emailError}
-                                            placeholder="Email"
-                                            onChange={event => {
-                                                setEmail(event.nativeEvent.text.toLowerCase().trim())
-                                            }} containerStyle={{ ...alignment.MBsmall }} />
-
-                                        <TextField
-                                            error={!!phoneError}
-                                            placeholder="Mobile"
-                                            onChange={event => {
-                                                setPhone(event.nativeEvent.text.toLowerCase().trim())
-                                            }} containerStyle={{ ...alignment.MBsmall }} />
-
-                                        <TextField
-                                            error={!!passwordError}
-                                            placeholder="Password"
-                                            password={true}
-                                            onChange={event => {
-                                                setPassword(event.nativeEvent.text.toLowerCase().trim())
-                                            }} containerStyle={{ ...alignment.MBsmall }} />
+                                        <View style={alignment.MBsmall}>
+                                            <TextField
+                                                error={!!nameError}
+                                                placeholder="Full Name"
+                                                onChange={event => {
+                                                    setFullname(event.nativeEvent.text.toLowerCase().trim())
+                                                }}
+                                            />
+                                            {!!nameError &&
+                                                <TextDefault textColor={colors.errorColor} small>{nameError}</TextDefault>}
+                                        </View>
+                                        <View style={alignment.MBsmall}>
+                                            <TextField
+                                                error={!!emailError}
+                                                placeholder="Email"
+                                                onChange={event => {
+                                                    setEmail(event.nativeEvent.text.toLowerCase().trim())
+                                                }}
+                                            />
+                                            {!!emailError &&
+                                                <TextDefault textColor={colors.errorColor} small>{emailError}</TextDefault>}
+                                        </View>
+                                        <View style={alignment.MBsmall}>
+                                            <TextField
+                                                error={!!phoneError}
+                                                placeholder="Mobile"
+                                                onChange={event => {
+                                                    setPhone(event.nativeEvent.text.toLowerCase().trim())
+                                                }} />
+                                            {!!phoneError &&
+                                                <TextDefault textColor={colors.errorColor} small>{phoneError}</TextDefault>}
+                                        </View>
+                                        <View style={alignment.MBsmall}>
+                                            <TextField
+                                                error={!!passwordError}
+                                                placeholder="Password"
+                                                password={true}
+                                                onChange={event => {
+                                                    setPassword(event.nativeEvent.text.toLowerCase().trim())
+                                                }}
+                                            />
+                                            {!!passwordError &&
+                                                <TextDefault textColor={colors.errorColor} small>{passwordError}</TextDefault>}
+                                        </View>
                                     </View>
                                     <View style={styles.mainBot}>
                                         <View style={styles.botBtnContainer}>

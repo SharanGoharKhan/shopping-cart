@@ -278,7 +278,7 @@ function ProductDescription(props) {
                             modalShowSetter(prev => !prev)
                         }}
                         renderIndicator={() => null}
-                        renderArrowLeft={() =>  <MaterialIcons name="chevron-left" size={scale(30)} color={colors.black} />}
+                        renderArrowLeft={() => <MaterialIcons name="chevron-left" size={scale(30)} color={colors.black} />}
                         renderArrowRight={() => < MaterialIcons name="chevron-right" size={scale(30)} color={colors.black} />}
                         loadingRender={() => <Spinner />}
                         index={imageIndex}
