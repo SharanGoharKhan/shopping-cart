@@ -1,4 +1,4 @@
-import React, { useContext } from 'react'
+import React, { useContext, useState } from 'react'
 import { View, FlatList, Image, TouchableOpacity } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import styles from './styles';
@@ -15,6 +15,7 @@ const REMOVE_FROM_WHISHLIST = gql`${addToWhishlist}`
 
 function Favourite(props) {
     const navigation = useNavigation()
+    const [indexDelete, indexSetterDelete] = useState(-1)
     const { profile, loadingProfile, errorProfile } = useContext(UserContext)
     const [mutate, { loading: loadingMutation }] = useMutation(REMOVE_FROM_WHISHLIST)
     function emptyView() {
@@ -48,7 +49,7 @@ function Favourite(props) {
                 {loadingProfile ? <Spinner /> :
                     errorProfile ? <TextError text={'User Context: ' + errorProfile.message} /> :
                         <FlatList
-                            data={profile.whishlist ?? []}
+                            data={profile ? profile.whishlist : []}
                             style={styles.flex}
                             contentContainerStyle={styles.contentContainer}
                             showsVerticalScrollIndicator={false}
@@ -91,6 +92,7 @@ function Favourite(props) {
                                                     <TouchableOpacity
                                                         disabled={loadingMutation}
                                                         activeOpacity={1}
+                                                        onPressIn={() => indexSetterDelete(index)}
                                                         onPress={() => {
                                                             mutate({
                                                                 variables: {
@@ -99,7 +101,9 @@ function Favourite(props) {
                                                             })
                                                         }}
                                                         style={styles.actionContainer}>
-                                                        <FontAwesome name="trash-o" size={scale(20)} color={colors.google} />
+                                                        {(loadingMutation && (index === indexDelete)) ? <Spinner backColor='transparent' size='small' spinnerColor={colors.google} /> :
+                                                            <FontAwesome name="trash-o" size={scale(20)} color={colors.google} />
+                                                        }
                                                     </TouchableOpacity>
                                                 </View>
                                             </View>
