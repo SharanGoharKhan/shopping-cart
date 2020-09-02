@@ -22,7 +22,7 @@ function ProductCard(props) {
         }else {
             setLiked(false)
         }
-    }, [profile])
+    }, [profile,isLoggedIn])
     return (
         <TouchableOpacity
             disabled={loadingMutation}
