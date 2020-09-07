@@ -25,7 +25,8 @@ const styles = StyleSheet.create({
         ...alignment.PRsmall
     },
     imgContainer: {
-        width: '30%'
+        width: '30%',
+        height: "100%",
     },
     imgResponsive: {
         flex: 1,

@@ -41,6 +41,7 @@ const styles = StyleSheet.create({
     },
     ratingContainer: {
         width: "30%",
+        height: "100%",
         alignItems: 'center',
         flexDirection: 'row',
         justifyContent: 'flex-end',
@@ -52,7 +53,12 @@ const styles = StyleSheet.create({
     likeContainer: {
         flex: 1,
         alignItems: "flex-end",
-        justifyContent:"center"
+        justifyContent: "center"
+    },
+    font: {
+        marginLeft: 2,
+        backgroundColor: "aqua",
+        alignContent: 'center'
     }
 })
 export default styles

@@ -25,8 +25,10 @@ const styles = StyleSheet.create({
     },
     topProfileIconContainer: {
         alignItems: "center",
+        justifyContent: "center"
     },
     topProfileTextContainer: {
+        justifyContent: "center",
         width: '50%',
         ...alignment.MLxSmall
     },

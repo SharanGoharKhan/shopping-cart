@@ -27,6 +27,10 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         alignItems: 'center',
     },
+    productRow: {
+        flexDirection: 'row',
+        maxWidth: "85%",
+    },
     main_top: {
         width: '100%',
         ...alignment.MBmedium
@@ -62,7 +66,7 @@ const styles = StyleSheet.create({
         justifyContent: 'space-between'
     },
     coupanInput: {
-        width: '75%',
+        width: '73%',
     },
     coupanBtn: {
         width: "25%",

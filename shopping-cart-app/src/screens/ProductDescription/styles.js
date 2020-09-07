@@ -140,7 +140,9 @@ const styles = StyleSheet.create({
     },
     //modal
     crossBtn: {
-        ...alignment.Pmedium,
+        backgroundColor: colors.white,
+        borderRadius: 50,
+        ...alignment.Psmall,
     },
     headerZoom: {
         position: 'absolute',

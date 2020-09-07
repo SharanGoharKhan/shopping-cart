@@ -17,12 +17,12 @@ function ProductCard(props) {
     const [liked, setLiked] = useState(false)
     const [mutate, { loading: loadingMutation }] = useMutation(ADD_TO_WHISHLIST)
     useEffect(() => {
-        if(isLoggedIn){
-        setLiked(profile.whishlist ? !!profile.whishlist.find(whishlist => whishlist._id === props._id) : false)
-        }else {
+        if (isLoggedIn) {
+            setLiked(profile.whishlist ? !!profile.whishlist.find(whishlist => whishlist._id === props._id) : false)
+        } else {
             setLiked(false)
         }
-    }, [profile,isLoggedIn])
+    }, [profile, isLoggedIn])
     return (
         <TouchableOpacity
             disabled={loadingMutation}
@@ -48,7 +48,9 @@ function ProductCard(props) {
                                 {props.subCategory.title}
                             </TextDefault>
                             <View style={styles.ratingContainer}>
-                                <Ionicons name="md-star" size={scale(11)} color="#4165b9" />
+                                <View style={{ alignSelf: 'center', height: "80%", }}>
+                                    <Ionicons name="md-star" size={scale(11)} color="#4165b9" />
+                                </View>
                                 <TextDefault
                                     textColor={colors.fontSecondColor}
                                     style={{ marginLeft: 2 }}>
@@ -56,7 +58,7 @@ function ProductCard(props) {
                                 </TextDefault>
                                 <TextDefault
                                     textColor={colors.fontSecondColor}
-                                    style={{ marginLeft: 2 }}
+                                    style={{ marginLeft: 2}}
                                     small>
                                     {`( ${props.reviewData.total} )`}
                                 </TextDefault>
@@ -70,7 +72,7 @@ function ProductCard(props) {
                         <View style={[styles.aboutRestaurant]}>
                             <TouchableOpacity
                                 disabled={loadingMutation}
-                                activeOpacity={1}
+                                activeOpacity={0}
                                 onPress={() => {
                                     if (isLoggedIn) {
                                         mutate({

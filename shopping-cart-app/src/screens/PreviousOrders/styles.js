@@ -91,7 +91,7 @@ const styles = StyleSheet.create({
     subTitleContainer: {
         marginTop: '-3%',
         width: '100%',
-        height: '17%',
+        height: '37%',
     },
     actionsContainer: {
         flex: 1,
@@ -99,8 +99,8 @@ const styles = StyleSheet.create({
     },
     subActionsContainer: {
         width: '100%',
-        height: '60%',
-        justifyContent:"flex-end"
+        height: '40%',
+        justifyContent:"flex-end",
 
     },
     //empty

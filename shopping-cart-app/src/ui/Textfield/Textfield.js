@@ -28,6 +28,7 @@ const TextField = (props) => {
       <TextInput
         onChange={props.onChange}
         style={styles.input}
+        value={props.value}
         placeholderTextColor={placeholderColor}
         placeholder={props.placeholder}
         secureTextEntry={password}

@@ -3,7 +3,7 @@ import { View, TextInput, KeyboardAvoidingView, ScrollView, TouchableOpacity } f
 import styles from './styles';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { BackHeader, BottomTab, TextDefault, FlashMessage, } from '../../components';
-import { colors } from '../../utils';
+import { colors, alignment } from '../../utils';
 import { useNavigation, useRoute } from '@react-navigation/native';
 import MainBtn from '../../ui/Buttons/MainBtn'
 import { gql, useMutation } from '@apollo/client';
@@ -86,7 +86,7 @@ function NewAddress() {
                             />
                         </View>
                     </View>
-                    <ScrollView style={styles.flex} showsVerticalScrollIndicator={false} contentContainerStyle={{ alignItems: 'center', flexGrow: 1 }}>
+                    <ScrollView style={styles.flex} showsVerticalScrollIndicator={false} contentContainerStyle={{ alignItems: 'center', flexGrow: 1, ...alignment.PBlarge }}>
                         <View style={styles.formContainer}>
                             <View style={styles.formContentContainer}>
                                 <View style={styles.twoItemsContainer}>

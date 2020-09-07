@@ -8,7 +8,7 @@ import { Ionicons, SimpleLineIcons } from '@expo/vector-icons'
 
 function BottomTab(props) {
     const navigation = useNavigation()
-    const { isLoggedIn, cartCount } = useContext(UserContext)
+    const { isLoggedIn, cartCount, orders } = useContext(UserContext)
     return (
         <View style={styles.footerContainer}>
             <TouchableOpacity
@@ -37,7 +37,9 @@ function BottomTab(props) {
                 style={[styles.footerBtnContainer, props.screen === 'PROFILE' && styles.active]}>
                 <View style={styles.profileContainer}>
                     <SimpleLineIcons name="user" size={scale(20)} color={colors.fontSecondColor} />
-                    <View style={styles.profileBadge} />
+                    {(isLoggedIn && (orders ? orders.filter(o => ['PENDING', 'DISPATCHED', 'ACCEPTED'].includes(o.orderStatus)).length > 0 : false)) &&
+                        <View style={styles.profileBadge} />
+                    }
                 </View>
             </TouchableOpacity>
             <TouchableOpacity

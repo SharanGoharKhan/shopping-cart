@@ -31,12 +31,21 @@ const SubCategory = props => {
 
   const customSort = (rows, field, direction) => {
     const handleField = row => {
-      if (row[field]) {
-        return row[field].toLowerCase()
+      if (field === 'category.title') {
+        if (row['category']['title']) {
+          return row['category']['title'].toLowerCase()
+        }
+        return row['category']['title']
       }
+      else {
+        if (row[field]) {
+          return row[field].toLowerCase()
+        }
 
-      return row[field]
+        return row[field]
+      }
     }
+
 
     return orderBy(rows, handleField, direction)
   }

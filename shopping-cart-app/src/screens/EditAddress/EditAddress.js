@@ -202,7 +202,7 @@ function EditAddress(props) {
                             </View>
                             <MainBtn
                                 loading={loading}
-                                text="Edit address"
+                                text="Update Address"
                                 style={{ width: '90%' }}
                                 onPress={() => {
                                     if (validate()) {

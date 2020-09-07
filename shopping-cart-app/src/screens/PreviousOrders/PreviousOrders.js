@@ -89,7 +89,7 @@ function PreviousOrder(props) {
                             />
                         </View>
                         <View style={styles.subTitleContainer}>
-                            <TextDefault textColor={colors.fontThirdColor} small >
+                            <TextDefault numberOfLines={3} textColor={colors.fontThirdColor} small >
                                 {card.items[0].product}
                             </TextDefault>
                         </View>

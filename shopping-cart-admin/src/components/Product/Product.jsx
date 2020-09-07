@@ -558,7 +558,7 @@ function Product(props) {
                                 </Row>
                                 <Row>
                                     <Col>
-                                        <h3 className="mb-2"> {t('Food Image')}</h3>
+                                        <h3 className="mb-2"> {t('Product Image')}</h3>
                                         <Row>
                                             <MultiImageInput
                                                 images={image}

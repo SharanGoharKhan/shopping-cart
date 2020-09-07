@@ -46,23 +46,6 @@ function AuthNavbar(props) {
                   <span className="nav-link-inner--text">{t('Dashboard')}</span>
                 </NavLink>
               </NavItem>
-              <NavItem>
-                <FormGroup>
-                  <Input
-                    type="select"
-                    name="select"
-                    defaultValue={localStorage.getItem('ecommero-language')}
-                    id="exampleSelect"
-                    onChange={handleChange}
-                    onBlur={event => {}}>
-                    <option value="en">English</option>
-                    <option value="de">Deutsche</option>
-                    <option value="zh">中文</option>
-                    <option value="km">ភាសាខ្មែរ</option>
-                    <option value="fr">français</option>
-                  </Input>
-                </FormGroup>
-              </NavItem>
             </Nav>
           </UncontrolledCollapse>
         </Container>

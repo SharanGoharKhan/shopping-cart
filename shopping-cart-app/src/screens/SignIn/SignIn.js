@@ -331,7 +331,7 @@ function SignIn(props) {
                                             activeOpacity={0.7}
                                             onPress={() => showModal()}>
                                             <TextDefault textColor={colors.google}>
-                                                {'Forgot my password'}
+                                                {'Forgot password ?'}
                                             </TextDefault>
                                         </TouchableOpacity>
                                     </View>
@@ -344,7 +344,7 @@ function SignIn(props) {
                             <View style={styles.bodyFooter}>
                                 <AlternateBtn
                                     onPress={() => navigation.navigate('SignUp')}
-                                    text="Dont't have account"
+                                    text="Don't have account ?"
                                 />
                             </View>
                         </View>

@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
-import { View, ScrollView } from 'react-native';
+import { View, ScrollView, KeyboardAvoidingView, Platform } from 'react-native';
 import styles from './styles';
 import SearchBar from '../../ui/SearchBar/SearchBar';
 import FullCard from './Card/FullCard';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { BackHeader, TextDefault, BottomTab, Spinner, TextError } from '../../components';
-import { colors, scale, alignment } from '../../utils';
+import { colors, alignment } from '../../utils';
 import { useQuery, gql } from '@apollo/client'
 import { produccts } from '../../apollo/server'
 
@@ -49,7 +49,7 @@ function SearchResults(props) {
                     </TextDefault>}
                 </View>
                 <ScrollView
-                    style={styles.flex} 
+                    style={styles.flex}
                     contentContainerStyle={styles.scrollContainer}
                     showsVerticalScrollIndicator={false}>
                     {!!search && searchProducts(search).map((item, i) => (
@@ -67,7 +67,7 @@ function SearchResults(props) {
     }
     return (
         <SafeAreaView style={[styles.flex, styles.safeAreaStyle]}>
-            <View style={styles.flex}>
+            <KeyboardAvoidingView style={{ flex: 1 }} behavior={Platform.OS === "ios" ? "padding" : "height"}>
                 <BackHeader
                     title="Search"
                     backPressed={() => props.navigation.goBack()} />
@@ -91,7 +91,7 @@ function SearchResults(props) {
                         </View>
                     </View>
                 </View>
-            </View>
+            </KeyboardAvoidingView>
             <BottomTab
                 screen='SEARCH' />
         </SafeAreaView>

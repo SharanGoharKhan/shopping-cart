@@ -29,14 +29,14 @@ const styles = StyleSheet.create({
 
     },
     searchBarContainer: {
-        height: '10%',
+        height: height * 0.1,
         width: '93%',
         justifyContent: 'center',
         alignItems: 'center',
     },
     mainBodyContainer: {
-        height: '90%',
-        width: '100%',
+        flex: 1,
+        width: "100%",
         alignItems: 'center',
         backgroundColor: colors.themeBackground,
 

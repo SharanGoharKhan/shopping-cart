@@ -77,15 +77,21 @@ function Checkout() {
                 setDiscount(coupon.discount)
                 setCoupan(coupon.code)
 
-                FlashMessage({ message: "Coupan Applied", type: 'success' })
+                FlashMessage({ message: "Coupon Applied", type: 'success' })
             } else {
-                FlashMessage({ message: "Coupan Failed", type: 'warning' })
+                setDiscount(0)
+                setCoupan(null)
+                setCoupanError('Invalid')
+                FlashMessage({ message: "Coupon Failed", type: 'warning' })
             }
         }
     }
 
     function onError(error) {
-        FlashMessage({ message: "Invalid Coupan", type: 'warning' })
+        setDiscount(0)
+        setCoupan(null)
+        setCoupanError('Invalid')
+        FlashMessage({ message: "Invalid Coupon", type: 'warning' })
     }
 
     function validateOrder() {
@@ -210,15 +216,15 @@ function Checkout() {
     function renderItem(item, index) {
         return (
             <View key={index} style={styles.listItem}>
-                <View style={styles.simpleRow}>
-                    <TextDefault textColor={colors.fontSecondColor}>
+                <View style={styles.productRow}>
+                    <TextDefault textColor={colors.fontBlue}>
                         {item.quantity}x{' '}
                     </TextDefault>
                     <TextDefault textColor={colors.fontSecondColor}>
                         {item.product}
                     </TextDefault>
                 </View>
-                <TextDefault textColor={colors.fontBlue}>
+                <TextDefault textColor={colors.fontBlue} style={{ maxWidth: "15%" }} center>
                     {configuration.currencySymbol} {item.price * item.quantity}
                 </TextDefault>
             </View>
@@ -271,31 +277,45 @@ function Checkout() {
                                     <>
                                         <View style={[styles.coupan, styles.line]}>
                                             <TextDefault textColor={colors.fontBrown} H5>
-                                                {'Coupan'}
+                                                {'Coupon'}
                                             </TextDefault>
                                             <View style={styles.coupanRow}>
                                                 <View style={styles.coupanInput}>
                                                     <TextField
                                                         error={coupanError}
                                                         value={coupan}
-                                                        placeholder="Coupan"
+                                                        placeholder="Coupon"
                                                         onChange={event => {
                                                             setCoupan(event.nativeEvent.text.trim())
                                                         }}
                                                     />
                                                 </View>
-                                                <MainBtn
-                                                    style={styles.coupanBtn}
-                                                    onPress={() => {
-                                                        if (!coupan)
-                                                            setCoupanError("Invalid")
-                                                        else {
-                                                            setCoupanError(null)
-                                                            applyCoupan()
-                                                        }
-                                                    }}
-                                                    text={'Apply'}
-                                                />
+                                                {(!coupanError && discount > 0) ?
+                                                    <MainBtn
+                                                        style={styles.coupanBtn}
+                                                        onPress={() => {
+                                                            if (!!coupan) {
+                                                                setCoupan(null)
+                                                                setCoupanError(null)
+                                                                setDiscount(0)
+                                                            }
+                                                        }}
+                                                        text={'Remove'}
+                                                    />
+                                                    :
+                                                    <MainBtn
+                                                        style={styles.coupanBtn}
+                                                        onPress={() => {
+                                                            if (!coupan)
+                                                                setCoupanError("Invalid")
+                                                            else {
+                                                                setCoupanError(null)
+                                                                applyCoupan()
+                                                            }
+                                                        }}
+                                                        text={'Apply'}
+                                                    />
+                                                }
                                             </View>
                                         </View>
                                         <TouchableOpacity style={[styles.address, styles.line]}
