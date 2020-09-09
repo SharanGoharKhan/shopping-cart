@@ -24,6 +24,15 @@ const cache = new InMemoryCache({
         }
       }
     },
+    Order: {
+      fields: {
+        statusQueue: {
+          merge(existing, incoming) {
+            return incoming
+          }
+        }
+      }
+    }
   }
 });
 
