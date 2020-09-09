@@ -146,8 +146,8 @@ const styles = StyleSheet.create({
     },
     headerZoom: {
         position: 'absolute',
-        top: 0,
-        right: 0,
+        top: scale(20),
+        right: scale(10),
         ...alignment.MTlarge
     }
 });
