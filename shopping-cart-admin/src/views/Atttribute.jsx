@@ -33,11 +33,19 @@ const Attribute = props => {
 
     const customSort = (rows, field, direction) => {
         const handleField = row => {
-            if (row[field]) {
-                return row[field].toLowerCase()
+            if (field === 'subCategory.title') {
+                if (row['subCategory']['title']) {
+                    return row['subCategory']['title'].toLowerCase()
+                }
+                return row['subCategory']['title']
             }
+            else {
+                if (row[field]) {
+                    return row[field].toLowerCase()
+                }
 
-            return row[field]
+                return row[field]
+            }
         }
 
         return orderBy(rows, handleField, direction)

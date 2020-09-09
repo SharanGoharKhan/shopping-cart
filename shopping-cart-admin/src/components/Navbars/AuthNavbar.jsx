@@ -41,7 +41,7 @@ function AuthNavbar(props) {
             </div>
             <Nav className="ml-auto" navbar>
               <NavItem>
-                <NavLink className="nav-link-icon" to="/" tag={Link}>
+                <NavLink className="nav-link-icon">
                   <i className="ni ni-planet" />
                   <span className="nav-link-inner--text">{t('Dashboard')}</span>
                 </NavLink>
