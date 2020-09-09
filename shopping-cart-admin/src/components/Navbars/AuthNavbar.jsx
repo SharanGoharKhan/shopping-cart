@@ -1,6 +1,5 @@
 import React from 'react'
 import { withTranslation } from 'react-i18next'
-import { Link } from 'react-router-dom'
 // reactstrap components
 import {
   UncontrolledCollapse,
@@ -10,16 +9,10 @@ import {
   Nav,
   Container,
   Row,
-  Col,
-  FormGroup,
-  Input
+  Col
 } from 'reactstrap'
 
 function AuthNavbar(props) {
-  const handleChange = event => {
-    localStorage.setItem('ecommero-language', event.target.value)
-    props.i18n.changeLanguage(event.target.value)
-  }
   const { t } = props
   return (
     <>
