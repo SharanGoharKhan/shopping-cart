@@ -30,7 +30,6 @@ const Coupon = props => {
   const [editCoupon] = useMutation(EDIT_COUPON)
   const { data, loading, error } = useQuery(GET_COUPONS)
 
-
   const toggleModal = coupon => {
     setEditModal(!editModal)
     setCoupon(coupon)
@@ -68,13 +67,16 @@ const Coupon = props => {
     },
     {
       name: 'Action',
-      cell: row => <ActionButton
-        deleteButton={true}
-        editButton={true}
-        row={row}
-        mutation={DELETE_COUPON}
-        editModal={toggleModal}
-        refetchQuery={GET_COUPONS} />
+      cell: row => (
+        <ActionButton
+          deleteButton={true}
+          editButton={true}
+          row={row}
+          mutation={DELETE_COUPON}
+          editModal={toggleModal}
+          refetchQuery={GET_COUPONS}
+        />
+      )
     }
   ]
 
@@ -113,10 +115,11 @@ const Coupon = props => {
         <Row className="mt-5">
           <div className="col">
             <Card className="shadow">
-              {error ?
+              {error ? (
                 <span>
                   {t('Error')}!{error.message}
-                </span> :
+                </span>
+              ) : (
                 <DataTable
                   title={t('Coupons')}
                   columns={columns}
@@ -127,7 +130,8 @@ const Coupon = props => {
                   onSort={handleSort}
                   sortFunction={customSort}
                   defaultSortField="code"
-                />}
+                />
+              )}
             </Card>
           </div>
         </Row>

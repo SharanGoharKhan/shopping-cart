@@ -1,4 +1,3 @@
-
 export const categories = `query categories
     {
       categories{
@@ -180,7 +179,6 @@ export const deleteAttribute = `mutation DeleteOptionAttribute($id:String!){
   deleteOptionGroup(id:$id)
   }`
 
-
 export const getProducts = `query Products{
   products{
     _id
@@ -244,7 +242,6 @@ export const createProduct = `mutation CreateProduct($productInput:ProductInput!
     featured
     }
 }`
-
 
 export const editProduct = `mutation EditProduct($productInput:ProductInput!){
   editProduct(productInput:$productInput){

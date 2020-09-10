@@ -22,7 +22,10 @@ const SAVE_ORDER_CONFIGURATION = gql`
 function Order(props) {
   const [prefix, prefixSetter] = useState(props.prefix || '')
   const [prefixError, prefixErrorSetter] = useState(null)
-  const [saveConfiguration, { loading, error }] = useMutation(SAVE_ORDER_CONFIGURATION, { onCompleted, onError })
+  const [
+    saveConfiguration,
+    { loading, error }
+  ] = useMutation(SAVE_ORDER_CONFIGURATION, { onCompleted, onError })
 
   const validateInput = () => {
     let result = true
@@ -81,41 +84,43 @@ function Order(props) {
               </Row>
               <Row>
                 <Col md="4">
-                  {error ? 'Error :(' :
-                    loading ?
-                      <Button
-                        className="btn-block mb-2"
-                        color="primary"
-                        onClick={() => null}>
-                        <Loader
-                          type="TailSpin"
-                          color="#FFF"
-                          height={25}
-                          width={30}
-                          visible={loading}
-                        />
-                      </Button> :
-                      <Button
-                        disabled
-                        className="btn-block mb-2"
-                        type="button"
-                        color="primary"
-                        onClick={e => {
-                          e.preventDefault()
-                          if (validateInput()) {
-                            saveConfiguration({
-                              variables: {
-                                configurationInput: {
-                                  orderPrefix: prefix
-                                }
+                  {error ? (
+                    'Error :('
+                  ) : loading ? (
+                    <Button
+                      className="btn-block mb-2"
+                      color="primary"
+                      onClick={() => null}>
+                      <Loader
+                        type="TailSpin"
+                        color="#FFF"
+                        height={25}
+                        width={30}
+                        visible={loading}
+                      />
+                    </Button>
+                  ) : (
+                    <Button
+                      disabled
+                      className="btn-block mb-2"
+                      type="button"
+                      color="primary"
+                      onClick={e => {
+                        e.preventDefault()
+                        if (validateInput()) {
+                          saveConfiguration({
+                            variables: {
+                              configurationInput: {
+                                orderPrefix: prefix
                               }
-                            })
-                          }
-                        }}
-                        size="lg">
-                        {t('Save')}
-                      </Button>
-                  }
+                            }
+                          })
+                        }
+                      }}
+                      size="lg">
+                      {t('Save')}
+                    </Button>
+                  )}
                 </Col>
               </Row>
             </div>

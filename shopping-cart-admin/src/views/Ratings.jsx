@@ -25,11 +25,7 @@ const Ratings = props => {
     },
     {
       name: 'Product Title',
-      cell: row => (
-        <>
-          {row.product.title}
-        </>
-      )
+      cell: row => <>{row.product.title}</>
     },
     {
       name: 'Review',
@@ -74,12 +70,13 @@ const Ratings = props => {
         <Row>
           <div className="col">
             <Card className="shadow">
-              {error ?
+              {error ? (
                 <tr>
                   <td>
                     {t('Error')}! ${error.message}
                   </td>
-                </tr> :
+                </tr>
+              ) : (
                 <DataTable
                   title={t('Ratings')}
                   columns={columns}
@@ -90,7 +87,8 @@ const Ratings = props => {
                   onSort={handleSort}
                   sortFunction={customSort}
                   defaultSortField="order.user.name"
-                />}
+                />
+              )}
             </Card>
           </div>
         </Row>

@@ -24,7 +24,10 @@ const OrdersData = props => {
     console.log(`items ${JSON.stringify(items[0])}`)
     return items
       .map(
-        item => `${item.quantity}x${item.product}(${item.selectedAttributes.map(i => i.title)})`
+        item =>
+          `${item.quantity}x${item.product}(${item.selectedAttributes.map(
+            i => i.title
+          )})`
       )
       .join('\n')
   }
@@ -76,7 +79,7 @@ const OrdersData = props => {
     )
   }
 
-  const handlePerRowsChange = async (perPage, page) => {
+  const handlePerRowsChange = async(perPage, page) => {
     props.page(page)
     props.rows(perPage)
   }
@@ -121,7 +124,7 @@ const OrdersData = props => {
       cell: row => (
         <>{new Date(row.createdAt).toLocaleString().replace(/ /g, '\n')}</>
       )
-    },
+    }
     // {
     //   name: 'Address',
     //   cell: row => (
@@ -172,13 +175,15 @@ const OrdersData = props => {
     }
   }, [props.orders])
 
-  if (error) return (
-    <tr>
-      <td>
-        {t('Error')}! ${error.message}
-      </td>
-    </tr>
-  )
+  if (error) {
+    return (
+      <tr>
+        <td>
+          {t('Error')}! ${error.message}
+        </td>
+      </tr>
+    )
+  }
   return (
     <DataTable
       title={t('Orders')}
