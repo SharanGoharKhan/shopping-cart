@@ -1,6 +1,5 @@
 import React, { useState } from 'react'
-import { View, TextInput, TouchableOpacity } from 'react-native'
-import Spinner from '../../components/Spinner/Spinner'
+import { View, TextInput } from 'react-native'
 import styles from './styles'
 import { SafeAreaView } from 'react-native-safe-area-context'
 import StarRating from 'react-native-star-rating'
@@ -14,7 +13,9 @@ import { useMutation, gql } from '@apollo/client'
 import { reviewOrder } from '../../apollo/server'
 import MainBtn from '../../ui/Buttons/MainBtn'
 
-const REVIEWORDER = gql`${reviewOrder}`
+const REVIEWORDER = gql`
+  ${reviewOrder}
+`
 
 function Review() {
   const navigation = useNavigation()
@@ -73,9 +74,7 @@ function Review() {
   return (
     <SafeAreaView style={[styles.flex, styles.safeAreaView]}>
       <View style={[styles.flex, styles.mainBackground]}>
-        <BackHeader
-          title="Review"
-          backPressed={() => navigation.goBack()} />
+        <BackHeader title="Review" backPressed={() => navigation.goBack()} />
 
         <View style={styles.reviewTextContainer}>
           <View style={styles.reviewTextSubContainer}>
@@ -108,10 +107,7 @@ function Review() {
         <View style={styles.inputContainer}>
           <View style={styles.inputSubContainer}>
             <TextInput
-              style={[
-                styles.textinput,
-                { color: colors.fontSecondColor }
-              ]}
+              style={[styles.textinput, { color: colors.fontSecondColor }]}
               placeholderTextColor={colors.fontThirdColor}
               onChangeText={onChangeText}
               placeholder={'Write a review'}
@@ -122,10 +118,9 @@ function Review() {
           <MainBtn
             loading={loadingMutation}
             onPress={() => {
-              if (validate())
-                onSubmit()
+              if (validate()) onSubmit()
             }}
-            text='Submit'
+            text="Submit"
           />
         </View>
       </View>

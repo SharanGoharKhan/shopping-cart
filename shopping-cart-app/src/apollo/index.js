@@ -1,9 +1,15 @@
 import { AsyncStorage } from 'react-native'
-import { ApolloClient, ApolloLink, split, concat, Observable, createHttpLink } from '@apollo/client'
+import {
+  ApolloClient,
+  ApolloLink,
+  split,
+  concat,
+  Observable,
+  createHttpLink
+} from '@apollo/client'
 import { getMainDefinition } from '@apollo/client/utilities'
-import { InMemoryCache } from '@apollo/client/cache';
+import { InMemoryCache } from '@apollo/client/cache'
 import { WebSocketLink } from '@apollo/client/link/ws'
-import { persistCache } from 'apollo-cache-persist'
 import getEnvVars from '../../environment'
 
 const { GRAPHQL_URL, WS_GRAPHQL_URL } = getEnvVars()
@@ -13,13 +19,13 @@ const cache = new InMemoryCache({
     User: {
       fields: {
         addresses: {
-          merge(existing, incoming) {
-            return incoming;
+          merge(incoming) {
+            return incoming
           }
         },
         whishlist: {
-          merge(existing, incoming) {
-            return incoming;
+          merge(incoming) {
+            return incoming
           }
         }
       }
@@ -27,14 +33,14 @@ const cache = new InMemoryCache({
     Order: {
       fields: {
         statusQueue: {
-          merge(existing, incoming) {
+          merge(incoming) {
             return incoming
           }
         }
       }
     }
   }
-});
+})
 
 const httpLink = createHttpLink({
   uri: GRAPHQL_URL
@@ -86,7 +92,7 @@ const terminatingLink = split(({ query }) => {
   return kind === 'OperationDefinition' && operation === 'subscription'
 }, wsLink)
 
-const setupApollo = async () => {
+const setupApollo = async() => {
   // await persistCache({
   //   cache,
   //   storage: AsyncStorage

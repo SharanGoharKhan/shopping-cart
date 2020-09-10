@@ -14,9 +14,7 @@ function Spinner(props) {
           : colors.themeBackground
       }}
       size={props.size || 'large'}
-      color={
-        props.spinnerColor ? props.spinnerColor : colors.spinnerColor
-      }
+      color={props.spinnerColor ? props.spinnerColor : colors.spinnerColor}
     />
   )
 }

@@ -14,7 +14,7 @@ const ORDERS = gql`
 `
 const SUBSCRIPTION_ORDERS = gql`
   ${orderStatusChanged}
-` 
+`
 
 const UserContext = React.createContext({})
 
@@ -53,7 +53,6 @@ export const UserProvider = props => {
     onCompleted,
     onError
   })
-
 
   useEffect(() => {
     let isSubscribed = true
@@ -154,7 +153,7 @@ export const UserProvider = props => {
   const fetchMoreOrdersFunc = () => {
     if (networkStatusOrders === 7) {
       fetchMoreOrders({
-        variables: { offset: dataOrders.orders.length + 1 },
+        variables: { offset: dataOrders.orders.length + 1 }
         // updateQuery: (previousResult, { fetchMoreResult }) => {
         //   // Don't do anything if there weren't any new items
         //   if (!fetchMoreResult || fetchMoreResult.orders.length === 0) {
@@ -170,12 +169,12 @@ export const UserProvider = props => {
     }
   }
 
-  const clearCart = async () => {
+  const clearCart = async() => {
     setCart([])
     await AsyncStorage.setItem('cartItems', JSON.stringify([]))
   }
 
-  const addQuantity = async (key, quantity = 1) => {
+  const addQuantity = async(key, quantity = 1) => {
     const cartIndex = cart.findIndex(c => c.key === key)
     cart[cartIndex].quantity += quantity
     setCart([...cart])
@@ -192,26 +191,33 @@ export const UserProvider = props => {
     )
   }
 
-  const addCartItem = async (_id, product, image, quantity = 1, price, attributes) => {
-      cart.push({
-        key: uuid.v4(),
-        _id:_id,
-        product:product,
-        quantity: quantity,
-        image: image,
-        price: Number(price),
-        selectedAttributes: attributes.map( ({attributeId,title,options}) =>{
-          return {
-            title,
-            attributeId,
-            option: {
-              optionId: options.optionId,
-              title: options.title,
-              price: options.price
-            }
+  const addCartItem = async(
+    _id,
+    product,
+    image,
+    quantity = 1,
+    price,
+    attributes
+  ) => {
+    cart.push({
+      key: uuid.v4(),
+      _id: _id,
+      product: product,
+      quantity: quantity,
+      image: image,
+      price: Number(price),
+      selectedAttributes: attributes.map(({ attributeId, title, options }) => {
+        return {
+          title,
+          attributeId,
+          option: {
+            optionId: options.optionId,
+            title: options.title,
+            price: options.price
           }
-        })
-      }) 
+        }
+      })
+    })
     await AsyncStorage.setItem('cartItems', JSON.stringify([...cart]))
     setCart([...cart])
   }

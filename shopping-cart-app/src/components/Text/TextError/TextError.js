@@ -16,9 +16,7 @@ function TextError(props) {
           : colors.containerDark
       }}>
       <TextDefault
-        textColor={
-          props.textColor ? props.textColor : colors.fontMainColor
-        }
+        textColor={props.textColor ? props.textColor : colors.fontMainColor}
         bold
         H5
         center>

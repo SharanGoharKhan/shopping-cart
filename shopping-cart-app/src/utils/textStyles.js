@@ -1,6 +1,7 @@
 import { scale } from './scaling'
 import { fontStyles } from './fontStyles'
 
+// eslint-disable-next-line import/prefer-default-export
 export const textStyles = {
   H1: {
     fontSize: scale(35)

@@ -7,11 +7,10 @@ import { StatusBar, Platform } from 'react-native'
 import { ConfigurationProvider } from './src/context/Configuration'
 import { UserProvider } from './src/context/User'
 import { colors } from './src/utils/colors'
-import * as Font from 'expo-font';
+import * as Font from 'expo-font'
 import setupApolloClient from './src/apollo/index'
 import FlashMessage from 'react-native-flash-message'
 import { Spinner } from './src/components'
-
 
 export default function App() {
   const [fontLoaded, setFontLoaded] = useState(false)
@@ -20,7 +19,6 @@ export default function App() {
   useEffect(() => {
     loadAppData()
   }, [])
-
 
   async function loadAppData() {
     const client = await setupApolloClient()
@@ -35,8 +33,6 @@ export default function App() {
 
     setFontLoaded(true)
   }
-
-
 
   async function permissionForPushNotificationsAsync() {
     const { status: existingStatus } = await Permissions.getAsync(
@@ -67,11 +63,13 @@ export default function App() {
     }
   }
 
-
   if (fontLoaded && client) {
     return (
       <ApolloProvider client={client}>
-        <StatusBar barStyle={'dark-content'} backgroundColor={colors.headerbackground} />
+        <StatusBar
+          barStyle={'dark-content'}
+          backgroundColor={colors.headerbackground}
+        />
         <ConfigurationProvider>
           <UserProvider>
             <AppContainer />
@@ -80,7 +78,5 @@ export default function App() {
         <FlashMessage position="top" />
       </ApolloProvider>
     )
-  } else return (
-    <Spinner spinnerColor={colors.spinnerColor} />
-  )
+  } else return <Spinner spinnerColor={colors.spinnerColor} />
 }

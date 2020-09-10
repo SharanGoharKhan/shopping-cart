@@ -7,7 +7,7 @@ const styles = StyleSheet.create({
   },
   safeAreaStyle: {
     backgroundColor: colors.headerbackground
-},
+  },
   pT20: {
     ...alignment.PTmedium,
     ...alignment.PBmedium

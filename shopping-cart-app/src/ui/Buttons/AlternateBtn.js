@@ -1,6 +1,6 @@
-import React from 'react';
-import { View, TouchableOpacity, Text } from 'react-native';
-import { alternateBtn as styles } from './styles';
+import React from 'react'
+import { View, TouchableOpacity, Text } from 'react-native'
+import { alternateBtn as styles } from './styles'
 
 /* Config/Constants
 ============================================================================= */
@@ -20,15 +20,10 @@ const MainBtn = props => (
     <TouchableOpacity
       activeOpacity={0}
       onPress={props.onPress}
-      style={styles.main_alt_btn}
-    >
-      <Text style={styles.btn_text}>
-        {' '}
-        {props.text}
-        {' '}
-      </Text>
+      style={styles.main_alt_btn}>
+      <Text style={styles.btn_text}> {props.text} </Text>
     </TouchableOpacity>
   </View>
-);
+)
 
-export default MainBtn;
+export default MainBtn

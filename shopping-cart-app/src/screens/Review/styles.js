@@ -10,7 +10,7 @@ const styles = StyleSheet.create({
     backgroundColor: colors.headerbackground
   },
   mainBackground: {
-    backgroundColor: colors.themeBackground,
+    backgroundColor: colors.themeBackground
   },
   reviewTextContainer: {
     width: '100%',
@@ -63,11 +63,11 @@ const styles = StyleSheet.create({
   btnSubContainer: {
     width: '80%',
     height: scale(50),
-    alignSelf: "center"
+    alignSelf: 'center'
   },
   btnTouch: {
-    width: "100%",
-    height: "100%",
+    width: '100%',
+    height: '100%',
     backgroundColor: colors.buttonBackground,
     justifyContent: 'center',
     alignItems: 'center',

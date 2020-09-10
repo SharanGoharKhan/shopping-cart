@@ -1,6 +1,6 @@
-import React from 'react';
-import { View, TouchableOpacity, Text } from 'react-native';
-import { alternateBlueBtn as styles } from './styles';
+import React from 'react'
+import { View, TouchableOpacity, Text } from 'react-native'
+import { alternateBlueBtn as styles } from './styles'
 
 /* Config/Constants
 ============================================================================= */
@@ -23,15 +23,10 @@ const BlueBtn = props => (
     <TouchableOpacity
       activeOpacity={0}
       onPress={props.onPress}
-      style={styles.main_blue_btn}
-    >
-      <Text style={styles.btn_text}>
-        {' '}
-        {props.text}
-        {' '}
-      </Text>
+      style={styles.main_blue_btn}>
+      <Text style={styles.btn_text}> {props.text} </Text>
     </TouchableOpacity>
   </View>
-);
+)
 
-export default BlueBtn;
+export default BlueBtn
