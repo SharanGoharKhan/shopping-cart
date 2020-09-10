@@ -6,12 +6,12 @@ const productSchema = new Schema(
   {
     title: {
       type: String,
-      unique : true,
+      unique: true,
       required: true
     },
     skuCode: {
       type: String,
-      unique : true,
+      unique: true,
       required: true
     },
     description: {
@@ -35,7 +35,7 @@ const productSchema = new Schema(
       type: Number,
       required: true
     },
-    featured:{
+    featured: {
       type: Boolean,
       default: false
     },

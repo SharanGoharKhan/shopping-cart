@@ -1,7 +1,7 @@
 const { gql } = require('apollo-server-express')
 
 const typeDefs = gql`
-  type Point{
+  type Point {
     coordinates: [String!]
   }
 
@@ -33,7 +33,7 @@ const typeDefs = gql`
     image: String
     price: Float!
     quantity: Int!
-    selectedAttributes:[SelectedAttributes!]
+    selectedAttributes: [SelectedAttributes!]
     isReviewed: Boolean!
     isActive: Boolean!
     createdAt: String!
@@ -105,7 +105,7 @@ const typeDefs = gql`
 
   type Attributes {
     _id: String!
-    attributeId:String
+    attributeId: String
     title: String!
     options: [ProductOption!]
   }
@@ -113,9 +113,9 @@ const typeDefs = gql`
   type ProductOption {
     _id: String!
     optionId: String
-    title:String!
-    price:Float!
-    stock:Int!
+    title: String!
+    price: Float!
+    stock: Int!
   }
 
   type User {
@@ -333,7 +333,7 @@ const typeDefs = gql`
   }
 
   input OrderOptionInput {
-    optionId:String!
+    optionId: String!
     title: String
     price: Float
   }
@@ -352,7 +352,7 @@ const typeDefs = gql`
 
   input AttributeInput {
     _id: String
-    attributeId:String!
+    attributeId: String!
     title: String!
     options: [ProductOptionInput!]
   }
@@ -364,7 +364,6 @@ const typeDefs = gql`
     price: Float!
     stock: Int!
   }
-
 
   input UserInput {
     phone: String
@@ -406,7 +405,7 @@ const typeDefs = gql`
     title: String!
     subCategory: String!
     options: [OptionInput]!
-    isActive: Boolean 
+    isActive: Boolean
   }
 
   input CouponInput {
@@ -418,11 +417,11 @@ const typeDefs = gql`
 
   input AddressInput {
     _id: String
-    label:String!
-    region:String!
-    city:String!
-    apartment:String!
-    building:String!
+    label: String!
+    region: String!
+    city: String!
+    apartment: String!
+    building: String!
     details: String
   }
 
@@ -449,14 +448,14 @@ const typeDefs = gql`
     order(id: String!): Order!
     orderCount: Int
     productByIds(ids: [String!]!): [Product!]
-    product(id:String!):Product!
-    productByCategory(subCategory:String!):[Product!]
+    product(id: String!): Product!
+    productByCategory(subCategory: String!): [Product!]
     getOrderStatuses: [String!]
     getPaymentStatuses: [String!]
     assignedOrders(id: String): [Order!]
     options: [Option!]
     optionGroups: [OptionGroup!]
-    getOptionGroupsByCategory(subCategory: String!):[OptionGroup]
+    getOptionGroupsByCategory(subCategory: String!): [OptionGroup]
     allOptions(page: Int): [Option!]
     getDashboardOrders(
       starting_date: String
@@ -546,10 +545,10 @@ const typeDefs = gql`
     changePassword(oldPassword: String!, newPassword: String!): Boolean!
     selectAddress(id: String!): User!
     assignOrder(id: String): Order!
-    createProduct(productInput:ProductInput!):Product!
-    editProduct(productInput:ProductInput):Product!
-    deleteProduct(id: String!):Product!
-    addToWhishlist(productId: String!):User!
+    createProduct(productInput: ProductInput!): Product!
+    editProduct(productInput: ProductInput): Product!
+    deleteProduct(id: String!): Product!
+    addToWhishlist(productId: String!): User!
   }
   type Subscription {
     subscribePlaceOrder: Subscription_Orders!

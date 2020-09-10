@@ -15,7 +15,7 @@ admin.initializeApp({
   databaseURL: 'https://ecommero-1f0eb.firebaseio.com'
 })
 // Upload image utility functions
-const storeUpload = async ({ stream, filename }) => {
+const storeUpload = async({ stream, filename }) => {
   const path = `./public/images/${filename}`
   return await stream
     .pipe(createWriteStream(path))
@@ -25,7 +25,7 @@ const storeUpload = async ({ stream, filename }) => {
     })
 }
 
-const processUpload = async (upload, type) => {
+const processUpload = async(upload, type) => {
   type = type || ''
   const { createReadStream } = await upload
   const filename = `${Date.now() + type}.jpg`
@@ -38,7 +38,7 @@ const saveImageToDisk = url => {
   const filename = `${Date.now()}.jpg`
   // eslint-disable-next-line quotes
   var file = createWriteStream(`./public/images/` + filename, { mode: 0o777 })
-  https.get(url, function (response) {
+  https.get(url, function(response) {
     response.pipe(file)
   })
   return `images/${filename}`
@@ -79,7 +79,7 @@ const sendNotification = async orderId => {
   }
 }
 // returns true if already used,false otherwise
-const checkPhoneAlreadyUsed = async (userId, phone) => {
+const checkPhoneAlreadyUsed = async(userId, phone) => {
   const user = await User.find({ phone })
   if (user.length === 0 || (user.length === 1 && user[0].id === userId)) {
     return false
@@ -116,7 +116,7 @@ const sendNotificationMobile = async messages => {
   }
   const receiptIdChunks = expo.chunkPushNotificationReceiptIds(receiptIds)
   // eslint-disable-next-line no-unused-expressions
-  async () => {
+  async() => {
     // Like sending notifications, there are different strategies you could use
     // to retrieve batches of receipts from the Expo service.
     for (const chunk of receiptIdChunks) {
@@ -149,20 +149,20 @@ const sendNotificationMobile = async messages => {
 const updateStockValue = async items => {
   items.map(async item => {
     const product = await Product.findById(item.productId)
-    let data = [];
-     product.attributes.forEach( (productData,index) => {
-       item.selectedAttributes.forEach(itemData => {
-         console.log('attribute',itemData)
+    const data = []
+    product.attributes.forEach((productData, index) => {
+      item.selectedAttributes.forEach(itemData => {
+        console.log('attribute', itemData)
         if (productData.attributeId === itemData.attributeId) {
-          let options=[]
+          const options = []
           for (var i = 0; i < productData.options.length; i++) {
             if (productData.options[i].optionId === itemData.option.optionId) {
               options.push({
                 ...productData.options[i],
                 stock: productData.options[i].stock - item.quantity
               })
-            }else{
-              options.push({...productData.options[i]})
+            } else {
+              options.push({ ...productData.options[i] })
             }
           }
           data.push({

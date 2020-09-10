@@ -21,7 +21,6 @@ const publishToDashboard = (order, origin) => {
   pubsub.publish(PLACE_ORDER, { subscribePlaceOrder })
 }
 
-
 const pubsub = new PubSub()
 module.exports = {
   pubsub,
@@ -29,5 +28,5 @@ module.exports = {
   ORDER_STATUS_CHANGED,
   UNASSIGNED_ORDER,
   publishToUser,
-  publishToDashboard,
+  publishToDashboard
 }

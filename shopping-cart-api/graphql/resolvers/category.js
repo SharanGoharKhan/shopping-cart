@@ -35,7 +35,7 @@ module.exports = {
       console.log('createCategory')
       try {
         const category = new Category({
-          title: args.category.title,
+          title: args.category.title
           // image: args.category.image
         })
 
@@ -65,12 +65,18 @@ module.exports = {
       console.log('deleteCategory')
       try {
         const category = await Category.findById(id)
-        const subCategories = await SubCategory.find({category:id})
-        subCategories.forEach(async (item)=>{
-          await Product.updateMany({ subCategory: item._id }, { isActive: false })
-          await SubCategory.findOneAndUpdate({_id:item._id},{isActive:false})
+        const subCategories = await SubCategory.find({ category: id })
+        subCategories.forEach(async item => {
+          await Product.updateMany(
+            { subCategory: item._id },
+            { isActive: false }
+          )
+          await SubCategory.findOneAndUpdate(
+            { _id: item._id },
+            { isActive: false }
+          )
         })
-        
+
         category.isActive = false
         const result = await category.save()
         return { ...result._doc, _id: result.id }

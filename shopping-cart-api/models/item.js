@@ -12,10 +12,10 @@ const itemSchema = new Schema(
       type: String,
       required: true
     },
-    image:{
+    image: {
       type: String
     },
-    price:{
+    price: {
       type: Number,
       required: true
     },
@@ -28,7 +28,7 @@ const itemSchema = new Schema(
     },
     isReviewed: {
       type: Boolean,
-      default: false,
+      default: false
     },
     isActive: {
       type: Boolean,
@@ -37,5 +37,5 @@ const itemSchema = new Schema(
   },
   { timestamps: true }
 )
-const myModule = module.exports = mongoose.model('Item', itemSchema)
+const myModule = (module.exports = mongoose.model('Item', itemSchema))
 myModule.itemSchema = itemSchema

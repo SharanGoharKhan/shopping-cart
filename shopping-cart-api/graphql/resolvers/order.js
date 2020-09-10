@@ -10,10 +10,7 @@ const Paypal = require('../../models/paypal')
 const Stripe = require('../../models/stripe')
 const mongoose = require('mongoose')
 
-const {
-  transformOrder,
-  transformReview
-} = require('./merge')
+const { transformOrder, transformReview } = require('./merge')
 const { payment_status, order_status } = require('../../helpers/enum')
 const sendEmail = require('../../helpers/email')
 const {
@@ -30,7 +27,7 @@ const {
   publishToUser,
   publishToDashboard,
   PLACE_ORDER,
-  ORDER_STATUS_CHANGED,
+  ORDER_STATUS_CHANGED
 } = require('../../helpers/pubsub')
 
 var DELIVERY_CHARGES = 0.0
@@ -48,10 +45,10 @@ module.exports = {
           return userId === args.userId
         }
       )
-    },
+    }
   },
   Query: {
-    order: async (_, args, { req, res }) => {
+    order: async(_, args, { req, res }) => {
       console.log('order')
       if (!req.isAuth) {
         throw new Error('Unauthenticated!')
@@ -64,7 +61,7 @@ module.exports = {
         throw err
       }
     },
-    orders: async (_, args, { req, res }) => {
+    orders: async(_, args, { req, res }) => {
       console.log('orders')
       if (!req.isAuth) {
         throw new Error('Unauthenticated!')
@@ -81,7 +78,7 @@ module.exports = {
         throw err
       }
     },
-    undeliveredOrders: async (_, args, { req, res }) => {
+    undeliveredOrders: async(_, args, { req, res }) => {
       console.log('undeliveredOrders')
       if (!req.isAuth) {
         throw new Error('Unauthenticated!')
@@ -102,7 +99,7 @@ module.exports = {
         throw err
       }
     },
-    deliveredOrders: async (_, args, { req, res }) => {
+    deliveredOrders: async(_, args, { req, res }) => {
       console.log('deliveredOrders')
       if (!req.isAuth) {
         throw new Error('Unauthenticated!')
@@ -119,7 +116,7 @@ module.exports = {
         throw err
       }
     },
-    allOrders: async (_, args, { req, res }) => {
+    allOrders: async(_, args, { req, res }) => {
       try {
         if (args.search) {
           const search = new RegExp(
@@ -144,7 +141,7 @@ module.exports = {
         throw err
       }
     },
-    orderCount: async (_, args, context) => {
+    orderCount: async(_, args, context) => {
       try {
         const orderCount = await Order.find({
           isActive: true
@@ -154,7 +151,7 @@ module.exports = {
         throw err
       }
     },
-    reviews: async (_, args, { req, res }) => {
+    reviews: async(_, args, { req, res }) => {
       console.log('reviews')
       if (!req.isAuth) {
         throw new Error('Unauthenticated')
@@ -165,12 +162,12 @@ module.exports = {
           .skip(args.offset || 0)
           .limit(10)
           .populate('review')
-        return transformReviews(orders)
+        return transformReview(orders)
       } catch (err) {
         throw err
       }
     },
-    productReviews: async (_, args, { req, res }) => {
+    productReviews: async(_, args, { req, res }) => {
       console.log('productReviews')
       try {
         const data = await Review.find({ product: args.productId })
@@ -181,17 +178,19 @@ module.exports = {
           { $group: { _id: args.productId, average: { $avg: '$rating' } } }
         ])
         const reviewData = result.length > 0 ? result[0] : { average: 0 }
-        const reviewCount = await Review.countDocuments({ product: args.productId })
+        const reviewCount = await Review.countDocuments({
+          product: args.productId
+        })
         return {
           reviews: data.map(transformReview),
           ratings: reviewData.average.toFixed(2),
           total: reviewCount
         }
       } catch (error) {
-        throw (error)
+        throw error
       }
     },
-    allReviews: async (_, args, { req, res }) => {
+    allReviews: async(_, args, { req, res }) => {
       console.log('allReviews')
       try {
         const reviews = await Review.find().sort({ createdAt: -1 })
@@ -202,21 +201,21 @@ module.exports = {
         throw err
       }
     },
-    getOrderStatuses: async (_, args, context) => {
+    getOrderStatuses: async(_, args, context) => {
       return order_status
     },
-    getPaymentStatuses: async (_, args, context) => {
+    getPaymentStatuses: async(_, args, context) => {
       return payment_status
-    },
+    }
   },
   Mutation: {
-    placeOrder: async (_, args, { req, res }) => {
+    placeOrder: async(_, args, { req, res }) => {
       console.log('placeOrder')
       if (!req.isAuth) {
         throw new Error('Unauthenticated!')
       }
       try {
-        let items = args.orderInput.map(item => {
+        const items = args.orderInput.map(item => {
           return new Item({
             price: item.price,
             productId: item.productId,
@@ -249,7 +248,7 @@ module.exports = {
         let price = 0.0
         let itemsT = []
         itemsT = items.map(async item => {
-          let item_price = item.price
+          const item_price = item.price
           price += item_price * item.quantity
           return `${item.quantity} x ${item.product} ${configuration.currencySymbol}${item.price}`
         })
@@ -342,7 +341,7 @@ module.exports = {
         throw err
       }
     },
-    cancelOrder: async (_, args, { req, res }) => {
+    cancelOrder: async(_, args, { req, res }) => {
       if (!req.isAuth) {
         throw new Error('Unauthenticated!')
       }
@@ -355,7 +354,7 @@ module.exports = {
         throw err
       }
     },
-    updateOrderStatus: async (_, args, context) => {
+    updateOrderStatus: async(_, args, context) => {
       console.log('updateOrderStatus')
       try {
         const order = await Order.findById(args.id)
@@ -372,7 +371,6 @@ module.exports = {
 
         publishToUser(result.user.toString(), transformedOrder, 'update')
 
-
         // can be moved outside
         User.findById(result.user)
           .then(user => {
@@ -383,8 +381,7 @@ module.exports = {
                 messages.push({
                   to: user.notificationToken,
                   sound: 'default',
-                  body:
-                    'Order-ID ' + result.orderId + ' ' + result.orderStatus,
+                  body: 'Order-ID ' + result.orderId + ' ' + result.orderStatus,
                   channelId: 'default',
                   data: {
                     _id: result._id,
@@ -404,7 +401,7 @@ module.exports = {
         throw err
       }
     },
-    updateStatus: async (_, args, context) => {
+    updateStatus: async(_, args, context) => {
       console.log('updateStatus', args.id, args.status, args.reason)
 
       try {
@@ -421,9 +418,9 @@ module.exports = {
                 const body = result.status
                   ? 'Order-ID ' + result.orderId + ' was accepted'
                   : 'Order-ID ' +
-                  result.orderId +
-                  ' was rejected. Reason: ' +
-                  order.reason
+                    result.orderId +
+                    ' was rejected. Reason: ' +
+                    order.reason
 
                 messages.push({
                   to: user.notificationToken,
@@ -447,7 +444,7 @@ module.exports = {
         throw error
       }
     },
-    reviewOrder: async (_, args, { req, res }) => {
+    reviewOrder: async(_, args, { req, res }) => {
       console.log('reviewOrder')
       if (!req.isAuth) {
         throw new Error('Unauthenticated')
@@ -459,9 +456,11 @@ module.exports = {
           rating: args.reviewInput.rating,
           description: args.reviewInput.description
         })
-        const result = await review.save()
-        let order = await Order.findById(args.reviewInput.order)
-        const index = order.items.findIndex((obj => obj.productId == args.reviewInput.product));
+        await review.save()
+        const order = await Order.findById(args.reviewInput.order)
+        const index = order.items.findIndex(
+          obj => obj.productId === args.reviewInput.product
+        )
         order.items[index].isReviewed = true
         // order.items = items
         const orderData = await order.save()
@@ -470,7 +469,7 @@ module.exports = {
         throw err
       }
     },
-    updatePaymentStatus: async (_, args, context) => {
+    updatePaymentStatus: async(_, args, context) => {
       console.log('updatePaymentStatus', args.id, args.status)
       try {
         const order = await Order.findById(args.id)
