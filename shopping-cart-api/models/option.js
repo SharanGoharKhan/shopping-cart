@@ -16,5 +16,5 @@ const optionSchema = new Schema(
   { timestamps: true }
 )
 
-const myModule = module.exports = mongoose.model('Option', optionSchema)
+const myModule = (module.exports = mongoose.model('Option', optionSchema))
 myModule.optionSchema = optionSchema

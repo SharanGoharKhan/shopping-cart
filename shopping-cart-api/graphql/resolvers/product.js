@@ -1,23 +1,25 @@
 const Product = require('../../models/product')
-const Attribute = require('../../models/optionGroup')
 const User = require('../../models/user')
-const { transformProduct, transformProducts, transformUser } = require('./merge')
+const {
+  transformProduct,
+  transformProducts,
+  transformUser
+} = require('./merge')
 const uuidv4 = require('uuid/v4')
 
 module.exports = {
   Query: {
-    product: async (_, args, context) => {
+    product: async(_, args, context) => {
       console.log('product')
       try {
         const product = await Product.findById(args.id)
         return transformProduct(product)
-
       } catch (err) {
         console.log(err)
         throw err
       }
     },
-    productByIds: async (_, args, context) => {
+    productByIds: async(_, args, context) => {
       console.log('productByIds')
       try {
         const products = await Product.find({
@@ -32,7 +34,7 @@ module.exports = {
         throw err
       }
     },
-    products: async (_, args, context) => {
+    products: async(_, args, context) => {
       console.log('products')
       try {
         const products = await Product.find({ isActive: true }).sort({
@@ -47,7 +49,7 @@ module.exports = {
       }
     },
     // /// Have to modify this method
-    productByCategory: async (_, args, context) => {
+    productByCategory: async(_, args, context) => {
       console.log('productByCategory')
       try {
         //     let filters = {}
@@ -90,19 +92,19 @@ module.exports = {
         throw err
       }
     },
-    whishlistProducts: async (_,args, {req,res}) => {
+    whishlistProducts: async(_, args, { req, res }) => {
       console.log('whishlistProducts')
       try {
         const user = await User.findById(req.userId)
         return transformProducts(user.whishlist)
       } catch (error) {
-        console.log('whishlistProducts error:',error)
+        console.log('whishlistProducts error:', error)
         throw error
       }
     }
   },
   Mutation: {
-    createProduct: async (_, args, context) => {
+    createProduct: async(_, args, context) => {
       console.log('createProduct')
 
       const product = new Product({
@@ -111,22 +113,24 @@ module.exports = {
         skuCode: args.productInput.skuCode,
         subCategory: args.productInput.subCategory,
         image: args.productInput.image,
-        attributes: args.productInput.attributes.map(item => {
-          if (item.options.length) {
-            return {
-              _id: uuidv4(),
-              ...item,
-              options: item.options.map(option => {
-                return {
-                  _id: uuidv4(),
-                  ...option
-                }
-              })
+        attributes: args.productInput.attributes
+          .map(item => {
+            if (item.options.length) {
+              return {
+                _id: uuidv4(),
+                ...item,
+                options: item.options.map(option => {
+                  return {
+                    _id: uuidv4(),
+                    ...option
+                  }
+                })
+              }
+            } else {
+              return null
             }
-          } else {
-            return null
-          }
-        }).filter(data => data !== null),
+          })
+          .filter(data => data !== null),
         price: args.productInput.price,
         featured: args.productInput.featured
       })
@@ -141,7 +145,7 @@ module.exports = {
         throw err
       }
     },
-    editProduct: async (_, args, context) => {
+    editProduct: async(_, args, context) => {
       console.log('editProduct')
 
       const product = await Product.findOne({ _id: args.productInput._id })
@@ -150,22 +154,24 @@ module.exports = {
       product.subCategory = args.productInput.subCategory
       product.skuCode = args.productInput.skuCode
       product.image = args.productInput.image
-      product.attributes = args.productInput.attributes.map(item => {
-        if (item.options.length) {
-          return {
-            _id: uuidv4(),
-            ...item,
-            options: item.options.map(option => {
-              return {
-                _id: uuidv4(),
-                ...option
-              }
-            })
+      product.attributes = args.productInput.attributes
+        .map(item => {
+          if (item.options.length) {
+            return {
+              _id: uuidv4(),
+              ...item,
+              options: item.options.map(option => {
+                return {
+                  _id: uuidv4(),
+                  ...option
+                }
+              })
+            }
+          } else {
+            return null
           }
-        } else {
-          return null
-        }
-      }).filter(data => data !== null)
+        })
+        .filter(data => data !== null)
       product.price = args.productInput.price
       product.featured = args.productInput.featured
 
@@ -180,7 +186,7 @@ module.exports = {
         throw err
       }
     },
-    deleteProduct: async (_, { id }, context) => {
+    deleteProduct: async(_, { id }, context) => {
       console.log('deleteProduct')
       try {
         const product = await Product.findById(id)
@@ -191,7 +197,7 @@ module.exports = {
         throw err
       }
     },
-    addToWhishlist: async (_, args, {req,res}) => {
+    addToWhishlist: async(_, args, { req, res }) => {
       console.log('addToWhishList')
       try {
         if (!req.isAuth) throw new Error('Unauthenticated')
@@ -199,15 +205,12 @@ module.exports = {
         const index = user.whishlist.indexOf(args.productId)
         if (index < 0) {
           user.whishlist.push(args.productId)
-        }
-        else {
+        } else {
           user.whishlist.splice(index, 1)
         }
-        await user.save();
+        await user.save()
         return transformUser(user)
-      }
-
-      catch (err) {
+      } catch (err) {
         throw err
       }
     }

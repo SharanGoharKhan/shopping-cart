@@ -1,8 +1,8 @@
 import React, { useState, useLayoutEffect, useContext } from 'react'
 import { WebView } from 'react-native-webview'
 import { useNavigation, useRoute } from '@react-navigation/native'
-import { useApolloClient, gql} from '@apollo/client'
-import { myOrders } from "../../apollo/server"
+import { useApolloClient, gql } from '@apollo/client'
+import { myOrders } from '../../apollo/server'
 import getEnvVars from '../../../environment'
 import UserContext from '../../context/User'
 const { SERVER_URL } = getEnvVars()
@@ -32,7 +32,7 @@ function Paypal() {
         fetchPolicy: 'network-only'
       })
       const order = result.data.orders.find(order => order.orderId === _id)
-      await clearCart();
+      await clearCart()
       navigation.reset({
         routes: [
           { name: 'MainLanding' },

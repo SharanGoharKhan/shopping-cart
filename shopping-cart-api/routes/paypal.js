@@ -5,8 +5,6 @@ const paypal = require('paypal-rest-sdk')
 const Paypal = require('../models/paypal')
 const Order = require('../models/order')
 const User = require('../models/user')
-const Item = require('../models/item')
-const Option = require('../models/option')
 const Coupon = require('../models/coupon')
 const Configuration = require('../models/configuration')
 const sendEmail = require('../helpers/email')
@@ -26,7 +24,7 @@ var CURRENCY = 'USD'
 var CURRENCY_SYMBOL = '$'
 var isInitialized = false
 
-const initializePaypal = async () => {
+const initializePaypal = async() => {
   const configuration = await Configuration.findOne()
   if (!configuration) return (isInitialized = false)
   paypal.configure({
@@ -40,13 +38,13 @@ const initializePaypal = async () => {
   isInitialized = true
 }
 
-router.get('/', async (req, res) => {
+router.get('/', async(req, res) => {
   await initializePaypal()
   if (!isInitialized) return res.render('cancel')
   console.log('/', req.query.id)
   return res.render('index', { id: req.query.id })
 })
-router.get('/payment', async (req, res) => {
+router.get('/payment', async(req, res) => {
   if (!isInitialized) await initializePaypal()
   if (!isInitialized) return res.render('cancel')
   console.log('payment')
@@ -117,7 +115,7 @@ router.get('/payment', async (req, res) => {
     ]
   }
 
-  paypal.payment.create(create_payment_json, async function (error, payment) {
+  paypal.payment.create(create_payment_json, async function(error, payment) {
     if (error) {
       console.log(error)
       throw error
@@ -131,7 +129,7 @@ router.get('/payment', async (req, res) => {
     }
   })
 })
-router.get('/success', async (req, res) => {
+router.get('/success', async(req, res) => {
   console.log('success')
   if (!isInitialized) await initializePaypal()
   if (!isInitialized) return res.render('cancel')
@@ -171,7 +169,7 @@ router.get('/success', async (req, res) => {
     ]
   }
 
-  paypal.payment.execute(paymentId, execute_payment_json, async function (
+  paypal.payment.execute(paymentId, execute_payment_json, async function(
     error,
     payment
   ) {
@@ -213,7 +211,7 @@ router.get('/success', async (req, res) => {
           result.deliveryAddress,
           `${CURRENCY_SYMBOL} ${Number(price).toFixed(2)}`,
           `${CURRENCY_SYMBOL} ${DELIVERY_CHARGES}`,
-          `${CURRENCY_SYMBOL} ${result.paidAmount.toFixed(2)}`,
+          `${CURRENCY_SYMBOL} ${result.paidAmount.toFixed(2)}`
         ])
         const placeOrder_text = placeOrderText([
           result.orderId,

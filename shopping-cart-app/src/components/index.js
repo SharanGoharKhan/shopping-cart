@@ -6,4 +6,14 @@ import { BackHeader, HeaderRightText } from './Headers/Headers'
 import RadioButton from './RadioBtn/RadioBtn'
 import Spinner from './Spinner/Spinner'
 
-export { FlashMessage, TextDefault, TextError, BottomTab, MainMenu, BackHeader, HeaderRightText, RadioButton, Spinner }
+export {
+  FlashMessage,
+  TextDefault,
+  TextError,
+  BottomTab,
+  MainMenu,
+  BackHeader,
+  HeaderRightText,
+  RadioButton,
+  Spinner
+}

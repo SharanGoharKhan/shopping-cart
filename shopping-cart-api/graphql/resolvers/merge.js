@@ -2,42 +2,24 @@ const Product = require('../../models/product')
 const User = require('../../models/user')
 const Category = require('../../models/category')
 const SubCategory = require('../../models/subCategory')
-const Item = require('../../models/item')
 const Review = require('../../models/review')
 const Order = require('../../models/order')
 const Address = require('../../models/address')
 const { dateToString } = require('../../helpers/date')
 const mongoose = require('mongoose')
 
-
 const products = async productIds => {
   try {
     const products = await Product.find({ _id: { $in: productIds } })
     products.sort((a, b) => {
       return (
-        productIds.indexOf(a._id.toString()) - productIds.indexOf(b._id.toString())
+        productIds.indexOf(a._id.toString()) -
+        productIds.indexOf(b._id.toString())
       )
     })
     return products.map(product => {
       return transformProduct(product)
     })
-  } catch (err) {
-    throw err
-  }
-}
-
-const item = async itemId => {
-  try {
-    const item = await Item.findById(itemId)
-
-    const product = await singleProduct(item.product)
-
-    return {
-      _id: item.id,
-      quantity: item.quantity,
-      // variation: await variation.bind(this, item.variation),
-      product
-    }
   } catch (err) {
     throw err
   }
@@ -87,7 +69,7 @@ const transformProduct = product => {
     ...product._doc,
     _id: product.id,
     subCategory: subCategory.bind(this, product.subCategory),
-    reviewData: populateReviewsDetail.bind(this,product.id)
+    reviewData: populateReviewsDetail.bind(this, product.id)
   }
 }
 
@@ -97,9 +79,7 @@ const transformProducts = async productIds => {
 
 const transformStatusQueue = statusQueue => {
   Object.keys(statusQueue).forEach(function(key) {
-    statusQueue[key] = statusQueue[key]
-      ? dateToString(statusQueue[key])
-      : null
+    statusQueue[key] = statusQueue[key] ? dateToString(statusQueue[key]) : null
   })
   return statusQueue
 }
@@ -144,7 +124,6 @@ const order = async orderId => {
   return transformOrder(order)
 }
 
-
 const transformOption = async option => {
   return {
     ...option._doc,
@@ -160,7 +139,6 @@ const transformOptionGroup = async optionGroup => {
   }
 }
 
-
 const transformReview = review => {
   return {
     ...review._doc,
@@ -170,9 +148,8 @@ const transformReview = review => {
   }
 }
 
-
 const transformUser = async user => {
-  console.log('user',user)
+  console.log('user', user)
   return {
     ...user._doc,
     password: null,

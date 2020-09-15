@@ -13,7 +13,6 @@ const GET_USERS = gql`
   ${getUsers}
 `
 const Users = props => {
-
   const { data, loading, error } = useQuery(GET_USERS, {
     variables: {
       page: 0
@@ -80,11 +79,11 @@ const Users = props => {
         <Row>
           <div className="col">
             <Card className="shadow">
-              {error ?
+              {error ? (
                 <span>
                   {t('Error')}! ${error.message}
                 </span>
-                :
+              ) : (
                 <DataTable
                   title={t('Users')}
                   columns={columns}
@@ -94,7 +93,8 @@ const Users = props => {
                   progressComponent={<CustomLoader />}
                   onSort={handleSort}
                   sortFunction={customSort}
-                />}
+                />
+              )}
             </Card>
           </div>
         </Row>

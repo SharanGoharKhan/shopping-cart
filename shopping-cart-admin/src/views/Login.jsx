@@ -53,10 +53,7 @@ const Login = props => {
   }
 
   function onCompleted(data) {
-    localStorage.setItem(
-      'user-commero',
-      JSON.stringify(data.adminLogin)
-    )
+    localStorage.setItem('user-commero', JSON.stringify(data.adminLogin))
     setRedirectToReferrer(true)
     setEmailError(null)
     setPasswordError(null)
@@ -74,7 +71,7 @@ const Login = props => {
   return (
     <>
       <Col lg="5" md="7">
-        <Card className="bg-secondary shadow border-0" >
+        <Card className="bg-secondary shadow border-0">
           <CardHeader className="bg-transparent pb-5">
             <div className="text-muted text-center mt-2 mb-3">
               <small>{t('Sign in credentials')}</small>

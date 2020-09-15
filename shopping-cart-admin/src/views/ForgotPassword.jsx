@@ -74,7 +74,6 @@ const ResetPassword = props => {
     return ConfirmPasswordError && PasswordError
   }
 
-
   return (
     <>
       <Col lg="5" md="7">
@@ -141,7 +140,6 @@ const ResetPassword = props => {
                 </InputGroup>
               </FormGroup>
               <div className="text-center">
-
                 <Button
                   className="my-4"
                   color="primary"
@@ -152,9 +150,7 @@ const ResetPassword = props => {
                     setPasswordError(null)
                     setError(null)
                     setSuccess(null)
-                    const params = new URLSearchParams(
-                      props.location.search
-                    )
+                    const params = new URLSearchParams(props.location.search)
                     if (validate() && params.get('reset')) {
                       mutation({
                         variables: {
@@ -165,7 +161,7 @@ const ResetPassword = props => {
                     }
                   }}>
                   Reset
-                      </Button>
+                </Button>
               </div>
               {error && (
                 <UncontrolledAlert color="danger" fade={true}>

@@ -206,7 +206,7 @@ export const categoryProduct = `query ProductByCategory($id:String!){
   }
 }`
 
-export const productById=`query ProductByIds($ids:[String!]!){
+export const productById = `query ProductByIds($ids:[String!]!){
   productByIds(ids:$ids){
     _id
     title
@@ -242,7 +242,7 @@ export const productById=`query ProductByIds($ids:[String!]!){
   }
 }`
 
-export const product=`query Product($id:String!){
+export const product = `query Product($id:String!){
   product(ids:$id){
     _id
     title
@@ -346,7 +346,7 @@ export const getConfiguration = `query Configuration{
     }
   }`
 
-  export const placeOrder = `
+export const placeOrder = `
   mutation PlaceOrder($orderInput:[OrderInput!]!,$paymentMethod:String!,$couponCode:String,$address:AddressInput!){
     placeOrder(orderInput: $orderInput,paymentMethod:$paymentMethod,couponCode:$couponCode,address:$address) {
       _id
@@ -392,7 +392,7 @@ export const getConfiguration = `query Configuration{
     }
   }`
 
-  export const myOrders = `query Orders($offset:Int){
+export const myOrders = `query Orders($offset:Int){
     orders(offset:$offset){
       _id
       orderId
@@ -438,7 +438,7 @@ export const getConfiguration = `query Configuration{
     }
   }`
 
-  export const orderStatusChanged = `subscription OrderStatusChanged($userId:String!){
+export const orderStatusChanged = `subscription OrderStatusChanged($userId:String!){
     orderStatusChanged(userId:$userId)
     {
       userId
@@ -489,7 +489,7 @@ export const getConfiguration = `query Configuration{
     }
   }`
 
-  export const reviewOrder = `mutation ReviewOrder(
+export const reviewOrder = `mutation ReviewOrder(
     $order:String!,
     $product: String!,
     $rating:Int!,
@@ -543,7 +543,7 @@ export const getConfiguration = `query Configuration{
       createdAt
     }
   }`
-  export const getCoupon = `mutation Coupon($coupon:String!){
+export const getCoupon = `mutation Coupon($coupon:String!){
     coupon(coupon:$coupon){
       _id
       code
@@ -552,7 +552,7 @@ export const getConfiguration = `query Configuration{
     }
   }`
 
-  export const productReviews = `query ProductReviews($productId:String!){
+export const productReviews = `query ProductReviews($productId:String!){
     productReviews(productId:$productId){
       reviews{
         _id
@@ -575,7 +575,7 @@ export const getConfiguration = `query Configuration{
     }
   }`
 
-  export const forgotPassword = `mutation ForgotPassword($email:String!){
+export const forgotPassword = `mutation ForgotPassword($email:String!){
     forgotPassword(email:$email){
       result
     }

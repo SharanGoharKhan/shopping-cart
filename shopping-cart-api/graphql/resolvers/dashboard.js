@@ -5,7 +5,7 @@ const Review = require('../../models/review')
 const { months } = require('../../helpers/enum')
 module.exports = {
   Query: {
-    getDashboardTotal: async (_, args, context) => {
+    getDashboardTotal: async(_, args, context) => {
       console.log('getOrdersCount from dashboard')
       console.log(args)
       try {
@@ -47,7 +47,7 @@ module.exports = {
         throw err
       }
     },
-    getDashboardSales: async (_, args, context) => {
+    getDashboardSales: async(_, args, context) => {
       console.log('getDashboardSales')
       try {
         const ending_date = new Date(args.ending_date)
@@ -83,7 +83,7 @@ module.exports = {
         throw err
       }
     },
-    getDashboardOrders: async (_, args, context) => {
+    getDashboardOrders: async(_, args, context) => {
       console.log('getDashboardOrders')
       try {
         const ending_date = new Date(args.ending_date)

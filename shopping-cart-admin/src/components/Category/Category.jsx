@@ -1,6 +1,6 @@
 /* eslint-disable camelcase */
 import React, { useState } from 'react'
-import { gql, useMutation, } from '@apollo/client'
+import { gql, useMutation } from '@apollo/client'
 import { validateFunc } from '../../constraints/constraints'
 import { withTranslation } from 'react-i18next'
 import Loader from 'react-loader-spinner'
@@ -39,7 +39,11 @@ function Category(props) {
   const [successMessage, successMessageSetter] = useState('')
   const [titleError, titleErrorSetter] = useState(null)
   const mutation = props.category ? EDIT_CATEGORY : CREATE_CATEGORY
-  const [mutate, { loading }] = useMutation(mutation, { onCompleted, onError, refetchQueries: [{ query: GET_CATEGORIES }] })
+  const [mutate, { loading }] = useMutation(mutation, {
+    onCompleted,
+    onError,
+    refetchQueries: [{ query: GET_CATEGORIES }]
+  })
 
   const onBlur = (setter, field, state) => {
     setter(!validateFunc({ [field]: state }, field))
@@ -123,7 +127,7 @@ function Category(props) {
                   </Col>
                 </Row>
                 <Row>
-                  {loading ?
+                  {loading ? (
                     <Col className="text-right" xs="12">
                       <Button color="primary" onClick={() => null}>
                         <Loader
@@ -135,7 +139,7 @@ function Category(props) {
                         />
                       </Button>
                     </Col>
-                    :
+                  ) : (
                     <Col className="text-right" xs="12">
                       <Button
                         color="primary"
@@ -145,9 +149,7 @@ function Category(props) {
                           if (onSubmitValidaiton()) {
                             mutate({
                               variables: {
-                                _id: props.category
-                                  ? props.category._id
-                                  : '',
+                                _id: props.category ? props.category._id : '',
                                 title: title
                               }
                             })
@@ -157,7 +159,7 @@ function Category(props) {
                         {t('Save')}
                       </Button>
                     </Col>
-                  }
+                  )}
                 </Row>
                 <Row>
                   <Col lg="6">
@@ -188,7 +190,7 @@ function Category(props) {
           </CardBody>
         </Card>
       </Col>
-    </Row >
+    </Row>
   )
 }
 

@@ -1,7 +1,17 @@
 /* eslint-disable camelcase */
 import React from 'react'
 import ReactDOM from 'react-dom'
-import { ApolloProvider, ApolloClient, InMemoryCache, createHttpLink, ApolloLink, Observable, split, concat, gql } from '@apollo/client'
+import {
+  ApolloProvider,
+  ApolloClient,
+  InMemoryCache,
+  createHttpLink,
+  ApolloLink,
+  Observable,
+  split,
+  concat,
+  gql
+} from '@apollo/client'
 import { WebSocketLink } from '@apollo/client/link/ws'
 import * as firebase from 'firebase/app'
 import 'firebase/messaging'
@@ -21,14 +31,14 @@ const UPLOAD_TOKEN = gql`
 `
 
 const firebaseConfig = {
-  apiKey: "AIzaSyDKvrBL1aKKBTOYA6uI-DOEcmfyxGmMaUA",
-  authDomain: "ecommero-1f0eb.firebaseapp.com",
-  databaseURL: "https://ecommero-1f0eb.firebaseio.com",
-  projectId: "ecommero-1f0eb",
-  storageBucket: "ecommero-1f0eb.appspot.com",
-  messagingSenderId: "378663620953",
-  appId: "1:378663620953:web:f7fdee12ac941bf7acfc48",
-  measurementId: "G-880ZF4HYKW"
+  apiKey: 'AIzaSyDKvrBL1aKKBTOYA6uI-DOEcmfyxGmMaUA',
+  authDomain: 'ecommero-1f0eb.firebaseapp.com',
+  databaseURL: 'https://ecommero-1f0eb.firebaseio.com',
+  projectId: 'ecommero-1f0eb',
+  storageBucket: 'ecommero-1f0eb.appspot.com',
+  messagingSenderId: '378663620953',
+  appId: '1:378663620953:web:f7fdee12ac941bf7acfc48',
+  measurementId: 'G-880ZF4HYKW'
 }
 
 const cache = new InMemoryCache()
@@ -87,7 +97,7 @@ const terminatingLink = split(
 )
 
 const client = new ApolloClient({
- link: concat(ApolloLink.from([terminatingLink, requestLink]), httpLink),
+  link: concat(ApolloLink.from([terminatingLink, requestLink]), httpLink),
   cache
 })
 
@@ -99,33 +109,33 @@ messaging.usePublicVapidKey(
 )
 messaging
   .requestPermission()
-  .then(function () {
+  .then(function() {
     messaging
       .getToken()
-      .then(function (currentToken) {
+      .then(function(currentToken) {
         if (currentToken) {
           client
             .mutate({
               mutation: UPLOAD_TOKEN,
               variables: { pushToken: currentToken }
             })
-            .then(() => { })
-            .catch(() => { })
+            .then(() => {})
+            .catch(() => {})
         } else {
         }
       })
-      .catch(function () { })
+      .catch(function() {})
   })
-  .catch(function () { })
+  .catch(function() {})
 
-messaging.onMessage(function (payload) {
+messaging.onMessage(function(payload) {
   var notificationTitle = 'New Order on Ecommero'
   var notificationOptions = {
     body: payload.data.orderid,
     icon: 'https://ecommero.ninjascode.com/assets/images/logo.png'
   }
   const nt = new Notification(notificationTitle, notificationOptions)
-  nt.onclick = function (event) {
+  nt.onclick = function(event) {
     event.preventDefault() // prevent the browser from focusing the Notification's tab
     window.open('https://ecommero.ninjascode.com/dashboard')
     nt.close()

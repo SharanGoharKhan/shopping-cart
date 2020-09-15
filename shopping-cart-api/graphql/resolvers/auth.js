@@ -12,7 +12,7 @@ const {
 const uuidv4 = require('uuid/v4')
 module.exports = {
   Mutation: {
-    login: async (
+    login: async(
       _,
       { appleId, facebookId, email, password, type, name, notificationToken },
       context
@@ -82,7 +82,7 @@ module.exports = {
         tokenExpiration: 1
       }
     },
-    adminLogin: async (_, args, { req, res }) => {
+    adminLogin: async(_, args, { req, res }) => {
       if (
         credentials.ADMIN_USER !== args.email ||
         credentials.ADMIN_PASSWORD !== args.password
@@ -101,7 +101,7 @@ module.exports = {
       )
       return { ...user, password: '', token: token }
     },
-    pushToken: async (_, args, { req, res }) => {
+    pushToken: async(_, args, { req, res }) => {
       if (!req.isAuth) throw new Error('Unauthenticated')
       try {
         console.log(args.token)
@@ -114,7 +114,7 @@ module.exports = {
         throw err
       }
     },
-    forgotPassword: async (_, { email }, { req, res }) => {
+    forgotPassword: async(_, { email }, { req, res }) => {
       const user = await User.findOne({ email: email })
       if (!user) {
         throw new Error('User does not exist!')
@@ -142,7 +142,7 @@ module.exports = {
         result: true
       }
     },
-    resetPassword: async (_, { password, token }, constext) => {
+    resetPassword: async(_, { password, token }, constext) => {
       console.log(password, token)
       const reset = await Reset.findOne({ token })
       if (!reset) {
@@ -166,7 +166,7 @@ module.exports = {
         result: true
       }
     },
-    changePassword: async (_, { oldPassword, newPassword }, { req, res }) => {
+    changePassword: async(_, { oldPassword, newPassword }, { req, res }) => {
       console.log('changePassword')
       try {
         if (!req.isAuth) throw new Error('Unauthenticated')
@@ -186,6 +186,6 @@ module.exports = {
       } catch (e) {
         throw e
       }
-    },
+    }
   }
 }

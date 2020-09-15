@@ -1,5 +1,4 @@
 const mongoose = require('mongoose')
-const { pointSchema } = require('./point')
 const { itemSchema } = require('./item')
 
 const {
@@ -22,7 +21,7 @@ const orderSchema = new Schema(
       city: { type: String, required: true },
       apartment: { type: String, required: true },
       building: { type: String, required: true },
-      details: String,
+      details: String
     },
     items: [
       {

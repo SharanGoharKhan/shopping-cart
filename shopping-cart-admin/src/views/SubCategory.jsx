@@ -23,7 +23,9 @@ const DELETE_SUB_CATEGORY = gql`
 const SubCategory = props => {
   const [editModal, setEditModal] = useState(false)
   const [subCategory, setSubCategory] = useState(null)
-  const { data, loading, error } = useQuery(GET_SUB_CATEGORIES, { variables: { page: 0 } })
+  const { data, loading, error } = useQuery(GET_SUB_CATEGORIES, {
+    variables: { page: 0 }
+  })
   const toggleModal = subCategory => {
     setEditModal(!editModal)
     setSubCategory(subCategory)
@@ -31,11 +33,18 @@ const SubCategory = props => {
 
   const customSort = (rows, field, direction) => {
     const handleField = row => {
-      if (row[field]) {
-        return row[field].toLowerCase()
-      }
+      if (field === 'category.title') {
+        if (row.category.title) {
+          return row.category.title.toLowerCase()
+        }
+        return row.category.title
+      } else {
+        if (row[field]) {
+          return row[field].toLowerCase()
+        }
 
-      return row[field]
+        return row[field]
+      }
     }
 
     return orderBy(rows, handleField, direction)
@@ -68,13 +77,16 @@ const SubCategory = props => {
     },
     {
       name: 'Action',
-      cell: row => <ActionButton
-        deleteButton={true}
-        editButton={true}
-        row={row}
-        mutation={DELETE_SUB_CATEGORY}
-        editModal={toggleModal}
-        refetchQuery={GET_SUB_CATEGORIES} />
+      cell: row => (
+        <ActionButton
+          deleteButton={true}
+          editButton={true}
+          row={row}
+          mutation={DELETE_SUB_CATEGORY}
+          editModal={toggleModal}
+          refetchQuery={GET_SUB_CATEGORIES}
+        />
+      )
     }
   ]
 
@@ -89,11 +101,11 @@ const SubCategory = props => {
         <Row className="mt-5">
           <div className="col">
             <Card className="shadow">
-              {error ?
+              {error ? (
                 <span>
                   {t('Error')}! ${error.message}
                 </span>
-                :
+              ) : (
                 <DataTable
                   title={t('Sub Categories')}
                   columns={columns}
@@ -105,7 +117,7 @@ const SubCategory = props => {
                   sortFunction={customSort}
                   defaultSortField="title"
                 />
-              }
+              )}
             </Card>
           </div>
         </Row>

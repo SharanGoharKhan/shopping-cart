@@ -1,6 +1,6 @@
 /* eslint-disable camelcase */
 import React, { useState } from 'react'
-import { gql, useMutation, useQuery, } from '@apollo/client'
+import { gql, useMutation, useQuery } from '@apollo/client'
 import { validateFunc } from '../../constraints/constraints'
 import { withTranslation } from 'react-i18next'
 import Loader from 'react-loader-spinner'
@@ -19,8 +19,16 @@ import {
   UncontrolledAlert
 } from 'reactstrap'
 
-import { cloudinary_upload_url, cloudinary_sub_categories } from '../../config/config'
-import { editSubCategory, createSubCategory, subCategories, categories } from '../../apollo/server'
+import {
+  cloudinary_upload_url,
+  cloudinary_sub_categories
+} from '../../config/config'
+import {
+  editSubCategory,
+  createSubCategory,
+  subCategories,
+  categories
+} from '../../apollo/server'
 
 const CREATE_SUB_CATEGORY = gql`
   ${createSubCategory}
@@ -42,14 +50,20 @@ function SubCategory(props) {
   const [imgMenu, imgMenuSetter] = useState(
     props.subCategory ? props.subCategory.image : ''
   )
-  const [category, categorySetter] = useState(props.subCategory ? props.subCategory.category._id : '')
+  const [category, categorySetter] = useState(
+    props.subCategory ? props.subCategory.category._id : ''
+  )
   const [errorMessage, errorMessageSetter] = useState('')
   const [successMessage, successMessageSetter] = useState('')
   const [categoryError, categoryErrorSetter] = useState(null)
   const [titleError, titleErrorSetter] = useState(null)
   const [loader, loaderSetter] = useState(false)
   const mutation = props.subCategory ? EDIT_SUB_CATEGORY : CREATE_SUB_CATEGORY
-  const [mutate] = useMutation(mutation, { onCompleted, onError, refetchQueries: [{ query: GET_SUB_CATEGORIES }] })
+  const [mutate] = useMutation(mutation, {
+    onCompleted,
+    onError,
+    refetchQueries: [{ query: GET_SUB_CATEGORIES }]
+  })
   const { data, loading: loadingCategory, error } = useQuery(GET_CATEGORIES)
 
   const filterImage = event => {
@@ -78,7 +92,10 @@ function SubCategory(props) {
   }
 
   const onSubmitValidaiton = () => {
-    const titleError = !validateFunc({ category_title: title }, 'category_title')
+    const titleError = !validateFunc(
+      { category_title: title },
+      'category_title'
+    )
     const categoryError = !validateFunc({ category: category }, 'category')
     categoryErrorSetter(categoryError)
     titleErrorSetter(titleError)
@@ -100,7 +117,7 @@ function SubCategory(props) {
     if (!props.subCategory) clearFields()
     setTimeout(hideMessage, 3000)
   }
-  function onError(error) {
+  function onError() {
     loaderSetter(false)
     const message = 'Action failed. Please Try again'
     successMessageSetter('')
@@ -118,7 +135,7 @@ function SubCategory(props) {
     }
     fileReader.readAsDataURL(imgUrl)
   }
-  const uploadImageToCloudinary = async () => {
+  const uploadImageToCloudinary = async() => {
     if (imgMenu === '') {
       return imgMenu
     }
@@ -154,7 +171,9 @@ function SubCategory(props) {
             <Row className="align-items-center">
               <Col xs="8">
                 <h3 className="mb-0">
-                  {props.subCategory ? t('Edit Sub Category') : t('Add Sub Category')}
+                  {props.subCategory
+                    ? t('Edit Sub Category')
+                    : t('Add Sub Category')}
                 </h3>
               </Col>
             </Row>
@@ -193,51 +212,45 @@ function SubCategory(props) {
                   </Col>
                 </Row>
                 <Row>
-                  <Col lg='6'>
+                  <Col lg="6">
                     <label
                       className="form-control-label"
                       htmlFor="input-category">
                       {t('Category')}
                     </label>
-                    {
-                      error ? ' Error' :
-                        loadingCategory ? ' Loading' :
-                          <FormGroup
-                            className={
-                              categoryError === null
-                                ? ''
-                                : categoryError
-                                  ? 'has-success'
-                                  : 'has-danger'
-                            }>
-                            <Input
-                              type="select"
-                              name="select"
-                              id="exampleSelect"
-                              value={category}
-                              onChange={handleChange}
-                              onBlur={event => {
-                                onBlur(
-                                  categoryErrorSetter,
-                                  'category',
-                                  category
-                                )
-                              }}>
-                              {!category && (
-                                <option value={''}>
-                                  {t('Select')}
-                                </option>
-                              )}
-                              {data.categories.map(category => (
-                                <option
-                                  value={category._id}
-                                  key={category._id}>
-                                  {category.title}
-                                </option>
-                              ))}
-                            </Input>
-                          </FormGroup>
-                    }
+                    {error ? (
+                      ' Error'
+                    ) : loadingCategory ? (
+                      ' Loading'
+                    ) : (
+                      <FormGroup
+                        className={
+                          categoryError === null
+                            ? ''
+                            : categoryError
+                              ? 'has-success'
+                              : 'has-danger'
+                        }>
+                        <Input
+                          type="select"
+                          name="select"
+                          id="exampleSelect"
+                          value={category}
+                          onChange={handleChange}
+                          onBlur={event => {
+                            onBlur(categoryErrorSetter, 'category', category)
+                          }}>
+                          {!category && (
+                            <option value={''}>{t('Select')}</option>
+                          )}
+                          {data.categories.map(category => (
+                            <option value={category._id} key={category._id}>
+                              {category.title}
+                            </option>
+                          ))}
+                        </Input>
+                      </FormGroup>
+                    )}
                   </Col>
                 </Row>
                 <Row>
@@ -265,7 +278,7 @@ function SubCategory(props) {
                   </Col>
                 </Row>
                 <Row>
-                  {loader ?
+                  {loader ? (
                     <Col className="text-right" xs="12">
                       <Button color="primary" onClick={() => null}>
                         <Loader
@@ -277,7 +290,7 @@ function SubCategory(props) {
                         />
                       </Button>
                     </Col>
-                    :
+                  ) : (
                     <Col className="text-right" xs="12">
                       <Button
                         disabled={loader}
@@ -296,7 +309,9 @@ function SubCategory(props) {
                                   ? props.subCategory._id
                                   : '',
                                 title: title,
-                                image: image ? image : 'https://www.btklsby.go.id/images/placeholder/camera.jpg',
+                                image:
+                                  image ||
+                                  'https://www.btklsby.go.id/images/placeholder/camera.jpg',
                                 category: category
                               }
                             })
@@ -306,7 +321,7 @@ function SubCategory(props) {
                         {t('Save')}
                       </Button>
                     </Col>
-                  }
+                  )}
                 </Row>
                 <Row>
                   <Col lg="6">
@@ -337,7 +352,7 @@ function SubCategory(props) {
           </CardBody>
         </Card>
       </Col>
-    </Row >
+    </Row>
   )
 }
 

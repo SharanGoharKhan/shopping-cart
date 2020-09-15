@@ -24,7 +24,10 @@ function Delivery(props) {
     props.deliveryCharges || 0
   )
   const [deliveryChargesError, deliveryChargesErrorSetter] = useState(null)
-  const [saveConfiguration, { loading, error }] = useMutation(SAVE_DELIVERY_CONFIGURATION, { onCompleted, onError })
+  const [
+    saveConfiguration,
+    { loading, error }
+  ] = useMutation(SAVE_DELIVERY_CONFIGURATION, { onCompleted, onError })
 
   const onBlur = (setter, field, event) => {
     setter(!validateFunc({ [field]: event.target.value.trim() }, field))
@@ -87,49 +90,50 @@ function Delivery(props) {
               </Row>
               <Row>
                 <Col md="4">
-                  {
-                    error ? t('Error') : loading ?
-                      <Button
-                        className="btn-block mb-2"
-                        color="primary"
-                        onClick={() => null}>
-                        <Loader
-                          type="TailSpin"
-                          color="#FFF"
-                          height={25}
-                          width={30}
-                          visible={loading}
-                        />
-                      </Button>
-                      :
-                      <Button
-                        disabled
-                        className="btn-block mb-2"
-                        type="button"
-                        color="primary"
-                        onClick={e => {
-                          e.preventDefault()
-                          if (validateInput()) {
-                            saveConfiguration({
-                              variables: {
-                                configurationInput: {
-                                  deliveryCharges: Number(deliveryCharges)
-                                }
+                  {error ? (
+                    t('Error')
+                  ) : loading ? (
+                    <Button
+                      className="btn-block mb-2"
+                      color="primary"
+                      onClick={() => null}>
+                      <Loader
+                        type="TailSpin"
+                        color="#FFF"
+                        height={25}
+                        width={30}
+                        visible={loading}
+                      />
+                    </Button>
+                  ) : (
+                    <Button
+                      disabled
+                      className="btn-block mb-2"
+                      type="button"
+                      color="primary"
+                      onClick={e => {
+                        e.preventDefault()
+                        if (validateInput()) {
+                          saveConfiguration({
+                            variables: {
+                              configurationInput: {
+                                deliveryCharges: Number(deliveryCharges)
                               }
-                            })
-                          }
-                        }}
-                        size="lg">
-                        {t('Save')}
-                      </Button>
-                  }
+                            }
+                          })
+                        }
+                      }}
+                      size="lg">
+                      {t('Save')}
+                    </Button>
+                  )}
                 </Col>
               </Row>
             </div>
           </Form>
         </Card>
       </div>
-    </Row >
+    </Row>
   )
 }
 

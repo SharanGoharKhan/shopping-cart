@@ -3,7 +3,7 @@ const { transformOption } = require('./merge')
 
 module.exports = {
   Query: {
-    options: async (_, args, context) => {
+    options: async(_, args, context) => {
       console.log('options')
       try {
         const options = await Option.find({ isActive: true })
@@ -15,7 +15,7 @@ module.exports = {
         throw err
       }
     },
-    allOptions: async (_, args, context) => {
+    allOptions: async(_, args, context) => {
       console.log('options')
       try {
         const options = await Option.find({ isActive: true })
@@ -29,7 +29,7 @@ module.exports = {
     }
   },
   Mutation: {
-    createOptions: async (_, args, context) => {
+    createOptions: async(_, args, context) => {
       console.log('createOption')
       try {
         const options = await Option.insertMany(args.optionInput)
@@ -42,7 +42,7 @@ module.exports = {
         throw err
       }
     },
-    editOption: async (_, args, context) => {
+    editOption: async(_, args, context) => {
       console.log('editOption')
       try {
         const option = await Option.findById(args.optionInput._id)
@@ -59,7 +59,7 @@ module.exports = {
         throw err
       }
     },
-    deleteOption: async (_, args, context) => {
+    deleteOption: async(_, args, context) => {
       console.log('deleteOption')
       try {
         const option = await Option.findById(args.id)

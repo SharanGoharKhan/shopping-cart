@@ -19,8 +19,10 @@ function Currency(props) {
   )
   const [currencyCodeError, currencyCodeErrorSetter] = useState(null)
   const [currencySymbolError, currencySymbolErrorSetter] = useState(null)
-  const [saveConfiguration, { loading, error }] = useMutation(SAVE_CURRENCY_CONFIGURATION, { onCompleted, onError })
-
+  const [
+    saveConfiguration,
+    { loading, error }
+  ] = useMutation(SAVE_CURRENCY_CONFIGURATION, { onCompleted, onError })
 
   const validateInput = () => {
     const currencyCodeError = !validateFunc(
@@ -132,44 +134,44 @@ function Currency(props) {
               </Row>
               <Row>
                 <Col md="4">
-                  {error ? 'Error :(' :
-                    loading ?
-                      <Button
-                        className="btn-block mb-2"
-                        color="primary"
-                        onClick={() => null}>
-                        <Loader
-                          type="TailSpin"
-                          color="#FFF"
-                          height={25}
-                          width={30}
-                          visible={loading}
-                        />
-                      </Button>
-                      :
-                      <Button
-                        disabled
-                        className="btn-block mb-2"
-                        type="button"
-                        color="primary"
-                        disabled={true}
-                        onClick={e => {
-                          e.preventDefault()
-                          if (validateInput()) {
-                            saveConfiguration({
-                              variables: {
-                                configurationInput: {
-                                  currency: currencyCode,
-                                  currencySymbol: currencySymbol
-                                }
+                  {error ? (
+                    'Error :('
+                  ) : loading ? (
+                    <Button
+                      className="btn-block mb-2"
+                      color="primary"
+                      onClick={() => null}>
+                      <Loader
+                        type="TailSpin"
+                        color="#FFF"
+                        height={25}
+                        width={30}
+                        visible={loading}
+                      />
+                    </Button>
+                  ) : (
+                    <Button
+                      className="btn-block mb-2"
+                      type="button"
+                      color="primary"
+                      disabled={true}
+                      onClick={e => {
+                        e.preventDefault()
+                        if (validateInput()) {
+                          saveConfiguration({
+                            variables: {
+                              configurationInput: {
+                                currency: currencyCode,
+                                currencySymbol: currencySymbol
                               }
-                            })
-                          }
-                        }}
-                        size="lg">
-                        {t('Save')}
-                      </Button>
-                  }
+                            }
+                          })
+                        }
+                      }}
+                      size="lg">
+                      {t('Save')}
+                    </Button>
+                  )}
                 </Col>
               </Row>
             </div>

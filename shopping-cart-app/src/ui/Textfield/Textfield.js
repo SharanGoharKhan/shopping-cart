@@ -1,7 +1,7 @@
-import React from 'react';
-import { View, TextInput } from 'react-native';
-import { colors } from '../../utils';
-import styles from './styles';
+import React from 'react'
+import { View, TextInput } from 'react-native'
+import { colors } from '../../utils'
+import styles from './styles'
 
 /* Config/Constants
 ============================================================================= */
@@ -20,21 +20,31 @@ Props:
   password        : hide the text for user as writing password.
 ============================================================================= */
 
-const TextField = (props) => {
-  const placeholderColor = props.placeholderColor ? props.placeholderColor : colors.fontPlaceholder;
-  const password = props.password ? props.password : false;
+const TextField = props => {
+  const placeholderColor = props.placeholderColor
+    ? props.placeholderColor
+    : colors.fontPlaceholder
+  const password = props.password ? props.password : false
   return (
-    <View style={[styles.input_view, props.containerStyle, props.error ? { borderColor: colors.errorColor } : { borderColor: colors.backgroudGray, }]}>
+    <View
+      style={[
+        styles.input_view,
+        props.containerStyle,
+        props.error
+          ? { borderColor: colors.errorColor }
+          : { borderColor: colors.backgroudGray }
+      ]}>
       <TextInput
         onChange={props.onChange}
         style={styles.input}
+        value={props.value}
         placeholderTextColor={placeholderColor}
         placeholder={props.placeholder}
         secureTextEntry={password}
       />
     </View>
-  );
-};
+  )
+}
 /* Export
 ============================================================================= */
-export default TextField;
+export default TextField

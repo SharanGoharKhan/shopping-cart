@@ -20,11 +20,12 @@ const DELETE_CATEGORY = gql`
   ${deleteCategory}
 `
 
-
 const Category = props => {
   const [editModal, setEditModal] = useState(false)
   const [category, setCategory] = useState(null)
-  const { data, loading, error } = useQuery(GET_CATEGORIES, { variables: { page: 0 } })
+  const { data, loading, error } = useQuery(GET_CATEGORIES, {
+    variables: { page: 0 }
+  })
   const toggleModal = category => {
     setEditModal(!editModal)
     setCategory(category)
@@ -53,13 +54,16 @@ const Category = props => {
     },
     {
       name: 'Action',
-      cell: row => <ActionButton
-        deleteButton={true}
-        editButton={true}
-        row={row}
-        mutation={DELETE_CATEGORY}
-        editModal={toggleModal}
-        refetchQuery={GET_CATEGORIES} />
+      cell: row => (
+        <ActionButton
+          deleteButton={true}
+          editButton={true}
+          row={row}
+          mutation={DELETE_CATEGORY}
+          editModal={toggleModal}
+          refetchQuery={GET_CATEGORIES}
+        />
+      )
     }
   ]
   const { t } = props
@@ -73,11 +77,11 @@ const Category = props => {
         <Row className="mt-5">
           <div className="col">
             <Card className="shadow">
-              {error ?
+              {error ? (
                 <span>
                   {t('Error')}! ${error.message}
                 </span>
-                :
+              ) : (
                 <DataTable
                   title={t('Categories')}
                   columns={columns}
@@ -89,7 +93,7 @@ const Category = props => {
                   sortFunction={customSort}
                   defaultSortField="title"
                 />
-              }
+              )}
             </Card>
           </div>
         </Row>

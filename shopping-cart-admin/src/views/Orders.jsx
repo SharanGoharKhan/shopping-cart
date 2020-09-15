@@ -18,7 +18,9 @@ const Orders = props => {
   const [rowsPerPage, setRowsPerPage] = useState(10)
   const { data, loading, error, subscribeToMore } = useQuery(GET_ORDERS, {
     variables: {
-      page: page - 1, rows: rowsPerPage, search
+      page: page - 1,
+      rows: rowsPerPage,
+      search
     }
   })
 
@@ -37,11 +39,13 @@ const Orders = props => {
         <Row>
           <div className="col">
             <Card className="shadow">
-              {error ? <tr>
-                <td>
-                  {t('Error')}! ${error.message}
-                </td>
-              </tr> :
+              {error ? (
+                <tr>
+                  <td>
+                    {t('Error')}! ${error.message}
+                  </td>
+                </tr>
+              ) : (
                 <OrdersData
                   orders={data ? data.allOrders : []}
                   toggleModal={toggleModal}
@@ -53,7 +57,7 @@ const Orders = props => {
                   page={setPage}
                   rows={setRowsPerPage}
                 />
-              }
+              )}
             </Card>
           </div>
         </Row>

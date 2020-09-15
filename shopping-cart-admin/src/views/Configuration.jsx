@@ -18,55 +18,55 @@ const GET_CONFIGURATION = gql`
 
 const Configuration = props => {
   const { data, loading, error } = useQuery(GET_CONFIGURATION)
-  if(data) console.log(data.configuration)
+  if (data) console.log(data.configuration)
   return (
     <>
       <Header />
-      {error ?
+      {error ? (
         'Error :('
-        : loading ?
-          <Container className="text-center mt-10" fluid>
-            <Loader
-              type="TailSpin"
-              color="#fb6340"
-              height={300}
-              width={300}
-              visible={loading}
-            />
-          </Container>
-          :
-          <Container className="mt--7" fluid>
-            <Loader
-              type="TailSpin"
-              color="#FFF"
-              height={25}
-              width={30}
-              visible={loading}
-            />
-            <OrderConfiguration prefix={data.configuration.orderPrefix} />
-            <EmailConfiguration
-              email={data.configuration.email}
-              password={data.configuration.password}
-              enabled={data.configuration.enableEmail}
-            />
-            <PaypalConfiguration
-              clientId={data.configuration.clientId}
-              clientSecret={data.configuration.clientSecret}
-              sandbox={data.configuration.sandbox}
-            />
-            <StripeConfiguration
-              publishableKey={data.configuration.publishableKey}
-              secretKey={data.configuration.secretKey}
-            />
-            <DeliveryConfiguration
-              deliveryCharges={data.configuration.deliveryCharges}
-            />
-            <CurrencyConfiguration
-              currencyCode={data.configuration.currency}
-              currencySymbol={data.configuration.currencySymbol}
-            />
-          </Container>
-      }
+      ) : loading ? (
+        <Container className="text-center mt-10" fluid>
+          <Loader
+            type="TailSpin"
+            color="#fb6340"
+            height={300}
+            width={300}
+            visible={loading}
+          />
+        </Container>
+      ) : (
+        <Container className="mt--7" fluid>
+          <Loader
+            type="TailSpin"
+            color="#FFF"
+            height={25}
+            width={30}
+            visible={loading}
+          />
+          <OrderConfiguration prefix={data.configuration.orderPrefix} />
+          <EmailConfiguration
+            email={data.configuration.email}
+            password={data.configuration.password}
+            enabled={data.configuration.enableEmail}
+          />
+          <PaypalConfiguration
+            clientId={data.configuration.clientId}
+            clientSecret={data.configuration.clientSecret}
+            sandbox={data.configuration.sandbox}
+          />
+          <StripeConfiguration
+            publishableKey={data.configuration.publishableKey}
+            secretKey={data.configuration.secretKey}
+          />
+          <DeliveryConfiguration
+            deliveryCharges={data.configuration.deliveryCharges}
+          />
+          <CurrencyConfiguration
+            currencyCode={data.configuration.currency}
+            currencySymbol={data.configuration.currencySymbol}
+          />
+        </Container>
+      )}
     </>
   )
 }

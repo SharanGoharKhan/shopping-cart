@@ -1,6 +1,5 @@
 import React from 'react'
 import { withTranslation } from 'react-i18next'
-import { Link } from 'react-router-dom'
 // reactstrap components
 import {
   UncontrolledCollapse,
@@ -10,16 +9,10 @@ import {
   Nav,
   Container,
   Row,
-  Col,
-  FormGroup,
-  Input
+  Col
 } from 'reactstrap'
 
 function AuthNavbar(props) {
-  const handleChange = event => {
-    localStorage.setItem('ecommero-language', event.target.value)
-    props.i18n.changeLanguage(event.target.value)
-  }
   const { t } = props
   return (
     <>
@@ -41,27 +34,10 @@ function AuthNavbar(props) {
             </div>
             <Nav className="ml-auto" navbar>
               <NavItem>
-                <NavLink className="nav-link-icon" to="/" tag={Link}>
+                <NavLink className="nav-link-icon">
                   <i className="ni ni-planet" />
                   <span className="nav-link-inner--text">{t('Dashboard')}</span>
                 </NavLink>
-              </NavItem>
-              <NavItem>
-                <FormGroup>
-                  <Input
-                    type="select"
-                    name="select"
-                    defaultValue={localStorage.getItem('ecommero-language')}
-                    id="exampleSelect"
-                    onChange={handleChange}
-                    onBlur={event => {}}>
-                    <option value="en">English</option>
-                    <option value="de">Deutsche</option>
-                    <option value="zh">中文</option>
-                    <option value="km">ភាសាខ្មែរ</option>
-                    <option value="fr">français</option>
-                  </Input>
-                </FormGroup>
               </NavItem>
             </Nav>
           </UncontrolledCollapse>

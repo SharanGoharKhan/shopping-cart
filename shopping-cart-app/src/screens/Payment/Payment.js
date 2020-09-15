@@ -39,9 +39,7 @@ function Payment() {
   }
   return (
     <SafeAreaView style={[styles.flex, styles.safeAreaStyle]}>
-      <BackHeader
-        title="Payment"
-        backPressed={() => navigation.goBack()} />
+      <BackHeader title="Payment" backPressed={() => navigation.goBack()} />
       <View style={[styles.flex, styles.mainContainer]}>
         {CASH.map((item, index) => (
           <TouchableOpacity

@@ -5,8 +5,6 @@ const router = express.Router()
 const Stripe = require('../models/stripe')
 const User = require('../models/user')
 const Order = require('../models/order')
-const Item = require('../models/item')
-const Option = require('../models/option')
 const Configuration = require('../models/configuration')
 const sendEmail = require('../helpers/email')
 const Coupon = require('../models/coupon')
@@ -29,7 +27,7 @@ var CURRENCY = 'USD'
 var CURRENCY_SYMBOL = '$'
 var CURRENCY_MULTIPLIER = 100
 
-const initializeStripe = async () => {
+const initializeStripe = async() => {
   let configuration = await Configuration.findOne()
   if (!configuration) return (isInitialized = false)
   stripe = stripeObj(configuration.secretKey)
@@ -41,7 +39,7 @@ const initializeStripe = async () => {
   isInitialized = true
 }
 
-router.post('/charge', async (req, res) => {
+router.post('/charge', async(req, res) => {
   console.log('charge')
   await initializeStripe()
   if (!isInitialized) return res.send({ paid: false })
@@ -163,14 +161,14 @@ router.post('/charge', async (req, res) => {
       return res.send({ redirect: 'stripe/failed' })
     })
 })
-router.get('/success', async (req, res) => {
+router.get('/success', async(req, res) => {
   console.log('success')
   return res.render('stripeSuccess')
 })
-router.get('/failed', async (req, res) => {
+router.get('/failed', async(req, res) => {
   return res.render('stripeFailed')
 })
-router.get('/cancel', async (req, res) => {
+router.get('/cancel', async(req, res) => {
   return res.render('stripeCancel')
 })
 module.exports = router

@@ -77,19 +77,30 @@ const Dashboard = props => {
   const [endingDate, setEndingDate] = useState(
     new Date().toISOString().substr(0, 10)
   )
-  const { data: dataToal, loading: loadingTotal, error: errorTotal } = useQuery(GET_DASHBOARD_TOTAL, {
+  const { data: dataToal, loading: loadingTotal, error: errorTotal } = useQuery(
+    GET_DASHBOARD_TOTAL,
+    {
+      variables: {
+        startingDate: startingDate.toString(),
+        endingDate: endingDate.toString()
+      }
+    }
+  )
+  const {
+    data: dataSales,
+    loading: loadingSales,
+    error: errorSales
+  } = useQuery(GET_DASHBOARD_SALES, {
     variables: {
       startingDate: startingDate.toString(),
       endingDate: endingDate.toString()
     }
   })
-  const { data: dataSales, loading: loadingSales, error: errorSales } = useQuery(GET_DASHBOARD_SALES, {
-    variables: {
-      startingDate: startingDate.toString(),
-      endingDate: endingDate.toString()
-    }
-  })
-  const { data: dataOrder, loading: loadingOrder, error: errorOrder } = useQuery(GET_DASHBOARD_ORDERS, {
+  const {
+    data: dataOrder,
+    loading: loadingOrder,
+    error: errorOrder
+  } = useQuery(GET_DASHBOARD_ORDERS, {
     variables: {
       startingDate: startingDate.toString(),
       endingDate: endingDate.toString()
@@ -101,7 +112,7 @@ const Dashboard = props => {
       <Header />
       {/* Page content */}
       <Container className="mt--7" fluid>
-        {errorTotal ? null :
+        {errorTotal ? null : (
           <Row>
             <Col className="mb-lg-5 mb-sm-3" xl="6">
               <Card className="card-stats mb-4 mb-lg-0">
@@ -184,8 +195,8 @@ const Dashboard = props => {
                         {loadingTotal
                           ? '...'
                           : dataToal.getDashboardTotal.avg_ratings}
-                            /
-                            {loadingTotal
+                        /
+                        {loadingTotal
                           ? '...'
                           : dataToal.getDashboardTotal.total_ratings}
                       </span>
@@ -200,7 +211,7 @@ const Dashboard = props => {
               </Card>
             </Col>
           </Row>
-        }
+        )}
 
         <Row className="mb-lg-5 mb-sm-3">
           <Col className="mb-5 mb-xl-0" xl="12">
@@ -263,7 +274,7 @@ const Dashboard = props => {
           </Col>
         </Row>
         <Row>
-          {errorSales ? null :
+          {errorSales ? null : (
             <Col className="mb-5 mb-xl-0" xl="8">
               <Card className="bg-gradient-default shadow">
                 <CardHeader className="bg-transparent">
@@ -300,8 +311,8 @@ const Dashboard = props => {
                 </CardBody>
               </Card>
             </Col>
-          }
-          {errorOrder ? null :
+          )}
+          {errorOrder ? null : (
             <Col xl="4">
               <Card className="shadow">
                 <CardHeader className="bg-transparent">
@@ -343,7 +354,7 @@ const Dashboard = props => {
                 </CardBody>
               </Card>
             </Col>
-          }
+          )}
         </Row>
       </Container>
     </>

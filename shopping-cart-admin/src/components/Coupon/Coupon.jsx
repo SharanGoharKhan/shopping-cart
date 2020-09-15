@@ -26,7 +26,7 @@ const EDIT_COUPON = gql`
   ${editCoupon}
 `
 const GET_COUPONS = gql`
-${getCoupons}
+  ${getCoupons}
 `
 
 function Coupan(props) {
@@ -43,7 +43,11 @@ function Coupan(props) {
   const [discountError, discountErrorSetter] = useState(null)
   const mutation = props.coupon ? EDIT_COUPON : CREATE_COUPON
 
-  const [mutate, { loading }] = useMutation(mutation, { onCompleted, onError, refetchQueries: [{ query: GET_COUPONS }] })
+  const [mutate, { loading }] = useMutation(mutation, {
+    onCompleted,
+    onError,
+    refetchQueries: [{ query: GET_COUPONS }]
+  })
 
   const onBlur = (setter, field, state) => {
     setter(!validateFunc({ [field]: state }, field))
@@ -61,13 +65,13 @@ function Coupan(props) {
     codeErrorSetter(null)
     discountErrorSetter(null)
   }
-  function onCompleted (data) {
+  function onCompleted(data) {
     const message = props.coupon ? 'Coupon updated' : 'Coupon added'
     successMessageSetter(message)
     errorMessageSetter('')
     if (!props.coupon) clearFields()
   }
-  function onError(error){
+  function onError(error) {
     console.log(error.networkError.result.errors[0].message)
     let message = ''
     try {
@@ -199,7 +203,7 @@ function Coupan(props) {
                       </UncontrolledAlert>
                     )}
                   </Col>
-                  {loading ?
+                  {loading ? (
                     <Col className="text-right" lg="6">
                       <Button color="primary" onClick={() => null}>
                         <Loader
@@ -210,7 +214,8 @@ function Coupan(props) {
                           visible={loading}
                         />
                       </Button>
-                    </Col> :
+                    </Col>
+                  ) : (
                     <Col className="text-right" lg="6">
                       <Button
                         color="primary"
@@ -236,7 +241,7 @@ function Coupan(props) {
                         {t('Save')}
                       </Button>
                     </Col>
-                  }
+                  )}
                 </Row>
               </div>
             </Form>

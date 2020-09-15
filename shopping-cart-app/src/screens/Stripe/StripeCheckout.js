@@ -12,18 +12,18 @@ const {
   SERVER_URL,
   STRIPE_PUBLIC_KEY,
   STRIPE_IMAGE_URL,
-  STRIPE_STORE_NAME } = getEnvVars()
+  STRIPE_STORE_NAME
+} = getEnvVars()
 
 const MYORDERS = gql`
   ${myOrders}
 `
 
-
 function StripeCheckout() {
   const navigation = useNavigation()
   const client = useApolloClient()
   const route = useRoute()
-  const { _id, currency, email: email } = route.params
+  const { _id, currency, email } = route.params
   const { clearCart } = useContext(UserContext)
 
   const multiplier = stripeCurrencies.find(
@@ -50,7 +50,7 @@ function StripeCheckout() {
       fetchPolicy: 'network-only'
     })
     const order = result.data.orders.find(order => order.orderId === _id)
-    await clearCart();
+    await clearCart()
     navigation.reset({
       routes: [
         { name: 'MainLanding' },
@@ -124,6 +124,5 @@ window.onload = function() {
     />
   )
 }
-
 
 export default StripeCheckout

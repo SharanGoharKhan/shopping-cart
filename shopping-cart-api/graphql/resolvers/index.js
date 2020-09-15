@@ -26,7 +26,7 @@ const rootResolver = {
     ...subCategoryResolver.Query
   },
   Subscription: {
-    ...orderResolver.Subscription,
+    ...orderResolver.Subscription
   },
   Mutation: {
     ...addressResolver.Mutation,

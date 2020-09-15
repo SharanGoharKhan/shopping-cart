@@ -4,7 +4,7 @@ const { transformOptionGroup } = require('./merge')
 
 module.exports = {
   Query: {
-    optionGroups: async (_, args, context) => {
+    optionGroups: async(_, args, context) => {
       console.log('optionGroups')
       try {
         const options = await OptionGroup.find({ isActive: true })
@@ -16,21 +16,24 @@ module.exports = {
         throw err
       }
     },
-    getOptionGroupsByCategory: async (_, args, context) => {
-      console.log("getOptionGroupsByCategory")
+    getOptionGroupsByCategory: async(_, args, context) => {
+      console.log('getOptionGroupsByCategory')
       try {
-        const options = await OptionGroup.find({ subCategory: args.subCategory, isActive: true })
+        const options = await OptionGroup.find({
+          subCategory: args.subCategory,
+          isActive: true
+        })
         return options.map(option => {
           return transformOptionGroup(option)
         })
       } catch (err) {
         console.log(err)
-        throw (err)
+        throw err
       }
     }
   },
   Mutation: {
-    createOptionGroup: async (_, args, context) => {
+    createOptionGroup: async(_, args, context) => {
       console.log('createOptionGroup')
       try {
         const data = new OptionGroup({
@@ -45,16 +48,17 @@ module.exports = {
         const optionGroups = await data.save()
 
         return transformOptionGroup(optionGroups)
-
       } catch (err) {
         console.log(err)
         throw err
       }
     },
-    editOptionGroup: async (_, args, context) => {
+    editOptionGroup: async(_, args, context) => {
       console.log('editOption')
       try {
-        const optionGroup = await OptionGroup.findById(args.optionGroupInput._id)
+        const optionGroup = await OptionGroup.findById(
+          args.optionGroupInput._id
+        )
         if (!optionGroup) {
           throw new Error('Option Group does not exist')
         }
@@ -74,7 +78,7 @@ module.exports = {
         throw err
       }
     },
-    deleteOptionGroup: async (_, args, context) => {
+    deleteOptionGroup: async(_, args, context) => {
       console.log('deleteOption')
       try {
         const optionGroup = await OptionGroup.findById(args.id)
