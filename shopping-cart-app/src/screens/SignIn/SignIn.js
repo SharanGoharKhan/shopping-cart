@@ -146,10 +146,11 @@ function SignIn(props) {
             if (type === 'success')
                 return user
 
-            alert(type)
         }
         catch (e) {
-            alert(e.message)
+            if (e.code != -3) {
+                FlashMessage({ message: e.message, type: 'warning', position: 'top' })
+            }
         }
     }
 

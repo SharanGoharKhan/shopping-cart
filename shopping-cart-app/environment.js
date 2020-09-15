@@ -11,7 +11,7 @@ const ENV = {
     WS_GRAPHQL_URL: 'ws://192.168.100.7:8002/graphql',
     SERVER_URL: 'http://192.168.100.7:8002/', // put / at the end of server url
     IOS_CLIENT_ID_GOOGLE:
-      '967541328677-uq7f7odvmeea2pb2sq0l7q320ds86536.apps.googleusercontent.com',
+      '378663620953-l6o6dgo2a7gtcn7brfkgaqf7sv81hfcr.apps.googleusercontent.com',
     ANDROID_CLIENT_ID_GOOGLE:
       '378663620953-dtqi67u1022oq54e3rmrusr71v4kocmc.apps.googleusercontent.com',
     FACEBOOK_APP_ID: '404956210315749',
@@ -25,7 +25,7 @@ const ENV = {
     WS_GRAPHQL_URL: 'wss://ecommero.ninjascode.com/graphql',
     SERVER_URL: 'https://ecommero.ninjascode.com/', // put / at the end of server url
     IOS_CLIENT_ID_GOOGLE:
-      '967541328677-uq7f7odvmeea2pb2sq0l7q320ds86536.apps.googleusercontent.com',
+      '378663620953-l6o6dgo2a7gtcn7brfkgaqf7sv81hfcr.apps.googleusercontent.com',
     ANDROID_CLIENT_ID_GOOGLE:
       '378663620953-dtqi67u1022oq54e3rmrusr71v4kocmc.apps.googleusercontent.com',
     FACEBOOK_APP_ID: '404956210315749',
