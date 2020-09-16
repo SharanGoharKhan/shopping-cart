@@ -35,7 +35,7 @@ function ShoppingCart(props) {
     removeQuantity
   } = useContext(UserContext)
   const [products, setProducts] = useState([])
-  const [setLoadingData] = useState(true)
+  const setLoadingData = useState(true)[1]
 
   useEffect(() => {
     didFocus()
