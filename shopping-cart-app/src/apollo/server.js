@@ -111,27 +111,33 @@ export const createAddress = `mutation CreateAddress($addressInput:AddressInput!
 export const editAddress = `mutation EditAddress($addressInput:AddressInput!){
   editAddress(addressInput:$addressInput){
     _id
-    label
-    region
-    city
-    apartment
-    building
-    details
-    selected
+    addresses{
+      _id
+      label
+      region
+      city
+      apartment
+      building
+      details
+      selected
+    }
   }
 }`
 export const deleteAddress = `mutation DeleteAddress($id:ID!){
   deleteAddress(id:$id){
     _id
-    label
-    region
-    city
-    apartment
-    building
-    details
-    selected
-    isActive
+    addresses{
+      _id
+      label
+      region
+      city
+      apartment
+      building
+      details
+      selected
+      isActive
     }
+  }
 }`
 
 export const selectAddress = `mutation SelectAddress($id:String!){

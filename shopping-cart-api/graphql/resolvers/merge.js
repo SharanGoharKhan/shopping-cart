@@ -164,6 +164,7 @@ const populateAddresses = async addressIds => {
     _id: { $in: addressIds },
     isActive: true
   }).sort({ createdAt: -1 })
+  console.log('address',addresses)
   return addresses.map(address => ({
     ...address._doc,
     _id: address.id

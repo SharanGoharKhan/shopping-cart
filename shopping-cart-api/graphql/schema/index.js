@@ -467,6 +467,7 @@ const typeDefs = gql`
     ): DashboardSales!
     coupons: [Coupon!]!
     whishlistProducts: [Product!]
+    test: Boolean
   }
 
   type Mutation {
@@ -540,8 +541,8 @@ const typeDefs = gql`
     deleteCoupon(id: String!): String!
     coupon(coupon: String!): Coupon!
     createAddress(addressInput: AddressInput!): User!
-    editAddress(addressInput: AddressInput!): Address!
-    deleteAddress(id: ID!): Address!
+    editAddress(addressInput: AddressInput!): User!
+    deleteAddress(id: ID!): User!
     changePassword(oldPassword: String!, newPassword: String!): Boolean!
     selectAddress(id: String!): User!
     assignOrder(id: String): Order!

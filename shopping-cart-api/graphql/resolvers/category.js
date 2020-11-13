@@ -28,6 +28,11 @@ module.exports = {
       } catch (err) {
         throw err
       }
+    },
+    test: async(_, args, context) => {
+      console.log("test")
+      await SubCategory.updateMany({isActive:true})
+      return true
     }
   },
   Mutation: {

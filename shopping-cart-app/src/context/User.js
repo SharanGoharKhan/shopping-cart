@@ -85,6 +85,7 @@ export const UserProvider = props => {
   useEffect(() => {
     let isSubscribed = true
     ;(async() => {
+      // await AsyncStorage.clear()
       const cart = await AsyncStorage.getItem('cartItems')
       isSubscribed && setCart(cart ? JSON.parse(cart) : [])
     })()

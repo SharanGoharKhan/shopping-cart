@@ -17,6 +17,7 @@ const SELECT_ADDRESS = gql`
 `
 
 function Card(props) {
+  console.log('card',props)
   const navigation = useNavigation()
   const isDefault = props.default
   const [mutate, { loading: loadingMutation }] = useMutation(DELETE_ADDRESS)

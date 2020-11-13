@@ -19,14 +19,10 @@ const cache = new InMemoryCache({
     User: {
       fields: {
         addresses: {
-          merge(incoming) {
-            return incoming
-          }
+          merge: false
         },
         whishlist: {
-          merge(incoming) {
-            return incoming
-          }
+          merge: false
         }
       }
     },

@@ -50,7 +50,9 @@ module.exports = {
         address.details = addressInput.details
 
         const updatedAddress = await address.save()
-        return { ...updatedAddress._doc, _id: updatedAddress.id }
+        const updatedUser = await user.save()
+
+        return transformUser(updatedUser)
       } catch (e) {
         throw e
       }
@@ -69,15 +71,16 @@ module.exports = {
         }
         address.isActive = false
         const result = await address.save()
-        // const updatedUser = await User.findById(req.userId)
-        console.log({
-          ...result._doc,
-          _id: result.id
-        })
-        return {
-          ...result._doc,
-          _id: result.id
-        }
+        const updatedUser = await User.findById(req.userId)
+        return transformUser(updatedUser)
+        // console.log({
+        //   ...result._doc,
+        //   _id: result.id
+        // })
+        // return {
+        //   ...result._doc,
+        //   _id: result.id
+        // }
       } catch (e) {
         throw e
       }
