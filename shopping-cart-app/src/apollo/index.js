@@ -29,7 +29,7 @@ const cache = new InMemoryCache({
     Order: {
       fields: {
         statusQueue: {
-          merge(incoming) {
+          merge(existing, incoming) {
             return incoming
           }
         }
@@ -88,7 +88,7 @@ const terminatingLink = split(({ query }) => {
   return kind === 'OperationDefinition' && operation === 'subscription'
 }, wsLink)
 
-const setupApollo = async() => {
+const setupApollo = async () => {
   // await persistCache({
   //   cache,
   //   storage: AsyncStorage

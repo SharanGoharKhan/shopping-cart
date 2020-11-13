@@ -35,7 +35,7 @@ function ShoppingCart(props) {
     removeQuantity
   } = useContext(UserContext)
   const [products, setProducts] = useState([])
-  const [setLoadingData] = useState(true)
+  // const setLoadingData = useState(true)[1]
 
   useEffect(() => {
     didFocus()
@@ -71,15 +71,15 @@ function ShoppingCart(props) {
         if (isFocused) {
           await updateCart(transformCart.filter(item => item))
           setProducts(productByIds)
-          setLoadingData(false)
+          // setLoadingData(false)
         } else {
           if (navigation.isFocused) {
-            setLoadingData(false)
+            // setLoadingData(false)
           }
         }
       }
     } catch (error) {
-      setLoadingData(false)
+      // setLoadingData(false)
       return <TextError text={error.message} />
     }
   }
