@@ -178,6 +178,9 @@ const populateCategory = async categoryId => {
 
 const populateSubCategory = async subCategoryId => {
   const subCategory = await SubCategory.findById(subCategoryId)
+  if(!subCategory){
+    console.log('test', subCategoryId)
+  }
   return transformSubCategory(subCategory)
 }
 

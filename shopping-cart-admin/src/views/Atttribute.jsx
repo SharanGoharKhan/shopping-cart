@@ -95,7 +95,7 @@ const Attribute = props => {
           <div className="col">
             <Card className="shadow">
               {error ? (
-                <span>{t('Error')}!</span>
+                <span>{'Error:' + JSON.stringify(error)}!</span>
               ) : (
                 <DataTable
                   title={'Attributes'}

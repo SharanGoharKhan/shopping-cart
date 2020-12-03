@@ -1,8 +1,9 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { Badge } from 'reactstrap'
 import { categories, deleteCategory } from '../../apollo/server'
 import Loader from 'react-loader-spinner'
 import { useMutation, gql } from '@apollo/client'
+import Alert from '../Alert'
 
 const GET_CATEGORIES = gql`
   ${categories}
@@ -14,6 +15,7 @@ const DELETE_CATEGORY = gql`
 function ActionButton(props) {
   const mutation = props.mutation ? props.mutation : DELETE_CATEGORY
   const query = props.refetchQuery ? props.refetchQuery : GET_CATEGORIES
+  const [isOpen, setIsOpen] = useState(false);
   var [mutate, { loading: deleteLoading }] = useMutation(mutation, {
     refetchQueries: [{ query: query }]
   })
@@ -21,6 +23,7 @@ function ActionButton(props) {
     <>
       {props.editButton && (
         <>
+        {isOpen && <Alert message="Delete feature will available after purchasing product" severity="warning" />}
           <Badge
             href="#pablo"
             onClick={e => {
@@ -42,20 +45,26 @@ function ActionButton(props) {
           visible={deleteLoading}
         />
       ) : (
-        <Badge
-          href="#pablo"
-          color="danger"
-          onClick={e => {
-            e.preventDefault()
-            mutate({
-              variables: {
-                id: props.row._id
-              }
-            })
-          }}>
-          {'Delete'}
-        </Badge>
-      )}
+          <Badge
+            href="#pablo"
+            color="danger"
+            onClick={e => {
+              e.preventDefault()
+              // mutate({
+              //   variables: {
+              //     id: props.row._id
+              //   }
+              // })
+
+              setIsOpen(true)
+              setTimeout(() => {
+                setIsOpen(false);
+              }, 2000);
+
+            }}>
+            {'Delete'}
+          </Badge>
+        )}
     </>
   )
 }
