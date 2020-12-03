@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import AppContainer from './src/routes/routes'
 import * as Permissions from 'expo-permissions'
-import { Notifications } from 'expo'
+import * as Notifications from 'expo-notifications';
 import { ApolloProvider } from '@apollo/client'
 import { StatusBar, Platform } from 'react-native'
 import { ConfigurationProvider } from './src/context/Configuration'
@@ -54,11 +54,11 @@ export default function App() {
     }
 
     if (Platform.OS === 'android') {
-      Notifications.createChannelAndroidAsync('default', {
+      Notifications.setNotificationChannelAsync('default', {
         name: 'default',
-        sound: true,
-        priority: 'max',
-        vibrate: [0, 250, 250, 250]
+        importance: Notifications.AndroidImportance.HIGH,
+        vibrationPattern: [0, 250, 250, 250],
+        lightColor: colors.brownColor
       })
     }
   }

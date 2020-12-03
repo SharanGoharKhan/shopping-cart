@@ -6,7 +6,7 @@ import {
   KeyboardAvoidingView,
   Platform
 } from 'react-native'
-import { Notifications } from 'expo'
+import * as Notifications from 'expo-notifications';
 import * as Permissions from 'expo-permissions'
 import styles from './styles'
 import { colors, alignment } from '../../utils'
@@ -62,7 +62,6 @@ function SignUp(props) {
       result = false
     }
     const nameRegex = /([a-zA-Z]{3,30}\s*)+/
-    console.log('full name', fullname, !nameRegex.test(fullname))
     if (!nameRegex.test(fullname)) {
       setNameError('Full name is required')
       result = false
@@ -106,7 +105,7 @@ function SignUp(props) {
     if (existingStatus === 'granted') {
       notificationToken = await Notifications.getExpoPushTokenAsync()
     }
-    mutate({ variables: { ...user, notificationToken } })
+    mutate({ variables: { ...user, notificationToken:notificationToken.data } })
   }
 
   return (
@@ -217,7 +216,7 @@ function SignUp(props) {
                       <MainBtn
                         loading={loading}
                         onPress={async() => {
-                          if (validateCredentials()) {
+                          if (validateCredentials()|| true) {
                             const user = {
                               phone: phone.trim(),
                               email: email.toLowerCase().trim(),

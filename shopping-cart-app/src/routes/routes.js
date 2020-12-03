@@ -1,8 +1,8 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { createStackNavigator } from '@react-navigation/stack'
 import { NavigationContainer } from '@react-navigation/native'
 import navigationService from './navigationService'
-import { Notifications } from 'expo'
+import * as Notifications from 'expo-notifications';
 import { createDrawerNavigator } from '@react-navigation/drawer'
 import * as Screen from '../screens'
 import { MainMenu } from '../components'
@@ -104,11 +104,25 @@ function AppContainer() {
       console.log(e)
     }
   }
+
+  useEffect(() => {
+    Notifications.setNotificationHandler({
+      handleNotification: async() => ({
+        shouldShowAlert: true,
+        shouldPlaySound: false,
+        shouldSetBadge: false
+      })
+    })
+    const subscription = Notifications.addNotificationResponseReceivedListener(
+      _handleNotification
+    )
+    return () => subscription.remove()
+  }, [])
+
   return (
     <NavigationContainer
       ref={ref => {
         navigationService.setGlobalRef(ref)
-        Notifications.addListener(_handleNotification)
       }}>
       <MainStack.Navigator headerMode="none" initialRouteName="Drawer">
         <MainStack.Screen name="Drawer" component={Drawer} />

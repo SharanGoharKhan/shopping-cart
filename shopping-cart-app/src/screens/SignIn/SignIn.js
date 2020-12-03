@@ -10,7 +10,7 @@ import {
 import * as Permissions from 'expo-permissions'
 import styles from './styles'
 import { login } from '../../apollo/server'
-import { Notifications } from 'expo'
+import * as Notifications from 'expo-notifications';
 import { colors, scale } from '../../utils'
 import { TextDefault, Spinner } from '../../components'
 import TextField from '../../ui/Textfield/Textfield'
@@ -38,8 +38,8 @@ function SignIn(props) {
   const navigation = useNavigation()
   const route = useRoute()
   const cartAddress = route.params?.backScreen ?? null
-  const [email, setEmail] = useState('')
-  const [password, setPassword] = useState('')
+  const [email, setEmail] = useState('john_doe@gmail.com')
+  const [password, setPassword] = useState('12345678')
   const [emailError, setEmailError] = useState(null)
   const [passwordError, setPasswordError] = useState(null)
   const [modalVisible, setModalVisible] = useState(false)
@@ -148,7 +148,7 @@ function SignIn(props) {
       if (existingStatus === 'granted') {
         notificationToken = await Notifications.getExpoPushTokenAsync()
       }
-      mutate({ variables: { ...user, notificationToken } })
+      mutate({ variables: { ...user, notificationToken:notificationToken.data } })
     } catch (e) {
       console.log(e)
     } finally {
@@ -312,6 +312,7 @@ function SignIn(props) {
                       <TextField
                         error={!!emailError}
                         placeholder="Email"
+                        value={email}
                         onChange={event => {
                           setEmail(event.nativeEvent.text.toLowerCase().trim())
                         }}
@@ -327,6 +328,7 @@ function SignIn(props) {
                         error={!!passwordError}
                         placeholder="Password"
                         password={true}
+                        value={password}
                         onChange={event => {
                           setPassword(event.nativeEvent.text.trim())
                         }}
