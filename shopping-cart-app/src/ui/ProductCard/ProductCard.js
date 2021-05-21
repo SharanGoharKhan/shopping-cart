@@ -102,8 +102,8 @@ function ProductCard(props) {
                 }}
                 style={styles.likeContainer}>
                 <Ionicons
-                  name={liked ? 'ios-heart' : 'ios-heart-empty'}
-                  size={scale(20)}
+                  name={liked ? 'ios-heart-sharp' : 'ios-heart-outline'}
+                  size={scale(18)}
                 />
               </TouchableOpacity>
             </View>

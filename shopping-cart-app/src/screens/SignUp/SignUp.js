@@ -7,7 +7,6 @@ import {
   Platform
 } from 'react-native'
 import * as Notifications from 'expo-notifications';
-import * as Permissions from 'expo-permissions'
 import styles from './styles'
 import { colors, alignment } from '../../utils'
 import TextField from '../../ui/Textfield/Textfield'
@@ -99,13 +98,11 @@ function SignUp(props) {
   async function mutateLogin(user) {
     setLoading(true)
     let notificationToken = null
-    const { status: existingStatus } = await Permissions.getAsync(
-      Permissions.NOTIFICATIONS
-    )
+    const { status: existingStatus } = await Notifications.getPermissionsAsync()
     if (existingStatus === 'granted') {
       notificationToken = await Notifications.getExpoPushTokenAsync()
     }
-    mutate({ variables: { ...user, notificationToken:notificationToken.data } })
+    mutate({ variables: { ...user, notificationToken: notificationToken.data } })
   }
 
   return (

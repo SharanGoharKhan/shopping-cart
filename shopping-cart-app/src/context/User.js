@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types'
 import React, { useState, useEffect } from 'react'
-import { AsyncStorage } from 'react-native'
+import AsyncStorage from '@react-native-async-storage/async-storage'
 import { useLazyQuery, useApolloClient, gql } from '@apollo/client'
 import { profile, myOrders, orderStatusChanged } from '../apollo/server'
 import uuid from 'uuid'

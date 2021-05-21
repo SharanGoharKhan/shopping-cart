@@ -7,10 +7,9 @@ import {
   ScrollView,
   Platform
 } from 'react-native'
-import * as Permissions from 'expo-permissions'
 import styles from './styles'
 import { login } from '../../apollo/server'
-import * as Notifications from 'expo-notifications';
+import * as Notifications from 'expo-notifications'
 import { colors, scale } from '../../utils'
 import { TextDefault, Spinner } from '../../components'
 import TextField from '../../ui/Textfield/Textfield'
@@ -118,37 +117,32 @@ function SignIn(props) {
     }
   }
 
-    async function _GoogleSignUp() {
-        try {
-            const { type, user } = await Google.logInAsync({
-                iosClientId: IOS_CLIENT_ID_GOOGLE,
-                androidClientId: ANDROID_CLIENT_ID_GOOGLE,
-                iosStandaloneAppClientId: IOS_CLIENT_ID_GOOGLE,
-                androidStandaloneAppClientId: ANDROID_CLIENT_ID_GOOGLE,
-                redirectUrl: `${AppAuth.OAuthRedirect}:/oauth2redirect/google`,
-                scopes: ['profile', 'email']
-            })
-            if (type === 'success')
-                return user
-
-        }
-        catch (e) {
-            if (e.code != -3) {
-                FlashMessage({ message: e.message, type: 'warning', position: 'top' })
-            }
-        }
+  async function _GoogleSignUp() {
+    try {
+      const { type, user } = await Google.logInAsync({
+        iosClientId: IOS_CLIENT_ID_GOOGLE,
+        androidClientId: ANDROID_CLIENT_ID_GOOGLE,
+        iosStandaloneAppClientId: IOS_CLIENT_ID_GOOGLE,
+        androidStandaloneAppClientId: ANDROID_CLIENT_ID_GOOGLE,
+        redirectUrl: `${AppAuth.OAuthRedirect}:/oauth2redirect/google`,
+        scopes: ['profile', 'email']
+      })
+      if (type === 'success') { return user }
+    } catch (e) {
+      if (e.code !== -3) {
+        FlashMessage({ message: e.message, type: 'warning', position: 'top' })
+      }
     }
+  }
   async function mutateLogin(user) {
     try {
       setLoading(true)
       let notificationToken = null
-      const { status: existingStatus } = await Permissions.getAsync(
-        Permissions.NOTIFICATIONS
-      )
+      const { status: existingStatus } = await Notifications.getPermissionsAsync()
       if (existingStatus === 'granted') {
         notificationToken = await Notifications.getExpoPushTokenAsync()
       }
-      mutate({ variables: { ...user, notificationToken:notificationToken.data } })
+      mutate({ variables: { ...user, notificationToken: notificationToken.data } })
     } catch (e) {
       console.log(e)
     } finally {

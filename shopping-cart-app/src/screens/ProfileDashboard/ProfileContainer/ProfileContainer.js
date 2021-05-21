@@ -94,7 +94,7 @@ function profileContainer(props) {
                   style={{ alignItems: 'center' }}
                   onPress={() => navigation.navigate('Favourite')}>
                   <Ionicons
-                    name="ios-heart-empty"
+                    name="ios-heart-outline"
                     size={scale(20)}
                     color={colors.fontThirdColor}
                   />

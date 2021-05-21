@@ -73,7 +73,7 @@ function OrderDetail(props) {
                               right
                               style={alignment.PRxSmall}>
                               {configuration.currencySymbol}{' '}
-                              {data.price * data.quantity}
+                              {(data.price * data.quantity).toFixed(2)}
                             </TextDefault>
                           </View>
                           {!data.isReviewed &&
